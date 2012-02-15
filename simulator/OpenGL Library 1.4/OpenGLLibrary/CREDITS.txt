@@ -1,0 +1,29 @@
+OpenGL Library was made by Ian Mallett (A.K.A. Geometrian).  Email at ian@geometrian.com, or visit website http://www.geometrian.com/Programs.php
+
+You are free to use this code, just don't take credit for my work.
+
+In that spirit, here are the many sources who have made this work possible:
+
+For shadow mapping:
+-Alessio's shadow demo:
+ http://www.pygame.org/project/556/
+-Paul's Projects shadow mapping tutorial (Alessio's demo based on):
+ http://www.paulsprojects.net/tutorials/smt/smt.html
+-Discussion about shadow mapping demo on pygame mailing list:
+ http://archives.seul.org/pygame/users/Mar-2008/msg00302.html
+-Hardware Shadow Mapping, by Cass Everitt, Ashu Rege and Cem Cebenoyan:
+ http://developer.nvidia.com/object/hwshadowmap_paper.html
+-Shadow Mapping, by Cass Everitt:
+ http://developer.nvidia.com/object/shadow_mapping.html
+-Projective Texture Mapping, by Cass Everitt:
+ http://developer.nvidia.com/object/Projective_Texture_Mapping.html
+-Perspective shadow maps, by daniel scherzer:
+ http://www.cg.tuwien.ac.at/~scherzer/psm/
+ http://www.cg.tuwien.ac.at/~scherzer/
+-Light Space Perspective Shadow Maps: 
+ http://www.cg.tuwien.ac.at/research/vr/lispsm
+-Dephi3d.net shadow demos:
+ http://www.delphi3d.net/listfiles.php?category=4
+-Shadow Modifications:
+ http://rene.f0o.com/~rene/stuff/rd_shadows2.zip
+-Countless people on gamedev.net for their invaluable help

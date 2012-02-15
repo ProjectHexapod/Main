@@ -1,0 +1,11 @@
+Hello,
+
+This library is still in active development, as can be seen in some of the various files.  
+
+I am aware of problems in with transmission and caustic mapping, as well as the problems section in To Do.doc.  Please do not report such issues to me.  If you find an issue elsewhere, want to suggest features I haven't thought of, etc.: see To Do.doc, contact me at ian@geometrian.com.  
+
+The semantics of depth peeling are likely to change.  Don't get too attached to them.  
+
+Keep in mind this is a very very very very very beta version.
+
+Ian

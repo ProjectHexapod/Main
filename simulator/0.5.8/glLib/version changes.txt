@@ -1,0 +1,2 @@
+Change glLibMisc.py/glLibGetVersion()
+Change Documentation, shaders documentation
