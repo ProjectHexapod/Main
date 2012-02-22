@@ -10,6 +10,7 @@ def trans(H, cp):
 	assert abs(cp2[3] - 1.0) < 1e-10, "ERROR: 4th coefficient should be 1.0, not %f" % cp2[3]
 	return array(cp2)[:-1,0]
 
+
 # Kinematics specified using simplified DH parameters as defined on Page 76 of Spong,H,V:
 #   The local frame is attached to the *end* of each link.
 #   Joint angle (theta) is about previous link's Z-axis.
@@ -80,6 +81,14 @@ class Cylinder:
 		self.l2 = link2Index
 		self.ap2 = attachmentPoint2  # In link2 frame
 
+	def draw(self):
+		ends = array([self.l1.toWorld(self.ap1), self.l2.toWorld(self.ap2)])
+		
+		subplot(121)  # X-Y
+		plot(ends[:,0], ends[:,1], 'b.-', linewidth=2)
+		subplot(122)  # X-Z
+		plot(ends[:,0], ends[:,2], 'b.-', linewidth=2)
+
 		
 class Leg:
 	def __init__(self, links, cylinders):
@@ -106,8 +115,26 @@ class Leg:
 			else:
 				c.l2 = self.links[c.l2]
 	
+	def setAngles(self, *args):
+		map(Link.setTheta, self.links, args)
+	
 	def toWorld(self, cp):
 		return cp  # Stub. No body yet.
+	
+	def draw(self):
+		o = CP(0,0,0)
+		origins = zeros((self.dof+1, 3))
+		
+		origins[0,:] = self.toWorld(o)
+		for j in range(self.dof):
+			origins[j+1,:] = self.links[j].toWorld(o)
+		
+		subplot(121)  # X-Y
+		plot(origins[:,0], origins[:,1], 'ro-', linewidth=8)
+		subplot(122)  # X-Z
+		plot(origins[:,0], origins[:,2], 'ro-', linewidth=8)
+		
+		map(Cylinder.draw, self.cylinders)
 
 #class Body:
 #	def __init__(self, *args):
@@ -135,11 +162,15 @@ leg = Leg(
 			]
 		)
 
-print leg.links[2].toWorld(CP(0,0,0))
-leg.links[1].setTheta(pi/2)
-print leg.links[2].toWorld(CP(0,0,0))
-leg.links[2].setTheta(-pi/2)
-print leg.links[2].toWorld(CP(0,0,0))
-leg.links[0].setTheta(-pi/2)
-print leg.links[2].toWorld(CP(0,0,0))
+leg.setAngles(0,pi/8,-pi/4)
+
+leg.draw()
+subplot(121)
+title("X-Y")
+axis([-1.75, 1.75, -1.75, 1.75])
+subplot(122)
+title("X-Z")
+axis([-1.75, 1.75, -1.75, 1.75])
+show()
+
 
