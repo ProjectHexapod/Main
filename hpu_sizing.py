@@ -11,7 +11,7 @@ def trans(H, cp):
 	return array(cp2)[:-1,0]
 
 
-# Kinematics specified using simplified DH parameters as defined on Page 76 of Spong,H,V:
+# Kinematics specified using simplified DH parameters as defined on page 76 of Spong,H,V:
 #   The local frame is attached to the *end* of each link.
 #   Joint angle (theta) is about previous link's Z-axis.
 #   Length is the link's extent in the previous link's X-axis if theta is zero.
@@ -41,6 +41,8 @@ class Link:
 	def setDistalLink(self, link):
 		link.setProximalLink(self)
 	
+	def getTheta(self):
+		return self.t
 	def setTheta(self, theta):
 		self.t = theta
 		
@@ -80,6 +82,12 @@ class Cylinder:
 		self.ap1 = attachmentPoint1  # In link1 frame
 		self.l2 = link2Index
 		self.ap2 = attachmentPoint2  # In link2 frame
+	
+	def volume(self):
+		l = norm(self.l1.toWorld(self.ap1) - self.l2.toWorld(self.ap2))
+		if l < self.rl  or  l > self.rl + self.stroke:
+			raise ValueError("Cylinder length out of bounds: %f (min=%f, max=%f)" % (l, self.rl, self.rl + self.stroke))
+		return (l - self.rl)*self.bore * 1000.0  # Convert to liters
 
 	def draw(self):
 		ends = array([self.l1.toWorld(self.ap1), self.l2.toWorld(self.ap2)])
@@ -115,11 +123,42 @@ class Leg:
 			else:
 				c.l2 = self.links[c.l2]
 	
+	# Forward kinematics
+	def getAngles(self):
+		return array(map(Link.getTheta, self.links))
 	def setAngles(self, *args):
 		map(Link.setTheta, self.links, args)
 	
+	# Inverse kinematics
+	def getFootPos(self):
+		return self.links[-1].toWorld(CP(0,0,0))
+	def setFootPos(self, cp):
+		l1 = self.links[1].l
+		l2 = self.links[2].l
+		x = cp[0]
+		y = cp[1]
+		z = cp[2]
+
+		# Ignoring joint limits, we can reach any pose within a sphere centered at the shoulder
+		if norm(cp) >= l1 + l2:
+			raise ValueError("Position unachievable: |%f %f %f| = %f > %f = %f + %f" % (x,y,z, norm(cp), l1 + l2, l1, l2))
+
+		q = zeros(3)
+		
+		# First, do the easy one
+		q[0] = arctan2(y, x)
+		
+		# Since the other two links are planar, we can use page 23 of SHV
+		r = (x**2 + y**2)**0.5
+		D = (r**2 + z**2 - l1**2 - l2**2) / (2*l1*l2)
+		
+		q[2] = -abs(arctan( (1-D**2)**0.5 / D ))  # Prefer the elbow-up solution
+		q[1] = arctan( (l2*sin(q[2])) / (l1 + l2*cos(q[2])) ) - arctan(-z/r)
+		
+		self.setAngles(*q)
+	
 	def toWorld(self, cp):
-		return cp  # Stub. No body yet.
+		return cp  # Stub. No Body yet.
 	
 	def draw(self):
 		o = CP(0,0,0)
@@ -162,15 +201,22 @@ leg = Leg(
 			]
 		)
 
-leg.setAngles(0,pi/8,-pi/4)
+#leg.setAngles(0,pi/8,-pi/4)
+leg.setFootPos(CP(1,0,0))
+print leg.getFootPos()
+print leg.getAngles()
 
 leg.draw()
 subplot(121)
-title("X-Y")
+title("Top down view")
+xlabel("X (m)")
+ylabel("Y (m)")
 axis([-1.75, 1.75, -1.75, 1.75])
 subplot(122)
-title("X-Z")
+title("Side view")
+xlabel("X (m)")
+ylabel("Z (m)")
 axis([-1.75, 1.75, -1.75, 1.75])
-show()
+#show()
 
 
