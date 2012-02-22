@@ -139,7 +139,8 @@ class Leg:
 		y = cp[1]
 		z = cp[2]
 
-		# Ignoring joint limits, we can reach any pose within a sphere centered at the shoulder
+		# Ignoring joint limits, we can reach any pose within a sphere centered at the shoulder.
+		# (This is false, but it's a place to start.)
 		if norm(cp) >= l1 + l2:
 			raise ValueError("Position unachievable: |%f %f %f| = %f > %f = %f + %f" % (x,y,z, norm(cp), l1 + l2, l1, l2))
 
@@ -153,7 +154,7 @@ class Leg:
 		D = (r**2 + z**2 - l1**2 - l2**2) / (2*l1*l2)
 		
 		q[2] = -abs(arctan( (1-D**2)**0.5 / D ))  # Prefer the elbow-up solution
-		q[1] = arctan( (l2*sin(q[2])) / (l1 + l2*cos(q[2])) ) - arctan(-z/r)
+		q[1] = arctan(z/r) - arctan( (l2*sin(q[2])) / (l1 + l2*cos(q[2])) )
 		
 		self.setAngles(*q)
 	
@@ -173,7 +174,7 @@ class Leg:
 		subplot(122)  # X-Z
 		plot(origins[:,0], origins[:,2], 'ro-', linewidth=8)
 		
-		map(Cylinder.draw, self.cylinders)
+		#map(Cylinder.draw, self.cylinders)
 
 #class Body:
 #	def __init__(self, *args):
@@ -202,7 +203,7 @@ leg = Leg(
 		)
 
 #leg.setAngles(0,pi/8,-pi/4)
-leg.setFootPos(CP(1,0,0))
+leg.setFootPos(CP(1.25,0,0))
 print leg.getFootPos()
 print leg.getAngles()
 
