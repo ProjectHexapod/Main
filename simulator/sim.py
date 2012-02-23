@@ -1,4 +1,4 @@
-import sys, os, random, time, collections
+import sys, os, random, time, collections, threading
 from math import *
 from OpenGL.GLUT import *
 import ode
@@ -16,14 +16,6 @@ t = 0
 # Global timestep
 global_dt = 2e-2
 global_n_iterations = 0
-
-# rotation directions are named by the third (z-axis) row of the 3x3 matrix,
-#   because ODE capsules are oriented along the z-axis
-#rightRot = (0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 1.0, 0.0, 0.0)
-#leftRot = (0.0, 0.0, 1.0, 0.0, 1.0, 0.0, -1.0, 0.0, 0.0)
-#upRot = (1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0)
-#downRot = (1.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0)
-#bkwdRot = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
 
 # axes used to determine constrained joint rotations
 rightAxis = (0.0,   1.0,    0.0)
@@ -582,7 +574,7 @@ def pave(x,y):
     """Put down a pavement tile"""
     global static_geoms, pavement, space
     g = createBoxGeom(space, (1.0,1.0,1.0))
-    pos = (x,y,random.uniform(0.0, 0.50))
+    pos = (x,y,random.uniform(0.0, 0.10))
     rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
     rand_unit = div3(rand_unit, len3(rand_unit))
     rot = calcRotMatrix(rand_unit, random.uniform(0,2*pi/120))
@@ -635,9 +627,6 @@ lasttime = time.time()
 robot = SixLegSpider(world, space, 500, (0.0, 0.0, 3.0))
 print "total mass is %.1f kg (%.1f lbs)" % (robot.totalMass, robot.totalMass * 2.2)
 
-# initialize GLUT
-#glutInit()
-
 # create the program window
 x = 0
 y = 0
@@ -666,11 +655,24 @@ for x in range(-3,4):
 
 pavement_center = [0,0]
 
+from matplotlib import pyplot
+# Turn on interactive mode.
+# This allows us to replot without blocking
+pyplot.ion()
+pyplot.scatter( range(5), range(5) )
+pyplot.draw()
+pyplot.cla()
+
+# plot body height for funsies
+times   = [0 for t in range(500)]
+heights = [0 for x in range(500)]
+
 while True:
     simMainLoop()
 
     # Do we need to repave the road?
     p = robot.getPosition()
+
 
     # Do we need to move x-wise?
     if p[0] + .5 < pavement_center[0]:
@@ -699,9 +701,19 @@ while True:
             unpave(    x, y-7)
             pave(      x, y)
         
+    times.pop(0)
+    times.append( global_n_iterations*global_dt )
+    heights.pop(0)
+    heights.append(p[2])
 
     if(time.time()-lasttime < 0.05):
         continue
+
+    #replot
+    pyplot.cla()
+
+    pyplot.scatter( times, heights, s=1, marker=(0,3,0) )
+    pyplot.draw()
 
     lasttime = time.time()
     key = pygame.key.get_pressed()
@@ -722,7 +734,6 @@ while True:
         Sun.change_pos(new_pos)
     cam.center = p
     cam.pos = add3(p,(0,10,10))
-    #cam.update()
     Window.clear()
     cam.set_camera()
 
@@ -732,5 +743,4 @@ while True:
         draw_body(b)
     for b in robot.bodies:
         draw_body(b)
-    #Map.draw([-3,3,-2],[[90,0,0]])
     Window.flip()
