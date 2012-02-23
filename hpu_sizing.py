@@ -201,6 +201,58 @@ class Leg:
 #		for leg in self.legs:
 #			leg.links[0].setProximalLink(self)
 
+def simulate(leg, speed, cp_0, cp_f, nPoints=500):
+	dif = cp_f - cp_0
+	l = norm(dif)
+	vel = speed/l * dif
+	
+	t = linspace(0.0, l/speed, nPoints)
+	dt = t[1] - t[0]
+	cps = array(t, ndmin=2).T*vel + cp_0
+	
+	angles = zeros((len(t),leg.dof))
+	strokesValid = zeros(shape(t))
+	vols = zeros(shape(angles))
+	
+	for i in range(len(t)):
+		leg.setFootPos(cps[i,:])
+		angles[i,:] = leg.getAngles()
+		strokesValid[i] = leg.strokesValid()
+		vols[i,:] = leg.getVolumes()
+
+	angularRates = diff(angles, axis=0) / dt
+	flowRates = diff(vols, axis=0) / dt
+	netRate = array(map(norm, flowRates))
+	
+	figure()
+	title("Joint angles (rad)")
+	plot(t, angles)
+	figure()
+	title("Angular rates (rad/s)")
+	plot(t[:-1], angularRates)
+	figure()
+	title("Cylinder volumes (l)")
+	plot(t, vols)
+	figure()
+	title("Flow rates (l/s)")
+	plot(t[:-1], flowRates)
+	plot(t[:-1], netRate)
+	show()
+	
+	return ([max(flowRates[:,0]), max(flowRates[:,1]), max(flowRates[:,2])], max(netRate), all(strokesValid))
+
+def setUpFigure(n=1):
+	figure(n)
+	subplot(121)
+	title("Top down view")
+	xlabel("X (m)")
+	ylabel("Y (m)")
+	axis([-1.75, 1.75, -1.75, 1.75])
+	subplot(122)
+	title("Side view")
+	xlabel("X (m)")
+	ylabel("Z (m)")
+	axis([-1.75, 1.75, -1.75, 1.75])
 
 
 
@@ -223,25 +275,16 @@ leg = Leg(
 #print leg.getFootPos()
 #print leg.getAngles()
 
-cp = CP(1.4,-.2,-.30)
-leg.setFootPos(cp);
-leg.draw(); 
-print cp, leg.getFootPos()
-print leg.getVolumes(), leg.strokesValid()
+#cp = CP(1.4,-.2,-.30)
+#leg.setFootPos(cp);
+#leg.draw(); 
+#print cp, leg.getFootPos()
+#print leg.getVolumes(), leg.strokesValid()
 
+print simulate(leg, 1.5, CP(0.5, 0.5, -0.3), CP(0.5, -0.5, -0.3))
 
-leg.draw()
-subplot(121)
-title("Top down view")
-xlabel("X (m)")
-ylabel("Y (m)")
-axis([-1.75, 1.75, -1.75, 1.75])
-subplot(122)
-title("Side view")
-xlabel("X (m)")
-ylabel("Z (m)")
-axis([-1.75, 1.75, -1.75, 1.75])
-
-show()
+#leg.draw()
+#setUpFigure()
+#show()
 
 
