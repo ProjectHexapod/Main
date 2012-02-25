@@ -5,6 +5,9 @@ from pylab import *
 def CP(x,y,z):
 	return array([x,y,z])
 
+def in2m(l):
+	return l * 0.0254
+
 def trans(H, cp):
 	cp2 = H * matrix(append(cp,1.0)).T
 	assert abs(cp2[3] - 1.0) < 1e-10, "ERROR: 4th coefficient should be 1.0, not %f" % cp2[3]
@@ -73,10 +76,11 @@ class Link:
 
 
 class Cylinder:
+	# Specify bore, stroke, retractedLength in inches. *sigh*
 	def __init__(self, bore, stroke, retractedLength, link1Index, attachmentPoint1, link2Index, attachmentPoint2):
-		self.bore = bore  # m^2
-		self.stroke = stroke  # m
-		self.rl = retractedLength  # m
+		self.area = in2m(bore/2.0)**2 * pi  # m^2
+		self.stroke = in2m(stroke)  # m
+		self.rl = in2m(retractedLength)  # m
 		
 		self.l1 = link1Index
 		self.ap1 = attachmentPoint1  # In link1 frame
@@ -94,7 +98,7 @@ class Cylinder:
 		l = self.length()
 		if warnOnStrokeError and not self.strokeValid():
 			raise ValueError("Cylinder length out of bounds: %f (min=%f, max=%f)" % (l, self.rl, self.rl + self.stroke))
-		return (l - self.rl)*self.bore * 1000.0  # Convert to liters
+		return (l - self.rl)*self.area * 1000.0  # Convert to liters
 
 	def draw(self):
 		ends = array([self.l1.toWorld(self.ap1), self.l2.toWorld(self.ap2)])
@@ -257,12 +261,13 @@ def setUpFigure(n=1):
 
 
 # Main
-B = pi*0.01**2
-S = 1.0
-RL = 1.0
+# http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
+B = 2.0  # in
+S = 10.0  # in
+RL = 22.25  #in
 
 leg = Leg(
-			[Link(0.0, pi/2), Link(1.0, 0.0), Link(0.5, 0.0)],
+			[Link(0.0, pi/2), Link(1.8, 0.0), Link(0.5, 2.4)],
 			[
 				Cylinder(B,S,RL, -1, CP(0, 0.5, 0), 1, CP(-0.5, 0, 0)),
 				Cylinder(B,S,RL, -1, CP(0, 0, -0.5), 1, CP(-0.5, 0, 0)),
@@ -281,7 +286,7 @@ leg = Leg(
 #print cp, leg.getFootPos()
 #print leg.getVolumes(), leg.strokesValid()
 
-print simulate(leg, 1.5, CP(0.5, 0.5, -0.3), CP(0.5, -0.5, -0.3))
+print simulate(leg, 1.5, CP(1.5, 0.5, -0.6), CP(1.5, -0.5, -0.6))
 
 #leg.draw()
 #setUpFigure()
