@@ -222,7 +222,7 @@ def simulate(leg, speed, cp_0, cp_f, nPoints=500):
 
 	angularRates = diff(angles, axis=0) / dt
 	flowRates = diff(vols, axis=0) / dt
-	netRate = array(map(norm, flowRates))
+	netRate = array(map(lambda r: sum(abs(r)), flowRates))
 	
 	figure()
 	title("Joint angles (rad)")
