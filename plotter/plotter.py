@@ -3,10 +3,67 @@ import sys
 sys.path.append('../inc')
 
 import time
+import pickle
 from pubsub import *
-from matplotlib import pyplot
+from matplotlib.lines import Line2D
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+
+data = {}
+colors = ['r', 'g', 'b', 'c', 'k']
+
+class Scope:
+    def __init__( self, ax, xsubs=None, ysubs=None ):
+        global colors
+        self.ax = ax
+        self.ax.grid()
+        if xsubs==None:
+            self.xsubs=[]
+        else:
+            self.xsubs=xsubs
+        if ysubs==None:
+            self.ysubs=[]
+        else:
+            self.ysubs=ysubs
+        assert len(self.xsubs) == len(self.ysubs)
+        label = ''
+        for y in self.ysubs:
+            label += y + ', '
+        label = label[0:-2]
+        print label
+        self.ax.set_title(label)
+
+    def update( self ):
+        global data
+        self.ax.cla()
+        for i in range(len(self.xsubs)):
+            self.ax.plot(\
+                data[self.xsubs[i]],\
+                data[self.ysubs[i]],\
+                colors[i])
+        label = ''
+        for y in self.ysubs:
+            label += y + ', '
+        label = label[0:-2]
+        self.ax.set_title(label)
+        self.ax.grid(b=True)
+        self.ax.autoscale(tight=True)
+        return []
 
 subscriptions = ['time']
+n_plots = 1
+plot_vars = [[]]
+
+try:
+    f = open('plot_settings.dump', 'r')
+    l = pickle.load(f)
+    subscriptions = l[0]
+    n_plots = l[1]
+    plot_vars = l[2]
+    f.close()
+    print 'Load successful'
+except:
+    'Failed to load settings... starting with defaults'
 
 def receiveFrame( f ):
     for k,v in f.items():
@@ -14,16 +71,18 @@ def receiveFrame( f ):
        data[k].append(f[k])
 
 s = Subscriber( 'localhost', 5055 )
-
-n_plots = 1
-plot_vars = [[]]
 subplot = 0
+
+print 'Present subscriptions:'
+for sub in subscriptions:
+    print sub
 
 while 1:
     print 'Options:'
     print '1. Add subscription'
     print '2. Select subplot'
-    print '3. Start plotting'
+    print '3. Clear subscriptions'
+    print '4. Start plotting'
     c = int(input('Choice:'))
     if c == 1:
         for i in range(len(s.catalog)):
@@ -39,31 +98,53 @@ while 1:
     elif c == 2:
         subplot = int(input('Select subplot:'))
     elif c == 3:
+        subscriptions = ['time']
+        n_plots = 1
+        plot_vars = [[]]
+        subplot = 0
+        print 'Cleared'
+    elif c == 4:
         break
 
-pyplot.ion()
 data = { k:[0 for x in range(1000)] for k in subscriptions }
 s.setCallback( receiveFrame )
 s.subscribeTo( subscriptions )
 s.start()
 
-colors = ['b', 'g', 'r', 'c', 'k']
+scopes = []
 
-while 1:
-    #pyplot.clf()
-    for i in range(n_plots):
-        pyplot.subplot(n_plots,1,i)
-        pyplot.cla()
-        label = ''
-        for j in range(len(plot_vars[i])):
-            k = plot_vars[i][j]
-            pyplot.plot( data['time'], data[k], colors[j])
-            label += k + '\n'
-        axes = list(pyplot.axis())
-        axes[0] = data['time'][0]
-        axes[1] = data['time'][-1]
-        pyplot.axis(axes)
-        pyplot.ylabel(label)
-    pyplot.draw()
-    time.sleep(0.1)
+def updateAll(arg):
+    global scopes
+    for scope in scopes:
+        scope.update()
+    plt.draw()
+    return []
+
+fig = plt.figure()
+for i in range(n_plots):
+    ax = fig.add_subplot(n_plots, 1, i)
+    scopes.append( Scope(ax, \
+        ['time' for k in plot_vars[i]],\
+        plot_vars[i]) )
+
+ani = animation.FuncAnimation(fig, updateAll, interval=50, blit=False)
+
+plt.show()
+
 s.close()
+
+print 'Saving...'
+try:
+    l = []
+    l.append(subscriptions)
+    l.append(n_plots)
+    l.append(plot_vars)
+    f = open('plot_settings.dump', 'wb+')
+    pickle.dump(l, f)
+    f.close()
+    print 'Save successful'
+except error:
+    print error
+    print 'Failed to save settings...'
+
+print 'goodbye'

@@ -15,7 +15,7 @@ from pubsub import *
 # Simulation time 
 t = 0
 # Global timestep
-global_dt = 1e-3
+global_dt = 4e-3
 global_n_iterations = 0
 
 # This is the publisher where we make data available
@@ -146,6 +146,8 @@ class MultiBody():
         cyllen = dist3(p1, p2) - radius
 
         body = ode.Body(self.world)
+        # This is our own stupid shit
+        body.color = (0,255,0,255)
         m = ode.Mass()
         if mass == None:
             m.setCappedCylinder(self.density, 3, radius, cyllen)
@@ -727,6 +729,7 @@ def draw_body(body):
     rot = makeOpenGLMatrix(r, p)
 
     if body.shape == "capsule":
+        glLibColor(body.color)
         cylHalfHeight = body.length / 2.0
         c = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
         c.myDraw( rot )
@@ -807,7 +810,7 @@ View3D.set_view()
 
 cam = glLibCamera( pos=(0, 10, 10), center=(0,0,0), upvec=(0,0,1) )
 
-#glLibColorMaterial(True) 
+glLibColorMaterial(True) 
 glLibTexturing(True)
 glLibLighting(True)
 Sun = glLibLight([10,10,40],cam)
