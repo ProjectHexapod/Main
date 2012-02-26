@@ -15,7 +15,7 @@ from pubsub import *
 # Simulation time 
 t = 0
 # Global timestep
-global_dt = 2e-3
+global_dt = 1e-3
 global_n_iterations = 0
 
 # This is the publisher where we make data available
@@ -82,7 +82,7 @@ def calcAngularError( a1, a2 ):
     return error
 
 class AngularPController( Controller ):
-    def __init__( self, gain = 10.0 ):
+    def __init__( self, gain = 50.0 ):
         self.gain = gain
         Controller.__init__(self)
     def update(self, dt):
@@ -395,12 +395,36 @@ def getUniversalAMotorTorque2( joint ):
     # Figure out the projection of the torque on the axis
     return dot3( t_joint, norm3(axis) )
 
+def getUniversalTorsion( joint ):
+    # Figure out how much torsion is on the universal joint
+    # This is a stupid workaround for something I think should be in the
+    # ODE API.  Get the total torque exerted by the joint
+    # and figure out how much is along the joint's axis
+
+    # feedback is ( body1Forces, body1torque, body2forces, body2torque )
+    feedback = joint.getFeedback()
+    forces = feedback[0]
+    torque = feedback[1]
+    axis   = cross(joint.getAxis1(), joint.getAxis2())
+    body_COM = joint.getBody(0).getPosition()
+    anchor = sub3( body_COM, joint.getAnchor() )
+    
+    # Figure out the torque due to the force contribution of the joint
+    t_force = cross( forces, anchor )
+    
+    # Subtract the torque due to force contribution of joint from torque @ COM
+    # to get joint torque
+    t_joint = sub3(torque, t_force)
+
+    # Figure out the projection of the torque on the axis
+    return dot3( t_joint, norm3(axis) )
+
 BODY_W = 1.00
-BODY_T = 0.35
+BODY_T = 0.5
 THIGH_L = 1.83 # 6 feet
-THIGH_W = 0.1
+THIGH_W = 0.125
 CALF_L = 2.44  # 8 feet
-CALF_W = 0.075
+CALF_W = 0.1
 
 BODY_M  = 454  # 1000 lbs
 THIGH_M = 36.3 # 80 lbs
@@ -421,6 +445,7 @@ class SixLegSpider(MultiBody):
         self.core = [0,0,0]
         self.core[0] = self.addBody( p_hip, mul3(p_hip, -1), BODY_T, mass=BODY_M )
 
+        # publisher is used to register all the variables we will want to track and chart
         global publisher
 
         # The core of the body is now complete.  Now we start on the legs.
@@ -443,44 +468,47 @@ class SixLegSpider(MultiBody):
             # Calculate the axis of rotation for our universal joint
             axis = rotate3( r_90z, p )
             hip = self.addUniversalJoint( self.core[0], self.thighs[i], hip_p,\
-                axis, upAxis )
+                upAxis, axis )
             hip.setFeedback(True)
             # Set the max forces on the motors
-            hip.setParam(ode.ParamFMax, 6000)
-            hip.setParam(ode.ParamFMax2, 2000)
+            hip.setParam(ode.ParamFMax, 1e6)
+            hip.setParam(ode.ParamFMax2, 1e6)
             controller = AngularPController(  )
-            controller.setInputCallback(  'actual', hip.getAngle1 )
+            controller.setInputCallback(  'actual', hip.getAngle2 )
             publisher.addToCatalog( 'leg%d.hip.pitch.actual'%i,\
-                hip.getAngle1 )
+                hip.getAngle2 )
             callback = Callback( self.getHipPitchAngle, i )
             controller.setInputCallback(  'target', callback )
             publisher.addToCatalog( 'leg%d.hip.pitch.target'%i,\
                 callback.call )
-            callback = Callback( hip.setParam, ode.ParamVel )
+            callback = Callback( hip.setParam, ode.ParamVel2 )
             controller.setOutputCallback( 'out',    callback )
             self.hip_pitch_controllers.append(controller)
-            callback = Callback( getUniversalAMotorTorque1, hip )
+            callback = Callback( getUniversalAMotorTorque2, hip )
             publisher.addToCatalog( 'leg%d.hip.pitch.torque'%i,\
                 callback.call )
 
             controller = AngularPController(  )
-            controller.setInputCallback(  'actual', hip.getAngle2 )
-            publisher.addToCatalog( 'leg%d.hip.yaw.actual'%i, hip.getAngle2 )
+            controller.setInputCallback(  'actual', hip.getAngle1 )
+            publisher.addToCatalog( 'leg%d.hip.yaw.actual'%i, hip.getAngle1 )
             callback = Callback( self.getHipYawAngle, i )
             controller.setInputCallback(  'target', callback )
             publisher.addToCatalog( 'leg%d.hip.yaw.target'%i, callback.call )
-            callback = Callback( hip.setParam, ode.ParamVel2 )
+            callback = Callback( hip.setParam, ode.ParamVel )
             controller.setOutputCallback( 'out',    callback )
             self.hip_yaw_controllers.append(controller)
-            callback = Callback( getUniversalAMotorTorque2, hip )
+            callback = Callback( getUniversalAMotorTorque1, hip )
             publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i,\
+                callback.call )
+            callback = Callback( getUniversalTorsion, hip )
+            publisher.addToCatalog( 'leg%d.hip.torsion'%i,\
                 callback.call )
 
             self.calves[i] = self.addBody(  knee_p, foot_p, CALF_W, mass=CALF_M )
             knee = self.addHingeJoint( self.thighs[i], self.calves[i], knee_p,\
                 axis )
             knee.setFeedback(True)
-            knee.setParam(ode.ParamFMax, 5000)
+            knee.setParam(ode.ParamFMax, 1e6)
             controller = AngularPController(  )
             controller.setInputCallback(  'actual', knee.getAngle )
             publisher.addToCatalog( 'leg%d.knee.pitch.actual'%i, knee.getAngle )
@@ -523,34 +551,46 @@ class SixLegSpider(MultiBody):
 
 
         for target_p in positions:
-            # Make relative to hip
-            leg_l = dist3( target_p, hip_p )
-            target_p = sub3( target_p, hip_p )
-            #calc knee angle with law of cosines
-            knee_angle = pi-thetaFromABC( THIGH_L, CALF_L, leg_l )
-            #calc hip offset from leg flexion
-            hip_offset_angle = -thetaFromABC( THIGH_L, leg_l,  CALF_L )
-            #calc hip depression angle
-            hip_depression_angle = -atan2( target_p[2], len3((target_p[0], target_p[1], 0)) )
-            #print hip_depression_angle
-            hip_pitch_angle = hip_offset_angle + hip_depression_angle
-            hip_yaw_offset_angle = atan2(hip_p[1], hip_p[0])
-            hip_yaw_angle = atan2( target_p[1], target_p[0] ) - hip_yaw_offset_angle
-
-            self.knee_angles[i] =       -knee_angle
-            self.hip_pitch_angles[i] =  -hip_pitch_angle
-            self.hip_yaw_angles[i] =    -hip_yaw_angle
-
-            hip_p = rotate3( r_60z, hip_p )
+            # Calculate leg length
+            leg_l                    = dist3( target_p, hip_p )
+            # Use law of cosines on leg length to calculate knee angle 
+            knee_angle               = pi-thetaFromABC( THIGH_L, CALF_L, leg_l )
+            # Calculate target point relative to hip origin
+            target_p                 = sub3( target_p, hip_p )
+            # Calculate hip pitch
+            hip_offset_angle         = -thetaFromABC( THIGH_L, leg_l,  CALF_L )
+            hip_depression_angle     = -atan2( target_p[2], len3((target_p[0], target_p[1], 0)) )
+            hip_pitch_angle          = hip_offset_angle + hip_depression_angle
+            # Calculate hip yaw
+            hip_yaw_offset_angle     = atan2(hip_p[1], hip_p[0])
+            hip_yaw_angle            = atan2( target_p[1], target_p[0] ) - hip_yaw_offset_angle
+            # Assign outputs
+            self.knee_angles[i]      = -knee_angle
+            self.hip_pitch_angles[i] = -hip_pitch_angle
+            self.hip_yaw_angles[i]   = -hip_yaw_angle
+            # Calculate the hip base point for the next iteration
+            hip_p                    = rotate3( r_60z, hip_p )
             i+=1
 
     def getBodyHeight( self ):
         return self.core[0].getPosition()[2]
     def getPosition( self ):
         return self.core[0].getPosition()
+    def getVelocity( self ):
+        #FIXME: Return self.vel.  This is a temp hack
+        return (self.vel[0], self.vel[1], 0)
 
     def update( self ):
         global global_dt
+        try:
+            self.vel = mul3(sub3(self.getPosition(), self.lastpos), 1./global_dt)
+            self.lastpos = self.getPosition()
+        except:
+            self.lastpos = (0,0,0)
+        # Go through the joints and see how well all the angles are tracking
+        # If we're not tracking well at some joint, color the body link
+        # to draw attention
+
         for controller in self.controllers:
             controller.update( global_dt )
 
@@ -604,12 +644,10 @@ def near_callback(args, geom1, geom2):
 world_xpos = world_ypos = world_zpos = 0.0;
 global_robot_pos = (0,0,0)
 
-def simMainLoop():
-    global Paused, lasttime, global_n_iterations, exit_flag, t, global_dt, global_robot_pos
-    global space
-
+def naiveWalk():
+    global t
     # Walk away!
-    gait_cycle=10.0
+    gait_cycle=5.0
     foot_positions = []
     x_off =  1.00*cos(2*pi*t/gait_cycle)
     #z_off =  0.75*(1.0-sin(4*pi*t/gait_cycle))
@@ -624,12 +662,47 @@ def simMainLoop():
             z += z_off
         p = ( sign(i%2)*x_off + 2.29*cos(pi/6 + (i*pi/3)), 2.29*sin(pi/6 + (i*pi/3)), z )
         foot_positions.append(p)
-    robot.setDesiredFootPositions( foot_positions )
+    return foot_positions
+
+def constantSpeedWalk():
+    global t
+    # Walk away!
+    gait_cycle      = 7.0     # time in seconds
+    step_cycle      = gait_cycle/2.0
+    swing_overshoot = 1.05
+    neutral_r       = 2.5    # radius from body center or foot resting, m
+    stride_length   = 2.00    # length of a stride, m
+    body_h          = 2.20    # height of body off the ground, m
+    foot_lift_h     = 1.5     # how high to lift feet in m
+    foot_positions = []
+    x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(t%step_cycle)/gait_cycle)
+    x_off_stance =  stride_length*(((t%step_cycle)/step_cycle)-0.5)
+    z_off        =  foot_lift_h*sin(2*pi*t/gait_cycle)
+    if z_off<0:
+        z_off *= -1
+    for i in range(6):
+        x = neutral_r*cos(pi/6 + (i*pi/3))
+        y = neutral_r*sin(pi/6 + (i*pi/3))
+        z = -body_h
+        if (i%2) ^ (t%gait_cycle<(step_cycle)):
+            x += x_off_swing
+            z += z_off
+        else:
+            x += x_off_stance
+        p = ( x, y, z )
+        foot_positions.append(p)
+    return foot_positions
+
+def simMainLoop():
+    global Paused, lasttime, global_n_iterations, exit_flag, t, global_dt, global_robot_pos
+    global space
+
+    robot.setDesiredFootPositions( constantSpeedWalk() )
 
     # Detect collisions and create contact joints
     space.collide((world, contactgroup), near_callback)
 
-    # Simulation step (with slo motion)
+    # Simulation step
     world.step(global_dt)
     t += global_dt
 
@@ -762,6 +835,7 @@ pyplot.ion()
 publisher.addToCatalog( 'time', lambda: t )
 publisher.addToCatalog( 'body.height', lambda: robot.getPosition()[2] )
 publisher.addToCatalog( 'body.distance', lambda: sqrt(pow(robot.getPosition()[0],2) + pow(robot.getPosition()[1],2)) )
+publisher.addToCatalog( 'body.velocity', lambda: len3(robot.getVelocity()) )
 
 # Start publishing data
 publisher.start()

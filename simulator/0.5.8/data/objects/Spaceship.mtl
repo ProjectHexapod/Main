@@ -1,8 +1,0 @@
-# Blender3D MTL File: 
-# Material Count: 1
-newmtl ShipTexture
-Ns 64
-Ka 0.2 0.2 0.2
-Kd 0.8 0.8 0.8
-Ks 1.0 1.0 1.0
-map_Kd Ship1.png

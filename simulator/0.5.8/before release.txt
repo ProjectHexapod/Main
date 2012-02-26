@@ -1,8 +1,0 @@
-glLibGridDouble, hair
-translucency fbos
-check all shaders and/or ask RB
-Test w/o pygame, numpy, pyopengl
-update Shader.use_prebuilt() docs
-.use_prebuilt() error printing
-Cloth rip texture
-Kill useless functions
