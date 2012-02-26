@@ -1,4 +1,6 @@
 from pylab import *
+import scipy.optimize
+
 
 # Link lengths
 #L1 = 1.8  # m
@@ -7,12 +9,13 @@ L1 = 1.6  # m
 L2 = 2.3  # m
 
 # http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
-B = 2.0  # in
+B1 = 1.0  # in, bore for hip-yaw cylinder
+B2 = 2.0  # in, bore for hip-pitch and knee clyinders
 S = 10.0  # in
 RL = 22.25  #in
 
 # Distance from cylinder attachment points to joint axis
-CD1 = [0.66, 0.2]
+CD1 = [0.6, 0.3]
 CD2 = [0.3, 0.8]
 CD3 = [0.8, 0.4]
 
@@ -20,7 +23,8 @@ CD3 = [0.8, 0.4]
 HHL = 1.0  # m, hip height low
 HHH = 2.0  # m, hip height high
 STANCE = 1.2  # m, how far outside the hip should we place the foot?
-STRIDE = 1.5  # m, how far do we move in one step?
+STRIDE = 1.4  # m, how far do we move in one step?
+SPEED = 1.5  # m/s
 
 
 # The Cartesian position type is a numpy array
@@ -117,7 +121,7 @@ class Cylinder:
 	def strokeValid(self):
 		l = self.length()
 		# Give some slop for numerical errors. It's common to move exactly to one extreme.
-		return 1e-5 >= self.rl - l  and  -1e-5 <= self.rl + self.stroke - l
+		return 2e-5 >= self.rl - l  and  -2e-5 <= self.rl + self.stroke - l
 	
 	def volume(self, warnOnStrokeError = True):
 		l = self.length()
@@ -175,38 +179,19 @@ class Leg:
 	def getLengths(self):
 		return array(map(Cylinder.length, self.cylinders))
 	
-	# Assumes that cylinders[i] controls links[i].getTheta()
+	# Length arguments range from 0.0 to c.stroke
 	def setLengths(self, *args):
 		assert len(args) == self.dof
-		for i in range(self.dof):
-			c = leg.cylinders[i]
-			assert args[i] >= 0.0
-			assert args[i] <= c.stroke
-			
-			ap1 = c.ap1
-			ap2 = c.l2.toProximal(c.ap2)
-			
-			d1 = norm(ap1)  # Distance from axis to ap1
-			d2 = norm(ap2)  # Distance from axis to ap2
-			includedAngle = arccos( (d1**2 + d2**2 - (args[i] + c.rl)**2) / (2*d1*d2) )
-			
-			# UGLY!
-			if i == 0:
-				self.links[i].setTheta(pi/2.0 - includedAngle)
-			elif i == 1:
-				#self.links[i].setTheta(-pi/2.0 + includedAngle)
-				ap1 = self.toDistal(ap1)
-				t1 = arctan2(ap1[1], ap1[0])
-				t2 = arctan2(ap2[1], ap2[0])
-				print ap1, ap2
-				print t1, t2, includedAngle, self.links[i].getTheta()
-				self.links[i].setTheta(t1 - includedAngle - t2 + self.links[i].getTheta())
-			elif i == 2:
-				self.links[i].setTheta(-pi + includedAngle)
-			
-			print i, d1, d2, includedAngle, self.links[i].getTheta(), args[i], c.rl, c.length(), args[i] + c.rl - c.length()
-			assert abs(args[i] + c.rl - c.length()) < 1e-1  # There is *some* coupling between J1,J2
-			
+		
+		lengthTarget = array(args) + array(map(lambda c: c.rl, self.cylinders))
+		def a2l(a):
+			leg.setAngles(*a)
+			return norm(leg.getLengths() - lengthTarget)
+		print scipy.optimize.fmin(a2l, array([0,pi/4, -pi/2]), full_output=True) #, xtol=1e-6, ftol=1e-5
+		
+		print leg.getAngles(), leg.getLengths(), lengthTarget, leg.getLengths() - lengthTarget
+		assert leg.strokesValid()
+		#assert norm(leg.getLengths() - lengthTarget) < 1e-3
 	
 	# Kinematics
 	def getFootPos(self):
@@ -297,6 +282,8 @@ def calcRanges(leg):
 
 def plotWorkspace(leg):
 	r = calcRanges(leg)
+	print "Joint Ranges:"
+	print r
 	N = 50
 	
 	subplot(121)  # X-Y
@@ -340,6 +327,13 @@ def plotWorkspace(leg):
 	s2 = norm([STANCE, STRIDE/2])
 	plot([s1, s2, s2, s1, s1], [-HHL, -HHL, -HHH, -HHH, -HHL], 'r')
 	axis('equal')
+	
+	leg.setAngles(*r[:,0])
+	assert leg.strokesValid()
+	leg.draw()
+	leg.setAngles(*r[:,1])
+	assert leg.strokesValid()
+	leg.draw()
 
 def simulate(leg, speed, cp_0, cp_f, nPoints=500):
 	dif = cp_f - cp_0
@@ -373,6 +367,7 @@ def simulate(leg, speed, cp_0, cp_f, nPoints=500):
 	figure()
 	title("Cylinder volumes (l)")
 	plot(t, vols)
+	plot(t, strokesValid)
 	figure()
 	title("Flow rates (l/s)")
 	plot(t[:-1], flowRates)
@@ -402,9 +397,9 @@ def setUpFigure(n=1):
 leg = Leg(
 			[Link(0.0, pi/2), Link(L1, 0.0), Link(L2, 0.0)],
 			[
-				Cylinder(B,S,RL, -1, CP(0, CD1[0], 0), 1, CP(CD1[1] - L1, 0, 0)),
-				Cylinder(B,S,RL, -1, CP(0, 0, CD2[0]), 1, CP(CD2[1] - L1, 0, 0)),
-				Cylinder(B,S,RL,  1, CP(-CD3[0], 0, 0), 2, CP(CD3[1] - L2, 0, 0))
+				Cylinder(B1,S,RL, -1, CP(0, CD1[0], 0), 1, CP(CD1[1] - L1, 0, 0)),
+				Cylinder(B2,S,RL, -1, CP(0, 0, CD2[0]), 1, CP(CD2[1] - L1, 0, 0)),
+				Cylinder(B2,S,RL,  1, CP(-CD3[0], 0, 0), 2, CP(CD3[1] - L2, 0, 0))
 			]
 		)
 plotWorkspace(leg)
@@ -420,11 +415,12 @@ plotWorkspace(leg)
 #print cp, leg.getFootPos()
 #print leg.getVolumes(), leg.strokesValid()
 
-#print simulate(leg, 1.5, CP(1.5, 0.5, -0.6), CP(1.5, -0.5, -0.6))
+print simulate(leg, SPEED, CP(STANCE, STRIDE/2, -HHH), CP(STANCE, -STRIDE/2, -HHH))
+#print simulate(leg, SPEED, CP(STANCE, STRIDE/2, -HHL), CP(STANCE, -STRIDE/2, -HHL))
 
 #print calcRanges(leg)
 
-leg.draw()
+#leg.draw()
 #setUpFigure()
 show()
 
