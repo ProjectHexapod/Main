@@ -1,5 +1,17 @@
 from pylab import *
 
+# Link lengths
+L1 = 1.8  # m
+L2 = 2.4  # m
+
+# http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
+B = 2.0  # in
+S = 10.0  # in
+RL = 22.25  #in
+
+# Distance from cylinder attachment points to joint axis
+CD = 0.49
+
 
 # The Cartesian position type is a numpy array
 def CP(x,y,z):
@@ -133,16 +145,50 @@ class Leg:
 				c.l2 = self
 			else:
 				c.l2 = self.links[c.l2]
+			
+			# Check that we can use the whole range of the cylinder
+			d1 = norm(c.ap1)  # Distance from axiz to ap1
+			d2 = norm(c.l2.toProximal(c.ap2))  # Distance from axis to ap2
+			assert abs(d1-d2) < c.rl
+			assert d1+d2 > c.rl+c.stroke
 	
-	# Forward kinematics
+	# Coordinates
 	def getAngles(self):
 		return array(map(Link.getTheta, self.links))
 	def setAngles(self, *args):
+		assert len(args) == self.dof
 		map(Link.setTheta, self.links, args)
+
+	def getLengths(self):
+		return array(map(Cylinder.length, self.cylinders))
+	
+	# Assumes that cylinders[i] controls links[i].getTheta()
+	def setLengths(self, *args):
+		assert len(args) == self.dof
+		for i in range(self.dof):
+			c = leg.cylinders[i]
+			assert args[i] >= 0.0
+			assert args[i] <= c.stroke
+			
+			d1 = norm(c.ap1)  # Distance from axiz to ap1
+			d2 = norm(c.l2.toProximal(c.ap2))  # Distance from axis to ap2
+			includedAngle = arccos( (d1**2 + d2**2 - (args[i] + c.rl)**2) / (2*d1*d2) )
+			
+			# UGLY!
+			if i == 0:
+				self.links[i].setTheta(pi/2.0 - includedAngle)
+			elif i == 1:
+				self.links[i].setTheta(-pi/2.0 + includedAngle)
+			elif i == 2:
+				self.links[i].setTheta(-pi + includedAngle)
+			
+			#print i, d1, d2, includedAngle, self.links[i].getTheta(), args[i], c.rl, c.length(), args[i] + c.rl - c.length()
+			assert abs(args[i] + c.rl - c.length()) < 1e-1  # There is *some* coupling between J1,J2
+			
+	
+	# Kinematics
 	def getFootPos(self):
 		return self.links[-1].toWorld(CP(0,0,0))
-	
-	# Inverse kinematics
 	def setFootPos(self, cp):
 		l1 = self.links[1].l
 		l2 = self.links[2].l
@@ -205,6 +251,62 @@ class Leg:
 #		for leg in self.legs:
 #			leg.links[0].setProximalLink(self)
 
+
+# Find the valid range of joint angles based on cylinder strokes/lengths.
+# Assumes that leg.cylinders[i] controls leg.links[i]
+def calcRanges(leg):
+	ranges = zeros((leg.dof,2))
+	
+	leg.setLengths(0.0, 0.0, 0.0)
+	#assert leg.strokesValid()  #J1,J2 coupling
+	ranges[:,0] = leg.getAngles()
+	
+	leg.setLengths(leg.cylinders[0].stroke, leg.cylinders[1].stroke, leg.cylinders[2].stroke)
+	#assert leg.strokesValid()  #J1,J2 coupling
+	ranges[:,1] = leg.getAngles()
+	
+	return ranges	
+
+def plotWorkspace(leg):
+	r = calcRanges(leg)
+	N = 50
+	
+	subplot(121)  # X-Y
+	theta0 = linspace(r[0,0], r[0,1], N)
+	
+	ep = zeros((len(theta0), leg.dof))
+	for i in range(len(theta0)):
+		leg.setAngles(theta0[i], r[1,0], r[2,0])
+		ep[i,:] = leg.getFootPos()
+	plot(ep[:,0], ep[:,1], 'g')
+	f = array(ep[0,:])
+	l = array(ep[-1,:])
+	for i in range(len(theta0)):
+		leg.setAngles(theta0[i], r[1,1], r[2,1])
+		ep[i,:] = leg.getFootPos()
+	ep[0,:] = f
+	ep[-1,:] = l
+	plot(ep[:,0], ep[:,1], 'g')
+	axis('equal')
+	
+	subplot(122)  # X-Z
+	theta1 = r[1,0]*ones(N)
+	theta1 = append(theta1, linspace(r[1,0], r[1,1]), N)
+	theta1 = append(theta1, r[1,1]*ones(N))
+	theta1 = append(theta1, linspace(r[1,1], r[1,0]), N)
+
+	theta2 = linspace(r[2,0], r[2,1], N)
+	theta2 = append(theta2, r[2,1]*ones(N))
+	theta2 = append(theta2, linspace(r[2,1], r[2,0]), N)
+	theta2 = append(theta2, r[2,0]*ones(N))
+
+	ep = zeros((len(theta1), leg.dof))
+	for i in range(len(theta1)):
+		leg.setAngles(0,theta1[i],theta2[i])
+		ep[i,:] = leg.getFootPos()	
+	plot(ep[:,0], ep[:,2], 'g')
+	axis('equal')
+
 def simulate(leg, speed, cp_0, cp_f, nPoints=500):
 	dif = cp_f - cp_0
 	l = norm(dif)
@@ -246,34 +348,32 @@ def simulate(leg, speed, cp_0, cp_f, nPoints=500):
 	return ([max(flowRates[:,0]), max(flowRates[:,1]), max(flowRates[:,2])], max(netRate), all(strokesValid))
 
 def setUpFigure(n=1):
+	l = L1 + L2 + 0.1
 	figure(n)
 	subplot(121)
 	title("Top down view")
 	xlabel("X (m)")
 	ylabel("Y (m)")
-	axis([-1.75, 1.75, -1.75, 1.75])
+	axis([-l, l, -l, l])
 	subplot(122)
 	title("Side view")
 	xlabel("X (m)")
 	ylabel("Z (m)")
-	axis([-1.75, 1.75, -1.75, 1.75])
+	axis([-l, l, -l, l])
 
 
 
 # Main
-# http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
-B = 2.0  # in
-S = 10.0  # in
-RL = 22.25  #in
-
-leg = Leg(
-			[Link(0.0, pi/2), Link(1.8, 0.0), Link(0.5, 2.4)],
-			[
-				Cylinder(B,S,RL, -1, CP(0, 0.5, 0), 1, CP(-0.5, 0, 0)),
-				Cylinder(B,S,RL, -1, CP(0, 0, -0.5), 1, CP(-0.5, 0, 0)),
-				Cylinder(B,S,RL,  1, CP(-0.25, 0, 0), 2, CP(-0.25, 0, 0))
-			]
-		)
+for CD in [0.45, 0.5, 0.55, 0.6]:
+	leg = Leg(
+				[Link(0.0, pi/2), Link(L1, 0.0), Link(L2, 0.0)],
+				[
+					Cylinder(B,S,RL, -1, CP(0, CD, 0), 1, CP(CD - L1, 0, 0)),
+					Cylinder(B,S,RL, -1, CP(0, 0, -CD), 1, CP(CD - L1, 0, 0)),
+					Cylinder(B,S,RL,  1, CP(-CD, 0, 0), 2, CP(CD - L2, 0, 0))
+				]
+			)
+	plotWorkspace(leg)
 
 #leg.setAngles(0,pi/8,-pi/4)
 #leg.setFootPos(CP(1.25,0,0))
@@ -286,10 +386,11 @@ leg = Leg(
 #print cp, leg.getFootPos()
 #print leg.getVolumes(), leg.strokesValid()
 
-print simulate(leg, 1.5, CP(1.5, 0.5, -0.6), CP(1.5, -0.5, -0.6))
+#print simulate(leg, 1.5, CP(1.5, 0.5, -0.6), CP(1.5, -0.5, -0.6))
+
+#print calcRanges(leg)
 
 #leg.draw()
 #setUpFigure()
-#show()
-
+show()
 
