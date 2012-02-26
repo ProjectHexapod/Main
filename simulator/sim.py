@@ -6,16 +6,20 @@ import Image
 import numpy
 import pygame
 from pygame.locals import *
-
 from helpers import *
-
 from OpenGLLibrary import *
+
+sys.path.append('../inc')
+from pubsub import *
 
 # Simulation time 
 t = 0
 # Global timestep
-global_dt = 2e-2
+global_dt = 2e-3
 global_n_iterations = 0
+
+# This is the publisher where we make data available
+publisher = Publisher(5055)
 
 # axes used to determine constrained joint rotations
 rightAxis = (0.0,   1.0,    0.0)
@@ -78,7 +82,7 @@ def calcAngularError( a1, a2 ):
     return error
 
 class AngularPController( Controller ):
-    def __init__( self, gain = 1.0 ):
+    def __init__( self, gain = 10.0 ):
         self.gain = gain
         Controller.__init__(self)
     def update(self, dt):
@@ -128,7 +132,7 @@ class MultiBody():
         """This is for the subclasses to define."""
         return
 
-    def addBody(self, p1, p2, radius):
+    def addBody(self, p1, p2, radius, mass=None):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
         radius to the ragdoll.
@@ -143,7 +147,10 @@ class MultiBody():
 
         body = ode.Body(self.world)
         m = ode.Mass()
-        m.setCappedCylinder(self.density, 3, radius, cyllen)
+        if mass == None:
+            m.setCappedCylinder(self.density, 3, radius, cyllen)
+        else:
+            m.setCappedCylinderTotal(mass, 3, radius, cyllen)
         body.setMass(m)
 
         # set parameters for drawing the body
@@ -316,12 +323,88 @@ class MultiBody():
     def update(self):
         pass
 
-BODY_W = 1.0
+def getHingeAMotorTorque( joint ):
+    # Figure out how much torque the motor on the hinge joint is applying
+    # This is a stupid workaround for something I think should be in the
+    # ODE API.  Get the total torque exerted by the joint
+    # and figure out how much is along the joint's axis
+
+    # feedback is ( body1Forces, body1torque, body2forces, body2torque )
+    feedback = joint.getFeedback()
+    forces = feedback[0]
+    torque = feedback[1]
+    axis   = joint.getAxis()
+    body_COM = joint.getBody(0).getPosition()
+    anchor = sub3( body_COM, joint.getAnchor() )
+    
+    # Figure out the torque due to the force contribution of the joint
+    t_force = cross( forces, anchor )
+    
+    # Subtract the torque due to force contribution of joint from torque @ COM
+    # to get joint torque
+    t_joint = sub3(torque, t_force)
+
+    # Figure out the projection of the torque on the axis
+    return dot3( t_joint, norm3(axis) )
+
+def getUniversalAMotorTorque1( joint ):
+    # Figure out how much torque the motor on the hinge joint is applying
+    # This is a stupid workaround for something I think should be in the
+    # ODE API.  Get the total torque exerted by the joint
+    # and figure out how much is along the joint's axis
+
+    # feedback is ( body1Forces, body1torque, body2forces, body2torque )
+    feedback = joint.getFeedback()
+    forces = feedback[0]
+    torque = feedback[1]
+    axis   = joint.getAxis1()
+    body_COM = joint.getBody(0).getPosition()
+    anchor = sub3( body_COM, joint.getAnchor() )
+    
+    # Figure out the torque due to the force contribution of the joint
+    t_force = cross( forces, anchor )
+    
+    # Subtract the torque due to force contribution of joint from torque @ COM
+    # to get joint torque
+    t_joint = sub3(torque, t_force)
+
+    # Figure out the projection of the torque on the axis
+    return dot3( t_joint, norm3(axis) )
+
+def getUniversalAMotorTorque2( joint ):
+    # Figure out how much torque the motor on the hinge joint is applying
+    # This is a stupid workaround for something I think should be in the
+    # ODE API.  Get the total torque exerted by the joint
+    # and figure out how much is along the joint's axis
+
+    # feedback is ( body1Forces, body1torque, body2forces, body2torque )
+    feedback = joint.getFeedback()
+    forces = feedback[0]
+    torque = feedback[1]
+    axis   = joint.getAxis2()
+    body_COM = joint.getBody(0).getPosition()
+    anchor = sub3( body_COM, joint.getAnchor() )
+    
+    # Figure out the torque due to the force contribution of the joint
+    t_force = cross( forces, anchor )
+    
+    # Subtract the torque due to force contribution of joint from torque @ COM
+    # to get joint torque
+    t_joint = sub3(torque, t_force)
+
+    # Figure out the projection of the torque on the axis
+    return dot3( t_joint, norm3(axis) )
+
+BODY_W = 1.00
 BODY_T = 0.35
-THIGH_L = 1.0
+THIGH_L = 1.83 # 6 feet
 THIGH_W = 0.1
-CALF_L = 1.0
+CALF_L = 2.44  # 8 feet
 CALF_W = 0.075
+
+BODY_M  = 454  # 1000 lbs
+THIGH_M = 36.3 # 80 lbs
+CALF_M  = 36.3 # 80 lbs
 
 class SixLegSpider(MultiBody):
     def buildBody( self ):
@@ -336,14 +419,9 @@ class SixLegSpider(MultiBody):
         p_hip = (BODY_W/2.0, 0, 0)
         #p_hip = rotate3( r_30z, p_hip )
         self.core = [0,0,0]
-        #for i in range(3):
-        #    self.core[i] = self.addBody( p_hip, mul3(p_hip, -1), BODY_T )
-        #    p_hip = rotate3( r_60z, p_hip )
-        self.core[0] = self.addBody( p_hip, mul3(p_hip, -1), BODY_T )
-        # Glue the central spars together
-        #self.addFixedJoint( self.core[0], self.core[1] )
-        #self.addFixedJoint( self.core[1], self.core[2] )
-        #self.addFixedJoint( self.core[2], self.core[0] )
+        self.core[0] = self.addBody( p_hip, mul3(p_hip, -1), BODY_T, mass=BODY_M )
+
+        global publisher
 
         # The core of the body is now complete.  Now we start on the legs.
         # Start another rotation
@@ -361,40 +439,61 @@ class SixLegSpider(MultiBody):
             hip_p = mul3( p, BODY_W/2.0 )
             knee_p = mul3( p, (BODY_W/2.0)+THIGH_L )
             foot_p = mul3( p, (BODY_W/2.0)+THIGH_L+CALF_L )
-            self.thighs[i] = self.addBody(  hip_p, knee_p, THIGH_W )
+            self.thighs[i] = self.addBody(  hip_p, knee_p, THIGH_W, mass=THIGH_M )
             # Calculate the axis of rotation for our universal joint
             axis = rotate3( r_90z, p )
             hip = self.addUniversalJoint( self.core[0], self.thighs[i], hip_p,\
                 axis, upAxis )
+            hip.setFeedback(True)
             # Set the max forces on the motors
-            hip.setParam(ode.ParamFMax, 1600.0)
-            hip.setParam(ode.ParamFMax2, 500.0)
+            hip.setParam(ode.ParamFMax, 6000)
+            hip.setParam(ode.ParamFMax2, 2000)
             controller = AngularPController(  )
             controller.setInputCallback(  'actual', hip.getAngle1 )
+            publisher.addToCatalog( 'leg%d.hip.pitch.actual'%i,\
+                hip.getAngle1 )
             callback = Callback( self.getHipPitchAngle, i )
             controller.setInputCallback(  'target', callback )
+            publisher.addToCatalog( 'leg%d.hip.pitch.target'%i,\
+                callback.call )
             callback = Callback( hip.setParam, ode.ParamVel )
             controller.setOutputCallback( 'out',    callback )
             self.hip_pitch_controllers.append(controller)
+            callback = Callback( getUniversalAMotorTorque1, hip )
+            publisher.addToCatalog( 'leg%d.hip.pitch.torque'%i,\
+                callback.call )
+
             controller = AngularPController(  )
             controller.setInputCallback(  'actual', hip.getAngle2 )
+            publisher.addToCatalog( 'leg%d.hip.yaw.actual'%i, hip.getAngle2 )
             callback = Callback( self.getHipYawAngle, i )
             controller.setInputCallback(  'target', callback )
+            publisher.addToCatalog( 'leg%d.hip.yaw.target'%i, callback.call )
             callback = Callback( hip.setParam, ode.ParamVel2 )
             controller.setOutputCallback( 'out',    callback )
             self.hip_yaw_controllers.append(controller)
+            callback = Callback( getUniversalAMotorTorque2, hip )
+            publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i,\
+                callback.call )
 
-            self.calves[i] = self.addBody(  knee_p, foot_p, CALF_W )
+            self.calves[i] = self.addBody(  knee_p, foot_p, CALF_W, mass=CALF_M )
             knee = self.addHingeJoint( self.thighs[i], self.calves[i], knee_p,\
                 axis )
-            knee.setParam(ode.ParamFMax, 1700.0)
+            knee.setFeedback(True)
+            knee.setParam(ode.ParamFMax, 5000)
             controller = AngularPController(  )
             controller.setInputCallback(  'actual', knee.getAngle )
+            publisher.addToCatalog( 'leg%d.knee.pitch.actual'%i, knee.getAngle )
             callback = Callback( self.getKneeAngle, i )
             controller.setInputCallback(  'target', callback )
+            publisher.addToCatalog( 'leg%d.knee.pitch.target'%i, callback.call )
             callback = Callback( knee.setParam, ode.ParamVel )
             controller.setOutputCallback( 'out',    callback )
             self.knee_controllers.append(controller)
+            callback = Callback( getHingeAMotorTorque, knee )
+            publisher.addToCatalog( 'leg%d.knee.torque'%i,\
+                callback.call )
+
             self.controllers = []
             self.controllers.extend( self.hip_pitch_controllers )
             self.controllers.extend( self.hip_yaw_controllers )
@@ -424,26 +523,19 @@ class SixLegSpider(MultiBody):
 
 
         for target_p in positions:
-            #print target_p
-            #print hip_p
             # Make relative to hip
             leg_l = dist3( target_p, hip_p )
             target_p = sub3( target_p, hip_p )
-            #print target_p
             #calc knee angle with law of cosines
-            #print leg_l
             knee_angle = pi-thetaFromABC( THIGH_L, CALF_L, leg_l )
             #calc hip offset from leg flexion
             hip_offset_angle = -thetaFromABC( THIGH_L, leg_l,  CALF_L )
-            #print hip_offset_angle
             #calc hip depression angle
             hip_depression_angle = -atan2( target_p[2], len3((target_p[0], target_p[1], 0)) )
             #print hip_depression_angle
             hip_pitch_angle = hip_offset_angle + hip_depression_angle
             hip_yaw_offset_angle = atan2(hip_p[1], hip_p[0])
             hip_yaw_angle = atan2( target_p[1], target_p[0] ) - hip_yaw_offset_angle
-
-            #print i
 
             self.knee_angles[i] =       -knee_angle
             self.hip_pitch_angles[i] =  -hip_pitch_angle
@@ -519,15 +611,18 @@ def simMainLoop():
     # Walk away!
     gait_cycle=10.0
     foot_positions = []
-    x_off =  0.75*cos(2*pi*t/gait_cycle)
-    z_off =  0.75*(1.0-sin(4*pi*t/gait_cycle))
+    x_off =  1.00*cos(2*pi*t/gait_cycle)
+    #z_off =  0.75*(1.0-sin(4*pi*t/gait_cycle))
+    #if z_off<0:
+    #    z_off *= -1
+    z_off =  1.5*sin(2*pi*t/gait_cycle)
     if z_off<0:
         z_off *= -1
     for i in range(6):
-        z = -1.0
+        z = -2.0
         if (i%2) ^ (t%gait_cycle<(gait_cycle/2.0)):
             z += z_off
-        p = ( sign(i%2)*x_off + 1.5*cos(pi/6 + (i*pi/3)), 1.5*sin(pi/6 + (i*pi/3)), z )
+        p = ( sign(i%2)*x_off + 2.29*cos(pi/6 + (i*pi/3)), 2.29*sin(pi/6 + (i*pi/3)), z )
         foot_positions.append(p)
     robot.setDesiredFootPositions( foot_positions )
 
@@ -574,10 +669,10 @@ def pave(x,y):
     """Put down a pavement tile"""
     global static_geoms, pavement, space
     g = createBoxGeom(space, (1.0,1.0,1.0))
-    pos = (x,y,random.uniform(0.0, 0.10))
+    pos = (x,y,random.uniform(0.0, 0.0))
     rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
     rand_unit = div3(rand_unit, len3(rand_unit))
-    rot = calcRotMatrix(rand_unit, random.uniform(0,2*pi/120))
+    rot = calcRotMatrix(rand_unit, random.uniform(0,0*2*pi/120))
     g.setPosition(pos)
     g.setRotation(rot)
     static_geoms.add(g)
@@ -608,7 +703,7 @@ world.setERP(0.8)
 world.setCFM(1E-4)
 
 # create a plane geom to simulate a floor
-#floor = ode.GeomPlane(space, (0, 0, 1), 0)
+floor = ode.GeomPlane(space, (0, 0, 1), 0)
 
 # create a list to store any ODE bodies which are not part of the robot (this
 #   is needed to avoid Python garbage collecting these bodies)
@@ -623,8 +718,7 @@ contactgroup = ode.JointGroup()
 lasttime = time.time()
 
 # create the robot
-#ragdoll = RagDoll(world, space, 500, (0.0, 0.9, 0.0))
-robot = SixLegSpider(world, space, 500, (0.0, 0.0, 3.0))
+robot = SixLegSpider(world, space, 500, (0.0, 0.0, 4.0))
 print "total mass is %.1f kg (%.1f lbs)" % (robot.totalMass, robot.totalMass * 2.2)
 
 # create the program window
@@ -647,11 +741,11 @@ Sun = glLibLight([10,10,40],cam)
 Sun.enable()
 
 #dictionary of all pavement tiles by position
-pavement = {}
+#pavement = {}
 
-for x in range(-3,4):
-    for y in range(-3,4):
-        pave(x,y)
+#for x in range(-3,4):
+#    for y in range(-3,4):
+#        pave(x,y)
 
 pavement_center = [0,0]
 
@@ -659,22 +753,30 @@ from matplotlib import pyplot
 # Turn on interactive mode.
 # This allows us to replot without blocking
 pyplot.ion()
-pyplot.scatter( range(5), range(5) )
-pyplot.draw()
-pyplot.cla()
 
 # plot body height for funsies
-times   = [0 for t in range(500)]
-heights = [0 for x in range(500)]
+#times   = [0 for t in range(500)]
+#heights = [0 for x in range(500)]
+#dist = [0 for x in range(500)]
+
+publisher.addToCatalog( 'time', lambda: t )
+publisher.addToCatalog( 'body.height', lambda: robot.getPosition()[2] )
+publisher.addToCatalog( 'body.distance', lambda: sqrt(pow(robot.getPosition()[0],2) + pow(robot.getPosition()[1],2)) )
+
+# Start publishing data
+publisher.start()
 
 while True:
     simMainLoop()
+
+    t += global_dt
 
     # Do we need to repave the road?
     p = robot.getPosition()
 
 
     # Do we need to move x-wise?
+    """
     if p[0] + .5 < pavement_center[0]:
         pavement_center[0] -= 1
         x = pavement_center[0]-3
@@ -700,20 +802,29 @@ while True:
         for x in range(pavement_center[0]-3,pavement_center[0]+4):
             unpave(    x, y-7)
             pave(      x, y)
-        
-    times.pop(0)
-    times.append( global_n_iterations*global_dt )
-    heights.pop(0)
-    heights.append(p[2])
+    """ 
+    #times.pop(0)
+    #times.append( global_n_iterations*global_dt )
+    #heights.pop(0)
+    #heights.append(p[2])
+    #dist.pop(0)
+    #dist.append(sqrt(p[0]*p[0]+p[1]*p[1]))
+
+    if not global_n_iterations % 5:
+        publisher.publish()
 
     if(time.time()-lasttime < 0.05):
         continue
 
     #replot
-    pyplot.cla()
+    #pyplot.subplot(2,1,1)
+    #pyplot.cla()
+    #pyplot.scatter( times, heights, s=1, marker=(0,3,0) )
+    #pyplot.subplot(2,1,2)
+    #pyplot.cla()
+    #pyplot.scatter( times, dist, s=1, marker=(0,3,0) )
+    #pyplot.draw()
 
-    pyplot.scatter( times, heights, s=1, marker=(0,3,0) )
-    pyplot.draw()
 
     lasttime = time.time()
     key = pygame.key.get_pressed()
