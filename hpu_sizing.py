@@ -8,11 +8,16 @@ import scipy.optimize
 L1 = 1.6  # m
 L2 = 2.3  # m
 
-# http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
+# http://www.surpluscenter.com/item.asp?item=9-7257-10&catname=hydraulic
 B1 = 1.0  # in, bore for hip-yaw cylinder
+RD1 = 0.625  # in, rod diameter
+# http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
 B2 = 2.0  # in, bore for hip-pitch and knee clyinders
-S = 10.0  # in
-RL = 22.25  #in
+RD2 = 1.125  # in, rod diameter
+S = 10.0  # in, stroke
+RL = 22.25  #in, retracted length
+
+PRESSURE = 2000.0 * 6894.8  # Pascals
 
 # Distance from cylinder attachment points to joint axis
 CD1 = [0.6, 0.3]
@@ -38,6 +43,8 @@ def trans(H, cp):
 	cp2 = H * matrix(append(cp,1.0)).T
 	assert abs(cp2[3] - 1.0) < 1e-10, "ERROR: 4th coefficient should be 1.0, not %f" % cp2[3]
 	return array(cp2)[:-1,0]
+def rotate(H, cp):
+	return array(H[:3,:3] * matrix(cp).T)[:,0]
 
 
 # Kinematics specified using simplified DH parameters as defined on page 76 of Spong,H,V:
@@ -96,19 +103,28 @@ class Link:
 		
 	def toProximal(self, cp):
 		return trans(self.l2p, cp)
+	def rotateToProximal(self, cp):
+		return rotate(self.l2p, cp)
 	def toDistal(self, cp):
 		return trans(self.dLink.p2l, cp)
 		
 	def toWorld(self, cp):
 		return self.pLink.toWorld(self.toProximal(cp))
+	def rotateToWorld(self, cp):
+		return self.pLink.rotateToWorld(self.rotateToProximal(cp))
 
 
 class Cylinder:
 	# Specify bore, stroke, retractedLength in inches. *sigh*
-	def __init__(self, bore, stroke, retractedLength, link1Index, attachmentPoint1, link2Index, attachmentPoint2):
+	def __init__(self, bore, rodDiameter, stroke, retractedLength, link1Index, attachmentPoint1, link2Index, attachmentPoint2):
+		assert bore > rodDiameter
+		
 		self.area = in2m(bore/2.0)**2 * pi  # m^2
+		self.rodArea = in2m(rodDiameter/2.0)**2 * pi  # m^2
 		self.stroke = in2m(stroke)  # m
 		self.rl = in2m(retractedLength)  # m
+		
+		self.forceBounds = array([-(self.area - self.rodArea), (self.area - self.rodArea)]) * PRESSURE
 		
 		self.l1 = link1Index
 		self.ap1 = attachmentPoint1  # In link1 frame
@@ -229,12 +245,41 @@ class Leg:
 		return trans(self.links[0].p2l, cp)
 	def toWorld(self, cp):
 		return cp  # Stub. No Body yet.
+	def rotateToWorld(self, cp):
+		return cp  # Stub. No Body yet.
 	
 	# Cylinder stuff
 	def strokesValid(self):
 		return all(map(Cylinder.strokeValid, self.cylinders))
 	def getVolumes(self, warnOnStrokeError = False):
 		return array(map(lambda c: c.volume(warnOnStrokeError), self.cylinders))
+	def getTorqueBounds(self):
+		assert leg.strokesValid()
+		
+		signs = [-1,-1,1]
+		tau = zeros((leg.dof,2))
+		for i in range(leg.dof):
+			c = leg.cylinders[i]
+			ap1 = c.l1.toWorld(c.ap1)
+			ap2 = c.l2.toWorld(c.ap2)
+			
+			# Joint rotates about previous link's Z axis
+			jointCenter = c.l2.pLink.toWorld(CP(0,0,0))
+			if i == 0:
+				jointAxis = CP(0,0,1)
+			else:
+				jointAxis = c.l2.pLink.rotateToWorld(CP(0,0,1))
+				
+			assert abs(norm(jointAxis) - 1.0) < 1e-10
+			
+			r = ap2 - jointCenter
+			f_hat = ap2 - ap1
+			f_hat /= norm(f_hat)
+			tau[i,0] = signs[i] * dot(jointAxis, cross(r, c.forceBounds[0] * f_hat))
+			tau[i,1] = signs[i] * dot(jointAxis, cross(r, c.forceBounds[1] * f_hat))
+		
+		return tau
+		
 	
 	def draw(self):
 		o = CP(0,0,0)
@@ -397,12 +442,12 @@ def setUpFigure(n=1):
 leg = Leg(
 			[Link(0.0, pi/2), Link(L1, 0.0), Link(L2, 0.0)],
 			[
-				Cylinder(B1,S,RL, -1, CP(0, CD1[0], 0), 1, CP(CD1[1] - L1, 0, 0)),
-				Cylinder(B2,S,RL, -1, CP(0, 0, CD2[0]), 1, CP(CD2[1] - L1, 0, 0)),
-				Cylinder(B2,S,RL,  1, CP(-CD3[0], 0, 0), 2, CP(CD3[1] - L2, 0, 0))
+				Cylinder(B1,RD1,S,RL, -1, CP(0, CD1[0], 0), 1, CP(CD1[1] - L1, 0, 0)),
+				Cylinder(B2,RD2,S,RL, -1, CP(0, 0, CD2[0]), 1, CP(CD2[1] - L1, 0, 0)),
+				Cylinder(B2,RD2,S,RL,  1, CP(-CD3[0], 0, 0), 2, CP(CD3[1] - L2, 0, 0))
 			]
 		)
-plotWorkspace(leg)
+#plotWorkspace(leg)
 
 #leg.setAngles(0,pi/8,-pi/4)
 #leg.setFootPos(CP(1.25,0,0))
@@ -415,12 +460,17 @@ plotWorkspace(leg)
 #print cp, leg.getFootPos()
 #print leg.getVolumes(), leg.strokesValid()
 
-print simulate(leg, SPEED, CP(STANCE, STRIDE/2, -HHH), CP(STANCE, -STRIDE/2, -HHH))
+#print simulate(leg, SPEED, CP(STANCE, STRIDE/2, -HHH), CP(STANCE, -STRIDE/2, -HHH))
 #print simulate(leg, SPEED, CP(STANCE, STRIDE/2, -HHL), CP(STANCE, -STRIDE/2, -HHL))
 
 #print calcRanges(leg)
+#for c in leg.cylinders:
+#	print c.forceBounds
 
-#leg.draw()
-#setUpFigure()
+#print calcRanges(leg)
+leg.setAngles(0, 0.2, -2.3)
+print leg.getTorqueBounds()
+leg.draw()
+setUpFigure()
 show()
 
