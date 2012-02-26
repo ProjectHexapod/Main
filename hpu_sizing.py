@@ -3,22 +3,23 @@ from pylab import *
 # Link lengths
 #L1 = 1.8  # m
 #L2 = 2.4  # m
-L1 = 1.2  # m
-L2 = 1.2  # m
+L1 = 1.6  # m
+L2 = 2.3  # m
 
 # http://www.surpluscenter.com/item.asp?item=9-7715-12&catname=hydraulic
 B = 2.0  # in
 S = 10.0  # in
-#RL = 22.25  #in
-RL = 10.0  #in
+RL = 22.25  #in
 
 # Distance from cylinder attachment points to joint axis
-CD = 0.3
+CD1 = [0.66, 0.2]
+CD2 = [0.3, 0.8]
+CD3 = [0.8, 0.4]
 
 # Gait parameters
 HHL = 1.0  # m, hip height low
 HHH = 2.0  # m, hip height high
-STANCE = 0.8  # m, how far outside the hip should we place the foot?
+STANCE = 1.2  # m, how far outside the hip should we place the foot?
 STRIDE = 1.5  # m, how far do we move in one step?
 
 
@@ -91,6 +92,8 @@ class Link:
 		
 	def toProximal(self, cp):
 		return trans(self.l2p, cp)
+	def toDistal(self, cp):
+		return trans(self.dLink.p2l, cp)
 		
 	def toWorld(self, cp):
 		return self.pLink.toWorld(self.toProximal(cp))
@@ -180,19 +183,28 @@ class Leg:
 			assert args[i] >= 0.0
 			assert args[i] <= c.stroke
 			
-			d1 = norm(c.ap1)  # Distance from axis to ap1
-			d2 = norm(c.l2.toProximal(c.ap2))  # Distance from axis to ap2
+			ap1 = c.ap1
+			ap2 = c.l2.toProximal(c.ap2)
+			
+			d1 = norm(ap1)  # Distance from axis to ap1
+			d2 = norm(ap2)  # Distance from axis to ap2
 			includedAngle = arccos( (d1**2 + d2**2 - (args[i] + c.rl)**2) / (2*d1*d2) )
 			
 			# UGLY!
 			if i == 0:
 				self.links[i].setTheta(pi/2.0 - includedAngle)
 			elif i == 1:
-				self.links[i].setTheta(-pi/2.0 + includedAngle)
+				#self.links[i].setTheta(-pi/2.0 + includedAngle)
+				ap1 = self.toDistal(ap1)
+				t1 = arctan2(ap1[1], ap1[0])
+				t2 = arctan2(ap2[1], ap2[0])
+				print ap1, ap2
+				print t1, t2, includedAngle, self.links[i].getTheta()
+				self.links[i].setTheta(t1 - includedAngle - t2 + self.links[i].getTheta())
 			elif i == 2:
 				self.links[i].setTheta(-pi + includedAngle)
 			
-			#print i, d1, d2, includedAngle, self.links[i].getTheta(), args[i], c.rl, c.length(), args[i] + c.rl - c.length()
+			print i, d1, d2, includedAngle, self.links[i].getTheta(), args[i], c.rl, c.length(), args[i] + c.rl - c.length()
 			assert abs(args[i] + c.rl - c.length()) < 1e-1  # There is *some* coupling between J1,J2
 			
 	
@@ -228,6 +240,8 @@ class Leg:
 		self.setAngles(*q)
 	
 	# Base case for Link.toWorld() recursion
+	def toDistal(self, cp):
+		return trans(self.links[0].p2l, cp)
 	def toWorld(self, cp):
 		return cp  # Stub. No Body yet.
 	
@@ -388,9 +402,9 @@ def setUpFigure(n=1):
 leg = Leg(
 			[Link(0.0, pi/2), Link(L1, 0.0), Link(L2, 0.0)],
 			[
-				Cylinder(B,S,RL, -1, CP(0, CD, 0), 1, CP(CD - L1, 0, 0)),
-				Cylinder(B,S,RL, -1, CP(0, 0, -CD), 1, CP(CD - L1, 0, 0)),
-				Cylinder(B,S,RL,  1, CP(-CD, 0, 0), 2, CP(CD - L2, 0, 0))
+				Cylinder(B,S,RL, -1, CP(0, CD1[0], 0), 1, CP(CD1[1] - L1, 0, 0)),
+				Cylinder(B,S,RL, -1, CP(0, 0, CD2[0]), 1, CP(CD2[1] - L1, 0, 0)),
+				Cylinder(B,S,RL,  1, CP(-CD3[0], 0, 0), 2, CP(CD3[1] - L2, 0, 0))
 			]
 		)
 plotWorkspace(leg)
