@@ -127,7 +127,7 @@ for i in range(n_plots):
         ['time' for k in plot_vars[i]],\
         plot_vars[i]) )
 
-ani = animation.FuncAnimation(fig, updateAll, interval=50, blit=False)
+ani = animation.FuncAnimation(fig, updateAll, interval=100, blit=False)
 
 plt.show()
 

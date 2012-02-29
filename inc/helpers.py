@@ -1,7 +1,29 @@
 from math import *
 
+# axes used to determine constrained joint rotations
+rightAxis =  ( 0.0  , 1.0  , 0.0  ) 
+leftAxis  =  ( 0.0  , -1.0 , 0.0  ) 
+upAxis    =  ( 0.0  , 0.0  , 1.0  ) 
+downAxis  =  ( 0.0  , 0.0  , -1.0 ) 
+bkwdAxis  =  ( -1.0 , 0.0  , 0.0  ) 
+fwdAxis   =  ( 1.0  , 0.0  , 0.0  ) 
+
 def thetaFromABC( a, b, c ):
     return acos( (a*a + b*b - c*c) / (2*a*b) )
+
+def calcAngularError( a1, a2 ):
+    """Given two angles in radians what is 
+	the difference between them?"""
+    error = (a1%(2*pi))-(a2%(2*pi))
+    if error > pi:
+        error -= 2*pi
+    elif error <= -1*pi:
+        error += 2*pi
+    return error
+
+def rot2( p, r ):
+	""" Rotate 2D point p by angle r """
+	return (cos(r)*p[0],sin(r)*p[1])
 
 def sign(x):
     """Returns 1.0 if x is positive, -1.0 if x is negative or zero."""
