@@ -13,12 +13,13 @@ from pubsub import *
 from helpers import *
 from MultiBody import ControlledHingeJoint
 from SixLegSpider import SixLegSpider
+from SpiderWHydraulics import SpiderWHydraulics
 
 # Simulation time 
 t = 0
 # Global timestep
 #global_dt = 1.5*2.5e-4
-global_dt = 2e-2
+global_dt = 5e-3
 global_n_iterations = 0
 
 # This is the publisher where we make data available
@@ -242,16 +243,17 @@ contactgroup = ode.JointGroup()
 lasttime = time.time()
 
 # create the robot
-robot = SixLegSpider(world, space, 500, (0.0, 0.0, 3.0))
+#robot = SixLegSpider(world, space, 500, (0.0, 0.0, 3.0))
+robot = SpiderWHydraulics(world, space, 500, (0.0, 0.0, 3.0))
 print "total mass is %.1f kg (%.1f lbs)" % (robot.totalMass, robot.totalMass * 2.2)
 
-g = createBoxGeom(space, (1.0,1.0,1.0))
-g.setPosition( (-5, 1, 1) )
-static_geoms.add(g)
-b,g = createCapsule(world, space, 1.0, 1.0, 0.5)
-b.color = (128,0,0,255)
-bodies.append(b)
-b.setPosition( (-5, 1, 3) )
+#g = createBoxGeom(space, (1.0,1.0,1.0))
+#g.setPosition( (-5, 1, 1) )
+#static_geoms.add(g)
+#b,g = createCapsule(world, space, 1.0e2, 1.0, 0.5)
+#b.color = (128,0,0,255)
+#bodies.append(b)
+#b.setPosition( (-5, 1, 3) )
 
 # create the program window
 x = 0

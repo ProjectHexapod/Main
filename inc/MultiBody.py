@@ -58,6 +58,84 @@ class ControlledHingeJoint(ode.HingeJoint):
         error = calcAngularError( self.angle_target, self.getAngle() )
         self.setParam( ode.ParamVel, error*self.gain )
 
+class LinearActuator:
+    """Give LinearActuator two anchor points and a radius and it will create a body
+    with controllable slider joint.  This requires a universal joint on each end."""
+    def __init__(self, world, body1, body2, p1, p2):
+        # Cap on one side
+        cap1 = ode.Body( world )
+        cap1.color = (0,128,0,255)
+        m = ode.Mass()
+        m.setCappedCylinderTotal(1.0, 3, 0.01, 0.01)
+        cap1.setMass(m)
+        # set parameters for drawing the body
+        cap1.shape = "capsule"
+        cap1.length = .05
+        cap1.radius = .05
+        cap1.setPosition(p1)
+
+        # Attach the cap to the body
+        u1 = ode.BallJoint(world)
+        u1.attach(body1, cap1)
+        u1.setAnchor(p1)
+        u1.style = "ball"
+
+        # Cap on other side
+        cap2 = ode.Body( world )
+        cap2.color = (0,128,0,255)
+        m = ode.Mass()
+        m.setCappedCylinderTotal(1.0, 3, 0.01, 0.01)
+        cap2.setMass(m)
+        # set parameters for drawing the body
+        cap2.shape = "capsule"
+        cap2.length = .05
+        cap2.radius = .05
+        cap2.setPosition(p2)
+
+        # Attach the cap to the body
+        u2 = ode.BallJoint(world)
+        u2.attach(body2, cap2)
+        u2.setAnchor(p2)
+        u2.style = "ball"
+       
+        # The all-important slider joint
+        s = ode.SliderJoint( world )
+        s.attach( cap1, cap2 )
+        s.setAxis( sub3(p2, p1) )
+
+        self.cap1 = cap1
+        self.cap2 = cap2
+        self.u1 = u1
+        self.u2 = u2
+        self.slider = s
+        self.gain = 10.0
+        self.neutral_length = dist3(p1,p2)
+        self.length_target  = dist3(p1,p2)
+    def getForce( self ):
+        pass
+    def setForceLimit( self, f ):
+        self.slider.setParam(ode.ParamFMax, f)
+    def getForceLimit( self ):
+        self.slider.getParam(ode.ParamFMax)
+    def setLengthTarget( self, t ):
+        self.length_target = t
+    def getLengthTarget( self ):
+        return self.length_target
+    def getLength( self ):
+        return self.neutral_length - self.slider.getPosition()
+    def setGain( self, gain ):
+        self.gain = gain
+    def getGain( self ):
+        return self.gain
+    def update( self ):
+        """Do control"""
+        error = self.getLength() - self.length_target 
+        self.slider.setParam( ode.ParamVel, error*self.gain )
+    def setMaxLength( self, l ):
+        self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
+    def setMinLength( self, l ):
+        self.slider.setParam(ode.ParamLoStop, self.neutral_length + l)
+
 class MultiBody():
     def __init__(self, world, space, density, offset = (0.0, 0.0, 0.0)):
         """Creates a ragdoll of standard size at the given offset."""
@@ -206,6 +284,17 @@ class MultiBody():
 
         return joint
 
+    def addLinearActuator(self, body1, body2, p1, p2):
+        p1 = add3(p1, self.offset)
+        p2 = add3(p2, self.offset)
+        # TODO: This breaks some class assumptions... think of a nicer way to do this
+        joint = LinearActuator( self.world, body1, body2, p1, p2 )
+        self.joints.append(joint)
+        self.bodies.append(joint.cap1)
+        self.bodies.append(joint.cap2)
+
+        return joint
+
     def addControlledHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
         hiStop = ode.Infinity, torque_limit = 0.0, gain = 1.0):
 
@@ -264,8 +353,7 @@ class MultiBody():
 
         return joint
 
-    def addBallJoint(self, body1, body2, anchor, baseAxis, baseTwistUp,
-        flexLimit = pi, twistLimit = pi, flexForce = 0.0, twistForce = 0.0):
+    def addBallJoint(self, body1, body2, anchor ):
 
         anchor = add3(anchor, self.offset)
 
@@ -273,25 +361,6 @@ class MultiBody():
         joint = ode.BallJoint(self.world)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
-
-        # store the base orientation of the joint in the local coordinate system
-        #   of the primary body (because baseAxis and baseTwistUp may not be
-        #   orthogonal, the nearest vector to baseTwistUp but orthogonal to
-        #   baseAxis is calculated and stored with the joint)
-        joint.baseAxis = getBodyRelVec(body1, baseAxis)
-        tempTwistUp = getBodyRelVec(body1, baseTwistUp)
-        baseSide = norm3(cross(tempTwistUp, joint.baseAxis))
-        joint.baseTwistUp = norm3(cross(joint.baseAxis, baseSide))
-
-        # store the base twist up vector (original version) in the local
-        #   coordinate system of the secondary body
-        joint.baseTwistUp2 = getBodyRelVec(body2, baseTwistUp)
-
-        # store joint rotation limits and resistive force factors
-        joint.flexLimit = flexLimit
-        joint.twistLimit = twistLimit
-        joint.flexForce = flexForce
-        joint.twistForce = twistForce
 
         joint.style = "ball"
         self.joints.append(joint)
