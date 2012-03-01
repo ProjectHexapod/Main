@@ -12,6 +12,7 @@ sys.path.append('../inc')
 from pubsub import *
 from helpers import *
 from MultiBody import ControlledHingeJoint
+from MultiBody import LinearActuator
 from SixLegSpider import SixLegSpider
 from SpiderWHydraulics import SpiderWHydraulics
 
@@ -19,7 +20,7 @@ from SpiderWHydraulics import SpiderWHydraulics
 t = 0
 # Global timestep
 #global_dt = 1.5*2.5e-4
-global_dt = 5e-3
+global_dt = 1e-2
 global_n_iterations = 0
 
 # This is the publisher where we make data available
@@ -194,7 +195,7 @@ def pave(x,y):
     """Put down a pavement tile"""
     global static_geoms, pavement, space
     g = createBoxGeom(space, (1.0,1.0,1.0))
-    pos = (x,y,random.uniform(-1.1, -0.7))
+    pos = (x,y,random.uniform(-1.1, -1.09))
     rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
     rand_unit = div3(rand_unit, len3(rand_unit))
     rot = calcRotMatrix(rand_unit, random.uniform(0,0*2*pi/120))
@@ -224,11 +225,14 @@ time.sleep(0.1)
 # create an ODE world object
 world = ode.World()
 world.setGravity((0.0, 0.0, -9.81))
+# This is the sponginess of the universe
 world.setERP(0.8)
-world.setCFM(1E-4)
+world.setCFM(1E-6)
+#world.setERP(0.0)
+#world.setCFM(0.0)
 
 # create a plane geom to simulate a floor
-#floor = ode.GeomPlane(space, (0, 0, 1), 0)
+floor = ode.GeomPlane(space, (0, 0, 1), 0)
 
 # create a list to store any ODE bodies which are not part of the robot (this
 #   is needed to avoid Python garbage collecting these bodies)
@@ -277,10 +281,10 @@ Sun.enable()
 #dictionary of all pavement tiles by position
 pavement = {}
 
-for x in range(-4,5):
+"""for x in range(-4,5):
     for y in range(-4,5):
         pave(x,y)
-
+"""
 pavement_center = [0,0]
 
 # Populate the publisher
@@ -296,18 +300,22 @@ for i in range(6):
     publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i, c.call )
     c = Callback( ControlledHingeJoint.getTorque, robot.legs[i]['knee_pitch'] )
     publisher.addToCatalog( 'leg%d.knee.pitch.torque'%i, c.call )
-    c = Callback( ControlledHingeJoint.getAngle, robot.legs[i]['hip_pitch'] )
+    c = Callback( LinearActuator.getAngle, robot.legs[i]['hip_pitch'] )
     publisher.addToCatalog( 'leg%d.hip.pitch.angle.actual'%i, c.call)
-    c = Callback( ControlledHingeJoint.getAngle, robot.legs[i]['hip_yaw'] )
+    c = Callback( LinearActuator.getAngle, robot.legs[i]['hip_yaw'] )
     publisher.addToCatalog( 'leg%d.hip.yaw.angle.actual'%i, c.call )
-    c = Callback( ControlledHingeJoint.getAngle, robot.legs[i]['knee_pitch'] )
+    c = Callback( LinearActuator.getAngle, robot.legs[i]['knee_pitch'] )
     publisher.addToCatalog( 'leg%d.knee.pitch.angle.actual'%i, c.call )
-    c = Callback( ControlledHingeJoint.getAngleTarget, robot.legs[i]['hip_pitch'] )
+    c = Callback( LinearActuator.getLength, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.act.len.actual'%i, c.call )
+    c = Callback( LinearActuator.getAngleTarget, robot.legs[i]['hip_pitch'] )
     publisher.addToCatalog( 'leg%d.hip.pitch.angle.target'%i, c.call)
-    c = Callback( ControlledHingeJoint.getAngleTarget, robot.legs[i]['hip_yaw'] )
+    c = Callback( LinearActuator.getAngleTarget, robot.legs[i]['hip_yaw'] )
     publisher.addToCatalog( 'leg%d.hip.yaw.angle.target'%i, c.call )
-    c = Callback( ControlledHingeJoint.getAngleTarget, robot.legs[i]['knee_pitch'] )
+    c = Callback( LinearActuator.getAngleTarget, robot.legs[i]['knee_pitch'] )
     publisher.addToCatalog( 'leg%d.knee.pitch.angle.target'%i, c.call )
+    c = Callback( LinearActuator.getLengthTarget, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.act.len.target'%i, c.call )
 
 # Start publishing data
 publisher.start()
@@ -317,7 +325,7 @@ while True:
 
     # Do we need to repave the road?
     p = robot.getPosition()
-
+    """
     # Do we need to move x-wise?
     if p[0] + .5 < pavement_center[0]:
         pavement_center[0] -= 1
@@ -344,7 +352,7 @@ while True:
         for x in range(pavement_center[0]-4,pavement_center[0]+5):
             unpave(    x, y-9)
             pave(      x, y)
-
+    """
     if not global_n_iterations % 5:
         publisher.publish()
 

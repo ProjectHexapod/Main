@@ -61,7 +61,7 @@ class ControlledHingeJoint(ode.HingeJoint):
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
     with controllable slider joint.  This requires a universal joint on each end."""
-    def __init__(self, world, body1, body2, p1, p2):
+    def __init__(self, world, body1, body2, p1, p2, hinge=None):
         # Cap on one side
         cap1 = ode.Body( world )
         cap1.color = (0,128,0,255)
@@ -101,16 +101,37 @@ class LinearActuator:
         # The all-important slider joint
         s = ode.SliderJoint( world )
         s.attach( cap1, cap2 )
-        s.setAxis( sub3(p2, p1) )
+        s.setAxis( sub3(p1, p2) )
 
         self.cap1 = cap1
         self.cap2 = cap2
         self.u1 = u1
         self.u2 = u2
         self.slider = s
-        self.gain = 10.0
+        self.gain = 1.0
         self.neutral_length = dist3(p1,p2)
         self.length_target  = dist3(p1,p2)
+        if hinge != None:
+            # Hinge is the joint this linear actuator controls
+            # This allows angular control
+            self.hinge=hinge
+            # Store these for later to save on math.
+            # TODO:  I am being lazy and assuming u1->u2
+            # is orthogonal to the hinge axis
+            self.h_to_u1 = dist3( self.hinge.getAnchor(), self.u1.getAnchor() )
+            self.h_to_u2 = dist3( self.hinge.getAnchor(), self.u2.getAnchor() )
+            self.neutral_angle = thetaFromABC(self.h_to_u1, self.h_to_u2, self.neutral_length )
+
+    def getAngle( self ):
+        return self.hinge.getAngle()
+    def setAngleTarget( self, t ):
+        """Figure out the length of actuator that corresponds to
+        the angle."""
+        self.angle_target = t
+        #self.length_target = cFromThetaAB( self.neutral_angle+t, self.h_to_u1, self.h_to_u2 )
+        self.length_target = cFromThetaAB( t - self.neutral_angle, self.h_to_u1, self.h_to_u2 )
+    def getAngleTarget( self ):
+        return self.angle_target
     def getForce( self ):
         pass
     def setForceLimit( self, f ):
@@ -122,19 +143,19 @@ class LinearActuator:
     def getLengthTarget( self ):
         return self.length_target
     def getLength( self ):
-        return self.neutral_length - self.slider.getPosition()
+        return self.neutral_length + self.slider.getPosition()
     def setGain( self, gain ):
         self.gain = gain
     def getGain( self ):
         return self.gain
     def update( self ):
         """Do control"""
-        error = self.getLength() - self.length_target 
+        error = self.length_target - self.getLength()
         self.slider.setParam( ode.ParamVel, error*self.gain )
     def setMaxLength( self, l ):
-        self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
+        self.slider.setParam(ode.ParamLoStop, self.neutral_length - l)
     def setMinLength( self, l ):
-        self.slider.setParam(ode.ParamLoStop, self.neutral_length + l)
+        self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
 
 class MultiBody():
     def __init__(self, world, space, density, offset = (0.0, 0.0, 0.0)):
@@ -147,7 +168,7 @@ class MultiBody():
         self.geoms            = []
         self.joints           = []
         self.totalMass        = 0.0
-        self.update_callbacks = []
+        self.update_objects   = []
 
         # These are the inputs and outputs for our controller
         self.inputs  = {}
@@ -284,14 +305,15 @@ class MultiBody():
 
         return joint
 
-    def addLinearActuator(self, body1, body2, p1, p2):
+    def addLinearActuator(self, body1, body2, p1, p2, hinge=None):
         p1 = add3(p1, self.offset)
         p2 = add3(p2, self.offset)
         # TODO: This breaks some class assumptions... think of a nicer way to do this
-        joint = LinearActuator( self.world, body1, body2, p1, p2 )
+        joint = LinearActuator( self.world, body1, body2, p1, p2, hinge )
         self.joints.append(joint)
         self.bodies.append(joint.cap1)
         self.bodies.append(joint.cap2)
+        self.update_objects.append( joint )
 
         return joint
 
@@ -311,6 +333,7 @@ class MultiBody():
 
         joint.style = "hinge"
         self.joints.append(joint)
+        self.update_objects.append(joint)
 
         return joint
 
@@ -328,7 +351,6 @@ class MultiBody():
 
         joint.style = "hinge"
         self.joints.append(joint)
-        self.update_callbacks.append( (joint.update,[joint],{}) )
 
         return joint
 
@@ -368,4 +390,5 @@ class MultiBody():
         return joint
 
     def update(self):
-        pass
+        for o in self.update_objects:
+            o.update()

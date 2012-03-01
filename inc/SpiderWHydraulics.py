@@ -50,13 +50,21 @@ class SpiderWHydraulics(MultiBody):
                 p2     = hip_p, \
                 radius = YAW_W, \
                 mass   = YAW_M )
-            hip_yaw = self.addControlledHingeJoint( \
+            hip_yaw = self.addHingeJoint( \
                 body1        = self.core[0], \
                 body2        = yaw_link, \
                 anchor       = yaw_p, \
-                axis         = (0,0,1), \
-                torque_limit = 6.0e3, \
-                gain         = 10.0)
+                axis         = (0,0,1))
+            # TODO: This is ugly
+            tp = rotate3( r_30z, p )
+            hip_yaw_actuator = self.addLinearActuator( \
+                body1        = self.core[0], \
+                body2        = yaw_link, \
+                p1           = mul3(tp, (BODY_W/2)+YAW_L ),\
+                p2           = mul3(tp,  BODY_W/2 ),\
+                hinge        = hip_yaw)
+            hip_yaw_actuator.setForceLimit(1e9)
+            hip_yaw_actuator.setGain(10.0)
 
             # Add thigh and hip pitch
             # Calculate the axis of rotation for hip pitch
@@ -66,13 +74,19 @@ class SpiderWHydraulics(MultiBody):
                 p2     = knee_p, \
                 radius = THIGH_W, \
                 mass   = THIGH_M )
-            hip_pitch = self.addControlledHingeJoint( \
+            hip_pitch = self.addHingeJoint( \
                 body1        = yaw_link, \
                 body2        = thigh, \
                 anchor       = hip_p, \
-                axis         = axis, \
-                torque_limit = 10.0e3, \
-                gain         = 10.0)
+                axis         = axis)
+            hip_pitch_actuator = self.addLinearActuator( \
+                body1        = yaw_link, \
+                body2        = thigh, \
+                p1           = (hip_p[0]/1.5,hip_p[1]*0.8, +0.3),\
+                p2           = (hip_p[0]*2.0,hip_p[1]*2.0, +0.0),\
+                hinge        = hip_pitch)
+            hip_pitch_actuator.setForceLimit(1e9)
+            hip_pitch_actuator.setGain(10.0)
 
             # Add calf and knee bend
             calf = self.addBody( \
@@ -80,44 +94,39 @@ class SpiderWHydraulics(MultiBody):
                 p2     = foot_p, \
                 radius = CALF_W, \
                 mass   = CALF_M )
-            test = self.addLinearActuator( \
-                body1        = thigh, \
-                body2        = calf, \
-                p1           = (knee_p[0]/1.05,knee_p[1]/1.05, 0.5),
-                p2           = (knee_p[0]*1.05,knee_p[1]*1.05, 0.5) )
-            test.setForceLimit(1e6)
-            test.setLengthTarget(test.neutral_length + 0.65)
-            test.setMaxLength( test.neutral_length + 0.68)
-            test.setMinLength( test.neutral_length - 0.1)
-
-            knee_pitch = self.addControlledHingeJoint( \
+            knee_pitch = self.addHingeJoint( \
                 body1        = thigh, \
                 body2        = calf, \
                 anchor       = knee_p, \
-                axis         = axis, \
-                torque_limit = 0.0, \
-                gain         = 10.0)
+                axis         = axis)
+            knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
+            knee_pitch.setParam(ode.ParamHiStop, 0.0)
+            knee_actuator = self.addLinearActuator( \
+                body1        = thigh, \
+                body2        = calf, \
+                p1           = (knee_p[0]/1.5,knee_p[1]/1.5, -0.1),\
+                p2           = (knee_p[0]/1.2,knee_p[1]/1.2, +0.0),\
+                hinge        = knee_pitch)
+            knee_actuator.setForceLimit(1e9)
+            knee_actuator.setGain(10.0)
+
 
             d                 = {}
-            d['hip_yaw']      = hip_yaw
-            d['hip_pitch']    = hip_pitch
-            d['knee_pitch']   = knee_pitch
+            d['hip_yaw']      = hip_yaw_actuator
+            d['hip_pitch']    = hip_pitch_actuator
+            d['knee_pitch']   = knee_actuator
             d['hip_yaw_link'] = yaw_link
             d['thigh']        = thigh
             d['calf']         = calf
             self.legs[i]      = d
 
             p = rotate3( r_60z, p )
-
-    
     def getKneeAngle(self, n):
         return self.knee_angles[n]
     def getHipPitchAngle(self, n):
         return self.hip_pitch_angles[n]
     def getHipYawAngle(self, n):
         return self.hip_yaw_angles[n]
-
-
     def setDesiredFootPositions( self, positions ):
         """
         positions should be an iterable of 6 positions relative to the body
@@ -167,7 +176,3 @@ class SpiderWHydraulics(MultiBody):
         return self.core[0].getPosition()
     def getVelocity( self ):
         return self.core[0].getLinearVel()
-    def update( self ):
-        global global_dt
-        for joint in self.joints:
-            joint.update()

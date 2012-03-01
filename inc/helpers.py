@@ -9,7 +9,10 @@ bkwdAxis  =  ( -1.0 , 0.0  , 0.0  )
 fwdAxis   =  ( 1.0  , 0.0  , 0.0  ) 
 
 def thetaFromABC( a, b, c ):
-    return acos( (a*a + b*b - c*c) / (2*a*b) )
+    return acos( (a*a + b*b - c*c) / (2.0*a*b) )
+
+def cFromThetaAB( theta, a, b ):
+    return sqrt( a*a + b*b - 2.0*a*b*cos(theta) )
 
 def calcAngularError( a1, a2 ):
     """Given two angles in radians what is 
