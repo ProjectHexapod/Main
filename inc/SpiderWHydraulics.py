@@ -63,7 +63,7 @@ class SpiderWHydraulics(MultiBody):
                 p1           = mul3(tp, (BODY_W/2)+YAW_L ),\
                 p2           = mul3(tp,  BODY_W/2 ),\
                 hinge        = hip_yaw)
-            hip_yaw_actuator.setForceLimit(1e9)
+            hip_yaw_actuator.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             hip_yaw_actuator.setGain(10.0)
 
             # Add thigh and hip pitch
@@ -79,13 +79,18 @@ class SpiderWHydraulics(MultiBody):
                 body2        = thigh, \
                 anchor       = hip_p, \
                 axis         = axis)
+            hip_pitch.setParam(ode.ParamLoStop, -pi/3)
+            hip_pitch.setParam(ode.ParamHiStop, +pi/3)
+            p1 = mul3( p, (BODY_W/2.0)+YAW_L )
+            p1 = (p1[0], p1[1], 0.355)
+            p2 = mul3( p, (BODY_W/2.0)+YAW_L+THIGH_L/2 )
             hip_pitch_actuator = self.addLinearActuator( \
                 body1        = yaw_link, \
                 body2        = thigh, \
-                p1           = (hip_p[0]/1.5,hip_p[1]*0.8, +0.3),\
-                p2           = (hip_p[0]*2.0,hip_p[1]*2.0, +0.0),\
+                p1           = p1,\
+                p2           = p2,\
                 hinge        = hip_pitch)
-            hip_pitch_actuator.setForceLimit(1e9)
+            hip_pitch_actuator.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             hip_pitch_actuator.setGain(10.0)
 
             # Add calf and knee bend
@@ -101,13 +106,16 @@ class SpiderWHydraulics(MultiBody):
                 axis         = axis)
             knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
             knee_pitch.setParam(ode.ParamHiStop, 0.0)
+            p1 = mul3( p, (BODY_W/2.0)+YAW_L+(THIGH_L/4) )
+            p1 = (p1[0], p1[1], -0.1)
+            p2 = mul3( p, (BODY_W/2.0)+YAW_L+THIGH_L-.355 )
             knee_actuator = self.addLinearActuator( \
                 body1        = thigh, \
                 body2        = calf, \
-                p1           = (knee_p[0]/1.5,knee_p[1]/1.5, -0.1),\
+                p1           = p1,\
                 p2           = (knee_p[0]/1.2,knee_p[1]/1.2, +0.0),\
                 hinge        = knee_pitch)
-            knee_actuator.setForceLimit(1e9)
+            knee_actuator.setForceLimit(2.8e4/2.25) # 2 inch bore @ 2000 psi
             knee_actuator.setGain(10.0)
 
 

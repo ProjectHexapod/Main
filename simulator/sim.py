@@ -248,7 +248,7 @@ lasttime = time.time()
 
 # create the robot
 #robot = SixLegSpider(world, space, 500, (0.0, 0.0, 3.0))
-robot = SpiderWHydraulics(world, space, 500, (0.0, 0.0, 3.0))
+robot = SpiderWHydraulics(world, space, 500, (0.0, 0.0, 0.3))
 print "total mass is %.1f kg (%.1f lbs)" % (robot.totalMass, robot.totalMass * 2.2)
 
 #g = createBoxGeom(space, (1.0,1.0,1.0))
@@ -293,6 +293,9 @@ publisher.addToCatalog( 'body.height', lambda: robot.getPosition()[2] )
 publisher.addToCatalog( 'body.distance', lambda: len3(robot.getPosition()) )
 publisher.addToCatalog( 'body.velocity', lambda: len3(robot.getVelocity()) )
 
+def getPower( l ):
+    return abs(l.getVel()*l.getForceLimit())
+
 for i in range(6):
     c = Callback( ControlledHingeJoint.getTorque, robot.legs[i]['hip_pitch'] )
     publisher.addToCatalog( 'leg%d.hip.pitch.torque'%i, c.call)
@@ -300,6 +303,21 @@ for i in range(6):
     publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i, c.call )
     c = Callback( ControlledHingeJoint.getTorque, robot.legs[i]['knee_pitch'] )
     publisher.addToCatalog( 'leg%d.knee.pitch.torque'%i, c.call )
+
+    c = Callback( LinearActuator.getVel, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.vel'%i, c.call )
+    c = Callback( LinearActuator.getVel, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.vel'%i, c.call )
+    c = Callback( LinearActuator.getVel, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.vel'%i, c.call )
+
+    c = Callback( getPower, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.power'%i, c.call )
+    c = Callback( getPower, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.power'%i, c.call )
+    c = Callback( getPower, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.power'%i, c.call )
+
     c = Callback( LinearActuator.getAngle, robot.legs[i]['hip_pitch'] )
     publisher.addToCatalog( 'leg%d.hip.pitch.angle.actual'%i, c.call)
     c = Callback( LinearActuator.getAngle, robot.legs[i]['hip_yaw'] )

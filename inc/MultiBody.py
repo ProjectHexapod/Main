@@ -132,12 +132,14 @@ class LinearActuator:
         self.length_target = cFromThetaAB( t - self.neutral_angle, self.h_to_u1, self.h_to_u2 )
     def getAngleTarget( self ):
         return self.angle_target
+    def getVel( self ):
+        return self.slider.getPositionRate()
     def getForce( self ):
         pass
     def setForceLimit( self, f ):
         self.slider.setParam(ode.ParamFMax, f)
     def getForceLimit( self ):
-        self.slider.getParam(ode.ParamFMax)
+        return self.slider.getParam(ode.ParamFMax)
     def setLengthTarget( self, t ):
         self.length_target = t
     def getLengthTarget( self ):
