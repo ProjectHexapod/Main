@@ -120,6 +120,10 @@ def calcRotMatrix(axis, angle):
         t * axis[1] * axis[2] + sinTheta * axis[0],
         t * axis[2]**2 + cosTheta)
 
+def rotateAxisAngle(v, ax, ang):
+    m = calcRotMatrix( ax, ang )
+    return rotate3( m, v )
+
 def makeOpenGLMatrix(r, p):
     """
     Returns an OpenGL compatible (column-major, 4x4 homogeneous) transformation

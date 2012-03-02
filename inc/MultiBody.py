@@ -102,7 +102,10 @@ class LinearActuator:
         s = ode.SliderJoint( world )
         s.attach( cap1, cap2 )
         s.setAxis( sub3(p1, p2) )
+        s.setFeedback(True)
 
+        self.body1 = body1
+        self.body2 = body2
         self.cap1 = cap1
         self.cap2 = cap2
         self.u1 = u1
@@ -135,7 +138,8 @@ class LinearActuator:
     def getVel( self ):
         return self.slider.getPositionRate()
     def getForce( self ):
-        pass
+        f1, t1, f2, t2 = self.slider.getFeedback()
+        return len3(f1)
     def setForceLimit( self, f ):
         self.slider.setParam(ode.ParamFMax, f)
     def getForceLimit( self ):
@@ -152,6 +156,8 @@ class LinearActuator:
         return self.gain
     def update( self ):
         """Do control"""
+        #f = self.getForce()
+        #TODO set color
         error = self.length_target - self.getLength()
         self.slider.setParam( ode.ParamVel, error*self.gain )
     def setMaxLength( self, l ):
@@ -204,7 +210,7 @@ class MultiBody():
 
         body = ode.Body(self.world)
         # This is our own stupid shit
-        body.color = (0,128,0,255)
+        body.color = (128,128,40,255)
         m = ode.Mass()
         if mass == None:
             m.setCappedCylinder(self.density, 3, radius, cyllen)

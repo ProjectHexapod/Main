@@ -1,11 +1,7 @@
-import sys, os, random, time, collections, threading
-from OpenGL.GLUT import *
+import sys, random, time, threading
 from math import *
 import ode
-import Image
-import numpy
 import pygame
-from pygame.locals import *
 from OpenGLLibrary import *
 
 sys.path.append('../inc')
@@ -13,7 +9,7 @@ from pubsub import *
 from helpers import *
 from MultiBody import ControlledHingeJoint
 from MultiBody import LinearActuator
-from SixLegSpider import SixLegSpider
+#from SixLegSpider import SixLegSpider
 from SpiderWHydraulics import SpiderWHydraulics
 
 # Simulation time 
@@ -38,11 +34,11 @@ class Callback:
         d = dict( self.kwargs.items() + kwargs.items() )
         return self.func( *l, **d )
 
-def createCapsule(world, space, density, length, radius):
+def createCapsule(world, space, mass, length, radius):
     """Creates a capsule body and corresponding geom."""
     body = ode.Body(world)
     m = ode.Mass()
-    m.setCappedCylinder(density, 3, radius, length)
+    m.setCappedCylinderTotal(mass, 3, radius, length)
     body.setMass(m)
 
     # set parameters for drawing the body
@@ -108,16 +104,41 @@ def naiveWalk():
         foot_positions.append(p)
     return foot_positions
 
+def standUp():
+    """Don't walk, just sort of try to stand up"""
+    global t
+    # Walk away!
+    gait_cycle      = 3.0     # time in seconds
+    step_cycle      = gait_cycle/2.0
+    neutral_r       = 2.5     # radius from body center or foot resting, m
+    stride_length   = 2.00    # length of a stride, m
+    body_h          = 2.20    # height of body off the ground, m
+    foot_lift_h     = 1.00     # how high to lift feet in m
+
+    foot_positions = []
+    z_off        =  foot_lift_h*sin(2*pi*t/gait_cycle)
+    if z_off<0:
+        z_off *= -1
+    for i in range(6):
+        x = neutral_r*cos(pi/6 + (i*pi/3))
+        y = neutral_r*sin(pi/6 + (i*pi/3))
+        z = -body_h
+        if (i%2) ^ (t%gait_cycle<(step_cycle)):
+            z += z_off
+        p = ( x, y, z )
+        foot_positions.append(p)
+    return foot_positions
+
 def constantSpeedWalk():
     global t
     # Walk away!
-    gait_cycle      = 7.0     # time in seconds
+    gait_cycle      = 3.0     # time in seconds
     step_cycle      = gait_cycle/2.0
     swing_overshoot = 1.00
     neutral_r       = 2.5     # radius from body center or foot resting, m
     stride_length   = 2.00    # length of a stride, m
     body_h          = 2.20    # height of body off the ground, m
-    foot_lift_h     = 1.5     # how high to lift feet in m
+    foot_lift_h     = 0.25     # how high to lift feet in m
 
     #gait_cycle      = 1.8     # time in seconds
     #step_cycle      = gait_cycle/2.0
@@ -149,7 +170,12 @@ def simMainLoop():
     global Paused, lasttime, global_n_iterations, exit_flag, t, global_dt, global_robot_pos
     global space
 
-    robot.setDesiredFootPositions( constantSpeedWalk() )
+    #print len(ode._geom_c2py_lut)
+
+    if(t < 5):
+        robot.setDesiredFootPositions( standUp() )
+    else:
+        robot.setDesiredFootPositions( constantSpeedWalk() )
 
     # Detect collisions and create contact joints
     space.collide((world, contactgroup), near_callback)
@@ -181,21 +207,27 @@ def draw_body(body):
     if body.shape == "capsule":
         glLibColor(body.color)
         cylHalfHeight = body.length / 2.0
-        c = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
-        c.myDraw( rot )
+        if not hasattr(body,'glObj'):
+            body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
+        #c = glLibObjCylinder( body.radius, body.length, CAPSULE_SLICES )
+        body.glObj.myDraw( rot )
+        #del c
 def draw_geom(geom):
     if isinstance(geom, ode.GeomBox):
+        glLibColor(geom.color)
         p = geom.getPosition()
         r = geom.getRotation()
         rot = makeOpenGLMatrix(r, p)
-        c = glLibObjCube( geom.getLengths() )
-        c.myDraw( rot )
+        if not hasattr(geom,'glObj'):
+            geom.glObj = glLibObjCube( geom.getLengths() )
+        geom.glObj.myDraw( rot )
 
 def pave(x,y):
     """Put down a pavement tile"""
     global static_geoms, pavement, space
-    g = createBoxGeom(space, (1.0,1.0,1.0))
-    pos = (x,y,random.uniform(-1.1, -1.09))
+    g = createBoxGeom(space, (0.99,0.99,0.99))
+    g.color = (0,128,0,255)
+    pos = (x,y,random.uniform(-1.1, -0.9))
     rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
     rand_unit = div3(rand_unit, len3(rand_unit))
     rot = calcRotMatrix(rand_unit, random.uniform(0,0*2*pi/120))
@@ -232,7 +264,7 @@ world.setCFM(1E-6)
 #world.setCFM(0.0)
 
 # create a plane geom to simulate a floor
-floor = ode.GeomPlane(space, (0, 0, 1), 0)
+#floor = ode.GeomPlane(space, (0, 0, 1), 0)
 
 # create a list to store any ODE bodies which are not part of the robot (this
 #   is needed to avoid Python garbage collecting these bodies)
@@ -281,10 +313,10 @@ Sun.enable()
 #dictionary of all pavement tiles by position
 pavement = {}
 
-"""for x in range(-4,5):
-    for y in range(-4,5):
+for x in range(-5,6):
+    for y in range(-5,6):
         pave(x,y)
-"""
+
 pavement_center = [0,0]
 
 # Populate the publisher
@@ -297,80 +329,96 @@ def getPower( l ):
     return abs(l.getVel()*l.getForceLimit())
 
 for i in range(6):
-    c = Callback( ControlledHingeJoint.getTorque, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.torque'%i, c.call)
-    c = Callback( ControlledHingeJoint.getTorque, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i, c.call )
-    c = Callback( ControlledHingeJoint.getTorque, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.torque'%i, c.call )
+    c = ( ControlledHingeJoint.getTorque, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.torque'%i, c)
+    c = ( ControlledHingeJoint.getTorque, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i, c )
+    c = ( ControlledHingeJoint.getTorque, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.torque'%i, c )
 
-    c = Callback( LinearActuator.getVel, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.vel'%i, c.call )
-    c = Callback( LinearActuator.getVel, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.vel'%i, c.call )
-    c = Callback( LinearActuator.getVel, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.vel'%i, c.call )
+    c = ( LinearActuator.getVel, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.vel'%i, c )
+    c = ( LinearActuator.getVel, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.vel'%i, c )
+    c = ( LinearActuator.getVel, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.vel'%i, c )
 
-    c = Callback( getPower, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.power'%i, c.call )
-    c = Callback( getPower, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.power'%i, c.call )
-    c = Callback( getPower, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.power'%i, c.call )
+    c = ( getPower, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.power'%i, c )
+    c = ( getPower, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.power'%i, c )
+    c = ( getPower, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.power'%i, c )
 
-    c = Callback( LinearActuator.getAngle, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.angle.actual'%i, c.call)
-    c = Callback( LinearActuator.getAngle, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.angle.actual'%i, c.call )
-    c = Callback( LinearActuator.getAngle, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.angle.actual'%i, c.call )
-    c = Callback( LinearActuator.getLength, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.act.len.actual'%i, c.call )
-    c = Callback( LinearActuator.getAngleTarget, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.angle.target'%i, c.call)
-    c = Callback( LinearActuator.getAngleTarget, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.angle.target'%i, c.call )
-    c = Callback( LinearActuator.getAngleTarget, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.angle.target'%i, c.call )
-    c = Callback( LinearActuator.getLengthTarget, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.act.len.target'%i, c.call )
+    c = ( LinearActuator.getAngle, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.angle.actual'%i, c)
+    c = ( LinearActuator.getAngle, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.angle.actual'%i, c )
+    c = ( LinearActuator.getAngle, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.angle.actual'%i, c )
+    c = ( LinearActuator.getLength, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.act.len.actual'%i, c )
+    c = ( LinearActuator.getAngleTarget, robot.legs[i]['hip_pitch'] )
+    publisher.addToCatalog( 'leg%d.hip.pitch.angle.target'%i, c)
+    c = ( LinearActuator.getAngleTarget, robot.legs[i]['hip_yaw'] )
+    publisher.addToCatalog( 'leg%d.hip.yaw.angle.target'%i, c )
+    c = ( LinearActuator.getAngleTarget, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.pitch.angle.target'%i, c )
+    c = ( LinearActuator.getLengthTarget, robot.legs[i]['knee_pitch'] )
+    publisher.addToCatalog( 'leg%d.knee.act.len.target'%i, c )
 
 # Start publishing data
 publisher.start()
 
+#from guppy import hpy
+#h=hpy()
+
+import OpenGL.contextdata as contextdata
+
+cam_pos = (0,10,10)
+
+t_last = time.time()
+t_present = None
+
 while True:
+    # hack to run real time
+    t_present = time.time()
+    global_dt = t_present - t_last
+    if global_dt > 1e-2:
+        global_dt = 1e-2
+    t_last = t_present
     simMainLoop()
 
     # Do we need to repave the road?
     p = robot.getPosition()
-    """
+    
     # Do we need to move x-wise?
     if p[0] + .5 < pavement_center[0]:
         pavement_center[0] -= 1
-        x = pavement_center[0]-4
-        for y in range( pavement_center[1]-4,pavement_center[1]+5):
-            unpave(x+9, y)
+        x = pavement_center[0]-5
+        for y in range( pavement_center[1]-5,pavement_center[1]+6):
+            unpave(x+11, y)
             pave(  x,   y)
     elif p[0] - .5 > pavement_center[0]:
         pavement_center[0] += 1
-        x = pavement_center[0]+4
-        for y in range( pavement_center[1]-4,pavement_center[1]+5):
-            unpave(x-9, y)
+        x = pavement_center[0]+5
+        for y in range( pavement_center[1]-5,pavement_center[1]+6):
+            unpave(x-11, y)
             pave(  x,   y)
 
     if p[1] + .5 < pavement_center[1]:
         pavement_center[1] -= 1
-        y = pavement_center[1]-4
-        for x in range( pavement_center[0]-4,pavement_center[0]+5):
-            unpave(     x, y+9)
+        y = pavement_center[1]-5
+        for x in range( pavement_center[0]-5,pavement_center[0]+6):
+            unpave(     x, y+11)
             pave(       x, y)
     elif p[1] - .5 > pavement_center[1]:
         pavement_center[1] += 1
-        y = pavement_center[1]+4
-        for x in range(pavement_center[0]-4,pavement_center[0]+5):
-            unpave(    x, y-9)
+        y = pavement_center[1]+5
+        for x in range(pavement_center[0]-5,pavement_center[0]+6):
+            unpave(    x, y-11)
             pave(      x, y)
-    """
+    
     if not global_n_iterations % 5:
         publisher.publish()
 
@@ -390,20 +438,53 @@ while True:
             if event.key == K_ESCAPE:
                 pygame.quit()
                 sys.exit()
-    if mpress[0]:
-        pass
-        #current_pos = Sun.get_pos()
-        #new_pos = [current_pos[0]+(mrel[0]*0.05),current_pos[1],current_pos[2]+(mrel[1]*0.05)]
-        #Sun.change_pos(new_pos)
-    cam.center = p
-    cam.pos = add3(p,(0,10,10))
+        if event.type == MOUSEBUTTONDOWN:
+            click_pos = glLibUnProject( event.pos )
+            if event.button == 1:
+                b,g = createCapsule(world, space, 1.0e2, 1.3, 0.3)
+                b.color = (128,0,0,255)
+                bodies.append(b)
+                b.setPosition( add3(click_pos, (0,0,1.5)) )
+            elif event.button == 3:
+                g = createBoxGeom(space, (1.0,1.0,0.25))
+                g.color = (128,0,0,255)
+                g.setPosition( add3(click_pos,(0,0,0.125)) )
+                static_geoms.add(g)
+            elif event.button == 4:
+                cam_pos = div3( cam_pos, 1.05 )
+            elif event.button == 5:
+                cam_pos = mul3( cam_pos, 1.05 )
+        if event.type == MOUSEMOTION:
+            if event.buttons[1]:
+                # z axis rotation
+                az = -event.rel[0]/(60*pi)
+                cam_pos = ( cam_pos[0]*cos(az)-cam_pos[1]*sin(az), cam_pos[0]*sin(az)+cam_pos[1]*cos(az), cam_pos[2] )
+                # pitch rotation
+                ay = event.rel[1]/(60*pi)
+                # find pitch axis
+                axis = norm3(cross( cam_pos, (0,0,1) ))
+                cam_pos = rotateAxisAngle( cam_pos, axis, ay )
+
+
+    #if mpress[0]:
+    #    pass
+    cam.center = add3(p, (0,0,0.3))
+    cam.pos = add3(p,cam_pos)
     Window.clear()
     cam.set_camera()
 
     for g in static_geoms:
         draw_geom(g)
+    prune = []
     for b in bodies:
+        tp = b.getPosition()
+        if tp[2] < -5.0:
+            # We've fallen off the world
+            prune.append(b)
         draw_body(b)
+    for b in prune:
+        bodies.remove(b)
+        del b
     for b in robot.bodies:
         draw_body(b)
     Window.flip()

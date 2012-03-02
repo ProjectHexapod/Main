@@ -19,9 +19,9 @@ Sun = glLibLight([0,100,0],Camera)
 Sun.enable()
 
 glLibColorMaterial(True) 
+Objects = [glLibObjTeapot(),glLibObjSphere(64),glLibObjCylinder(0.5,1.0,64),glLibObjCone(0.5,1.8,64),glLibObjFromFile("ExamplesData/UberBall.obj")]
 
 drawing = 0
-Objects = [glLibObjTeapot(),glLibObjSphere(64),glLibObjCylinder(0.5,1.0,64),glLibObjCone(0.5,1.8,64),glLibObjFromFile("ExamplesData/UberBall.obj")]
 
 while True:
     key = pygame.key.get_pressed()
@@ -51,7 +51,7 @@ while True:
     else: Camera.set_target_pos([0,0.5,6])
 
     Camera.update()
-            
+
     Window.clear()
     Camera.set_camera()
     Sun.draw()

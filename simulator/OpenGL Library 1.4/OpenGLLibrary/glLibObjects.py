@@ -24,6 +24,7 @@ class glLibObj():
         glCallList(self.list)
         glPopMatrix()
     def __del__(self):
+        glDeleteLists( self.list, 1 )
         del self.list
 class glLibObjText(glLibObj):
     def __init__(self,text,font,color,filters=[],bgcolor=None):
@@ -126,13 +127,13 @@ class glLibObjCapsule( glLibObj):
     def __init__(self,radius,length,detail):
         self.list = glGenLists(1)
         glNewList(self.list, GL_COMPILE)
-        Sphere = gluNewQuadric()
-        gluSphere(Sphere,radius,detail,detail)
+        Sphere1 = gluNewQuadric()
+        gluSphere(Sphere1,radius,detail,detail)
         Cylinder = gluNewQuadric()
         gluCylinder(Cylinder,radius,radius,length,detail,1)
         glTranslatef(0,0,length)
-        Sphere = gluNewQuadric()
-        gluSphere(Sphere,radius,detail,detail)
+        Sphere2 = gluNewQuadric()
+        gluSphere(Sphere2,radius,detail,detail)
         glEndList()
 class glLibObjCone(glLibObj):
     def __init__(self,radius,length,detail):

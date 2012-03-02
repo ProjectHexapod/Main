@@ -22,18 +22,22 @@ class Publisher:
         self.catalog[name] = callback
 
     def start( self ):
-        print 'Starting publisher'
         self.serverThread     = threading.Thread()
         self.serverThread.run = self.run_server
         self.serverThread.setDaemon( True )
         self.serverThread.start()
-        print 'Thread started'
     
     def publish( self ):
         # Trigger the publisher to send a frame of data
         if self.conn != None and len(self.subscriptions):
             try:
-                frame = {k:self.catalog[k]() for k in self.subscriptions}
+                frame = {}
+                for k in self.subscriptions:
+                    f = self.catalog[k]
+                    if type(f)==tuple:
+                        frame[k] = f[0](f[1])
+                    else:
+                        frame[k] = f()
                 self.conn.send(pickle.dumps(frame))
             except error, mesg:
                 print mesg
