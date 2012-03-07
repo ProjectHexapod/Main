@@ -25,5 +25,8 @@ def glLibUnProject(mouse_pos):
     winX = mouse_pos[0]
     winY = float(viewport[3])-mouse_pos[1]
     winZ = glReadPixels(winX,winY,1,1,GL_DEPTH_COMPONENT,GL_FLOAT)
+    if type(winZ) != float:
+        # On windows glReadPixels returns a weird array
+        winZ = winZ[0][0]
     cursor_pos = gluUnProject(winX,winY,winZ,modelview,projection,viewport)
     return cursor_pos
