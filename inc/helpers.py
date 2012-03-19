@@ -28,6 +28,12 @@ def rot2( p, r ):
 	""" Rotate 2D point p by angle r """
 	return (cos(r)*p[0],sin(r)*p[1])
 
+def sub2( p1, p2 ):
+    return (p1[0]-p2[0],p1[1]-p2[1])
+
+def len2( p ):
+    return sqrt( p[0]*p[0] + p[1]*p[1] )
+
 def sign(x):
     """Returns 1.0 if x is positive, -1.0 if x is negative or zero."""
     if x > 0.0: return 1.0

@@ -58,6 +58,64 @@ class ControlledHingeJoint(ode.HingeJoint):
         error = calcAngularError( self.angle_target, self.getAngle() )
         self.setParam( ode.ParamVel, error*self.gain )
 
+class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
+    """This simulates a hinge joint driven by a linear actuator.
+    It is computationally much more efficient than using a hinge, slider
+    and 2 sphere joints."""
+    def __init__( self, world ):
+        """
+        The origin in the anchor specification coordinate system is the hinge anchor
+        The anchor specification coordinate system is 2D and in the plane normal
+        to the hinge axis
+        a1_x is the placement of anchor 1 on the x axis 
+        (y axis placement assumed to be 0)
+        a2_x and a2_y are the placement of anchor 2
+        """
+        ode.HingeJoint.__init__(self, world)
+        self.setFeedback(True)
+        self.setAngleTarget(0.0)
+        self.setGain(1.0)
+    def setActuatorAnchors( self, a1_x, a2_x, a2_y ):
+        self.a1_x = a1_x
+        self.a2_x = a2_x
+        self.a2_y = a2_y
+        self.neutral_angle = atan2(a2_y, a2_x)
+    def getLength( self ):
+        a = self.__get_act()
+        return len2(a)
+    def __get_act( self ):
+        """
+        Return the path of the actuator in the hinge plane
+        """
+        # Apply joint rotation to one anchor
+        ang = self.neutral_angle + self.getAngle()
+        # Get the angle of the actuator with the horizontal
+        act = (self.a2_x*cos(ang) - self.a1_x, self.a2_y*sin(ang))
+        return act
+    def __get_lever_arm( self ):
+        act = self.__get_act()
+        h_ang = atan2(act[1], act[0])
+        # Get the lever arm
+        l_arm = sin(h_ang)*self.a1_x
+        return l_arm
+    def __force_to_torque( self, force ):
+        """
+        Give the max applicable torque at the present orientation
+        given an actuator force
+        """
+        return self.__get_lever_arm()*force
+    def __torque_to_force( self, torque ):
+        return torque/self.__get_lever_arm()
+    def setForceLimit( self , f ):
+        self.force_limit = f
+    def setTorqueLimit( self, l ):
+        print 'Cannot set torque limit on linear actuator controlled hinge'
+    def getTorqueLimit( self ):
+        return self.__get_lever_arm()*self.force_limit
+    def update( self ):
+        self.setParam(ode.ParamFMax, self.__force_to_torque(self.force_limit))
+        ControlledHingeJoint.update(self)
+
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
     with controllable slider joint.  This requires a universal joint on each end."""
@@ -166,7 +224,7 @@ class LinearActuator:
         self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
 
 class MultiBody():
-    def __init__(self, world, space, density, offset = (0.0, 0.0, 0.0)):
+    def __init__(self, world, space, density, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
         """Creates a ragdoll of standard size at the given offset."""
 
         self.world            = world
@@ -177,6 +235,8 @@ class MultiBody():
         self.joints           = []
         self.totalMass        = 0.0
         self.update_objects   = []
+        self.publisher        = publisher
+        self.pub_prefix       = pub_prefix
 
         # These are the inputs and outputs for our controller
         self.inputs  = {}
@@ -322,6 +382,27 @@ class MultiBody():
         self.bodies.append(joint.cap1)
         self.bodies.append(joint.cap2)
         self.update_objects.append( joint )
+
+        return joint
+
+    def addLinearControlledHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
+        hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0):
+
+        anchor = add3(anchor, self.offset)
+
+        joint = LinearActuatorControlledHingeJoint( world = self.world )
+        joint.setActuatorAnchors( a1x, a2x, a2y )
+        joint.setForceLimit( force_limit )
+        joint.setGain( gain )
+        joint.attach(body1, body2)
+        joint.setAnchor(anchor)
+        joint.setAxis(axis)
+        joint.setParam(ode.ParamLoStop, loStop)
+        joint.setParam(ode.ParamHiStop, hiStop)
+
+        joint.style = "hinge"
+        self.joints.append(joint)
+        self.update_objects.append(joint)
 
         return joint
 
