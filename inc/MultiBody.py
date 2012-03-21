@@ -83,6 +83,17 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     def getLength( self ):
         a = self.__get_act()
         return len2(a)
+    def getLengthRate( self ):
+        arate = self.getAngleRate()
+        link_ang = self.neutral_angle + self.getAngle()
+        link_len = len2((self.a2_x, self.a2_y))
+        act = self.__get_act()
+        act_ang = atan2(act[1],act[0])
+        return arate*link_len*sin( link_ang + act_ang )
+    def getHydraulicFlow( self ):
+        return self.getLengthRate()*self.cross_section
+    def getHydraulicFlowGPM( self ):
+        return self.getLengthRate()*self.cross_section*15850.3
     def __get_act( self ):
         """
         Return the path of the actuator in the hinge plane
@@ -224,7 +235,7 @@ class LinearActuator:
         self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
 
 class MultiBody():
-    def __init__(self, world, space, density, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
+    def __init__(self, world, space, density=500, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
         """Creates a ragdoll of standard size at the given offset."""
 
         self.world            = world
@@ -246,15 +257,9 @@ class MultiBody():
 
 
         self.buildBody()
-
-    def update( self ):
-        for f,a,ka in self.update_callbacks:
-            f(*a,**ka)
-
     def buildBody(self):
         """This is for the subclasses to define."""
         return
-
     def addBody(self, p1, p2, radius, mass=None):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
@@ -305,7 +310,6 @@ class MultiBody():
         self.totalMass += body.getMass().mass
 
         return body
-
     def addSpringyCappedCylinder(self, p1, p2, radius, n_members=2, k_bend=1e5, k_torsion=1e5):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
@@ -362,7 +366,6 @@ class MultiBody():
 
 
         return body
-
     def addFixedJoint(self, body1, body2):
         joint = ode.FixedJoint(self.world)
         joint.attach(body1, body2)
@@ -372,7 +375,6 @@ class MultiBody():
         self.joints.append(joint)
 
         return joint
-
     def addLinearActuator(self, body1, body2, p1, p2, hinge=None):
         p1 = add3(p1, self.offset)
         p2 = add3(p2, self.offset)
@@ -384,7 +386,6 @@ class MultiBody():
         self.update_objects.append( joint )
 
         return joint
-
     def addLinearControlledHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
         hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0):
 
@@ -405,7 +406,6 @@ class MultiBody():
         self.update_objects.append(joint)
 
         return joint
-
     def addControlledHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
         hiStop = ode.Infinity, torque_limit = 0.0, gain = 1.0):
 
@@ -425,7 +425,6 @@ class MultiBody():
         self.update_objects.append(joint)
 
         return joint
-
     def addHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
         hiStop = ode.Infinity):
 
@@ -442,7 +441,6 @@ class MultiBody():
         self.joints.append(joint)
 
         return joint
-
     def addUniversalJoint(self, body1, body2, anchor, axis1, axis2,
         loStop1 = -ode.Infinity, hiStop1 = ode.Infinity,
         loStop2 = -ode.Infinity, hiStop2 = ode.Infinity):
@@ -463,9 +461,7 @@ class MultiBody():
         self.joints.append(joint)
 
         return joint
-
     def addBallJoint(self, body1, body2, anchor ):
-
         anchor = add3(anchor, self.offset)
 
         # create the joint
@@ -477,7 +473,6 @@ class MultiBody():
         self.joints.append(joint)
 
         return joint
-
     def update(self):
         for o in self.update_objects:
             o.update()

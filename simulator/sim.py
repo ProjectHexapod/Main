@@ -15,13 +15,13 @@ from MultiBody import LinearActuator
 from SpiderWHydraulicsOptimized import SpiderWHydraulics
 
 class Paver:
-    def __init__( self, center, space ):
+    def __init__( self, center, sim ):
         """
         center is the initial center of the pavement
         space is the ODE space in which to place our pavement tiles
         """
         self.center = list(center)
-        self.space = space
+        self.sim    = sim
         self.pavement = {}
         for x in range(center[0]-5,center[0]+6):
             for y in range(center[1]-5,center[1]+6):
@@ -57,7 +57,7 @@ class Paver:
                 self.pave(      x, y)
     def pave(self,x,y):
         """Put down a pavement tile"""
-        g = createBoxGeom(self.space, (0.99,0.99,0.99))
+        g = self.sim.createBoxGeom((0.99,0.99,0.99))
         g.color = (0,128,0,255)
         pos = (x,y,random.uniform(-1.1, -0.9))
         rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
@@ -69,7 +69,7 @@ class Paver:
     def unpave(self,x,y):
         """Pull up a pavement tile"""
         g = self.pavement[(x,y)]
-        self.space.remove(g)
+        self.sim.space.remove(g)
         del self.pavement[(x,y)]
         del g
     def getGeoms(self):
@@ -83,7 +83,7 @@ class Simulator:
     TODO: Presently the robot must be set manually...
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=True, plane=False,\
-                    publish_int=5):
+                    publish_int=5, robot=None, robot_kwargs={}):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
@@ -112,8 +112,6 @@ class Simulator:
         # Joint group for the contact joints generated during collisions
         self.contactgroup = ode.JointGroup()
 
-        # These are the bodies and geoms that are in the universe
-        self.robot  = None
         self.geoms  = []
         self.bodies = []
 
@@ -121,12 +119,21 @@ class Simulator:
             self.plane = ode.GeomPlane(self.space, (0, 0, 1), 0)
 
         if self.pave:
-            self.paver = Paver( (0,0), self.space )
+            self.paver = Paver( (0,0), self )
 
         # This is the publisher where we make data available
         self.publisher = Publisher(5055)
         self.publisher.addToCatalog('time', self.getSimTime)
         self.publisher.start()
+
+        # These are the bodies and geoms that are in the universe
+        self.robot  = robot(self.world, self.space, publisher=self.publisher, **robot_kwargs)
+
+        # Start populating the publisher
+        self.publisher.addToCatalog( 'time', self.getSimTime )
+        self.publisher.addToCatalog( 'body.height', lambda: self.robot.getPosition()[2] )
+        self.publisher.addToCatalog( 'body.distance', lambda: len3(self.robot.getPosition()) )
+        self.publisher.addToCatalog( 'body.velocity', lambda: len3(self.robot.getVelocity()) )
 
         if self.graphical:
             # initialize pygame
@@ -230,12 +237,12 @@ class Simulator:
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
-                    b,g = createCapsule(self.world, self.space, 1.0e2, 1.3, 0.3)
+                    b,g = self.createCapsule( 1.0e2, 1.3, 0.3)
                     b.color = (128,0,0,255)
                     self.bodies.append(b)
                     b.setPosition( add3(click_pos, (0,0,1.5)) )
                 elif event.button == 3:
-                    g = createBoxGeom(self.space, (1.0,1.0,0.25))
+                    g = self.createBoxGeom((1.0,1.0,0.25))
                     g.color = (128,0,0,255)
                     g.setPosition( add3(click_pos,(0,0,0.125)) )
                     self.geoms.append(g)
@@ -310,104 +317,37 @@ class Simulator:
             if not hasattr(geom,'glObj'):
                 geom.glObj = glLibObjCube( geom.getLengths() )
             geom.glObj.myDraw( rot )
-        
-        
+    def createCapsule( self, mass, length, radius ):
+        """Creates a capsule body and corresponding geom."""
+        body = ode.Body(self.world)
+        m = ode.Mass()
+        m.setCappedCylinderTotal(mass, 3, radius, length)
+        body.setMass(m)
 
+        # set parameters for drawing the body
+        body.shape = "capsule"
+        body.length = length
+        body.radius = radius
 
-            
+        # create a capsule geom for collision detection
+        geom = ode.GeomCCylinder(self.space, radius, length)
+        geom.setBody(body)
 
-def createCapsule(world, space, mass, length, radius):
-    """Creates a capsule body and corresponding geom."""
-    body = ode.Body(world)
-    m = ode.Mass()
-    m.setCappedCylinderTotal(mass, 3, radius, length)
-    body.setMass(m)
-
-    # set parameters for drawing the body
-    body.shape = "capsule"
-    body.length = length
-    body.radius = radius
-
-    # create a capsule geom for collision detection
-    geom = ode.GeomCCylinder(space, radius, length)
-    geom.setBody(body)
-
-    return body, geom
-
-def createBoxGeom( space, sizes=(1.0,1.0,1.0) ):
-    return ode.GeomBox(space, sizes)
-
-
-
-
-# Populate the publisher
-#publisher.addToCatalog( 'time', lambda: sim_t )
-#publisher.addToCatalog( 'body.height', lambda: robot.getPosition()[2] )
-#publisher.addToCatalog( 'body.distance', lambda: len3(robot.getPosition()) )
-#publisher.addToCatalog( 'body.velocity', lambda: len3(robot.getVelocity()) )
+        return body, geom
+    def createBoxGeom( self, sizes=(1.0,1.0,1.0) ):
+        return ode.GeomBox(self.space, sizes)
 
 def getPower( l ):
     return abs(l.getVel()*l.getForceLimit())
 
-
-
-
 if __name__=="__main__":
-    # Run a test case
-    simulator = Simulator(dt=0,plane=True,pave=False,graphical=True)
+    d = {'offset':(0,0,3)}
+    simulator = Simulator(dt=0,plane=0,pave=1,graphical=1,robot=SpiderWHydraulics,robot_kwargs=d)
 
     # create the robot
-    simulator.robot = SpiderWHydraulics(simulator.world, simulator.space, 500, (0.0, 0.0, 0.3), publisher=simulator.publisher)
-    print simulator.publisher.catalog
     print "total mass is %.1f kg (%.1f lbs)" % (simulator.robot.totalMass, simulator.robot.totalMass * 2.2)
 
     while True:
         simulator.step()
         simulator.robot.standUp(simulator.sim_t)
         simulator.robot.constantSpeedWalk(simulator.sim_t)
-
-for i in range(6):
-    c = ( LinearActuatorControlledHingeJoint.getTorque, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.torque'%i, c)
-    c = ( LinearActuatorControlledHingeJoint.getTorque, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.torque'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getTorque, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.torque'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getTorqueLimit, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.torquelimit'%i, c)
-    c = ( LinearActuatorControlledHingeJoint.getTorqueLimit, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.torquelimit'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getTorqueLimit, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.torquelimit'%i, c )
-    """
-    c = ( LinearActuatorControlledHingeJoint.getVel, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.vel'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getVel, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.vel'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getVel, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.vel'%i, c )
-
-    c = ( getPower, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.power'%i, c )
-    c = ( getPower, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.power'%i, c )
-    c = ( getPower, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.power'%i, c )
-    """
-    c = ( LinearActuatorControlledHingeJoint.getAngle, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.angle.actual'%i, c)
-    c = ( LinearActuatorControlledHingeJoint.getAngle, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.angle.actual'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getAngle, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.angle.actual'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getLength, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.act.len.actual'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getAngleTarget, robot.legs[i]['hip_pitch'] )
-    publisher.addToCatalog( 'leg%d.hip.pitch.angle.target'%i, c)
-    c = ( LinearActuatorControlledHingeJoint.getAngleTarget, robot.legs[i]['hip_yaw'] )
-    publisher.addToCatalog( 'leg%d.hip.yaw.angle.target'%i, c )
-    c = ( LinearActuatorControlledHingeJoint.getAngleTarget, robot.legs[i]['knee_pitch'] )
-    publisher.addToCatalog( 'leg%d.knee.pitch.angle.target'%i, c )
-    #c = ( LinearActuatorControlledHingeJoint.getLengthTarget, robot.legs[i]['knee_pitch'] )
-    #publisher.addToCatalog( 'leg%d.knee.act.len.target'%i, c )
-
