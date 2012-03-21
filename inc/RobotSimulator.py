@@ -4,14 +4,11 @@ import ode
 import pygame
 from OpenGLLibrary import *
 
-sys.path.append('../inc')
 from pubsub import *
 from helpers import *
 from MultiBody import ControlledHingeJoint
 from MultiBody import LinearActuatorControlledHingeJoint
 from MultiBody import LinearActuator
-#from SixLegSpider import SixLegSpider
-#from SpiderWHydraulics import SpiderWHydraulics
 from SpiderWHydraulicsOptimized import SpiderWHydraulics
 
 class Paver:
@@ -344,7 +341,6 @@ if __name__=="__main__":
     d = {'offset':(0,0,3)}
     simulator = Simulator(dt=0,plane=0,pave=1,graphical=1,robot=SpiderWHydraulics,robot_kwargs=d)
 
-    # create the robot
     print "total mass is %.1f kg (%.1f lbs)" % (simulator.robot.totalMass, simulator.robot.totalMass * 2.2)
 
     while True:
