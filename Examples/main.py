@@ -1,8 +1,7 @@
 import sys
-sys.path.append('../inc')
-from RobotSimulator import Simulator
-from Robots import SpiderWHydraulics
-from Robots import LegOnStand
+sys.path.append('..')
+from SimulationKit import Simulator
+from SimulationKit.Robots import SpiderWHydraulics
 
 d = {'offset':(0,0,3)}
 s = Simulator(dt=0,plane=1,pave=0,graphical=1,robot=SpiderWHydraulics,robot_kwargs=d)
