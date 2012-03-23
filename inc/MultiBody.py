@@ -4,7 +4,7 @@ from helpers import *
 
 def calcAngularError( a1, a2 ):
     """Given two angles in radians what is 
-	the difference between them?"""
+    the difference between them?"""
     error = (a1%(2*pi))-(a2%(2*pi))
     if error > pi:
         error -= 2*pi
@@ -30,7 +30,7 @@ class ControlledHingeJoint(ode.HingeJoint):
         forces = feedback[0]
         torque = feedback[1]
         axis   = self.getAxis()
-        body_COM = self.getBody(0).getPosition()
+        body_COM = self.getBody(1).getPosition()
         anchor = sub3( body_COM, self.getAnchor() )
         # Figure out the torque due to the 
         # force contribution of the joint
@@ -45,6 +45,8 @@ class ControlledHingeJoint(ode.HingeJoint):
         self.angle_target = target
     def getAngleTarget( self ):
         return self.angle_target
+    def getAngleError( self ):
+        return calcAngularError( self.angle_target, self.getAngle() )
     def setTorqueLimit( self, limit ):
         self.setParam(ode.ParamFMax, limit)
     def getTorqueLimit( self ):
@@ -55,7 +57,7 @@ class ControlledHingeJoint(ode.HingeJoint):
         return self.gain
     def update( self ):
         """Do control"""
-        error = calcAngularError( self.angle_target, self.getAngle() )
+        error = self.getAngleError()
         self.setParam( ode.ParamVel, error*self.gain )
 
 class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
@@ -122,9 +124,9 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     def setTorqueLimit( self, l ):
         print 'Cannot set torque limit on linear actuator controlled hinge'
     def getTorqueLimit( self ):
-        return self.__get_lever_arm()*self.force_limit
+        return abs(self.__get_lever_arm()*self.force_limit)
     def update( self ):
-        self.setParam(ode.ParamFMax, self.__force_to_torque(self.force_limit))
+        self.setParam(ode.ParamFMax, self.getTorqueLimit())
         ControlledHingeJoint.update(self)
 
 class LinearActuator:

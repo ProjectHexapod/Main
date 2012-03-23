@@ -6,10 +6,6 @@ from OpenGLLibrary import *
 
 from pubsub import *
 from helpers import *
-from MultiBody import ControlledHingeJoint
-from MultiBody import LinearActuatorControlledHingeJoint
-from MultiBody import LinearActuator
-from SpiderWHydraulicsOptimized import SpiderWHydraulics
 
 class Paver:
     def __init__( self, center, sim ):
@@ -97,7 +93,8 @@ class Simulator:
         self.real_t_laststep   = 0
         self.real_t_lastrender = 0
         self.real_t_start      = time.time()
-
+        self.paused            = True
+        
         # ODE space object: handles collision detection
         self.space = ode.Space()
         # ODE world object: handles body dynamics
@@ -175,6 +172,9 @@ class Simulator:
             j = ode.ContactJoint(self.world, contactgroup, c)
             j.attach(geom1.getBody(), geom2.getBody())
     def step( self ):
+        if self.paused:
+            self.handleInput()
+            return
         real_t_present = time.time()
         # Try to lock simulation to realtime by controlling the timestep
         if self.dt == 0:
@@ -231,6 +231,9 @@ class Simulator:
                 if event.key == K_ESCAPE:
                     pygame.quit()
                     sys.exit()
+                elif event.key == K_p:
+                    self.paused = not self.paused
+                    print 'Pause toggled'
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
@@ -269,6 +272,10 @@ class Simulator:
         self.camera.pos = add3(p,self.cam_pos)
         self.window.clear()
         self.camera.set_camera()
+
+        # FIXME: This should be hooked in through some sort of callback system... it does not belong here
+        # Thu 22 Mar 2012 07:30:51 PM EDT
+        self.robot.colorTorque()
 
         if self.pave:
             for g in self.paver.getGeoms():
