@@ -52,7 +52,7 @@ class Paver:
         """Put down a pavement tile"""
         g = self.sim.createBoxGeom((0.99,0.99,0.99))
         g.color = (0,128,0,255)
-        pos = (x,y,random.uniform(-1.1, -0.9))
+        pos = (x,y,random.uniform(-0.5, -0.3))
         rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
         rand_unit = div3(rand_unit, len3(rand_unit))
         rot = calcRotMatrix(rand_unit, random.uniform(0,0*2*pi/120))
@@ -110,7 +110,12 @@ class Simulator:
         self.bodies = []
 
         if self.plane:
-            self.plane = ode.GeomPlane(self.space, (0, 0, 1), 0)
+            g = self.createBoxGeom((1e3,1e3,1))
+            g.color = (0,128,0,255)
+            pos = (0,0,-0.5)
+            g.setPosition(pos)
+            self.geoms.append(g)
+            #self.plane = ode.GeomPlane(self.space, (0, 0, 1), 0)
 
         if self.pave:
             self.paver = Paver( (0,0), self )
@@ -121,7 +126,7 @@ class Simulator:
         self.publisher.start()
 
         # These are the bodies and geoms that are in the universe
-        self.robot  = robot(self.world, self.space, publisher=self.publisher, **robot_kwargs)
+        self.robot  = robot(self, publisher=self.publisher, **robot_kwargs)
 
         # Start populating the publisher
         self.publisher.addToCatalog( 'time', self.getSimTime )
@@ -139,7 +144,6 @@ class Simulator:
             View3D.set_view() 
             self.camera = glLibCamera( pos=(0, 10, 10), center=(0,0,0), upvec=(0,0,1) )
             glLibColorMaterial(True) 
-            glLibTexturing(True)
             glLibLighting(True)
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
@@ -172,39 +176,37 @@ class Simulator:
             j = ode.ContactJoint(self.world, contactgroup, c)
             j.attach(geom1.getBody(), geom2.getBody())
     def step( self ):
-        if self.paused:
-            self.handleInput()
-            return
         real_t_present = time.time()
-        # Try to lock simulation to realtime by controlling the timestep
-        if self.dt == 0:
-            step_dt = real_t_present - self.real_t_laststep
-            self.real_t_laststep = real_t_present
-            step_dt = min(1e-2,step_dt)
-        else:
-            step_dt = 1e-2
-        
-        # Detect collisions and create contact joints
-        self.space.collide((self.world, self.contactgroup), self.near_callback)
+        if not self.paused:
+            # Try to lock simulation to realtime by controlling the timestep
+            if self.dt == 0:
+                step_dt = real_t_present - self.real_t_laststep
+                self.real_t_laststep = real_t_present
+                step_dt = min(1e-2,step_dt)
+            else:
+                step_dt = 1e-2
+            
+            # Detect collisions and create contact joints
+            self.space.collide((self.world, self.contactgroup), self.near_callback)
 
-        # Simulation step
-        self.world.step(step_dt)
-        self.sim_t += step_dt
+            # Simulation step
+            self.world.step(step_dt)
+            self.sim_t += step_dt
 
-        self.n_iterations += 1
+            self.n_iterations += 1
 
-        # apply internal robot forces
-        self.robot.update()
+            # apply internal robot forces
+            self.robot.update()
 
-        if not self.n_iterations % self.publish_int:
-            self.publisher.publish()
+            if not self.n_iterations % self.publish_int:
+                self.publisher.publish()
 
-        # Remove all contact joints
-        self.contactgroup.empty()
+            # Remove all contact joints
+            self.contactgroup.empty()
 
-        # repave the road
-        if self.pave:
-            self.paver.recenter(self.robot.getPosition())
+            # repave the road
+            if self.pave:
+                self.paver.recenter(self.robot.getPosition())
 
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
@@ -237,10 +239,8 @@ class Simulator:
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
-                    b,g = self.createCapsule( 1.0e2, 1.3, 0.3)
-                    b.color = (128,0,0,255)
-                    self.bodies.append(b)
-                    b.setPosition( add3(click_pos, (0,0,1.5)) )
+                    b,g = self.createCapsule( mass=1.0e2, length=1.3, radius=0.3, pos=add3(click_pos, (0,0,1.5)))
+                    #b,g = self.createSphere( mass=1.0e2, radius=0.3, pos=add3(click_pos, (0,0,1.5)))
                 elif event.button == 3:
                     g = self.createBoxGeom((1.0,1.0,0.25))
                     g.color = (128,0,0,255)
@@ -298,20 +298,27 @@ class Simulator:
         # Print some statistics
     def draw_body(self, body):
         """Draw an ODE body."""
-        CAPSULE_SLICES = 6
-        CAPSULE_STACKS = 6
-        p = body.getPosition()
-        r = body.getRotation()
-        offset = rotate3(r, (0,0,body.length/2.0))
-        p = sub3(p,offset)
-        rot = makeOpenGLMatrix(r, p)
 
         if body.shape == "capsule":
+            CAPSULE_SLICES = 6
+            CAPSULE_STACKS = 6
+            p = body.getPosition()
+            r = body.getRotation()
+            offset = rotate3(r, (0,0,body.length/2.0))
+            p = sub3(p,offset)
+            rot = makeOpenGLMatrix(r, p)
             glLibColor(body.color)
             cylHalfHeight = body.length / 2.0
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
             body.glObj.myDraw( rot )
+        if body.shape == "sphere":
+            DETAIL=8
+            p = body.getPosition()
+            glLibColor(body.color)
+            if not hasattr(body,'glObj'):
+                body.glObj = glLibObjSphere( body.radius, DETAIL )
+            body.glObj.draw( p )
     def draw_geom(self, geom):
         if isinstance(geom, ode.GeomBox):
             glLibColor(geom.color)
@@ -321,7 +328,27 @@ class Simulator:
             if not hasattr(geom,'glObj'):
                 geom.glObj = glLibObjCube( geom.getLengths() )
             geom.glObj.myDraw( rot )
-    def createCapsule( self, mass, length, radius ):
+    def createSphere( self, mass=100, radius=1, pos=(0,0,0) ):
+        """Creates a capsule body and corresponding geom."""
+        body = ode.Body(self.world)
+        m = ode.Mass()
+        m.setSphereTotal(mass, radius)
+        body.setMass(m)
+
+        # set parameters for drawing the body
+        body.shape = "sphere"
+        body.radius = radius
+
+        # create a capsule geom for collision detection
+        geom = ode.GeomSphere(self.space, radius)
+        geom.setBody(body)
+
+        body.color = (128,0,0,255)
+        body.setPosition( pos )
+        self.bodies.append(body)
+
+        return body, geom
+    def createCapsule( self, mass=100, length=1, radius=1, pos=(0,0,0) ):
         """Creates a capsule body and corresponding geom."""
         body = ode.Body(self.world)
         m = ode.Mass()
@@ -336,6 +363,10 @@ class Simulator:
         # create a capsule geom for collision detection
         geom = ode.GeomCCylinder(self.space, radius, length)
         geom.setBody(body)
+
+        body.color = (128,0,0,255)
+        body.setPosition( pos )
+        self.bodies.append(body)
 
         return body, geom
     def createBoxGeom( self, sizes=(1.0,1.0,1.0) ):

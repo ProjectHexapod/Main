@@ -237,11 +237,10 @@ class LinearActuator:
         self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
 
 class MultiBody():
-    def __init__(self, world, space, density=500, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
+    def __init__(self, sim, density=500, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
         """Creates a ragdoll of standard size at the given offset."""
 
-        self.world            = world
-        self.space            = space
+        self.sim              = sim
         self.density          = density
         self.bodies           = []
         self.geoms            = []
@@ -275,7 +274,7 @@ class MultiBody():
         #   radius at joints
         cyllen = dist3(p1, p2) - radius
 
-        body = ode.Body(self.world)
+        body = ode.Body(self.sim.world)
         # This is our own stupid shit
         body.color = (128,128,40,255)
         m = ode.Mass()
@@ -291,7 +290,7 @@ class MultiBody():
         body.radius = radius
 
         # create a capsule geom for collision detection
-        geom = ode.GeomCCylinder(self.space, radius, cyllen)
+        geom = ode.GeomCCylinder(self.sim.space, radius, cyllen)
         geom.setBody(body)
 
         # define body rotation automatically from body axis
@@ -331,7 +330,7 @@ class MultiBody():
             #   radius at joints
             cyllen = dist3(p1, p2) - radius
 
-            body = ode.Body(self.world)
+            body = ode.Body(self.sim.world)
             m = ode.Mass()
             m.setCappedCylinder(self.density, 3, radius, cyllen)
             body.setMass(m)
@@ -342,7 +341,7 @@ class MultiBody():
             body.radius = radius
 
             # create a capsule geom for collision detection
-            geom = ode.GeomCCylinder(self.space, radius, cyllen)
+            geom = ode.GeomCCylinder(self.sim.space, radius, cyllen)
             geom.setBody(body)
 
             # define body rotation automatically from body axis
@@ -369,7 +368,7 @@ class MultiBody():
 
         return body
     def addFixedJoint(self, body1, body2):
-        joint = ode.FixedJoint(self.world)
+        joint = ode.FixedJoint(self.sim.world)
         joint.attach(body1, body2)
         joint.setFixed()
 
@@ -381,7 +380,7 @@ class MultiBody():
         p1 = add3(p1, self.offset)
         p2 = add3(p2, self.offset)
         # TODO: This breaks some class assumptions... think of a nicer way to do this
-        joint = LinearActuator( self.world, body1, body2, p1, p2, hinge )
+        joint = LinearActuator( self.sim.world, body1, body2, p1, p2, hinge )
         self.joints.append(joint)
         self.bodies.append(joint.cap1)
         self.bodies.append(joint.cap2)
@@ -393,7 +392,7 @@ class MultiBody():
 
         anchor = add3(anchor, self.offset)
 
-        joint = LinearActuatorControlledHingeJoint( world = self.world )
+        joint = LinearActuatorControlledHingeJoint( world = self.sim.world )
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )
@@ -413,7 +412,7 @@ class MultiBody():
 
         anchor = add3(anchor, self.offset)
 
-        joint = ControlledHingeJoint( world = self.world )
+        joint = ControlledHingeJoint( world = self.sim.world )
         joint.setTorqueLimit( torque_limit )
         joint.setGain( gain )
         joint.attach(body1, body2)
@@ -432,7 +431,7 @@ class MultiBody():
 
         anchor = add3(anchor, self.offset)
 
-        joint = ode.HingeJoint(self.world)
+        joint = ode.HingeJoint(self.sim.world)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -449,7 +448,7 @@ class MultiBody():
 
         anchor = add3(anchor, self.offset)
 
-        joint = ode.UniversalJoint(self.world)
+        joint = ode.UniversalJoint(self.sim.world)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis1(axis1)
@@ -467,7 +466,7 @@ class MultiBody():
         anchor = add3(anchor, self.offset)
 
         # create the joint
-        joint = ode.BallJoint(self.world)
+        joint = ode.BallJoint(self.sim.world)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
 

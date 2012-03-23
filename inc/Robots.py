@@ -238,22 +238,22 @@ class SpiderWHydraulics(MultiBody):
         return self.core[0].getPosition()
     def getVelocity( self ):
         return self.core[0].getLinearVel()
-    def naiveWalk( self, sim_t ):
+    def naiveWalk( self ):
         gait_cycle=5.0
         foot_positions = []
-        x_off =  1.00*cos(2*pi*sim_t/gait_cycle)
-        z_off =  1.5*sin(2*pi*sim_t/gait_cycle)
+        x_off =  1.00*cos(2*pi*self.sim.sim_t/gait_cycle)
+        z_off =  1.5*sin(2*pi*self.sim.sim_t/gait_cycle)
         if z_off<0:
             z_off *= -1
         for i in range(6):
             z = -2.0
-            if (i%2) ^ (sim_t%gait_cycle<(gait_cycle/2.0)):
+            if (i%2) ^ (self.sim.sim_t%gait_cycle<(gait_cycle/2.0)):
                 z += z_off
             p = ( sign(i%2)*x_off + 2.29*cos(pi/6 + (i*pi/3)), 2.29*sin(pi/6 + (i*pi/3)), z )
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
-    def standUp( self, sim_t ):
+    def standUp( self ):
         """Don't walk, just sort of try to stand up"""
         gait_cycle      = 3.0     # time in seconds
         step_cycle      = gait_cycle/2.0
@@ -263,20 +263,20 @@ class SpiderWHydraulics(MultiBody):
         foot_lift_h     = 1.00     # how high to lift feet in m
 
         foot_positions = []
-        z_off        =  foot_lift_h*sin(2*pi*sim_t/gait_cycle)
+        z_off        =  foot_lift_h*sin(2*pi*self.sim.sim_t/gait_cycle)
         if z_off<0:
             z_off *= -1
         for i in range(6):
             x = neutral_r*cos(pi/6 + (i*pi/3))
             y = neutral_r*sin(pi/6 + (i*pi/3))
             z = -body_h
-            if (i%2) ^ (sim_t%gait_cycle<(step_cycle)):
+            if (i%2) ^ (self.sim.sim_t%gait_cycle<(step_cycle)):
                 z += z_off
             p = ( x, y, z )
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
-    def constantSpeedWalk( self, sim_t ):
+    def constantSpeedWalk( self ):
         gait_cycle      = 3.0     # time in seconds
         step_cycle      = gait_cycle/2.0
         swing_overshoot = 1.00
@@ -293,16 +293,16 @@ class SpiderWHydraulics(MultiBody):
         #body_h          = 1.5     # height of body off the ground, m
         #foot_lift_h     = 0.1     # how high to lift feet in m
         foot_positions = []
-        x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(sim_t%step_cycle)/gait_cycle)
-        x_off_stance =  stride_length*(((sim_t%step_cycle)/step_cycle)-0.5)
-        z_off        =  foot_lift_h*sin(2*pi*sim_t/gait_cycle)
+        x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(self.sim.sim_t%step_cycle)/gait_cycle)
+        x_off_stance =  stride_length*(((self.sim.sim_t%step_cycle)/step_cycle)-0.5)
+        z_off        =  foot_lift_h*sin(2*pi*self.sim.sim_t/gait_cycle)
         if z_off<0:
             z_off *= -1
         for i in range(6):
             x = neutral_r*cos(pi/6 + (i*pi/3))
             y = neutral_r*sin(pi/6 + (i*pi/3))
             z = -body_h
-            if (i%2) ^ (sim_t%gait_cycle<(step_cycle)):
+            if (i%2) ^ (self.sim.sim_t%gait_cycle<(step_cycle)):
                 x += x_off_swing
                 z += z_off
             else:

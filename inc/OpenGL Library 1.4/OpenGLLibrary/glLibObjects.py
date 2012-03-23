@@ -94,11 +94,11 @@ class glLibObjTeapot(glLibObj):
         except:print "Teapot loading failed!  Upgrade your OpenGL!"
         glEndList()
 class glLibObjSphere(glLibObj):
-    def __init__(self,detail):
+    def __init__(self,radius,detail):
         self.list = glGenLists(1)
         glNewList(self.list, GL_COMPILE)
         Sphere = gluNewQuadric()
-        gluSphere(Sphere,1.0,detail,detail)
+        gluSphere(Sphere,radius,detail,detail)
         glEndList()
 class glLibObjTexSphere(glLibObj):
     def __init__(self,radius,detail):
