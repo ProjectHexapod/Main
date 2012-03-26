@@ -1,0 +1,5 @@
+E-mail FTDI Support   
+
+support2@ftdichip.com  
+
+Windows CE 4.2  - Windows CE 5.2 required.  Please note that FTDI devices will not function if the PDA does not have a USB host controller.
