@@ -1,13 +1,55 @@
 import sys
 
-sys.path.append('../inc')
+sys.path.append('..')
 
 import time
 import pickle
-from pubsub import *
+from SimulationKit.pubsub import *
+
+import wx
+import wxmpl
+
 from matplotlib.lines import Line2D
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+
+class MainFrame(wx.Frame):
+    def __init__(self, title):
+        wx.Frame.__init__(self, None, title=title, style=wx.DEFAULT_FRAME_STYLE)
+        self.Bind(wx.EVT_CLOSE, self.OnClose)
+        menuBar = wx.MenuBar()
+        menu = wx.Menu()
+        menu.Append(100, "E&xit\tAlt-X", "Close window and exit program.")
+        menuBar.Append(menu, '&File')
+        self.SetMenuBar(menuBar)
+        self.statusbar = self.CreateStatusBar()
+        # graph drawer
+        self.charter = wxmpl.StripCharter(self)
+    def OnClose( self, event ):
+        self.Destroy()
+    def OnAbout(self, event):
+        dlg = AboutBox()
+        dlg.ShowModal()
+        dlg.Destroy()
+
+def main():
+    #app = wx.App(redirect=False)   # Error messages go to console for easy debugging
+    app = wx.App(0)
+    #top = MainFrame("Charter")
+    #top.Show()
+    top = wxmpl.PlotFrame(None, 100, 'whatup')
+    top.Show()
+    app.MainLoop()
+
+if __name__=='__main__':
+    main();
+
+# Create the connection dialog
+charter = wxmpl.StripCharter()
+
+
+
+##################################################
 
 data = {}
 colors = ['r', 'g', 'b', 'c', 'k']
