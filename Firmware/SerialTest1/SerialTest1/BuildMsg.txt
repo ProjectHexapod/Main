@@ -1,0 +1,20 @@
+Starting MAKE...
+creating project.mk 
+C:\PROGRA~2\Cypress\PSOCDE~1\5.1\Common\CY110F~1\tools\make: *** Warning: File `std' has modification time in the future (2012-03-28 22:03:35 > 2011-05-28 00:49:36)
+C:\PROGRA~2\Cypress\PSOCDE~1\5.1\Common\CY110F~1\tools\make: *** Warning: File `std' has modification time in the future (2012-03-28 22:03:35 > 2011-05-28 00:49:36)
+lib/psocconfig.asm
+lib/psocconfigtbl.asm
+lib/uart.asm
+lib/uartint.asm
+lib/uartplus.asm
+CAUTION boot.asm is older than boot.tpl or is missing
+CAUTION you may need to generate source in PSoC Designer
+./boot.asm
+./main.c
+Linking..
+  ROM 17% full. 658 out of 4096 bytes used (does not include absolute areas).
+  RAM 8% full. 20 bytes used (does not include stack usage).
+Built with ICCM8C STD V7.04
+ 
+SerialTest1 - 0 error(s) 2 warning(s) 00:49:42
+

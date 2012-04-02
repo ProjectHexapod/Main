@@ -1,0 +1,105 @@
+                        .module main.c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile ./main.c
+                        .area data(ram, con, rel)
+ 0000                   .dbfile ./main.c
+ 0000           _bytes_received::
+ 0000                   .blkb 1
+                        .area idata
+ 0000 00                .byte 0
+                        .area data(ram, con, rel)
+ 0001                   .dbfile ./main.c
+ 0001                   .dbfile C:\Users\jwhong\DOCUME~1\PSOCDE~1.1PR\SERIAL~1\SERIAL~1\main.c
+ 0001                   .dbsym e bytes_received _bytes_received c
+                        .area text(rom, con, rel)
+ 0000                   .dbfile C:\Users\jwhong\DOCUME~1\PSOCDE~1.1PR\SERIAL~1\SERIAL~1\main.c
+ 0000                   .dbfunc e fullPacketReceived _fullPacketReceived fV
+ 0000           _fullPacketReceived::
+ 0000                   .dbline -1
+ 0000                   .dbline 14
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; unsigned char target_address;
+ 0000           ; unsigned char bytes_received = 0;
+ 0000           ; unsigned char expected_bytes;
+ 0000           ; unsigned char received_data_buffer[16];
+ 0000           ; 
+ 0000           ; void fullPacketReceived(void)
+ 0000           ; {
+ 0000                   .dbline 15
+ 0000           ;       return;
+ 0000                   .dbline -2
+ 0000           L1:
+ 0000                   .dbline 0 ; func end
+ 0000 7F                ret
+ 0001                   .dbend
+ 0001                   .dbfunc e main _main fV
+ 0001           ;          temp2 -> X+1
+ 0001           ;           temp -> X+0
+ 0001           _main::
+ 0001                   .dbline -1
+ 0001 10                push X
+ 0002 4F                mov X,SP
+ 0003 3803              add SP,3
+ 0005                   .dbline 19
+ 0005           ; }
+ 0005           ; 
+ 0005           ; void main(void)
+ 0005           ; {
+ 0005                   .dbline 21
+ 0005           ;       // Insert your main routine code here.
+ 0005           ;       unsigned char temp = 0;
+ 0005 560000            mov [X+0],0
+ 0008                   .dbline 22
+ 0008           ;       volatile unsigned short temp2 = 0;
+ 0008 560200            mov [X+2],0
+ 000B 560100            mov [X+1],0
+ 000E                   .dbline 23
+ 000E           ;       M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
+ 000E 7101                      or  F, 01h
+ 0010           
+ 0010                   .dbline 24
+ 0010           ;       UART_EnableInt();
+ 0010 10                push X
+ 0011 7C0000            xcall _UART_EnableInt
+ 0014 20                pop X
+ 0015                   .dbline 25
+ 0015           ;       UART_Start(UART_PARITY_NONE);
+ 0015 10                push X
+ 0016 5000              mov A,0
+ 0018 7C0000            xcall _UART_Start
+ 001B 20                pop X
+ 001C           L3:
+ 001C                   .dbline 28
+ 001C           ;       //Counter8_EnableInt();
+ 001C           ;       //Counter8_Start();
+ 001C           ;       while(1);
+ 001C           L4:
+ 001C                   .dbline 28
+ 001C 8FFF              xjmp L3
+ 001E           X0:
+ 001E                   .dbline -2
+ 001E           L2:
+ 001E 38FD              add SP,-3
+ 0020 20                pop X
+ 0021                   .dbline 0 ; func end
+ 0021 8FFF              jmp .
+ 0023                   .dbsym l temp2 1 s
+ 0023                   .dbsym l temp 0 c
+ 0023                   .dbend
+                        .area bss(ram, con, rel)
+ 0000                   .dbfile C:\Users\jwhong\DOCUME~1\PSOCDE~1.1PR\SERIAL~1\SERIAL~1\main.c
+ 0000           _received_data_buffer::
+ 0000                   .blkb 16
+ 0010                   .dbsym e received_data_buffer _received_data_buffer A[16:16]c
+ 0010           _expected_bytes::
+ 0010                   .blkb 1
+ 0011                   .dbsym e expected_bytes _expected_bytes c
+ 0011           _target_address::
+ 0011                   .blkb 1
+ 0012                   .dbsym e target_address _target_address c
