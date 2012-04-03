@@ -129,6 +129,23 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
         ControlledHingeJoint.update(self)
 
+
+class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
+    """This simulates a hinge joint driven by a linear actuator that accepts a
+    velocity command."""
+
+    def __init__(self, world):
+        super(LinearVelocityActuatedHingeJoint, self).__init__(world)
+        self.setLengthRate(0.0)
+    
+    def setLengthRate(self, vel_mps):
+        self.vel = vel_mps
+        
+    def update(self):
+        self.setParam(ode.ParamFMax, self.getTorqueLimit())
+        self.setParam(ode.ParamVel, self.vel)
+        
+
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
     with controllable slider joint.  This requires a universal joint on each end."""
@@ -393,6 +410,26 @@ class MultiBody():
         anchor = add3(anchor, self.offset)
 
         joint = LinearActuatorControlledHingeJoint( world = self.sim.world )
+        joint.setActuatorAnchors( a1x, a2x, a2y )
+        joint.setForceLimit( force_limit )
+        joint.setGain( gain )
+        joint.attach(body1, body2)
+        joint.setAnchor(anchor)
+        joint.setAxis(axis)
+        joint.setParam(ode.ParamLoStop, loStop)
+        joint.setParam(ode.ParamHiStop, hiStop)
+
+        joint.style = "hinge"
+        self.joints.append(joint)
+        self.update_objects.append(joint)
+
+        return joint
+    def addLinearVelocityActuatedHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
+        hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0):
+
+        anchor = add3(anchor, self.offset)
+
+        joint = LinearVelocityActuatedHingeJoint( world = self.sim.world )
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )

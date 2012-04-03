@@ -351,7 +351,7 @@ class LegOnStand(MultiBody):
             p2     = hip_p, \
             radius = 0.05, \
             mass   = self.YAW_M )
-        hip_yaw = self.addLinearControlledHingeJoint( \
+        hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
             body1        = ode.environment, \
             body2        = yaw_link, \
             anchor       = yaw_p, \
@@ -395,7 +395,7 @@ class LegOnStand(MultiBody):
             p2     = knee_p, \
             radius = THIGH_W, \
             mass   = self.THIGH_M )
-        hip_pitch = self.addLinearControlledHingeJoint( \
+        hip_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1        = yaw_link, \
             body2        = thigh, \
             anchor       = hip_p, \
@@ -442,7 +442,7 @@ class LegOnStand(MultiBody):
             p2     = foot_p, \
             radius = CALF_W, \
             mass   = self.CALF_M )
-        knee_pitch = self.addLinearControlledHingeJoint( \
+        knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1        = thigh, \
             body2        = calf, \
             anchor       = knee_p, \
