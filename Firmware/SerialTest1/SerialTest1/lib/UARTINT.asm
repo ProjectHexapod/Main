@@ -168,23 +168,41 @@ _UART_RX_ISR:
 not_packet_start:
    cmp  [_target_address], 0x00      ; Load the target address
    jnz  forward_data				 ; If we are not the targeted device, forward the data
-   mov  X, [_bytes_received]         ; Load bytes received
-   dec  X                            ; Decrement the received bytes to get the address we want
-   mov  [X+_received_data_buffer], A ; Save received data
-   jmp  check_if_packet_done
+   cmp  [_m_to_s_offset], 0x80       ; Is the m_to_s flag set?
+   jc   m_to_s_flag_not_set          ; Jump if the last packet we received was NOT a write address
+   and  [_m_to_s_offset], 0x7F       ; Mask the index and clear the flag
+   mov  X, [_m_to_s_offset]          ; Load the offset
+   mov  [X+_m_to_s_mem], A           ; Master is writing to the slave
+   mov REG[UART_TX_BUFFER_REG], 0    ; Write 0 back to the bus
+   jmp check_if_packet_done
+m_to_s_flag_not_set:
+   cmp  A, 0x80                      ; Is this an address for a m_to_s write?
+   jc   received_s_to_m_address
+   mov  [_m_to_s_offset], A          ; Store the index the master wants to write to.  We will write the next received byte there.
+   and  A, 0x7F                      ; Mask the address so we can give the master back some data
+received_s_to_m_address:
+   mov  X, A						 ; A is the index requested by the master
+   mov  A, [X+_s_to_m_mem]			 ; Load the requested address
+   jmp  forward_data                 ; Fire it off
 packet_start:
-   mov  [_target_address], 0x0F
-   and  [_target_address], A         ; bottom 4 bits are target address
-   jz   no_forward_data_packet_start ; If we're the target, don't forward anything
+   mov  [_expected_bytes], A         ; Borrowing expected_bytes for storage
+   and  A, 0x0F
+   jnz  skip_lock_acquire            ; If we are the selected node, lock our external memory until we're done with this transaction
+   mov  [_ext_mem_locked], 0x01      ; Lock the memory while we're reading from it
+skip_lock_acquire:
+   mov  [_target_address], A         ; Save the target address
    dec  A                            ; Decrement the address we will forward
-   mov  REG[UART_TX_BUFFER_REG], A   ; Forward the data 
-no_forward_data_packet_start:
-   asr  A                            ; top 4 bits are expected bytes
+   and  A, 0x0F
+   and  [_expected_bytes], 0xF0      ; Mask the top 4 bits
+   or   A, [_expected_bytes]
+   mov  REG[UART_TX_BUFFER_REG], A   ; Forward the data
+   mov  A, [_expected_bytes]         ; Reload expected bytes
+   asr  A                            ; shift right 4 bits
    asr  A
    asr  A
    asr  A
-   mov  [_expected_bytes], 0x0F
-   and  [_expected_bytes], A		 ; Save expected bytes
+   and  A, 0x0F						 ; Mask out top 4 bits
+   mov  [_expected_bytes], A		 ; Save expected bytes
    jmp check_if_packet_done
 forward_data:
    mov REG[UART_TX_BUFFER_REG], A
@@ -194,9 +212,7 @@ check_if_packet_done:
    jnz packet_continues
 packet_end:
    mov  [_bytes_received], 0x00      ; Re-zero the received bytes
-   mov  A,[_target_address]          ; If we were selected, call the handler
-   jnz  finish  					 ; If we weren't the target, fuck it
-   call _fullPacketReceived          ; Otherwise call the full packet received handler
+   mov  [_ext_mem_locked], 0x00      ; Release the lock
    jmp finish
 packet_continues:
    inc [_bytes_received]
@@ -207,7 +223,7 @@ finish:
    ;call Counter8_Start                
    pop A
    pop X
-   reti
+   ;reti
    
    ;---------------------------------------------------
    ; Insert your custom assembly code above this banner

@@ -767,9 +767,9 @@
  0000           LVD_TBEN:               equ 0   ; Low Voltage Throttle-back enable value
  0008           LVD_TBEN_MASK:          equ 8  ; Low Voltage Throttle-back enable mask
  0000           LVD_TBEN_JUST:          equ 0  ; Low Voltage Throttle-back enable justified
- 0007           TRIP_VOLTAGE:			equ	7h   ;Trip Voltage value
+ 0000           TRIP_VOLTAGE:			equ	0h   ;Trip Voltage value
  0007           TRIP_VOLTAGE_MASK:      equ 7h  ;Trip Voltage mask
- 0007           TRIP_VOLTAGE_JUST:      equ 7h  ;Trip Voltage justified
+ 0000           TRIP_VOLTAGE_JUST:      equ 0h  ;Trip Voltage justified
  0001           SUPPLY_VOLTAGE:			equ	1h	;Supply Voltage 1 = 5.0V, 0 = 3.3V
  0000           
  0010           POWER_SET_5V0:          equ 10h  ; MASK for 5.0V operation, fast and slow 
@@ -786,30 +786,30 @@
  0001           COMM_RX_PRESENT:		equ	1	;1 = TRUE
  0000           WATCHDOG_ENABLE:		equ 0	;Watchdog Enable 1 = Enable
  0000           
- 0001           CLOCK_DIV_VC1:			equ	1h	;VC1 clock divider
+ 000F           CLOCK_DIV_VC1:			equ	fh	;VC1 clock divider
  00F0           CLOCK_DIV_VC1_MASK:		equ	f0h	;VC1 clock divider mask
- 0010           CLOCK_DIV_VC1_JUST:		equ	10h	;VC1 clock divider justified
- 0009           CLOCK_DIV_VC2:			equ	9h	;VC2 clock divider
+ 00F0           CLOCK_DIV_VC1_JUST:		equ	f0h	;VC1 clock divider justified
+ 0001           CLOCK_DIV_VC2:			equ	1h	;VC2 clock divider
  000F           CLOCK_DIV_VC2_MASK:		equ	fh	;VC2 clock divider mask
- 0009           CLOCK_DIV_VC2_JUST:		equ	9h	;VC2 clock divider justified
+ 0001           CLOCK_DIV_VC2_JUST:		equ	1h	;VC2 clock divider justified
  0003           CLOCK_INPUT_VC3:		equ	3h	;VC3 clock source
  0003           CLOCK_INPUT_VC3_MASK:	equ	3h	;VC3 clock source mask
  0003           CLOCK_INPUT_VC3_JUST:	equ	3h	;VC3 clock source justified
- 0002           CLOCK_DIV_VC3:			equ	2h	;VC3 clock divider
+ 0005           CLOCK_DIV_VC3:			equ	5h	;VC3 clock divider
  00FF           CLOCK_DIV_VC3_MASK:		equ	ffh	;VC3 clock divider mask
- 0002           CLOCK_DIV_VC3_JUST:		equ	2h	;VC3 clock divider justified
+ 0005           CLOCK_DIV_VC3_JUST:		equ	5h	;VC3 clock divider justified
  0000           ANALOG_BUFFER_PWR:		equ	0h	;Analog buffer power level
  0001           ANALOG_BUFFER_PWR_MASK:	equ	1h	;Analog buffer power level mask
  0000           ANALOG_BUFFER_PWR_JUST:	equ	0h	;Analog buffer power level justified
- 0005           ANALOG_POWER:			equ	5h	;Analog power control
+ 0007           ANALOG_POWER:			equ	7h	;Analog power control
  0007           ANALOG_POWER_MASK:		equ	7h	;Analog power control mask
- 0005           ANALOG_POWER_JUST:		equ	5h	;Analog power control justified
+ 0007           ANALOG_POWER_JUST:		equ	7h	;Analog power control justified
  0000           OP_AMP_BIAS:			equ	0h	;Op amp bias level
  0040           OP_AMP_BIAS_MASK:		equ	40h	;Op amp bias level mask
  0000           OP_AMP_BIAS_JUST:		equ	0h	;Op amp bias level justified
- 0000           REF_MUX:				equ	0h	;Ref mux setting
+ 0002           REF_MUX:				equ	2h	;Ref mux setting
  0038           REF_MUX_MASK:			equ	38h	;Ref mux setting mask
- 0000           REF_MUX_JUST:			equ	0h	;Ref mux setting justified
+ 0010           REF_MUX_JUST:			equ	10h	;Ref mux setting justified
  0000           AGND_BYPASS:			equ	0h	;AGndBypass setting
  0040           AGND_BYPASS_MASK:		equ	40h	;AGndBypass setting mask
  0000           AGND_BYPASS_JUST:		equ	0h	;AGndBypass setting justified
@@ -823,10 +823,10 @@
  0000           ; register initial values
  0000           ;
  0000           ANALOG_IO_CONTROL:		equ 0h	;Analog IO Control register (ABF_CR)
- 0001           PORT_0_GLOBAL_SELECT:	equ 1h	;Port 0 global select register (PRT0GS)
- 0001           PORT_0_DRIVE_0:			equ 1h	;Port 0 drive mode 0 register (PRT0DM0)
- 00FE           PORT_0_DRIVE_1:			equ feh	;Port 0 drive mode 1 register (PRT0DM1)
- 00FE           PORT_0_DRIVE_2:			equ feh	;Port 0 drive mode 2 register (PRT0DM2)
+ 0000           PORT_0_GLOBAL_SELECT:	equ 0h	;Port 0 global select register (PRT0GS)
+ 0000           PORT_0_DRIVE_0:			equ 0h	;Port 0 drive mode 0 register (PRT0DM0)
+ 00FF           PORT_0_DRIVE_1:			equ ffh	;Port 0 drive mode 1 register (PRT0DM1)
+ 00FF           PORT_0_DRIVE_2:			equ ffh	;Port 0 drive mode 2 register (PRT0DM2)
  0000           PORT_0_INTENABLE:		equ 0h	;Port 0 interrupt enable register (PRT0IE)
  0000           PORT_0_INTCTRL_0:		equ 0h	;Port 0 interrupt control 0 register (PRT0IC0)
  0000           PORT_0_INTCTRL_1:		equ 0h	;Port 0 interrupt control 1 register (PRT0IC1)
@@ -837,10 +837,10 @@
  0000           PORT_1_INTENABLE:		equ 0h	;Port 1 interrupt enable register (PRT1IE)
  0000           PORT_1_INTCTRL_0:		equ 0h	;Port 1 interrupt control 0 register (PRT1IC0)
  0000           PORT_1_INTCTRL_1:		equ 0h	;Port 1 interrupt control 1 register (PRT1IC1)
- 0050           PORT_2_GLOBAL_SELECT:	equ 50h	;Port 2 global select register (PRT2GS)
- 0040           PORT_2_DRIVE_0:			equ 40h	;Port 2 drive mode 0 register (PRT2DM0)
- 00BF           PORT_2_DRIVE_1:			equ bfh	;Port 2 drive mode 1 register (PRT2DM1)
- 00AF           PORT_2_DRIVE_2:			equ afh	;Port 2 drive mode 2 register (PRT2DM2)
+ 00D0           PORT_2_GLOBAL_SELECT:	equ d0h	;Port 2 global select register (PRT2GS)
+ 00C0           PORT_2_DRIVE_0:			equ c0h	;Port 2 drive mode 0 register (PRT2DM0)
+ 003F           PORT_2_DRIVE_1:			equ 3fh	;Port 2 drive mode 1 register (PRT2DM1)
+ 002F           PORT_2_DRIVE_2:			equ 2fh	;Port 2 drive mode 2 register (PRT2DM2)
  0000           PORT_2_INTENABLE:		equ 0h	;Port 2 interrupt enable register (PRT2IE)
  0000           PORT_2_INTCTRL_0:		equ 0h	;Port 2 interrupt control 0 register (PRT2IC0)
  0000           PORT_2_INTCTRL_1:		equ 0h	;Port 2 interrupt control 1 register (PRT2IC1)

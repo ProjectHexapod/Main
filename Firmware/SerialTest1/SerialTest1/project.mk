@@ -1,14 +1,14 @@
 PROJNAME=SerialTest1
 DEVICE=CY8C24423
 BASEDEVICE=CY8C24000
-PROJPATH=C:/Users/jwhong/DOCUME~1/PSOCDE~1.1PR/SERIAL~1/SERIAL~1
+PROJPATH=C:/Users/jwhong/Desktop/dan/Firmware/SERIAL~1/SERIAL~1
 PSOCDIR=C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1
 INCLUDE_PATH=C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1/tools/include/CY8C24~3
 CSRCS= main.c
 LIBCSRCS=
 STDCSRCS=
 ASMSRCS=
-LIBASMSRCS= psocconfig.asm psocconfigtbl.asm uart.asm uartint.asm uartplus.asm
+LIBASMSRCS= adcinc.asm adcincint.asm pga_1.asm psocconfig.asm psocconfigtbl.asm pwm8.asm uart.asm uartint.asm uartplus.asm
 STDASMSRCS=
 OBJECT_SOURCES= main.c
 FILLVALUE=0x30

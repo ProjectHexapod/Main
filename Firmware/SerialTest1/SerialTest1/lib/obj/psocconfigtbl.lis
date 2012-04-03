@@ -487,98 +487,132 @@
  0000           LoadConfigTBL_serialtest1:
  0000 70EF          and   F, ~FLAG_XIO_MASK
  0002           ;  Global Register values Bank 0
- 0002 626009            mov     reg[60h], 09h           ; AnalogColumnInputSelect register (AMX_IN)
+ 0002 626000            mov     reg[60h], 00h           ; AnalogColumnInputSelect register (AMX_IN)
  0005 626600            mov     reg[66h], 00h           ; AnalogComparatorControl1 register (CMP_CR1)
- 0008 626305            mov     reg[63h], 05h           ; AnalogReferenceControl register (ARF_CR)
+ 0008 626317            mov     reg[63h], 17h           ; AnalogReferenceControl register (ARF_CR)
  000B 626500            mov     reg[65h], 00h           ; AnalogSyncControl register (ASY_CR)
  000E 62E600            mov     reg[e6h], 00h           ; DecimatorControl_0 register (DEC_CR0)
- 0011 62E700            mov     reg[e7h], 00h           ; DecimatorControl_1 register (DEC_CR1)
+ 0011 62E702            mov     reg[e7h], 02h           ; DecimatorControl_1 register (DEC_CR1)
  0014 62D600            mov     reg[d6h], 00h           ; I2CConfig register (I2CCFG)
  0017 62B001            mov     reg[b0h], 01h           ; Row_0_InputMux register (RDI0RI)
  001A 62B100            mov     reg[b1h], 00h           ; Row_0_InputSync register (RDI0SYN)
  001D 62B200            mov     reg[b2h], 00h           ; Row_0_LogicInputAMux register (RDI0IS)
  0020 62B333            mov     reg[b3h], 33h           ; Row_0_LogicSelect_0 register (RDI0LT0)
  0023 62B433            mov     reg[b4h], 33h           ; Row_0_LogicSelect_1 register (RDI0LT1)
- 0026 62B501            mov     reg[b5h], 01h           ; Row_0_OutputDrive_0 register (RDI0SRO0)
- 0029 62B602            mov     reg[b6h], 02h           ; Row_0_OutputDrive_1 register (RDI0SRO1)
- 002C           ;  Instance name UART, User Module UART
- 002C           ;       Instance name UART, Block Name RX(DCB03)
- 002C 622F00            mov     reg[2fh], 00h           ;UART_RX_CONTROL_REG(DCB03CR0)
- 002F 622D00            mov     reg[2dh], 00h           ;UART_(DCB03DR1)
- 0032 622E00            mov     reg[2eh], 00h           ;UART_RX_BUFFER_REG (DCB03DR2)
- 0035           ;       Instance name UART, Block Name TX(DCB02)
- 0035 622B00            mov     reg[2bh], 00h           ;UART_TX_CONTROL_REG(DCB02CR0)
- 0038 622900            mov     reg[29h], 00h           ;UART_TX_BUFFER_REG (DCB02DR1)
- 003B 622A00            mov     reg[2ah], 00h           ;UART_(DCB02DR2)
- 003E 7110          or    F, FLAG_XIO_MASK
- 0040           ;  Global Register values Bank 1
- 0040 626100            mov     reg[61h], 00h           ; AnalogClockSelect1 register (CLK_CR1)
- 0043 626900            mov     reg[69h], 00h           ; AnalogClockSelect2 register (CLK_CR2)
- 0046 626000            mov     reg[60h], 00h           ; AnalogColumnClockSelect register (CLK_CR0)
- 0049 626200            mov     reg[62h], 00h           ; AnalogIOControl_0 register (ABF_CR0)
- 004C 626733            mov     reg[67h], 33h           ; AnalogLUTControl0 register (ALT_CR0)
- 004F 626800            mov     reg[68h], 00h           ; AnalogLUTControl1 register (ALT_CR1)
- 0052 626300            mov     reg[63h], 00h           ; AnalogModulatorControl_0 register (AMD_CR0)
- 0055 626600            mov     reg[66h], 00h           ; AnalogModulatorControl_1 register (AMD_CR1)
- 0058 62D100            mov     reg[d1h], 00h           ; GlobalDigitalInterconnect_Drive_Even_Input register (GDI_E_IN)
- 005B 62D300            mov     reg[d3h], 00h           ; GlobalDigitalInterconnect_Drive_Even_Output register (GDI_E_OU)
- 005E 62D000            mov     reg[d0h], 00h           ; GlobalDigitalInterconnect_Drive_Odd_Input register (GDI_O_IN)
- 0061 62D200            mov     reg[d2h], 00h           ; GlobalDigitalInterconnect_Drive_Odd_Output register (GDI_O_OU)
- 0064 62E119            mov     reg[e1h], 19h           ; OscillatorControl_1 register (OSC_CR1)
- 0067 62E200            mov     reg[e2h], 00h           ; OscillatorControl_2 register (OSC_CR2)
- 006A 62DF02            mov     reg[dfh], 02h           ; OscillatorControl_3 register (OSC_CR3)
- 006D 62DE03            mov     reg[deh], 03h           ; OscillatorControl_4 register (OSC_CR4)
- 0070 62DD00            mov     reg[ddh], 00h           ; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
- 0073           ;  Instance name UART, User Module UART
- 0073           ;       Instance name UART, Block Name RX(DCB03)
- 0073 622C05            mov     reg[2ch], 05h           ;UART_RX_FUNC_REG   (DCB03FN)
- 0076 622DC1            mov     reg[2dh], c1h           ;UART_RX_INPUT_REG  (DCB03IN)
- 0079 622E80            mov     reg[2eh], 80h           ;UART_RX_OUTPUT_REG (DCB03OU)
- 007C           ;       Instance name UART, Block Name TX(DCB02)
- 007C 62281D            mov     reg[28h], 1dh           ;UART_TX_FUNC_REG   (DCB02FN)
- 007F 622901            mov     reg[29h], 01h           ;UART_TX_INPUT_REG  (DCB02IN)
- 0082 622A86            mov     reg[2ah], 86h           ;UART_TX_OUTPUT_REG (DCB02OU)
- 0085 70EF          and   F, ~FLAG_XIO_MASK
- 0087           ;  Ordered Global Register values
- 0087 70EF          and   F, ~FLAG_XIO_MASK
- 0089 620000            mov     reg[00h], 00h           ; Port_0_Data register (PRT0DR)
- 008C 7110          or    F, FLAG_XIO_MASK
- 008E 620001            mov     reg[00h], 01h           ; Port_0_DriveMode_0 register (PRT0DM0)
- 0091 6201FE            mov     reg[01h], feh           ; Port_0_DriveMode_1 register (PRT0DM1)
- 0094 70EF          and   F, ~FLAG_XIO_MASK
- 0096 6203FE            mov     reg[03h], feh           ; Port_0_DriveMode_2 register (PRT0DM2)
- 0099 620201            mov     reg[02h], 01h           ; Port_0_GlobalSelect register (PRT0GS)
- 009C 7110          or    F, FLAG_XIO_MASK
- 009E 620200            mov     reg[02h], 00h           ; Port_0_IntCtrl_0 register (PRT0IC0)
- 00A1 620300            mov     reg[03h], 00h           ; Port_0_IntCtrl_1 register (PRT0IC1)
- 00A4 70EF          and   F, ~FLAG_XIO_MASK
- 00A6 620100            mov     reg[01h], 00h           ; Port_0_IntEn register (PRT0IE)
- 00A9 620400            mov     reg[04h], 00h           ; Port_1_Data register (PRT1DR)
- 00AC 7110          or    F, FLAG_XIO_MASK
- 00AE 620400            mov     reg[04h], 00h           ; Port_1_DriveMode_0 register (PRT1DM0)
- 00B1 6205FF            mov     reg[05h], ffh           ; Port_1_DriveMode_1 register (PRT1DM1)
- 00B4 70EF          and   F, ~FLAG_XIO_MASK
- 00B6 6207FF            mov     reg[07h], ffh           ; Port_1_DriveMode_2 register (PRT1DM2)
- 00B9 620600            mov     reg[06h], 00h           ; Port_1_GlobalSelect register (PRT1GS)
- 00BC 7110          or    F, FLAG_XIO_MASK
- 00BE 620600            mov     reg[06h], 00h           ; Port_1_IntCtrl_0 register (PRT1IC0)
- 00C1 620700            mov     reg[07h], 00h           ; Port_1_IntCtrl_1 register (PRT1IC1)
- 00C4 70EF          and   F, ~FLAG_XIO_MASK
- 00C6 620500            mov     reg[05h], 00h           ; Port_1_IntEn register (PRT1IE)
- 00C9 620800            mov     reg[08h], 00h           ; Port_2_Data register (PRT2DR)
- 00CC 7110          or    F, FLAG_XIO_MASK
- 00CE 620840            mov     reg[08h], 40h           ; Port_2_DriveMode_0 register (PRT2DM0)
- 00D1 6209BF            mov     reg[09h], bfh           ; Port_2_DriveMode_1 register (PRT2DM1)
- 00D4 70EF          and   F, ~FLAG_XIO_MASK
- 00D6 620BAF            mov     reg[0bh], afh           ; Port_2_DriveMode_2 register (PRT2DM2)
- 00D9 620A50            mov     reg[0ah], 50h           ; Port_2_GlobalSelect register (PRT2GS)
- 00DC 7110          or    F, FLAG_XIO_MASK
- 00DE 620A00            mov     reg[0ah], 00h           ; Port_2_IntCtrl_0 register (PRT2IC0)
- 00E1 620B00            mov     reg[0bh], 00h           ; Port_2_IntCtrl_1 register (PRT2IC1)
- 00E4 70EF          and   F, ~FLAG_XIO_MASK
- 00E6 620900            mov     reg[09h], 00h           ; Port_2_IntEn register (PRT2IE)
- 00E9 70EF          and   F, ~FLAG_XIO_MASK
- 00EB 7F                ret
- 00EC           
- 00EC           
- 00EC           ; PSoC Configuration file trailer PsocConfig.asm
+ 0026 62B500            mov     reg[b5h], 00h           ; Row_0_OutputDrive_0 register (RDI0SRO0)
+ 0029 62B622            mov     reg[b6h], 22h           ; Row_0_OutputDrive_1 register (RDI0SRO1)
+ 002C           ;  Instance name ADCINC, User Module ADCINC
+ 002C           ;       Instance name ADCINC, Block Name ADC(ASC10)
+ 002C 628090            mov     reg[80h], 90h           ;ADCINC_AtoDcr0(ASC10CR0)
+ 002F 628100            mov     reg[81h], 00h           ;ADCINC_AtoDcr1(ASC10CR1)
+ 0032 628260            mov     reg[82h], 60h           ;ADCINC_AtoDcr2(ASC10CR2)
+ 0035 6283F0            mov     reg[83h], f0h           ;ADCINC_AtoDcr3(ASC10CR3)
+ 0038           ;       Instance name ADCINC, Block Name PWM(DBB00)
+ 0038 622300            mov     reg[23h], 00h           ;ADCINC_PWMcr0(DBB00CR0)
+ 003B 622100            mov     reg[21h], 00h           ;ADCINC_PWMdr1(DBB00DR1)
+ 003E 622201            mov     reg[22h], 01h           ;ADCINC_PWMdr2(DBB00DR2)
+ 0041           ;  Instance name PGA_1, User Module PGA
+ 0041           ;       Instance name PGA_1, Block Name GAIN(ACB00)
+ 0041 6271FE            mov     reg[71h], feh           ;PGA_1_GAIN_CR0(ACB00CR0)
+ 0044 627221            mov     reg[72h], 21h           ;PGA_1_GAIN_CR1(ACB00CR1)
+ 0047 627320            mov     reg[73h], 20h           ;PGA_1_GAIN_CR2(ACB00CR2)
+ 004A 627000            mov     reg[70h], 00h           ;PGA_1_GAIN_CR3(ACB00CR3)
+ 004D           ;  Instance name PWM8, User Module PWM8
+ 004D           ;       Instance name PWM8, Block Name PWM8(DBB01)
+ 004D 622700            mov     reg[27h], 00h           ;PWM8_CONTROL_REG(DBB01CR0)
+ 0050 6225FF            mov     reg[25h], ffh           ;PWM8_PERIOD_REG(DBB01DR1)
+ 0053 622600            mov     reg[26h], 00h           ;PWM8_COMPARE_REG(DBB01DR2)
+ 0056           ;  Instance name UART, User Module UART
+ 0056           ;       Instance name UART, Block Name RX(DCB03)
+ 0056 622F00            mov     reg[2fh], 00h           ;UART_RX_CONTROL_REG(DCB03CR0)
+ 0059 622D00            mov     reg[2dh], 00h           ;UART_(DCB03DR1)
+ 005C 622E00            mov     reg[2eh], 00h           ;UART_RX_BUFFER_REG (DCB03DR2)
+ 005F           ;       Instance name UART, Block Name TX(DCB02)
+ 005F 622B00            mov     reg[2bh], 00h           ;UART_TX_CONTROL_REG(DCB02CR0)
+ 0062 622900            mov     reg[29h], 00h           ;UART_TX_BUFFER_REG (DCB02DR1)
+ 0065 622A00            mov     reg[2ah], 00h           ;UART_(DCB02DR2)
+ 0068 7110          or    F, FLAG_XIO_MASK
+ 006A           ;  Global Register values Bank 1
+ 006A 626100            mov     reg[61h], 00h           ; AnalogClockSelect1 register (CLK_CR1)
+ 006D 626900            mov     reg[69h], 00h           ; AnalogClockSelect2 register (CLK_CR2)
+ 0070 626000            mov     reg[60h], 00h           ; AnalogColumnClockSelect register (CLK_CR0)
+ 0073 626200            mov     reg[62h], 00h           ; AnalogIOControl_0 register (ABF_CR0)
+ 0076 626733            mov     reg[67h], 33h           ; AnalogLUTControl0 register (ALT_CR0)
+ 0079 626800            mov     reg[68h], 00h           ; AnalogLUTControl1 register (ALT_CR1)
+ 007C 626300            mov     reg[63h], 00h           ; AnalogModulatorControl_0 register (AMD_CR0)
+ 007F 626600            mov     reg[66h], 00h           ; AnalogModulatorControl_1 register (AMD_CR1)
+ 0082 62D100            mov     reg[d1h], 00h           ; GlobalDigitalInterconnect_Drive_Even_Input register (GDI_E_IN)
+ 0085 62D300            mov     reg[d3h], 00h           ; GlobalDigitalInterconnect_Drive_Even_Output register (GDI_E_OU)
+ 0088 62D000            mov     reg[d0h], 00h           ; GlobalDigitalInterconnect_Drive_Odd_Input register (GDI_O_IN)
+ 008B 62D200            mov     reg[d2h], 00h           ; GlobalDigitalInterconnect_Drive_Odd_Output register (GDI_O_OU)
+ 008E 62E1F1            mov     reg[e1h], f1h           ; OscillatorControl_1 register (OSC_CR1)
+ 0091 62E200            mov     reg[e2h], 00h           ; OscillatorControl_2 register (OSC_CR2)
+ 0094 62DF05            mov     reg[dfh], 05h           ; OscillatorControl_3 register (OSC_CR3)
+ 0097 62DE03            mov     reg[deh], 03h           ; OscillatorControl_4 register (OSC_CR4)
+ 009A 62DD00            mov     reg[ddh], 00h           ; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
+ 009D           ;  Instance name ADCINC, User Module ADCINC
+ 009D           ;       Instance name ADCINC, Block Name ADC(ASC10)
+ 009D           ;       Instance name ADCINC, Block Name PWM(DBB00)
+ 009D 622031            mov     reg[20h], 31h           ;ADCINC_PWMfn(DBB00FN)
+ 00A0 622115            mov     reg[21h], 15h           ;ADCINC_PWMsl(DBB00IN)
+ 00A3 622240            mov     reg[22h], 40h           ;ADCINC_PWMos(DBB00OU)
+ 00A6           ;  Instance name PGA_1, User Module PGA
+ 00A6           ;       Instance name PGA_1, Block Name GAIN(ACB00)
+ 00A6           ;  Instance name PWM8, User Module PWM8
+ 00A6           ;       Instance name PWM8, Block Name PWM8(DBB01)
+ 00A6 622421            mov     reg[24h], 21h           ;PWM8_FUNC_REG(DBB01FN)
+ 00A9 622514            mov     reg[25h], 14h           ;PWM8_INPUT_REG(DBB01IN)
+ 00AC 622607            mov     reg[26h], 07h           ;PWM8_OUTPUT_REG(DBB01OU)
+ 00AF           ;  Instance name UART, User Module UART
+ 00AF           ;       Instance name UART, Block Name RX(DCB03)
+ 00AF 622C05            mov     reg[2ch], 05h           ;UART_RX_FUNC_REG   (DCB03FN)
+ 00B2 622DC1            mov     reg[2dh], c1h           ;UART_RX_INPUT_REG  (DCB03IN)
+ 00B5 622E80            mov     reg[2eh], 80h           ;UART_RX_OUTPUT_REG (DCB03OU)
+ 00B8           ;       Instance name UART, Block Name TX(DCB02)
+ 00B8 62281D            mov     reg[28h], 1dh           ;UART_TX_FUNC_REG   (DCB02FN)
+ 00BB 622901            mov     reg[29h], 01h           ;UART_TX_INPUT_REG  (DCB02IN)
+ 00BE 622A86            mov     reg[2ah], 86h           ;UART_TX_OUTPUT_REG (DCB02OU)
+ 00C1 70EF          and   F, ~FLAG_XIO_MASK
+ 00C3           ;  Ordered Global Register values
+ 00C3 70EF          and   F, ~FLAG_XIO_MASK
+ 00C5 620000            mov     reg[00h], 00h           ; Port_0_Data register (PRT0DR)
+ 00C8 7110          or    F, FLAG_XIO_MASK
+ 00CA 620000            mov     reg[00h], 00h           ; Port_0_DriveMode_0 register (PRT0DM0)
+ 00CD 6201FF            mov     reg[01h], ffh           ; Port_0_DriveMode_1 register (PRT0DM1)
+ 00D0 70EF          and   F, ~FLAG_XIO_MASK
+ 00D2 6203FF            mov     reg[03h], ffh           ; Port_0_DriveMode_2 register (PRT0DM2)
+ 00D5 620200            mov     reg[02h], 00h           ; Port_0_GlobalSelect register (PRT0GS)
+ 00D8 7110          or    F, FLAG_XIO_MASK
+ 00DA 620200            mov     reg[02h], 00h           ; Port_0_IntCtrl_0 register (PRT0IC0)
+ 00DD 620300            mov     reg[03h], 00h           ; Port_0_IntCtrl_1 register (PRT0IC1)
+ 00E0 70EF          and   F, ~FLAG_XIO_MASK
+ 00E2 620100            mov     reg[01h], 00h           ; Port_0_IntEn register (PRT0IE)
+ 00E5 620400            mov     reg[04h], 00h           ; Port_1_Data register (PRT1DR)
+ 00E8 7110          or    F, FLAG_XIO_MASK
+ 00EA 620400            mov     reg[04h], 00h           ; Port_1_DriveMode_0 register (PRT1DM0)
+ 00ED 6205FF            mov     reg[05h], ffh           ; Port_1_DriveMode_1 register (PRT1DM1)
+ 00F0 70EF          and   F, ~FLAG_XIO_MASK
+ 00F2 6207FF            mov     reg[07h], ffh           ; Port_1_DriveMode_2 register (PRT1DM2)
+ 00F5 620600            mov     reg[06h], 00h           ; Port_1_GlobalSelect register (PRT1GS)
+ 00F8 7110          or    F, FLAG_XIO_MASK
+ 00FA 620600            mov     reg[06h], 00h           ; Port_1_IntCtrl_0 register (PRT1IC0)
+ 00FD 620700            mov     reg[07h], 00h           ; Port_1_IntCtrl_1 register (PRT1IC1)
+ 0100 70EF          and   F, ~FLAG_XIO_MASK
+ 0102 620500            mov     reg[05h], 00h           ; Port_1_IntEn register (PRT1IE)
+ 0105 620800            mov     reg[08h], 00h           ; Port_2_Data register (PRT2DR)
+ 0108 7110          or    F, FLAG_XIO_MASK
+ 010A 6208C0            mov     reg[08h], c0h           ; Port_2_DriveMode_0 register (PRT2DM0)
+ 010D 62093F            mov     reg[09h], 3fh           ; Port_2_DriveMode_1 register (PRT2DM1)
+ 0110 70EF          and   F, ~FLAG_XIO_MASK
+ 0112 620B2F            mov     reg[0bh], 2fh           ; Port_2_DriveMode_2 register (PRT2DM2)
+ 0115 620AD0            mov     reg[0ah], d0h           ; Port_2_GlobalSelect register (PRT2GS)
+ 0118 7110          or    F, FLAG_XIO_MASK
+ 011A 620A00            mov     reg[0ah], 00h           ; Port_2_IntCtrl_0 register (PRT2IC0)
+ 011D 620B00            mov     reg[0bh], 00h           ; Port_2_IntCtrl_1 register (PRT2IC1)
+ 0120 70EF          and   F, ~FLAG_XIO_MASK
+ 0122 620900            mov     reg[09h], 00h           ; Port_2_IntEn register (PRT2IE)
+ 0125 70EF          and   F, ~FLAG_XIO_MASK
+ 0127 7F                ret
+ 0128           
+ 0128           
+ 0128           ; PSoC Configuration file trailer PsocConfig.asm

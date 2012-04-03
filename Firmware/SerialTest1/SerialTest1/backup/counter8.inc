@@ -19,28 +19,28 @@ include "m8c.inc"
 
 Counter8_CONTROL_REG_START_BIT:            equ 0x01    ; Control register start bit
 Counter8_INT_REG:                          equ 0x0e1
-Counter8_INT_MASK:                         equ 0x01
+Counter8_INT_MASK:                         equ 0x02
 
 
 ;--------------------------------------------------
 ; Constants for Counter8 user defined values
 ;--------------------------------------------------
 
-Counter8_PERIOD:                           equ 0x50
-Counter8_COMPARE_VALUE:                    equ 0x00
+Counter8_PERIOD:                           equ 0xff
+Counter8_COMPARE_VALUE:                    equ 0x80
 
 
 ;--------------------------------------------------
 ; Register Address Constants for Counter8
 ;--------------------------------------------------
 
-Counter8_COUNTER_REG:                  equ 0x20   ; DR0 Counter register
-Counter8_PERIOD_REG:                   equ 0x21   ; DR1 Period register
-Counter8_COMPARE_REG:                  equ 0x22   ; DR2 CompareValue register
-Counter8_CONTROL_REG:                  equ 0x23   ; Control register
-Counter8_FUNC_REG:                     equ 0x20   ; Function register
-Counter8_INPUT_REG:                    equ 0x21   ; Input register
-Counter8_OUTPUT_REG:                   equ 0x22   ; Output register
+Counter8_COUNTER_REG:                  equ 0x24   ; DR0 Counter register
+Counter8_PERIOD_REG:                   equ 0x25   ; DR1 Period register
+Counter8_COMPARE_REG:                  equ 0x26   ; DR2 CompareValue register
+Counter8_CONTROL_REG:                  equ 0x27   ; Control register
+Counter8_FUNC_REG:                     equ 0x24   ; Function register
+Counter8_INPUT_REG:                    equ 0x25   ; Input register
+Counter8_OUTPUT_REG:                   equ 0x26   ; Output register
 
 
 ;--------------------------------------------------

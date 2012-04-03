@@ -9,97 +9,134 @@
  0000 00                .byte 0
                         .area data(ram, con, rel)
  0001                   .dbfile ./main.c
- 0001                   .dbfile C:\Users\jwhong\DOCUME~1\PSOCDE~1.1PR\SERIAL~1\SERIAL~1\main.c
+ 0001                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
  0001                   .dbsym e bytes_received _bytes_received c
+ 0001           _ext_mem_locked::
+ 0001                   .blkb 1
+                        .area idata
+ 0001 00                .byte 0
+                        .area data(ram, con, rel)
+ 0002                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0002                   .dbsym e ext_mem_locked _ext_mem_locked c
+ 0002           _m_to_s_offset::
+ 0002                   .blkb 1
+                        .area idata
+ 0002 00                .byte 0
+                        .area data(ram, con, rel)
+ 0003                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0003                   .dbsym e m_to_s_offset _m_to_s_offset c
                         .area text(rom, con, rel)
- 0000                   .dbfile C:\Users\jwhong\DOCUME~1\PSOCDE~1.1PR\SERIAL~1\SERIAL~1\main.c
- 0000                   .dbfunc e fullPacketReceived _fullPacketReceived fV
- 0000           _fullPacketReceived::
+ 0000                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0000                   .dbfunc e main _main fV
+ 0000           ;              c -> X+0
+ 0000           _main::
  0000                   .dbline -1
- 0000                   .dbline 14
- 0000           ; //----------------------------------------------------------------------------
- 0000           ; // C main line
- 0000           ; //----------------------------------------------------------------------------
- 0000           ; 
- 0000           ; #include <m8c.h>        // part specific constants and macros
- 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
- 0000           ; 
- 0000           ; unsigned char target_address;
- 0000           ; unsigned char bytes_received = 0;
- 0000           ; unsigned char expected_bytes;
- 0000           ; unsigned char received_data_buffer[16];
- 0000           ; 
- 0000           ; void fullPacketReceived(void)
- 0000           ; {
- 0000                   .dbline 15
- 0000           ;       return;
- 0000                   .dbline -2
- 0000           L1:
- 0000                   .dbline 0 ; func end
- 0000 7F                ret
- 0001                   .dbend
- 0001                   .dbfunc e main _main fV
- 0001           ;          temp2 -> X+1
- 0001           ;           temp -> X+0
- 0001           _main::
- 0001                   .dbline -1
- 0001 10                push X
- 0002 4F                mov X,SP
- 0003 3803              add SP,3
- 0005                   .dbline 19
- 0005           ; }
- 0005           ; 
- 0005           ; void main(void)
- 0005           ; {
- 0005                   .dbline 21
- 0005           ;       // Insert your main routine code here.
- 0005           ;       unsigned char temp = 0;
- 0005 560000            mov [X+0],0
- 0008                   .dbline 22
- 0008           ;       volatile unsigned short temp2 = 0;
- 0008 560200            mov [X+2],0
- 000B 560100            mov [X+1],0
+ 0000 10                push X
+ 0001 4F                mov X,SP
+ 0002 3801              add SP,1
+ 0004                   .dbline 18
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; // C main line
+ 0004           ; //----------------------------------------------------------------------------
+ 0004           ; 
+ 0004           ; #include <m8c.h>        // part specific constants and macros
+ 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0004           ; 
+ 0004           ; unsigned char target_address;
+ 0004           ; unsigned char bytes_received = 0;
+ 0004           ; unsigned char expected_bytes;
+ 0004           ; 
+ 0004           ; unsigned char ext_mem_locked = 0;
+ 0004           ; unsigned char m_to_s_offset = 0;
+ 0004           ; unsigned char m_to_s_mem[32];
+ 0004           ; unsigned char s_to_m_mem[32];
+ 0004           ; 
+ 0004           ; void main(void)
+ 0004           ; {
+ 0004                   .dbline 20
+ 0004           ;       // Insert your main routine code here.
+ 0004           ;       unsigned char c = 0;
+ 0004 560000            mov [X+0],0
+ 0007                   .dbline 21
+ 0007           ;       M8C_EnableGInt;
+ 0007 7101                      or  F, 01h
+ 0009           
+ 0009                   .dbline 22
+ 0009           ;       UART_EnableInt();
+ 0009 10                push X
+ 000A 7C0000            xcall _UART_EnableInt
+ 000D 20                pop X
  000E                   .dbline 23
- 000E           ;       M8C_EnableGInt ; // Uncomment this line to enable Global Interrupts
- 000E 7101                      or  F, 01h
- 0010           
- 0010                   .dbline 24
- 0010           ;       UART_EnableInt();
- 0010 10                push X
- 0011 7C0000            xcall _UART_EnableInt
+ 000E           ;       UART_Start(UART_PARITY_NONE);
+ 000E 10                push X
+ 000F 5000              mov A,0
+ 0011 7C0000            xcall _UART_Start
  0014 20                pop X
- 0015                   .dbline 25
- 0015           ;       UART_Start(UART_PARITY_NONE);
+ 0015                   .dbline 24
+ 0015           ;       PGA_1_Start(PGA_1_HIGHPOWER);
  0015 10                push X
- 0016 5000              mov A,0
- 0018 7C0000            xcall _UART_Start
+ 0016 5003              mov A,3
+ 0018 7C0000            xcall _PGA_1_Start
  001B 20                pop X
- 001C           L3:
- 001C                   .dbline 28
- 001C           ;       //Counter8_EnableInt();
- 001C           ;       //Counter8_Start();
- 001C           ;       while(1);
- 001C           L4:
- 001C                   .dbline 28
- 001C 8FFF              xjmp L3
- 001E           X0:
- 001E                   .dbline -2
- 001E           L2:
- 001E 38FD              add SP,-3
- 0020 20                pop X
- 0021                   .dbline 0 ; func end
- 0021 8FFF              jmp .
- 0023                   .dbsym l temp2 1 s
- 0023                   .dbsym l temp 0 c
- 0023                   .dbend
+ 001C                   .dbline 26
+ 001C           ;       
+ 001C           ;       ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
+ 001C 10                push X
+ 001D 5003              mov A,3
+ 001F 7C0000            xcall _ADCINC_Start
+ 0022 20                pop X
+ 0023                   .dbline 27
+ 0023           ;       ADCINC_GetSamples(0); // Have ADC run continuously
+ 0023 10                push X
+ 0024 5000              mov A,0
+ 0026 7C0000            xcall _ADCINC_GetSamples
+ 0029                   .dbline 28
+ 0029           ;       PWM8_DisableInt();
+ 0029 7C0000            xcall _PWM8_DisableInt
+ 002C                   .dbline 29
+ 002C           ;       PWM8_Start();
+ 002C 7C0000            xcall _PWM8_Start
+ 002F 20                pop X
+ 0030                   .dbline 30
+ 0030           ;       for(;;)
+ 0030           L2:
+ 0030                   .dbline 31
+ 0030           ;       {
+ 0030                   .dbline 32
+ 0030           ;               PWM8_WritePulseWidth(m_to_s_mem[0]);
+ 0030 10                push X
+ 0031 5120              mov A,[_m_to_s_mem]
+ 0033 7C0000            xcall _PWM8_WritePulseWidth
+ 0036 20                pop X
+ 0037                   .dbline 37
+ 0037           ;               //if(ADCINC_fIsDataAvailable())
+ 0037           ;               //{
+ 0037           ;               //      s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
+ 0037           ;               //}
+ 0037           ;       }
+ 0037                   .dbline 30
+ 0037                   .dbline 30
+ 0037 8FF8              xjmp L2
+ 0039           X0:
+ 0039                   .dbline -2
+ 0039           L1:
+ 0039 38FF              add SP,-1
+ 003B 20                pop X
+ 003C                   .dbline 0 ; func end
+ 003C 8FFF              jmp .
+ 003E                   .dbsym l c 0 c
+ 003E                   .dbend
                         .area bss(ram, con, rel)
- 0000                   .dbfile C:\Users\jwhong\DOCUME~1\PSOCDE~1.1PR\SERIAL~1\SERIAL~1\main.c
- 0000           _received_data_buffer::
- 0000                   .blkb 16
- 0010                   .dbsym e received_data_buffer _received_data_buffer A[16:16]c
- 0010           _expected_bytes::
- 0010                   .blkb 1
- 0011                   .dbsym e expected_bytes _expected_bytes c
- 0011           _target_address::
- 0011                   .blkb 1
- 0012                   .dbsym e target_address _target_address c
+ 0000                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0000           _s_to_m_mem::
+ 0000                   .blkb 32
+ 0020                   .dbsym e s_to_m_mem _s_to_m_mem A[32:32]c
+ 0020           _m_to_s_mem::
+ 0020                   .blkb 32
+ 0040                   .dbsym e m_to_s_mem _m_to_s_mem A[32:32]c
+ 0040           _expected_bytes::
+ 0040                   .blkb 1
+ 0041                   .dbsym e expected_bytes _expected_bytes c
+ 0041           _target_address::
+ 0041                   .blkb 1
+ 0042                   .dbsym e target_address _target_address c

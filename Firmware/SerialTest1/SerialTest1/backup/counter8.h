@@ -56,34 +56,34 @@ extern BYTE bCounter8_ReadCompareValue(void);       // Deprecated
 
 #define Counter8_CONTROL_REG_START_BIT         ( 0x01 )
 #define Counter8_INT_REG_ADDR                  ( 0x0e1 )
-#define Counter8_INT_MASK                      ( 0x01 )
+#define Counter8_INT_MASK                      ( 0x02 )
 
 
 //--------------------------------------------------
 // Constants for Counter8 user defined values
 //--------------------------------------------------
 
-#define Counter8_PERIOD                        ( 0x50 )
-#define Counter8_COMPARE_VALUE                 ( 0x00 )
+#define Counter8_PERIOD                        ( 0xff )
+#define Counter8_COMPARE_VALUE                 ( 0x80 )
 
 
 //-------------------------------------------------
 // Register Addresses for Counter8
 //-------------------------------------------------
 
-#pragma ioport  Counter8_COUNTER_REG:   0x020              //DR0 Count register
+#pragma ioport  Counter8_COUNTER_REG:   0x024              //DR0 Count register
 BYTE            Counter8_COUNTER_REG;
-#pragma ioport  Counter8_PERIOD_REG:    0x021              //DR1 Period register
+#pragma ioport  Counter8_PERIOD_REG:    0x025              //DR1 Period register
 BYTE            Counter8_PERIOD_REG;
-#pragma ioport  Counter8_COMPARE_REG:   0x022              //DR2 Compare register
+#pragma ioport  Counter8_COMPARE_REG:   0x026              //DR2 Compare register
 BYTE            Counter8_COMPARE_REG;
-#pragma ioport  Counter8_CONTROL_REG:   0x023              //Control register
+#pragma ioport  Counter8_CONTROL_REG:   0x027              //Control register
 BYTE            Counter8_CONTROL_REG;
-#pragma ioport  Counter8_FUNC_REG:  0x120                  //Function register
+#pragma ioport  Counter8_FUNC_REG:  0x124                  //Function register
 BYTE            Counter8_FUNC_REG;
-#pragma ioport  Counter8_INPUT_REG: 0x121                  //Input register
+#pragma ioport  Counter8_INPUT_REG: 0x125                  //Input register
 BYTE            Counter8_INPUT_REG;
-#pragma ioport  Counter8_OUTPUT_REG:    0x122              //Output register
+#pragma ioport  Counter8_OUTPUT_REG:    0x126              //Output register
 BYTE            Counter8_OUTPUT_REG;
 #pragma ioport  Counter8_INT_REG:       0x0e1              //Interrupt Mask Register
 BYTE            Counter8_INT_REG;

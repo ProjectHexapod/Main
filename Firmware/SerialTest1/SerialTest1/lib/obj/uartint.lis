@@ -1003,73 +1003,91 @@
  0001              ; 
  0001 08           push A
  0002 10           push X
- 0003 5D2E         mov  A,REG[UART_RX_BUFFER_REG]    ; Read the received data
- 0005 3C0000       cmp  [_bytes_received], 0x00          ; Were we waiting for the start of a packet?
- 0008 A00D         jz   packet_start
- 000A           not_packet_start:
- 000A 3C0000       cmp  [_target_address], 0x00      ; Load the target address
- 000D B01D         jnz  forward_data                             ; If we are not the targeted device, forward the data
- 000F 5800         mov  X, [_bytes_received]         ; Load bytes received
- 0011 79           dec  X                            ; Decrement the received bytes to get the address we want
- 0012 5400         mov  [X+_received_data_buffer], A ; Save received data
- 0014 8018         jmp  check_if_packet_done
- 0016           packet_start:
- 0016 55000F       mov  [_target_address], 0x0F
- 0019 2400         and  [_target_address], A         ; bottom 4 bits are target address
- 001B A004         jz   no_forward_data_packet_start ; If we're the target, don't forward anything
- 001D 78           dec  A                            ; Decrement the address we will forward
- 001E 6029         mov  REG[UART_TX_BUFFER_REG], A   ; Forward the data 
- 0020           no_forward_data_packet_start:
- 0020 67           asr  A                            ; top 4 bits are expected bytes
- 0021 67           asr  A
- 0022 67           asr  A
- 0023 67           asr  A
- 0024 55000F       mov  [_expected_bytes], 0x0F
- 0027 2400         and  [_expected_bytes], A             ; Save expected bytes
- 0029 8003         jmp check_if_packet_done
- 002B           forward_data:
- 002B 6029         mov REG[UART_TX_BUFFER_REG], A
- 002D           check_if_packet_done:
- 002D 5100         mov  A, [_bytes_received]
- 002F 3A00         cmp  A, [_expected_bytes]
- 0031 B00C         jnz packet_continues
- 0033           packet_end:
- 0033 550000       mov  [_bytes_received], 0x00      ; Re-zero the received bytes
- 0036 5100         mov  A,[_target_address]          ; If we were selected, call the handler
- 0038 B007         jnz  finish                                           ; If we weren't the target, fuck it
- 003A 9000         call _fullPacketReceived          ; Otherwise call the full packet received handler
- 003C 8003         jmp finish
- 003E           packet_continues:
- 003E 7600         inc [_bytes_received]
- 0040           finish:
- 0040              ;call Counter8_Stop                ; Stop the idle counter
- 0040              ;mov A, 160                        ; 160 corresponds to two byte reception worth of time
- 0040              ;call Counter8_WritePeriod
- 0040              ;call Counter8_Start                
- 0040 18           pop A
- 0041 20           pop X
- 0042 7E           reti
- 0043              
- 0043              ;---------------------------------------------------
- 0043              ; Insert your custom assembly code above this banner
- 0043              ;---------------------------------------------------
- 0043              
- 0043              ;---------------------------------------------------
- 0043              ; Insert a lcall to a C function below this banner
- 0043              ; and un-comment the lines between these banners
- 0043              ;---------------------------------------------------
- 0043              
- 0043              ;PRESERVE_CPU_CONTEXT
- 0043              ;lcall _My_C_Function
- 0043              ;lcall _rx_int_handler
- 0043              ;RESTORE_CPU_CONTEXT
- 0043              
- 0043              ;---------------------------------------------------
- 0043              ; Insert a lcall to a C function above this banner
- 0043              ; and un-comment the lines between these banners
- 0043              ;---------------------------------------------------
- 0043              ;@PSoC_UserCode_END@ (Do not change this line.)
- 0043           
+ 0003 70FE          and   F, ~FLAG_GLOBAL_IE
+ 0005 5D2E         mov  A,REG[UART_RX_BUFFER_REG]    ; Read the received data
+ 0007 3C0000       cmp  [_bytes_received], 0x00          ; Were we waiting for the start of a packet?
+ 000A A024         jz   packet_start
+ 000C           not_packet_start:
+ 000C 3C0000       cmp  [_target_address], 0x00      ; Load the target address
+ 000F B040         jnz  forward_data                             ; If we are not the targeted device, forward the data
+ 0011 3C0080       cmp  [_m_to_s_offset], 0x80       ; Is the m_to_s flag set?
+ 0014 C00D         jc   m_to_s_flag_not_set          ; Jump if the last packet we received was NOT a write address
+ 0016 26007F       and  [_m_to_s_offset], 0x7F       ; Mask the index and clear the flag
+ 0019 5800         mov  X, [_m_to_s_offset]          ; Load the offset
+ 001B 5400         mov  [X+_m_to_s_mem], A           ; Master is writing to the slave
+ 001D 622900       mov REG[UART_TX_BUFFER_REG], 0    ; Write 0 back to the bus
+ 0020 8031         jmp check_if_packet_done
+ 0022           m_to_s_flag_not_set:
+ 0022 3980         cmp  A, 0x80                      ; Is this an address for a m_to_s write?
+ 0024 C005         jc   received_s_to_m_address
+ 0026 5300         mov  [_m_to_s_offset], A          ; Store the index the master wants to write to.  We will write the next received byte there.
+ 0028 217F         and  A, 0x7F                      ; Mask the address so we can give the master back some data
+ 002A           received_s_to_m_address:
+ 002A 5C           mov  X, A                                             ; A is the index requested by the master
+ 002B 5200         mov  A, [X+_s_to_m_mem]                       ; Load the requested address
+ 002D 8022         jmp  forward_data                 ; Fire it off
+ 002F           packet_start:
+ 002F 5300         mov  [_expected_bytes], A         ; Borrowing expected_bytes for storage
+ 0031 210F         and  A, 0x0F
+ 0033 B004         jnz  skip_lock_acquire            ; If we are the selected node, lock our external memory until we're done with this transaction
+ 0035 550001       mov  [_ext_mem_locked], 0x01      ; Lock the memory while we're reading from it
+ 0038           skip_lock_acquire:
+ 0038 5300         mov  [_target_address], A         ; Save the target address
+ 003A 78           dec  A                            ; Decrement the address we will forward
+ 003B 210F         and  A, 0x0F
+ 003D 2600F0       and  [_expected_bytes], 0xF0      ; Mask the top 4 bits
+ 0040 2A00         or   A, [_expected_bytes]
+ 0042 6029         mov  REG[UART_TX_BUFFER_REG], A   ; Forward the data
+ 0044 5100         mov  A, [_expected_bytes]         ; Reload expected bytes
+ 0046 67           asr  A                            ; shift right 4 bits
+ 0047 67           asr  A
+ 0048 67           asr  A
+ 0049 67           asr  A
+ 004A 210F         and  A, 0x0F                                          ; Mask out top 4 bits
+ 004C 5300         mov  [_expected_bytes], A             ; Save expected bytes
+ 004E 8003         jmp check_if_packet_done
+ 0050           forward_data:
+ 0050 6029         mov REG[UART_TX_BUFFER_REG], A
+ 0052           check_if_packet_done:
+ 0052 5100         mov  A, [_bytes_received]
+ 0054 3A00         cmp  A, [_expected_bytes]
+ 0056 B009         jnz packet_continues
+ 0058           packet_end:
+ 0058 550000       mov  [_bytes_received], 0x00      ; Re-zero the received bytes
+ 005B 550000       mov  [_ext_mem_locked], 0x00      ; Release the lock
+ 005E 8003         jmp finish
+ 0060           packet_continues:
+ 0060 7600         inc [_bytes_received]
+ 0062           finish:
+ 0062              ;call Counter8_Stop                ; Stop the idle counter
+ 0062              ;mov A, 160                        ; 160 corresponds to two byte reception worth of time
+ 0062              ;call Counter8_WritePeriod
+ 0062              ;call Counter8_Start                
+ 0062 7101          or    F, FLAG_GLOBAL_IE
+ 0064 18           pop A
+ 0065 20           pop X
+ 0066              ;reti
+ 0066              
+ 0066              ;---------------------------------------------------
+ 0066              ; Insert your custom assembly code above this banner
+ 0066              ;---------------------------------------------------
+ 0066              
+ 0066              ;---------------------------------------------------
+ 0066              ; Insert a lcall to a C function below this banner
+ 0066              ; and un-comment the lines between these banners
+ 0066              ;---------------------------------------------------
+ 0066              
+ 0066              ;PRESERVE_CPU_CONTEXT
+ 0066              ;lcall _My_C_Function
+ 0066              ;lcall _rx_int_handler
+ 0066              ;RESTORE_CPU_CONTEXT
+ 0066              
+ 0066              ;---------------------------------------------------
+ 0066              ; Insert a lcall to a C function above this banner
+ 0066              ; and un-comment the lines between these banners
+ 0066              ;---------------------------------------------------
+ 0066              ;@PSoC_UserCode_END@ (Do not change this line.)
+ 0066           
                 IF (UART_RXBUF_ENABLE)
                    push A
                    push X
@@ -1195,8 +1213,8 @@
                 
                 ENDIF
                 
- 0043           UART_RX_ISR_END:
- 0043 7E           reti
- 0044           
- 0044           ; end of file UARTINT.asm
- 0044           
+ 0066           UART_RX_ISR_END:
+ 0066 7E           reti
+ 0067           
+ 0067           ; end of file UARTINT.asm
+ 0067           
