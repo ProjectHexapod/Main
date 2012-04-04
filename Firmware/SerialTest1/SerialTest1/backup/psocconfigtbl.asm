@@ -14,23 +14,23 @@ LoadConfigTBL_serialtest1:
 	mov	reg[e6h], 00h		; DecimatorControl_0 register (DEC_CR0)
 	mov	reg[e7h], 02h		; DecimatorControl_1 register (DEC_CR1)
 	mov	reg[d6h], 00h		; I2CConfig register (I2CCFG)
-	mov	reg[b0h], 01h		; Row_0_InputMux register (RDI0RI)
+	mov	reg[b0h], 00h		; Row_0_InputMux register (RDI0RI)
 	mov	reg[b1h], 00h		; Row_0_InputSync register (RDI0SYN)
 	mov	reg[b2h], 00h		; Row_0_LogicInputAMux register (RDI0IS)
 	mov	reg[b3h], 33h		; Row_0_LogicSelect_0 register (RDI0LT0)
 	mov	reg[b4h], 33h		; Row_0_LogicSelect_1 register (RDI0LT1)
-	mov	reg[b5h], 00h		; Row_0_OutputDrive_0 register (RDI0SRO0)
-	mov	reg[b6h], 22h		; Row_0_OutputDrive_1 register (RDI0SRO1)
-;  Instance name ADCINC, User Module ADCINC
-;       Instance name ADCINC, Block Name ADC(ASC10)
-	mov	reg[80h], 90h		;ADCINC_AtoDcr0(ASC10CR0)
-	mov	reg[81h], 00h		;ADCINC_AtoDcr1(ASC10CR1)
-	mov	reg[82h], 60h		;ADCINC_AtoDcr2(ASC10CR2)
-	mov	reg[83h], f0h		;ADCINC_AtoDcr3(ASC10CR3)
-;       Instance name ADCINC, Block Name PWM(DBB00)
-	mov	reg[23h], 00h		;ADCINC_PWMcr0(DBB00CR0)
-	mov	reg[21h], 00h		;ADCINC_PWMdr1(DBB00DR1)
-	mov	reg[22h], 01h		;ADCINC_PWMdr2(DBB00DR2)
+	mov	reg[b5h], 01h		; Row_0_OutputDrive_0 register (RDI0SRO0)
+	mov	reg[b6h], 20h		; Row_0_OutputDrive_1 register (RDI0SRO1)
+;  Instance name DELSIG8, User Module DELSIG8
+;       Instance name DELSIG8, Block Name ADC(ASC10)
+	mov	reg[80h], 90h		;DELSIG8_AtoDcr0(ASC10CR0)
+	mov	reg[81h], 00h		;DELSIG8_AtoDcr1(ASC10CR1)
+	mov	reg[82h], 60h		;DELSIG8_AtoDcr2(ASC10CR2)
+	mov	reg[83h], f0h		;DELSIG8_AtoDcr3(ASC10CR3)
+;       Instance name DELSIG8, Block Name TMR(DBB00)
+	mov	reg[23h], 00h		;DELSIG8_TimerCR0(DBB00CR0)
+	mov	reg[21h], 00h		;DELSIG8_TimerDR1(DBB00DR1)
+	mov	reg[22h], 00h		;DELSIG8_TimerDR2(DBB00DR2)
 ;  Instance name PGA_1, User Module PGA
 ;       Instance name PGA_1, Block Name GAIN(ACB00)
 	mov	reg[71h], feh		;PGA_1_GAIN_CR0(ACB00CR0)
@@ -65,17 +65,17 @@ LoadConfigTBL_serialtest1:
 	mov	reg[d3h], 00h		; GlobalDigitalInterconnect_Drive_Even_Output register (GDI_E_OU)
 	mov	reg[d0h], 00h		; GlobalDigitalInterconnect_Drive_Odd_Input register (GDI_O_IN)
 	mov	reg[d2h], 00h		; GlobalDigitalInterconnect_Drive_Odd_Output register (GDI_O_OU)
-	mov	reg[e1h], b1h		; OscillatorControl_1 register (OSC_CR1)
+	mov	reg[e1h], 21h		; OscillatorControl_1 register (OSC_CR1)
 	mov	reg[e2h], 00h		; OscillatorControl_2 register (OSC_CR2)
 	mov	reg[dfh], 05h		; OscillatorControl_3 register (OSC_CR3)
 	mov	reg[deh], 03h		; OscillatorControl_4 register (OSC_CR4)
 	mov	reg[ddh], 00h		; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
-;  Instance name ADCINC, User Module ADCINC
-;       Instance name ADCINC, Block Name ADC(ASC10)
-;       Instance name ADCINC, Block Name PWM(DBB00)
-	mov	reg[20h], 31h		;ADCINC_PWMfn(DBB00FN)
-	mov	reg[21h], 15h		;ADCINC_PWMsl(DBB00IN)
-	mov	reg[22h], 40h		;ADCINC_PWMos(DBB00OU)
+;  Instance name DELSIG8, User Module DELSIG8
+;       Instance name DELSIG8, Block Name ADC(ASC10)
+;       Instance name DELSIG8, Block Name TMR(DBB00)
+	mov	reg[20h], 20h		;DELSIG8_TimerFN(DBB00FN)
+	mov	reg[21h], 15h		;DELSIG8_TimerSL(DBB00IN)
+	mov	reg[22h], 40h		;DELSIG8_TimerOS(DBB00OU)
 ;  Instance name PGA_1, User Module PGA
 ;       Instance name PGA_1, Block Name GAIN(ACB00)
 ;  Instance name PWM8, User Module PWM8
@@ -86,22 +86,22 @@ LoadConfigTBL_serialtest1:
 ;  Instance name UART, User Module UART
 ;       Instance name UART, Block Name RX(DCB03)
 	mov	reg[2ch], 05h		;UART_RX_FUNC_REG   (DCB03FN)
-	mov	reg[2dh], c1h		;UART_RX_INPUT_REG  (DCB03IN)
+	mov	reg[2dh], e1h		;UART_RX_INPUT_REG  (DCB03IN)
 	mov	reg[2eh], 80h		;UART_RX_OUTPUT_REG (DCB03OU)
 ;       Instance name UART, Block Name TX(DCB02)
-	mov	reg[28h], 1dh		;UART_TX_FUNC_REG   (DCB02FN)
+	mov	reg[28h], 0dh		;UART_TX_FUNC_REG   (DCB02FN)
 	mov	reg[29h], 01h		;UART_TX_INPUT_REG  (DCB02IN)
-	mov	reg[2ah], 86h		;UART_TX_OUTPUT_REG (DCB02OU)
+	mov	reg[2ah], 84h		;UART_TX_OUTPUT_REG (DCB02OU)
 	M8C_SetBank0
 ;  Ordered Global Register values
 	M8C_SetBank0
 	mov	reg[00h], 00h		; Port_0_Data register (PRT0DR)
 	M8C_SetBank1
-	mov	reg[00h], 00h		; Port_0_DriveMode_0 register (PRT0DM0)
-	mov	reg[01h], ffh		; Port_0_DriveMode_1 register (PRT0DM1)
+	mov	reg[00h], 01h		; Port_0_DriveMode_0 register (PRT0DM0)
+	mov	reg[01h], feh		; Port_0_DriveMode_1 register (PRT0DM1)
 	M8C_SetBank0
-	mov	reg[03h], ffh		; Port_0_DriveMode_2 register (PRT0DM2)
-	mov	reg[02h], 00h		; Port_0_GlobalSelect register (PRT0GS)
+	mov	reg[03h], fah		; Port_0_DriveMode_2 register (PRT0DM2)
+	mov	reg[02h], 05h		; Port_0_GlobalSelect register (PRT0GS)
 	M8C_SetBank1
 	mov	reg[02h], 00h		; Port_0_IntCtrl_0 register (PRT0IC0)
 	mov	reg[03h], 00h		; Port_0_IntCtrl_1 register (PRT0IC1)
@@ -121,11 +121,11 @@ LoadConfigTBL_serialtest1:
 	mov	reg[05h], 00h		; Port_1_IntEn register (PRT1IE)
 	mov	reg[08h], 00h		; Port_2_Data register (PRT2DR)
 	M8C_SetBank1
-	mov	reg[08h], c0h		; Port_2_DriveMode_0 register (PRT2DM0)
-	mov	reg[09h], 3fh		; Port_2_DriveMode_1 register (PRT2DM1)
+	mov	reg[08h], 80h		; Port_2_DriveMode_0 register (PRT2DM0)
+	mov	reg[09h], 7fh		; Port_2_DriveMode_1 register (PRT2DM1)
 	M8C_SetBank0
-	mov	reg[0bh], 2fh		; Port_2_DriveMode_2 register (PRT2DM2)
-	mov	reg[0ah], d0h		; Port_2_GlobalSelect register (PRT2GS)
+	mov	reg[0bh], 7fh		; Port_2_DriveMode_2 register (PRT2DM2)
+	mov	reg[0ah], 80h		; Port_2_GlobalSelect register (PRT2GS)
 	M8C_SetBank1
 	mov	reg[0ah], 00h		; Port_2_IntCtrl_0 register (PRT2IC0)
 	mov	reg[0bh], 00h		; Port_2_IntCtrl_1 register (PRT2IC1)

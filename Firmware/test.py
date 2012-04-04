@@ -21,14 +21,14 @@ for i in f:
 	s.write(cmd_string)
 	retval = s.read(len(cmd_string))
 	#for c in retval:
-	try:
+	if len(retval)>1:
 		print '%.2x'%ord(retval[1])
-	except:
-		for k in range(16):
-			s.write(clrstr)
-		retval = s.read()
-		print 'cleared'
-	time.sleep(2e-2)
+	#except:
+	#	for k in range(16):
+	#		s.write(clrstr)
+	#	retval = s.read()
+	#	print 'cleared'
+	#time.sleep(2e-2)
 #for c in retval:
 #    print hex(ord(c))
 print ''

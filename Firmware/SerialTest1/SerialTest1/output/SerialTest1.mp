@@ -1,11 +1,11 @@
 Project:      output/SerialTest1
 Build Number: 0
-Date:         Tue Apr  3 01:53:26 2012
+Date:         Tue Apr  3 20:48:42 2012
 Compiler:     ICCM8C
 Version:      7.04
 
-  ROM 28% full. 1130 out of 4096 bytes used (does not include absolute areas).
-  RAM 31% full. 78 bytes used (does not include stack usage).
+  ROM 25% full. 1006 out of 4096 bytes used (does not include absolute areas).
+  RAM 30% full. 76 bytes used (does not include stack usage).
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
@@ -31,134 +31,112 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                     UserModules   0285   02F7 =    759. bytes (rel,con,rom)
+                     UserModules   0285   027F =    639. bytes (rel,con,rom)
 
        Addr  Global Symbol
       -----  --------------------------------
        0285  _UART_TX_ISR
        0286  _UART_RX_ISR
-       02EC  _UART_EnableInt
-       02EC  UART_EnableInt
-       02F3  _UART_DisableInt
-       02F3  UART_DisableInt
-       02FA  _UART_SetTxIntMode
-       02FA  UART_SetTxIntMode
-       030C  UART_Start
-       030C  _UART_Start
-       0313  UART_Stop
-       0313  _UART_Stop
-       031A  UART_SendData
-       031A  _UART_SendData
-       031D  UART_bReadTxStatus
-       031D  _bUART_ReadTxStatus
-       031D  _UART_bReadTxStatus
-       031D  bUART_ReadTxStatus
-       0320  bUART_ReadRxData
-       0320  _UART_bReadRxData
-       0320  UART_bReadRxData
-       0320  _bUART_ReadRxData
-       0323  UART_bReadRxStatus
-       0323  _UART_bReadRxStatus
-       0323  bUART_ReadRxStatus
-       0323  _bUART_ReadRxStatus
-       0326  _UART_TxIntMode
-       0326  UART_TxIntMode
-       0339  UART_IntCntl
-       0339  _UART_IntCntl
-       0364  _UART_PutSHexByte
-       0364  UART_PutSHexByte
-       0377  _UART_PutSHexInt
-       0377  UART_PutSHexInt
-       037E  _UART_PutChar
-       037E  UART_PutChar
-       0386  UART_cGetChar
-       0386  _UART_cGetChar
-       038E  UART_cReadChar
-       038E  _UART_cReadChar
-       03A5  UART_iReadChar
-       03A5  _UART_iReadChar
-       03BB  UART_PutString
-       03BB  _UART_PutString
-       03C5  _UART_Write
-       03C5  UART_Write
-       03DD  _UART_CWrite
-       03DD  UART_CWrite
-       0405  _UART_CPutString
-       0405  UART_CPutString
-       0417  UART_PutCRLF
-       0417  _UART_PutCRLF
-       0420  _PWM8_EnableInt
-       0420  PWM8_EnableInt
-       0424  PWM8_DisableInt
-       0424  _PWM8_DisableInt
-       0428  PWM8_Start
-       0428  _PWM8_Start
-       042C  PWM8_Stop
-       042C  _PWM8_Stop
-       0430  PWM8_WritePeriod
-       0430  _PWM8_WritePeriod
-       0433  PWM8_WritePulseWidth
-       0433  _PWM8_WritePulseWidth
-       0436  _bPWM8_ReadPulseWidth
-       0436  _PWM8_bReadPulseWidth
-       0436  bPWM8_ReadPulseWidth
-       0436  PWM8_bReadPulseWidth
-       0439  PWM8_bReadCounter
-       0439  _bPWM8_ReadCounter
-       0439  bPWM8_ReadCounter
-       0439  _PWM8_bReadCounter
-       0462  _PGA_1_Start
-       0462  _PGA_1_SetPower
-       0462  PGA_1_Start
-       0462  PGA_1_SetPower
-       0470  _PGA_1_SetGain
-       0470  PGA_1_SetGain
-       0492  _PGA_1_Stop
-       0492  PGA_1_Stop
-       0496  _ADCINC_ADConversion_ISR
-       0505  ADCINC_Start
-       0505  _ADCINC_Start
-       0517  _ADCINC_SetPower
-       0517  ADCINC_SetPower
-       0525  _ADCINC_Stop
-       0525  ADCINC_Stop
-       052F  _ADCINC_GetSamples
-       052F  ADCINC_GetSamples
-       054B  _ADCINC_StopADC
-       054B  ADCINC_StopADC
-       0555  _ADCINC_fIsDataAvailable
-       0555  ADCINC_fIsDataAvailable
-       0558  ADCINC_iClearFlagGetData
-       0558  _ADCINC_iClearFlagGetData
-       0558  _ADCINC_wClearFlagGetData
-       0558  ADCINC_wClearFlagGetData
-       0565  ADCINC_bClearFlagGetData
-       0565  ADCINC_cClearFlagGetData
-       0565  _ADCINC_bClearFlagGetData
-       0565  _ADCINC_cClearFlagGetData
-       056B  _ADCINC_wGetData
-       056B  ADCINC_wGetData
-       056B  ADCINC_iGetData
-       056B  _ADCINC_iGetData
-       0570  ADCINC_cGetData
-       0570  _ADCINC_bGetData
-       0570  ADCINC_bGetData
-       0570  _ADCINC_cGetData
-       0573  ADCINC_fClearFlag
-       0573  _ADCINC_fClearFlag
-       0579  ADCINC_WritePulseWidth
-       0579  _ADCINC_WritePulseWidth
-       057C  __UserModules_end
+       02E4  UART_EnableInt
+       02E4  _UART_EnableInt
+       02EB  _UART_DisableInt
+       02EB  UART_DisableInt
+       02F2  UART_SetTxIntMode
+       02F2  _UART_SetTxIntMode
+       0304  _UART_Start
+       0304  UART_Start
+       030B  UART_Stop
+       030B  _UART_Stop
+       0312  UART_SendData
+       0312  _UART_SendData
+       0315  _bUART_ReadTxStatus
+       0315  _UART_bReadTxStatus
+       0315  bUART_ReadTxStatus
+       0315  UART_bReadTxStatus
+       0318  UART_bReadRxData
+       0318  _bUART_ReadRxData
+       0318  _UART_bReadRxData
+       0318  bUART_ReadRxData
+       031B  UART_bReadRxStatus
+       031B  _UART_bReadRxStatus
+       031B  bUART_ReadRxStatus
+       031B  _bUART_ReadRxStatus
+       031E  _UART_TxIntMode
+       031E  UART_TxIntMode
+       0331  UART_IntCntl
+       0331  _UART_IntCntl
+       035C  UART_PutSHexByte
+       035C  _UART_PutSHexByte
+       036F  _UART_PutSHexInt
+       036F  UART_PutSHexInt
+       0376  UART_PutChar
+       0376  _UART_PutChar
+       037E  _UART_cGetChar
+       037E  UART_cGetChar
+       0386  UART_cReadChar
+       0386  _UART_cReadChar
+       039D  _UART_iReadChar
+       039D  UART_iReadChar
+       03B3  UART_PutString
+       03B3  _UART_PutString
+       03BD  _UART_Write
+       03BD  UART_Write
+       03D5  UART_CWrite
+       03D5  _UART_CWrite
+       03FD  _UART_CPutString
+       03FD  UART_CPutString
+       040F  _UART_PutCRLF
+       040F  UART_PutCRLF
+       0418  PWM8_EnableInt
+       0418  _PWM8_EnableInt
+       041C  PWM8_DisableInt
+       041C  _PWM8_DisableInt
+       0420  _PWM8_Start
+       0420  PWM8_Start
+       0424  PWM8_Stop
+       0424  _PWM8_Stop
+       0428  PWM8_WritePeriod
+       0428  _PWM8_WritePeriod
+       042B  PWM8_WritePulseWidth
+       042B  _PWM8_WritePulseWidth
+       042E  _PWM8_bReadPulseWidth
+       042E  PWM8_bReadPulseWidth
+       042E  _bPWM8_ReadPulseWidth
+       042E  bPWM8_ReadPulseWidth
+       0431  _PWM8_bReadCounter
+       0431  PWM8_bReadCounter
+       0431  bPWM8_ReadCounter
+       0431  _bPWM8_ReadCounter
+       045A  _PGA_1_SetPower
+       045A  PGA_1_SetPower
+       045A  PGA_1_Start
+       045A  _PGA_1_Start
+       0468  PGA_1_SetGain
+       0468  _PGA_1_SetGain
+       048A  PGA_1_Stop
+       048A  _PGA_1_Stop
+       048E  _DELSIG8_ADConversion_ISR
+       04C7  _DELSIG8_Start
+       04C7  DELSIG8_SetPower
+       04C7  _DELSIG8_SetPower
+       04C7  DELSIG8_Start
+       04D5  DELSIG8_Stop
+       04D5  _DELSIG8_Stop
+       04D9  DELSIG8_StartAD
+       04D9  _DELSIG8_StartAD
+       04F0  DELSIG8_StopAD
+       04F0  _DELSIG8_StopAD
+       0504  __UserModules_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                            text   057C   003E =     62. bytes (rel,con,rom)
+                            text   0504   003A =     58. bytes (rel,con,rom)
 
        Addr  Global Symbol
       -----  --------------------------------
-       057C  _main
-       057C  __text_start
-       05BA  __text_end
+       0504  _main
+       0504  __text_start
+       053E  __text_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
@@ -183,37 +161,27 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                    InterruptRAM   0004   0008 =      8. bytes (rel,con,ram)
+                    InterruptRAM   0004   0006 =      6. bytes (rel,con,ram)
 
        Addr  Global Symbol
       -----  --------------------------------
        0004  NO_SHADOW
-       0004  ADCINC_iResult
        0004  _NO_SHADOW
-       0004  _ADCINC_iResult
-       0008  ADCINC_fStatus
-       0008  _ADCINC_fStatus
-       0009  ADCINC_bState
-       0009  _ADCINC_bState
-       000A  _ADCINC_fMode
-       000A  ADCINC_fMode
-       000B  ADCINC_bNumSamples
-       000B  _ADCINC_bNumSamples
-       000C  __InterruptRAM_end
+       000A  __InterruptRAM_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                             bss   000C   0042 =     66. bytes (rel,con,ram)
+                             bss   000A   0042 =     66. bytes (rel,con,ram)
 
        Addr  Global Symbol
       -----  --------------------------------
-       000C  _s_to_m_mem
-       000C  __bss_start
-       002C  _m_to_s_mem
-       004C  _expected_bytes
-       004D  _target_address
-       004E  __bss_end
-       004E  __ramareas_end
+       000A  _s_to_m_mem
+       000A  __bss_start
+       002A  _m_to_s_mem
+       004A  _expected_bytes
+       004B  _target_address
+       004C  __bss_end
+       004C  __ramareas_end
 
 Area                               Start  End    Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
@@ -229,8 +197,8 @@ Files Linked      [ module(s) ]
 
 ./obj/boot.o	[ boot.asm ]
 ./obj/main.o	[ main.c ]
-<library>	[ uartint.asm, uart.asm, pwm8.asm, psocconfigtbl.asm, psocconfig.asm, pga_1.asm, adcincint.asm ]
-[ adcinc.asm, r0.asm ]
+<library>	[ uartint.asm, uart.asm, pwm8.asm, psocconfigtbl.asm, psocconfig.asm, pga_1.asm, delsig8int.asm ]
+[ delsig8.asm, r0.asm ]
 
 Area Definitions
 

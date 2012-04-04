@@ -1,7 +1,7 @@
 Starting MAKE...
 creating project.mk 
-lib/adcinc.asm
-lib/adcincint.asm
+lib/delsig8.asm
+lib/delsig8int.asm
 lib/pga_1.asm
 lib/psocconfig.asm
 lib/psocconfigtbl.asm
@@ -12,9 +12,9 @@ lib/uartplus.asm
 ./boot.asm
 ./main.c
 Linking..
-  ROM 28% full. 1130 out of 4096 bytes used (does not include absolute areas).
-  RAM 31% full. 78 bytes used (does not include stack usage).
+  ROM 25% full. 1006 out of 4096 bytes used (does not include absolute areas).
+  RAM 30% full. 76 bytes used (does not include stack usage).
 Built with ICCM8C STD V7.04
  
-SerialTest1 - 0 error(s) 0 warning(s) 01:53:26
+SerialTest1 - 0 error(s) 0 warning(s) 20:48:42
 

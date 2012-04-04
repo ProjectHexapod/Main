@@ -786,9 +786,9 @@
  0001           COMM_RX_PRESENT:		equ	1	;1 = TRUE
  0000           WATCHDOG_ENABLE:		equ 0	;Watchdog Enable 1 = Enable
  0000           
- 000F           CLOCK_DIV_VC1:			equ	fh	;VC1 clock divider
+ 0002           CLOCK_DIV_VC1:			equ	2h	;VC1 clock divider
  00F0           CLOCK_DIV_VC1_MASK:		equ	f0h	;VC1 clock divider mask
- 00F0           CLOCK_DIV_VC1_JUST:		equ	f0h	;VC1 clock divider justified
+ 0020           CLOCK_DIV_VC1_JUST:		equ	20h	;VC1 clock divider justified
  0001           CLOCK_DIV_VC2:			equ	1h	;VC2 clock divider
  000F           CLOCK_DIV_VC2_MASK:		equ	fh	;VC2 clock divider mask
  0001           CLOCK_DIV_VC2_JUST:		equ	1h	;VC2 clock divider justified
@@ -823,10 +823,10 @@
  0000           ; register initial values
  0000           ;
  0000           ANALOG_IO_CONTROL:		equ 0h	;Analog IO Control register (ABF_CR)
- 0000           PORT_0_GLOBAL_SELECT:	equ 0h	;Port 0 global select register (PRT0GS)
- 0000           PORT_0_DRIVE_0:			equ 0h	;Port 0 drive mode 0 register (PRT0DM0)
- 00FF           PORT_0_DRIVE_1:			equ ffh	;Port 0 drive mode 1 register (PRT0DM1)
- 00FF           PORT_0_DRIVE_2:			equ ffh	;Port 0 drive mode 2 register (PRT0DM2)
+ 0005           PORT_0_GLOBAL_SELECT:	equ 5h	;Port 0 global select register (PRT0GS)
+ 0001           PORT_0_DRIVE_0:			equ 1h	;Port 0 drive mode 0 register (PRT0DM0)
+ 00FE           PORT_0_DRIVE_1:			equ feh	;Port 0 drive mode 1 register (PRT0DM1)
+ 00FA           PORT_0_DRIVE_2:			equ fah	;Port 0 drive mode 2 register (PRT0DM2)
  0000           PORT_0_INTENABLE:		equ 0h	;Port 0 interrupt enable register (PRT0IE)
  0000           PORT_0_INTCTRL_0:		equ 0h	;Port 0 interrupt control 0 register (PRT0IC0)
  0000           PORT_0_INTCTRL_1:		equ 0h	;Port 0 interrupt control 1 register (PRT0IC1)
@@ -837,10 +837,10 @@
  0000           PORT_1_INTENABLE:		equ 0h	;Port 1 interrupt enable register (PRT1IE)
  0000           PORT_1_INTCTRL_0:		equ 0h	;Port 1 interrupt control 0 register (PRT1IC0)
  0000           PORT_1_INTCTRL_1:		equ 0h	;Port 1 interrupt control 1 register (PRT1IC1)
- 00D0           PORT_2_GLOBAL_SELECT:	equ d0h	;Port 2 global select register (PRT2GS)
- 00C0           PORT_2_DRIVE_0:			equ c0h	;Port 2 drive mode 0 register (PRT2DM0)
- 003F           PORT_2_DRIVE_1:			equ 3fh	;Port 2 drive mode 1 register (PRT2DM1)
- 002F           PORT_2_DRIVE_2:			equ 2fh	;Port 2 drive mode 2 register (PRT2DM2)
+ 0080           PORT_2_GLOBAL_SELECT:	equ 80h	;Port 2 global select register (PRT2GS)
+ 0080           PORT_2_DRIVE_0:			equ 80h	;Port 2 drive mode 0 register (PRT2DM0)
+ 007F           PORT_2_DRIVE_1:			equ 7fh	;Port 2 drive mode 1 register (PRT2DM1)
+ 007F           PORT_2_DRIVE_2:			equ 7fh	;Port 2 drive mode 2 register (PRT2DM2)
  0000           PORT_2_INTENABLE:		equ 0h	;Port 2 interrupt enable register (PRT2IE)
  0000           PORT_2_INTCTRL_0:		equ 0h	;Port 2 interrupt control 0 register (PRT2IC0)
  0000           PORT_2_INTCTRL_1:		equ 0h	;Port 2 interrupt control 1 register (PRT2IC1)

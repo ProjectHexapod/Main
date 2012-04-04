@@ -14,6 +14,9 @@ unsigned char m_to_s_offset = 0;
 unsigned char m_to_s_mem[32];
 unsigned char s_to_m_mem[32];
 
+extern BYTE DELSIG8_bfStatus;
+extern BYTE DELSIG8_cResult;
+
 void main(void)
 {
 	// Insert your main routine code here.
@@ -22,18 +25,21 @@ void main(void)
 	UART_EnableInt();
 	UART_Start(UART_PARITY_NONE);
 	PGA_1_Start(PGA_1_HIGHPOWER);
-	
-	ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
-	ADCINC_GetSamples(0); // Have ADC run continuously
+	DELSIG8_Start( DELSIG8_HIGHPOWER );
+	DELSIG8_StartAD();
+	//ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
 	PWM8_DisableInt();
 	PWM8_Start();
 	for(;;)
 	{
 		PWM8_WritePulseWidth(m_to_s_mem[0]);
-		//if(ADCINC_fIsDataAvailable())
-		//{
-		//	s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
+		//if ( DELSIG8_bfStatus ) {
+		//	DELSIG8_bfStatus = 0;
+		//	s_to_m_mem[0] = DELSIG8_cResult;
 		//}
+		//ADCINC_GetSamples(1);
+		//while(ADCINC_fIsDataAvailable() == 0);
+		//s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
 	}
 	//mainloop:
 	//	UART_SendData(temp++);

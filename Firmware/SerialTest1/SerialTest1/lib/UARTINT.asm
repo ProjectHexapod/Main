@@ -159,9 +159,11 @@ _UART_RX_ISR:
    
    ; JWHONG: I dropped this into assembly because it's a very critical loop
    ; and needs to be tight.
-   ; 
-   push A
-   push X
+   ;
+   ; NOTE:  For some reason, pushing A and X to the stack and popping them after causes an intermittent bug...
+   ; Don't ask me why.  I was just following the auto-generated recommendations above.
+   ;push A
+   ;push X
    mov  A,REG[UART_RX_BUFFER_REG]    ; Read the received data
    cmp  [_bytes_received], 0x00		 ; Were we waiting for the start of a packet?
    jz   packet_start
@@ -217,12 +219,8 @@ packet_end:
 packet_continues:
    inc [_bytes_received]
 finish:
-   ;call Counter8_Stop                ; Stop the idle counter
-   ;mov A, 160                        ; 160 corresponds to two byte reception worth of time
-   ;call Counter8_WritePeriod
-   ;call Counter8_Start                
-   pop A
-   pop X
+   //pop X
+   //pop A
    ;reti
    
    ;---------------------------------------------------

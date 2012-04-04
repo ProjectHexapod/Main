@@ -5,7 +5,7 @@
 #define __PSOCAPI_H
 
 #include "PSoCGPIOINT.h"
-#include "ADCINC.h"
+#include "DELSIG8.h"
 #include "PGA_1.h"
 #include "PWM8.h"
 #include "UART.h"
