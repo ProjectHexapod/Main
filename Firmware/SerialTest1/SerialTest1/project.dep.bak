@@ -4,14 +4,14 @@
    C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1/tools/include/CY8C24~3/m8ssc.inc\
    C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\lib\GLOBAL~1.INC\
    C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\memory.inc
-./obj/main.o :  ./lib/DELSIG8.h ./lib/PGA_1.h ./lib/PSoCAPI.h\
+./obj/main.o :  ./lib/ADCINC.h ./lib/PGA_1.h ./lib/PSoCAPI.h\
    ./lib/PSOCGP~1.H ./lib/PWM8.h ./lib/UART.h\
    C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1/tools/include/CY8C24~3/M8C.h\
    C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1/tools/include/CY8C24~3/m8c.h
-./lib/obj/delsig8.o :  ./lib/DELSIG8.inc\
+./lib/obj/adcinc.o :  ./lib/ADCINC.inc\
    C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
    C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\memory.inc
-./lib/obj/delsig8int.o :  ./lib/DELSIG8.inc\
+./lib/obj/adcincint.o :  ./lib/ADCINC.inc\
    C:/PROGRA~2/Cypress/PSOCDE~1/5.1/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
    C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\memory.inc
 ./lib/obj/pga_1.o :  ./lib/PGA_1.inc\

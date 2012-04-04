@@ -34,7 +34,7 @@
  0000 10                push X
  0001 4F                mov X,SP
  0002 3801              add SP,1
- 0004                   .dbline 21
+ 0004                   .dbline 30
  0004           ; //----------------------------------------------------------------------------
  0004           ; // C main line
  0004           ; //----------------------------------------------------------------------------
@@ -48,7 +48,16 @@
  0004           ; 
  0004           ; unsigned char ext_mem_locked = 0;
  0004           ; unsigned char m_to_s_offset = 0;
+ 0004           ; /********
+ 0004           ; m_to_s_memory map
+ 0004           ; 0:  Desired PWM duty cycle
+ 0004           ; ********/
  0004           ; unsigned char m_to_s_mem[32];
+ 0004           ; /********
+ 0004           ; s_to_m_memory map
+ 0004           ; 0:  Low  byte, ADC in
+ 0004           ; 1:  High byte, ADC in
+ 0004           ; ********/
  0004           ; unsigned char s_to_m_mem[32];
  0004           ; 
  0004           ; extern BYTE DELSIG8_bfStatus;
@@ -56,79 +65,83 @@
  0004           ; 
  0004           ; void main(void)
  0004           ; {
- 0004                   .dbline 23
+ 0004                   .dbline 32
  0004           ;       // Insert your main routine code here.
  0004           ;       unsigned char c = 0;
  0004 560000            mov [X+0],0
- 0007                   .dbline 24
+ 0007                   .dbline 33
  0007           ;       M8C_EnableGInt;
  0007 7101                      or  F, 01h
  0009           
- 0009                   .dbline 25
+ 0009                   .dbline 34
  0009           ;       UART_EnableInt();
  0009 10                push X
  000A 7C0000            xcall _UART_EnableInt
  000D 20                pop X
- 000E                   .dbline 26
+ 000E                   .dbline 35
  000E           ;       UART_Start(UART_PARITY_NONE);
  000E 10                push X
  000F 5000              mov A,0
  0011 7C0000            xcall _UART_Start
  0014 20                pop X
- 0015                   .dbline 27
+ 0015                   .dbline 36
  0015           ;       PGA_1_Start(PGA_1_HIGHPOWER);
  0015 10                push X
  0016 5003              mov A,3
  0018 7C0000            xcall _PGA_1_Start
  001B 20                pop X
- 001C                   .dbline 28
- 001C           ;       DELSIG8_Start( DELSIG8_HIGHPOWER );
+ 001C                   .dbline 39
+ 001C           ;       //DELSIG8_Start( DELSIG8_HIGHPOWER );
+ 001C           ;       //DELSIG8_StartAD();
+ 001C           ;       ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
  001C 10                push X
  001D 5003              mov A,3
- 001F 7C0000            xcall _DELSIG8_Start
- 0022                   .dbline 29
- 0022           ;       DELSIG8_StartAD();
- 0022 7C0000            xcall _DELSIG8_StartAD
- 0025                   .dbline 31
- 0025           ;       //ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
- 0025           ;       PWM8_DisableInt();
- 0025 7C0000            xcall _PWM8_DisableInt
- 0028                   .dbline 32
- 0028           ;       PWM8_Start();
- 0028 7C0000            xcall _PWM8_Start
- 002B 20                pop X
- 002C                   .dbline 33
- 002C           ;       for(;;)
- 002C           L2:
- 002C                   .dbline 34
- 002C           ;       {
- 002C                   .dbline 35
- 002C           ;               PWM8_WritePulseWidth(m_to_s_mem[0]);
- 002C 10                push X
- 002D 5120              mov A,[_m_to_s_mem]
- 002F 7C0000            xcall _PWM8_WritePulseWidth
- 0032 20                pop X
- 0033                   .dbline 43
- 0033           ;               //if ( DELSIG8_bfStatus ) {
- 0033           ;               //      DELSIG8_bfStatus = 0;
- 0033           ;               //      s_to_m_mem[0] = DELSIG8_cResult;
- 0033           ;               //}
- 0033           ;               //ADCINC_GetSamples(1);
- 0033           ;               //while(ADCINC_fIsDataAvailable() == 0);
- 0033           ;               //s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
- 0033           ;       }
- 0033                   .dbline 33
- 0033                   .dbline 33
- 0033 8FF8              xjmp L2
- 0035           X0:
- 0035                   .dbline -2
- 0035           L1:
- 0035 38FF              add SP,-1
- 0037 20                pop X
- 0038                   .dbline 0 ; func end
- 0038 8FFF              jmp .
- 003A                   .dbsym l c 0 c
- 003A                   .dbend
+ 001F 7C0000            xcall _ADCINC_Start
+ 0022 20                pop X
+ 0023                   .dbline 40
+ 0023           ;       ADCINC_GetSamples(0);
+ 0023 10                push X
+ 0024 5000              mov A,0
+ 0026 7C0000            xcall _ADCINC_GetSamples
+ 0029                   .dbline 41
+ 0029           ;       PWM8_DisableInt();
+ 0029 7C0000            xcall _PWM8_DisableInt
+ 002C                   .dbline 42
+ 002C           ;       PWM8_Start();
+ 002C 7C0000            xcall _PWM8_Start
+ 002F 20                pop X
+ 0030                   .dbline 43
+ 0030           ;       for(;;)
+ 0030           L2:
+ 0030                   .dbline 44
+ 0030           ;       {
+ 0030                   .dbline 45
+ 0030           ;               PWM8_WritePulseWidth(m_to_s_mem[0]);
+ 0030 10                push X
+ 0031 5120              mov A,[_m_to_s_mem]
+ 0033 7C0000            xcall _PWM8_WritePulseWidth
+ 0036 20                pop X
+ 0037                   .dbline 53
+ 0037           ;               //if ( DELSIG8_bfStatus ) {
+ 0037           ;               //      DELSIG8_bfStatus = 0;
+ 0037           ;               //      s_to_m_mem[0] = DELSIG8_cResult;
+ 0037           ;               //}
+ 0037           ;               //ADCINC_GetSamples(1);
+ 0037           ;               //while(ADCINC_fIsDataAvailable() == 0);
+ 0037           ;               //s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
+ 0037           ;       }
+ 0037                   .dbline 43
+ 0037                   .dbline 43
+ 0037 8FF8              xjmp L2
+ 0039           X0:
+ 0039                   .dbline -2
+ 0039           L1:
+ 0039 38FF              add SP,-1
+ 003B 20                pop X
+ 003C                   .dbline 0 ; func end
+ 003C 8FFF              jmp .
+ 003E                   .dbsym l c 0 c
+ 003E                   .dbend
                         .area bss(ram, con, rel)
  0000                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
  0000           _s_to_m_mem::

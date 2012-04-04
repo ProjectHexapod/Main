@@ -19,18 +19,18 @@ LoadConfigTBL_serialtest1:
 	mov	reg[b2h], 00h		; Row_0_LogicInputAMux register (RDI0IS)
 	mov	reg[b3h], 33h		; Row_0_LogicSelect_0 register (RDI0LT0)
 	mov	reg[b4h], 33h		; Row_0_LogicSelect_1 register (RDI0LT1)
-	mov	reg[b5h], 01h		; Row_0_OutputDrive_0 register (RDI0SRO0)
+	mov	reg[b5h], 09h		; Row_0_OutputDrive_0 register (RDI0SRO0)
 	mov	reg[b6h], 20h		; Row_0_OutputDrive_1 register (RDI0SRO1)
-;  Instance name DELSIG8, User Module DELSIG8
-;       Instance name DELSIG8, Block Name ADC(ASC10)
-	mov	reg[80h], 90h		;DELSIG8_AtoDcr0(ASC10CR0)
-	mov	reg[81h], 00h		;DELSIG8_AtoDcr1(ASC10CR1)
-	mov	reg[82h], 60h		;DELSIG8_AtoDcr2(ASC10CR2)
-	mov	reg[83h], f0h		;DELSIG8_AtoDcr3(ASC10CR3)
-;       Instance name DELSIG8, Block Name TMR(DBB00)
-	mov	reg[23h], 00h		;DELSIG8_TimerCR0(DBB00CR0)
-	mov	reg[21h], 00h		;DELSIG8_TimerDR1(DBB00DR1)
-	mov	reg[22h], 00h		;DELSIG8_TimerDR2(DBB00DR2)
+;  Instance name ADCINC, User Module ADCINC
+;       Instance name ADCINC, Block Name ADC(ASC10)
+	mov	reg[80h], 90h		;ADCINC_AtoDcr0(ASC10CR0)
+	mov	reg[81h], 00h		;ADCINC_AtoDcr1(ASC10CR1)
+	mov	reg[82h], 60h		;ADCINC_AtoDcr2(ASC10CR2)
+	mov	reg[83h], f0h		;ADCINC_AtoDcr3(ASC10CR3)
+;       Instance name ADCINC, Block Name PWM(DBB00)
+	mov	reg[23h], 00h		;ADCINC_PWMcr0(DBB00CR0)
+	mov	reg[21h], 00h		;ADCINC_PWMdr1(DBB00DR1)
+	mov	reg[22h], 01h		;ADCINC_PWMdr2(DBB00DR2)
 ;  Instance name PGA_1, User Module PGA
 ;       Instance name PGA_1, Block Name GAIN(ACB00)
 	mov	reg[71h], feh		;PGA_1_GAIN_CR0(ACB00CR0)
@@ -70,12 +70,12 @@ LoadConfigTBL_serialtest1:
 	mov	reg[dfh], 05h		; OscillatorControl_3 register (OSC_CR3)
 	mov	reg[deh], 03h		; OscillatorControl_4 register (OSC_CR4)
 	mov	reg[ddh], 00h		; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
-;  Instance name DELSIG8, User Module DELSIG8
-;       Instance name DELSIG8, Block Name ADC(ASC10)
-;       Instance name DELSIG8, Block Name TMR(DBB00)
-	mov	reg[20h], 20h		;DELSIG8_TimerFN(DBB00FN)
-	mov	reg[21h], 15h		;DELSIG8_TimerSL(DBB00IN)
-	mov	reg[22h], 40h		;DELSIG8_TimerOS(DBB00OU)
+;  Instance name ADCINC, User Module ADCINC
+;       Instance name ADCINC, Block Name ADC(ASC10)
+;       Instance name ADCINC, Block Name PWM(DBB00)
+	mov	reg[20h], 31h		;ADCINC_PWMfn(DBB00FN)
+	mov	reg[21h], 15h		;ADCINC_PWMsl(DBB00IN)
+	mov	reg[22h], 40h		;ADCINC_PWMos(DBB00OU)
 ;  Instance name PGA_1, User Module PGA
 ;       Instance name PGA_1, Block Name GAIN(ACB00)
 ;  Instance name PWM8, User Module PWM8
@@ -109,11 +109,11 @@ LoadConfigTBL_serialtest1:
 	mov	reg[01h], 00h		; Port_0_IntEn register (PRT0IE)
 	mov	reg[04h], 00h		; Port_1_Data register (PRT1DR)
 	M8C_SetBank1
-	mov	reg[04h], 00h		; Port_1_DriveMode_0 register (PRT1DM0)
-	mov	reg[05h], ffh		; Port_1_DriveMode_1 register (PRT1DM1)
+	mov	reg[04h], 10h		; Port_1_DriveMode_0 register (PRT1DM0)
+	mov	reg[05h], efh		; Port_1_DriveMode_1 register (PRT1DM1)
 	M8C_SetBank0
-	mov	reg[07h], ffh		; Port_1_DriveMode_2 register (PRT1DM2)
-	mov	reg[06h], 00h		; Port_1_GlobalSelect register (PRT1GS)
+	mov	reg[07h], efh		; Port_1_DriveMode_2 register (PRT1DM2)
+	mov	reg[06h], 10h		; Port_1_GlobalSelect register (PRT1GS)
 	M8C_SetBank1
 	mov	reg[06h], 00h		; Port_1_IntCtrl_0 register (PRT1IC0)
 	mov	reg[07h], 00h		; Port_1_IntCtrl_1 register (PRT1IC1)

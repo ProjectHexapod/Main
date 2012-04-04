@@ -172,11 +172,11 @@ not_packet_start:
    jnz  forward_data				 ; If we are not the targeted device, forward the data
    cmp  [_m_to_s_offset], 0x80       ; Is the m_to_s flag set?
    jc   m_to_s_flag_not_set          ; Jump if the last packet we received was NOT a write address
-   and  [_m_to_s_offset], 0x7F       ; Mask the index and clear the flag
+   and  [_m_to_s_offset], 0x1F       ; Mask the index and clear the flag. Since our buffer is only 32 wide, cap max value
    mov  X, [_m_to_s_offset]          ; Load the offset
    mov  [X+_m_to_s_mem], A           ; Master is writing to the slave
-   mov REG[UART_TX_BUFFER_REG], 0    ; Write 0 back to the bus
-   jmp check_if_packet_done
+   inc  X                            ; Send the requested address+1 back to the master
+   jmp load_s_to_m_X
 m_to_s_flag_not_set:
    cmp  A, 0x80                      ; Is this an address for a m_to_s write?
    jc   received_s_to_m_address
@@ -184,6 +184,7 @@ m_to_s_flag_not_set:
    and  A, 0x7F                      ; Mask the address so we can give the master back some data
 received_s_to_m_address:
    mov  X, A						 ; A is the index requested by the master
+load_s_to_m_X:
    mov  A, [X+_s_to_m_mem]			 ; Load the requested address
    jmp  forward_data                 ; Fire it off
 packet_start:
@@ -219,9 +220,9 @@ packet_end:
 packet_continues:
    inc [_bytes_received]
 finish:
-   //pop X
-   //pop A
-   ;reti
+   ;pop X
+   ;pop A
+   reti
    
    ;---------------------------------------------------
    ; Insert your custom assembly code above this banner

@@ -101,10 +101,10 @@
  0000           PORT_0_INTENABLE:		equ 0h	;Port 0 interrupt enable register (PRT0IE)
  0000           PORT_0_INTCTRL_0:		equ 0h	;Port 0 interrupt control 0 register (PRT0IC0)
  0000           PORT_0_INTCTRL_1:		equ 0h	;Port 0 interrupt control 1 register (PRT0IC1)
- 0000           PORT_1_GLOBAL_SELECT:	equ 0h	;Port 1 global select register (PRT1GS)
- 0000           PORT_1_DRIVE_0:			equ 0h	;Port 1 drive mode 0 register (PRT1DM0)
- 00FF           PORT_1_DRIVE_1:			equ ffh	;Port 1 drive mode 1 register (PRT1DM1)
- 00FF           PORT_1_DRIVE_2:			equ ffh	;Port 1 drive mode 2 register (PRT1DM2)
+ 0010           PORT_1_GLOBAL_SELECT:	equ 10h	;Port 1 global select register (PRT1GS)
+ 0010           PORT_1_DRIVE_0:			equ 10h	;Port 1 drive mode 0 register (PRT1DM0)
+ 00EF           PORT_1_DRIVE_1:			equ efh	;Port 1 drive mode 1 register (PRT1DM1)
+ 00EF           PORT_1_DRIVE_2:			equ efh	;Port 1 drive mode 2 register (PRT1DM2)
  0000           PORT_1_INTENABLE:		equ 0h	;Port 1 interrupt enable register (PRT1IE)
  0000           PORT_1_INTCTRL_0:		equ 0h	;Port 1 interrupt control 0 register (PRT1IC0)
  0000           PORT_1_INTCTRL_1:		equ 0h	;Port 1 interrupt control 1 register (PRT1IC1)
@@ -1089,7 +1089,7 @@
  001C 7E            reti
  001D           
                     org   20h                      ;PSoC Block DBB00 Interrupt Vector
- 0020 7D0000        ljmp        _DELSIG8_ADConversion_ISR
+ 0020 7D0000        ljmp        _ADCINC_ADConversion_ISR
  0023 7E            reti
  0024           
                     org   24h                      ;PSoC Block DBB01 Interrupt Vector
