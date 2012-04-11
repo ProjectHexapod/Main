@@ -4,6 +4,9 @@ import ode
 from pubsub import *
 
 class LegOnStand(MultiBody):
+    YAW_W   = 0.15
+    THIGH_W = 0.10
+    CALF_W  = 0.10
     YAW_L   = 0.25
     THIGH_L = 1.00
     CALF_L  = 1.00
@@ -69,7 +72,7 @@ class LegOnStand(MultiBody):
         thigh = self.addBody(\
             p1     = hip_p, \
             p2     = knee_p, \
-            radius = THIGH_W, \
+            radius = self.THIGH_W, \
             mass   = self.THIGH_M )
         hip_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1        = yaw_link, \
@@ -81,9 +84,9 @@ class LegOnStand(MultiBody):
             a2y          = 0.25)
         hip_pitch.setParam(ode.ParamLoStop, -pi/3)
         hip_pitch.setParam(ode.ParamHiStop, +pi/3)
-        p1 = mul3( p, (BODY_W/2.0)+self.YAW_L )
+        p1 = mul3( p, self.YAW_L )
         p1 = (p1[0], p1[1], 0.355)
-        p2 = mul3( p, (BODY_W/2.0)+self.YAW_L+self.THIGH_L/2 )
+        p2 = mul3( p, self.YAW_L+self.THIGH_L/2 )
         hip_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
         hip_pitch.setGain(10.0)
         self.publisher.addToCatalog(\
@@ -116,7 +119,7 @@ class LegOnStand(MultiBody):
         calf = self.addBody( \
             p1     = knee_p, \
             p2     = foot_p, \
-            radius = CALF_W, \
+            radius = self.CALF_W, \
             mass   = self.CALF_M )
         knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1        = thigh, \
@@ -128,9 +131,9 @@ class LegOnStand(MultiBody):
             a2y          = 0.25)
         knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
         knee_pitch.setParam(ode.ParamHiStop, 0.0)
-        p1 = mul3( p, (BODY_W/2.0)+self.YAW_L+(self.THIGH_L/4) )
+        p1 = mul3( p, self.YAW_L+(self.THIGH_L/4) )
         p1 = (p1[0], p1[1], -0.1)
-        p2 = mul3( p, (BODY_W/2.0)+self.YAW_L+self.THIGH_L-.355 )
+        p2 = mul3( p, self.YAW_L+self.THIGH_L-.355 )
         knee_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
         knee_pitch.setGain(10.0)
         self.publisher.addToCatalog(\
