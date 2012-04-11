@@ -5,28 +5,28 @@
  0000                   .dbfile ./main.c
  0000           _bytes_received::
  0000                   .blkb 1
-                        .area idata
+                        .area idata(rom,lit)
  0000 00                .byte 0
                         .area data(ram, con, rel)
  0001                   .dbfile ./main.c
- 0001                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0001                   .dbfile C:\Users\jwhong\DOCUME~1\CHAMPI~1\Firmware\SERIAL~1\SERIAL~1\main.c
  0001                   .dbsym e bytes_received _bytes_received c
  0001           _ext_mem_locked::
  0001                   .blkb 1
-                        .area idata
+                        .area idata(rom,lit)
  0001 00                .byte 0
                         .area data(ram, con, rel)
- 0002                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0002                   .dbfile C:\Users\jwhong\DOCUME~1\CHAMPI~1\Firmware\SERIAL~1\SERIAL~1\main.c
  0002                   .dbsym e ext_mem_locked _ext_mem_locked c
  0002           _m_to_s_offset::
  0002                   .blkb 1
-                        .area idata
+                        .area idata(rom,lit)
  0002 00                .byte 0
                         .area data(ram, con, rel)
- 0003                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0003                   .dbfile C:\Users\jwhong\DOCUME~1\CHAMPI~1\Firmware\SERIAL~1\SERIAL~1\main.c
  0003                   .dbsym e m_to_s_offset _m_to_s_offset c
                         .area text(rom, con, rel)
- 0000                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0000                   .dbfile C:\Users\jwhong\DOCUME~1\CHAMPI~1\Firmware\SERIAL~1\SERIAL~1\main.c
  0000                   .dbfunc e main _main fV
  0000           ;              c -> X+0
  0000           _main::
@@ -77,73 +77,71 @@
  0009           ;       UART_EnableInt();
  0009 10                push X
  000A 7C0000            xcall _UART_EnableInt
- 000D 20                pop X
- 000E                   .dbline 35
- 000E           ;       UART_Start(UART_PARITY_NONE);
- 000E 10                push X
- 000F 5000              mov A,0
- 0011 7C0000            xcall _UART_Start
- 0014 20                pop X
- 0015                   .dbline 36
- 0015           ;       PGA_1_Start(PGA_1_HIGHPOWER);
- 0015 10                push X
- 0016 5003              mov A,3
- 0018 7C0000            xcall _PGA_1_Start
- 001B 20                pop X
- 001C                   .dbline 39
- 001C           ;       //DELSIG8_Start( DELSIG8_HIGHPOWER );
- 001C           ;       //DELSIG8_StartAD();
- 001C           ;       ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
- 001C 10                push X
- 001D 5003              mov A,3
- 001F 7C0000            xcall _ADCINC_Start
- 0022 20                pop X
- 0023                   .dbline 40
- 0023           ;       ADCINC_GetSamples(0);
- 0023 10                push X
- 0024 5000              mov A,0
- 0026 7C0000            xcall _ADCINC_GetSamples
+ 000D                   .dbline 35
+ 000D           ;       UART_Start(UART_PARITY_NONE);
+ 000D 5000              mov A,0
+ 000F 7C0000            xcall _UART_Start
+ 0012                   .dbline 36
+ 0012           ;       PGA_1_Start(PGA_1_HIGHPOWER);
+ 0012 5003              mov A,3
+ 0014 7C0000            xcall _PGA_1_Start
+ 0017                   .dbline 37
+ 0017           ;       ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
+ 0017 5003              mov A,3
+ 0019 7C0000            xcall _ADCINC_Start
+ 001C                   .dbline 38
+ 001C           ;       ADCINC_GetSamples(0);
+ 001C 5000              mov A,0
+ 001E 7C0000            xcall _ADCINC_GetSamples
+ 0021                   .dbline 39
+ 0021           ;       DAC6_Start(DAC6_HIGHPOWER);
+ 0021 5003              mov A,3
+ 0023 7C0000            xcall _DAC6_Start
+ 0026                   .dbline 40
+ 0026           ;       PWM8_DisableInt();
+ 0026 7C0000            xcall _PWM8_DisableInt
  0029                   .dbline 41
- 0029           ;       PWM8_DisableInt();
- 0029 7C0000            xcall _PWM8_DisableInt
- 002C                   .dbline 42
- 002C           ;       PWM8_Start();
- 002C 7C0000            xcall _PWM8_Start
- 002F 20                pop X
- 0030                   .dbline 43
- 0030           ;       for(;;)
- 0030           L2:
- 0030                   .dbline 44
- 0030           ;       {
- 0030                   .dbline 45
- 0030           ;               PWM8_WritePulseWidth(m_to_s_mem[0]);
- 0030 10                push X
- 0031 5120              mov A,[_m_to_s_mem]
- 0033 7C0000            xcall _PWM8_WritePulseWidth
- 0036 20                pop X
- 0037                   .dbline 53
- 0037           ;               //if ( DELSIG8_bfStatus ) {
- 0037           ;               //      DELSIG8_bfStatus = 0;
- 0037           ;               //      s_to_m_mem[0] = DELSIG8_cResult;
- 0037           ;               //}
- 0037           ;               //ADCINC_GetSamples(1);
- 0037           ;               //while(ADCINC_fIsDataAvailable() == 0);
- 0037           ;               //s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
- 0037           ;       }
- 0037                   .dbline 43
- 0037                   .dbline 43
- 0037 8FF8              xjmp L2
- 0039           X0:
- 0039                   .dbline -2
- 0039           L1:
- 0039 38FF              add SP,-1
- 003B 20                pop X
- 003C                   .dbline 0 ; func end
- 003C 8FFF              jmp .
- 003E                   .dbsym l c 0 c
- 003E                   .dbend
+ 0029           ;       PWM8_Start();
+ 0029 7C0000            xcall _PWM8_Start
+ 002C 20                pop X
+ 002D                   .dbline 42
+ 002D           ;       for(;;)
+ 002D           L2:
+ 002D                   .dbline 43
+ 002D           ;       {
+ 002D                   .dbline 44
+ 002D           ;               PWM8_WritePulseWidth(m_to_s_mem[0]);
+ 002D 10                push X
+ 002E 5120              mov A,[_m_to_s_mem]
+ 0030 7C0000            xcall _PWM8_WritePulseWidth
+ 0033                   .dbline 45
+ 0033           ;               DAC6_WriteBlind(m_to_s_mem[1]); 
+ 0033 5121              mov A,[_m_to_s_mem+1]
+ 0035 7C0000            xcall _DAC6_WriteBlind
+ 0038 20                pop X
+ 0039                   .dbline 53
+ 0039           ;               //if ( DELSIG8_bfStatus ) {
+ 0039           ;               //      DELSIG8_bfStatus = 0;
+ 0039           ;               //      s_to_m_mem[0] = DELSIG8_cResult;
+ 0039           ;               //}
+ 0039           ;               //ADCINC_GetSamples(1);
+ 0039           ;               //while(ADCINC_fIsDataAvailable() == 0);
+ 0039           ;               //s_to_m_mem[0] = ADCINC_bClearFlagGetData(); 
+ 0039           ;       }
+ 0039                   .dbline 42
+ 0039                   .dbline 42
+ 0039 8FF3              xjmp L2
+ 003B           X0:
+ 003B                   .dbline -2
+ 003B           L1:
+ 003B 38FF              add SP,-1
+ 003D 20                pop X
+ 003E                   .dbline 0 ; func end
+ 003E 8FFF              jmp .
+ 0040                   .dbsym l c 0 c
+ 0040                   .dbend
                         .area bss(ram, con, rel)
- 0000                   .dbfile C:\Users\jwhong\Desktop\dan\Firmware\SERIAL~1\SERIAL~1\main.c
+ 0000                   .dbfile C:\Users\jwhong\DOCUME~1\CHAMPI~1\Firmware\SERIAL~1\SERIAL~1\main.c
  0000           _s_to_m_mem::
  0000                   .blkb 32
  0020                   .dbsym e s_to_m_mem _s_to_m_mem A[32:32]c

@@ -1,7 +1,7 @@
 ;;*****************************************************************************
 ;;*****************************************************************************
 ;;  FILENAME: ADCINCINT.asm
-;;  Version: 1.20, Updated on 2011/6/28 at 6:7:58
+;;  Version: 1.20, Updated on 2011/12/1 at 17:19:45
 ;;
 ;;  DESCRIPTION: Assembler interrupt service routine for the ADCINC
 ;;               A/D Converter User Module. This code works for both the

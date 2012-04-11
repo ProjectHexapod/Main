@@ -1,15 +1,13 @@
 Project:      output/SerialTest1
 Build Number: 0
-Date:         Wed Apr  4 00:02:14 2012
+Date:         Wed Apr 04 22:50:48 2012
 Compiler:     ICCM8C
-Version:      7.04
+Version:      7.05.00
 
-  ROM 28% full. 1120 out of 4096 bytes used (does not include absolute areas).
-  RAM 31% full. 78 bytes used (does not include stack usage).
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                           idata   0150   0003 =      3. bytes (rel,con,rom)
+                           idata   0150   0003 =      3. bytes (rel,con,rom,lit)
 
        Addr  Global Symbol
       -----  --------------------------------
@@ -18,147 +16,157 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                     psoc_config   0153   0132 =    306. bytes (rel,con,rom)
+                     psoc_config   0153   013E =    318. bytes (rel,con,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
        0153  LoadConfigTBL_serialtest1
-       027B  LoadConfigInit
-       027B  _LoadConfigInit
-       027F  _LoadConfig_serialtest1
-       027F  LoadConfig_serialtest1
-       0285  __psoc_config_end
+       0287  LoadConfigInit
+       0287  _LoadConfigInit
+       028B  _LoadConfig_serialtest1
+       028B  LoadConfig_serialtest1
+       0291  __psoc_config_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                     UserModules   0285   02ED =    749. bytes (rel,con,rom)
+                     UserModules   0291   032A =    810. bytes (rel,con,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
-       0285  _UART_TX_ISR
-       0286  _UART_RX_ISR
-       02E3  _UART_EnableInt
-       02E3  UART_EnableInt
-       02EA  _UART_DisableInt
-       02EA  UART_DisableInt
-       02F1  _UART_SetTxIntMode
-       02F1  UART_SetTxIntMode
-       0303  UART_Start
-       0303  _UART_Start
-       030A  UART_Stop
-       030A  _UART_Stop
-       0311  UART_SendData
-       0311  _UART_SendData
-       0314  UART_bReadTxStatus
-       0314  _bUART_ReadTxStatus
-       0314  _UART_bReadTxStatus
-       0314  bUART_ReadTxStatus
-       0317  bUART_ReadRxData
-       0317  _UART_bReadRxData
-       0317  UART_bReadRxData
-       0317  _bUART_ReadRxData
-       031A  UART_bReadRxStatus
-       031A  _UART_bReadRxStatus
-       031A  bUART_ReadRxStatus
-       031A  _bUART_ReadRxStatus
-       031D  _UART_TxIntMode
-       031D  UART_TxIntMode
-       0330  UART_IntCntl
-       0330  _UART_IntCntl
-       035B  _UART_PutSHexByte
-       035B  UART_PutSHexByte
-       036E  _UART_PutSHexInt
-       036E  UART_PutSHexInt
-       0375  _UART_PutChar
-       0375  UART_PutChar
-       037D  UART_cGetChar
-       037D  _UART_cGetChar
-       0385  UART_cReadChar
-       0385  _UART_cReadChar
-       039C  UART_iReadChar
-       039C  _UART_iReadChar
-       03B2  UART_PutString
-       03B2  _UART_PutString
-       03BC  _UART_Write
-       03BC  UART_Write
-       03D4  _UART_CWrite
-       03D4  UART_CWrite
-       03FC  _UART_CPutString
-       03FC  UART_CPutString
-       040E  UART_PutCRLF
-       040E  _UART_PutCRLF
-       0417  _PWM8_EnableInt
-       0417  PWM8_EnableInt
-       041B  PWM8_DisableInt
-       041B  _PWM8_DisableInt
-       041F  PWM8_Start
-       041F  _PWM8_Start
-       0423  PWM8_Stop
-       0423  _PWM8_Stop
-       0427  PWM8_WritePeriod
-       0427  _PWM8_WritePeriod
-       042A  PWM8_WritePulseWidth
-       042A  _PWM8_WritePulseWidth
-       042D  _bPWM8_ReadPulseWidth
-       042D  _PWM8_bReadPulseWidth
-       042D  bPWM8_ReadPulseWidth
-       042D  PWM8_bReadPulseWidth
-       0430  PWM8_bReadCounter
-       0430  _bPWM8_ReadCounter
-       0430  bPWM8_ReadCounter
-       0430  _PWM8_bReadCounter
-       0459  _PGA_1_Start
-       0459  _PGA_1_SetPower
-       0459  PGA_1_Start
-       0459  PGA_1_SetPower
-       0467  _PGA_1_SetGain
-       0467  PGA_1_SetGain
-       0489  _PGA_1_Stop
-       0489  PGA_1_Stop
-       048D  _ADCINC_ADConversion_ISR
-       04FB  ADCINC_Start
-       04FB  _ADCINC_Start
-       050D  _ADCINC_SetPower
-       050D  ADCINC_SetPower
-       051B  _ADCINC_Stop
-       051B  ADCINC_Stop
-       0525  _ADCINC_GetSamples
-       0525  ADCINC_GetSamples
-       0541  _ADCINC_StopADC
-       0541  ADCINC_StopADC
-       054B  _ADCINC_fIsDataAvailable
-       054B  ADCINC_fIsDataAvailable
-       054E  ADCINC_iClearFlagGetData
-       054E  _ADCINC_iClearFlagGetData
-       054E  _ADCINC_wClearFlagGetData
-       054E  ADCINC_wClearFlagGetData
-       055B  ADCINC_bClearFlagGetData
-       055B  ADCINC_cClearFlagGetData
-       055B  _ADCINC_bClearFlagGetData
-       055B  _ADCINC_cClearFlagGetData
-       0561  _ADCINC_wGetData
-       0561  ADCINC_wGetData
-       0561  ADCINC_iGetData
-       0561  _ADCINC_iGetData
-       0566  ADCINC_cGetData
-       0566  _ADCINC_bGetData
-       0566  ADCINC_bGetData
-       0566  _ADCINC_cGetData
-       0569  ADCINC_fClearFlag
-       0569  _ADCINC_fClearFlag
-       056F  ADCINC_WritePulseWidth
-       056F  _ADCINC_WritePulseWidth
-       0572  __UserModules_end
+       0291  _UART_TX_ISR
+       0292  _UART_RX_ISR
+       02EF  _UART_EnableInt
+       02EF  UART_EnableInt
+       02F6  UART_DisableInt
+       02F6  _UART_DisableInt
+       02FD  UART_SetTxIntMode
+       02FD  _UART_SetTxIntMode
+       030F  _UART_Start
+       030F  UART_Start
+       0316  UART_Stop
+       0316  _UART_Stop
+       031D  _UART_SendData
+       031D  UART_SendData
+       0320  UART_bReadTxStatus
+       0320  _UART_bReadTxStatus
+       0320  _bUART_ReadTxStatus
+       0320  bUART_ReadTxStatus
+       0323  _UART_bReadRxData
+       0323  bUART_ReadRxData
+       0323  _bUART_ReadRxData
+       0323  UART_bReadRxData
+       0326  UART_bReadRxStatus
+       0326  bUART_ReadRxStatus
+       0326  _UART_bReadRxStatus
+       0326  _bUART_ReadRxStatus
+       0329  UART_TxIntMode
+       0329  _UART_TxIntMode
+       033C  _UART_IntCntl
+       033C  UART_IntCntl
+       0367  UART_PutSHexByte
+       0367  _UART_PutSHexByte
+       037A  UART_PutSHexInt
+       037A  _UART_PutSHexInt
+       0381  UART_PutChar
+       0381  _UART_PutChar
+       0389  UART_cGetChar
+       0389  _UART_cGetChar
+       0391  _UART_cReadChar
+       0391  UART_cReadChar
+       03A8  _UART_iReadChar
+       03A8  UART_iReadChar
+       03BE  UART_PutString
+       03BE  _UART_PutString
+       03C8  _UART_Write
+       03C8  UART_Write
+       03E0  UART_CWrite
+       03E0  _UART_CWrite
+       0408  UART_CPutString
+       0408  _UART_CPutString
+       041A  UART_PutCRLF
+       041A  _UART_PutCRLF
+       0423  PWM8_EnableInt
+       0423  _PWM8_EnableInt
+       0427  PWM8_DisableInt
+       0427  _PWM8_DisableInt
+       042B  _PWM8_Start
+       042B  PWM8_Start
+       042F  _PWM8_Stop
+       042F  PWM8_Stop
+       0433  PWM8_WritePeriod
+       0433  _PWM8_WritePeriod
+       0436  _PWM8_WritePulseWidth
+       0436  PWM8_WritePulseWidth
+       0439  _bPWM8_ReadPulseWidth
+       0439  _PWM8_bReadPulseWidth
+       0439  PWM8_bReadPulseWidth
+       0439  bPWM8_ReadPulseWidth
+       043C  bPWM8_ReadCounter
+       043C  _bPWM8_ReadCounter
+       043C  _PWM8_bReadCounter
+       043C  PWM8_bReadCounter
+       0465  PGA_1_Start
+       0465  _PGA_1_SetPower
+       0465  _PGA_1_Start
+       0465  PGA_1_SetPower
+       0473  PGA_1_SetGain
+       0473  _PGA_1_SetGain
+       0495  _PGA_1_Stop
+       0495  PGA_1_Stop
+       0499  _DAC6_SetPower
+       0499  _DAC6_Start
+       0499  DAC6_Start
+       0499  DAC6_SetPower
+       04A0  _DAC6_WriteBlind
+       04A0  DAC6_WriteBlind
+       04B6  _DAC6_WriteStall
+       04B6  DAC6_WriteStall
+       04D2  DAC6_Stop
+       04D2  _DAC6_Stop
+       04D6  _ADCINC_ADConversion_ISR
+       0544  _ADCINC_Start
+       0544  ADCINC_Start
+       0556  ADCINC_SetPower
+       0556  _ADCINC_SetPower
+       0564  ADCINC_Stop
+       0564  _ADCINC_Stop
+       056E  _ADCINC_GetSamples
+       056E  ADCINC_GetSamples
+       058A  ADCINC_StopADC
+       058A  _ADCINC_StopADC
+       0594  ADCINC_fIsDataAvailable
+       0594  _ADCINC_fIsDataAvailable
+       0597  _ADCINC_iClearFlagGetData
+       0597  ADCINC_wClearFlagGetData
+       0597  _ADCINC_wClearFlagGetData
+       0597  ADCINC_iClearFlagGetData
+       05A4  ADCINC_bClearFlagGetData
+       05A4  _ADCINC_bClearFlagGetData
+       05A4  _ADCINC_cClearFlagGetData
+       05A4  ADCINC_cClearFlagGetData
+       05AA  ADCINC_wGetData
+       05AA  ADCINC_iGetData
+       05AA  _ADCINC_wGetData
+       05AA  _ADCINC_iGetData
+       05AF  ADCINC_cGetData
+       05AF  _ADCINC_cGetData
+       05AF  _ADCINC_bGetData
+       05AF  ADCINC_bGetData
+       05B2  _ADCINC_fClearFlag
+       05B2  ADCINC_fClearFlag
+       05B8  _ADCINC_WritePulseWidth
+       05B8  ADCINC_WritePulseWidth
+       05BB  __UserModules_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                            text   0572   003E =     62. bytes (rel,con,rom)
+                            text   05BB   0040 =     64. bytes (rel,con,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
-       0572  _main
-       0572  __text_start
-       05B0  __text_end
+       05BB  __text_start
+       05BB  _main
+       05FB  __text_end
 
 Area                               Addr   Size   Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
@@ -187,14 +195,14 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
 
        Addr  Global Symbol
       -----  --------------------------------
-       0004  NO_SHADOW
        0004  ADCINC_iResult
-       0004  _NO_SHADOW
        0004  _ADCINC_iResult
+       0004  _NO_SHADOW
+       0004  NO_SHADOW
        0008  ADCINC_fStatus
        0008  _ADCINC_fStatus
-       0009  ADCINC_bState
        0009  _ADCINC_bState
+       0009  ADCINC_bState
        000A  _ADCINC_fMode
        000A  ADCINC_fMode
        000B  ADCINC_bNumSamples
@@ -212,28 +220,29 @@ Area                               Addr   Size   Decimal Bytes (Attributes)
        002C  _m_to_s_mem
        004C  _expected_bytes
        004D  _target_address
-       004E  __bss_end
        004E  __ramareas_end
+       004E  __bss_end
 
 Area                               Start  End    Decimal Bytes (Attributes)
 --------------------------------   ----   ----   ------- ----- ------------
-                             TOP   0068   00D4 =    212. bytes (abs,ovr,rom)
+                             TOP   0000   00D4 =    212. bytes (abs,ovr,rom,code)
 
        Addr  Global Symbol
       -----  --------------------------------
        0068  __Start
-       00D1  bGetPowerSetting
        00D1  _bGetPowerSetting
+       00D1  bGetPowerSetting
 
 Files Linked      [ module(s) ]
 
 ./obj/boot.o	[ boot.asm ]
 ./obj/main.o	[ main.c ]
-<library>	[ uartint.asm, uart.asm, pwm8.asm, psocconfigtbl.asm, psocconfig.asm, pga_1.asm, adcincint.asm ]
+<library>	[ uartint.asm, uart.asm, pwm8.asm, psocconfigtbl.asm, psocconfig.asm, pga_1.asm, dac6.asm, adcincint.asm ]
 [ adcinc.asm, r0.asm ]
 
 Area Definitions
 
 -blit:0x150.0xfff
 -bdata:0.0xff
+-rwh:SSCParmBlk:0xf7.0xff
 

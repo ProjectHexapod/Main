@@ -34,15 +34,15 @@ void main(void)
 	UART_EnableInt();
 	UART_Start(UART_PARITY_NONE);
 	PGA_1_Start(PGA_1_HIGHPOWER);
-	//DELSIG8_Start( DELSIG8_HIGHPOWER );
-	//DELSIG8_StartAD();
 	ADCINC_Start(ADCINC_HIGHPOWER); // Apply power to the SC Block
 	ADCINC_GetSamples(0);
+	DAC6_Start(DAC6_HIGHPOWER);
 	PWM8_DisableInt();
 	PWM8_Start();
 	for(;;)
 	{
 		PWM8_WritePulseWidth(m_to_s_mem[0]);
+		DAC6_WriteBlind(m_to_s_mem[1]); 
 		//if ( DELSIG8_bfStatus ) {
 		//	DELSIG8_bfStatus = 0;
 		//	s_to_m_mem[0] = DELSIG8_cResult;
