@@ -41,16 +41,6 @@ class Publisher:
                 self.conn.send(pickle.dumps(frame))
             except error, mesg:
                 print mesg
-                self.restart()
-
-    def restart( self ):
-        self.subscriptions = []
-        self.restartflag = 1
-        self.conn.close()
-        self.conn = None
-        self.serverThread.join()
-        self.restartflag = 0
-        self.start()
 
     def run_server( self ):
         print 'Hello from the server thread'
@@ -59,32 +49,35 @@ class Publisher:
         # This is a hack to allow fast restarts
         self.sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
         self.sock.bind( (addr) )
-        self.sock.listen(1)
-        self.conn,self.remote_addr = self.sock.accept()
-        # Send a copy of the catalog
-        s = pickle.dumps(self.catalog.keys())
-        self.conn.send(s)
-        print 'Entering server loop'
-        # Main server loop
-        while not self.restartflag:
-            # Wait for request
-            try:
-                s = self.conn.recv(4096)
-            except error, mesg:
-                print mesg
-                self.restartflag = 1
-            if s:
-                # The request must be a list of catalog keys
+        while 1:
+            self.sock.listen(1)
+            self.conn,self.remote_addr = self.sock.accept()
+            # Send a copy of the catalog
+            s = pickle.dumps(self.catalog.keys())
+            self.conn.send(s)
+            print 'Entering server loop'
+            self.restartflag = 0
+            # Main server loop
+            while not self.restartflag:
+                # Wait for request
                 try:
-                    keys = pickle.loads(s)
-                    print "Received subscription list:"
-                    print keys
-                    self.subscriptions = keys
-                except:
-                    print 'Pickle fail'
-            else:
-                print "Timed out without receiving"
-        self.sock.close()
+                    s = self.conn.recv(4096)
+                except error, mesg:
+                    print mesg
+                    self.restartflag = 1
+                if s:
+                    # The request must be a list of catalog keys
+                    try:
+                        keys = pickle.loads(s)
+                        self.subscriptions = keys
+                    except:
+                        print 'Pickle fail'
+                        self.restartflag = 1
+                else:
+                    print "Timed out without receiving"
+                    self.restartflag = 1
+            self.conn.close()
+            self.conn = None
 
     def close( self ):
         print 'Closing publisher gracefully'
@@ -94,22 +87,32 @@ class Publisher:
 class Subscriber:
     def __init__(self, host, port):
         # Connect to the target publisher
+        self.stop_flag = 0
         self.frameReceivedCallback = None
         self.clientThread = None
         self.sock = socket( AF_INET, SOCK_STREAM )
         self.sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+        print "attempting connection"
         while 1:
             try:
                 self.sock.connect( (host,port) )
+            except error, desc:
+                print desc
+                time.sleep(1.0)
+            try:
+                "waiting for catalog"
                 self.catalog = pickle.loads(self.sock.recv(4096))
                 break
             except error, desc:
                 print desc
                 time.sleep(1.0)
+            except:
+                print 'Pickle fail'
         print 'Received catalog!'
         self.catalog.sort()
         print self.catalog
     def start( self ):
+        self.stop_flag = 0
         self.clientThread = threading.Thread()
         self.clientThread.run = self.run_client
         self.clientThread.setDaemon( True )
@@ -118,7 +121,7 @@ class Subscriber:
         self.sock.send( pickle.dumps(name_list) )
     def run_client( self ):
         # The client waits to receive frames and then calls the callback
-        while 1:
+        while not self.stop_flag:
             try:
                 frame = pickle.loads(self.sock.recv(4096))
                 self.frameReceivedCallback( frame )
@@ -126,12 +129,14 @@ class Subscriber:
                 # Socket error
                 print mesg
             except:
-                'What just happened?'
+                print 'Pickle fail'
     def setCallback( self, callback ):
         self.frameReceivedCallback = callback
     def close( self ):
         print 'Closing subscriber gracefully'
+        self.stop_flag =  1
         self.sock.close()
+        print 'Done'
 
 def dummy_callback( frame ):
     print 'Got frame!'

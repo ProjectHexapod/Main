@@ -48,7 +48,7 @@ class ControlledHingeJoint(ode.HingeJoint):
     def getAngleError( self ):
         return calcAngularError( self.angle_target, self.getAngle() )
     def setTorqueLimit( self, limit ):
-        self.setParam(ode.ParamFMax, limit)
+        self.setParam(ode.ParamFMax,    limit)
     def getTorqueLimit( self ):
         return self.getParam(ode.ParamFMax, limit)
     def setGain( self, gain ):
@@ -126,9 +126,9 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     def getTorqueLimit( self ):
         return abs(self.__get_lever_arm()*self.force_limit)
     def update( self ):
-        self.setParam(ode.ParamFMax, self.getTorqueLimit())
+        limit = self.getTorqueLimit()
+        self.setParam(ode.ParamFMax,    limit)
         ControlledHingeJoint.update(self)
-
 
 class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     """This simulates a hinge joint driven by a linear actuator that accepts a
@@ -144,7 +144,6 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
         self.setParam(ode.ParamVel, self.vel)
-        
 
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
@@ -229,7 +228,7 @@ class LinearActuator:
         f1, t1, f2, t2 = self.slider.getFeedback()
         return len3(f1)
     def setForceLimit( self, f ):
-        self.slider.setParam(ode.ParamFMax, f)
+        self.slider.setParam(ode.ParamFMax,    f)
     def getForceLimit( self ):
         return self.slider.getParam(ode.ParamFMax)
     def setLengthTarget( self, t ):

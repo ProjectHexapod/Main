@@ -73,7 +73,6 @@ class Simulator:
     The simulator class is responsible for starting ODE,
     starting OpenGL (if requested), instantiating the robot
     and running for a specified period of time.
-    TODO: Presently the robot must be set manually...
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=True, plane=False,\
                     publish_int=5, robot=None, robot_kwargs={}):
@@ -185,7 +184,7 @@ class Simulator:
                 step_dt = min(1e-2,step_dt)
                 step_dt = max(1e-4,step_dt)
             else:
-                step_dt = 1e-2
+                step_dt = self.dt
             
             # Detect collisions and create contact joints
             self.space.collide((self.world, self.contactgroup), self.near_callback)
@@ -208,13 +207,15 @@ class Simulator:
             # repave the road
             if self.pave:
                 self.paver.recenter(self.robot.getPosition())
-
+        real_t_elapsed = time.time()-real_t_present
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
-            print ""
-            print "Sim time:      %.3f"%self.sim_t
-            print "Realtime ratio: %.3f"%(self.sim_t/(real_t_present - self.real_t_start))
-            print "Steps per sec:  %.0f"%(self.n_iterations/(real_t_present-self.real_t_start))
+            if not self.paused:
+                print ""
+                print "Sim time:       %.3f"%self.sim_t
+                print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
+                print "Timestep:       %f"%(step_dt)
+                print "Steps per sec:  %.0f"%(1./real_t_elapsed)
             # Render if graphical
             if self.graphical:
                 self.handleInput()
@@ -237,6 +238,10 @@ class Simulator:
                 elif event.key == K_p:
                     self.paused = not self.paused
                     print 'Pause toggled'
+                elif event.key == K_EQUALS:
+                    self.dt *= 1.2
+                elif event.key == K_MINUS:
+                    self.dt /= 1.2
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
@@ -296,7 +301,6 @@ class Simulator:
         for b in self.robot.bodies:
             self.draw_body(b)
         self.window.flip()
-        # Print some statistics
     def draw_body(self, body):
         """Draw an ODE body."""
 
