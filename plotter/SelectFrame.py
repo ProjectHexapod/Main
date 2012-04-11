@@ -49,12 +49,6 @@ class SelectFrame(wx.Frame):
         self.subscriptions = {}
         self.data = {}
 
-        #self.animation_callbacks = []
-        #animation_clock_thread = threading.Thread()
-        #animation_clock_thread.run = self.animationClock
-        #animation_clock_thread.setDaemon(True)
-        #animation_clock_thread.start()
-
         # For each entry in the catalog we must figure out where it belongs in the tree
         root_d={}
         for full_name in self.subscriber.catalog:
@@ -139,7 +133,7 @@ class SelectFrame(wx.Frame):
         for k,v in frame.items():
             self.data[k].pop(0)
             self.data[k].append(v)
-    def OnPlayStopButton(self, event):
+    def OnPlayStopButton(self, event, close_window = False):
         if self.play_stop_button.GetLabel() == 'Play':
             self.play_stop_button.SetLabel('Stop')
             self.data = { k:[0 for x in range(1000)] for k in self.subscriptions }
@@ -158,6 +152,9 @@ class SelectFrame(wx.Frame):
             self.play_stop_button.SetLabel('Play')
             self.subscriber.close()
             self.subscriber    = Subscriber( 'localhost', 5055 )
+            if close_window:
+                self.plot_frame.Destroy()
+                del self.plot_frame
     def OnClose(self, event):
         self.subscriber.close()
         self.Destroy()

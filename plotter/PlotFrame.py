@@ -1,3 +1,4 @@
+import time
 import wx
 from wx.lib.plot import *
 # Needs Numeric or numarray or NumPy
@@ -22,6 +23,7 @@ class PlotFrame(wx.Frame):
     def __init__(self, parent, id, title):
         wx.Frame.__init__(self, parent, id, title,
                           wx.DefaultPosition, (600, 400))
+        self.Bind(wx.EVT_CLOSE, self.OnFileExit)
 
         # Now Create the menu bar and items
         self.mainmenu = wx.MenuBar()
@@ -166,7 +168,7 @@ class PlotFrame(wx.Frame):
         self.client.SaveFile()
 
     def OnFileExit(self, event):
-        self.Close()
+        self.GetParent().OnPlayStopButton( event, close_window = True )
 
     def drawData(self, event):
         colors = ['red', 'green', 'blue', 'black']
