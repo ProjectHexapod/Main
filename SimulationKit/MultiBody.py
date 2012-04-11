@@ -136,10 +136,18 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
 
     def __init__(self, world):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
-        self.setLengthRate(0.0)
+        #LinearActuatorControlledHingeJoint.__init__(self, world)
+        self.vel = 0.0
     
     def setLengthRate(self, vel_mps):
-        self.vel = vel_mps
+        link_ang = self.neutral_angle + self.getAngle()
+        link_len = len2((self.a2_x, self.a2_y))
+
+        #act = self.__get_act()
+        act = (self.a2_x*cos(link_ang) - self.a1_x, self.a2_y*sin(link_ang))
+
+        act_ang = atan2(act[1],act[0])
+        self.vel = vel_mps / (link_len*sin( link_ang + act_ang ))
         
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())

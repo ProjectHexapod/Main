@@ -4,13 +4,12 @@ from SimulationKit import Simulator
 from SimulationKit.Robots import SpiderWHydraulics, LegOnStand
 
 d = {'offset':(0,0,3)}
-s = Simulator(dt=0,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d)
+s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d)
 
 joints = s.robot.joints
-angles = [-0.5,1,-2]
+lRates = [.01,0,0]
 
 while True:
     s.step()
-    for j,ang in zip(joints, angles):
-        j.setLengthRate(ang)
-
+    for j,r in zip(joints, lRates):
+        j.setLengthRate(r)
