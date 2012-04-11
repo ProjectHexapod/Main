@@ -183,6 +183,7 @@ class Simulator:
                 step_dt = real_t_present - self.real_t_laststep
                 self.real_t_laststep = real_t_present
                 step_dt = min(1e-2,step_dt)
+                step_dt = max(1e-4,step_dt)
             else:
                 step_dt = 1e-2
             
