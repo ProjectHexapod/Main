@@ -83,20 +83,20 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         self.a2_y = a2_y
         self.neutral_angle = atan2(a2_y, a2_x)
     def getLength( self ):
-        a = self.__get_act()
+        a = self.getActPath()
         return len2(a)
     def getLengthRate( self ):
         arate = self.getAngleRate()
         link_ang = self.neutral_angle + self.getAngle()
         link_len = len2((self.a2_x, self.a2_y))
-        act = self.__get_act()
+        act = self.getActPath()
         act_ang = atan2(act[1],act[0])
         return arate*link_len*sin( link_ang + act_ang )
     def getHydraulicFlow( self ):
         return self.getLengthRate()*self.cross_section
     def getHydraulicFlowGPM( self ):
         return self.getLengthRate()*self.cross_section*15850.3
-    def __get_act( self ):
+    def getActPath( self ):
         """
         Return the path of the actuator in the hinge plane
         """
@@ -106,7 +106,7 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         act = (self.a2_x*cos(ang) - self.a1_x, self.a2_y*sin(ang))
         return act
     def __get_lever_arm( self ):
-        act = self.__get_act()
+        act = self.getActPath()
         h_ang = atan2(act[1], act[0])
         # Get the lever arm
         l_arm = sin(h_ang)*self.a1_x
@@ -138,20 +138,22 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         #LinearActuatorControlledHingeJoint.__init__(self, world)
         self.vel = 0.0
-    
-    def setLengthRate(self, vel_mps):
+
+    def getAngRate( self ):
         link_ang = self.neutral_angle + self.getAngle()
         link_len = len2((self.a2_x, self.a2_y))
-
-        #act = self.__get_act()
-        act = (self.a2_x*cos(link_ang) - self.a1_x, self.a2_y*sin(link_ang))
+        act = self.getActPath()
 
         act_ang = atan2(act[1],act[0])
-        self.vel = vel_mps / (link_len*sin( link_ang + act_ang ))
+        ang_vel = self.lenrate / (link_len*sin( link_ang + act_ang ))
+	return ang_vel
+ 
+    def setLengthRate(self, vel_mps):
+	self.lenrate = vel_mps
         
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
-        self.setParam(ode.ParamVel, self.vel)
+        self.setParam(ode.ParamVel, self.getAngRate() )
 
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
