@@ -1,5 +1,0 @@
-build
-ode.c
-_trimesh_switch.pyx
-MANIFEST
-dist
