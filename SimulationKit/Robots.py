@@ -204,8 +204,6 @@ class LegOnStand(MultiBody):
         p                    = rotate3( r_60z, p )
     def getPosition( self ):
         return self.offset
-    def getVelocity( self ):
-        return self.core[0].getLinearVel()
     def colorJointByTorque( self, joint ):
             b = joint.getBody(1)
             r = abs(joint.getTorque()/joint.getTorqueLimit())
