@@ -52,6 +52,11 @@ class SelectFrame(wx.Frame):
         # For each entry in the catalog we must figure out where it belongs in the tree
         root_d={}
         for full_name in self.subscriber.catalog:
+	    # FIXME: Eventually wee want to be able to plot vairables against eachother, not just against time.
+	    # But since we can't do that right now time must always be selected
+	    if full_name == 'time':
+		self.subscriptions['time'] = 0
+		continue
             tokens = full_name.split('.')
             d = root_d
             for token in tokens:
