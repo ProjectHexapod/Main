@@ -123,13 +123,19 @@ class Subscriber:
         # The client waits to receive frames and then calls the callback
         while not self.stop_flag:
             try:
-                frame = pickle.loads(self.sock.recv(4096))
+		recv_string = self.sock.recv(4096)
+                frame  = pickle.loads(recv_string)
                 self.frameReceivedCallback( frame )
             except error, mesg:
                 # Socket error
                 print mesg
             except:
                 print 'Pickle fail'
+		# Check if the socket is still connected
+		if not len(recv_string):
+		    print "Disconnect detected"
+		    self.stop_flag = 1
+		    break
     def setCallback( self, callback ):
         self.frameReceivedCallback = callback
     def close( self ):

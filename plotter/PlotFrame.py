@@ -174,10 +174,13 @@ class PlotFrame(wx.Frame):
         colors = ['red', 'green', 'blue', 'black']
         markers = []
         i = 0
+	z_i = 0
+	while not self.data['time'][z_i]:
+	    z_i += 1
         for k,v in self.data.items():
             if k == 'time':
                 continue
-            markers.append( PolyMarker(zip(self.data['time'], self.data[k]), legend=k, colour=colors[i], marker='dot',size=1) )
+            markers.append( PolyMarker(zip(self.data['time'][z_i:], self.data[k][z_i:]), legend=k, colour=colors[i], marker='dot',size=3) )
             i+=1
         graphics = PlotGraphics(markers,"Graph Title", "X Axis", "Y Axis")
         self.resetDefaults()

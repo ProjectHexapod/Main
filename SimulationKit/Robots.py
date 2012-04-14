@@ -170,6 +170,8 @@ class LegOnStand(MultiBody):
         d['thigh']        = thigh
         d['calf']         = calf
         self.members      = d
+    def getVelocity( self ):
+	return (0,0,0)
     def getTotalHydraulicFlowGPM( self ):
         total = 0
         total += abs(self.members['hip_yaw'].getHydraulicFlowGPM())
