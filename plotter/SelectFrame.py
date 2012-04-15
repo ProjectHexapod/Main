@@ -43,6 +43,13 @@ class SelectFrame(wx.Frame):
         # A status bar to tell people what's happening
         self.CreateStatusBar(1)
         
+	# To get around threading issues, some calls need to be made by
+	# wx's event handlers.  Here we set up a queue of functions to be called
+	# and a timer to check the queue every 50 ms
+	self.function_timer = wx.Timer(self)
+	self.function_queue = []
+	self.Bind(wx.EVT_TIMER, self.CheckFunctionQueue, self.function_timer)
+	self.function_timer.Start(50,0)
         # FIXME:  Put this elsewhere
         self.subscriber    = Subscriber( 'localhost', 5055 )
 
@@ -86,6 +93,10 @@ class SelectFrame(wx.Frame):
         self.SetSizer(self.vsizer_0)
 
         self.Show(True)
+    def CheckFunctionQueue( self, event ):
+	for f in self.function_queue:
+	    f()
+	self.function_queue = []
     def OnCatalogItemActivated( self, event ):
         itemid = event.GetId()
         tree = event.GetEventObject()
@@ -138,28 +149,48 @@ class SelectFrame(wx.Frame):
         for k,v in frame.items():
             self.data[k].pop(0)
             self.data[k].append(v)
-    def OnPlayStopButton(self, event, close_window = False):
+    def OnRemoteDisconnect( self ):
+	self.Stop(connect_callback=self.Play)
+    def TogglePlay( self, close_window = False ):
         if self.play_stop_button.GetLabel() == 'Play':
-            self.play_stop_button.SetLabel('Stop')
-            self.data = { k:[0 for x in range(1000)] for k in self.subscriptions }
-            self.subscriber.subscribeTo( self.subscriptions )
-            self.subscriber.setCallback( self.OnDataFrameReceived )
-            self.subscriber.start()
-            if hasattr(self, 'plot_frame'):
-                self.plot_frame.Destroy()
-            self.plot_frame = PlotFrame(self, -1, "PlotCanvas")
-            self.plot_frame.data = self.data
-            self.animation_timer = wx.Timer(self)
-            self.Bind(wx.EVT_TIMER, self.plot_frame.drawData, self.animation_timer)
-            self.animation_timer.Start(100,0)
+	    self.Play()
         else:
-            self.animation_timer.Stop()
-            self.play_stop_button.SetLabel('Play')
-            self.subscriber.close()
-            self.subscriber    = Subscriber( 'localhost', 5055 )
-            if close_window:
-                self.plot_frame.Destroy()
-                del self.plot_frame
+	    self.Stop( close_window )
+    def PlayIfInitialized( self ):
+	if len(self.subscriptions) > 1:
+	    self.Play()
+    def Play( self ):
+        if self.play_stop_button.GetLabel() != 'Play':
+	    # We are already playing!
+	    return
+	self.play_stop_button.SetLabel('Stop')
+	self.data = { k:[0 for x in range(1000)] for k in self.subscriptions }
+	self.subscriber.subscribeTo( self.subscriptions )
+	self.subscriber.setCallback( self.OnDataFrameReceived )
+	self.subscriber.remoteDisconnectCallback = self.OnRemoteDisconnect
+	self.subscriber.start()
+	if hasattr(self, 'plot_frame'):
+	    self.plot_frame.Destroy()
+	self.plot_frame = PlotFrame(self, -1, "PlotCanvas")
+	self.plot_frame.data = self.data
+	self.animation_timer = wx.Timer(self)
+	self.Bind(wx.EVT_TIMER, self.plot_frame.drawData, self.animation_timer)
+	self.animation_timer.Start(100,0)
+    def Stop( self, close_window=False, connect_callback = None ):
+        if self.play_stop_button.GetLabel() == 'Play':
+	    # We are already stopped!
+	    return
+	self.animation_timer.Stop()
+	self.play_stop_button.SetLabel('Play')
+	self.subscriber.close()
+	self.subscriber    = Subscriber( 'localhost', 5055 )
+	if close_window:
+	    self.plot_frame.Destroy()
+	    del self.plot_frame
+	if connect_callback:
+	    self.function_queue.append( connect_callback )
+    def OnPlayStopButton(self, event ):
+	self.TogglePlay()
     def OnClose(self, event):
         self.subscriber.close()
         self.Destroy()

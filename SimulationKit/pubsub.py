@@ -12,6 +12,7 @@ class Publisher:
         self.conn         = None
         self.serverThread = None
         self.restartflag  = 0
+	self.ready_to_publish = 0
 
         # Catalog lists all the data offered by the publisher
         self.catalog = {}
@@ -29,7 +30,7 @@ class Publisher:
     
     def publish( self ):
         # Trigger the publisher to send a frame of data
-        if self.conn != None and len(self.subscriptions):
+        if self.ready_to_publish and len(self.subscriptions):
             try:
                 frame = {}
                 for k in self.subscriptions:
@@ -38,7 +39,9 @@ class Publisher:
                         frame[k] = f[0](f[1])
                     else:
                         frame[k] = f()
-                self.conn.send(pickle.dumps(frame))
+                bytes_sent = self.conn.send(pickle.dumps(frame))
+		if not bytes_sent:
+		    print "Remote disconnect detected"
             except error, mesg:
                 print mesg
 
@@ -70,12 +73,14 @@ class Publisher:
                     try:
                         keys = pickle.loads(s)
                         self.subscriptions = keys
+			self.ready_to_publish = True
                     except:
                         print 'Pickle fail'
                         self.restartflag = 1
                 else:
                     print "Timed out without receiving"
                     self.restartflag = 1
+	    self.ready_to_publish = False
             self.conn.close()
             self.conn = None
 
@@ -92,7 +97,8 @@ class Subscriber:
         self.clientThread = None
         self.sock = socket( AF_INET, SOCK_STREAM )
         self.sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-        print "attempting connection"
+	# Call this when the other side disconnects
+	self.remoteDisconnectCallback = None
         while 1:
             try:
                 self.sock.connect( (host,port) )
@@ -100,7 +106,7 @@ class Subscriber:
                 print desc
                 time.sleep(1.0)
             try:
-                "waiting for catalog"
+                #waiting for catalog
                 self.catalog = pickle.loads(self.sock.recv(4096))
                 break
             except error, desc:
@@ -108,9 +114,7 @@ class Subscriber:
                 time.sleep(1.0)
             except:
                 print 'Pickle fail'
-        print 'Received catalog!'
         self.catalog.sort()
-        print self.catalog
     def start( self ):
         self.stop_flag = 0
         self.clientThread = threading.Thread()
@@ -135,7 +139,8 @@ class Subscriber:
 		if not len(recv_string):
 		    print "Disconnect detected"
 		    self.stop_flag = 1
-		    break
+		    if self.remoteDisconnectCallback:
+			self.remoteDisconnectCallback()
     def setCallback( self, callback ):
         self.frameReceivedCallback = callback
     def close( self ):

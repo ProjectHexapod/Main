@@ -168,7 +168,7 @@ class PlotFrame(wx.Frame):
         self.client.SaveFile()
 
     def OnFileExit(self, event):
-        self.GetParent().OnPlayStopButton( event, close_window = True )
+        self.GetParent().TogglePlay( close_window = True )
 
     def drawData(self, event):
         colors = ['red', 'green', 'blue', 'black']
@@ -177,6 +177,8 @@ class PlotFrame(wx.Frame):
 	z_i = 0
 	while not self.data['time'][z_i]:
 	    z_i += 1
+	    if z_i == len(self.data['time']):
+		return
         for k,v in self.data.items():
             if k == 'time':
                 continue

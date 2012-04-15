@@ -137,7 +137,7 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     def __init__(self, world):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         #LinearActuatorControlledHingeJoint.__init__(self, world)
-        self.vel = 0.0
+	self.lenrate = 0
 
     def getAngRate( self ):
         link_ang = self.neutral_angle + self.getAngle()

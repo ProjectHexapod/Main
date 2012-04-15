@@ -75,7 +75,7 @@ class Simulator:
     and running for a specified period of time.
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=True, plane=False,\
-                    publish_int=5, robot=None, robot_kwargs={}):
+                    publish_int=5, robot=None, robot_kwargs={}, start_paused = True):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
@@ -92,7 +92,7 @@ class Simulator:
         self.real_t_laststep   = 0
         self.real_t_lastrender = 0
         self.real_t_start      = time.time()
-        self.paused            = True
+        self.paused            = start_paused
         
         # ODE space object: handles collision detection
         self.space = ode.Space()
@@ -121,7 +121,6 @@ class Simulator:
 
         # This is the publisher where we make data available
         self.publisher = Publisher(5055)
-        self.publisher.addToCatalog('time', self.getSimTime)
         self.publisher.start()
 
         # These are the bodies and geoms that are in the universe
@@ -211,17 +210,18 @@ class Simulator:
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
             if not self.paused:
-                print ""
-                print "Sim time:       %.3f"%self.sim_t
-                print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
-                print "Timestep:       %f"%(step_dt)
-                print "Steps per sec:  %.0f"%(1./real_t_elapsed)
+                #print ""
+                #print "Sim time:       %.3f"%self.sim_t
+                #print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
+                #print "Timestep:       %f"%(step_dt)
+                #print "Steps per sec:  %.0f"%(1./real_t_elapsed)
+		pass
             # Render if graphical
             if self.graphical:
                 self.handleInput()
                 self.render()
             else:
-                self.real_t_lastrender = t_present
+                self.real_t_lastrender = real_t_present
     def handleInput( self ):
         key = pygame.key.get_pressed()
         mpress = pygame.mouse.get_pressed()
