@@ -50,7 +50,7 @@ class ControlledHingeJoint(ode.HingeJoint):
     def setTorqueLimit( self, limit ):
         self.setParam(ode.ParamFMax,    limit)
     def getTorqueLimit( self ):
-        return self.getParam(ode.ParamFMax, limit)
+        return self.getParam(ode.ParamFMax)
     def setGain( self, gain ):
         self.gain = gain
     def getGain( self ):

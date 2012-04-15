@@ -109,7 +109,7 @@ class Simulator:
         self.bodies = []
 
         if self.plane:
-            g = self.createBoxGeom((1e3,1e3,1))
+            g = self.createBoxGeom((1e2,1e2,1))
             g.color = (0,128,0,255)
             pos = (0,0,-0.5)
             g.setPosition(pos)
@@ -137,7 +137,7 @@ class Simulator:
             pygame.init()
             # create the program window
             Screen = (800,600)
-            self.window = glLibWindow(Screen,caption="Physics Simulator")
+            self.window = glLibWindow(Screen,caption="Robot Simulator")
             View3D = glLibView3D((0,0,Screen[0],Screen[1]),45)
             View3D.set_view() 
             self.camera = glLibCamera( pos=(0, 10, 10), center=(0,0,0), upvec=(0,0,1) )
@@ -170,7 +170,7 @@ class Simulator:
         world, contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
-            c.setMu(500) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
+            c.setMu(50) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
             j = ode.ContactJoint(self.world, contactgroup, c)
             j.attach(geom1.getBody(), geom2.getBody())
     def step( self ):
@@ -210,11 +210,11 @@ class Simulator:
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
             if not self.paused:
-                #print ""
-                #print "Sim time:       %.3f"%self.sim_t
-                #print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
-                #print "Timestep:       %f"%(step_dt)
-                #print "Steps per sec:  %.0f"%(1./real_t_elapsed)
+                print ""
+                print "Sim time:       %.3f"%self.sim_t
+                print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
+                print "Timestep:       %f"%(step_dt)
+                print "Steps per sec:  %.0f"%(1./real_t_elapsed)
 		pass
             # Render if graphical
             if self.graphical:
@@ -380,13 +380,3 @@ class Simulator:
 def getPower( l ):
     return abs(l.getVel()*l.getForceLimit())
 
-if __name__=="__main__":
-    d = {'offset':(0,0,3)}
-    simulator = Simulator(dt=0,plane=0,pave=1,graphical=1,robot=SpiderWHydraulics,robot_kwargs=d)
-
-    print "total mass is %.1f kg (%.1f lbs)" % (simulator.robot.totalMass, simulator.robot.totalMass * 2.2)
-
-    while True:
-        simulator.step()
-        simulator.robot.standUp(simulator.sim_t)
-        simulator.robot.constantSpeedWalk(simulator.sim_t)
