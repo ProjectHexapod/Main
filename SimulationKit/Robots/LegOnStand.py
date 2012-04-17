@@ -39,9 +39,9 @@ class LegOnStand(MultiBody):
             body2        = yaw_link, \
             anchor       = yaw_p, \
             axis         = (0,0,1),\
-            a1x          = 0.25,\
-            a2x          = 0.25,\
-            a2y          = 0.25)
+            a1x          = 0.368,\
+            a2x          = 0.076,\
+            a2y          = 0.086)
         hip_yaw.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
         hip_yaw.setGain(-10.0) # FIXME: ode has a weird bug that makes servo joints apply backwards force when anchored to environment.  Compensate by inverting gain.
         self.publisher.addToCatalog(\
@@ -83,9 +83,9 @@ class LegOnStand(MultiBody):
             body2        = thigh, \
             anchor       = hip_p, \
             axis         = axis, \
-            a1x          = 0.25,\
-            a2x          = 0.25,\
-            a2y          = 0.25)
+            a1x          = 0.359,\
+            a2x          = 0.116,\
+            a2y          = 0.077)
         hip_pitch.setParam(ode.ParamLoStop, -pi/3)
         hip_pitch.setParam(ode.ParamHiStop, +pi/3)
         p1 = mul3( p, self.YAW_L )
@@ -130,9 +130,9 @@ class LegOnStand(MultiBody):
             body2        = calf, \
             anchor       = knee_p, \
             axis         = axis, \
-            a1x          = 0.25,\
-            a2x          = 0.25,\
-            a2y          = 0.25)
+            a1x          = 0.203,\
+            a2x          = 0.203,\
+            a2y          = 0.279)
         knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
         knee_pitch.setParam(ode.ParamHiStop, 0.0)
         p1 = mul3( p, self.YAW_L+(self.THIGH_L/4) )
