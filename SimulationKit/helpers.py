@@ -14,7 +14,9 @@ if platform.system() == "Windows":
     getSysTime = time.clock
 else:
     getSysTime = time.time
-    
+
+def maxForce(bore_in, pressure_psi=2000.0):
+    return pi * (bore_in/2.0 * 0.0254)**2 * (pressure_psi * 6894.76)
 
 def thetaFromABC( a, b, c ):
     return acos( (a*a + b*b - c*c) / (2.0*a*b) )

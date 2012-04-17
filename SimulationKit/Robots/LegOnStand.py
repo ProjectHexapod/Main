@@ -12,7 +12,7 @@ class LegOnStand(MultiBody):
     CALF_L  = 1.283
 
     # TODO(dan): accurate masses
-    LIN_DENS = 30.0  # kg/m
+    LIN_DENS = 15.0  # kg/m
     YAW_M   = LIN_DENS * YAW_L
     THIGH_M = LIN_DENS * THIGH_L
     CALF_M  = LIN_DENS * CALF_L
@@ -42,7 +42,7 @@ class LegOnStand(MultiBody):
             a1x          = 0.368,\
             a2x          = 0.076,\
             a2y          = 0.086)
-        hip_yaw.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
+        hip_yaw.setForceLimit(maxForce(1.0))
         hip_yaw.setGain(-10.0) # FIXME: ode has a weird bug that makes servo joints apply backwards force when anchored to environment.  Compensate by inverting gain.
         self.publisher.addToCatalog(\
             "hy.torque",\
@@ -91,7 +91,7 @@ class LegOnStand(MultiBody):
         p1 = mul3( p, self.YAW_L )
         p1 = (p1[0], p1[1], 0.355)
         p2 = mul3( p, self.YAW_L+self.THIGH_L/2 )
-        hip_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
+        hip_pitch.setForceLimit(maxForce(1.5))
         hip_pitch.setGain(10.0)
         self.publisher.addToCatalog(\
             "hp.torque",\
@@ -138,7 +138,7 @@ class LegOnStand(MultiBody):
         p1 = mul3( p, self.YAW_L+(self.THIGH_L/4) )
         p1 = (p1[0], p1[1], -0.1)
         p2 = mul3( p, self.YAW_L+self.THIGH_L-.355 )
-        knee_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
+        knee_pitch.setForceLimit(maxForce(1.0))
         knee_pitch.setGain(10.0)
         self.publisher.addToCatalog(\
             "kp.torque",\
