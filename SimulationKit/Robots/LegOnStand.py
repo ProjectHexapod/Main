@@ -3,6 +3,8 @@ from SimulationKit.helpers import *
 from SimulationKit.pubsub import *
 import ode
 
+deg2rad = pi/180
+
 class LegOnStand(MultiBody):
     YAW_W   = 0.15
     THIGH_W = 0.10
@@ -26,8 +28,19 @@ class LegOnStand(MultiBody):
         p = (1, 0, 0)
         yaw_p  = (0,0,0)
         hip_p  = mul3( p, self.YAW_L )
-        knee_p = mul3( p, self.YAW_L+self.THIGH_L )
-        foot_p = mul3( p, self.YAW_L+self.THIGH_L+self.CALF_L )
+        knee_p = add3(hip_p, (self.THIGH_L*cos(deg2rad*37), 0, self.THIGH_L*sin(deg2rad*37)))
+        #knee_p = mul3( p, self.YAW_L+self.THIGH_L )
+        f_ang = 110+37-180
+        foot_p = add3(knee_p, (self.CALF_L*cos(deg2rad*f_ang), 0, self.CALF_L*sin(deg2rad*f_ang)))
+        def fuck_this(p):
+            a = 43*deg2rad
+            return (cos(a)*p[0]-sin(a)*p[1],sin(a)*p[0]+cos(a)*p[1],p[2])
+        print hip_p
+        hip_p  = fuck_this(hip_p)
+        print hip_p
+        knee_p = fuck_this(knee_p)
+        foot_p = fuck_this(foot_p)
+        #foot_p = mul3( p, self.YAW_L+self.THIGH_L+self.CALF_L )
         # Add hip yaw
         yaw_link = self.addBody( \
             p1     = yaw_p, \
@@ -72,7 +85,7 @@ class LegOnStand(MultiBody):
 
         # Add thigh and hip pitch
         # Calculate the axis of rotation for hip pitch
-        axis = (0,1,0)
+        axis = fuck_this((0,1,0))
         thigh = self.addBody(\
             p1     = hip_p, \
             p2     = knee_p, \
@@ -86,8 +99,8 @@ class LegOnStand(MultiBody):
             a1x          = 0.203,\
             a2x          = 0.203,\
             a2y          = 0.279)
-        hip_pitch.setParam(ode.ParamLoStop, -pi/3)
-        hip_pitch.setParam(ode.ParamHiStop, +pi/3)
+        #hip_pitch.setParam(ode.ParamLoStop, -pi/3)
+        #hip_pitch.setParam(ode.ParamHiStop, +pi/3)
         p1 = mul3( p, self.YAW_L )
         p1 = (p1[0], p1[1], 0.355)
         p2 = mul3( p, self.YAW_L+self.THIGH_L/2 )
@@ -119,6 +132,7 @@ class LegOnStand(MultiBody):
             "hp.flow_gpm",\
             hip_pitch.getHydraulicFlowGPM)
 
+        axis = fuck_this((0,-1,0))
         # Add calf and knee bend
         calf = self.addBody( \
             p1     = knee_p, \
@@ -133,8 +147,8 @@ class LegOnStand(MultiBody):
             a1x          = 0.359,\
             a2x          = 0.077,\
             a2y          = 0.116)
-        knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
-        knee_pitch.setParam(ode.ParamHiStop, 0.0)
+        #knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
+        #knee_pitch.setParam(ode.ParamHiStop, 0.0)
         p1 = mul3( p, self.YAW_L+(self.THIGH_L/4) )
         p1 = (p1[0], p1[1], -0.1)
         p2 = mul3( p, self.YAW_L+self.THIGH_L-.355 )

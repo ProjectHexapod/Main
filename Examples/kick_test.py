@@ -6,7 +6,7 @@ from SimulationKit.Robots import LegOnStand
 import time
 
 d = {'offset':(0,0,1.1)}
-s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d, start_paused = False)
+s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d, start_paused = True)
 
 # Put up the goal posts
 wickets = []
@@ -44,7 +44,7 @@ print 'Ball starting at: (%.2f,%.2f,%.2f)'%(p[0],p[1],p[2])
 # The three joints are:
 # [ hip yaw, hip pitch, knee pitch ]
 joints = s.robot.joints
-lRates = [0.00,0.00,-0.5]
+lRates = [0.00,0.00,-0.01]
 
 while True:
     s.step()
