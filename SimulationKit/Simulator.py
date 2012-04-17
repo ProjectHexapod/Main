@@ -206,7 +206,7 @@ class Simulator:
             # repave the road
             if self.pave:
                 self.paver.recenter(self.robot.getPosition())
-        real_t_elapsed = time.time()-real_t_present
+        real_t_elapsed = max(time.time()-real_t_present, 0.001)
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
             if not self.paused:
