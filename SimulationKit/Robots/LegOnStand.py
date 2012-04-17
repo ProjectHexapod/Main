@@ -7,12 +7,16 @@ class LegOnStand(MultiBody):
     YAW_W   = 0.15
     THIGH_W = 0.10
     CALF_W  = 0.10
-    YAW_L   = 0.25
-    THIGH_L = 1.00
-    CALF_L  = 1.00
-    YAW_M   = 10.0
-    THIGH_M = 20.0
-    CALF_M  = 20.0
+    YAW_L   = 0.211
+    THIGH_L = 1.372
+    CALF_L  = 1.283
+
+    # TODO(dan): accurate masses
+    LIN_DENS = 30.0  # kg/m
+    YAW_M   = LIN_DENS * YAW_L
+    THIGH_M = LIN_DENS * THIGH_L
+    CALF_M  = LIN_DENS * CALF_L
+    
     def buildBody( self ):
         """ Build a single leg anchored to the universe """
         #self.publisher.addToCatalog(\
