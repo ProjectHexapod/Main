@@ -1,4 +1,4 @@
-import sys, random, time, threading
+import sys, random, threading
 from math import *
 import ode
 import pygame
@@ -91,7 +91,7 @@ class Simulator:
         self.n_iterations      = 0
         self.real_t_laststep   = 0
         self.real_t_lastrender = 0
-        self.real_t_start      = time.time()
+        self.real_t_start      = getSysTime()
         self.paused            = start_paused
         
         # ODE space object: handles collision detection
@@ -174,7 +174,7 @@ class Simulator:
             j = ode.ContactJoint(self.world, contactgroup, c)
             j.attach(geom1.getBody(), geom2.getBody())
     def step( self ):
-        real_t_present = time.time()
+        real_t_present = getSysTime()
         if not self.paused:
             # Try to lock simulation to realtime by controlling the timestep
             if self.dt == 0:
@@ -206,7 +206,7 @@ class Simulator:
             # repave the road
             if self.pave:
                 self.paver.recenter(self.robot.getPosition())
-        real_t_elapsed = max(time.time()-real_t_present, 0.001)
+        real_t_elapsed = max(getSysTime()-real_t_present, 0.0001)
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
             if not self.paused:
@@ -272,7 +272,7 @@ class Simulator:
         The camera is always pointed at robot center
         self.cam_pos holds the position of the camera relative to robot
         """
-        self.real_t_lastrender = time.time()
+        self.real_t_lastrender = getSysTime()
         p = self.robot.getPosition()
         self.camera.center = add3(p, (0,0,0.3))
         self.camera.pos = add3(p,self.cam_pos)

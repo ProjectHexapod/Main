@@ -1,4 +1,5 @@
 from math import *
+import time, platform
 
 # axes used to determine constrained joint rotations
 rightAxis =  ( 0.0  , 1.0  , 0.0  ) 
@@ -7,6 +8,13 @@ upAxis    =  ( 0.0  , 0.0  , 1.0  )
 downAxis  =  ( 0.0  , 0.0  , -1.0 ) 
 bkwdAxis  =  ( -1.0 , 0.0  , 0.0  ) 
 fwdAxis   =  ( 1.0  , 0.0  , 0.0  ) 
+
+getSysTime = None
+if platform.system() == "Windows":
+    getSysTime = time.clock
+else:
+    getSysTime = time.time
+    
 
 def thetaFromABC( a, b, c ):
     return acos( (a*a + b*b - c*c) / (2.0*a*b) )
