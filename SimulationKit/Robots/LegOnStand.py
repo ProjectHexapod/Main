@@ -83,9 +83,9 @@ class LegOnStand(MultiBody):
             body2        = thigh, \
             anchor       = hip_p, \
             axis         = axis, \
-            a1x          = 0.359,\
-            a2x          = 0.116,\
-            a2y          = 0.077)
+            a1x          = 0.203,\
+            a2x          = 0.203,\
+            a2y          = 0.279)
         hip_pitch.setParam(ode.ParamLoStop, -pi/3)
         hip_pitch.setParam(ode.ParamHiStop, +pi/3)
         p1 = mul3( p, self.YAW_L )
@@ -130,9 +130,9 @@ class LegOnStand(MultiBody):
             body2        = calf, \
             anchor       = knee_p, \
             axis         = axis, \
-            a1x          = 0.203,\
-            a2x          = 0.203,\
-            a2y          = 0.279)
+            a1x          = 0.359,\
+            a2x          = 0.077,\
+            a2y          = 0.116)
         knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
         knee_pitch.setParam(ode.ParamHiStop, 0.0)
         p1 = mul3( p, self.YAW_L+(self.THIGH_L/4) )
