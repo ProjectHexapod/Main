@@ -5,6 +5,8 @@ from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnStand
 import time
 
+import StudentControl
+
 d = {'offset':(0,0,1.1)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d, start_paused = True)
 
@@ -22,7 +24,7 @@ for i in range(row_n):
         wickets.append(body)
 
 # Place the ball
-ball,g = s.createSphere( mass=1.0e2, radius=0.25, pos=(1.75,.25+random.uniform(-.05,.05),.25))
+ball,g = s.createSphere( mass=1.0e2, radius=0.25, pos=(1.75,random.uniform(-.05,.05),.25))
 
 # Declare the victory condition
 def checkVictory():
@@ -39,12 +41,14 @@ end_t = 0
 p = ball.getPosition()
 print 'Ball starting at: (%.2f,%.2f,%.2f)'%(p[0],p[1],p[2])
 
-### MODIFY CODE BELOW THIS LINE ###
-
 # The three joints are:
 # [ hip yaw, hip pitch, knee pitch ]
 joints = s.robot.joints
 lRates = [0.00,0.00,-0.01]
+
+yaw_offset   =  43*3.14/180
+pitch_offset =  38*3.14/180
+knee_offset  = -33*3.14/180
 
 while True:
     s.step()
@@ -57,6 +61,6 @@ while True:
         elif s.getSimTime() > end_t:
             print "You won with %d points!"%points
             break
-    ### CONTROL THE ROBOT WITH CODE AFTER THIS LINE ###
+    lRates = StudentControl.control( sim_time = s.getSimTime(), hip_yaw_angle=joints[0].getAngle()-yaw_offset, hip_pitch_angle=joints[1].getAngle()+pitch_offset, knee_angle=joints[2].getAngle()-knee_offset )
     for j,r in zip(joints, lRates):
         j.setLengthRate(r)
