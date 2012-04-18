@@ -87,11 +87,9 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         return len2(a)
     def getLengthRate( self ):
         arate = self.getAngleRate()
-        link_ang = self.neutral_angle + self.getAngle()
-        link_len = len2((self.a2_x, self.a2_y))
         act = self.getActPath()
-        act_ang = atan2(act[1],act[0])
-        return arate*link_len*sin( link_ang + act_ang )
+        act_ang = pi-atan2(act[1],act[0])
+        return arate*self.a1_x*sin( act_ang )
     def getHydraulicFlow( self ):
         return self.getLengthRate()*self.cross_section
     def getHydraulicFlowGPM( self ):
@@ -103,7 +101,8 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         # Apply joint rotation to one anchor
         ang = self.neutral_angle + self.getAngle()
         # Get the angle of the actuator with the horizontal
-        act = (self.a2_x*cos(ang) - self.a1_x, self.a2_y*sin(ang))
+        act = rot2( (self.a2_x, self.a2_y), ang )
+        act = (act[0] - self.a1_x, act[1])
         return act
     def __get_lever_arm( self ):
         act = self.getActPath()
@@ -140,12 +139,16 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
 	self.lenrate = 0
 
     def getAngRate( self ):
-        link_ang = self.neutral_angle + self.getAngle()
-        link_len = len2((self.a2_x, self.a2_y))
         act = self.getActPath()
-
-        act_ang = atan2(act[1],act[0])
-        ang_vel = self.lenrate / (link_len*sin( link_ang + act_ang ))
+        act_ang = pi-atan2(act[1],act[0])
+        # FIXME: the hip yaw joints move in the opposite direction you command them to.
+        # I do not understand... the geometry works out and they behave perfectly,
+        # except they move in the exact opposite direction from what you command them.
+        # I saw behavior similar to this before... it had to do with anchoring to the
+        # environment, but I never quite figured it out.  Hack for now. JHW
+        ang_vel = self.lenrate / (self.a1_x*sin( act_ang ))
+        if self.getBody(0) == ode.environment:
+            ang_vel = -1*ang_vel
 	return ang_vel
  
     def setLengthRate(self, vel_mps):
@@ -254,7 +257,6 @@ class LinearActuator:
     def update( self ):
         """Do control"""
         #f = self.getForce()
-        #TODO set color
         error = self.length_target - self.getLength()
         self.slider.setParam( ode.ParamVel, error*self.gain )
     def setMaxLength( self, l ):

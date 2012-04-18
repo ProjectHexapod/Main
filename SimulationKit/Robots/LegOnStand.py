@@ -35,9 +35,7 @@ class LegOnStand(MultiBody):
         def fuck_this(p):
             a = 43*deg2rad
             return (cos(a)*p[0]-sin(a)*p[1],sin(a)*p[0]+cos(a)*p[1],p[2])
-        print hip_p
         hip_p  = fuck_this(hip_p)
-        print hip_p
         knee_p = fuck_this(knee_p)
         foot_p = fuck_this(foot_p)
         #foot_p = mul3( p, self.YAW_L+self.THIGH_L+self.CALF_L )
@@ -56,7 +54,7 @@ class LegOnStand(MultiBody):
             a2x          = 0.076,\
             a2y          = 0.086)
         hip_yaw.setForceLimit(maxForce(1.0))
-        hip_yaw.setGain(-10.0) # FIXME: ode has a weird bug that makes servo joints apply backwards force when anchored to environment.  Compensate by inverting gain.
+        #hip_yaw.setGain(-10.0) # FIXME: ode has a weird bug that makes servo joints apply backwards force when anchored to environment.  Compensate by inverting gain.
         self.publisher.addToCatalog(\
             "hy.torque",\
             hip_yaw.getTorque)
@@ -85,7 +83,7 @@ class LegOnStand(MultiBody):
 
         # Add thigh and hip pitch
         # Calculate the axis of rotation for hip pitch
-        axis = fuck_this((0,1,0))
+        axis = fuck_this((0,-1,0))
         thigh = self.addBody(\
             p1     = hip_p, \
             p2     = knee_p, \
@@ -149,9 +147,6 @@ class LegOnStand(MultiBody):
             a2y          = 0.116)
         #knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
         #knee_pitch.setParam(ode.ParamHiStop, 0.0)
-        p1 = mul3( p, self.YAW_L+(self.THIGH_L/4) )
-        p1 = (p1[0], p1[1], -0.1)
-        p2 = mul3( p, self.YAW_L+self.THIGH_L-.355 )
         knee_pitch.setForceLimit(maxForce(1.0))
         knee_pitch.setGain(10.0)
         self.publisher.addToCatalog(\

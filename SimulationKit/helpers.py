@@ -35,8 +35,10 @@ def calcAngularError( a1, a2 ):
     return error
 
 def rot2( p, r ):
-	""" Rotate 2D point p by angle r """
-	return (cos(r)*p[0],sin(r)*p[1])
+    """ Rotate 2D point p by angle r """
+    s = sin(r)
+    c = cos(r)
+    return (c*p[0]-s*p[1],s*p[0]+c*p[1])
 
 def sub2( p1, p2 ):
     return (p1[0]-p2[0],p1[1]-p2[1])
