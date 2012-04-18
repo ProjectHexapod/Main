@@ -3,7 +3,7 @@ from SimulationKit.helpers import *
 from SimulationKit.pubsub import *
 import ode
 import math
-import serial
+#import serial
 import threading
 
 debug = False
