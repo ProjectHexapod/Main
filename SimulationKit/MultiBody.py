@@ -104,9 +104,9 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         act = rot2( (self.a2_x, self.a2_y), ang )
         act = (act[0] - self.a1_x, act[1])
         return act
-    def __get_lever_arm( self ):
+    def getLeverArm( self ):
         act = self.getActPath()
-        h_ang = atan2(act[1], act[0])
+        h_ang = pi-atan2(act[1], act[0])
         # Get the lever arm
         l_arm = sin(h_ang)*self.a1_x
         return l_arm
@@ -115,15 +115,15 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         Give the max applicable torque at the present orientation
         given an actuator force
         """
-        return self.__get_lever_arm()*force
+        return self.getLeverArm()*force
     def __torque_to_force( self, torque ):
-        return torque/self.__get_lever_arm()
+        return torque/self.getLeverArm()
     def setForceLimit( self , f ):
         self.force_limit = f
     def setTorqueLimit( self, l ):
         print 'Cannot set torque limit on linear actuator controlled hinge'
     def getTorqueLimit( self ):
-        return abs(self.__get_lever_arm()*self.force_limit)
+        return abs(self.getLeverArm()*self.force_limit)
     def update( self ):
         limit = self.getTorqueLimit()
         self.setParam(ode.ParamFMax,    limit)
@@ -139,14 +139,12 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
 	self.lenrate = 0
 
     def getAngRate( self ):
-        act = self.getActPath()
-        act_ang = pi-atan2(act[1],act[0])
         # FIXME: the hip yaw joints move in the opposite direction you command them to.
         # I do not understand... the geometry works out and they behave perfectly,
         # except they move in the exact opposite direction from what you command them.
         # I saw behavior similar to this before... it had to do with anchoring to the
         # environment, but I never quite figured it out.  Hack for now. JHW
-        ang_vel = self.lenrate / (self.a1_x*sin( act_ang ))
+        ang_vel = self.lenrate / self.getLeverArm()
         if self.getBody(0) == ode.environment:
             ang_vel = -1*ang_vel
 	return ang_vel
