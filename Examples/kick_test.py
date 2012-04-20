@@ -45,10 +45,6 @@ print 'Ball starting at: (%.2f,%.2f,%.2f)'%(p[0],p[1],p[2])
 # [ hip yaw, hip pitch, knee pitch ]
 joints = s.robot.joints
 
-yaw_offset   =  43*3.14/180
-pitch_offset =  38*3.14/180
-knee_offset  =  -67*3.14/180
-
 while True:
     s.step()
     points = checkVictory()
@@ -60,6 +56,6 @@ while True:
         elif s.getSimTime() > end_t:
             print "You won with %d points!"%points
             break
-    lRates = StudentControl.control( sim_time = s.getSimTime(), hip_yaw_angle=joints[0].getAngle()-yaw_offset, hip_pitch_angle=joints[1].getAngle()-pitch_offset, knee_angle=joints[2].getAngle()-knee_offset )
+    lRates = StudentControl.control( sim_time = s.getSimTime(), hip_yaw_angle=joints[0].getAngle()+s.robot.YAW_OFFSET, hip_pitch_angle=joints[1].getAngle()+s.robot.PITCH_OFFSET, knee_angle=joints[2].getAngle()+s.robot.KNEE_OFFSET )
     for j,r in zip(joints, lRates):
         j.setLengthRate(r)

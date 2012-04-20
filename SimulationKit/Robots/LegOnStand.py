@@ -18,6 +18,11 @@ class LegOnStand(MultiBody):
     YAW_M   = LIN_DENS * YAW_L
     THIGH_M = LIN_DENS * THIGH_L
     CALF_M  = LIN_DENS * CALF_L
+
+    # describe the neutral position
+    YAW_OFFSET   = deg2rad*-43
+    PITCH_OFFSET = deg2rad*-37
+    KNEE_OFFSET  = deg2rad*69.5
     
     def buildBody( self ):
         """ Build a single leg anchored to the universe """
@@ -28,16 +33,17 @@ class LegOnStand(MultiBody):
         p = (1, 0, 0)
         yaw_p  = (0,0,0)
         hip_p  = mul3( p, self.YAW_L )
-        knee_p = add3(hip_p, (self.THIGH_L*cos(deg2rad*37), 0, self.THIGH_L*sin(deg2rad*37)))
-        #knee_p = mul3( p, self.YAW_L+self.THIGH_L )
-        f_ang = 110+37-180
-        foot_p = add3(knee_p, (self.CALF_L*cos(deg2rad*f_ang), 0, self.CALF_L*sin(deg2rad*f_ang)))
-        def fuck_this(p):
-            a = 43*deg2rad
-            return (cos(a)*p[0]-sin(a)*p[1],sin(a)*p[0]+cos(a)*p[1],p[2])
-        hip_p  = fuck_this(hip_p)
-        knee_p = fuck_this(knee_p)
-        foot_p = fuck_this(foot_p)
+        knee_p = add3(hip_p, (self.THIGH_L*cos(self.PITCH_OFFSET), 0, -1*self.THIGH_L*sin(self.PITCH_OFFSET)))
+        f_ang = self.PITCH_OFFSET+self.KNEE_OFFSET
+        foot_p = add3(knee_p, (self.CALF_L*cos(f_ang), 0, -1*self.CALF_L*sin(f_ang)))
+        def yaw_offset_around_negz(p):
+            a = self.YAW_OFFSET
+            s = sin(a)
+            c = cos(a)
+            return (c*p[0]+s*p[1],-s*p[0]+c*p[1],p[2])
+        hip_p  = yaw_offset_around_negz(hip_p)
+        knee_p = yaw_offset_around_negz(knee_p)
+        foot_p = yaw_offset_around_negz(foot_p)
         #foot_p = mul3( p, self.YAW_L+self.THIGH_L+self.CALF_L )
         # Add hip yaw
         yaw_link = self.addBody( \
@@ -83,7 +89,7 @@ class LegOnStand(MultiBody):
 
         # Add thigh and hip pitch
         # Calculate the axis of rotation for hip pitch
-        axis = fuck_this((0,-1,0))
+        axis = yaw_offset_around_negz((0,-1,0))
         thigh = self.addBody(\
             p1     = hip_p, \
             p2     = knee_p, \
@@ -130,7 +136,7 @@ class LegOnStand(MultiBody):
             "hp.flow_gpm",\
             hip_pitch.getHydraulicFlowGPM)
 
-        axis = fuck_this((0,-1,0))
+        axis = yaw_offset_around_negz((0,-1,0))
         # Add calf and knee bend
         calf = self.addBody( \
             p1     = knee_p, \
