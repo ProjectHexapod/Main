@@ -12,6 +12,7 @@ s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d
 
 # Put up the goal posts
 wickets = []
+static_geoms = []
 row_n = 6
 x_off = .5
 y_off = .5
@@ -22,6 +23,7 @@ for i in range(row_n):
     for j in range(i+1):
         body, geom = s.createCapsule( mass = 1.0e1, length = 1.0, radius = 0.1, pos = (5.0+i*x_off, y_off*j - i*(y_off/2),0.7) )
         wickets.append(body)
+        static_geoms.append(geom)
 
 # Place the ball
 ball,g = s.createSphere( mass=1.0e2, radius=0.25, pos=(1.75,random.uniform(-.05,.05),.25))
