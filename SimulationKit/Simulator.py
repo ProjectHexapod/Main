@@ -170,7 +170,7 @@ class Simulator:
         world, contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
-            c.setMu(50) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
+            c.setMu(250) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
             j = ode.ContactJoint(self.world, contactgroup, c)
             j.attach(geom1.getBody(), geom2.getBody())
     def step( self ):
@@ -347,6 +347,8 @@ class Simulator:
         # create a capsule geom for collision detection
         geom = ode.GeomSphere(self.space, radius)
         geom.setBody(body)
+	# create a reference to the body geom in case the user does not want to keep track of it.
+	body.geom = geom
 
         body.color = (128,0,0,255)
         body.setPosition( pos )
@@ -368,6 +370,8 @@ class Simulator:
         # create a capsule geom for collision detection
         geom = ode.GeomCCylinder(self.space, radius, length)
         geom.setBody(body)
+	# create a reference to the body geom in case the user does not want to keep track of it.
+	body.geom = geom
 
         body.color = (128,0,0,255)
         body.setPosition( pos )
