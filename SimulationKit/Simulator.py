@@ -317,13 +317,21 @@ class Simulator:
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
             body.glObj.myDraw( rot )
-        if body.shape == "sphere":
+        elif body.shape == "sphere":
             DETAIL=8
             p = body.getPosition()
             glLibColor(body.color)
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjSphere( body.radius, DETAIL )
             body.glObj.draw( p )
+        elif body.shape == "box":
+            p = body.getPosition()
+            r = body.getRotation()
+            rot = makeOpenGLMatrix(r, p)
+            glLibColor(body.color)
+            if not hasattr(body,'glObj'):
+                body.glObj = glLibObjCube( (body.lx, body.ly, body.lz) )
+            body.glObj.myDraw( rot )
     def draw_geom(self, geom):
         if isinstance(geom, ode.GeomBox):
             glLibColor(geom.color)

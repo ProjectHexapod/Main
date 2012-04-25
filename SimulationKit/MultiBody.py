@@ -21,6 +21,15 @@ class ControlledHingeJoint(ode.HingeJoint):
         self.setAngleTarget(0.0)
         self.setTorqueLimit(0.0)
         self.setGain(1.0)
+        self.setAngleOffset( 0.0 )
+    def setAngleOffset( self, offset ):
+        self.angle_offset = offset
+    def getAngleOffset( self ):
+        return self.angle_offset
+    def getAngle( self ):
+        """Override the default getAngle to apply a custom offset,
+        depending on user preference"""
+        return ode.HingeJoint.getAngle( self ) + self.getAngleOffset()
     def getTorque( self ):
         """Return the torque being exerted by the motor
         Funny enough, this is not easy to obtain."""
@@ -82,6 +91,9 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         self.a2_x = a2_x
         self.a2_y = a2_y
         self.neutral_angle = atan2(a2_y, a2_x)
+    def setAngleOffset( self, offset ):
+        self.neutral_angle -= offset
+        ControlledHingeJoint.setAngleOffset( self, offset )
     def getLength( self ):
         a = self.getActPath()
         return len2(a)
@@ -330,6 +342,41 @@ class MultiBody():
 
         body.setPosition(mul3(add3(p1, p2), 0.5))
         body.setRotation(rot)
+
+        self.bodies.append(body)
+        self.geoms.append(geom)
+        
+        self.totalMass += body.getMass().mass
+
+        return body
+    def addBox(self, lx, ly, lz, offset, mass=None):
+        """
+        Add a box (cuboid) with x, y and z lengths given by lx, ly and lz.
+        """
+
+        body = ode.Body(self.sim.world)
+        # This is our own stupid shit
+        body.color = (128,128,40,255)
+        m = ode.Mass()
+        if mass == None:
+            m.setBox(self.density, lx, ly, lz)
+        else:
+            m.setBoxTotal(mass, lx, ly, lz)
+        body.setMass(m)
+
+        # set parameters for drawing the body
+        body.shape = "box"
+        body.lx = lx
+        body.ly = ly
+        body.lz = lz
+
+        # create a capsule geom for collision detection
+        geom = ode.GeomBox(self.sim.space, (lx,ly,lz))
+        geom.setBody(body)
+
+        # TODO: allow feeding in a starting rotation
+        # For now all we need is position
+        body.setPosition(add3(offset,self.offset))
 
         self.bodies.append(body)
         self.geoms.append(geom)

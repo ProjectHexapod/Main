@@ -6,29 +6,78 @@ import ode
 deg2rad = pi/180
 
 class LegOnStand(MultiBody):
-    YAW_W   = 0.15
+    YAW_W   = 0.10
     THIGH_W = 0.10
     CALF_W  = 0.10
     YAW_L   = 0.211
     THIGH_L = 1.372
     CALF_L  = 1.283
 
-    # TODO(dan): accurate masses
-    LIN_DENS = 15.0  # kg/m
-    YAW_M   = LIN_DENS * YAW_L
-    THIGH_M = LIN_DENS * THIGH_L
-    CALF_M  = LIN_DENS * CALF_L
+    YAW_M   =  9.72
+    THIGH_M = 17.41
+    CALF_M  = 14.17
 
     # describe the neutral position
     YAW_OFFSET   = deg2rad*-43
     PITCH_OFFSET = deg2rad*-37
     KNEE_OFFSET  = deg2rad*69.5
+
+    # describe the cart
+    CART_DIMS = (0.91, 1.27, 0.4)
+    CART_M  = 249.5
+
+    HIP_FROM_CART_OFFSET = (-0.16, 0.27, -0.33)
+
+    # radius of the wheels
+    WHEEL_R = 0.1
+
+    # The vertical stackup to the hip is WHEEL_R + CART_DIMS[2]/2 - HIP_FROM_CART_OFFSET[2]
     
     def buildBody( self ):
         """ Build a single leg anchored to the universe """
         #self.publisher.addToCatalog(\
         #    "body.totalflow_gpm",\
         #    self.getTotalHydraulicFlowGPM)
+
+        # build the cart
+        cart = self.addBox( \
+            self.CART_DIMS[0], \
+            self.CART_DIMS[1], \
+            self.CART_DIMS[2], \
+            self.HIP_FROM_CART_OFFSET, \
+            self.CART_M )
+        # Add wheels to the cart
+        wheel_p1 = ( self.CART_DIMS[0]/2.0, self.CART_DIMS[1]/2.0, -self.CART_DIMS[2]/2.0)
+        wheel_p1 = add3( wheel_p1, self.HIP_FROM_CART_OFFSET )
+        wheel_p2 = (-self.CART_DIMS[0]/2.0, self.CART_DIMS[1]/2.0, -self.CART_DIMS[2]/2.0)
+        wheel_p2 = add3( wheel_p2, self.HIP_FROM_CART_OFFSET )
+
+        wheel0 = self.addBody(\
+            p1     = wheel_p1, \
+            p2     = wheel_p2, \
+            radius = self.WHEEL_R, \
+            mass = 0.5)
+        cart_bearing0 = self.addHingeJoint( \
+            body1  = cart,\
+            body2  = wheel0,\
+            anchor = wheel_p1,\
+            axis   = (1,0,0))
+
+        wheel_p1 = ( self.CART_DIMS[0]/2.0, -self.CART_DIMS[1]/2.0, -self.CART_DIMS[2]/2.0)
+        wheel_p1 = add3( wheel_p1, self.HIP_FROM_CART_OFFSET )
+        wheel_p2 = (-self.CART_DIMS[0]/2.0, -self.CART_DIMS[1]/2.0, -self.CART_DIMS[2]/2.0)
+        wheel_p2 = add3( wheel_p2, self.HIP_FROM_CART_OFFSET )
+
+        wheel1 = self.addBody(\
+            p1     = wheel_p1, \
+            p2     = wheel_p2, \
+            radius = self.WHEEL_R, \
+            mass = 0.5)
+        cart_bearing1 = self.addHingeJoint( \
+            body1  = cart,\
+            body2  = wheel1,\
+            anchor = wheel_p1,\
+            axis   = (1,0,0))
 
         p = (1, 0, 0)
         yaw_p  = (0,0,0)
@@ -44,15 +93,14 @@ class LegOnStand(MultiBody):
         hip_p  = yaw_offset_around_negz(hip_p)
         knee_p = yaw_offset_around_negz(knee_p)
         foot_p = yaw_offset_around_negz(foot_p)
-        #foot_p = mul3( p, self.YAW_L+self.THIGH_L+self.CALF_L )
         # Add hip yaw
         yaw_link = self.addBody( \
             p1     = yaw_p, \
             p2     = hip_p, \
-            radius = 0.05, \
+            radius = self.YAW_W, \
             mass   = self.YAW_M )
         hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
-            body1        = ode.environment, \
+            body1        = cart, \
             body2        = yaw_link, \
             anchor       = yaw_p, \
             axis         = (0,0,1),\
@@ -60,7 +108,7 @@ class LegOnStand(MultiBody):
             a2x          = 0.076,\
             a2y          = 0.086)
         hip_yaw.setForceLimit(maxForce(1.0))
-        #hip_yaw.setGain(-10.0) # FIXME: ode has a weird bug that makes servo joints apply backwards force when anchored to environment.  Compensate by inverting gain.
+        hip_yaw.setAngleOffset( self.YAW_OFFSET )
         self.publisher.addToCatalog(\
             "hy.torque",\
             hip_yaw.getTorque)
@@ -109,7 +157,7 @@ class LegOnStand(MultiBody):
         p1 = (p1[0], p1[1], 0.355)
         p2 = mul3( p, self.YAW_L+self.THIGH_L/2 )
         hip_pitch.setForceLimit(maxForce(1.5))
-        hip_pitch.setGain(10.0)
+        hip_pitch.setAngleOffset( self.PITCH_OFFSET )
         self.publisher.addToCatalog(\
             "hp.torque",\
             hip_pitch.getTorque)
@@ -154,7 +202,7 @@ class LegOnStand(MultiBody):
         #knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
         #knee_pitch.setParam(ode.ParamHiStop, 0.0)
         knee_pitch.setForceLimit(maxForce(1.0))
-        knee_pitch.setGain(10.0)
+        knee_pitch.setAngleOffset( self.KNEE_OFFSET )
         self.publisher.addToCatalog(\
             "kp.torque",\
             knee_pitch.getTorque)
