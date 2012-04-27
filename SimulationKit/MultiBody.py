@@ -168,6 +168,40 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
         self.setParam(ode.ParamVel, self.getAngRate() )
 
+class PrismaticSpringJoint(ode.SliderJoint):
+    def __init__(self, world):
+        # The all-important slider joint
+        ode.SliderJoint.__init__( self, world )
+        self.setFeedback(True)
+        self.setSpringConstant( 0.0 )
+        self.setDamping( 0.0 )
+        self.setLoStop( 0.0 )
+        self.setHiStop( 0.0 )
+        self.setNeutralPosition( 0.0 )
+    def setNeutralPosition( self, neutral_pos ):
+        self.neutral_pos = neutral_pos
+    def getNeutralPosition( self ):
+        return self.neutral_pos
+    def setSpringConstant(self, spring_constant):
+        self.spring_constant = spring_constant
+    def getSpringConstant(self):
+        return self.spring_constant
+    def setHiStop(self, hi_stop):
+        self.setParam( ode.ParamHiStop, hi_stop )
+    def setLoStop(self, lo_stop):
+        self.setParam( ode.ParamLoStop, lo_stop )
+    def getHiStop(self):
+        return self.getParam( ode.ParamHiStop )
+    def getLoStop(self):
+        return self.getParam( ode.ParamLoStop )
+    def setDamping( self, damping ):
+        self.damp_const = damping
+    def getDamping( self ):
+        return self.damp_const
+    def update( self ):
+        """Apply corrective force based on deflection"""
+        self.addForce( self.getPositionRate()*self.getDamping() + (self.getPosition()-self.neutral_pos) * self.getSpringConstant() )
+
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
     with controllable slider joint.  This requires a universal joint on each end."""
@@ -554,6 +588,18 @@ class MultiBody():
         joint.style = "univ"
         self.joints.append(joint)
 
+        return joint
+    def addPrismaticSpringJoint( self, body1, body2, axis, spring_const=0.0, lo_stop=0.0, hi_stop=0.0, neutral_position = 0.0, damping = -1e2 ):
+        joint = PrismaticSpringJoint( self.sim.world )
+        joint.attach( body1, body2 )
+        joint.setAxis( axis )
+        joint.setSpringConstant( spring_const )
+        joint.setLoStop( lo_stop )
+        joint.setHiStop( hi_stop )
+        joint.setNeutralPosition( neutral_position )
+        joint.setDamping( damping )
+        self.joints.append(joint)
+        self.update_objects.append(joint)
         return joint
     def addBallJoint(self, body1, body2, anchor ):
         anchor = add3(anchor, self.offset)
