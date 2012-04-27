@@ -31,7 +31,12 @@ class LegOnStand(MultiBody):
     # radius of the wheels
     WHEEL_R = 0.1
 
+    # Compliance of foot
+    COMPLIANCE_K   = 200/0.06 # newtons/meter deflection of foot
+    COMPLIANCE_LEN = 0.06     # how long til it bottoms out
+
     # The vertical stackup to the hip is WHEEL_R + CART_DIMS[2]/2 - HIP_FROM_CART_OFFSET[2]
+    HIP_FROM_GROUND_HEIGHT = WHEEL_R + CART_DIMS[2]/2 - HIP_FROM_CART_OFFSET[2]
     
     def buildBody( self ):
         """ Build a single leg anchored to the universe """
@@ -84,15 +89,17 @@ class LegOnStand(MultiBody):
         hip_p  = mul3( p, self.YAW_L )
         knee_p = add3(hip_p, (self.THIGH_L*cos(self.PITCH_OFFSET), 0, -1*self.THIGH_L*sin(self.PITCH_OFFSET)))
         f_ang = self.PITCH_OFFSET+self.KNEE_OFFSET
-        foot_p = add3(knee_p, (self.CALF_L*cos(f_ang), 0, -1*self.CALF_L*sin(f_ang)))
+        midshin_p = add3(knee_p, (.5*self.CALF_L*cos(f_ang), 0, -.5*self.CALF_L*sin(f_ang)))
+        foot_p    = add3(midshin_p, (.5*self.CALF_L*cos(f_ang), 0, -.5*self.CALF_L*sin(f_ang)))
         def yaw_offset_around_negz(p):
             a = self.YAW_OFFSET
             s = sin(a)
             c = cos(a)
             return (c*p[0]+s*p[1],-s*p[0]+c*p[1],p[2])
-        hip_p  = yaw_offset_around_negz(hip_p)
-        knee_p = yaw_offset_around_negz(knee_p)
-        foot_p = yaw_offset_around_negz(foot_p)
+        hip_p     = yaw_offset_around_negz(hip_p)
+        knee_p    = yaw_offset_around_negz(knee_p)
+        midshin_p = yaw_offset_around_negz(midshin_p)
+        foot_p    = yaw_offset_around_negz(foot_p)
         # Add hip yaw
         yaw_link = self.addBody( \
             p1     = yaw_p, \
@@ -107,6 +114,8 @@ class LegOnStand(MultiBody):
             a1x          = 0.368,\
             a2x          = 0.076,\
             a2y          = 0.086)
+        hip_yaw.setParam(ode.ParamLoStop, 0.0)
+        hip_yaw.setParam(ode.ParamHiStop, deg2rad*87.28)
         hip_yaw.setForceLimit(maxForce(1.0))
         hip_yaw.setAngleOffset( self.YAW_OFFSET )
         self.publisher.addToCatalog(\
@@ -151,8 +160,8 @@ class LegOnStand(MultiBody):
             a1x          = 0.203,\
             a2x          = 0.203,\
             a2y          = 0.279)
-        #hip_pitch.setParam(ode.ParamLoStop, -pi/3)
-        #hip_pitch.setParam(ode.ParamHiStop, +pi/3)
+        hip_pitch.setParam(ode.ParamLoStop, 0.0)
+        hip_pitch.setParam(ode.ParamHiStop, deg2rad*29.7)
         p1 = mul3( p, self.YAW_L )
         p1 = (p1[0], p1[1], 0.355)
         p2 = mul3( p, self.YAW_L+self.THIGH_L/2 )
@@ -188,9 +197,9 @@ class LegOnStand(MultiBody):
         # Add calf and knee bend
         calf = self.addBody( \
             p1     = knee_p, \
-            p2     = foot_p, \
+            p2     = midshin_p, \
             radius = self.CALF_W, \
-            mass   = self.CALF_M )
+            mass   = self.CALF_M/2 )
         knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1        = thigh, \
             body2        = calf, \
@@ -199,8 +208,8 @@ class LegOnStand(MultiBody):
             a1x          = 0.359,\
             a2x          = 0.077,\
             a2y          = 0.116)
-        #knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
-        #knee_pitch.setParam(ode.ParamHiStop, 0.0)
+        knee_pitch.setParam(ode.ParamLoStop, 0.0)
+        knee_pitch.setParam(ode.ParamHiStop, deg2rad*70.8)
         knee_pitch.setForceLimit(maxForce(1.0))
         knee_pitch.setAngleOffset( self.KNEE_OFFSET )
         self.publisher.addToCatalog(\
@@ -229,10 +238,29 @@ class LegOnStand(MultiBody):
             "kp.flow_gpm",\
             knee_pitch.getHydraulicFlowGPM)
 
+        # Create the foot
+        # Add the compliant joint
+        foot = self.addBody( \
+            p1     = midshin_p, \
+            p2     = foot_p, \
+            radius = self.CALF_W, \
+            mass   = self.CALF_M/2 )
+        calf_axis  = norm3(sub3(midshin_p, foot_p))
+        foot_shock = self.addPrismaticSpringJoint( \
+            body1        = calf, \
+            body2        = foot, \
+            axis         = calf_axis,\
+            spring_const = -5e3,\
+            hi_stop      = 0.0,\
+            lo_stop      = -0.1,\
+            neutral_position = 0.0,\
+            damping          = -1e2)
+
         d                 = {}
         d['hip_yaw']      = hip_yaw
         d['hip_pitch']    = hip_pitch
         d['knee_pitch']   = knee_pitch
+        d['foot_shock']   = foot_shock
         d['hip_yaw_link'] = yaw_link
         d['thigh']        = thigh
         d['calf']         = calf
@@ -280,10 +308,18 @@ class LegOnStand(MultiBody):
                 b.color = (0,0,0,255)
             else:
                 b.color = (255*r,255*(1-r),0,255)
+    def colorShockByDeflection( self, joint ):
+            b = joint.getBody(1)
+            r = abs(joint.getPosition()/joint.getLoStop())
+            if r >= 0.99:
+                b.color = (0,0,0,255)
+            else:
+                b.color = (255*r,255*(1-r),0,255)
     def colorTorque( self ):
         # Color overtorque
         self.colorJointByTorque( self.members['hip_yaw'] )
         self.colorJointByTorque( self.members['hip_pitch'] )
         self.colorJointByTorque( self.members['knee_pitch'] )
+        self.colorShockByDeflection( self.members['foot_shock'])
     def update( self ):
         MultiBody.update(self)
