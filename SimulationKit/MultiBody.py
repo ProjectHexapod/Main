@@ -39,7 +39,7 @@ class ControlledHingeJoint(ode.HingeJoint):
         forces = feedback[0]
         torque = feedback[1]
         axis   = self.getAxis()
-        body_COM = self.getBody(1).getPosition()
+        body_COM = self.getBody(0).getPosition()
         anchor = sub3( body_COM, self.getAnchor() )
         # Figure out the torque due to the 
         # force contribution of the joint

@@ -58,6 +58,7 @@ class SpiderWHydraulics(MultiBody):
                 a2y          = 0.25)
             hip_yaw.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             hip_yaw.setGain(10.0)
+            hip_yaw.setAngleOffset(0.0)
             self.publisher.addToCatalog(\
                 "l%d.hy.torque"%i,\
                 hip_yaw.getTorque)
@@ -104,6 +105,7 @@ class SpiderWHydraulics(MultiBody):
             p2 = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L/2 )
             hip_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             hip_pitch.setGain(10.0)
+            hip_pitch.setAngleOffset(0.0)
             self.publisher.addToCatalog(\
                 "l%d.hp.torque"%i,\
                 hip_pitch.getTorque)
@@ -148,6 +150,7 @@ class SpiderWHydraulics(MultiBody):
             p2 = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L-.355 )
             knee_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             knee_pitch.setGain(10.0)
+            knee_pitch.setAngleOffset(0.0)
             self.publisher.addToCatalog(\
                 "l%d.kp.torque"%i,\
                 knee_pitch.getTorque)
