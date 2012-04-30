@@ -300,7 +300,7 @@ class LegOnStand(MultiBody):
         # Calculate the hip base point for the next iteration
         p                    = rotate3( r_60z, p )
     def getPosition( self ):
-        return self.offset
+        return self.members['hip_yaw'].getAnchor()
     def colorJointByTorque( self, joint ):
             b = joint.getBody(1)
             r = abs(joint.getTorque()/joint.getTorqueLimit())

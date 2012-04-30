@@ -86,6 +86,54 @@ class glLibObjCube(glLibObj):
         glNormal3f(-1.0, 0.0, 0.0);glVertex3f(-sizex,-sizey,-sizez);glVertex3f(-sizex,-sizey, sizez);glVertex3f(-sizex, sizey, sizez);glVertex3f(-sizex, sizey,-sizez)
         glEnd()
         glEndList()
+class glLibObjTexCube(glLibObj):
+    def __init__(self,sizes=(1.0,1.0,1.0),texture_reps=1.0):
+        sizex=sizes[0]/2.0
+        sizey=sizes[1]/2.0
+        sizez=sizes[2]/2.0
+        self.list = glGenLists(1)
+        glNewList(self.list, GL_COMPILE)
+        Cube = gluNewQuadric()
+        gluQuadricTexture(Cube,GLU_TRUE)
+        glBegin(GL_QUADS)
+        # Front Face
+        glNormal3f( 0.0, 0.0, 1.0);      # Normal Facing Forward
+        glTexCoord2f(0.0          , 0.0);          glVertex3f (-sizex                          , -sizey , sizez);  # Bottom Left Of The Texture and Quad
+        glTexCoord2f(texture_reps , 0.0);          glVertex3f ( sizex                          , -sizey , sizez);  # Bottom Right Of The Texture and Quad
+        glTexCoord2f(texture_reps , texture_reps); glVertex3f ( sizex                          , sizey  , sizez);  # Top Right Of The Texture and Quad
+        glTexCoord2f(0.0          , texture_reps); glVertex3f (-sizex                          , sizey  , sizez);  # Top Left Of The Texture and Quad
+        # Back Face
+        glNormal3f( 0.0           , 0.0            ,          -1.0);      # Normal Facing Away
+        glTexCoord2f(texture_reps , 0.0);          glVertex3f (-sizex                          , -sizey , -sizez);  # Bottom Right Of The Texture and Quad
+        glTexCoord2f(texture_reps , texture_reps); glVertex3f (-sizex                          , sizey  , -sizez);  # Top Right Of The Texture and Quad
+        glTexCoord2f(0.0          , texture_reps); glVertex3f ( sizex                          , sizey  , -sizez);  # Top Left Of The Texture and Quad
+        glTexCoord2f(0.0          , 0.0);          glVertex3f ( sizex                          , -sizey , -sizez);  # Bottom Left Of The Texture and Quad
+        # Top Face
+        glNormal3f( 0.0           , 1.0            ,          0.0);      # Normal Facing Up
+        glTexCoord2f(0.0          , texture_reps); glVertex3f (-sizex                          , sizey  , -sizez);  # Top Left Of The Texture and Quad
+        glTexCoord2f(0.0          , 0.0);          glVertex3f (-sizex                          , sizey  , sizez);  # Bottom Left Of The Texture and Quad
+        glTexCoord2f(texture_reps , 0.0);          glVertex3f ( sizex                          , sizey  , sizez);  # Bottom Right Of The Texture and Quad
+        glTexCoord2f(texture_reps , texture_reps); glVertex3f ( sizex                          , sizey  , -sizez);  # Top Right Of The Texture and Quad
+        # Bottom Face
+        glNormal3f( 0.0           , -1.0           ,          0.0);      # Normal Facing Down
+        glTexCoord2f(texture_reps , texture_reps); glVertex3f (-sizex                          , -sizey , -sizez);  # Top Right Of The Texture and Quad
+        glTexCoord2f(0.0          , texture_reps); glVertex3f ( sizex                          , -sizey , -sizez);  # Top Left Of The Texture and Quad
+        glTexCoord2f(0.0          , 0.0);          glVertex3f ( sizex                          , -sizey , sizez);  # Bottom Left Of The Texture and Quad
+        glTexCoord2f(texture_reps , 0.0);          glVertex3f (-sizex                          , -sizey , sizez);  # Bottom Right Of The Texture and Quad
+        # Right face
+        glNormal3f( 1.0           , 0.0            ,          0.0);      # Normal Facing Right
+        glTexCoord2f(texture_reps , 0.0);          glVertex3f ( sizex                          , -sizey , -sizez);  # Bottom Right Of The Texture and Quad
+        glTexCoord2f(texture_reps , texture_reps); glVertex3f ( sizex                          , sizey  , -sizez);  # Top Right Of The Texture and Quad
+        glTexCoord2f(0.0          , texture_reps); glVertex3f ( sizex                          , sizey  , sizez);  # Top Left Of The Texture and Quad
+        glTexCoord2f(0.0          , 0.0);          glVertex3f ( sizex                          , -sizey , sizez);  # Bottom Left Of The Texture and Quad
+        # Left Face
+        glNormal3f(-1.0           , 0.0            ,          0.0);      # Normal Facing Left
+        glTexCoord2f(0.0          , 0.0);          glVertex3f (-sizex                          , -sizey , -sizez);  # Bottom Left Of The Texture and Quad
+        glTexCoord2f(texture_reps , 0.0);          glVertex3f (-sizex                          , -sizey , sizez);  # Bottom Right Of The Texture and Quad
+        glTexCoord2f(texture_reps , texture_reps); glVertex3f (-sizex                          , sizey  , sizez);  # Top Right Of The Texture and Quad
+        glTexCoord2f(0.0          , texture_reps); glVertex3f (-sizex                          , sizey  , -sizez);  # Top Left Of The Texture and Quad
+        glEnd()
+        glEndList()
 class glLibObjTeapot(glLibObj):
     def __init__(self,size=1.0):
         self.list = glGenLists(1)

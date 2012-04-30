@@ -104,6 +104,7 @@ class Simulator:
         self.world.setCFM(1E-6)
         # Joint group for the contact joints generated during collisions
         self.contactgroup = ode.JointGroup()
+        self.contactlist  = []
 
         self.geoms  = []
         self.bodies = []
@@ -114,6 +115,7 @@ class Simulator:
             pos = (0,0,-0.5)
             g.setPosition(pos)
             self.geoms.append(g)
+            self.ground = g
             #self.plane = ode.GeomPlane(self.space, (0, 0, 1), 0)
 
         if self.pave:
@@ -142,10 +144,12 @@ class Simulator:
             View3D.set_view() 
             self.camera = glLibCamera( pos=(0, 10, 10), center=(0,0,0), upvec=(0,0,1) )
             glLibColorMaterial(True) 
+            glLibTexturing(True)
             glLibLighting(True)
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
             self.cam_pos = (0,10,10)
+            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.png")
     def getSimTime(self):
         return self.sim_t
     def near_callback(self, args, geom1, geom2):
@@ -171,8 +175,10 @@ class Simulator:
         for c in contacts:
             c.setBounce(0.2)
             c.setMu(250) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
-            j = ode.ContactJoint(self.world, contactgroup, c)
+            j = ode.ContactJoint(self.world, self.contactgroup, c)
+            self.contactlist.append(j)
             j.attach(geom1.getBody(), geom2.getBody())
+            #j.setFeedback()
     def step( self ):
         real_t_present = getSysTime()
         if not self.paused:
@@ -184,7 +190,10 @@ class Simulator:
                 step_dt = max(1e-4,step_dt)
             else:
                 step_dt = self.dt
-            
+
+            # Remove all contact joints
+            self.contactgroup.empty()
+            self.contactlist = []
             # Detect collisions and create contact joints
             self.space.collide((self.world, self.contactgroup), self.near_callback)
 
@@ -200,8 +209,6 @@ class Simulator:
             if not self.n_iterations % self.publish_int:
                 self.publisher.publish()
 
-            # Remove all contact joints
-            self.contactgroup.empty()
 
             # repave the road
             if self.pave:
@@ -300,7 +307,16 @@ class Simulator:
             del b
         for b in self.robot.bodies:
             self.draw_body(b)
+        # Draw force vectors on all contacts
+        # FIXME:  ODE complains of:
+        # ODE INTERNAL ERROR 2: Bad argument(s) in dJointSetFeedback()
+        #for j in self.contactlist:
+        #    self.draw_contact_force_vector(j)
         self.window.flip()
+    def draw_contact_force_vector( self, joint ):
+        # TODO: Function incomplete
+        forces1, torques1, forces2, torques2 = joint.getFeedback()
+        print forces1
     def draw_body(self, body):
         """Draw an ODE body."""
 
@@ -335,11 +351,17 @@ class Simulator:
     def draw_geom(self, geom):
         if isinstance(geom, ode.GeomBox):
             glLibColor(geom.color)
+            if hasattr( geom, 'texture' ):
+                glBindTexture(GL_TEXTURE_2D,geom.texture)
             p = geom.getPosition()
             r = geom.getRotation()
             rot = makeOpenGLMatrix(r, p)
             if not hasattr(geom,'glObj'):
-                geom.glObj = glLibObjCube( geom.getLengths() )
+                if hasattr(geom, 'texture'):
+                    lengths = geom.getLengths()
+                    geom.glObj = glLibObjTexCube( lengths, lengths[0] )
+                else:
+                    geom.glObj = glLibObjCube( geom.getLengths() )
             geom.glObj.myDraw( rot )
     def createSphere( self, mass=100, radius=1, pos=(0,0,0) ):
         """Creates a capsule body and corresponding geom."""
