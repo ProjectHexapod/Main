@@ -8,7 +8,7 @@ class JointController:
         self.iterm = 0
         self.valve_pos = 0
 
-        # set constants
+        # set weights
         self.kp = 1
         self.ki = 1
         self.kd = 1
@@ -45,7 +45,7 @@ class JointController:
         dtime = sys_time - self.prev_time
 
         #if no time has passed since last function call return last valve_pos
-        if dtime == 0:
+        if dtime == 0 or self.prev_time < 0:
             return self.valve_pos
 
         #calculate PID terms
