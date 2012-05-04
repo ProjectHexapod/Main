@@ -1,5 +1,4 @@
-from math import pi
-
+__author__ = "Benjamin Hitov"
 
 AV_MAX_VEL_RATIO = 3./2
 

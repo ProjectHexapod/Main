@@ -1,3 +1,5 @@
+__author__ = "Benjamin Hitov"
+
 import unittest
 from trajectory import Trajectory
 import numpy as np
@@ -17,20 +19,19 @@ class MetaTestTrajectory(object):
         third_time = self.third_time
         times = np.arange(self.start_time + third_time*0.05, self.end_time - third_time * 2.05, 0.01 )
 
-        def thing(times):
-            derp = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
-            v = [x[1:] - x[0:-1] for x in derp]
-            a = [vx[1:] - vx[0:-1] for vx in v]
-            return a
+        def compute_acceleration(times):
+            position_arrays = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
+            velocity_arrays = [position_array[1:] - position_array[0:-1] for position_array in position_arrays]
+            acceleration_arrays = [velocity_array[1:] - velocity_array[0:-1] for velocity_array in velocity_arrays]
+            return acceleration_arrays
 
-        a = thing(times)
-        print "Make sure this is a list: ", type(a)
+        acceleration_arrays = compute_acceleration(times)
         times = np.arange(self.start_time + 2.05 * third_time, self.end_time - third_time * 0.05, 0.01)
-        a+= thing(times)
+        acceleration_arrays += compute_acceleration(times)
 
-        for acc in a:
-            print abs(np.std(acc))
-            self.assertLess(abs(np.std(acc)), 1e-8)
+        for acceleration_array in acceleration_arrays:
+            print abs(np.std(acceleration_array))
+            self.assertLess(abs(np.std(acceleration_array)), 1e-8)
 
     def test_velocity(self):
         """
@@ -40,12 +41,12 @@ class MetaTestTrajectory(object):
         third_time = self.third_time
         times = np.arange(self.start_time + third_time * 1.05, self.end_time - third_time*1.05, 0.01)
 
-        derp = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
-        v = [x[1:] - x[0:-1] for x in derp]
+        position_arrays = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
+        velocity_arrays = [position_array[1:] - position_array[0:-1] for position_array in position_arrays]
 
-        for vel in v:
-            print "vel: ", abs(np.std(vel))
-            self.assertLess(abs(np.std(vel)), 1e-8)
+        for velocity_array in velocity_arrays:
+            print "vel: ", abs(np.std(velocity_array))
+            self.assertLess(abs(np.std(velocity_array)), 1e-8)
 
     def test_continuity(self):
         """
@@ -53,10 +54,10 @@ class MetaTestTrajectory(object):
         """
         times = np.arange(self.start_time, self.end_time, 0.01)
 
-        derp = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
-        v = [x[1:] - x[0:-1] for x in derp]
+        position_arrays = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
+        position_delta_arrays = [position_array[1:] - position_array[0:-1] for position_array in position_arrays]
 
-        for delta in v:
+        for delta in position_delta_arrays:
             print "max delta: ", np.max(np.abs(delta))
             self.assertLess(abs(np.max(np.abs(delta))), self.continuity_limit)
 
@@ -67,13 +68,13 @@ class MetaTestTrajectory(object):
 
         print "END TIME: ", self.end_time
         times = [self.start_time, self.end_time]
-        real = reduce(lambda x,y: x+y, [self.tr.getTargetJointAngles(t) for t in times])
-        ideal = self.start_position + self.end_position
-        d = [r-i for r,i in zip(real,ideal)]
+        reals = reduce(lambda x,y: x+y, [self.tr.getTargetJointAngles(t) for t in times])
+        ideals = self.start_position + self.end_position
+        differences = [real-ideal for real,ideal in zip(reals,ideals)]
 
-        for diff in d:
-            print "diff: ", abs(diff)
-            self.assertLess(abs(diff), 1e-8)
+        for difference in differences:
+            print "diff: ", abs(difference)
+            self.assertLess(abs(difference), 1e-8)
 
 def setUpCreator(data):
     class setUpHolder(object):
@@ -129,6 +130,10 @@ data = [
 }]
 
 def build_tests():
+    """
+    Adds one test class for each data set to the current namespace. These
+    test classes inherit from MetaTestTrajectory
+    """
     current_module = __import__(__name__)
     for i in range(len(data)):
         print "Creating test: " + str(i)
