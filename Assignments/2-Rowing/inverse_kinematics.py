@@ -1,15 +1,9 @@
-from math import pi, sin, cos
+from math import atan2, acos, sqrt, sin, cos
 from numpy import matrix, transpose, resize
 
-def jointAnglesFromFootPosition( hip_yaw_angle, hip_pitch_angle, knee_angle, robot ):
-    # YOUR ASSIGNMENT: 
-    # return the angles of the joints in a leg given the position of
-    # the foot relative to the origin of the leg.
-    # 
-    # The origin of the leg is where the leg is attached to the cart,
-    # at the root of the hip yaw joint.
-    # 
-    # All lengths are in meters, all angles in radians
+def jointAnglesFromFootPosition( foot_x, foot_y, foot_z, robot ):
+    #Given the (X,Y,Z) position of a three-jointed foot relative to an
+    #"origin" mount point, derives requisite knee angles.
     #
     # Robot link lengths are in:
     # robot.YAW_L  
@@ -18,33 +12,63 @@ def jointAnglesFromFootPosition( hip_yaw_angle, hip_pitch_angle, knee_angle, rob
     # Joint angles are positive in the direction of cylinder expansions.
     # Looking from above, positive hip yaw swings the leg clockwise
     # Positive hip pitch and knee pitch curl the leg under the robot
-
-    ### YOUR CODE GOES HERE ###
     
-    yawVector=matrix([robot.YAW_L,0,0]);
-    thighVector=matrix([robot.THIGH_L,0,0]);
-    calfVector=matrix([robot.CALF_L,0,0]);
+    #make a vector describing foot position relative to mount point.
+    foot_vector=matrix([foot_x,foot_y,foot_z]);
     
-    kneePos=pitchRotation(calfVector,knee_angle,matrix[0,0,0]);
-    hipPos=pitchRotation(thighVector,hip_pitch_angle,kneePos);
-    #Negated because we've been calculating the vector from foot to robot
-    footpos=-yawRotation(yawVector,hip_yaw_angle,hipPos);
+    #Calculates yaw angle for hip (via atan, as leg is always in a plane
+    #passing through the reference origin)
+    hip_yaw_angle=atan2(foot_x,foot_y);
     
-    foot_x=footpos[0,0];
-    foot_y=footpos[1,0];
-    foot_z=footpos[2,0];
-    return (foot_x, foot_y, foot_z);
+    #projects leg into a plane which is tangent to the hip vector
+    #note to self: a good check for this is that the new y-component
+    #will be 0
+    foot_ground_projection=yawRotation(
+        foot_vector,hip_yaw_angle,matrix([0,0,0]));
+    
+    #get magnitude of vector from hip pitch joint to foot
+    #note that to do this, you must subtract the length between
+    #the two hip joints from the projection length
+    hip_to_foot_magnitude=sqrt(
+    (foot_ground_projection[0,0]-robot.YAW_L)**2+
+        foot_ground_projection[2,0]**2);
+    
+    #deriving helper angle between projected x axis and foot->hip vector
+    a1=atan2(foot_ground_projection[2,0],foot_ground_projection[0,0]);
+	#deriving helper angle between thigh and foot->hip vector
+    a2=law_of_cosines(robot.THIGH_L,hip_to_foot_magnitude,robot.CALF_L);
+    hip_pitch_angle=a1+a2;
+    
+    knee_angle=law_of_cosines([robot.THIGH_L,robot.CALF_L,
+	hip_to_foot_magnitude]);
+    
+    return (hip_yaw_angle, hip_pitch_angle, knee_angle);
+   
+def law_of_cosines(sides):
+	#Given a vector describing three sides of a triangle, 
+	#returns a vector of the values of angles opposite respective sides
+	angles=[]
+	for i in range(0,3):
+		a=sides[(i+2)%3];
+		b=sides[(i+1)%3];
+		c=sides[i]
+		angles[i]=acos((a**2+b**2-c**2)/2*a*b);
+	return angles;
 
 def yawRotation(vector, angle, offset):
 	#Rotates a vector around the Z axis by an angle (uses radians)
+	#Returns a column vector of length 3
 	offset=toRowVector(offset);
 	
+	#generate a homogenous rotation matrix based off of desired angle
+	#and offset
 	row1=[cos(angle),-sin(angle),0,offset[0,0]];
 	row2=[sin(angle),cos(angle),0,offset[0,1]];
 	row3=[0,0,1],offset[0,2];
 	row4=[0,0,0,1];
 	rotationMatrix=matrix([row1,row2,row3,row4]);
 	
+	#Rotation and translation calculated via homogenous transform
 	homogenous=rotationMatrix*toHomogenous(vector);
 	posVector=homogenous[0:3,0];
 	return (posVector);
@@ -63,7 +87,7 @@ def pitchRotation(vector, angle, offset):
 	posVector=homogenous[0:3,0];
 	return (posVector)
 
-def rollRotation(vector, angle):
+def rollRotation(vector, angle, offset):
 	#Rotates a vector around the X axis by an angle (uses radians)
 	offset=toRowVector(offset);
 	
@@ -85,7 +109,9 @@ def Translation(vector, offset):
 	row2=[0,1,0,offset[1,0]];
 	row3=[0,0,1,offset[2,0]];
 	row4=[0,0,0,1];
-	homogenous=rotationMatrix*toHomogenous(vector);
+	translationMatrix=matrix([row1,row2,row3,row4]);
+	
+	homogenous=translationMatrix*toHomogenous(vector);
 	posVector=homogenous[0:3,0];
 	return (posVector);
 
@@ -103,7 +129,7 @@ def toRowVector(vector):
 	if vector.shape[0]!=1:
 		rowVector=transpose(vector);
 	else:
-		colVector=vector;
+		rowVector=vector;
 	if rowVector.shape[0]!=1:
 		raise ValueError("Vector is not 1-dimensional,"+
 		" impossible to convert to row vector.")
