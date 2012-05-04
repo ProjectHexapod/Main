@@ -13,6 +13,7 @@ class Trajectory:
         """
         self.start_sim_t = start_sim_t
         self.start_foot_pos = start_foot_pos
+        self.target_foot_pos = target_foot_pos
         net_time = end_sim_t - start_sim_t
 
         #Compute delta between start and end vectors
@@ -55,6 +56,9 @@ class Trajectory:
             t -= 2.*self.net_time/3.
             delta_pos = [3.*pd/4. + t*vm - t**2 * a/2. for pd,vm,a in zip(self.position_change,
                 self.max_velocity, self.acceleration)]
+
+        else:
+            return self.target_foot_pos
 
         # Add the starting position to the position delta
         foot_pos = [sp+ep for sp,ep in zip(self.start_foot_pos, delta_pos)]
