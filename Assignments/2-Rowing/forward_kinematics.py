@@ -11,29 +11,21 @@ def footPositionFromJointAngles( hip_yaw_angle, hip_pitch_angle, knee_angle, sho
     pos = translate(pos, (0, 0, -shock_depth))
     return pos
 
-# Cartesian to polar
-def c2p(x, y):
-    l = sqrt(x**2 + y**2)
-    a = atan2(y, x)
-    return l, a
-
-# polar to Cartesian
-def p2c(l, a):
-    x = l * cos(a)
-    y = l * sin(a)
-    return x, y
-
 # rotate about the Y axis
 def rotate_y(vector, angle):
-    l, a = c2p(vector[0], vector[2])
-    x, z = p2c(l, a + angle)
-    return x, vector[1], z
+    c, s = cos(angle), sin(angle)
+    x = c*vector[0] - s*vector[2]
+    y = vector[1]
+    z = s*vector[0] + c*vector[2]
+    return x, y, z
 
 # rotate about the Z axis
 def rotate_z(vector, angle):
-    l, a = c2p(vector[0], vector[1])
-    x, y = p2c(l, a + angle)
-    return x, y, vector[2]
+    c, s = cos(angle), sin(angle)
+    x = c*vector[0] - s*vector[1]
+    y = s*vector[0] + c*vector[1]
+    z = vector[2]
+    return x, y, z
 
 def translate(v1, v2):
     x = v1[0] + v2[0]
