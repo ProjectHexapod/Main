@@ -51,11 +51,14 @@ class JointController:
         #calculate PID terms
         pterm = cur_error * self.kp
         self.iterm += cur_error * dtime * self.ki
+        print self.iterm
         dterm = (cur_error - self.prev_error)/dtime * self.kd
 
         self.valve_pos = pterm + self.iterm + dterm
 
         self.prev_error = cur_error
         self.prev_time = sys_time
+
+        #TODO: set the valve position when that API is available
 
         return self.valve_pos
