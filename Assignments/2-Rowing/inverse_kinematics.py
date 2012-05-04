@@ -15,7 +15,7 @@ def jointAnglesFromFootPosition( pos, shock_depth, robot ):
    
 # Cartesian to polar
 def c2p(x, y):
-    l = sqrt(x*x + y*y)
+    l = sqrt(x**2 + y**2)
     a = atan2(y, x)
     return l, a
 
@@ -45,7 +45,7 @@ def translate(v1, v2):
 
 # calculate angles from sides of a triangle
 def solve_triangle(a, b, c):
-    A = acos((b*b+c*c-a*a)/(2*b*c))
-    B = acos((c*c+a*a-b*b)/(2*c*a))
-    C = acos((a*a+b*b-c*c)/(2*a*b))
+    A = acos((b**2+c**2-a**2)/(2*b*c))
+    B = acos((c**2+a**2-b**2)/(2*c*a))
+    C = acos((a**2+b**2-c**2)/(2*a*b))
     return A, B, C

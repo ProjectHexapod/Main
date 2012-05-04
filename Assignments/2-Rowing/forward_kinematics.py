@@ -1,19 +1,19 @@
 from math import *
 
 def footPositionFromJointAngles( hip_yaw_angle, hip_pitch_angle, knee_angle, shock_depth, robot ):
-    p = (0, 0, 0)
-    p = translate(p, (robot.CALF_L, 0, 0))
-    p = rotate_y(p, -knee_angle)
-    p = translate(p, (robot.THIGH_L, 0, 0))
-    p = rotate_y(p, -hip_pitch_angle)
-    p = translate(p, (robot.YAW_L, 0, 0))
-    p = rotate_z(p, -hip_yaw_angle)
-    p = translate(p, (0, 0, -shock_depth))
-    return p
+    pos = (0, 0, 0)
+    pos = translate(pos, (robot.CALF_L, 0, 0))
+    pos = rotate_y(pos, -knee_angle)
+    pos = translate(pos, (robot.THIGH_L, 0, 0))
+    pos = rotate_y(pos, -hip_pitch_angle)
+    pos = translate(pos, (robot.YAW_L, 0, 0))
+    pos = rotate_z(pos, -hip_yaw_angle)
+    pos = translate(pos, (0, 0, -shock_depth))
+    return pos
 
 # Cartesian to polar
 def c2p(x, y):
-    l = sqrt(x*x + y*y)
+    l = sqrt(x**2 + y**2)
     a = atan2(y, x)
     return l, a
 
