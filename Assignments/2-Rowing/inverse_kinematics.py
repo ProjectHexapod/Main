@@ -64,7 +64,7 @@ def yawRotation(vector, angle, offset):
 	#and offset
 	row1=[cos(angle),-sin(angle),0,offset[0,0]];
 	row2=[sin(angle),cos(angle),0,offset[0,1]];
-	row3=[0,0,1],offset[0,2];
+	row3=[0,0,1,offset[0,2]];
 	row4=[0,0,0,1];
 	rotationMatrix=matrix([row1,row2,row3,row4]);
 	
