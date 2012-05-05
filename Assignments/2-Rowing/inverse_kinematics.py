@@ -2,13 +2,12 @@ from math import *
 from numpy import matrix, transpose, resize
 
 def jointAnglesFromFootPosition( pos, shock_depth, robot ):
-    pos = translate(pos, (0, 0, shock_depth))
     hip_yaw_target = -atan2(pos[1], pos[0])
     pos = rotate_z(pos, hip_yaw_target)
     pos = translate(pos, (-robot.YAW_L, 0, 0))
     pitch = -atan2(pos[2], pos[0])
     pos = rotate_y(pos, pitch)
-    aL, aC, aT = solve_triangle(pos[0], robot.CALF_L, robot.THIGH_L)
+    aL, aC, aT = solve_triangle(pos[0], robot.CALF_L + shock_depth, robot.THIGH_L)
     hip_pitch_target = pitch - aC
     knee_target = pi - aL
     return hip_yaw_target, hip_pitch_target, knee_target

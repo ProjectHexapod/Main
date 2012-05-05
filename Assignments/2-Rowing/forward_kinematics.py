@@ -2,13 +2,12 @@ from math import *
 
 def footPositionFromJointAngles( hip_yaw_angle, hip_pitch_angle, knee_angle, shock_depth, robot ):
     pos = (0, 0, 0)
-    pos = translate(pos, (robot.CALF_L, 0, 0))
+    pos = translate(pos, (robot.CALF_L + shock_depth, 0, 0))
     pos = rotate_y(pos, -knee_angle)
     pos = translate(pos, (robot.THIGH_L, 0, 0))
     pos = rotate_y(pos, -hip_pitch_angle)
     pos = translate(pos, (robot.YAW_L, 0, 0))
     pos = rotate_z(pos, -hip_yaw_angle)
-    pos = translate(pos, (0, 0, -shock_depth))
     return pos
 
 # rotate about the Y axis
