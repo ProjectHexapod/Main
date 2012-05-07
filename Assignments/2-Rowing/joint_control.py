@@ -1,14 +1,17 @@
-from math import pi
+#TODO add PID override function
+#TODO add on-the-fly PID tuning
 
+from math import pi
 
 class JointController:
     def __init__(self, joint):
-        self.joint = joint
-
-    	self.prev_error = 0
-        self.prev_time = 0
+        self.prev_error = 0  # error in radians at the time the function is called
+        self.prev_time = -1  # system time when the function was last called
         self.iterm = 0
         self.valve_pos = 0
+        self.outMin = -200   # minimum allowable flow rate 
+        self.outMax = 200    # maximum allowable flow rate
+        self.joint = joint   # make joint into a global variable
 
         # set weights
         self.kp = 0.20
@@ -17,38 +20,67 @@ class JointController:
 
     # sim_time: current system time in seconds
     # target_angle: target angle for joint in degrees 
-    # 
-    # uses globals: prev_error: the error in degrees at the time the function is called
-    #               prev_time: system time when the function was last called
-    def updateJoint(self, sim_time, target_angle):
-        cur_error = bound(target_angle - self.joint.getAngle())
+    # joint:
+    # sys_time: current system time in seconds
+    def updateJoint(self, target_angle, sys_time):
+        # YOUR ASSIGNMENT: 
+        #         # update the joint with the calculated flow rate
+        # Given the target angle on the joint, command a sane linear velocity
+        # to make the joint hit the target angle.
+        # You should think about not introducing sudden movements in to the system
+        # 
+        # All lengths are in meters, all angles in radians
+        #
+        # Robot link lengths are in:
+        # robot.YAW_L  
+        # robot.THIGH_L
+        # robot.CALF_L
+        # Joint angles are positive in the direction of cylinder expansions.
+        # Looking from above, positive hip yaw swings the leg clockwise
+        # Positive hip pitch and knee pitch curl the leg under the robot
+
 	        
-        dtime = sim_time - self.prev_time
+        cur_error = target_angle - self.joint.getAngle()
+	        
+        dtime = sys_time - self.prev_time
 
         #if no time has passed since last function call return last valve_pos
         if dtime == 0 or self.prev_time < 0:
             return self.valve_pos
 
-        #calculate PID terms
+        #calculate P term
         pterm = cur_error * self.kp
+        
+        # calculate I term
         self.iterm += cur_error * dtime * self.ki
-        #print self.iterm
+        # clamp iterm at maximum/minimum output
+        # this prevents integral windup
+        if self.iterm > self.outMax: 
+            self.iterm = self.outMax
+        elif self.iterm < self.outMin:
+            self.iterm = self.outMin
+
+        # calculate D term
         dterm = (cur_error - self.prev_error)/dtime * self.kd
 
-        #self.valve_pos = pterm + self.iterm + dterm
-        self.valve_pos = pterm
+        # calculate valve position output
+        self.valve_pos = pterm + self.iterm + dterm
+        # clamp outpout at maximum/minimum output
+        if self.valve_pos > self.outMax: 
+            self.valve_pos = self.outMax
+        elif self.valve_pos < self.outMin:
+            self.valve_pos = self.outMin
 
         self.prev_error = cur_error
         self.prev_time = sim_time
 
-        #print self.valve_pos
+        # update the joint with the calculated flow rate
+        self.outputFlowRate()
 
+        return cur_error
+
+    # update the joint with the calculated flow rate
+    def outputFlowRate(self):
         self.joint.setLengthRate(self.valve_pos)
 
-def bound(a):
-    a %= 2*pi
-    if a > pi:
-        a -= 2*pi
-    if a < -pi:
-        a += 2*pi
-    return a
+
