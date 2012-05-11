@@ -28,10 +28,15 @@ pitch_joint = s.robot.members['hip_pitch']
 knee_joint = s.robot.members['knee_pitch']
 shock_joint = s.robot.members['foot_shock']
 
+time_1 = 0.0
 while True:
     s.step()
 
-    lr = update(s.getSimTime(), yaw_joint.getAngle(), pitch_joint.getAngle(), knee_joint.getAngle(), shock_joint.getPosition())
-    yaw_joint.setLengthRate(lr[0])
-    pitch_joint.setLengthRate(lr[1])
-    knee_joint.setLengthRate(lr[2])
+    time = s.getSimTime()
+    if time != time_1:
+        lr = update(time, yaw_joint.getAngle(), pitch_joint.getAngle(), knee_joint.getAngle(), shock_joint.getPosition())
+        yaw_joint.setLengthRate(lr[0])
+        pitch_joint.setLengthRate(lr[1])
+        knee_joint.setLengthRate(lr[2])
+        
+        time_1 = time
