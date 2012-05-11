@@ -28,6 +28,8 @@ class LegController:
         self.setLegState(0.0, 0.0, 0.0, 0.0)
 
         # Events
+        self.SHOCK_DEPTH_THRESHOLD_LOW = 0.01
+        self.SHOCK_DEPTH_THRESHOLD_HIGH = 0.02
         self.foot_on_ground = False
 
         # Joint control
@@ -72,7 +74,10 @@ class LegController:
         return self.foot_on_ground
     def updateFootOnGround(self):
         sd = self.getShockDepth()
-        self.foot_on_ground = False
+        if sd < self.SHOCK_DEPTH_THRESHOLD_LOW:
+            self.foot_on_ground = False
+        elif sd > self.SHOCK_DEPTH_THRESHOLD_HIGH:
+            self.foot_on_ground = True
 
     # Joint control
     def setDesiredJointAngles(self, desired_joint_angles):
@@ -85,3 +90,4 @@ class LegController:
                 self.getJointAngles()[i])
     def getLengthRateCommands(self):
         return self.length_rate_commands
+
