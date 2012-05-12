@@ -1,19 +1,6 @@
 from scipy import array
-from math_utils import rotateY, rotateZ
+from math_utils import *
 from pid_controller import PidController
-
-
-LEG_DOF = 3
-
-# Indices for joint angles
-YAW = 0
-HP = 1
-KP = 2
-
-# Indices for Cartesian positions
-X = 0
-Y = 1
-Z = 2
 
 
 class LegController:

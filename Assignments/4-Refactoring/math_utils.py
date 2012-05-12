@@ -1,6 +1,19 @@
 from scipy import array, cos, sin
 
 
+LEG_DOF = 3
+
+# Indices for joint angles
+YAW = 0
+HP = 1
+KP = 2
+
+# Indices for Cartesian positions
+X = 0
+Y = 1
+Z = 2
+
+
 # Compare two arrays. Use tolerance to account for arithmetic error.
 def arraysAreEqual(a, b, tolerance=1e-9):
     return max(abs(a - b)) <= tolerance
