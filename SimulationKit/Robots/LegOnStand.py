@@ -249,10 +249,10 @@ class LegOnStand(MultiBody):
         foot_shock = self.addPrismaticSpringJoint( \
             body1        = calf, \
             body2        = foot, \
-            axis         = calf_axis,\
+            axis         = mul3(calf_axis,-1),\
             spring_const = -5e3,\
-            hi_stop      = 0.0,\
-            lo_stop      = -0.1,\
+            hi_stop      = 0.1,\
+            lo_stop      = 0.0,\
             neutral_position = 0.0,\
             damping          = -1e2)
 
@@ -326,7 +326,7 @@ class LegOnStand(MultiBody):
                 b.color = (255*r,255*(1-r),0,255)
     def colorShockByDeflection( self, joint ):
             b = joint.getBody(1)
-            r = abs(joint.getPosition()/joint.getLoStop())
+            r = abs(joint.getPosition()/joint.getHiStop())
             if r >= 0.99:
                 b.color = (0,0,0,255)
             else:
