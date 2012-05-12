@@ -1,3 +1,4 @@
+from math import acos, asin, atan, atan2
 from scipy import array, arange, pi, cos, sin
 
 
@@ -44,3 +45,10 @@ def rotateZ(vector, angle):
     y = s*vector[0] + c*vector[1]
     z = vector[2]
     return array([x, y, z])
+
+# Calculate angles from sides of a triangle
+def solveTriangle(a, b, c):
+    A = acos((b**2+c**2-a**2)/(2*b*c))
+    B = acos((c**2+a**2-b**2)/(2*c*a))
+    C = acos((a**2+b**2-c**2)/(2*a*b))
+    return A, B, C

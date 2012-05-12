@@ -58,8 +58,16 @@ class LegController:
         pos = rotateY(pos, leg_state[0][HP])
         pos[X] += self.YAW_LEN
         return rotateZ(pos, -leg_state[0][YAW])
-    def jointAnglesFromFootPos(self, foot_pos, shock_depth):
-        return array([0.0, 0.0, 0.0])
+    def jointAnglesFromFootPos(self, pos, shock_depth):
+        hip_yaw_target = -atan2(pos[Y], pos[X])
+        pos = rotateZ(pos, -hip_yaw_target)
+        pos[X] -= self.YAW_LEN
+        pitch = -atan2(pos[Z], pos[X])
+        pos = rotateY(pos, -pitch)
+        aL, aC, aT = solveTriangle(pos[X], self.CALF_LEN + shock_depth, self.THIGH_LEN)
+        hip_pitch_target = pitch - aC
+        knee_target = pi - aL
+        return array([hip_yaw_target, hip_pitch_target, knee_target])
 
     # Touch-down detection
     def isFootOnGround(self):
