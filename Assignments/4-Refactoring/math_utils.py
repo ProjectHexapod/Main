@@ -28,6 +28,3 @@ def rotateZ(vector, angle):
     y = s*vector[0] + c*vector[1]
     z = vector[2]
     return array([x, y, z])
-
-def translate(v1, v2):
-    return v1 + v2
