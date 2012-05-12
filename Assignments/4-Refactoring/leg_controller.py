@@ -1,4 +1,5 @@
 from scipy import array
+from math_utils import rotateY, rotateZ
 from pid_controller import PidController
 
 
@@ -65,7 +66,12 @@ class LegController:
     def getFootPos(self):
         return footPosFromJointAngles(self.getLegState())
     def footPosFromLegState(self, leg_state):
-        return array([0.0, 0.0, 0.0])
+        pos = array([self.CALF_LEN - leg_state[1], 0.0, 0.0])
+        pos = rotateY(pos, leg_state[0][KNEE_PITCH])
+        pos[X] += self.THIGH_LEN
+        pos = rotateY(pos, leg_state[0][HIP_PITCH])
+        pos[X] += self.YAW_LEN
+        return rotateZ(pos, -leg_state[0][YAW])
     def jointAnglesFromFootPos(self, foot_pos, shock_depth):
         return array([0.0, 0.0, 0.0])
 
