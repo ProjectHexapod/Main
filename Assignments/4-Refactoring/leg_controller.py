@@ -77,7 +77,9 @@ class LegController:
         # What is the included angle between the foot and the +X axis?
         foot_pitch = -atan2(pos[Z], pos[X])
         
-        aL, aC, aT = solveTriangle(norm(pos), self.CALF_LEN - shock_depth, self.THIGH_LEN)
+        aL, aC, aT = solveTriangle(norm(pos),
+                                   self.CALF_LEN - shock_depth,
+                                   self.THIGH_LEN)
         hip_pitch = foot_pitch - aC
         knee_pitch = pi - aL
         return array([yaw, hip_pitch, knee_pitch])
