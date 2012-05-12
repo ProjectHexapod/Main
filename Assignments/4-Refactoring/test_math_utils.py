@@ -27,6 +27,20 @@ class MathUtilsTestCase(unittest.TestCase):
         self.assertFalse(arraysAreEqual(array([0.0, 0.0, 1e-8]),
                                         array([0.0, 0.0, 0.0])))
     
+    def testRotateXDoesntChangeX(self):
+        self.assertTrue(arraysAreEqual(array([1.0, 0.0, 0.0]),
+                                       rotateX(array([1.0, 0.0, 0.0]), pi/2.0)))
+    def testRotateXChangesYToZ(self):
+        self.assertTrue(arraysAreEqual(array([0.0, 0.0, 1.0]),
+                                       rotateX(array([0.0, 1.0, 0.0]), pi/2.0)))
+    def testRotateXChangesZToNegY(self):
+        self.assertTrue(arraysAreEqual(array([0.0, -1.0, 0.0]),
+                                       rotateX(array([0.0, 0.0, 1.0]), pi/2.0)))
+    def testRotateXOffAxis(self):
+        self.assertTrue(arraysAreEqual(
+                   array([2.0, (-3.0 + 1.0)/2.0**0.5, (3.0 + 1.0)/2.0**0.5]),
+                   rotateX(array([2.0, -3.0, 1.0]), -pi/4.0)))
+    
     def testRotateYChangesXToNegZ(self):
         self.assertTrue(arraysAreEqual(array([0.0, 0.0, -1.0]),
                                        rotateY(array([1.0, 0.0, 0.0]), pi/2.0)))

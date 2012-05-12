@@ -5,6 +5,14 @@ from scipy import array, cos, sin
 def arraysAreEqual(a, b, tolerance=1e-9):
     return max(abs(a - b)) <= tolerance
 
+# Rotate about the X axis
+def rotateX(vector, angle):
+    c, s = cos(angle), sin(angle)
+    x = vector[0]
+    y = c*vector[1] - s*vector[2]
+    z = s*vector[1] + c*vector[2]
+    return array([x, y, z])
+
 # Rotate about the Y axis
 def rotateY(vector, angle):
     c, s = cos(angle), sin(angle)
