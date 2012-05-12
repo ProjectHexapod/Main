@@ -1,6 +1,7 @@
 import unittest
 from math import acos, asin, atan, atan2
 from scipy import array, arange, pi, cos, sin
+from scipy.linalg import norm
 
 
 pi_2 = pi / 2.0

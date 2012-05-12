@@ -76,7 +76,30 @@ class LegControllerTestCase(unittest.TestCase):
                    (l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
                    l.THIGH_LEN / 2.0]),
             l.footPosFromLegState(self.leg_state))
+
+    def testJointAnglesFromFootPosInvertsFootPosFromLegState(self):
+        l = self.leg
+        ls = self.leg_state
         
+        INCREMENT = 0.3
+        TOL = 1e-4  # Stay away from numerical boundary conditions that are out
+                    # of out of our joint range anyway...
+        for yaw in arange(-pi_2 + TOL, pi_2 - TOL, INCREMENT):
+            ls[0][YAW] = yaw
+            for hip_pitch in arange(-pi_2 + TOL, pi_2 - TOL, INCREMENT):
+                ls[0][HP] = hip_pitch
+                for knee_pitch in arange(TOL, pi - TOL, INCREMENT):
+                    ls[0][KP] = knee_pitch
+                    
+                    # Only test a few shock depths
+                    for shock_depth in arange(0.0, 0.03, 0.01):
+                        ls[1] = shock_depth
+                        self.assertEqual(
+                                ls[0],
+                                l.jointAnglesFromFootPos(
+                                        l.footPosFromLegState(ls),
+                                        ls[1]))            
+
     def testShockDepthThredholdsAreSane(self):
         l = self.leg
         self.assertGreater(l.SHOCK_DEPTH_THRESHOLD_HIGH, 0.0)
