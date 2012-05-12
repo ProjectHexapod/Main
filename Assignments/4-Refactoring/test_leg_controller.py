@@ -11,6 +11,17 @@ class LegControllerTestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def testLinkLengthsAreSane(self):
+        l = self.leg
+        self.assertGreater(l.YAW_LEN, 0.0)
+        self.assertGreater(l.THIGH_LEN, 0.0)
+        self.assertGreater(l.CALF_LEN, 0.0)
+        
+        # Thigh should be 5ish times as long as the yaw stub
+        self.assertLess(abs(l.THIGH_LEN / l.YAW_LEN - 5.0), 2.0)
+        # Thigh should be pretty much the same length as the calf
+        self.assertLess(abs(l.THIGH_LEN / l.CALF_LEN - 1.0), 0.3)
+    
     def testFootPosFromLegStateZeroAnglesIsSumOfLengthsInX(self):
         l = self.leg
         self.assertTrue(arraysAreEqual(
