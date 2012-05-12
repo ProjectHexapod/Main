@@ -67,9 +67,9 @@ class LegController:
         return footPosFromJointAngles(self.getLegState())
     def footPosFromLegState(self, leg_state):
         pos = array([self.CALF_LEN - leg_state[1], 0.0, 0.0])
-        pos = rotateY(pos, leg_state[0][KNEE_PITCH])
+        pos = rotateY(pos, leg_state[0][KP])
         pos[X] += self.THIGH_LEN
-        pos = rotateY(pos, leg_state[0][HIP_PITCH])
+        pos = rotateY(pos, leg_state[0][HP])
         pos[X] += self.YAW_LEN
         return rotateZ(pos, -leg_state[0][YAW])
     def jointAnglesFromFootPos(self, foot_pos, shock_depth):

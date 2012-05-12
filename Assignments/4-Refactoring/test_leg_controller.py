@@ -1,5 +1,6 @@
 import unittest
-from scipy import arange, pi, sin
+from scipy import array, arange, pi, sin
+from math_utils import arraysAreEqual
 
 from leg_controller import LegController
 
@@ -7,8 +8,15 @@ from leg_controller import LegController
 class LegControllerTestCase(unittest.TestCase):
     def setUp(self):
         self.leg = LegController()
+        self.leg_state = (array([0.0, 0.0, 0.0]), 0.0)
     def tearDown(self):
         pass
+
+    def testFootPosFromLegStateZeroAnglesIsSumOfLengthsInX(self):
+        l = self.leg
+        self.assertTrue(arraysAreEqual(
+                array([l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN, 0.0, 0.0]),
+                l.footPosFromLegState(self.leg_state)))
     
     def testShockDepthThredholdsAreSane(self):
         l = self.leg
@@ -54,4 +62,3 @@ class LegControllerTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
