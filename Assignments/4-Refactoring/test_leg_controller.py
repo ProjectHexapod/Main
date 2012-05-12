@@ -1,6 +1,5 @@
 import unittest
-from scipy import array, arange, pi, sin
-from math_utils import arraysAreEqual
+from math_utils import *
 
 from leg_controller import LegController
 

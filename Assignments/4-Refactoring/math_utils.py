@@ -1,4 +1,4 @@
-from scipy import array, cos, sin
+from scipy import array, arange, pi, cos, sin
 
 
 LEG_DOF = 3

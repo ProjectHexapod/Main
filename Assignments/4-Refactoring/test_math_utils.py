@@ -1,5 +1,4 @@
 import unittest
-from scipy import array, pi
 
 from math_utils import *
 

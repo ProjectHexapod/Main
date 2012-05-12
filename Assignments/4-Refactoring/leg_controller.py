@@ -1,4 +1,3 @@
-from scipy import array
 from math_utils import *
 from pid_controller import PidController
 
