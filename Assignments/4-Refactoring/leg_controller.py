@@ -4,10 +4,10 @@ from pid_controller import PidController
 
 class LegController:
     def __init__(self):
-        # Kinematics
-        self.YAW_LEN = 1.0
-        self.THIGH_LEN = 1.0
-        self.CALF_LEN = 1.0
+        # Link lengths
+        self.YAW_LEN = 0.211
+        self.THIGH_LEN = 1.372
+        self.CALF_LEN = 1.283
 
         # State
         self.time = 0.0
