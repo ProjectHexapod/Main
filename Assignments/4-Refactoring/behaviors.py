@@ -1,13 +1,19 @@
+from math_utils import *
+
 class PutFootOnGround:
     def __init__(self, legController, velocity):
         self.leg = legController
-        self.velocity = velocity
+        self.vel = velocity
+        
+        self.foot_pos = self.leg.getFootPos()
 
     def isDone(self):
-        return False
+        return self.leg.isFootOnGround()
 
-    def update(self, time):
-        return self.leg.getJointAngles()
+    def update(self, time, delta_time):
+        if not self.isDone():
+            self.foot_pos[Z] -= self.vel * delta_time
+        return self.leg.jointAnglesFromFootPos(self.foot_pos)
 
 
 class TrapezoidalFootMove:
