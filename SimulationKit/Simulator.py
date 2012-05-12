@@ -160,7 +160,7 @@ class Simulator:
         joints if they do.
         """
         # Are both geoms static?  We don't care if they touch.
-        if geom1 in self.geoms and geom2 in self.geoms:
+        if geom1.getBody() == None and geom2.getBody() == None:
             return
 
         # Are both geoms connected?

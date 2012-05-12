@@ -46,6 +46,10 @@ def sub2( p1, p2 ):
 def len2( p ):
     return sqrt( p[0]*p[0] + p[1]*p[1] )
 
+def norm2( p ):
+    l = len2(p)
+    return (p[0]/l, p[1]/l)
+
 def sign(x):
     """Returns 1.0 if x is positive, -1.0 if x is negative or zero."""
     if x > 0.0: return 1.0

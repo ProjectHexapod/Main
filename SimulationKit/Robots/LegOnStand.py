@@ -32,8 +32,8 @@ class LegOnStand(MultiBody):
     WHEEL_R = 0.1
 
     # Compliance of foot
-    COMPLIANCE_K   = 200/0.06 # newtons/meter deflection of foot
-    COMPLIANCE_LEN = 0.06     # how long til it bottoms out
+    COMPLIANCE_K   = 8756  # newtons/meter deflection of foot = 100 pounds/2 inches
+    COMPLIANCE_LEN = 0.06  # how long til it bottoms out
 
     # The vertical stackup to the hip is WHEEL_R + CART_DIMS[2]/2 - HIP_FROM_CART_OFFSET[2]
     HIP_FROM_GROUND_HEIGHT = WHEEL_R + CART_DIMS[2]/2 - HIP_FROM_CART_OFFSET[2]
@@ -273,6 +273,22 @@ class LegOnStand(MultiBody):
         total += abs(self.members['hip_pitch'].getHydraulicFlowGPM())
         total += abs(self.members['knee_pitch'].getHydraulicFlowGPM())
         return total
+    def jointAnglesFromFootPosition( self, foot_pos ):
+        # Calculate hip yaw
+        hip_yaw_angle   = -atan2( foot_pos[1], foot_pos[0] )
+        # Calculate hip yaw offset
+        hip_p = norm2( (foot_pos[0], foot_pos[1]) )
+        hip_p = (self.YAW_L*hip_p[0], self.YAW_L*hip_p[1], 0.0)
+        # Calculate leg length
+        leg_l                    = dist3( foot_pos, hip_p )
+        # Use law of cosines on leg length to calculate knee angle 
+        knee_angle               = pi-thetaFromABC( self.THIGH_L, self.CALF_L, leg_l )
+        # Calculate hip pitch
+        hip_offset_angle         = thetaFromABC( self.THIGH_L, leg_l,  self.CALF_L )
+        target_p                 = sub3(foot_pos, hip_p)
+        hip_depression_angle     = atan2( -target_p[2], len2((target_p[0], target_p[1])) )
+        hip_pitch_angle          = hip_depression_angle - hip_offset_angle
+        return (hip_yaw_angle, hip_pitch_angle, knee_angle)
     def setDesiredFootPosition( self, position ):
         yaw_p = (0,0,0)
         # Calculate hip yaw
