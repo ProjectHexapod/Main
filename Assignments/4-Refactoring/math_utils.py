@@ -8,9 +8,9 @@ def arraysAreEqual(a, b, tolerance=1e-9):
 # Rotate about the Y axis
 def rotateY(vector, angle):
     c, s = cos(angle), sin(angle)
-    x = c*vector[0] - s*vector[2]
+    x = c*vector[0] + s*vector[2]
     y = vector[1]
-    z = s*vector[0] + c*vector[2]
+    z = -s*vector[0] + c*vector[2]
     return array([x, y, z])
 
 # Rotate about the Z axis
