@@ -50,7 +50,7 @@ class LegController:
 
     # Kinematics
     def getFootPos(self):
-        return footPosFromJointAngles(self.getLegState())
+        return self.footPosFromLegState(self.getLegState())
     def footPosFromLegState(self, leg_state):
         pos = array([self.CALF_LEN - leg_state[1], 0.0, 0.0])
         pos = rotateY(pos, leg_state[0][KP])
