@@ -1,6 +1,9 @@
 from scipy import array, arange, pi, cos, sin
 
 
+pi_2 = pi / 2.0
+pi_4 = pi / 4.0
+
 LEG_DOF = 3
 
 # Indices for joint angles

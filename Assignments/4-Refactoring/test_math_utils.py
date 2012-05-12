@@ -28,45 +28,45 @@ class MathUtilsTestCase(unittest.TestCase):
     
     def testRotateXDoesntChangeX(self):
         self.assertTrue(arraysAreEqual(array([1.0, 0.0, 0.0]),
-                                       rotateX(array([1.0, 0.0, 0.0]), pi/2.0)))
+                                       rotateX(array([1.0, 0.0, 0.0]), pi_2)))
     def testRotateXChangesYToZ(self):
         self.assertTrue(arraysAreEqual(array([0.0, 0.0, 1.0]),
-                                       rotateX(array([0.0, 1.0, 0.0]), pi/2.0)))
+                                       rotateX(array([0.0, 1.0, 0.0]), pi_2)))
     def testRotateXChangesZToNegY(self):
         self.assertTrue(arraysAreEqual(array([0.0, -1.0, 0.0]),
-                                       rotateX(array([0.0, 0.0, 1.0]), pi/2.0)))
+                                       rotateX(array([0.0, 0.0, 1.0]), pi_2)))
     def testRotateXOffAxis(self):
         self.assertTrue(arraysAreEqual(
                    array([2.0, (-3.0 + 1.0)/2.0**0.5, (3.0 + 1.0)/2.0**0.5]),
-                   rotateX(array([2.0, -3.0, 1.0]), -pi/4.0)))
+                   rotateX(array([2.0, -3.0, 1.0]), -pi_4)))
     
     def testRotateYChangesXToNegZ(self):
         self.assertTrue(arraysAreEqual(array([0.0, 0.0, -1.0]),
-                                       rotateY(array([1.0, 0.0, 0.0]), pi/2.0)))
+                                       rotateY(array([1.0, 0.0, 0.0]), pi_2)))
     def testRotateYDoesntChangeY(self):
         self.assertTrue(arraysAreEqual(array([0.0, 1.0, 0.0]),
-                                       rotateY(array([0.0, 1.0, 0.0]), pi/2.0)))
+                                       rotateY(array([0.0, 1.0, 0.0]), pi_2)))
     def testRotateYChangesZToX(self):
         self.assertTrue(arraysAreEqual(array([1.0, 0.0, 0.0]),
-                                       rotateY(array([0.0, 0.0, 1.0]), pi/2.0)))
+                                       rotateY(array([0.0, 0.0, 1.0]), pi_2)))
     def testRotateYOffAxis(self):
         self.assertTrue(arraysAreEqual(
                    array([(2.0 - 1.0)/2.0**0.5, -3.0, (2.0 + 1.0)/2.0**0.5]),
-                   rotateY(array([2.0, -3.0, 1.0]), -pi/4.0)))
+                   rotateY(array([2.0, -3.0, 1.0]), -pi_4)))
 
     def testRotateZChangesXToY(self):
         self.assertTrue(arraysAreEqual(array([0.0, 1.0, 0.0]),
-                                       rotateZ(array([1.0, 0.0, 0.0]), pi/2.0)))
+                                       rotateZ(array([1.0, 0.0, 0.0]), pi_2)))
     def testRotateZChangesYToNegX(self):
         self.assertTrue(arraysAreEqual(array([-1.0, 0.0, 0.0]),
-                                       rotateZ(array([0.0, 1.0, 0.0]), pi/2.0)))
+                                       rotateZ(array([0.0, 1.0, 0.0]), pi_2)))
     def testRotateZDoesntChangeZ(self):
         self.assertTrue(arraysAreEqual(array([0.0, 0.0, 1.0]),
-                                       rotateZ(array([0.0, 0.0, 1.0]), pi/2.0)))
+                                       rotateZ(array([0.0, 0.0, 1.0]), pi_2)))
     def testRotateZOffAxis(self):
         self.assertTrue(arraysAreEqual(
                    array([(2.0 - 3.0)/2.0**0.5, (-2.0 - 3.0)/2.0**0.5, 1.0]),
-                   rotateZ(array([2.0, -3.0, 1.0]), -pi/4.0)))
+                   rotateZ(array([2.0, -3.0, 1.0]), -pi_4)))
 
 
 if __name__ == '__main__':
