@@ -22,9 +22,9 @@ class LegController:
         # Joint control
         self.length_rate_commands = array([0.0, 0.0, 0.0])
         self.controllers = [
-            PidController(1.0, 1.0, 1.0),  # Yaw joint
-            PidController(1.0, 1.0, 1.0),  # Hip pitch joint
-            PidController(1.0, 1.0, 1.0)   # Knee pitch joint
+            PidController(0.5, 0.0, 0.0),  # Yaw joint
+            PidController(0.5, 0.0, 0.0),  # Hip pitch joint
+            PidController(0.5, 0.0, 0.0)   # Knee pitch joint
         ]
 
 
