@@ -1,3 +1,4 @@
+import unittest
 from math import acos, asin, atan, atan2
 from scipy import array, arange, pi, cos, sin
 
@@ -21,6 +22,12 @@ Z = 2
 # Compare two arrays. Use tolerance to account for arithmetic error.
 def arraysAreEqual(a, b, tolerance=1e-9):
     return max(abs(a - b)) <= tolerance
+def arrayTypeEqualityFunction(a, b, msg=None):
+    if not arraysAreEqual(a, b):
+        raise unittest.TestCase.failureException(
+                "Arrays are not equal:\n    " + str(a) + "\n    " + str(b))
+def installArrayTypeEqualityFunction(test_case):
+    test_case.addTypeEqualityFunc(type(array([])), arrayTypeEqualityFunction)
 
 # Rotate about the X axis
 def rotateX(vector, angle):

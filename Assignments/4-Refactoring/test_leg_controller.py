@@ -6,6 +6,8 @@ from leg_controller import LegController
 
 class LegControllerTestCase(unittest.TestCase):
     def setUp(self):
+        installArrayTypeEqualityFunction(self)
+        
         self.leg = LegController()
         self.leg_state = [array([0.0, 0.0, 0.0]), 0.0]
     def tearDown(self):
@@ -24,57 +26,57 @@ class LegControllerTestCase(unittest.TestCase):
     
     def testFootPosFromLegStateZeroAnglesIsSumOfLengthsInX(self):
         l = self.leg
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
                 array([l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN, 0.0, 0.0]),
-                l.footPosFromLegState(self.leg_state)))
+                l.footPosFromLegState(self.leg_state))
     def testFootPosFromLegStatePosRightAngles(self):
         l = self.leg
         
         self.leg_state[0][YAW] = pi_2
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
                 array([0.0, -(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN), 0.0]),
-                l.footPosFromLegState(self.leg_state)))
+                l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][HP] = pi_2
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
                 array([0.0, -l.YAW_LEN, -(l.THIGH_LEN + l.CALF_LEN)]),
-                l.footPosFromLegState(self.leg_state)))
+                l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][KP] = pi_2
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
                 array([0.0, l.CALF_LEN - l.YAW_LEN, -l.THIGH_LEN]),
-                l.footPosFromLegState(self.leg_state)))
+                l.footPosFromLegState(self.leg_state))
     def testFootPosFromLegStateShockDepthModifiesCalfLen(self):
         l = self.leg
         self.leg_state[0][KP] = pi_2
         self.leg_state[1] = 0.1234
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
                 array([l.YAW_LEN + l.THIGH_LEN, 0.0, -(l.CALF_LEN - 0.1234)]),
-                l.footPosFromLegState(self.leg_state)))
+                l.footPosFromLegState(self.leg_state))
     def testFootPosFromLegStateComplex(self):
         l = self.leg
         
         self.leg_state[0][YAW] = -pi_4
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
                 array([(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN) / 2**0.5,
                        (l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN) / 2**0.5,
                        0.0]),
-                l.footPosFromLegState(self.leg_state)))
+                l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][HP] = -pi / 6.0
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
             array([(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
                    (l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
                    (l.THIGH_LEN + l.CALF_LEN) / 2.0]),
-            l.footPosFromLegState(self.leg_state)))
+            l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][KP] = pi / 6.0
-        self.assertTrue(arraysAreEqual(
+        self.assertEqual(
             array([(l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
                    (l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
                    l.THIGH_LEN / 2.0]),
-            l.footPosFromLegState(self.leg_state)))
-            
+            l.footPosFromLegState(self.leg_state))
+        
     def testShockDepthThredholdsAreSane(self):
         l = self.leg
         self.assertGreater(l.SHOCK_DEPTH_THRESHOLD_HIGH, 0.0)
