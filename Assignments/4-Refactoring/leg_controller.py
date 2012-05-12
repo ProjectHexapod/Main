@@ -60,7 +60,7 @@ class LegController:
     def getShockDepth(self):
         return self.shock_depth
     def getLegState(self):
-        return (self.getJointAngles(), self.getShockDepth())
+        return [self.getJointAngles(), self.getShockDepth()]
 
     # Kinematics
     def getFootPos(self):

@@ -8,7 +8,7 @@ from leg_controller import LegController
 class LegControllerTestCase(unittest.TestCase):
     def setUp(self):
         self.leg = LegController()
-        self.leg_state = (array([0.0, 0.0, 0.0]), 0.0)
+        self.leg_state = [array([0.0, 0.0, 0.0]), 0.0]
     def tearDown(self):
         pass
 
