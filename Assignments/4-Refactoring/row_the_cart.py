@@ -11,6 +11,10 @@ S_INIT_MOVE1 = 0
 S_MOVE1 = 1
 S_INIT_LOWER = 2
 S_LOWER = 3
+S_INIT_MOVE2 = 4
+S_MOVE2 = 5
+S_INIT_MOVE3 = 6
+S_MOVE3 = 7
 
 state = S_INIT_MOVE1
 
@@ -34,8 +38,8 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     # Monitor trajectories
     if state == S_INIT_MOVE1:
         traj = behaviors.TrapezoidalFootMove(leg,
-                                             array([1.75, 0.0, -0.4]),
-                                             0.1, 0.1)
+                                             array([1.5, -0.6, -0.4]),
+                                             0.2, 0.1)
         state = S_MOVE1
     elif state == S_MOVE1:
         state += waitFor(traj)
@@ -43,6 +47,20 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
         traj = behaviors.PutFootOnGround(leg, 0.05)
         state = S_LOWER
     elif state == S_LOWER:
+        state += waitFor(traj)
+    elif state == S_INIT_MOVE2:
+        traj = behaviors.TrapezoidalFootMove(leg,
+                                             array([1.5, 0.6, leg.getFootPos()[Z]]),
+                                             0.2, 0.1)
+        state = S_MOVE2
+    elif state == S_MOVE2:
+        state += waitFor(traj)
+    elif state == S_INIT_MOVE3:
+        traj = behaviors.TrapezoidalFootMove(leg,
+                                             array([1.5, 0.6, -0.4]),
+                                             0.2, 0.1)
+        state = S_MOVE3
+    elif state == S_MOVE3:
         state += waitFor(traj)
     else:
         state = S_INIT_MOVE1
