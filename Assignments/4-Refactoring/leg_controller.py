@@ -10,8 +10,6 @@ class LegController:
         self.CALF_LEN = 1.283
 
         # State
-        self.time = 0.0
-        self.delta_time = 0.0
         self.setLegState(0.0, 0.0, 0.0, 0.0)
 
         # Events
@@ -30,18 +28,11 @@ class LegController:
 
 
     # Store sensor readings
-    def setTime(self, time):
-        self.delta_time = time - self.time
-        self.time = time
     def setLegState(self, yaw, hip_pitch, knee_pitch, shock_depth):
         self.joint_angles = array([yaw, hip_pitch, knee_pitch])
         self.shock_depth = shock_depth
 
     # Access state
-    def getTime(self):
-        return self.time
-    def getDeltaTime(self):
-        return self.delta_time
     def getJointAngles(self):
         return self.joint_angles
     def getShockDepth(self):
@@ -101,7 +92,6 @@ class LegController:
     def updateLengthRateCommands(self):
         for i in range(LEG_DOF):
             self.length_rate_commands[i] = self.controllers[i].update(
-                self.getDeltaTime(),
                 self.desired_joint_angles[i],
                 self.getJointAngles()[i])
     def getLengthRateCommands(self):

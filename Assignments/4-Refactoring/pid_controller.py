@@ -1,4 +1,5 @@
 import math
+import time_sources
 
 class PidController:
     def __init__(self, kp, ki, kd, soft_min, soft_max):
@@ -13,7 +14,9 @@ class PidController:
         self.prev_response = 0.0
         self.integral_error_accumulator = 0.0
 
-    def update(self, delta_time, desired_pos, measured_pos):
+    def update(self, desired_pos, measured_pos):
+        delta_time = time_sources.global_time.getDelta()
+        
         if delta_time == 0:  # if no time has elapsed the error hasn't changed
             return self.prev_response
         if math.isnan(delta_time):

@@ -1,4 +1,5 @@
 from math_utils import *
+import time_sources
 from leg_controller import LegController
 from behaviors import PutFootOnGround, TrapezoidalFootMove
 
@@ -21,7 +22,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     
     
     # Update leg
-    leg.setTime(time)
+    time_sources.global_time.update(time)
     leg.setLegState(yaw, hip_pitch, knee_pitch, shock_depth)
     leg.updateFootOnGround()
 
@@ -48,7 +49,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             state = S_MOVE3
 
     # Evaluate trajectory and joint control
-    leg.setDesiredJointAngles(traj.update(time, leg.getDeltaTime()))
+    leg.setDesiredJointAngles(traj.update())
     leg.updateLengthRateCommands()
 
     # Send commands

@@ -1,4 +1,5 @@
 from math_utils import *
+import time_sources
 
 
 class PutFootOnGround:
@@ -7,13 +8,17 @@ class PutFootOnGround:
         self.vel = velocity
         
         self.target_foot_pos = self.leg.getFootPos()
+        self.done = False
 
     def isDone(self):
-        return self.leg.isFootOnGround()
+        return self.done
 
-    def update(self, time, delta_time):
+    def update(self):
         if not self.isDone():
-            self.target_foot_pos[Z] -= self.vel * delta_time
+            if self.leg.isFootOnGround():
+                self.done = True
+            else:
+                self.target_foot_pos[Z] -= self.vel * time_sources.global_time.getDelta()
         return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
 
 
@@ -33,7 +38,7 @@ class TrapezoidalFootMove:
     def isDone(self):
         return self.done
 
-    def update(self, time, deltaTime):
+    def update(self):
         if not self.done:
             # Have we passed the destination?
             if not arraysAreEqual(normalize(self.final_foot_pos - self.target_foot_pos),
@@ -41,5 +46,5 @@ class TrapezoidalFootMove:
                 self.done = True
                 self.target_foot_pos = self.final_foot_pos
             else:
-                self.target_foot_pos += self.dir * self.vel * deltaTime
+                self.target_foot_pos += self.dir * self.vel * time_sources.global_time.getDelta()
         return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
