@@ -51,13 +51,6 @@ class PidControllerTestCase(unittest.TestCase):
         large = self.pid.update(.1, 0)
         self.assertTrue(small < large)
 
-    def testZeroTimeUpdates(self):
-        global_time.updateDelta(0.0)
-        self.assertEquals(0, self.pid.update(5, 5))  # 5 5 here should be inconsequential
-        self.pid.prev_response = 3
-        global_time.updateDelta(0.0)
-        self.assertEquals(3, self.pid.update(10, 0))  # ditto 10 0 here
-
     def testNanGetsSanitized(self):
         try:
             self.pid.update(float("nan"), 2)

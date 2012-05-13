@@ -11,12 +11,9 @@ class PidController:
         self.soft_max = soft_max
 
         self.prev_error = 0.0
-        self.prev_response = 0.0
         self.integral_error_accumulator = 0.0
 
     def update(self, desired_pos, measured_pos):
-        delta_time = time_sources.global_time.getDelta()
-        
         if math.isnan(desired_pos):
             raise ValueError("PidController: desired_pos cannot be NaN.")
         if math.isnan(measured_pos):
@@ -25,18 +22,15 @@ class PidController:
         if self.soft_min > measured_pos or measured_pos > self.soft_max:
             raise ValueError("PidController: Measured position out of soft range!")
 
-        if delta_time == 0:  # if no time has elapsed the error hasn't changed
-            return self.prev_response
-
         # cap the desired position to the soft range
         desired_pos = max(min(desired_pos, self.soft_max), self.soft_min)
 
         error = desired_pos - measured_pos
 
+        delta_time = time_sources.global_time.getDelta()
         self.integral_error_accumulator += self.ki * error * delta_time
         derivative_error = (error - self.prev_error) / delta_time
 
         self.prev_error = error
-        self.prev_response = self.kp * error + self.integral_error_accumulator + self.kd * derivative_error
-        return self.prev_response
+        return self.kp * error + self.integral_error_accumulator + self.kd * derivative_error
 
