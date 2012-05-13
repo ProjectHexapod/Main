@@ -1,12 +1,12 @@
 import unittest
 
-from time_sources import global_time
+from time_sources import global_time, resetTimeSourceForTestingPurposes
 from pid_controller import PidController
 
 
 class PidControllerTestCase(unittest.TestCase):
     def setUp(self):
-        global_time.reset()
+        resetTimeSourceForTestingPurposes(global_time)
         self.pid = PidController(0.2, 0.02, 0.1, -5000, 5000)  # TODO: shrink these values once more realistic ones are known
     def tearDown(self):
         pass
