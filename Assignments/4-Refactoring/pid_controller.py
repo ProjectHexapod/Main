@@ -1,10 +1,13 @@
 import math
 
 class PidController:
-    def __init__(self, kp, ki, kd):
+    def __init__(self, kp, ki, kd, soft_min, soft_max):
         self.kp = kp
         self.ki = ki
         self.kd = kd
+
+        self.soft_min = soft_min
+        self.soft_max = soft_max
 
         self.prev_error = 0.0
         self.prev_response = 0.0
@@ -19,6 +22,9 @@ class PidController:
             raise ValueError("PidController: desired_pos cannot be NaN.")
         if math.isnan(measured_pos):
             raise ValueError("PidController: measured_pos cannot be NaN.")
+
+        if self.soft_min > measured_pos or measured_pos > self.soft_max:
+            raise ValueError("PidController: Measured position out of soft range!")
 
         error = desired_pos - measured_pos
 

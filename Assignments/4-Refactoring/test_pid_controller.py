@@ -5,7 +5,7 @@ from pid_controller import PidController
 
 class PidControllerTestCase(unittest.TestCase):
     def setUp(self):
-        self.pid = PidController(0.2, 0.02, 0.1)
+        self.pid = PidController(0.2, 0.02, 0.1, -5000, 5000)  # TODO: shrink these values once more realistic ones are known
     def tearDown(self):
         pass
 
@@ -63,6 +63,23 @@ class PidControllerTestCase(unittest.TestCase):
             self.assertTrue(False)
         except ValueError as error:
             self.assertTrue("cannot be NaN" in str(error))
+
+    def testMeasurementOutOfSoftRangeError(self):
+        self.pid.soft_min = -1
+        self.pid.soft_max = 1
+        try:
+            self.pid.update(.1, 0, -5)  # should error even though 0 is in range because -5 is not
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("Measured position out of soft range!" in str(error))
+
+        try:
+            self.pid.update(.1, 0, 5)  # should error even though 0 is in range because 5 is not
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("Measured position out of soft range!" in str(error))
+
+        # The good case where the measurement is not out of range is covered by other tests
 
 if __name__ == '__main__':
     unittest.main()
