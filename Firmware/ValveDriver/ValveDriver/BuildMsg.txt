@@ -1,0 +1,16 @@
+Starting MAKE...
+creating project.mk 
+lib/psocconfig.asm
+lib/psocconfigtbl.asm
+lib/uart.asm
+lib/uartint.asm
+lib/uartplus.asm
+./boot.asm
+./main.c
+Linking..
+  ROM 19% full. 778 out of 4096 bytes used (does not include absolute areas).
+  RAM 28% full. 71 bytes used (does not include stack usage).
+Built with ICCM8C STD V7.04
+ 
+ValveDriver - 0 error(s) 0 warning(s) 17:05:13
+
