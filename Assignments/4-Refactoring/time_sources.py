@@ -7,9 +7,13 @@ class TimeSource:
         self.delta = self.initial_delta
     
     def updateTime(self, time):
+        if time <= self.time:
+            raise ValueError("TimeSource.updateTime(): time must be increasing")
         self.delta = time - self.time
         self.time = time
     def updateDelta(self, delta):
+        if delta <= 0:
+            raise ValueError("TimeSource.updateDelta(): time must be increasing")
         self.delta = delta
         self.time += delta
     
