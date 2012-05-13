@@ -81,6 +81,24 @@ class PidControllerTestCase(unittest.TestCase):
 
         # The good case where the measurement is not out of range is covered by other tests
 
+    def testSetPointCappedToSoftRange(self):
+        self.pid.soft_min = -1
+        self.pid.soft_max = 1
+        first = self.pid.update(.1, 10, 0)
+        self.pid.prev_error = 0
+        self.pid.integral_error_accumulator = 0
+        second = self.pid.update(.1, 1, 0)
+        self.assertEquals(first, second)
+
+        self.pid.prev_error = 0
+        self.pid.integral_error_accumulator = 0
+        first = self.pid.update(.1, -10, 0)
+        self.pid.prev_error = 0
+        self.pid.integral_error_accumulator = 0
+        second = self.pid.update(.1, -1, 0)
+        self.assertEquals(first, second)
+
+
 if __name__ == '__main__':
     unittest.main()
 

@@ -26,6 +26,9 @@ class PidController:
         if self.soft_min > measured_pos or measured_pos > self.soft_max:
             raise ValueError("PidController: Measured position out of soft range!")
 
+        # cap the desired position to the soft range
+        desired_pos = max(min(desired_pos, self.soft_max), self.soft_min)
+
         error = desired_pos - measured_pos
 
         self.integral_error_accumulator += self.ki * error * delta_time
