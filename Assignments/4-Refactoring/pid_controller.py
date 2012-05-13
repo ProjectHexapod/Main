@@ -9,6 +9,9 @@ class PidController:
         self.integral_error_accumulator = 0.0
 
     def update(self, delta_time, desired_pos, measured_pos):
+        if delta_time == 0:  # if no time has elapsed the error hasn't changed
+            return self.prev_response
+
         error = desired_pos - measured_pos
 
         self.integral_error_accumulator += self.ki * error * delta_time

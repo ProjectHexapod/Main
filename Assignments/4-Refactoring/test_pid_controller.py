@@ -40,6 +40,10 @@ class PidControllerTestCase(unittest.TestCase):
         large = self.pid.update(.1, .1, 0)
         self.assertTrue(small < large)
 
+    def testZeroTimeUpdates(self):
+        self.assertEquals(0, self.pid.update(0, 5, 5))  # 5 5 here should be inconsequential
+        self.pid.prev_response = 3
+        self.assertEquals(3, self.pid.update(0, 10, 0))  # ditto 10 0 here
 
 if __name__ == '__main__':
     unittest.main()
