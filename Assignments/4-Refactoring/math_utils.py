@@ -30,6 +30,9 @@ def arrayTypeEqualityFunction(a, b, msg=None):
 def installArrayTypeEqualityFunction(test_case):
     test_case.addTypeEqualityFunc(type(array([])), arrayTypeEqualityFunction)
 
+def normalize(vector):
+    return vector / norm(vector)
+
 # Rotate about the X axis
 def rotateX(vector, angle):
     c, s = cos(angle), sin(angle)

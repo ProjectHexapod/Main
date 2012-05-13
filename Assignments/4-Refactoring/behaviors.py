@@ -1,5 +1,6 @@
 from math_utils import *
 
+
 class PutFootOnGround:
     def __init__(self, legController, velocity):
         self.leg = legController
@@ -19,10 +20,13 @@ class PutFootOnGround:
 class TrapezoidalFootMove:
     def __init__(self, leg_controller, final_foot_pos, velocity, acceleration):
         self.leg = leg_controller
-        self.initial_foot_pos = self.leg.getFootPos()
+        self.target_foot_pos = self.leg.getFootPos()
         self.final_foot_pos = final_foot_pos
         self.vel = velocity
         self.acc = acceleration
+        
+        # Unit vector pointing towards the destination
+        self.dir = normalize(self.final_foot_pos - self.target_foot_pos)
         
         self.done = False
 
@@ -31,6 +35,11 @@ class TrapezoidalFootMove:
 
     def update(self, time, deltaTime):
         if not self.done:
-            self.done = arraysAreEqual(self.final_foot_pos,
-                                       self.leg.getFootPos(), 5e-3)
-        return self.leg.jointAnglesFromFootPos(self.final_foot_pos)
+            # Have we passed the destination?
+            if not arraysAreEqual(normalize(self.final_foot_pos - self.target_foot_pos),
+                              self.dir):
+                self.done = True
+                self.target_foot_pos = self.final_foot_pos
+            else:
+                self.target_foot_pos += self.dir * self.vel * deltaTime
+        return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
