@@ -1,3 +1,5 @@
+import math
+
 class PidController:
     def __init__(self, kp, ki, kd):
         self.kp = kp
@@ -11,6 +13,12 @@ class PidController:
     def update(self, delta_time, desired_pos, measured_pos):
         if delta_time == 0:  # if no time has elapsed the error hasn't changed
             return self.prev_response
+        if math.isnan(delta_time):
+            raise ValueError("PidController: delta_time cannot be NaN.")
+        if math.isnan(desired_pos):
+            raise ValueError("PidController: desired_pos cannot be NaN.")
+        if math.isnan(measured_pos):
+            raise ValueError("PidController: measured_pos cannot be NaN.")
 
         error = desired_pos - measured_pos
 

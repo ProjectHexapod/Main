@@ -45,6 +45,25 @@ class PidControllerTestCase(unittest.TestCase):
         self.pid.prev_response = 3
         self.assertEquals(3, self.pid.update(0, 10, 0))  # ditto 10 0 here
 
+    def testNanGetsSanitized(self):
+        try:
+            self.pid.update(float("nan"), 1, 2)
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("cannot be NaN" in str(error))
+
+        try:
+            self.pid.update(.1, float("nan"), 2)
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("cannot be NaN" in str(error))
+
+        try:
+            self.pid.update(.1, .1, float("nan"))
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("cannot be NaN" in str(error))
+
 if __name__ == '__main__':
     unittest.main()
 
