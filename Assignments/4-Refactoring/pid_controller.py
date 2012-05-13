@@ -11,7 +11,7 @@ class PidController:
         error = desired_pos - measured_pos
 
         self.integral_error_ki += self.ki*error * delta_time
-        derivative_error = (self.error_1 - error) / delta_time
+        derivative_error = (error - self.error_1) / delta_time
 
         self.error_1 = error
 
