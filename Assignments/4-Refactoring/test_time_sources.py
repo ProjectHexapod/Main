@@ -46,20 +46,50 @@ class StopWatchTestCase(unittest.TestCase):
         self.ts = TimeSource()
         self.ts.updateTime(6.0)
         self.ts.updateDelta(0.1)
-        self.lts = StopWatch(self.ts)
+        self.sw = StopWatch(time_source=self.ts)
     def tearDown(self):
         pass
     
     def testStartsCountingFromZero(self):
-        check(self, self.lts, 0.0, 0.1)
-    
+        check(self, self.sw, 0.0, 0.0)
     def testUpdatesLocalTime(self):
-        self.lts.getTime()  # Cause an update of cached data
+        self.sw.update()
         self.ts.updateDelta(0.3)
         self.ts.updateDelta(0.2)
-        check(self, self.lts, 0.5, 0.5)
+        check(self, self.sw, 0.5, 0.5)
         self.ts.updateDelta(0.1)
-        check(self, self.lts, 0.6, 0.1)
+        check(self, self.sw, 0.6, 0.1)
+    
+    def testStop(self):
+        self.sw.update()
+        self.ts.updateDelta(0.1)
+        self.sw.update()
+        self.sw.stop()
+        self.ts.updateDelta(0.1)
+        check(self, self.sw, 0.1, 0.0)
+    def testStart(self):
+        self.testStop()  # Get an inactive StopWatch
+        self.sw.start()
+        check(self, self.sw, 0.1, 0.0)
+        self.ts.updateDelta(0.2)
+        check(self, self.sw, 0.3, 0.2)
+    def testIsActive(self):
+        self.assertTrue(self.sw.isActive())
+        self.sw.stop()
+        self.assertFalse(self.sw.isActive())
+        self.sw.start()
+        self.assertTrue(self.sw.isActive())
+    def testInactiveConstructor(self):
+        sw = StopWatch(active=False, time_source=self.ts)
+        self.assertFalse(sw.isActive())
+        check(self, sw, 0.0, 0.0)
+        self.ts.updateDelta(0.1)
+        check(self, sw, 0.0, 0.0)
+        sw.start();
+        sw.update()
+        self.assertTrue(sw.isActive())
+        self.ts.updateDelta(0.2)
+        check(self, sw, 0.2, 0.2)
 
 
 if __name__ == '__main__':

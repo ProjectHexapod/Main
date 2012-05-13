@@ -32,27 +32,43 @@ class StopWatch:
     when StopWatch.getTime() is first called. A StopWatch gets its time updates
     from the parent_time_source.
     '''
-    def __init__(self, parent_time_source=global_time):
-        self.ts = parent_time_source
+    def __init__(self, active=True, time_source=global_time):
+        self.ts = time_source
         self.parent_time_1 = 0.0
         
-        self.first_run = True
+        self.active = active
+        self.sync_with_parent = True
         self.time = 0.0
         self.delta = 0.0
     
+    def start(self):
+        self.active = True
+        self.sync_with_parent = True
+    def stop(self):
+        self.active = False
+    def isActive(self):
+        return self.active
+        
+    
     def getTime(self):
-        self._update()
+        self.update()
         return self.time
     def getDelta(self):
-        self._update()
+        self.update()
         return self.delta
     
-    def _update(self):
+    # Both getTime() and getDelta() call update(), so it's generally not
+    # necessary to call update() directly.
+    def update(self):
+        if not self.active:
+            self.delta = 0.0
+            return
+        
         parent_time = self.ts.getTime()
-        if self.first_run:
-            self.first_run = False
+        if self.sync_with_parent:
+            self.sync_with_parent = False
             self.parent_time_1 = parent_time
-            self.delta = self.ts.getDelta()  # Use parent delta to start
+            self.delta = 0.0
         
         # If our data is stale, update it
         if self.parent_time_1 != parent_time:
