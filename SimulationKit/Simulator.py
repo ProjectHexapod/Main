@@ -149,7 +149,7 @@ class Simulator:
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
             self.cam_pos = (0,10,10)
-            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.png")
+            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
     def getSimTime(self):
         return self.sim_t
     def near_callback(self, args, geom1, geom2):
