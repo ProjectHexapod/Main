@@ -19,6 +19,17 @@ X = 0
 Y = 1
 Z = 2
 
+def saturate(x, lower_limit, upper_limit=None):
+    # If only one parameter is supplied, use symmetric limits
+    if upper_limit is None:
+        upper_limit = lower_limit
+        lower_limit = -upper_limit
+    if x > upper_limit:
+        return upper_limit
+    elif x < lower_limit:
+        return lower_limit
+    else:
+        return x
 
 # Compare two arrays. Use tolerance to account for arithmetic error.
 def arraysAreEqual(a, b, tolerance=1e-9):

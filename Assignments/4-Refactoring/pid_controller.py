@@ -1,4 +1,5 @@
 import math
+from math_utils import saturate
 import time_sources
 
 class PidController:
@@ -23,7 +24,7 @@ class PidController:
             raise ValueError("PidController: Measured position out of soft range!")
 
         # cap the desired position to the soft range
-        desired_pos = max(min(desired_pos, self.soft_max), self.soft_min)
+        desired_pos = saturate(desired_pos, self.soft_min, self.soft_max)
 
         error = desired_pos - measured_pos
 

@@ -9,6 +9,35 @@ class MathUtilsTestCase(unittest.TestCase):
     def tearDown(self):
         pass
     
+    def testSymmetricSaturatePassesThrough(self):
+        limit = 10.0
+        for x in [-9.9, -5.0, 0.0, 2.0, 9.999]:
+            self.assertEqual(x, saturate(x, limit))
+    def testSymmetricSaturateLimitsLowValues(self):
+        limit = 10.0
+        for x in [-10.1, -11.0, -9e9]:
+            self.assertEqual(-limit, saturate(x, limit))
+    def testSymmetricSaturateLimitsHighValues(self):
+        limit = 10.0
+        for x in [10.1, 12.3, 5.3e6]:
+            self.assertEqual(limit, saturate(x, limit))
+
+    def testAsymmetricSaturatePassesThrough(self):
+        l_limit = -5.0
+        u_limit = 7.0
+        for x in [-4.9, -1.0, 0.0, 2.0, 6.999]:
+            self.assertEqual(x, saturate(x, l_limit, u_limit))
+    def testAsymmetricSaturateLimitsLowValues(self):
+        l_limit = -5.0
+        u_limit = 7.0
+        for x in [-5.1, -11.0, -9e9]:
+            self.assertEqual(l_limit, saturate(x, l_limit, u_limit))
+    def testAsymmetricSaturateLimitsHighValues(self):
+        l_limit = -5.0
+        u_limit = 7.0
+        for x in [7.1, 12.3, 5.3e6]:
+            self.assertEqual(u_limit, saturate(x, l_limit, u_limit))
+    
     def testArraysAreEqual(self):
         self.assertTrue(arraysAreEqual(array([.2, .5, -1e4]),
                                        array([.2, .5, -1e4])))
