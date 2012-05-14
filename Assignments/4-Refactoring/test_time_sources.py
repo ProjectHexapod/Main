@@ -1,4 +1,6 @@
 import unittest
+import math
+from math_utils import *
 
 from time_sources import TimeSource, StopWatch
 
@@ -90,6 +92,57 @@ class StopWatchTestCase(unittest.TestCase):
         self.assertTrue(sw.isActive())
         self.ts.updateDelta(0.2)
         check(self, sw, 0.2, 0.2)
+    
+    def testSmoothStart(self):
+        duration = 0.52345
+        self.testStop()  # Get an inactive StopWatch
+        self.sw.smoothStart(duration)
+        self.assertTrue(self.sw.isActive())
+        self.sw.update()
+        
+        dt = 0.01
+        t_0 = self.sw.getTime()
+        prev_sw_delta = 0.0
+        
+        for i in range(int(duration/dt)):
+            self.ts.updateDelta(dt)
+            # Slope should always be increasing
+            self.assertGreater(self.sw.getDelta(), prev_sw_delta)
+            # But should never be greater than 1.0
+            self.assertLess(self.sw.getDelta(), dt)
+            prev_sw_delta = self.sw.getDelta()
+
+        t_0 = self.sw.getTime()
+        for i in range(100):
+            self.ts.updateDelta(dt)
+            # Slope should be equal to 1.0
+            check(self, self.sw, t_0 + (1 + i)*dt, dt)
+
+    def testSmoothStop(self):
+        duration = 0.625
+        self.sw.smoothStop(duration)
+        self.assertTrue(self.sw.isActive())
+        self.sw.update()
+        
+        dt = 0.01
+        t_0 = self.sw.getTime()
+        prev_sw_delta = 1.0
+        
+        for i in range(int(math.floor(duration/dt))):
+            self.ts.updateDelta(dt)
+            # Slope should always be decreasing
+            self.assertLess(self.sw.getDelta(), prev_sw_delta)
+            # But should always be positive
+            self.assertGreater(self.sw.getDelta(), 0.0)
+            prev_sw_delta = self.sw.getDelta()
+        
+        t_0 = self.sw.getTime()
+        for i in range(100):
+            self.ts.updateDelta(dt)
+            # Slope should be equal to 0.0
+            check(self, self.sw, t_0, 0.0)
+            self.assertFalse(self.sw.isActive())
+
 
 
 if __name__ == '__main__':

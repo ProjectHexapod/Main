@@ -36,19 +36,28 @@ class StopWatch:
         self.ts = time_source
         self.parent_time_1 = 0.0
         
-        self.active = active
         self.sync_with_parent = True
         self.time = 0.0
         self.delta = 0.0
+        
+        if active:
+            self.slope = 1.0
+        else:
+            self.slope = 0.0
+        self.curvature = 0.0
     
+    def isActive(self):
+        return self.slope != 0.0 or self.curvature != 0.0
     def start(self):
-        self.active = True
+        self.slope = 1.0
         self.sync_with_parent = True
     def stop(self):
-        self.active = False
-    def isActive(self):
-        return self.active
-        
+        self.slope = 0.0
+    def smoothStart(self, transition_duration):
+        self.sync_with_parent = True
+        self.curvature = 1.0 / transition_duration
+    def smoothStop(self, transition_duration):
+        self.curvature = -1.0 / transition_duration
     
     def getTime(self):
         self.update()
@@ -60,19 +69,29 @@ class StopWatch:
     # Both getTime() and getDelta() call update(), so it's generally not
     # necessary to call update() directly.
     def update(self):
-        if not self.active:
-            self.delta = 0.0
-            return
-        
         parent_time = self.ts.getTime()
         if self.sync_with_parent:
             self.sync_with_parent = False
             self.parent_time_1 = parent_time
             self.delta = 0.0
+            return
         
         # If our data is stale, update it
         if self.parent_time_1 != parent_time:
-            self.delta = parent_time - self.parent_time_1
+            parent_delta = parent_time - self.parent_time_1
+            if self.curvature != 0.0:  # If we are smooth starting/stopping
+                self.slope += self.curvature * parent_delta  # Update the slope
+                if self.slope >= 1.0:  # smoothStart() end condition
+                    self.slope = 1.0
+                    self.curvature = 0.0
+                elif self.slope <= 0.0:  # smoothStop end condition
+                    self.slope = 0.0
+                    self.curvature = 0.0
+            if self.slope == 0.0:
+                self.delta = 0.0
+                return
+            
+            self.delta = self.slope * parent_delta
             self.time += self.delta
             self.parent_time_1 = parent_time
     
