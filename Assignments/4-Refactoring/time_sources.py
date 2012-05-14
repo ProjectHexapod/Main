@@ -40,18 +40,20 @@ class StopWatch:
         self.time = 0.0
         self.delta = 0.0
         
+        self.curvature = 0.0
         if active:
             self.slope = 1.0
         else:
             self.slope = 0.0
-        self.curvature = 0.0
     
     def isActive(self):
         return self.slope != 0.0 or self.curvature != 0.0
     def start(self):
+        self.curvature = 0.0
         self.slope = 1.0
         self.sync_with_parent = True
     def stop(self):
+        self.curvature = 0.0
         self.slope = 0.0
     def smoothStart(self, transition_duration):
         self.sync_with_parent = True

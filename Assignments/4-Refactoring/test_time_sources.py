@@ -101,7 +101,6 @@ class StopWatchTestCase(unittest.TestCase):
         self.sw.update()
         
         dt = 0.01
-        t_0 = self.sw.getTime()
         prev_sw_delta = 0.0
         
         for i in range(int(duration/dt)):
@@ -117,7 +116,6 @@ class StopWatchTestCase(unittest.TestCase):
             self.ts.updateDelta(dt)
             # Slope should be equal to 1.0
             check(self, self.sw, t_0 + (1 + i)*dt, dt)
-
     def testSmoothStop(self):
         duration = 0.625
         self.sw.smoothStop(duration)
@@ -125,7 +123,6 @@ class StopWatchTestCase(unittest.TestCase):
         self.sw.update()
         
         dt = 0.01
-        t_0 = self.sw.getTime()
         prev_sw_delta = 1.0
         
         for i in range(int(math.floor(duration/dt))):
@@ -143,6 +140,122 @@ class StopWatchTestCase(unittest.TestCase):
             check(self, self.sw, t_0, 0.0)
             self.assertFalse(self.sw.isActive())
 
+    def doPartialSmoothStart(self):
+        duration = 0.52345
+        dt = 0.01
+        self.testStop()  # Get an inactive StopWatch
+        self.sw.smoothStart(duration)
+        
+        # Get part-way through the start transition
+        for i in range(int(duration/(2*dt))):
+            self.ts.updateDelta(dt)
+            self.sw.update()
+    def testSmoothStartInterruptedByStart(self):
+        self.doPartialSmoothStart()
+        self.sw.start()
+        self.sw.update()
+        self.assertTrue(self.sw.isActive())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.1, self.sw.getDelta())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.1, self.sw.getDelta())
+    def testSmoothStartInterruptedByStop(self):
+        self.doPartialSmoothStart()
+        self.sw.stop()
+        self.sw.update()
+        self.assertFalse(self.sw.isActive())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.0, self.sw.getDelta())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.0, self.sw.getDelta())
+    def testSmoothStartInterruptedBySmoothStart(self):
+        duration = 0.5
+        self.doPartialSmoothStart()
+        self.sw.smoothStart(duration)
+        self.sw.update()
+        
+        dt = 0.01
+        prev_sw_delta = 0.0
+        for i in range(10):
+            self.ts.updateDelta(dt)
+            # Slope should always be decreasing
+            self.assertGreater(self.sw.getDelta(), prev_sw_delta)
+            # But should always be positive
+            self.assertLess(self.sw.getDelta(), dt)
+            prev_sw_delta = self.sw.getDelta()
+    def testSmoothStartInterruptedBySmoothStop(self):
+        duration = 0.5
+        self.doPartialSmoothStart()
+        self.sw.smoothStop(duration)
+        self.sw.update()
+        
+        dt = 0.01
+        prev_sw_delta = 1.0
+        for i in range(10):
+            self.ts.updateDelta(dt)
+            # Slope should always be decreasing
+            self.assertLess(self.sw.getDelta(), prev_sw_delta)
+            # But should always be positive
+            self.assertGreater(self.sw.getDelta(), 0.0)
+            prev_sw_delta = self.sw.getDelta()
+
+    def doPartialSmoothStop(self):
+        duration = 0.52345
+        dt = 0.01
+        self.sw.smoothStop(duration)
+        
+        # Get part-way through the stop transition
+        for i in range(int(duration/(2*dt))):
+            self.ts.updateDelta(dt)
+            self.sw.update()
+    def testSmoothStopInterruptedByStart(self):
+        self.doPartialSmoothStop()
+        self.sw.start()
+        self.sw.update()
+        self.assertTrue(self.sw.isActive())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.1, self.sw.getDelta())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.1, self.sw.getDelta())
+    def testSmoothStopInterruptedByStop(self):
+        self.doPartialSmoothStop()
+        self.sw.stop()
+        self.sw.update()
+        self.assertFalse(self.sw.isActive())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.0, self.sw.getDelta())
+        self.ts.updateDelta(0.1)
+        self.assertAlmostEqual(0.0, self.sw.getDelta())
+    def testSmoothStopInterruptedBySmoothStart(self):
+        duration = 0.5
+        self.doPartialSmoothStop()
+        self.sw.smoothStart(duration)
+        self.sw.update()
+        
+        dt = 0.01
+        prev_sw_delta = 0.0
+        for i in range(10):
+            self.ts.updateDelta(dt)
+            # Slope should always be decreasing
+            self.assertGreater(self.sw.getDelta(), prev_sw_delta)
+            # But should always be positive
+            self.assertLess(self.sw.getDelta(), dt)
+            prev_sw_delta = self.sw.getDelta()
+    def testSmoothStopInterruptedBySmoothStop(self):
+        duration = 0.5
+        self.doPartialSmoothStop()
+        self.sw.smoothStop(duration)
+        self.sw.update()
+        
+        dt = 0.01
+        prev_sw_delta = 1.0
+        for i in range(10):
+            self.ts.updateDelta(dt)
+            # Slope should always be decreasing
+            self.assertLess(self.sw.getDelta(), prev_sw_delta)
+            # But should always be positive
+            self.assertGreater(self.sw.getDelta(), 0.0)
+            prev_sw_delta = self.sw.getDelta()
 
 
 if __name__ == '__main__':
