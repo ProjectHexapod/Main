@@ -9,9 +9,9 @@ import unittest
 class PutFootOnGroundTestCase(unittest.TestCase):
     def setUp(self):
         self.mockLegController = mox.MockAnything()
+        self.mockLegController.getFootPos().AndReturn([.1, 0., 0.])
 
     def testIsDone(self):
-        self.mockLegController.getFootPos().AndReturn([.1, 0., 0.])
         mox.Replay(self.mockLegController)
         pfog = PutFootOnGround(self.mockLegController, 1)
         self.assertFalse(pfog.isDone())
@@ -20,7 +20,6 @@ class PutFootOnGroundTestCase(unittest.TestCase):
         mox.Verify(self.mockLegController)
 
     def testUpdateOnGround(self):
-        self.mockLegController.getFootPos().AndReturn([.1, 0., 0.])
         self.mockLegController.isFootOnGround().AndReturn(True)
         self.mockLegController.jointAnglesFromFootPos([.1, 0, 0])
         mox.Replay(self.mockLegController)
@@ -31,7 +30,6 @@ class PutFootOnGroundTestCase(unittest.TestCase):
         mox.Verify(self.mockLegController)
 
     def testUpdateNotOnGround(self):
-        self.mockLegController.getFootPos().AndReturn([.1, 0., 0.])
         self.mockLegController.isFootOnGround().AndReturn(False)
         self.mockLegController.jointAnglesFromFootPos([.1, 0, -.1])
         mox.Replay(self.mockLegController)
@@ -40,6 +38,6 @@ class PutFootOnGroundTestCase(unittest.TestCase):
         pfog.update()
         mox.Verify(self.mockLegController)
 
-# TODO: write some tests here
-
-
+class TrapezoidalFootMoveTestCase(unittest.TestCase):
+    def setUp(self):
+        self.mockLegController = mox.MockAnything()
