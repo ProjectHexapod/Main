@@ -38,6 +38,8 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             state = S_LOWER
         elif state == S_LOWER:
             ground_level = leg.getFootPos()[Z]
+            for i in range(1000):
+                print ground_level
             traj = TrapezoidalFootMove(leg,
                                        array([1.5, 0.6, ground_level]),
                                        0.2, 0.1)
