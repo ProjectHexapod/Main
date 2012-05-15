@@ -11,6 +11,7 @@ class PidController:
         self.soft_min = soft_min
         self.soft_max = soft_max
 
+        # NOTE: it is important that these three variables are floating point to avoid truncation
         self.prev_error = 0.0
         self.integral_error_accumulator = 0.0
 
