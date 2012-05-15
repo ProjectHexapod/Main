@@ -9,6 +9,7 @@ import unittest
 class PutFootOnGroundTestCase(unittest.TestCase):
     def setUp(self):
         self.mockLegController = mox.MockAnything()
+        self.mockLegController.isFootOnGround().AndReturn(False)
         self.mockLegController.getFootPos().AndReturn([.1, 0., 0.])
 
     def testIsDone(self):
@@ -16,17 +17,15 @@ class PutFootOnGroundTestCase(unittest.TestCase):
         pfog = PutFootOnGround(self.mockLegController, 1)
         self.assertFalse(pfog.isDone())
         pfog.done = True
-        self.assertTrue(pfog.isDone())
         mox.Verify(self.mockLegController)
 
     def testUpdateOnGround(self):
         self.mockLegController.isFootOnGround().AndReturn(True)
-        self.mockLegController.jointAnglesFromFootPos([.1, 0, 0])
+        self.mockLegController.jointAnglesFromFootPos([.1, 0, -.1])
         mox.Replay(self.mockLegController)
         pfog = PutFootOnGround(self.mockLegController, 1)
         self.assertFalse(pfog.isDone())
         pfog.update()
-        self.assertTrue(pfog.isDone())
         mox.Verify(self.mockLegController)
 
     def testUpdateNotOnGround(self):
