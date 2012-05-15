@@ -1,0 +1,5 @@
+-F0x30 -g -blit:0x150.0xfff 
+ -bdata:0.0xFF -bSSCParmBlk:0x00F7.0x00FF   
+ -o"output/MagneticEncoder" 
+ ./obj/main.o  
+ C:/DOCUME~1/ADMINI~1/MYDOCU~1/hexapod/MAGNET~1/MAGNET~1/MAGNET~1/lib/libPSoc.a -LC:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/lib/SMM C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/lib/CY8C24000/cms.a C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/lib/SMM/UASW/MAC/arith.a  
