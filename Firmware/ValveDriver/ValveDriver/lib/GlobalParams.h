@@ -62,7 +62,7 @@
 // register initial values
 //
 #define ANALOG_IO_CONTROL      0x0     //Analog IO Control register (ABF_CR)
-#define PORT_0_GLOBAL_SELECT   0x5     //Port 0 global select register (PRT0GS)
+#define PORT_0_GLOBAL_SELECT   0xa5    //Port 0 global select register (PRT0GS)
 #define PORT_0_DRIVE_0         0xab    //Port 0 drive mode 0 register (PRT0DM0)
 #define PORT_0_DRIVE_1         0x54    //Port 0 drive mode 1 register (PRT0DM1)
 #define PORT_0_DRIVE_2         0x50    //Port 0 drive mode 1 register (PRT0DM2)

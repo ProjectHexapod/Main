@@ -28,226 +28,102 @@
                         .area text(rom, con, rel)
  0000                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
  0000                   .dbfunc e main _main fV
- 0000           ;              c -> X+0
  0000           _main::
  0000                   .dbline -1
- 0000 10                push X
- 0001 4F                mov X,SP
- 0002 3801              add SP,1
- 0004                   .dbline 52
- 0004           ; //----------------------------------------------------------------------------
- 0004           ; // C main line
- 0004           ; //----------------------------------------------------------------------------
- 0004           ; 
- 0004           ; #include <m8c.h>        // part specific constants and macros
- 0004           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
- 0004           ; 
- 0004           ; unsigned char target_address;
- 0004           ; unsigned char bytes_received = 0;
- 0004           ; unsigned char expected_bytes;
- 0004           ; 
- 0004           ; unsigned char ext_mem_locked = 0;
- 0004           ; unsigned char m_to_s_offset = 0;
- 0004           ; /********
- 0004           ; m_to_s_memory map
- 0004           ; 0:  Desired PWM duty cycle, channel 0
- 0004           ; 1:  Desired PWM duty cycle, channel 1
- 0004           ; 2:  Desired PWM duty cycle, channel 2
- 0004           ; 3:  Desired PWM duty cycle, channel 3
- 0004           ; 4:  Desired PWM duty cycle, channel 4
- 0004           ; 5:  Desired PWM duty cycle, channel 5
- 0004           ; ********/
- 0004           ; unsigned char m_to_s_mem[32];
- 0004           ; /********
- 0004           ; s_to_m_memory map
- 0004           ; 
- 0004           ; ********/
- 0004           ; unsigned char s_to_m_mem[32];
- 0004           ; 
- 0004           ; extern BYTE DELSIG8_bfStatus;
- 0004           ; extern BYTE DELSIG8_cResult;
- 0004           ; 
- 0004           ; #define PWM_0_PORT    PRT0DR
- 0004           ; #define PWM_0_PIN     0x80
- 0004           ; #define NOTPWM_0_PIN 0x7F
- 0004           ; #define SET_PWM_0   PWM_0_PORT |= PWM_0_PIN
- 0004           ; #define UNSET_PWM_0 PWM_0_PORT &= NOTPWM_0_PIN
- 0004           ; #define PWM_1_PORT    PRT0DR
- 0004           ; #define PWM_1_PIN     0x20
- 0004           ; #define PWM_2_PORT    PRT0DR
- 0004           ; #define PWM_2_PIN     0x08
- 0004           ; #define PWM_3_PORT    PRT0DR
- 0004           ; #define PWM_3_PIN     0x02
- 0004           ; #define PWM_4_PORT    PRT2DR
- 0004           ; #define PWM_4_PIN     0x80
- 0004           ; #define PWM_5_PORT    PRT2DR
- 0004           ; #define PWM_5_PIN     0x20
- 0004           ; 
- 0004           ; unsigned char pwm_count;
- 0004           ; 
- 0004           ; void main(void)
- 0004           ; {
- 0004                   .dbline 54
- 0004           ;       // Insert your main routine code here.
- 0004           ;       unsigned char c = 0;
- 0004 560000            mov [X+0],0
- 0007                   .dbline 55
- 0007           ;       M8C_EnableGInt;
- 0007 7101                      or  F, 01h
- 0009           
- 0009                   .dbline 56
- 0009           ;       UART_EnableInt();
- 0009 10                push X
- 000A 7C0000            xcall _UART_EnableInt
- 000D 20                pop X
- 000E                   .dbline 57
- 000E           ;       UART_Start(UART_PARITY_NONE);
- 000E 10                push X
- 000F 5000              mov A,0
- 0011 7C0000            xcall _UART_Start
- 0014 20                pop X
- 0015                   .dbline 58
- 0015           ;       for(pwm_count = 0; 1; pwm_count++)
- 0015 550000            mov [_pwm_count],0
- 0018 805F              xjmp L5
- 001A           L2:
- 001A                   .dbline 59
- 001A           ;       {
- 001A                   .dbline 60
- 001A           ;               if( pwm_count < m_to_s_mem[0] )
- 001A 5100              mov A,[_pwm_count]
- 001C 3A21              cmp A,[_m_to_s_mem]
- 001E D006              jnc L6
- 0020           X1:
- 0020                   .dbline 61
- 0020           ;                       PWM_0_PORT |=  PWM_0_PIN;
- 0020 430080            or REG[0],-128
- 0023 8004              xjmp L7
- 0025           L6:
- 0025                   .dbline 63
- 0025           ;               else
- 0025           ;                       PWM_0_PORT &= ~PWM_0_PIN;
- 0025 41007F            and REG[0],127
- 0028           L7:
- 0028                   .dbline 64
- 0028           ;               if( pwm_count < m_to_s_mem[1] )
- 0028 5100              mov A,[_pwm_count]
- 002A 3A22              cmp A,[_m_to_s_mem+1]
- 002C D006              jnc L8
- 002E           X2:
- 002E                   .dbline 65
- 002E           ;                       PWM_1_PORT |=  PWM_1_PIN;
- 002E 430020            or REG[0],32
- 0031 8004              xjmp L9
- 0033           L8:
- 0033                   .dbline 67
- 0033           ;               else
- 0033           ;                       PWM_1_PORT &= ~PWM_1_PIN;
- 0033 4100DF            and REG[0],-33
- 0036           L9:
- 0036                   .dbline 68
- 0036           ;               if( pwm_count < m_to_s_mem[2] )
- 0036 5100              mov A,[_pwm_count]
- 0038 3A23              cmp A,[_m_to_s_mem+2]
- 003A D006              jnc L11
- 003C           X3:
- 003C                   .dbline 69
- 003C           ;                       PWM_2_PORT |=  PWM_2_PIN;
- 003C 430008            or REG[0],8
- 003F 8004              xjmp L12
- 0041           L11:
- 0041                   .dbline 71
- 0041           ;               else
- 0041           ;                       PWM_2_PORT &= ~PWM_2_PIN;
- 0041 4100F7            and REG[0],-9
- 0044           L12:
- 0044                   .dbline 72
- 0044           ;               if( pwm_count < m_to_s_mem[3] )
- 0044 5100              mov A,[_pwm_count]
- 0046 3A24              cmp A,[_m_to_s_mem+3]
- 0048 D006              jnc L14
- 004A           X4:
- 004A                   .dbline 73
- 004A           ;                       PWM_3_PORT |=  PWM_3_PIN;
- 004A 430002            or REG[0],2
- 004D 8004              xjmp L15
- 004F           L14:
- 004F                   .dbline 75
- 004F           ;               else
- 004F           ;                       PWM_3_PORT &= ~PWM_3_PIN;
- 004F 4100FD            and REG[0],-3
- 0052           L15:
- 0052                   .dbline 76
- 0052           ;               if( pwm_count < m_to_s_mem[4] )
- 0052 5100              mov A,[_pwm_count]
- 0054 3A25              cmp A,[_m_to_s_mem+4]
- 0056 D006              jnc L17
- 0058           X5:
- 0058                   .dbline 77
- 0058           ;                       PWM_4_PORT |=  PWM_4_PIN;
- 0058 430880            or REG[0x8],-128
- 005B 8004              xjmp L18
- 005D           L17:
- 005D                   .dbline 79
- 005D           ;               else
- 005D           ;                       PWM_4_PORT &= ~PWM_4_PIN;
- 005D 41087F            and REG[0x8],127
- 0060           L18:
- 0060                   .dbline 80
- 0060           ;               if( pwm_count < m_to_s_mem[5] )
- 0060 5100              mov A,[_pwm_count]
- 0062 3A26              cmp A,[_m_to_s_mem+5]
- 0064 D006              jnc L20
- 0066           X6:
- 0066                   .dbline 81
- 0066           ;                       PWM_5_PORT |=  PWM_5_PIN;
- 0066 430820            or REG[0x8],32
- 0069 8004              xjmp L21
- 006B           L20:
- 006B                   .dbline 83
- 006B           ;               else
- 006B           ;                       PWM_5_PORT &= ~PWM_5_PIN;
- 006B 4108DF            and REG[0x8],-33
- 006E           L21:
- 006E                   .dbline 84
- 006E           ;               if(pwm_count == 16)
- 006E 3C0010            cmp [_pwm_count],16
- 0071 B004              jnz L23
- 0073                   .dbline 85
- 0073           ;                       pwm_count = 0; 
- 0073 550000            mov [_pwm_count],0
- 0076           L23:
- 0076                   .dbline 86
- 0076           ;       }
- 0076           L3:
- 0076                   .dbline 58
- 0076 7600              inc [_pwm_count]
- 0078           L5:
- 0078                   .dbline 58
- 0078 8FA1              xjmp L2
- 007A           X0:
- 007A                   .dbline -2
- 007A           L1:
- 007A 38FF              add SP,-1
- 007C 20                pop X
- 007D                   .dbline 0 ; func end
- 007D 8FFF              jmp .
- 007F                   .dbsym l c 0 c
- 007F                   .dbend
+ 0000                   .dbline 27
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; // C main line
+ 0000           ; //----------------------------------------------------------------------------
+ 0000           ; 
+ 0000           ; #include <m8c.h>        // part specific constants and macros
+ 0000           ; #include "PSoCAPI.h"    // PSoC API definitions for all User Modules
+ 0000           ; 
+ 0000           ; unsigned char target_address;
+ 0000           ; unsigned char bytes_received = 0;
+ 0000           ; unsigned char expected_bytes;
+ 0000           ; 
+ 0000           ; unsigned char ext_mem_locked = 0;
+ 0000           ; unsigned char m_to_s_offset = 0;
+ 0000           ; /********
+ 0000           ; m_to_s_memory map
+ 0000           ; 0:  Desired PWM duty cycle, channel 0
+ 0000           ; 1:  Desired PWM duty cycle, channel 1
+ 0000           ; ********/
+ 0000           ; unsigned char m_to_s_mem[32];
+ 0000           ; /********
+ 0000           ; s_to_m_memory map
+ 0000           ; 
+ 0000           ; ********/
+ 0000           ; unsigned char s_to_m_mem[32];
+ 0000           ; 
+ 0000           ; void main(void)
+ 0000           ; {
+ 0000                   .dbline 28
+ 0000           ;       M8C_EnableGInt;
+ 0000 7101                      or  F, 01h
+ 0002           
+ 0002                   .dbline 29
+ 0002           ;       UART_EnableInt();
+ 0002 10                push X
+ 0003 7C0000            xcall _UART_EnableInt
+ 0006 20                pop X
+ 0007                   .dbline 30
+ 0007           ;       UART_Start(UART_PARITY_NONE);
+ 0007 10                push X
+ 0008 5000              mov A,0
+ 000A 7C0000            xcall _UART_Start
+ 000D                   .dbline 31
+ 000D           ;       PWM8_1_DisableInt();
+ 000D 7C0000            xcall _PWM8_1_DisableInt
+ 0010                   .dbline 32
+ 0010           ;       PWM8_1_Start();
+ 0010 7C0000            xcall _PWM8_1_Start
+ 0013                   .dbline 33
+ 0013           ;       PWM8_2_DisableInt();
+ 0013 7C0000            xcall _PWM8_2_DisableInt
+ 0016                   .dbline 34
+ 0016           ;       PWM8_2_Start();
+ 0016 7C0000            xcall _PWM8_2_Start
+ 0019 20                pop X
+ 001A 800F              xjmp L3
+ 001C           L2:
+ 001C                   .dbline 36
+ 001C           ;       while(1)
+ 001C           ;       {
+ 001C                   .dbline 37
+ 001C           ;               PWM8_1_WritePulseWidth(m_to_s_mem[0]);
+ 001C 10                push X
+ 001D 5120              mov A,[_m_to_s_mem]
+ 001F 7C0000            xcall _PWM8_1_WritePulseWidth
+ 0022 20                pop X
+ 0023                   .dbline 38
+ 0023           ;               PWM8_2_WritePulseWidth(m_to_s_mem[1]);
+ 0023 10                push X
+ 0024 5121              mov A,[_m_to_s_mem+1]
+ 0026 7C0000            xcall _PWM8_2_WritePulseWidth
+ 0029 20                pop X
+ 002A                   .dbline 39
+ 002A           ;       }
+ 002A           L3:
+ 002A                   .dbline 35
+ 002A 8FF1              xjmp L2
+ 002C           X0:
+ 002C                   .dbline -2
+ 002C           L1:
+ 002C                   .dbline 0 ; func end
+ 002C 8FFF              jmp .
+ 002E                   .dbend
                         .area bss(ram, con, rel)
  0000                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
- 0000           _pwm_count::
- 0000                   .blkb 1
- 0001                   .dbsym e pwm_count _pwm_count c
- 0001           _s_to_m_mem::
- 0001                   .blkb 32
- 0021                   .dbsym e s_to_m_mem _s_to_m_mem A[32:32]c
- 0021           _m_to_s_mem::
- 0021                   .blkb 32
- 0041                   .dbsym e m_to_s_mem _m_to_s_mem A[32:32]c
- 0041           _expected_bytes::
+ 0000           _s_to_m_mem::
+ 0000                   .blkb 32
+ 0020                   .dbsym e s_to_m_mem _s_to_m_mem A[32:32]c
+ 0020           _m_to_s_mem::
+ 0020                   .blkb 32
+ 0040                   .dbsym e m_to_s_mem _m_to_s_mem A[32:32]c
+ 0040           _expected_bytes::
+ 0040                   .blkb 1
+ 0041                   .dbsym e expected_bytes _expected_bytes c
+ 0041           _target_address::
  0041                   .blkb 1
- 0042                   .dbsym e expected_bytes _expected_bytes c
- 0042           _target_address::
- 0042                   .blkb 1
- 0043                   .dbsym e target_address _target_address c
+ 0042                   .dbsym e target_address _target_address c

@@ -19,8 +19,18 @@ LoadConfigTBL_ValveDriver:
 	mov	reg[b2h], 00h		; Row_0_LogicInputAMux register (RDI0IS)
 	mov	reg[b3h], 33h		; Row_0_LogicSelect_0 register (RDI0LT0)
 	mov	reg[b4h], 33h		; Row_0_LogicSelect_1 register (RDI0LT1)
-	mov	reg[b5h], 09h		; Row_0_OutputDrive_0 register (RDI0SRO0)
+	mov	reg[b5h], 29h		; Row_0_OutputDrive_0 register (RDI0SRO0)
 	mov	reg[b6h], 20h		; Row_0_OutputDrive_1 register (RDI0SRO1)
+;  Instance name PWM8_1, User Module PWM8
+;       Instance name PWM8_1, Block Name PWM8(DBB00)
+	mov	reg[23h], 00h		;PWM8_1_CONTROL_REG(DBB00CR0)
+	mov	reg[21h], ffh		;PWM8_1_PERIOD_REG(DBB00DR1)
+	mov	reg[22h], 00h		;PWM8_1_COMPARE_REG(DBB00DR2)
+;  Instance name PWM8_2, User Module PWM8
+;       Instance name PWM8_2, Block Name PWM8(DBB01)
+	mov	reg[27h], 00h		;PWM8_2_CONTROL_REG(DBB01CR0)
+	mov	reg[25h], ffh		;PWM8_2_PERIOD_REG(DBB01DR1)
+	mov	reg[26h], 00h		;PWM8_2_COMPARE_REG(DBB01DR2)
 ;  Instance name UART, User Module UART
 ;       Instance name UART, Block Name RX(DCB03)
 	mov	reg[2fh], 00h		;UART_RX_CONTROL_REG(DCB03CR0)
@@ -49,6 +59,16 @@ LoadConfigTBL_ValveDriver:
 	mov	reg[dfh], bbh		; OscillatorControl_3 register (OSC_CR3)
 	mov	reg[deh], 01h		; OscillatorControl_4 register (OSC_CR4)
 	mov	reg[ddh], 00h		; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
+;  Instance name PWM8_1, User Module PWM8
+;       Instance name PWM8_1, Block Name PWM8(DBB00)
+	mov	reg[20h], 21h		;PWM8_1_FUNC_REG(DBB00FN)
+	mov	reg[21h], 14h		;PWM8_1_INPUT_REG(DBB00IN)
+	mov	reg[22h], 07h		;PWM8_1_OUTPUT_REG(DBB00OU)
+;  Instance name PWM8_2, User Module PWM8
+;       Instance name PWM8_2, Block Name PWM8(DBB01)
+	mov	reg[24h], 21h		;PWM8_2_FUNC_REG(DBB01FN)
+	mov	reg[25h], 14h		;PWM8_2_INPUT_REG(DBB01IN)
+	mov	reg[26h], 05h		;PWM8_2_OUTPUT_REG(DBB01OU)
 ;  Instance name UART, User Module UART
 ;       Instance name UART, Block Name RX(DCB03)
 	mov	reg[2ch], 05h		;UART_RX_FUNC_REG   (DCB03FN)
@@ -67,7 +87,7 @@ LoadConfigTBL_ValveDriver:
 	mov	reg[01h], 54h		; Port_0_DriveMode_1 register (PRT0DM1)
 	M8C_SetBank0
 	mov	reg[03h], 50h		; Port_0_DriveMode_2 register (PRT0DM2)
-	mov	reg[02h], 05h		; Port_0_GlobalSelect register (PRT0GS)
+	mov	reg[02h], a5h		; Port_0_GlobalSelect register (PRT0GS)
 	M8C_SetBank1
 	mov	reg[02h], 00h		; Port_0_IntCtrl_0 register (PRT0IC0)
 	mov	reg[03h], 00h		; Port_0_IntCtrl_1 register (PRT0IC1)
