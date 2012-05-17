@@ -37,7 +37,6 @@ class TrapezoidalFootMove:
         self.max_vel = max_velocity
         self.vel = 0
         self.acc = acceleration
-        print "trap"*1000
         
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
@@ -58,7 +57,6 @@ class TrapezoidalFootMove:
             if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
 	        self.done = True
                 self.target_foot_pos = self.final_foot_pos
-                print "trapDone"*1000
             else:
                 delta = time_sources.global_time.getDelta()
                 # if the remaining distance <= the time it would take to slow down times the average speed during such a deceleration (ie the distance it would take to stop)
