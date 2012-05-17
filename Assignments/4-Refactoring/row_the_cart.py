@@ -1,7 +1,7 @@
 from math_utils import *
 import time_sources
 from leg_controller import LegController
-from behaviors import PutFootOnGround, TrapezoidalFootMove
+from trajectories import PutFootOnGround, TrapezoidalFootMove
 
 
 # Initialization

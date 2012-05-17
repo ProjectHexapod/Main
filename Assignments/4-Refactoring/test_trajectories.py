@@ -1,10 +1,9 @@
-from behaviors import PutFootOnGround
-from behaviors import TrapezoidalFootMove
 from comparators import ArraysEqual
 from leg_controller import LegController
 from math_utils import array
 import mox
 from time_sources import global_time
+from trajectories import PutFootOnGround, TrapezoidalFootMove
 import unittest
 
 class PutFootOnGroundTestCase(unittest.TestCase):
