@@ -52,22 +52,23 @@ class TrapezoidalFootMove:
 
     def update(self):
         if not self.isDone():
+            delta = time_sources.global_time.getDelta()
+            # if the remaining distance <= the time it would take to slow
+            # down times the average speed during such a deceleration (ie
+            # the distance it would take to stop)
+            
+            # rearranged multiplies to avoid confusing order of operations
+            # readability issues
+            remaining_vector = self.final_foot_pos - self.target_foot_pos
+            if norm(remaining_vector) <= .5 * self.vel**2 / self.acc:
+                self.vel -= self.acc * delta
+            else:
+                self.vel += self.acc * delta
+                self.vel = min(self.vel, self.max_vel)
+            self.target_foot_pos += self.dir * self.vel * delta
+            
             if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
                 self.done = True
                 self.target_foot_pos = self.final_foot_pos
-            else:
-                delta = time_sources.global_time.getDelta()
-                # if the remaining distance <= the time it would take to slow
-                # down times the average speed during such a deceleration (ie
-                # the distance it would take to stop)
-                
-                # rearranged multiplies to avoid confusing order of operations
-                # readability issues
-                remaining_vector = self.final_foot_pos - self.target_foot_pos
-                if norm(remaining_vector) <= .5 * self.vel**2 / self.acc:
-                    self.vel -= self.acc * delta
-                else:
-                    self.vel += self.acc * delta
-                    self.vel = min(self.vel, self.max_vel)
-                self.target_foot_pos += self.dir * self.vel * delta
+
         return self.leg.jointAnglesFromFootPos(self.target_foot_pos)

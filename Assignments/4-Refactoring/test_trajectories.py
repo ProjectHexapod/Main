@@ -125,6 +125,19 @@ class TrapezoidalFootMoveTestCase(unittest.TestCase):
         trap.update()
         global_time.updateDelta(.1)
         trap.update()
+    
+    def testDoesntPassTargetFootPos(self):
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual([.2, .2, .1]))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual([.2, .2, .0]))
+        mox.Replay(self.mock_leg_controller)
+        
+        trap = TrapezoidalFootMove(self.mock_leg_controller,
+                                   array([.2, .2, 0.0]), 10.0, 10.0)
+        
+        global_time.updateDelta(0.1)
+        trap.update()
+        global_time.updateDelta(0.1)
+        trap.update()
 
 
 if __name__ == '__main__':
