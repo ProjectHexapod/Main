@@ -103,10 +103,7 @@ class TrapezoidalFootMoveTestCase(unittest.TestCase):
         trap.update()
         trap.update()
         trap.update()
-        
 
 
-
-
-
-
+if __name__ == '__main__':
+    unittest.main()
