@@ -180,7 +180,6 @@ class PidControllerTestCase(unittest.TestCase):
                 self.assertAlmostEqual(d_command, 0.0)
             self.assertAlmostEqual(pid_command, p_command + i_command + d_command)
 
-
 if __name__ == '__main__':
     unittest.main()
 
