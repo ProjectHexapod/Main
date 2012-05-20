@@ -8,4 +8,6 @@ def load_tests(loader, standard_tests, pattern):
     standard_tests.addTests(package_tests)
     return standard_tests
 
-unittest.main()
+
+if __name__ == '__main__':
+    unittest.main()
