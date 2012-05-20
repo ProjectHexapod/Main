@@ -2,13 +2,15 @@ from comparators import ArraysEqual
 from leg_controller import LegController
 from math_utils import array
 import mox
-from time_sources import global_time
+from time_sources import global_time, resetTimeSourceForTestingPurposes
 from trajectories import PutFootOnGround, TrapezoidalFootMove
 import unittest
 
 
 class PutFootOnGroundTestCase(unittest.TestCase):
     def setUp(self):
+        resetTimeSourceForTestingPurposes(global_time)
+        
         self.mock_leg_controller = mox.MockAnything()
         self.mock_leg_controller.isFootOnGround().AndReturn(False)
         self.mock_leg_controller.getFootPos().AndReturn([.1, 0., 0.])
@@ -41,6 +43,8 @@ class PutFootOnGroundTestCase(unittest.TestCase):
 
 class TrapezoidalFootMoveTestCase(unittest.TestCase):
     def setUp(self):
+        resetTimeSourceForTestingPurposes(global_time)
+        
         self.mock_leg_controller = mox.MockAnything()
         self.mock_leg_controller.getFootPos().AndReturn(array([.2, .2, .2]))
 
@@ -84,8 +88,11 @@ class TrapezoidalFootMoveTestCase(unittest.TestCase):
         mox.Replay(self.mock_leg_controller)
         trap = TrapezoidalFootMove(self.mock_leg_controller,
                                    array([.2, .2, 0]), 10, 1)
+        global_time.updateDelta(.1)
         trap.update()
+        global_time.updateDelta(.1)
         trap.update()
+        global_time.updateDelta(.1)
         trap.update()
 
     def testPlateau(self):
@@ -95,8 +102,11 @@ class TrapezoidalFootMoveTestCase(unittest.TestCase):
         mox.Replay(self.mock_leg_controller)
         trap = TrapezoidalFootMove(self.mock_leg_controller,
                                    array([.2, .2, 0]), .1, 1)
+        global_time.updateDelta(.1)
         trap.update()
+        global_time.updateDelta(.1)
         trap.update()
+        global_time.updateDelta(.1)
         trap.update()
 
     def testTriangleCase(self):
@@ -109,8 +119,11 @@ class TrapezoidalFootMoveTestCase(unittest.TestCase):
         # never hitting the max speed of 10
         trap = TrapezoidalFootMove(self.mock_leg_controller,
                                    array([.2, .2, .15]), 10, 1)
+        global_time.updateDelta(.1)
         trap.update()
+        global_time.updateDelta(.1)
         trap.update()
+        global_time.updateDelta(.1)
         trap.update()
 
 
