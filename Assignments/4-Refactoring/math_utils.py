@@ -1,6 +1,6 @@
 import unittest
 from math import acos, asin, atan, atan2
-from scipy import array, arange, pi, cos, sin
+from scipy import array, arange, linspace, pi, cos, sin
 from scipy.linalg import norm
 
 

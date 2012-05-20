@@ -81,18 +81,18 @@ class LegControllerTestCase(unittest.TestCase):
         l = self.leg
         ls = self.leg_state
         
-        INCREMENT = 0.3
+        NUM_SAMPLES = 8
         TOL = 1e-4  # Stay away from numerical boundary conditions that are out
                     # of out of our joint range anyway...
-        for yaw in arange(-pi_2 + TOL, pi_2 - TOL, INCREMENT):
+        for yaw in linspace(-pi_2 + TOL, pi_2 - TOL, NUM_SAMPLES):
             ls[0][YAW] = yaw
-            for hip_pitch in arange(-pi_2 + TOL, pi_2 - TOL, INCREMENT):
+            for hip_pitch in linspace(-pi_2 + TOL, pi_2 - TOL, NUM_SAMPLES):
                 ls[0][HP] = hip_pitch
-                for knee_pitch in arange(TOL, pi - TOL, INCREMENT):
+                for knee_pitch in linspace(TOL, pi - TOL, NUM_SAMPLES):
                     ls[0][KP] = knee_pitch
                     
                     # Only test a few shock depths
-                    for shock_depth in arange(0.0, 0.03, 0.01):
+                    for shock_depth in linspace(0.0, 0.02, 2):
                         ls[1] = shock_depth
                         self.assertEqual(
                                 ls[0],
