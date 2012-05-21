@@ -3,18 +3,44 @@ creating project.mk
 lib/psocconfig.asm
 lib/psocconfigtbl.asm
 lib/pwm8_1.asm
-lib/pwm8_1int.asm
 lib/pwm8_2.asm
-lib/pwm8_2int.asm
+lib/sleeptimer_1.asm
+lib/sleeptimer_1int.asm
 lib/uart.asm
 lib/uartint.asm
 lib/uartplus.asm
 ./boot.asm
 ./main.c
 Linking..
-  ROM 22% full. 867 out of 4096 bytes used (does not include absolute areas).
-  RAM 28% full. 70 bytes used (does not include stack usage).
-Built with ICCM8C STD V7.04
+symbol UART_cReadChar is unused
+symbol UART_iReadChar is unused
+symbol UART_TxIntMode is unused
+symbol UART_Stop is unused
+symbol UART_PutSHexInt is unused
+symbol UART_DisableInt is unused
+symbol PWM8_1_EnableInt is unused
+symbol PWM8_2_EnableInt is unused
+symbol UART_Write is unused
+symbol UART_bReadRxData is unused
+symbol PWM8_1_Stop is unused
+symbol PWM8_2_Stop is unused
+symbol UART_CWrite is unused
+symbol UART_PutCRLF is unused
+symbol PWM8_1_bReadPulseWidth is unused
+symbol PWM8_2_bReadPulseWidth is unused
+symbol UART_SetTxIntMode is unused
+symbol UART_IntCntl is unused
+symbol PWM8_1_WritePeriod is unused
+symbol PWM8_2_WritePeriod is unused
+symbol UART_SendData is unused
+symbol UART_bReadRxStatus is unused
+symbol UART_bReadTxStatus is unused
+symbol PWM8_1_bReadCounter is unused
+symbol PWM8_2_bReadCounter is unused
+325 bytes unused code deleted
+  ROM 14% full. 561 out of 4096 bytes used (does not include absolute areas).
+  RAM 29% full. 74 bytes used (does not include stack usage).
+Built with ICCM8C STD V7.05.00
  
-ValveDriver - 0 error(s) 0 warning(s) 21:54:33
+ValveDriver - 0 error(s) 0 warning(s) 20:16:31
 

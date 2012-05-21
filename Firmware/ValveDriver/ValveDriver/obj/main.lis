@@ -5,28 +5,28 @@
  0000                   .dbfile ./main.c
  0000           _bytes_received::
  0000                   .blkb 1
-                        .area idata
+                        .area idata(rom,lit)
  0000 00                .byte 0
                         .area data(ram, con, rel)
  0001                   .dbfile ./main.c
- 0001                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
+ 0001                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
  0001                   .dbsym e bytes_received _bytes_received c
  0001           _ext_mem_locked::
  0001                   .blkb 1
-                        .area idata
+                        .area idata(rom,lit)
  0001 00                .byte 0
                         .area data(ram, con, rel)
- 0002                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
+ 0002                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
  0002                   .dbsym e ext_mem_locked _ext_mem_locked c
  0002           _m_to_s_offset::
  0002                   .blkb 1
-                        .area idata
+                        .area idata(rom,lit)
  0002 00                .byte 0
                         .area data(ram, con, rel)
- 0003                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
+ 0003                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
  0003                   .dbsym e m_to_s_offset _m_to_s_offset c
                         .area text(rom, con, rel)
- 0000                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
+ 0000                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
  0000                   .dbfunc e main _main fV
  0000           _main::
  0000                   .dbline -1
@@ -66,55 +66,51 @@
  0002           ;       UART_EnableInt();
  0002 10                push X
  0003 7C0000            xcall _UART_EnableInt
- 0006 20                pop X
- 0007                   .dbline 30
- 0007           ;       UART_Start(UART_PARITY_NONE);
- 0007 10                push X
- 0008 5000              mov A,0
- 000A 7C0000            xcall _UART_Start
- 000D                   .dbline 31
- 000D           ;       PWM8_1_DisableInt();
- 000D 7C0000            xcall _PWM8_1_DisableInt
- 0010                   .dbline 32
- 0010           ;       PWM8_1_Start();
- 0010 7C0000            xcall _PWM8_1_Start
- 0013                   .dbline 33
- 0013           ;       PWM8_2_DisableInt();
- 0013 7C0000            xcall _PWM8_2_DisableInt
- 0016                   .dbline 34
- 0016           ;       PWM8_2_Start();
- 0016 7C0000            xcall _PWM8_2_Start
- 0019 20                pop X
- 001A 800F              xjmp L3
- 001C           L2:
- 001C                   .dbline 36
- 001C           ;       while(1)
- 001C           ;       {
- 001C                   .dbline 37
- 001C           ;               PWM8_1_WritePulseWidth(m_to_s_mem[0]);
- 001C 10                push X
- 001D 5120              mov A,[_m_to_s_mem]
- 001F 7C0000            xcall _PWM8_1_WritePulseWidth
- 0022 20                pop X
- 0023                   .dbline 38
- 0023           ;               PWM8_2_WritePulseWidth(m_to_s_mem[1]);
- 0023 10                push X
- 0024 5121              mov A,[_m_to_s_mem+1]
- 0026 7C0000            xcall _PWM8_2_WritePulseWidth
- 0029 20                pop X
- 002A                   .dbline 39
- 002A           ;       }
- 002A           L3:
- 002A                   .dbline 35
- 002A 8FF1              xjmp L2
- 002C           X0:
- 002C                   .dbline -2
- 002C           L1:
- 002C                   .dbline 0 ; func end
- 002C 8FFF              jmp .
- 002E                   .dbend
+ 0006                   .dbline 30
+ 0006           ;       UART_Start(UART_PARITY_NONE);
+ 0006 5000              mov A,0
+ 0008 7C0000            xcall _UART_Start
+ 000B                   .dbline 31
+ 000B           ;       PWM8_1_DisableInt();
+ 000B 7C0000            xcall _PWM8_1_DisableInt
+ 000E                   .dbline 32
+ 000E           ;       PWM8_1_Start();
+ 000E 7C0000            xcall _PWM8_1_Start
+ 0011                   .dbline 33
+ 0011           ;       PWM8_2_DisableInt();
+ 0011 7C0000            xcall _PWM8_2_DisableInt
+ 0014                   .dbline 34
+ 0014           ;       PWM8_2_Start();
+ 0014 7C0000            xcall _PWM8_2_Start
+ 0017 20                pop X
+ 0018 800D              xjmp L3
+ 001A           L2:
+ 001A                   .dbline 36
+ 001A           ;       while(1)
+ 001A           ;       {
+ 001A                   .dbline 37
+ 001A           ;               PWM8_1_WritePulseWidth(m_to_s_mem[0]);
+ 001A 10                push X
+ 001B 5120              mov A,[_m_to_s_mem]
+ 001D 7C0000            xcall _PWM8_1_WritePulseWidth
+ 0020                   .dbline 38
+ 0020           ;               PWM8_2_WritePulseWidth(m_to_s_mem[1]);
+ 0020 5121              mov A,[_m_to_s_mem+1]
+ 0022 7C0000            xcall _PWM8_2_WritePulseWidth
+ 0025 20                pop X
+ 0026                   .dbline 39
+ 0026           ;       }
+ 0026           L3:
+ 0026                   .dbline 35
+ 0026 8FF3              xjmp L2
+ 0028           X0:
+ 0028                   .dbline -2
+ 0028           L1:
+ 0028                   .dbline 0 ; func end
+ 0028 8FFF              jmp .
+ 002A                   .dbend
                         .area bss(ram, con, rel)
- 0000                   .dbfile C:\Users\jwhong\DOCUME~1\hexapod\Firmware\VALVED~1\VALVED~1\main.c
+ 0000                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
  0000           _s_to_m_mem::
  0000                   .blkb 32
  0020                   .dbsym e s_to_m_mem _s_to_m_mem A[32:32]c

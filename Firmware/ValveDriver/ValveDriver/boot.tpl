@@ -1,12 +1,12 @@
-;@Id: boot.tpl#890 @
+;@Id: boot.tpl#903 @
 ;=============================================================================
 ;  FILENAME:   boot.asm
-;  Version:    4.21
+;  Version:    4.30
 ;
 ;  DESCRIPTION:
 ;  M8C Boot Code for CY8C24xxx microcontroller family.
 ;
-;  Copyright (c) Cypress Semiconductor 2011. All Rights Reserved.
+;  Copyright (c) Cypress Semiconductor 2012. All Rights Reserved.
 ;
 ; NOTES:
 ; PSoC Designer's Device Editor uses a template file, BOOT.TPL, located in
@@ -111,6 +111,10 @@ IF	(TOOLCHAIN & HITECH)
 ELSE
     jmp   __Start                  ;First instruction executed following a Reset
 ENDIF
+    ;@PSoC_BOOT_ISR_UserCode_START@
+    ;---------------------------------------------------
+    ; Insert your custom code below this banner
+    ;---------------------------------------------------
 
     org   04h                      ;Low Voltage Detect (LVD) Interrupt Vector
     halt                           ;Stop execution if power falls too low
@@ -154,6 +158,10 @@ ENDIF
     org   64h                      ;Sleep Timer Interrupt Vector
     `@INTERRUPT_25`
     reti
+    ;---------------------------------------------------
+    ; Insert your custom code above this banner
+    ;---------------------------------------------------
+    ;@PSoC_BOOT_ISR_UserCode_END@
 
 ;-----------------------------------------------------------------------------
 ;  Start of Execution.
@@ -290,6 +298,16 @@ ENDIF
     mov   reg[ACB00CR0], 05h
     mov   reg[ACB01CR0], 05h
 
+    ;@PSoC_BOOT_LOADCFG_UserCode_START@
+    ;---------------------------------------------------
+    ; Insert your custom code below this banner
+    ;---------------------------------------------------
+
+    ;---------------------------------------------------
+    ; Insert your custom code above this banner
+    ;---------------------------------------------------
+    ;@PSoC_BOOT_LOADCFG_UserCode_END@ 
+
     ;-------------------------
     ; Load Base Configuration
     ;-------------------------
@@ -356,12 +374,11 @@ ENDIF ; ( SUPPLY_VOLTAGE )
     ;-------------------------------
     ; Set Power-On Reset (POR) Level
     ;-------------------------------
-
-    ;  The writes to the VLT_CR register below include setting the POR to VLT_CR_POR_HIGH,
-    ;  VLT_CR_POR_MID or VLT_CR_POR_LOW. Correctly setting this value is critical to the proper
-    ;  operation of the PSoC. The POR protects the M8C from mis-executing when Vdd falls low. These
-    ;  values should not be changed from the settings here. Failure to follow this instruction could 
-    ;  lead to corruption of PSoC flash.
+    ;  The writes to the VLT_CR register below include setting the POR to VLT_CR_POR_HIGH, 
+    ;  VLT_CR_POR_MID or VLT_CR_POR_LOW. Correctly setting this value is critical to the proper 
+    ;  operation of the PSoC. The POR protects the M8C from mis-executing when Vdd falls low. 
+    ;  These values should not be changed from the settings here. See Section "POR and LVD" of 
+    ;  Technical Reference Manual #001-14463 for more information.
 
     M8C_SetBank1
 
@@ -433,11 +450,11 @@ ELSE
 
     ;  ROM AREAs for C CONST, static & global items
     ;
-    AREA lit               (ROM, REL, CON)   ; 'const' definitions
-    AREA idata             (ROM, REL, CON)   ; Constants for initializing RAM
+    AREA lit               (ROM, REL, CON, LIT)   ; 'const' definitions
+    AREA idata             (ROM, REL, CON, LIT)   ; Constants for initializing RAM
 __idata_start:
 
-    AREA func_lit          (ROM, REL, CON)   ; Function Pointers
+    AREA func_lit          (ROM, REL, CON, proclab)   ; Function Pointers
 __func_lit_start:
 
     AREA psoc_config       (ROM, REL, CON)   ; Configuration Load & Unload
