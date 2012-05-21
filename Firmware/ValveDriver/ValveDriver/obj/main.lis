@@ -9,17 +9,17 @@
  0000 00                .byte 0
                         .area data(ram, con, rel)
  0001                   .dbfile ./main.c
- 0001                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
+ 0001                   .dbfile C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\main.c
  0001                   .dbsym e transfer_offset_valid _transfer_offset_valid c
  0001           _ext_mem_locked::
  0001                   .blkb 1
                         .area idata(rom,lit)
  0001 00                .byte 0
                         .area data(ram, con, rel)
- 0002                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
+ 0002                   .dbfile C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\main.c
  0002                   .dbsym e ext_mem_locked _ext_mem_locked c
                         .area text(rom, con, rel)
- 0000                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
+ 0000                   .dbfile C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\main.c
  0000                   .dbfunc e main _main fV
  0000           _main::
  0000                   .dbline -1
@@ -107,7 +107,7 @@
  002B 8FFF              jmp .
  002D                   .dbend
                         .area bss(ram, con, rel)
- 0000                   .dbfile C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\main.c
+ 0000                   .dbfile C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\main.c
  0000           _s_to_m_mem::
  0000                   .blkb 32
  0020                   .dbsym e s_to_m_mem _s_to_m_mem A[32:32]c

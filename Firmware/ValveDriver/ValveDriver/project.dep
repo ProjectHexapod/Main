@@ -1,33 +1,33 @@
 # DO NOT DELETE
 ./obj/boot.o : \
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8ssc.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\lib\GLOBAL~1.INC\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8ssc.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\lib\GLOBAL~1.INC\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./obj/main.o :  ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/PWM8_1.h\
    ./lib/PWM8_2.h ./lib/SLEEPT~1.H ./lib/UART.h\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.h
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.h
 ./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/psocconfigtbl.o : \
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc
 ./lib/obj/pwm8_1.o :  ./lib/PWM8_1.inc\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/pwm8_2.o :  ./lib/PWM8_2.inc\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/sleeptimer_1.o :  ./lib/SLEEPT~1.INC\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/sleeptimer_1int.o :  ./lib/SLEEPT~1.INC\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/uart.o :  ./lib/UART.inc\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/uartint.o :  ./lib/UART.inc\
-   C:/PROGRA~2/Cypress/PSOCDE~1/5.2/Common/CY110F~1/tools/include/CY8C24~3/m8c.inc\
-   C:\Users\mycroft\robot\Firmware\VALVED~1\VALVED~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\VALVED~1\VALVED~1\memory.inc
 ./lib/obj/uartplus.o : 
