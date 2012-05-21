@@ -57,18 +57,18 @@ LoadConfigTBL_ValveDriver:
 	mov	reg[d2h], 00h		; GlobalDigitalInterconnect_Drive_Odd_Output register (GDI_O_OU)
 	mov	reg[e1h], 2fh		; OscillatorControl_1 register (OSC_CR1)
 	mov	reg[e2h], 00h		; OscillatorControl_2 register (OSC_CR2)
-	mov	reg[dfh], bbh		; OscillatorControl_3 register (OSC_CR3)
-	mov	reg[deh], 01h		; OscillatorControl_4 register (OSC_CR4)
+	mov	reg[dfh], 06h		; OscillatorControl_3 register (OSC_CR3)
+	mov	reg[deh], 03h		; OscillatorControl_4 register (OSC_CR4)
 	mov	reg[ddh], 00h		; OscillatorGlobalBusEnableControl register (OSC_GO_EN)
 ;  Instance name PWM8_1, User Module PWM8
 ;       Instance name PWM8_1, Block Name PWM8(DBB00)
 	mov	reg[20h], 31h		;PWM8_1_FUNC_REG(DBB00FN)
-	mov	reg[21h], 15h		;PWM8_1_INPUT_REG(DBB00IN)
+	mov	reg[21h], 11h		;PWM8_1_INPUT_REG(DBB00IN)
 	mov	reg[22h], 07h		;PWM8_1_OUTPUT_REG(DBB00OU)
 ;  Instance name PWM8_2, User Module PWM8
 ;       Instance name PWM8_2, Block Name PWM8(DBB01)
 	mov	reg[24h], 31h		;PWM8_2_FUNC_REG(DBB01FN)
-	mov	reg[25h], 15h		;PWM8_2_INPUT_REG(DBB01IN)
+	mov	reg[25h], 11h		;PWM8_2_INPUT_REG(DBB01IN)
 	mov	reg[26h], 05h		;PWM8_2_OUTPUT_REG(DBB01OU)
 ;  Instance name SleepTimer_1, User Module SleepTimer
 ;  Instance name UART, User Module UART

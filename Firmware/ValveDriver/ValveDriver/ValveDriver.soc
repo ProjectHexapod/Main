@@ -10,10 +10,136 @@
 			<SOURCE_FILE_LIST>
 				<SOURCE_FILE NAME="main.c" TYPE="UserSourceModule" LANGUAGE="C"/>
 				<SOURCE_FILE NAME="flashsecurity.txt" TYPE="TextFile" LANGUAGE="" OVERLAY_NAME=""/>
-				<SOURCE_FILE NAME="psocapi.h" TYPE="LibraryIncludeFile" LANGUAGE="C" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="111594376" LIBTIME="1"/>
-				<SOURCE_FILE NAME="psocapi.inc" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="111594376" LIBTIME="3"/>
+				<SOURCE_FILE NAME="psocapi.h" TYPE="LibraryIncludeFile" LANGUAGE="C" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="111574056" LIBTIME="1"/>
+				<SOURCE_FILE NAME="psocapi.inc" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="111574056" LIBTIME="3"/>
 				<SOURCE_FILE NAME="memory.inc" TYPE="UserIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE"/>
 				<SOURCE_FILE NAME="psocgpioint.inc" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68868916"/>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 				
@@ -75,7 +201,7 @@
 				<SOURCE_FILE NAME="uart.inc" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1238455" LIBTIME="2007557012"/>
 				<SOURCE_FILE NAME="psocconfigtbl.asm" TYPE="LibrarySource" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68869020"/>
 				<SOURCE_FILE NAME="psocgpioint.h" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68868916"/>
-				<SOURCE_FILE NAME="psocconfig.asm" TYPE="LibrarySource" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68868807"/>
+				<SOURCE_FILE NAME="psocconfig.asm" TYPE="LibrarySource" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68868183"/>
 				<SOURCE_FILE NAME="boot.asm" TYPE="UserSourceModule" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE"/>
 				<SOURCE_FILE NAME="globalparams.inc" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68868911"/>
 				<SOURCE_FILE NAME="globalparams.h" TYPE="LibraryIncludeFile" LANGUAGE="ASM" OVERLAY_NAME="" USER_FILE="FALSE" FILEMODTIME="1631416" LIBTIME="68868911"/>
