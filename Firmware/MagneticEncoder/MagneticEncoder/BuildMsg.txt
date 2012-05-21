@@ -12,9 +12,34 @@ lib/uartplus.asm
 ./boot.asm
 ./main.c
 Linking..
-  ROM 36% full. 1438 out of 4096 bytes used (does not include absolute areas).
-  RAM 34% full. 86 bytes used (does not include stack usage).
-Built with ICCM8C STD V7.04
+symbol ADCINC_1_cClearFlagGetData is unused
+symbol UART_cReadChar is unused
+symbol UART_iReadChar is unused
+symbol ADCINC_1_StopADC is unused
+symbol UART_TxIntMode is unused
+symbol UART_Stop is unused
+symbol PGA_1_Stop is unused
+symbol UART_PutSHexInt is unused
+symbol UART_DisableInt is unused
+symbol ADCINC_1_bGetData is unused
+symbol ADCINC_1_iGetData is unused
+symbol UART_Write is unused
+symbol UART_bReadRxData is unused
+symbol UART_CWrite is unused
+symbol UART_PutCRLF is unused
+symbol ADCINC_1_Stop is unused
+symbol UART_SetTxIntMode is unused
+symbol UART_IntCntl is unused
+symbol ADCINC_1_fClearFlag is unused
+symbol PGA_1_SetGain is unused
+symbol UART_SendData is unused
+symbol ADCINC_1_WritePulseWidth is unused
+symbol UART_bReadRxStatus is unused
+symbol UART_bReadTxStatus is unused
+305 bytes unused code deleted
+  ROM 22% full. 870 out of 4096 bytes used (does not include absolute areas).
+  RAM 34% full. 87 bytes used (does not include stack usage).
+Built with ICCM8C STD V7.05.00
  
-MagneticEncoder - 0 error(s) 0 warning(s) 00:24:09
+MagneticEncoder - 0 error(s) 0 warning(s) 04:54:16
 

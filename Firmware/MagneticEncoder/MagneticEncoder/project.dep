@@ -1,34 +1,34 @@
 # DO NOT DELETE
 ./obj/boot.o : \
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8ssc.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\lib\GLOBAL~1.INC\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8ssc.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\lib\GLOBAL~1.INC\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./obj/main.o :  ./lib/ADCINC_1.h ./lib/AMUX4_1.h ./lib/PGA_1.h\
    ./lib/PSoCAPI.h ./lib/PSOCGP~1.H ./lib/UART.h\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/M8C.h\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.h
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/M8C.h\
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.h
 ./lib/obj/adcinc_1.o :  ./lib/ADCINC_1.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/adcinc_1int.o :  ./lib/ADCINC_1.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/amux4_1.o :  ./lib/AMUX4_1.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/pga_1.o :  ./lib/PGA_1.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/psocconfig.o :  ./lib/GLOBAL~1.INC\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/psocconfigtbl.o : \
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc
 ./lib/obj/uart.o :  ./lib/UART.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/uartint.o :  ./lib/UART.inc\
-   C:/PROGRA~1/Cypress/PSOCDE~1/5.1/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
-   C:\DOCUME~1\ADMINI~1\MYDOCU~1\hexapod\MAGNET~1\MAGNET~1\MAGNET~1\memory.inc
+   C:/PROGRA~1/Cypress/PSOCDE~1/5.2/Common/CY3E64~1/tools/include/CY8C24~3/m8c.inc\
+   C:\DOCUME~1\ADMINI~1\mycroft\hexapod\Firmware\MAGNET~1\MAGNET~1\memory.inc
 ./lib/obj/uartplus.o : 

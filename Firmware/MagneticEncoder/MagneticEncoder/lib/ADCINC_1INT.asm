@@ -1,13 +1,13 @@
 ;;*****************************************************************************
 ;;*****************************************************************************
 ;;  FILENAME: ADCINC_1INT.asm
-;;  Version: 1.20, Updated on 2011/6/28 at 6:7:58
+;;  Version: 1.20, Updated on 2012/3/2 at 9:12:19
 ;;
 ;;  DESCRIPTION: Assembler interrupt service routine for the ADCINC
 ;;               A/D Converter User Module. This code works for both the
 ;;               first and second-order modulator topologies.
 ;;-----------------------------------------------------------------------------
-;;  Copyright (c) Cypress Semiconductor 2011. All Rights Reserved.
+;;  Copyright (c) Cypress Semiconductor 2012. All Rights Reserved.
 ;;*****************************************************************************
 ;;*****************************************************************************
 

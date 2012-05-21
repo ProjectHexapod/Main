@@ -8,45 +8,24 @@
 unsigned char readMagEncConfig(void);
 
 unsigned char target_address;
-unsigned char bytes_received = 0;
 unsigned char expected_bytes;
+unsigned char transfer_offset_valid = 0;
+unsigned char transfer_flags, transfer_offset;
 
 unsigned char ext_mem_locked = 0;
-unsigned char m_to_s_offset = 0;
 /********
 m_to_s_memory map
-0:  Desired PWM duty cycle, channel 0
-1:  Desired PWM duty cycle, channel 1
-2:  Desired PWM duty cycle, channel 2
-3:  Desired PWM duty cycle, channel 3
-4:  Desired PWM duty cycle, channel 4
-5:  Desired PWM duty cycle, channel 5
 ********/
 unsigned char m_to_s_mem[32];
 /********
 s_to_m_memory map
-
+0:  Encoder SIN output bits 8-11
+1:  Encoder SIN output bits 0-7
+2:  Encoder COS output bits 8-11
+3:  Encoder COS output bits 0-7
+31: Device type (0xd1=valve driver, 0xe2=angle encoder)
 ********/
 unsigned char s_to_m_mem[32];
-
-extern BYTE DELSIG8_bfStatus;
-extern BYTE DELSIG8_cResult;
-
-#define PWM_0_PORT	PRT0DR
-#define PWM_0_PIN	0x80
-#define NOTPWM_0_PIN 0x7F
-#define SET_PWM_0   PWM_0_PORT |= PWM_0_PIN
-#define UNSET_PWM_0 PWM_0_PORT &= NOTPWM_0_PIN
-#define PWM_1_PORT	PRT0DR
-#define PWM_1_PIN	0x20
-#define PWM_2_PORT	PRT0DR
-#define PWM_2_PIN	0x08
-#define PWM_3_PORT	PRT0DR
-#define PWM_3_PIN	0x02
-#define PWM_4_PORT	PRT2DR
-#define PWM_4_PIN	0x80
-#define PWM_5_PORT	PRT2DR
-#define PWM_5_PIN	0x20
 
 #define ANALOG_MUX	AMX_IN	  //  see datasheet pg 103
 
@@ -57,8 +36,8 @@ unsigned int wait_cycle = 0;
 
 void main(void)
 {
-	// Insert your main routine code here.
-	unsigned char c = 0;
+    s_to_m_mem[31] = 0xe2;
+	
 	M8C_EnableGInt;
 	UART_EnableInt();
 	UART_Start(UART_PARITY_NONE);
@@ -71,15 +50,12 @@ void main(void)
 	s_to_m_mem[0] = 1;
 	s_to_m_mem[1] = 2;
 
-	for (;;)
-	{
-	
-	//  Set the Analog Mux to SIN
-	//  Clear AMX_IN bit 0 to read SIN on P0[1] (header12 pin4)
+	for (;;) {
+		//  Set the Analog Mux to SIN
+		//  Clear AMX_IN bit 0 to read SIN on P0[1] (header12 pin4)
 		ANALOG_MUX &= 0xFE;
 		
-	//  Read the ADC value
-
+		//  Read the ADC value
 		for(wait_cycle = 0; wait_cycle < 2; wait_cycle++)
 		{
 			while(ADCINC_1_fIsDataAvailable() == 0)
@@ -87,11 +63,11 @@ void main(void)
 			sin_value = ADCINC_1_wClearFlagGetData();   //  read garbage data while MUX settles, last one is kept
 		}
 		
-	//  Set the Analog Mux to COS
-	//  Set AMX_IN bit 0 to read COS on P0[3] (header12 pin3)
+		//  Set the Analog Mux to COS
+		//  Set AMX_IN bit 0 to read COS on P0[3] (header12 pin3)
 		ANALOG_MUX |= 0x01;
 	
-	//  Read the ADC value
+		//  Read the ADC value
 		for(wait_cycle = 0; wait_cycle < 2; wait_cycle++)
 		{
 			while(ADCINC_1_fIsDataAvailable() == 0)
@@ -104,8 +80,6 @@ void main(void)
 		s_to_m_mem[2] = (unsigned char)(cos_value >> 8);
 		s_to_m_mem[3] = (unsigned char)(cos_value);
 	}
-
-
 }
 
 
