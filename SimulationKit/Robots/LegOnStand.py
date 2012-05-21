@@ -19,7 +19,7 @@ class LegOnStand(MultiBody):
 
     # describe the neutral position
     YAW_OFFSET   = deg2rad*-43
-    PITCH_OFFSET = deg2rad*-37
+    PITCH_OFFSET = deg2rad*-57
     KNEE_OFFSET  = deg2rad*69.5
 
     # describe the cart
