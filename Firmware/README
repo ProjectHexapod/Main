@@ -1,0 +1,47 @@
+NOTE: UP TO DATE AS OF 2012-05-22 1945Z
+
+The control bus uses RS422 at 500k baud.  Communication between nodes is
+unidirectional; the UART RX is connect to the node above, and the UART TX
+is connected to the node below.  At the end of the chain, the data is
+physically looped back, through a separate transceiver chain which does not
+interact with the CPUs on the nodes it transits through; this connects the
+ring back to the UART RX on the master controller, and forms a
+unidirectional ring network.
+
+The control bus protocol is driven entirely by transmission of data packets
+from the master controller.  No asynchronous communication from the control
+nodes is allowed.
+
+The packet format is:
+
+byte 0:
+  bits 4-7: target number
+  bits 0-3: packet length (excluding byte 0)
+byte 1:
+  bits 0-5: transfer memory offset
+bytes 2+:
+  data bytes
+
+Each node retransmits the packet; the master controller should get the same
+number of bytes back that it sent.  The target number in byte 0 is
+decremented by each node; a node only processes the packet locally (as
+opposed to just forwarding) if it receives a packet with a target number of
+0.
+
+On a packet bearing data, the data sent by the master controller is written
+to the target's m_to_s[] array, and the values sent down the ring are read
+from the target's s_to_m[] array.  All transactions do both a write and a
+read.
+
+Because the target number is decremented on each transit, sending a packet
+to target 0 will cause a response to come back addressed to target 15 (-1).
+In this way, the number of nodes can be rung out with a probe packet.  Once
+this is known, the purpose of every returned packet can be identified
+clearly by the target number (inverted) and offset.
+
+In the event of a corrupt packet or frame slip, the system can recover by
+periodically inserting a string of 16 bytes of 0 to resynchronize all of
+the receivers.  This can cause corruption of the m_to_s[] array if a node
+thought that a write was in progress.  For this reason, it's recommended
+that every I/O cycle rewrite all output values, which will cause the system
+to heal long before the physical plant can respond to any erroneous data.
