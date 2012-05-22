@@ -1,10 +1,14 @@
 from math_utils import *
 from scipy.linalg import norm
 import time_sources
+from leg_logger import logger
 
 
 class PutFootOnGround:
     def __init__(self, legController, velocity, accel_duration=0.1):
+        logger.info("New trajectory.", traj_name="PutFootOnGround",
+                    velocity=velocity, accel_duration=accel_duration)
+        
         self.leg = legController
         self.vel = velocity
         self.accel_duration = accel_duration
@@ -31,6 +35,10 @@ class TrapezoidalFootMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
     """
     def __init__(self, leg_controller, final_foot_pos, max_velocity, acceleration):
+        logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
+                    final_foot_pos=final_foot_pos, max_velocity=max_velocity,
+                    acceleration=acceleration)
+        
         self.leg = leg_controller
         self.target_foot_pos = self.leg.getFootPos()
         self.final_foot_pos = final_foot_pos
