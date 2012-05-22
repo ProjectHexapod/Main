@@ -1,4 +1,4 @@
-NOTE: UP TO DATE AS OF 2012-05-22 1945Z
+NOTE: UP TO DATE AS OF 2012-05-22 2019Z
 
 The control bus uses RS422 at 500k baud.  Communication between nodes is
 unidirectional; the UART RX is connect to the node above, and the UART TX
@@ -37,13 +37,15 @@ Because the target number is decremented on each transit, sending a packet
 to target 0 will cause a response to come back addressed to target 16-n,
 where N is the number of control nodes in the chain (and thus
 retransmissions of the packet).  In this way, the number of nodes can be
-rung out with a probe packet.  Once this is known, the purpose of every
+rung out with a probe packet.  Once this is known, the data in every
 returned packet can be identified clearly by the target number (inverted)
 and offset.
 
 In the event of a corrupt packet or frame slip, the system can recover by
 periodically inserting a string of 16 bytes of 0 to resynchronize all of
 the receivers.  This can cause corruption of the m_to_s[] array if a node
-thought that a write was in progress.  For this reason, it's recommended
-that every I/O cycle rewrite all output values, which will cause the system
-to heal long before the physical plant can respond to any erroneous data.
+thought that a write was in progress, and/or junk data returned to the
+master controller.  For this reason, it's recommended that every I/O cycle
+rewrite all output values, and that the resynchronization happen relatively
+often, so that the control system can heal before the physical plant
+responds radically to an erroneous data.
