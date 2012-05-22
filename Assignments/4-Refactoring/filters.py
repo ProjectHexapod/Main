@@ -31,9 +31,9 @@ class Filter(object):
         time_delta = global_time.getDelta()
 
         # First order filter implementation
-        out = 1/(1.0 + c * time_delta) * self.last_response + (a + b * time_delta) \
-            / (1. + c * time_delta) * signal - a/(a + c * time_delta) * \
-            self.last_signal
+        out = (self.last_response + \
+               (a + b * time_delta) * signal - \
+               a * self.last_signal) / (1.0 + c * time_delta)
 
         # Update history
         self.last_response = out
