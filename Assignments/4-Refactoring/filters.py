@@ -61,14 +61,14 @@ class HighPassFilter(Filter):
         self.c = corner_frequency
 
 class ZPKFilter(Filter):
-    def __init__(self, gain, p_frequency, z_frequency):
+    def __init__(self, gain, pole_frequency, zero_frequency):
         """
         Calculate FOF constants for a high pass filter.
         """
         super(ZPKFilter, self).__init__()
-        self.a = gain * p_frequency / z_frequency
-        self.b = gain * p_frequency
-        self.c = p_frequency
+        self.a = gain * pole_frequency / zero_frequency
+        self.b = gain * pole_frequency
+        self.c = pole_frequency
 
 class IntegratorFilter(Filter):
     def __init__(self, gain):
