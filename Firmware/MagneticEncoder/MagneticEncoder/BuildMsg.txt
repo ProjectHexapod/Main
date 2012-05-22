@@ -1,15 +1,5 @@
 Starting MAKE...
-creating project.mk 
-lib/adcinc_1.asm
-lib/adcinc_1int.asm
-lib/amux4_1.asm
-lib/pga_1.asm
-lib/psocconfig.asm
-lib/psocconfigtbl.asm
-lib/uart.asm
-lib/uartint.asm
-lib/uartplus.asm
-./boot.asm
+creating project.mk -- no changes
 ./main.c
 Linking..
 symbol ADCINC_1_cClearFlagGetData is unused
@@ -37,9 +27,9 @@ symbol ADCINC_1_WritePulseWidth is unused
 symbol UART_bReadRxStatus is unused
 symbol UART_bReadTxStatus is unused
 305 bytes unused code deleted
-  ROM 22% full. 870 out of 4096 bytes used (does not include absolute areas).
-  RAM 34% full. 87 bytes used (does not include stack usage).
+  ROM 21% full. 837 out of 4096 bytes used (does not include absolute areas).
+  RAM 32% full. 81 bytes used (does not include stack usage).
 Built with ICCM8C STD V7.05.00
  
-MagneticEncoder - 0 error(s) 0 warning(s) 04:54:16
+MagneticEncoder - 0 error(s) 0 warning(s) 21:57:14
 

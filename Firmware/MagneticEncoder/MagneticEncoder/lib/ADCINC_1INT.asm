@@ -154,19 +154,7 @@ ENDIF
     mov  [ADCINC_1_fStatus],1
 ConversionReady:
     ;@PSoC_UserCode_BODY@ (Do not change this line.)
-    ;---------------------------------------------------
-    ; Insert your custom code below this banner
-    ;---------------------------------------------------
-    ;  Sample data is now in iResult
-    ;
-    ;  NOTE: This interrupt service routine has already
-    ;  preserved the values of the A CPU register. If
-    ;  you need to use the X register you must preserve
-    ;  its value and restore it before the return from
-    ;  interrupt.
-    ;---------------------------------------------------
-    ; Insert your custom code above this banner
-    ;---------------------------------------------------
+    xor reg[AMX_IN], 0x01
     ;@PSoC_UserCode_END@ (Do not change this line.)
     pop A
     cmp [ADCINC_1_bNumSamples],0

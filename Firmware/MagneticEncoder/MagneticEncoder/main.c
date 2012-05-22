@@ -27,13 +27,6 @@ s_to_m_memory map
 ********/
 unsigned char s_to_m_mem[32];
 
-#define ANALOG_MUX	AMX_IN	  //  see datasheet pg 103
-
-unsigned char pwm_count;
-unsigned int sin_value = 4;
-unsigned int cos_value = 5;
-unsigned int wait_cycle = 0;
-
 void main(void)
 {
     s_to_m_mem[31] = 0xe2;
@@ -44,41 +37,20 @@ void main(void)
 
 	PGA_1_Start(PGA_1_HIGHPOWER);
 
-	//	void  ADCINC_Start (BYTE bPowerSetting)
-	ADCINC_1_Start(3);
+	AMX_IN = 0x00;
+    ADCINC_1_Start(ADCINC_1_HIGHPOWER);
 	ADCINC_1_GetSamples(0);
-	s_to_m_mem[0] = 1;
-	s_to_m_mem[1] = 2;
-
+	s_to_m_mem[0] = 0xab;
+	s_to_m_mem[1] = 0xcd;
+	
 	for (;;) {
-		//  Set the Analog Mux to SIN
-		//  Clear AMX_IN bit 0 to read SIN on P0[1] (header12 pin4)
-		ANALOG_MUX &= 0xFE;
-		
-		//  Read the ADC value
-		for(wait_cycle = 0; wait_cycle < 2; wait_cycle++)
-		{
-			while(ADCINC_1_fIsDataAvailable() == 0)
-				;
-			sin_value = ADCINC_1_wClearFlagGetData();   //  read garbage data while MUX settles, last one is kept
-		}
-		
-		//  Set the Analog Mux to COS
-		//  Set AMX_IN bit 0 to read COS on P0[3] (header12 pin3)
-		ANALOG_MUX |= 0x01;
-	
-		//  Read the ADC value
-		for(wait_cycle = 0; wait_cycle < 2; wait_cycle++)
-		{
-			while(ADCINC_1_fIsDataAvailable() == 0)
-				;
-			cos_value = ADCINC_1_wClearFlagGetData();   //  read garbage data while MUX settles, last one is kept
-		}
-	
-		s_to_m_mem[0] = (unsigned char)(sin_value >> 8);
-		s_to_m_mem[1] = (unsigned char)(sin_value);
-		s_to_m_mem[2] = (unsigned char)(cos_value >> 8);
-		s_to_m_mem[3] = (unsigned char)(cos_value);
+		int value, which;
+		while(ADCINC_1_fIsDataAvailable() == 0)
+			;
+		value = ADCINC_1_wClearFlagGetData();
+		which = ((AMX_IN & 0x01) ^ 0x01) << 1;
+		s_to_m_mem[which+0] = value >> 8;
+		s_to_m_mem[which+1] = value;
 	}
 }
 

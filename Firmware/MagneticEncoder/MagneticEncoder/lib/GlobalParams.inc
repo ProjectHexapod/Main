@@ -56,9 +56,9 @@ POWER_SET_SLOW_IMO:     equ 01h  ; MASK for slow Internal Main Oscillator (IMO)
 COMM_RX_PRESENT:		equ	1	;1 = TRUE
 WATCHDOG_ENABLE:		equ 0	;Watchdog Enable 1 = Enable
 
-CLOCK_DIV_VC1:			equ	2h	;VC1 clock divider
+CLOCK_DIV_VC1:			equ	5h	;VC1 clock divider
 CLOCK_DIV_VC1_MASK:		equ	f0h	;VC1 clock divider mask
-CLOCK_DIV_VC1_JUST:		equ	20h	;VC1 clock divider justified
+CLOCK_DIV_VC1_JUST:		equ	50h	;VC1 clock divider justified
 CLOCK_DIV_VC2:			equ	fh	;VC2 clock divider
 CLOCK_DIV_VC2_MASK:		equ	fh	;VC2 clock divider mask
 CLOCK_DIV_VC2_JUST:		equ	fh	;VC2 clock divider justified
