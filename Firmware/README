@@ -1,7 +1,7 @@
-NOTE: UP TO DATE AS OF 2012-05-22 2019Z
+NOTE: UP TO DATE AS OF 2012-05-22 2104Z
 
 The control bus uses RS422 at 500k baud.  Communication between nodes is
-unidirectional; the UART RX is connect to the node above, and the UART TX
+unidirectional; the UART RX is connected to the node above, and the UART TX
 is connected to the node below.  At the end of the chain, the data is
 physically looped back, through a separate transceiver chain which does not
 interact with the CPUs on the nodes it transits through; this connects the
@@ -48,4 +48,4 @@ thought that a write was in progress, and/or junk data returned to the
 master controller.  For this reason, it's recommended that every I/O cycle
 rewrite all output values, and that the resynchronization happen relatively
 often, so that the control system can heal before the physical plant
-responds radically to an erroneous data.
+responds radically to erroneous data.
