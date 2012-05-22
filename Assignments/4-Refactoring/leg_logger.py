@@ -7,33 +7,33 @@ class LegLog():
 
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.DEBUG)
-        self.logger.setHandler(self.console_handler
+        self.logger.addHandler(console_handler)
 
         self.state = {}
 
     def populate_state(self, kwargs):
-        for k,v in kwargs:
-            self.state[k] = v
+        for k in kwargs:
+            self.state[k] = kwargs[k]
 
     def debug(self, msg, *args, **kwargs):
         self.populate_state(kwargs)
-        self.logger.debug(msg, args, extra=self.state)
+        self.logger.debug(msg.format(args), extra=self.state)
 
     def info(self, msg, *args, **kwargs):
         self.populate_state(kwargs)
-        self.logger.info(msg, args, extra=self.state)
+        self.logger.info(msg.format(args), extra=self.state)
 
     def warning(self, msg, *args, **kwargs):
         self.populate_state(kwargs)
-        self.logger.warning(msg, args, extra=self.state)
+        self.logger.warning(msg.format(args), extra=self.state)
 
     def error(self, msg, *args, **kwargs):
         self.populate_state(kwargs)
-        self.logger.error(msg, args, extra=self.state)
+        self.logger.error(msg.format(args), extra=self.state)
 
     def critical(self, msg, *args, **kwargs):
         self.populate_state(kwargs)
-        self.logger.critical(msg, args, extra=self.state)
+        self.logger.critical(msg.format(args), extra=self.state)
 
 logger = LegLog()
 

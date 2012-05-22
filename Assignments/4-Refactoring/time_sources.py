@@ -1,3 +1,5 @@
+from leg_logger import logger
+
 class TimeSource:
     def __init__(self, initial_time=0.0, initial_delta=0.0):
         self.initial_time = initial_time
@@ -8,11 +10,21 @@ class TimeSource:
     
     def updateTime(self, time):
         if time <= self.time:
+            logger.error("TimeSource.updateTime: Reversed time error!",
+                         initial_time=self.initial_time,
+                         initial_delta=self.initial_delta,
+                         current_time=self.time,
+                         bad_value=time)
             raise ValueError("TimeSource.updateTime(): time must be increasing")
         self.delta = time - self.time
         self.time = time
     def updateDelta(self, delta):
         if delta <= 0:
+            logger.error("TimeSource.updateDelta: Reversed time error!",
+                         initial_time=self.initial_time,
+                         initial_delta=self.initial_delta,
+                         current_time=self.time,
+                         bad_value=delta)
             raise ValueError("TimeSource.updateDelta(): time must be increasing")
         self.delta = delta
         self.time += delta

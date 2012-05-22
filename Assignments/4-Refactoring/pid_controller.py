@@ -1,3 +1,4 @@
+from leg_logger import logger
 import math
 from math_utils import saturate
 import time_sources
@@ -19,11 +20,29 @@ class PidController:
 
     def update(self, desired_pos, measured_pos):
         if math.isnan(desired_pos):
+            logger.error("PidController.update: NaN where aN expected!",
+                         desired_pos=desired_pos,
+                         measured_pos=measured_pos,
+                         soft_min=self.soft_min,
+                         soft_max=self.soft_max,
+                         bad_value="desired_pos")
             raise ValueError("PidController: desired_pos cannot be NaN.")
         if math.isnan(measured_pos):
+            logger.error("PidController.update: NaN where aN expected!",
+                         desired_pos=desired_pos,
+                         measured_pos=measured_pos,
+                         soft_min=self.soft_min,
+                         soft_max=self.soft_max,
+                         bad_value="measured_pos")
             raise ValueError("PidController: measured_pos cannot be NaN.")
 
         if self.soft_min > measured_pos or measured_pos > self.soft_max:
+            logger.error("PidController.update: Measured position outside of soft range!",
+                         desired_pos=desired_pos,
+                         measured_pos=measured_pos,
+                         soft_min=self.soft_min,
+                         soft_max=self.soft_max,
+                         bad_value=measured_pos)
             raise ValueError("PidController: Measured position out of soft range!")
 
         # bound the desired position
@@ -43,18 +62,26 @@ class PidController:
         return actuator_command
 
     def isErrorInBounds(self, error, measured_pos):
-        #tests whether or not the error signal is within reasonable range
-        #not checking for NaN, since both desired and measured position
-        #are tested for that
+        """tests whether or not the error signal is within reasonable range
+        not checking for NaN, since both desired and measured position
+        are tested for that
+        """
         
         #makes sure the error is bounded by a single leg rotation
         error = error%(2*math.pi)
         
         #is error within available soft range?
         if error>(measured_pos-self.soft_min) or error>(self.soft_max-measured_pos):
+            logging.error("PidController.isErrorInBounds: error out of soft bounds.",
+                          error=error,
+                          measured_pos=measured_pos)
             raise ValueError("Error signal points to a position out of soft bounds.")
         #is error within defined (symmetric) bounds for per-
         if error < -self.max_error or error > self.max_error:
+            logging.error("PidController.isErrorInBounds: error out of error bounds.",
+                          error=error,
+                          max_error = self.max_error,
+                          measured_pos=measured_pos)
             raise ValueError("Error signal is outside safe per-timestep bounds.")
         return error
     
