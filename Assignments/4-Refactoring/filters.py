@@ -68,7 +68,7 @@ class ZPKFilter(Filter):
         super(ZPKFilter, self).__init__()
         self.a = gain * p_frequency / z_frequency
         self.b = gain * p_frequency
-        self.c = gain * p_frequency
+        self.c = p_frequency
 
 class IntegratorFilter(Filter):
     def __init__(self, gain):
