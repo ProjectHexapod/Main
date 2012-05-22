@@ -2,7 +2,7 @@ import serial
 from time import *
 from array import array
 
-s = serial.Serial(port="/dev/ttyUSB0", baudrate=1000000, timeout=2e-2)
+s = serial.Serial(port="/dev/ttyUSB0", baudrate=500000, timeout=2e-1)
 
 cmd = array('B')
 cmd.append(0x00)
