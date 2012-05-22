@@ -34,10 +34,12 @@ from the target's s_to_m[] array.  All transactions do both a write and a
 read.
 
 Because the target number is decremented on each transit, sending a packet
-to target 0 will cause a response to come back addressed to target 15 (-1).
-In this way, the number of nodes can be rung out with a probe packet.  Once
-this is known, the purpose of every returned packet can be identified
-clearly by the target number (inverted) and offset.
+to target 0 will cause a response to come back addressed to target 16-n,
+where N is the number of control nodes in the chain (and thus
+retransmissions of the packet).  In this way, the number of nodes can be
+rung out with a probe packet.  Once this is known, the purpose of every
+returned packet can be identified clearly by the target number (inverted)
+and offset.
 
 In the event of a corrupt packet or frame slip, the system can recover by
 periodically inserting a string of 16 bytes of 0 to resynchronize all of
