@@ -157,10 +157,10 @@ _UART_RX_ISR:
    ;   NOTE: interrupt service routines must preserve
    ;   the values of the A and X CPU registers.
    
-   ; target/length byte = 71/81 cycles
-   ; transfer address byte = 107/117 cycles
-   ; read data byte = 124/134 cycles
-   ; write data byte = 130/140 cycles
+   ; target/length byte = 66 cycles
+   ; forward byte = 60 cycles
+   ; transfer address byte = 92 cycles
+   ; read/write data byte = 107 cycles
    
    ; 23 cycles
    push A
@@ -174,46 +174,33 @@ not_packet_start:
    ; 13 cycles
    cmp  [_transfer_offset_valid], 0  ; Did we receive the offset?
    jnz  transfer_byte
-   ; 24 cycles
-   mov  [_transfer_flags], A
+   ; 19 cycles
    and  A, 0x1F
    mov  [_transfer_offset], A        ; Store the offset, mark valid
    mov  [_transfer_offset_valid], 1
    jmp  forward_data
 transfer_byte:
-   ; 23 cycles
+   ; 34 cycles
    push X
    mov  X, [_transfer_offset]
-   tst  [_transfer_flags], 0x80      ; Write flag?
-   jz   do_read                      ; No, just a read
-   ; 6 cycles
    mov  [X+_m_to_s_mem], A
-do_read:
-   ; 18 cycles
    mov  A, [X+_s_to_m_mem]
    inc  [_transfer_offset]
    pop  X
 forward_data:
-   ; 14 cycles
+   ; 29 cycles
    mov  REG[UART_TX_BUFFER_REG], A
    dec  [_expected_bytes]
-   jmp  check_if_packet_done
+   pop  A
+   reti
 packet_start:
-   ; 28 cycles
+   ; 43 cycles
    mov  [_target_address], A         ; Save the target address
+   mov  [_transfer_offset_valid], 0
    sub  A, 0x10                      ; Decrement the address we will forward
    mov  REG[UART_TX_BUFFER_REG], A   ; Forward the data
    and  A, 0x0F
    mov  [_expected_bytes], A         ; Number of data bytes in packet
-   mov  [_ext_mem_locked], 1         ; Lock the memory while we're reading from it
-check_if_packet_done:
-   ; 5 cycles
-   jnz  finish						 ; No more to transfer?
-   ; 10 cycles
-   mov  [_transfer_offset_valid], 0
-   mov  [_ext_mem_locked], 0         ; Release the lock
-finish:
-   ; 15 cycles
    pop  A
    reti
    

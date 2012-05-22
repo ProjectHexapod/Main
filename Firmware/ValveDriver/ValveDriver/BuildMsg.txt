@@ -38,9 +38,9 @@ symbol UART_bReadTxStatus is unused
 symbol PWM8_1_bReadCounter is unused
 symbol PWM8_2_bReadCounter is unused
 325 bytes unused code deleted
-  ROM 14% full. 540 out of 4096 bytes used (does not include absolute areas).
+  ROM 13% full. 525 out of 4096 bytes used (does not include absolute areas).
   RAM 30% full. 75 bytes used (does not include stack usage).
 Built with ICCM8C STD V7.05.00
  
-ValveDriver - 0 error(s) 0 warning(s) 04:22:29
+ValveDriver - 0 error(s) 0 warning(s) 21:34:14
 
