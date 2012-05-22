@@ -13,7 +13,7 @@ class Filter(object):
         """
         Increments time by 10 ms and then calculates the response.
         """
-        global_time.updateTime(global_time.getTime() + 10)
+        global_time.updateDelta(0.01)
         return self.update(signal)
 
     def update(self, signal):
