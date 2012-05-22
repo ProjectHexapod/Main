@@ -5,11 +5,11 @@ from leg_logger import logger
 
 
 class PutFootOnGround:
-    def __init__(self, legController, velocity, accel_duration=0.1):
+    def __init__(self, leg_controller, velocity, accel_duration=0.1):
         logger.info("New trajectory.", traj_name="PutFootOnGround",
                     velocity=velocity, accel_duration=accel_duration)
         
-        self.leg = legController
+        self.leg = leg_controller
         self.vel = velocity
         self.accel_duration = accel_duration
         
