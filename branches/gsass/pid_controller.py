@@ -22,12 +22,7 @@ class PidController:
         self.prev_desired_pos = 0.0
         self.integral_error_accumulator = 0.0
         
-        #hysteretic limits for rising/falling edge detection
-        self.hyst_low_limit = 0.0
-        self.hyst_high_limit = 0.0
-        
-        self.peak_detector=HystereticPeakDetector(0.0, self.hyst_low_limit,
-        self.hyst_high_limit, math.pi/20)
+        self.peak_detector=HystereticPeakDetector(0.0, 0.0, 0.0, math.pi/20)
 
     def update(self, desired_pos, measured_pos):
         if math.isnan(desired_pos):
