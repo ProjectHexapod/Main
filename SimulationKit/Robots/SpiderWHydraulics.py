@@ -95,9 +95,9 @@ class SpiderWHydraulics(MultiBody):
                 body2        = thigh, \
                 anchor       = hip_p, \
                 axis         = axis, \
-                a1x          = 0.25,\
-                a2x          = 0.25,\
-                a2y          = 0.25)
+                a1x          = 0.35,\
+                a2x          = 0.35,\
+                a2y          = 0.35)
             #hip_pitch.setParam(ode.ParamLoStop, -pi/3)
             #hip_pitch.setParam(ode.ParamHiStop, +pi/3)
             p1 = mul3( p, (self.BODY_W/2.0)+self.YAW_L )
