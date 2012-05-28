@@ -35,7 +35,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     if traj.isDone():
         if state == S_INIT:
             print "Move"*1000
-            traj = MoveJoint(leg, joint_idx=1, duration=1.0, direction=1, velocity=0.3)
+            traj = MoveJoint(leg, joint_idx=2, duration=3.0, direction=1, velocity=0.2)
             state = S_MOVE_JOINT
         elif state == S_MOVE_JOINT:
             print "Done"*1000
