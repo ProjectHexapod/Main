@@ -97,7 +97,7 @@ class Pause:
         return self.initial_angles
 
 class MoveJoint:
-    def __init__(self, leg_controller, joint_idx, duration, direction, velocity=0.01, accel_duration=0.25):
+    def __init__(self, leg_controller, joint_idx, duration, direction, velocity=0.1, accel_duration=0.1):
         assert abs(direction) == 1
         
         self.leg = leg_controller
@@ -124,7 +124,7 @@ class MoveJoint:
         return self.target_angles
 
 class FindJointStop:
-    def __init__(self, leg_controller, joint_idx, direction, velocity=0.005, accel_duration=0.25):
+    def __init__(self, leg_controller, joint_idx, direction, velocity=0.05, accel_duration=0.1):
         self.leg = leg_controller
         self.joint = joint_idx
         self.vel = direction * velocity
