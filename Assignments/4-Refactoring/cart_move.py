@@ -35,7 +35,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     if traj.isDone():
         if state == S_INIT:
             print "Move"*1000
-            traj = MoveJoint(leg, joint_idx=2, duration=3.0, direction=1, velocity=0.2)
+            traj = TrapezoidalFootMove(leg, array([1.5, 0.0, -0.4]), 0.5, 0.5)
             state = S_MOVE_JOINT
         elif state == S_MOVE_JOINT:
             print "Done"*1000
@@ -43,6 +43,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             pass
         logger.info("State changed.", state=state)
     
+    print "Foot:", leg.getFootPos()
     # Evaluate trajectory and joint control
     leg.setDesiredJointAngles(traj.update())
     leg.updateLengthRateCommands()
