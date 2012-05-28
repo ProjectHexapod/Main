@@ -1,6 +1,7 @@
 from math_utils import *
 from pid_controller import PidController
 import math
+from leg_logger import logger
 
 class LegController:
     def __init__(self):
@@ -17,13 +18,17 @@ class LegController:
         self.SHOCK_DEPTH_THRESHOLD_HIGH = 0.02
         self.foot_on_ground = False
 
+        # Actuator soft bounds
+        self.SOFT_MIN = -100
+        self.SOFT_MAX = 100
+
         # Joint control
         self.length_rate_commands = array([0.0, 0.0, 0.0])
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-            PidController(0.5, 0.0, 0.0, -100, 100),  # Yaw joint
-            PidController(0.5, 0.0, 0.0, -100, 100),  # Hip pitch joint
-            PidController(0.5, 0.0, 0.0, -100, 100)   # Knee pitch joint
+            PidController(0.5, 0.0, 0.0),  # Yaw joint
+            PidController(0.5, 0.0, 0.0),  # Hip pitch joint
+            PidController(0.5, 0.0, 0.0)   # Knee pitch joint
         ]
 
 
@@ -41,17 +46,17 @@ class LegController:
                             knee_pitch=knee_pitch,
                             shock_depth=shock_depth,
                             bad_value="angle")
-                raise ValueError("PidController: measured_pos cannot be NaN.")
+                raise ValueError("LegController: measured_pos cannot be NaN.")
                 
-            if self.soft_min > measured_pos or measured_pos > self.soft_max:
-                logger.error("PidController.update: Measured position outside of soft range!",
+            if self.SOFT_MIN > angle or angle > self.SOFT_MAX:
+                logger.error("LegController: Measured position outside of soft range!",
                         angle=angle,
                         yaw=yaw,
                         hip_pitch=hip_pitch,
                         knee_pitch=knee_pitch,
                         shock_depth=shock_depth,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
+                        soft_min=self.SOFT_MIN,
+                        soft_max=self.SOFT_MAX,
                         bad_value="angle")
                 raise ValueError("LegController: Measured position out of soft range!")
         self.shock_depth = shock_depth
