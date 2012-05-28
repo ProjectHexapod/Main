@@ -10,13 +10,13 @@ from cart_move import update
 #from zero_flow_rate import update
 
 leg1 = ControlBus(device='/dev/ttyUSB0')
-yaw_valve = ValveNode(leg1, node_id=1, name="yaw", bore=0.0254, rod=0.0159, lpm=22.712, deadband=130)
-pitch_valve = ValveNode(leg1, node_id=2, name="pitch", bore=0.0381, rod=0.0254, lpm=22.712, deadband=130)
-knee_valve = ValveNode(leg1, node_id=3, name="knee", bore=0.0254, rod=0.0159, lpm=22.712, deadband=130)
-yaw_encoder = EncoderNode(leg1, node_id=4, gain=1, offset=-90*pi/180, bias=(1200,1200))
-pitch_encoder = EncoderNode(leg1, node_id=5, gain=-1, offset=40*pi/180, bias=(1200,1200))
-knee_encoder = EncoderNode(leg1, node_id=6, gain=1, offset=220*pi/180, bias=(1200,1200))
-shock_encoder = EncoderNode(leg1, node_id=7, gain=1, offset=0, bias=(1200,1200))
+yaw_valve = ValveNode(leg1, node_id=1, name="yaw_valve", bore=0.0254, rod=0.0159, lpm=22.712, deadband=130)
+pitch_valve = ValveNode(leg1, node_id=2, name="pitch_valve", bore=0.0381, rod=0.0254, lpm=22.712, deadband=130)
+knee_valve = ValveNode(leg1, node_id=3, name="knee_valve", bore=0.0254, rod=0.0159, lpm=22.712, deadband=130)
+yaw_encoder = EncoderNode(leg1, node_id=4, name="yaw_encoder", gain=1, offset=-90*pi/180, bias=(1200,1200))
+pitch_encoder = EncoderNode(leg1, node_id=5, name="pitch_encoder", gain=-1, offset=40*pi/180, bias=(1200,1200))
+knee_encoder = EncoderNode(leg1, node_id=6, name="knee_encoder", gain=1, offset=220*pi/180, bias=(1200,1200))
+shock_encoder = EncoderNode(leg1, node_id=7, name="shock_encoder", gain=1, offset=0, bias=(1200,1200))
 
 time_1 = 0.0
 try:
