@@ -5,57 +5,22 @@ import time_sources
 import scipy
 
 class PidController:
-    def __init__(self, kp, ki, kd, soft_min, soft_max):
+    def __init__(self, kp, ki, kd):
         self.kp = kp
         self.ki = ki
         self.kd = kd
-
-        self.soft_min = soft_min
-        self.soft_max = soft_max
         
         self.max_movement_rate = 100
-        
-        self.max_error_growth_time = 1e9
-        self.max_limit_cycle = 1e9
 
         # NOTE: it is important that these three variables are floating point to avoid truncation
         self.prev_error = 0.0
         self.prev_desired_pos = 0.0
         self.integral_error_accumulator = 0.0
         
-        #hysteretic limits for rising/falling edge detection
-        self.hyst_low_limit = 0.0
-        self.hyst_high_limit = 0.0
-        
-        self.peak_detector=HystereticPeakDetector(0.0, self.hyst_low_limit,
-        self.hyst_high_limit, math.pi/20)
+        self.peak_detector=HystereticPeakDetector(0.0, 0.0,
+        0.0, math.pi/20)
 
     def update(self, desired_pos, measured_pos):
-        if math.isnan(desired_pos):
-            logger.error("PidController.update: NaN where aN expected!",
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
-                        bad_value="desired_pos")
-            raise ValueError("PidController: desired_pos cannot be NaN.")
-        if math.isnan(measured_pos):
-            logger.error("PidController.update: NaN where aN expected!",
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
-                        bad_value="measured_pos")
-            raise ValueError("PidController: measured_pos cannot be NaN.")
-
-        if self.soft_min > measured_pos or measured_pos > self.soft_max:
-            logger.error("PidController.update: Measured position outside of soft range!",
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
-                        bad_value=measured_pos)
-            raise ValueError("PidController: Measured position out of soft range!")
         
         # bound the desired position
         desired_pos = self.boundDesiredPosition(desired_pos)
@@ -69,7 +34,7 @@ class PidController:
             if self.peak_detector.isUnstable():
                 warningstring=("PidController: Maximum error for the"+
                         " desired point has increased for %d seconds,"+
-                        " but is within resolved range.  Might be unstable." %
+                        " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
                 logger.warning(warningstring,
                         desired_pos=desired_pos,
@@ -81,7 +46,7 @@ class PidController:
             elif self.peak_detector.isLimitCycle():
                 warningstring=("PidController: Maximum error for the"+
                         " desired point has increased once or more for %d seconds,"+
-                        " but is within resolved range.  Might be unstable." %
+                        " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
                 logger.warning(warningstring,
                         desired_pos=desired_pos,
@@ -104,7 +69,7 @@ class PidController:
                         bad_value=error)
                 raise ValueError(errorstring)
             elif self.peak_detector.isLimitCycle():
-                errorstring=("PidController: Controller has not resolved"+ 
+                errorstring=("PidController: Controller has not converged"+ 
                 "over %d seconds.  System potentially in a limit cycle." %
                 self.peak_detector.getResolveTime() )
                 logger.error(errorstring,
@@ -123,7 +88,7 @@ class PidController:
         self.prev_desired_pos = desired_pos
         
         actuator_command = self.kp * error + self.integral_error_accumulator + self.kd * derivative_error
-        actuator_command=self.boundActuatorCommand(actuator_command, measured_pos, delta_time)
+        actuator_command = self.boundActuatorCommand(actuator_command, measured_pos)
         
         return actuator_command
 
@@ -146,25 +111,37 @@ class PidController:
     
     def boundDesiredPosition(self,desired_pos):
         #caps desired position to soft movement range
-        bounded_pos=saturate(desired_pos,self.soft_min,self.soft_max)
-        if desired_pos<self.soft_min or desired_pos>self.soft_max:
+        if math.isnan(desired_pos):
+            logger.error("PidController.boundDesiredPosition: NaN where aN expected!",
+                        desired_pos=desired_pos,
+                        bad_value="desired_pos")
+            raise ValueError("PidController: desired_pos cannot be NaN.")
+        
+        command_min=-math.pi/2
+        command_max=math.pi/2
+        
+        bounded_pos=saturate(desired_pos,command_min,command_max)
+        if desired_pos<command_min or desired_pos>command_max:
+            logger.error("PidController.boundDesiredPosition:"+
+                        " desired position out of bounds!",
+                        desired_pos=desired_pos,
+                        command_min=command_min,
+                        command_max=command_max,
+                        bad_value="desired_pos")
             raise ValueError("PidController.boundDesiredPosition:"+
-        	    	" desired position out of soft bounds")
+                    " desired position out of soft bounds")
         return bounded_pos
     
-    def boundActuatorCommand(self, actuator_command, measured_pos, delta_time):
-        #bound actuator command to available range of command which don't
-        #move the actuator outside of available soft range
-        soft_min_command=self.soft_min - measured_pos
-        soft_max_command=self.soft_max - measured_pos
-        actuator_command=saturate(actuator_command,soft_min_command,soft_max_command)
-        if abs(actuator_command - measured_pos)/delta_time > self.max_movement_rate:
+    def boundActuatorCommand(self, actuator_command, measured_pos):
+		#prevent the controller from commanding an unsafely fast actuator move
+        if ( abs(actuator_command - measured_pos)/
+                time_sources.global_time.getDelta() > self.max_movement_rate):
             raise ValueError("PidController: Actuator command would cause"+
             "joint to move at unsafe rate.")
         return actuator_command
 
 class HystereticPeakDetector:
-    def __init__(self, start_value, hyst_low_limit, hyst_high_limit, resolved_threshold):
+    def __init__(self, start_value, hyst_low_limit, hyst_high_limit, convergence_level):
         self.historylength=100
         
         #Class Attributes to determine when a state transition has happened
@@ -176,7 +153,7 @@ class HystereticPeakDetector:
         self.FALLING_EDGE=2
         
         #Class Attribute to determine when
-        self.resolved_threshold=resolved_threshold
+        self.convergence_level=convergence_level
         
         self.prev_pos=start_value
         
@@ -195,7 +172,7 @@ class HystereticPeakDetector:
         self.flags={"unstable":False,
                     "limit_cycle":False,
                     "resolving":False,
-                    "resolved":False}
+                    "converged":False}
 
     def isUnstable(self):
         return self.flags["unstable"]
@@ -207,32 +184,32 @@ class HystereticPeakDetector:
         return self.flags["resolving"]
     
     def hasConverged(self):
-        return self.flags["resolved"]
+        return self.flags["converged"]
         
-    def update(self, measured_pos):
+    def update(self, current_pos):
         
         if self.edgetype==self.NO_EDGE_DETECTED:
             ##INIT STATE - for startup only
-            if measured_pos-self.trough>self.hyst_high_limit:
+            if current_pos-self.trough>self.hyst_high_limit:
                 self.edgetype=self.RISING_EDGE
-            elif measured_pos-self.peak<self.hyst_low_limit:
+            elif current_pos-self.peak<self.hyst_low_limit:
                 self.edgetype=self.FALLING_EDGE
         elif self.edgetype==self.RISING_EDGE:
             ##RISING EDGE STATE
-            self.peak=max(self.peak, measured_pos)
-            if measured_pos-self.peak<self.hyst_low_limit:
+            self.peak=max(self.peak, current_pos)
+            if current_pos-self.peak<self.hyst_low_limit:
                 self.edgetype=self.FALLING_EDGE
                 self.peaks.append(self.peak)
                 #reset trough so it can accumulate properly in next state
-                self.trough=measured_pos
+                self.trough=current_pos
         elif self.edgetype==self.FALLING_EDGE:
             ##FALLING EDGE STATE
-            self.trough=min(self.trough, measured_pos)
-            if measured_pos-self.trough>self.hyst_high_limit:
+            self.trough=min(self.trough, current_pos)
+            if current_pos-self.trough>self.hyst_high_limit:
                 self.edgetype=self.RISING_EDGE
                 self.troughs.append(self.trough)
                 #reset peak so it can accumulate properly in next state
-                self.peak=measured_pos
+                self.peak=current_pos
         
         #truncate peak/trough history
             for i in [self.peaks, self.troughs]:
@@ -240,22 +217,16 @@ class HystereticPeakDetector:
                     i.pop(0)
         
         self.resolve_time+=time_sources.global_time.getDelta()			
-        self.prev_pos=measured_pos
+        self.prev_pos=current_pos
         
         #check for resolution, instability, limit cycles
         self.updateStates()
-    
-    def getEdgeType(self):
-        return self.edgetype
-    
-    def getResolveTime(self):
-        return self.resolve_time
     
     def updateStates(self):
         peak_deltas = scipy.diff(self.peaks)
         trough_deltas = scipy.diff(self.troughs)
         
-        [unstable, limit_cycle, resolving, resolved]=[True, True, True, True]
+        [unstable, limit_cycle, resolving, converged]=[True, True, True, True]
         
 
         #only unstable if error always rises
@@ -265,11 +236,17 @@ class HystereticPeakDetector:
         #in a limit cycle if error ever rises
         limit_cycle = not resolving and not unstable
             
-        #only resolved if both final peak and trough are below
-        #resolved threshold
-        resolved=( (self.peaks[-1] < self.resolved_threshold) and
-        		(self.troughs[-1] > -self.resolved_threshold) )
+        #only converged if both final peak and trough are below
+        #converged threshold
+        converged=( (self.peaks[-1] < self.convergence_level) and
+                (self.troughs[-1] > -self.convergence_level) )
         self.flags["unstable"]=unstable
         self.flags["limit_cycle"]=limit_cycle
         self.flags["resolving"]=resolving
-        self.flags["resolved"]=resolved
+        self.flags["converged"]=converged
+
+    def getEdgeType(self):
+        return self.edgetype
+    
+    def getResolveTime(self):
+        return self.resolve_time

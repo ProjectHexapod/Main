@@ -1,6 +1,6 @@
 from math_utils import *
 from pid_controller import PidController
-
+import math
 
 class LegController:
     def __init__(self):
@@ -30,6 +30,30 @@ class LegController:
     # Store sensor readings
     def setLegState(self, yaw, hip_pitch, knee_pitch, shock_depth):
         self.joint_angles = array([yaw, hip_pitch, knee_pitch])
+        
+        #throw errors if measured joint angles are NaN, out of bounds, etc
+        for angle in self.joint_angles:
+            if math.isnan(angle):
+                logger.error("LegController.setLegState: NaN where aN expected!",
+                            angle=angle,
+                            yaw=yaw,
+                            hip_pitch=hip_pitch,
+                            knee_pitch=knee_pitch,
+                            shock_depth=shock_depth,
+                            bad_value="angle")
+                raise ValueError("PidController: measured_pos cannot be NaN.")
+                
+            if self.soft_min > measured_pos or measured_pos > self.soft_max:
+                logger.error("PidController.update: Measured position outside of soft range!",
+                        angle=angle,
+                        yaw=yaw,
+                        hip_pitch=hip_pitch,
+                        knee_pitch=knee_pitch,
+                        shock_depth=shock_depth,
+                        soft_min=self.soft_min,
+                        soft_max=self.soft_max,
+                        bad_value="angle")
+                raise ValueError("LegController: Measured position out of soft range!")
         self.shock_depth = shock_depth
 
     # Access state
@@ -70,8 +94,8 @@ class LegController:
         foot_pitch = -atan2(pos[Z], pos[X])
         
         aL, aC, aT = solveTriangle(norm(pos),
-                                   self.CALF_LEN - shock_depth,
-                                   self.THIGH_LEN)
+                                self.CALF_LEN - shock_depth,
+                                self.THIGH_LEN)
         hip_pitch = foot_pitch - aC
         knee_pitch = pi - aL
         return array([yaw, hip_pitch, knee_pitch])
