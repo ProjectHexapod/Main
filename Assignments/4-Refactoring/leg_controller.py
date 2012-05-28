@@ -1,4 +1,5 @@
 from math_utils import *
+from filters import HighPassFilter
 from pid_controller import PidController
 
 
@@ -10,7 +11,10 @@ class LegController:
         self.CALF_LEN = 1.283
 
         # State
+        vel_corner = 100.0  # rad/s
+        self.jv_filter = HighPassFilter(vel_corner, vel_corner)  # band limited differentiator
         self.setLegState(0.0, 0.0, 0.0, 0.0)
+        self.joint_velocities = array([0.0, 0.0, 0.0])
 
         # Events
         self.SHOCK_DEPTH_THRESHOLD_LOW = 0.01
@@ -31,10 +35,14 @@ class LegController:
     def setLegState(self, yaw, hip_pitch, knee_pitch, shock_depth):
         self.joint_angles = array([yaw, hip_pitch, knee_pitch])
         self.shock_depth = shock_depth
+        self.joint_velocities = self.jv_filter.update(self.joint_angles)
+        
 
     # Access state
     def getJointAngles(self):
         return self.joint_angles
+    def getJointVelocities(self):
+        return self.joint_velocities
     def getShockDepth(self):
         return self.shock_depth
     def getLegState(self):
