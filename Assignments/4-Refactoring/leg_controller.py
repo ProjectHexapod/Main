@@ -14,7 +14,6 @@ class LegController:
         vel_corner = 100.0  # rad/s
         self.jv_filter = HighPassFilter(vel_corner, vel_corner)  # band limited differentiator
         self.setLegState(0.0, 0.0, 0.0, 0.0)
-        self.joint_velocities = array([0.0, 0.0, 0.0])
 
         # Events
         self.SHOCK_DEPTH_THRESHOLD_LOW = 0.01
@@ -93,6 +92,9 @@ class LegController:
             self.foot_on_ground = False
         elif sd > self.SHOCK_DEPTH_THRESHOLD_HIGH:
             self.foot_on_ground = True
+    
+    def isMoving(self, tolerance=0.001):
+        return (abs(self.joint_velocities) >= tolerance).any()
 
     # Joint control
     def setDesiredJointAngles(self, desired_joint_angles):
