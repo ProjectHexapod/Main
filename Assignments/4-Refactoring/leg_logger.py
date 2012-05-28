@@ -1,4 +1,5 @@
 import logging
+import logging.handlers
 
 class LegLog():
     def __init__(self):
@@ -8,6 +9,10 @@ class LegLog():
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.DEBUG)
         self.logger.addHandler(console_handler)
+
+        socket_handler = logging.handlers.SocketHandler("127.0.0.1", 9020)  # default port
+        socket_handler.setLevel(logging.INFO)
+        self.logger.addHandler(socket_handler)
 
         self.state = {}
 
