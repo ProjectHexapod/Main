@@ -10,15 +10,15 @@ class PidController:
         self.ki = ki
         self.kd = kd
         
-        self.max_movement_rate = 100
+        self.max_movement_rate = 1e6
 
         # NOTE: it is important that these three variables are floating point to avoid truncation
         self.prev_error = 0.0
         self.prev_desired_pos = 0.0
         self.integral_error_accumulator = 0.0
         
-        self.peak_detector=HystereticPeakDetector(0.0, 0.0,
-        0.0, math.pi/20)
+        self.peak_detector=HystereticPeakDetector(0.0, -1.0,
+        1.0, math.pi/20)
 
     def update(self, desired_pos, measured_pos):
         
@@ -39,9 +39,7 @@ class PidController:
                 logger.warning(warningstring,
                         desired_pos=desired_pos,
                         measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
-                        error=error,
+                        error=error, 
                         bad_value=error)
             elif self.peak_detector.isLimitCycle():
                 warningstring=("PidController: Maximum error for the"+
@@ -51,8 +49,6 @@ class PidController:
                 logger.warning(warningstring,
                         desired_pos=desired_pos,
                         measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
                         error=error,
                         bad_value=error)
         else:
@@ -63,8 +59,6 @@ class PidController:
                 logger.error(errorstring,
                         desired_pos=desired_pos,
                         measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
                         error=error,
                         bad_value=error)
                 raise ValueError(errorstring)
@@ -75,8 +69,6 @@ class PidController:
                 logger.error(errorstring,
                         desired_pos=desired_pos,
                         measured_pos=measured_pos,
-                        soft_min=self.soft_min,
-                        soft_max=self.soft_max,
                         error=error,
                         bad_value=error)
                 raise ValueError(errorstring)
@@ -100,9 +92,11 @@ class PidController:
         
         #makes sure the error is bounded by a single leg rotation
         error = error%(2*math.pi)
+        error_min = -math.pi/2
+        error_max = math.pi/2
         
         #is error within available soft range?
-        if error>(measured_pos-self.soft_min) or error>(self.soft_max-measured_pos):
+        if error>(measured_pos-error_min) or error>(error_max-measured_pos):
             logger.error("PidController.isErrorInBounds: error out of soft bounds.",
                         error=error,
                         measured_pos=measured_pos)
@@ -117,10 +111,9 @@ class PidController:
                         bad_value="desired_pos")
             raise ValueError("PidController: desired_pos cannot be NaN.")
         
-        command_min=-math.pi/2
-        command_max=math.pi/2
+        command_min=-20
+        command_max=20
         
-        bounded_pos=saturate(desired_pos,command_min,command_max)
         if desired_pos<command_min or desired_pos>command_max:
             logger.error("PidController.boundDesiredPosition:"+
                         " desired position out of bounds!",
@@ -130,10 +123,12 @@ class PidController:
                         bad_value="desired_pos")
             raise ValueError("PidController.boundDesiredPosition:"+
                     " desired position out of soft bounds")
+        
+        bounded_pos=saturate(desired_pos,command_min,command_max)
         return bounded_pos
     
     def boundActuatorCommand(self, actuator_command, measured_pos):
-		#prevent the controller from commanding an unsafely fast actuator move
+        #prevent the controller from commanding an unsafely fast actuator move
         if ( abs(actuator_command - measured_pos)/
                 time_sources.global_time.getDelta() > self.max_movement_rate):
             raise ValueError("PidController: Actuator command would cause"+
@@ -145,6 +140,9 @@ class HystereticPeakDetector:
         self.historylength=100
         
         #Class Attributes to determine when a state transition has happened
+        if not (hyst_low_limit < hyst_high_limit):
+			raise ValueError("HystereticPeakDetector: Can't instantiate with"+
+					" a hysteretic low bound greater than the hyst. high bound!")
         self.hyst_high_limit=hyst_high_limit
         self.hyst_low_limit=hyst_low_limit
         
@@ -171,7 +169,7 @@ class HystereticPeakDetector:
         #Dictionary of flags for different potential system states
         self.flags={"unstable":False,
                     "limit_cycle":False,
-                    "resolving":False,
+                    "converging":False,
                     "converged":False}
 
     def isUnstable(self):
@@ -180,8 +178,8 @@ class HystereticPeakDetector:
     def isLimitCycle(self):
         return self.flags["limit_cycle"]
     
-    def isResolving(self):
-        return self.flags["resolving"]
+    def isConverging(self):
+        return self.flags["converging"]
     
     def hasConverged(self):
         return self.flags["converged"]
@@ -226,23 +224,28 @@ class HystereticPeakDetector:
         peak_deltas = scipy.diff(self.peaks)
         trough_deltas = scipy.diff(self.troughs)
         
-        [unstable, limit_cycle, resolving, converged]=[True, True, True, True]
+        [unstable, limit_cycle, converging, converged]=[True, True, True, True]
         
-
-        #only unstable if error always rises
-        unstable = (peak_deltas > 0.0).all() or (trough_deltas < 0.0).all()
-        #only resolving if error is always decreasing
-        resolving = (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all()
-        #in a limit cycle if error ever rises
-        limit_cycle = not resolving and not unstable
+        if len(self.peaks) > 1 and len(self.troughs) > 1:
+            #only unstable if error always rises
+            unstable = (peak_deltas > 0.0).all() or (trough_deltas < 0.0).all()
+            #only converging if error is always decreasing
+            converging = (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all()
+            #in a limit cycle if error ever rises
+            limit_cycle = not converging and not unstable
+        else:
+            [unstable, limit_cycle, converging] = [False, False, False]
             
         #only converged if both final peak and trough are below
         #converged threshold
-        converged=( (self.peaks[-1] < self.convergence_level) and
-                (self.troughs[-1] > -self.convergence_level) )
+        if len(self.peaks) > 0 and len(self.troughs) > 0:
+            converged=( (self.peaks[-1] < self.convergence_level) and
+                    (self.troughs[-1] > -self.convergence_level) )
+        else:
+            converged=False
         self.flags["unstable"]=unstable
         self.flags["limit_cycle"]=limit_cycle
-        self.flags["resolving"]=resolving
+        self.flags["converging"]=converging
         self.flags["converged"]=converged
 
     def getEdgeType(self):
