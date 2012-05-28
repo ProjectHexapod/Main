@@ -1,4 +1,5 @@
 from math_utils import *
+from filters import HighPassFilter
 from pid_controller import PidController
 import math
 from leg_logger import logger
@@ -15,6 +16,8 @@ class LegController:
         self.SOFT_MAX = math.pi/2
 
         # State
+        vel_corner = 100.0  # rad/s
+        self.jv_filter = HighPassFilter(vel_corner, vel_corner)  # band limited differentiator
         self.setLegState(0.0, 0.0, 0.0, 0.0)
 
         # Events
@@ -60,10 +63,14 @@ class LegController:
                         bad_value="angle")
                 raise ValueError("LegController: Measured position out of soft range!")
         self.shock_depth = shock_depth
+        self.joint_velocities = self.jv_filter.update(self.joint_angles)
+        
 
     # Access state
     def getJointAngles(self):
         return self.joint_angles
+    def getJointVelocities(self):
+        return self.joint_velocities
     def getShockDepth(self):
         return self.shock_depth
     def getLegState(self):
@@ -114,6 +121,9 @@ class LegController:
             self.foot_on_ground = False
         elif sd > self.SHOCK_DEPTH_THRESHOLD_HIGH:
             self.foot_on_ground = True
+    
+    def isMoving(self, tolerance=0.001):
+        return (abs(self.joint_velocities) >= tolerance).any()
 
     # Joint control
     def setDesiredJointAngles(self, desired_joint_angles):

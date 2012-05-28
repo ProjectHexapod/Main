@@ -25,7 +25,7 @@ class Filter(object):
         if not hasattr(self, 'last_response'):
             self.last_signal = signal
             self.last_response = signal
-            return float(signal)
+            return signal
 
         a, b, c = self.a, self.b, self.c # Filter constants
         time_delta = global_time.getDelta()
