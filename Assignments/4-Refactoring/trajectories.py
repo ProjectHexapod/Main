@@ -3,6 +3,50 @@ from scipy.linalg import norm
 import time_sources
 from leg_logger import logger
 
+class InterpolatedFootMove:
+    """This is a smooth trajectory through given points in space and time. 
+    """
+    #way_points format: array([[t0,x0,y0,z0],[t1,x1,y1,z1],...])
+    def __init__(self, leg_controller, way_points):
+        self.leg = leg_controller
+        
+        self.done = False
+        
+        """
+        #make sure start position is within a reasonable distance of actual start position
+        if scipy.spatial.distance.pdist([start_pos, way_points[0,1:]], 'euclidean') > 0.1:
+            self.done = True
+            
+        #append actual start position to beginning of way_points
+        way_points = vstack((start_pos, way_points))
+        """
+        
+        time_array = way_points[:,0]
+        spatial_array = way_points[:,1:]
+        
+        start_error = self.leg.getFootPos(self.leg) - spatial_array[0]
+        print "foot position: ", sel
+        
+        #adjust all values to be relative to actual start position
+        for i in range (0,way_points.shape[0]):
+            for j in range (0,2):
+                spatial_array[i,j] += start_error
+        
+        f = interpolate.interp1d(time_array, spatial_array)
+        self.target_foot_pos = f[0]
+        
+        self.stop_watch = time_sources.StopWatch(active=False)
+        
+    def isDone(self):
+        return self.done and not self.stop_watch.isActive()
+    
+    def update(self):
+        if not self.done and self.stop_watch.getTime() >= time_array[time_array.shape[0]]:
+            self.done = True
+            self.stop_watch.stop()
+        if not self.isDone():
+            self.target_foot_pos = f[self.stop_watch.getTime()]
+            return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
 
 class PutFootOnGround:
     def __init__(self, leg_controller, velocity, accel_duration=0.1):
