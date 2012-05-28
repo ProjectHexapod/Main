@@ -19,14 +19,14 @@ class EncoderNode(BusNode):
 	cos_value = ord(data[2])*256+ord(data[3]) - self.bias[1]
 	length = sqrt(sin_value**2 + cos_value**2)
 	# XXX Sanity check that the output is sane.  Should be done better.
-	assert length >= 200 and length <= 1200
+	#assert length >= 200 and length <= 1200
 	self.angle = clipAngle(atan2(sin_value, cos_value) * self.gain + self.offset)
 	print self.name, "sin", sin_value, "cos", cos_value, "angle", self.angle*180/pi
 
     def getAngle(self):
 	return self.angle
 
-    def getLength(self):
+    def getPosition(self):
 	# XXX Need to fill this in.  Possibly split into a separate class.
 	return 0
 
