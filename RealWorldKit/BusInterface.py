@@ -118,14 +118,14 @@ class ValveNode(BusNode):
     def setLengthRate(self, rate):
 	pwm0 = 0
 	pwm1 = 0
-	if rate > 0:
-	    pwm0 = (rate / self.extend_rate) * (255.0 - self.deadband) + self.deadband
-	    if pwm0 > 170.0:
-		pwm0 = 170.0
-	elif rate < 0:
-	    pwm1 = (-rate / self.retract_rate) * (255.0 - self.deadband) + self.deadband
-	    if pwm1 > 170.0:
-		pwm1 = 170.0
+	if rate < 0:
+	    pwm0 = (-rate / self.extend_rate) * (255.0 - self.deadband) + self.deadband
+	    if pwm0 > 180.0:
+		pwm0 = 180.0
+	elif rate > 0:
+	    pwm1 = (rate / self.retract_rate) * (255.0 - self.deadband) + self.deadband
+	    if pwm1 > 180.0:
+		pwm1 = 180.0
 	print self.name, "pwm0=", pwm0, "pwm1=", pwm1, "rate=", rate
 	data = chr(int(pwm0)) + chr(int(pwm1))
 	self.startTransaction(0, data)
