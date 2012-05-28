@@ -1,4 +1,5 @@
 import unittest
+import math
 
 from time_sources import global_time, resetTimeSourceForTestingPurposes
 from pid_controller import PidController
@@ -7,7 +8,7 @@ from pid_controller import PidController
 class PidControllerTestCase(unittest.TestCase):
     def setUp(self):
         resetTimeSourceForTestingPurposes(global_time)
-        self.pid = PidController(0.2, 0.02, 0.1, -5000, 5000)  # TODO: shrink these values once more realistic ones are known
+        self.pid = PidController(0.2, 0.02, 0.1)
     def tearDown(self):
         pass
 
@@ -53,44 +54,20 @@ class PidControllerTestCase(unittest.TestCase):
 
     def testNanGetsSanitized(self):
         try:
+            global_time.updateDelta(0.1)
             self.pid.update(float("nan"), 2)
             self.assertTrue(False)
         except ValueError as error:
             self.assertTrue("cannot be NaN" in str(error))
-
-        try:
-            self.pid.update(.1, float("nan"))
-            self.assertTrue(False)
-        except ValueError as error:
-            self.assertTrue("cannot be NaN" in str(error))
-
-    def testMeasurementOutOfSoftRangeError(self):
-        self.pid.soft_min = -1
-        self.pid.soft_max = 1
-        try:
-            global_time.updateDelta(0.1)
-            self.pid.update(0, -5)  # should error even though 0 is in range because -5 is not
-            self.assertTrue(False)
-        except ValueError as error:
-            self.assertTrue("Measured position out of soft range!" in str(error))
-
-        try:
-            global_time.updateDelta(0.1)
-            self.pid.update(0, 5)  # should error even though 0 is in range because 5 is not
-            self.assertTrue(False)
-        except ValueError as error:
-            self.assertTrue("Measured position out of soft range!" in str(error))
-
-        # The good case where the measurement is not out of range is covered by other tests
-
-    def testSetPointCappedToSoftRange(self):
-        self.pid.soft_min = -1
-        self.pid.soft_max = 1
-        global_time.updateDelta(0.1)
-        first = self.pid.update(10, 0)
+    
+    def testSetPointCappedToAngleRange(self):
+        #commented out because now we throw an error rather
+        #than bounding any angle quietly
+        """"global_time.updateDelta(0.1)
+        first = self.pid.update(22, 0)
         self.pid.prev_error = 0
         self.pid.integral_error_accumulator = 0
-        second = self.pid.update(1, 0)
+        second = self.pid.update(10, 0)
         self.assertEquals(first, second)
 
         self.pid.prev_error = 0
@@ -99,16 +76,25 @@ class PidControllerTestCase(unittest.TestCase):
         self.pid.prev_error = 0
         self.pid.integral_error_accumulator = 0
         global_time.updateDelta(0.1)
-        second = self.pid.update(-1, 0)
-        self.assertEquals(first, second)
+        second = self.pid.update(-math.pi/2, 0)
+        self.assertEquals(first, second)"""
+    
+    def testMaxMovementRateBounded(self):
+        self.pid.max_movement_rate = 100
+        try:
+            global_time.updateDelta(0.1)
+            self.pid.update(20, 2)
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("unsafe rate" in str(error))
     
     def testTimeSeriesRampInput(self):
         kp = 0.2
         ki = 0.02
         kd = 0.1
-        p = PidController(kp, 0.0, 0.0, -5000, 5000)
-        i = PidController(0.0, ki, 0.0, -5000, 5000)
-        d = PidController(0.0, 0.0, kd, -5000, 5000)
+        p = PidController(kp, 0.0, 0.0)
+        i = PidController(0.0, ki, 0.0)
+        d = PidController(0.0, 0.0, kd)
         
         t = 0.0
         dt = 0.008
@@ -151,9 +137,9 @@ class PidControllerTestCase(unittest.TestCase):
         kp = 0.2
         ki = 0.02
         kd = 0.1
-        p = PidController(kp, 0.0, 0.0, -5000, 5000)
-        i = PidController(0.0, ki, 0.0, -5000, 5000)
-        d = PidController(0.0, 0.0, kd, -5000, 5000)
+        p = PidController(kp, 0.0, 0.0)
+        i = PidController(0.0, ki, 0.0)
+        d = PidController(0.0, 0.0, kd)
         
         t = 0.0
         dt = 0.12
