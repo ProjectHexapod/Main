@@ -18,7 +18,7 @@ time_1 = 0.0
 try:
     while True:
         time_0 = time.time()
-        if time_0 != time_1:
+        if int(time_0*500.0) != int(time_1*500.0):
 	    leg1.tick()
             lr = update(time_0, yaw_encoder.getAngle(), pitch_encoder.getAngle(), knee_encoder.getAngle(), shock_encoder.getPosition())
             yaw_valve.setLengthRate(lr[0])
