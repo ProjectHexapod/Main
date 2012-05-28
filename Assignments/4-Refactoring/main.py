@@ -3,6 +3,7 @@ sys.path.append('../..')
 from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnStand
 from SimulationKit.helpers import *
+from leg_logger import logger
 
 from move_one_joint import update
 
@@ -22,6 +23,7 @@ try:
         time = s.getSimTime()
         if time != time_1:
             lr = update(time, yaw_joint.getAngle(), pitch_joint.getAngle(), knee_joint.getAngle(), shock_joint.getPosition())
+            logger.info("Main loop iteration", time=time, hip_yaw_rate=lr[0], hip_pitch_rate=lr[1], knee_pitch_rate=lr[2], hip_yaw_angle=yaw_joint.getAngle(), hip_pitch_angle=pitch_joint.getAngle(), knee_pitch_angle=knee_joint.getAngle(), shock_depth=shock_joint.getPosition())
             yaw_joint.setLengthRate(lr[0])
             pitch_joint.setLengthRate(lr[1])
             knee_joint.setLengthRate(lr[2])
