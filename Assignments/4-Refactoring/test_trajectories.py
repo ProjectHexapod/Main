@@ -3,9 +3,41 @@ from leg_controller import LegController
 from math_utils import array
 import mox
 from time_sources import global_time, resetTimeSourceForTestingPurposes
-from trajectories import PutFootOnGround, TrapezoidalFootMove
+from trajectories import PutFootOnGround, TrapezoidalFootMove, InterpolatedFootMove
 import unittest
 
+
+class InterpolatedFootMoveTestCase(unittest.TestCase):
+    def setUp(self):
+        resetTimeSourceForTestingPurposes(global_time)
+        self.mock_leg_controller = mox.MockAnything()
+        
+        
+    def testIsDone(self):
+        mox.Replay(self.mock_leg_controller)
+        self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9]])
+        ifm = InterpolatedFootMove(self.mock_leg_controller, self.path)
+        self.assertFalse(ifm.isDone())
+        ifm.done = True
+        self.assertTrue(ifm.isDone())
+        mox.Verify(self.mock_leg_controller)
+        
+    def testCubic(self):
+        self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9]])
+        self.mock_leg_controller.getFootPos(self.mock_leg_controller).AndReturn([0,0,0])
+        mox.Replay(self.mock_leg_controller)
+        ifm = InterpolatedFootMove(self.mock_leg_controller, self.path)
+        self.assertFalse(ifm.isDone())
+        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        global_time.updateDelta(0.1)
+        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        global_time.updateDelta(0.1)
+        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        global_time.updateDelta(0.1)
+        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        global_time.updateDelta(0.1)
+        mox.Verify(self.mock_leg_controller)
+        
 
 class PutFootOnGroundTestCase(unittest.TestCase):
     def setUp(self):
