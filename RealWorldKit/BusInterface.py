@@ -2,55 +2,6 @@ import sys, random, threading, serial
 from array import array
 from math import *
 
-from pubsub import *
-from helpers import *
-
-class NodeTransaction:
-    """
-    A transaction with a single node that can consist of multiple
-    reads and writes.
-    """
-    def __init__(self, target_node = 0):
-        """
-        Initialize as an empty string.
-        """
-        assert target_node <  16
-        assert target_node >= 0
-        assert type(target_node) == type(0)
-        self.target_node = target_node
-        self.cmd_str     = array('B')
-        # Add a place holder for the header
-        self.cmd_str.append(0x00)
-    def setTargetNode(self, node):
-        assert node <  16
-        assert node >= 0
-        assert type(node) == type(0)
-        self.target_node = node
-
-    def addReadCommand(self, index):
-        assert index <  32
-        assert index >= 0
-        assert type(index) == type(0)
-        self.cmd_str.append(index)
-    def addWriteCommand(self, index, value):
-        assert index <  32
-        assert index >= 0
-        assert type(index) == type(0)
-        assert value < 256
-        assert value >= 0
-        assert type(value) == type(0)
-        self.cmd_str.append(index+128)
-        self.cmd_str.append(value)
-    def generateHeader( self ):
-        """
-        Examine the command string and generate an appropriate header byte.
-        The header encodes the node id and the length of the command string.
-        """
-        data_len = len(self.cmd_str) - 1
-        assert data_len < 16
-        self.cmd_str[0] = data_len*16 + self.target_node
-    def getString( self ):
-        return str(self.cmd_str)
 
 class BusNode:
     """
@@ -58,21 +9,27 @@ class BusNode:
     This class describes the memory map of the nodes and generates
     bus command strings with the ControlBus can use to talk to hardware.
     """
-    def __init__(self, bus, index):
+    def __init__(self, bus, node_id):
         """
         bus is the ControlBus object on which this BusNode exists
-        index is the position of this node in the bus
+        node_id is the position of this node in the bus
         """
-        assert type(index) == type(0)
-        assert index >= 0 and index < 16
+        assert node_id >= 0 and node_id <= 15
+        assert type(node_id) == type(0)
         self.bus = bus
-        self.index = index
+        self.node_id = node_id
+
         # These names describe what you will find at these indices
         self.m_to_s_names = ['NULL' for i in range(32)]
         self.s_to_m_names = ['NULL' for i in range(32)]
         # This is the data we want sent to and from the bus
         self.m_to_s_data  = [None for i in range(32)]
         self.s_to_m_data  = [None for i in range(32)]
+
+	self.bus.addNode(node_id, self)
+
+    def startTransaction(self, memory_offset, data):
+	self.bus.startTransaction(self.node_id, memory_offset, data)
 
 
 class ControlBus:
@@ -87,52 +44,129 @@ class ControlBus:
         Open a serial port to a control bus.
         Device is a path the the device, eg. /dev/ttyS0
         """
-        self.port = serial.Serial(port=device, baudrate=1000000, timeout=1e-2)
-        self.nodes = []
-    def addNode( self, node_constructor ):
-        self.nodes.append(node_constructor(self, len(self.nodes)))
-    def countNodes( self ):
-        """
-        Count the nodes on the control bus
-        """
-        # Generate a null transaction
-        cmd_str = NodeTransaction().getString()
-        s.write(cmd_str)
-        retval = s.read(len(cmd_str))
+        self.port = serial.Serial(port=device, baudrate=500000, timeout=1e-2)
+        self.nodes = [None]*16
+	self.old_packet = ""
 
-    def validateDescription( self ):
+	# This read will time out, returning any junk that was in the buffer.
+	junk = self.port.read(16384)
+
+	# Ring out the number of nodes.
+	cnt_str = array('B')
+	cnt_str.append(0x00)
+	self.port.write(cnt_str.tostring()*20)
+	resp = self.port.read(16384)
+	# Light validation of response.
+	assert len(resp) <= 20
+	assert resp[-1] == resp[-2] and resp[-2] == resp[-3] and resp[-3] == resp[-4]
+	self.num_nodes = 16 - ord(resp[-1]) / 16
+	assert self.num_nodes <= 15
+	print "number of nodes = %d" % self.num_nodes
+
+	# Now switch to non-blocking mode.
+	self.port.nonblocking()
+
+    def getNodeCount(self):
         """
-        validateDescription checks that the description that has been fed
-        in to this class instance by progressive calls to addNode matches the
-        hardware.
-        It does this by first checking the number of nodes on the bus.
-        Then it goes through one by one checking the node type field on the
-        memory maps of the nodes on the bus.
+        Return the number of nodes on the control bus.
         """
-    def sendCommandString( self, cmd_str):
-        """
-        """
-        #TODO: WRITE
-        s.write(cmd_str)
-        retval = s.read(len(cmd_str))
-        
+	return self.num_nodes
+	
+    def addNode(self, node_id, node):
+        self.nodes[node_id] = node
+
+    def startTransaction(self, node_id, memory_offset, data):
+	if len(data) > 0:
+	    packet = chr(node_id * 16 + len(data) + 1)
+	    packet += chr(memory_offset)
+	    packet += data
+	else:
+	    packet = chr(node_id * 16 + 0)
+	self.port.write(packet)
+
+    def tick(self):
+	# Read any incoming responses.
+	packet = self.old_packet + self.port.read(4096)
+	while len(packet) > 0:
+	    data_len = ord(packet[0]) % 16
+	    if len(packet) < data_len + 1:
+		# Wait for the rest of the packet.
+		break
+	    node_id = (ord(packet[0]) / 16) + self.num_nodes - 16
+	    if data_len > 0:
+	        memory_offset = ord(packet[1])
+		data = packet[2:2+data_len-1]
+	    packet = packet[2+data_len-1:]
+	    self.nodes[node_id].callback(memory_offset, data)
+	self.old_packet = packet
 
 
-class RobotServer:
-    """
-    RobotServer is responsible for talking to all control buses, calling control code
-    and sanity checking.
-    """
-    def __init__(self):
-        """
-        """
-        self.buses = {}
-    def addBus(self, name=None, device=None):
-        """
-        Opens a serial port to the control bus
-        """
-    def getLastTime(self):
-        """
-        Return the last time sensor values were updated
-        """
-        pass
+# 22.712 lpm
+# 0.0381 m / 0.0508 m
+# 0.0254 m
+
+class ValveNode(BusNode):
+    def __init__(self, bus, node_id, bore, rod, lpm):
+	BusNode.__init__(self, bus, node_id)
+	bore_section = pi*(bore/2)**2
+	rod_section = pi*(rod/2)**2
+	self.extend_rate = (lpm/1000.0) / bore_section
+	self.retract_rate = (lpm/1000.0) / (bore_section - rod_section)
+
+    def setLengthRate(self, rate):
+	pwm0 = 0
+	pwm1 = 0
+	if rate > 0:
+	    pwm0 = (rate / self.extend_rate) * 255.0
+	    if pwm0 > 16.0:
+		pwm0 = 16.0
+	elif rate < 0:
+	    pwm1 = (-rate / self.retract_rate) * 255.0
+	    if pwm1 > 16.0:
+		pwm1 = 16.0
+	data = chr(int(pwm0)) + chr(int(pwm1))
+	self.startTransaction(0, data)
+
+    def stop(self):
+	data = chr(0)*2
+	self.startTransaction(0, data)
+
+    def callback(self, memory_offset, data):
+	pass
+
+
+class EncoderNode(BusNode):
+    def __init__(self, bus, node_id, gain, offset, bias):
+	BusNode.__init__(self, bus, node_id)
+	self.gain = gain
+	self.offset = offset
+	self.bias = bias
+	self.angle = 0
+
+    def startProbe(self):
+	data = chr(0)*4
+	self.startTransaction(0, data)
+
+    def callback(self, memory_offset, data):
+	assert memory_offset == 0 and len(data) == 4
+	sin_value = ord(data[0])*256+ord(data[1]) - self.bias[0]
+	cos_value = ord(data[2])*256+ord(data[3]) - self.bias[1]
+	length = sqrt(sin_value**2 + cos_value**2)
+	#assert length >= 100
+	self.angle = clipAngle(atan2(sin_value, cos_value) * self.gain + self.offset)
+	print sin_value, cos_value, self.angle*180/pi
+
+    def getAngle(self):
+	return self.angle
+
+    def getPosition(self):
+	# XXX Need to fill this in.
+	return 0
+
+
+def clipAngle(a):
+    if a > pi:
+	a -= 2*pi
+    elif a < -pi:
+	a += 2*pi
+    return a
