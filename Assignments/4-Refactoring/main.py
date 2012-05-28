@@ -4,7 +4,7 @@ from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnStand
 from SimulationKit.helpers import *
 
-from row_the_cart import update
+from move_one_joint import update
 
 d = {'offset':(0,0,0.67)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d, start_paused = True)

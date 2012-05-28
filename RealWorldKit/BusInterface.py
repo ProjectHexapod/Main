@@ -106,7 +106,8 @@ class ControlBus:
 # 0.0254 m
 
 class ValveNode(BusNode):
-    def __init__(self, bus, node_id, bore, rod, lpm):
+    def __init__(self, bus, node_id, name, bore, rod, lpm):
+	self.name = name
 	BusNode.__init__(self, bus, node_id)
 	bore_section = pi*(bore/2)**2
 	rod_section = pi*(rod/2)**2
@@ -118,12 +119,13 @@ class ValveNode(BusNode):
 	pwm1 = 0
 	if rate > 0:
 	    pwm0 = (rate / self.extend_rate) * 255.0
-	    if pwm0 > 16.0:
-		pwm0 = 16.0
+	    if pwm0 > 170.0:
+		pwm0 = 170.0
 	elif rate < 0:
 	    pwm1 = (-rate / self.retract_rate) * 255.0
-	    if pwm1 > 16.0:
-		pwm1 = 16.0
+	    if pwm1 > 170.0:
+		pwm1 = 170.0
+	print self.name, "pwm0=", pwm0, "pwm1=", pwm1, "rate=", rate
 	data = chr(int(pwm0)) + chr(int(pwm1))
 	self.startTransaction(0, data)
 

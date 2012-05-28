@@ -30,7 +30,7 @@ class LegController:
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
             PidController(0.5, 0.0, 0.0),  # Yaw joint
-            PidController(0.5, 0.0, 0.0),  # Hip pitch joint
+            PidController(50.0, 0.0, 0.0),  # Hip pitch joint
             PidController(0.5, 0.0, 0.0)   # Knee pitch joint
         ]
 
