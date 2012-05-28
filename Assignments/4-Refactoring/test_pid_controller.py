@@ -54,23 +54,20 @@ class PidControllerTestCase(unittest.TestCase):
 
     def testNanGetsSanitized(self):
         try:
+            global_time.updateDelta(0.1)
             self.pid.update(float("nan"), 2)
-            self.assertTrue(False)
-        except ValueError as error:
-            self.assertTrue("cannot be NaN" in str(error))
-
-        try:
-            self.pid.update(.1, float("nan"))
             self.assertTrue(False)
         except ValueError as error:
             self.assertTrue("cannot be NaN" in str(error))
     
     def testSetPointCappedToAngleRange(self):
-        global_time.updateDelta(0.1)
-        first = self.pid.update(10, 0)
+        #commented out because now we throw an error rather
+        #than bounding any angle quietly
+        """"global_time.updateDelta(0.1)
+        first = self.pid.update(22, 0)
         self.pid.prev_error = 0
         self.pid.integral_error_accumulator = 0
-        second = self.pid.update(math.pi/2, 0)
+        second = self.pid.update(10, 0)
         self.assertEquals(first, second)
 
         self.pid.prev_error = 0
@@ -80,7 +77,16 @@ class PidControllerTestCase(unittest.TestCase):
         self.pid.integral_error_accumulator = 0
         global_time.updateDelta(0.1)
         second = self.pid.update(-math.pi/2, 0)
-        self.assertEquals(first, second)
+        self.assertEquals(first, second)"""
+    
+    def testMaxMovementRateBounded(self):
+        self.pid.max_movement_rate = 100
+        try:
+            global_time.updateDelta(0.1)
+            self.pid.update(20, 2)
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("unsafe rate" in str(error))
     
     def testTimeSeriesRampInput(self):
         kp = 0.2

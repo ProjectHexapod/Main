@@ -132,7 +132,7 @@ class PidController:
         if ( abs(actuator_command - measured_pos)/
                 time_sources.global_time.getDelta() > self.max_movement_rate):
             raise ValueError("PidController: Actuator command would cause"+
-            "joint to move at unsafe rate.")
+            "joint to move at an unsafe rate.")
         return actuator_command
 
 class HystereticPeakDetector:

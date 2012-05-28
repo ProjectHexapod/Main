@@ -14,6 +14,14 @@ class PeakDetectorTestCase(unittest.TestCase):
     def tearDown(self):
         pass
     
+    def testBadInstantiationPrevented(self):
+        try:
+            #tried instantiating an HPD with a bad hysteretic envelope
+            self.badHystPeakDetector = HystereticPeakDetector(0.0,1,-1,0)
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("Can't instantiate" in str(error))
+    
     def testRisingEdgeDetectionFromInit(self):
         risingsequence=[float(i)/10 for i in range(25)]
         for element in risingsequence:
