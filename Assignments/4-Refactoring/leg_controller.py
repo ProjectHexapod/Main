@@ -12,8 +12,8 @@ class LegController:
         self.CALF_LEN = 51.0 * 2.54 * 0.01
 
         # Actuator soft bounds
-        self.SOFT_MIN = -math.pi/2
-        self.SOFT_MAX = math.pi/2
+        self.SOFT_MIN = -math.pi
+        self.SOFT_MAX = math.pi
 
         # State
         vel_corner = 100.0  # rad/s
