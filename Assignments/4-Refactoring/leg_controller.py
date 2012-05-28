@@ -44,16 +44,18 @@ class LegController:
             if math.isnan(angle):
                 logger.error("LegController.setLegState: NaN where aN expected!",
                             angle=angle,
+                            angle_index=self.joint_angles.searchsorted(angle),
                             yaw=yaw,
                             hip_pitch=hip_pitch,
                             knee_pitch=knee_pitch,
                             shock_depth=shock_depth,
                             bad_value="angle")
-                raise ValueError("LegController: measured_pos cannot be NaN.")
+                raise ValueError("LegController: Measured angle cannot be NaN.")
                 
             if self.SOFT_MIN > angle or angle > self.SOFT_MAX:
                 logger.error("LegController: Measured position outside of soft range!",
                         angle=angle,
+                        angle_index=self.joint_angles.searchsorted(angle),
                         yaw=yaw,
                         hip_pitch=hip_pitch,
                         knee_pitch=knee_pitch,
@@ -61,7 +63,7 @@ class LegController:
                         soft_min=self.SOFT_MIN,
                         soft_max=self.SOFT_MAX,
                         bad_value="angle")
-                raise ValueError("LegController: Measured position out of soft range!")
+                raise ValueError("LegController: Measured angle out of soft range!")
         self.shock_depth = shock_depth
         self.joint_velocities = self.jv_filter.update(self.joint_angles)
         
