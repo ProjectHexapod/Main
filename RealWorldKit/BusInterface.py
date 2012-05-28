@@ -66,6 +66,7 @@ class ControlBus:
 
 	# Now switch to non-blocking mode.
 	self.port.nonblocking()
+	self.port.timeout=0
 
     def getNodeCount(self):
         """
