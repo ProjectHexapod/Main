@@ -106,23 +106,24 @@ class ControlBus:
 # 0.0254 m
 
 class ValveNode(BusNode):
-    def __init__(self, bus, node_id, name, bore, rod, lpm):
+    def __init__(self, bus, node_id, name, bore, rod, lpm, deadband=0):
 	self.name = name
 	BusNode.__init__(self, bus, node_id)
 	bore_section = pi*(bore/2)**2
 	rod_section = pi*(rod/2)**2
-	self.extend_rate = (lpm/1000.0) / bore_section
-	self.retract_rate = (lpm/1000.0) / (bore_section - rod_section)
+	self.extend_rate = (lpm/1000.0/60.0) / bore_section
+	self.retract_rate = (lpm/1000.0/60.0) / (bore_section - rod_section)
+	self.deadband = deadband
 
     def setLengthRate(self, rate):
 	pwm0 = 0
 	pwm1 = 0
 	if rate > 0:
-	    pwm0 = (rate / self.extend_rate) * 255.0
+	    pwm0 = (rate / self.extend_rate) * (255.0 - self.deadband) + self.deadband
 	    if pwm0 > 170.0:
 		pwm0 = 170.0
 	elif rate < 0:
-	    pwm1 = (-rate / self.retract_rate) * 255.0
+	    pwm1 = (-rate / self.retract_rate) * (255.0 - self.deadband) + self.deadband
 	    if pwm1 > 170.0:
 		pwm1 = 170.0
 	print self.name, "pwm0=", pwm0, "pwm1=", pwm1, "rate=", rate
