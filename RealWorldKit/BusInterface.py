@@ -105,6 +105,9 @@ class ControlBus:
 # 0.0381 m / 0.0508 m
 # 0.0254 m
 
+
+SATURATION_LIMIT = 200.0
+
 class ValveNode(BusNode):
     def __init__(self, bus, node_id, name, bore, rod, lpm, deadband=0):
 	self.name = name
@@ -119,13 +122,13 @@ class ValveNode(BusNode):
 	pwm0 = 0
 	pwm1 = 0
 	if rate < 0:
-	    pwm0 = (-rate / self.extend_rate) * (255.0 - self.deadband) + self.deadband
-	    if pwm0 > 180.0:
-		pwm0 = 180.0
+	    pwm0 = (-rate / self.retract_rate) * (255.0 - self.deadband) + self.deadband
+	    if pwm0 > SATURATION_LIMIT:
+		pwm0 = SATURATION_LIMIT
 	elif rate > 0:
-	    pwm1 = (rate / self.retract_rate) * (255.0 - self.deadband) + self.deadband
-	    if pwm1 > 180.0:
-		pwm1 = 180.0
+	    pwm1 = (rate / self.extend_rate) * (255.0 - self.deadband) + self.deadband
+	    if pwm1 > SATURATION_LIMIT:
+		pwm1 = SATURATION_LIMIT
 	print self.name, "pwm0=", pwm0, "pwm1=", pwm1, "rate=", rate
 	data = chr(int(pwm0)) + chr(int(pwm1))
 	self.startTransaction(0, data)
