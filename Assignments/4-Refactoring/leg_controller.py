@@ -1,6 +1,8 @@
 from math_utils import *
+from filters import HighPassFilter
 from pid_controller import PidController
-
+import math
+from leg_logger import logger
 
 class LegController:
     def __init__(self):
@@ -9,7 +11,13 @@ class LegController:
         self.THIGH_LEN = 1.372
         self.CALF_LEN = 1.283
 
+        # Actuator soft bounds
+        self.SOFT_MIN = -math.pi/2
+        self.SOFT_MAX = math.pi/2
+
         # State
+        vel_corner = 100.0  # rad/s
+        self.jv_filter = HighPassFilter(vel_corner, vel_corner)  # band limited differentiator
         self.setLegState(0.0, 0.0, 0.0, 0.0)
 
         # Events
@@ -21,20 +29,48 @@ class LegController:
         self.length_rate_commands = array([0.0, 0.0, 0.0])
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-            PidController(0.5, 0.0, 0.0, -100, 100),  # Yaw joint
-            PidController(0.5, 0.0, 0.0, -100, 100),  # Hip pitch joint
-            PidController(0.5, 0.0, 0.0, -100, 100)   # Knee pitch joint
+            PidController(0.5, 0.0, 0.0),  # Yaw joint
+            PidController(0.5, 0.0, 0.0),  # Hip pitch joint
+            PidController(0.5, 0.0, 0.0)   # Knee pitch joint
         ]
 
 
     # Store sensor readings
     def setLegState(self, yaw, hip_pitch, knee_pitch, shock_depth):
         self.joint_angles = array([yaw, hip_pitch, knee_pitch])
+        
+        #throw errors if measured joint angles are NaN, out of bounds, etc
+        for angle in self.joint_angles:
+            if math.isnan(angle):
+                logger.error("LegController.setLegState: NaN where aN expected!",
+                            angle=angle,
+                            yaw=yaw,
+                            hip_pitch=hip_pitch,
+                            knee_pitch=knee_pitch,
+                            shock_depth=shock_depth,
+                            bad_value="angle")
+                raise ValueError("LegController: measured_pos cannot be NaN.")
+                
+            if self.SOFT_MIN > angle or angle > self.SOFT_MAX:
+                logger.error("LegController: Measured position outside of soft range!",
+                        angle=angle,
+                        yaw=yaw,
+                        hip_pitch=hip_pitch,
+                        knee_pitch=knee_pitch,
+                        shock_depth=shock_depth,
+                        soft_min=self.SOFT_MIN,
+                        soft_max=self.SOFT_MAX,
+                        bad_value="angle")
+                raise ValueError("LegController: Measured position out of soft range!")
         self.shock_depth = shock_depth
+        self.joint_velocities = self.jv_filter.update(self.joint_angles)
+        
 
     # Access state
     def getJointAngles(self):
         return self.joint_angles
+    def getJointVelocities(self):
+        return self.joint_velocities
     def getShockDepth(self):
         return self.shock_depth
     def getLegState(self):
@@ -70,8 +106,8 @@ class LegController:
         foot_pitch = -atan2(pos[Z], pos[X])
         
         aL, aC, aT = solveTriangle(norm(pos),
-                                   self.CALF_LEN - shock_depth,
-                                   self.THIGH_LEN)
+                                self.CALF_LEN - shock_depth,
+                                self.THIGH_LEN)
         hip_pitch = foot_pitch - aC
         knee_pitch = pi - aL
         return array([yaw, hip_pitch, knee_pitch])
@@ -85,6 +121,9 @@ class LegController:
             self.foot_on_ground = False
         elif sd > self.SHOCK_DEPTH_THRESHOLD_HIGH:
             self.foot_on_ground = True
+    
+    def isMoving(self, tolerance=0.001):
+        return (abs(self.joint_velocities) >= tolerance).any()
 
     # Joint control
     def setDesiredJointAngles(self, desired_joint_angles):

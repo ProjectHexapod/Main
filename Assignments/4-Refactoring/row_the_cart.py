@@ -2,7 +2,7 @@ from leg_logger import logger
 from math_utils import *
 import time_sources
 from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalFootMove
+from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause
 
 
 # Initialization
@@ -27,8 +27,12 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     leg.setLegState(yaw, hip_pitch, knee_pitch, shock_depth)
     leg.updateFootOnGround()
 
+    # Init traj. Do this after the first update.
+    if traj is None:
+        traj = Pause(leg, 1.0)
+    
     # Monitor trajectories
-    if traj is None or traj.isDone():
+    if traj.isDone():
         if state == S_MOVE3:
             traj = TrapezoidalFootMove(leg,
                                        array([1.5, -0.6, -0.4]),

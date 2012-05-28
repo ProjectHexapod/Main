@@ -80,3 +80,72 @@ class TrapezoidalFootMove:
                 self.target_foot_pos = self.final_foot_pos
 
         return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
+
+class Pause:
+    def __init__(self, leg_controller, duration):
+        self.leg = leg_controller
+        self.initial_angles = self.leg.getJointAngles()
+        self.duration = duration
+        self.sw = time_sources.StopWatch();
+        self.done = False
+        
+    def isDone(self):
+        return self.done
+    
+    def update(self):
+        self.done = self.sw.getTime() >= self.duration
+        return self.initial_angles
+
+class MoveJoint:
+    def __init__(self, leg_controller, joint_idx, duration, direction, velocity=0.01, accel_duration=0.25):
+        assert abs(direction) == 1
+        
+        self.leg = leg_controller
+        self.joint = joint_idx
+        self.duration = duration
+        self.vel = direction * velocity
+        self.accel_duration = accel_duration
+        
+        self.target_angles = self.leg.getJointAngles()
+        
+        self.sw = time_sources.StopWatch()
+        self.sw.smoothStart(self.accel_duration)
+        
+    def isDone(self):
+        return not self.sw.isActive()
+    
+    def update(self):
+        if not self.isDone():
+            self.target_angles[self.joint] += self.sw.getDelta() * self.vel
+            if self.sw.getTime() >= self.duration:
+                self.sw.stop()
+#                self.sw.smoothStop(self.accel_duration)
+        
+        return self.target_angles
+
+class FindJointStop:
+    def __init__(self, leg_controller, joint_idx, direction, velocity=0.005, accel_duration=0.25):
+        self.leg = leg_controller
+        self.joint = joint_idx
+        self.vel = direction * velocity
+        
+        self.target_angles = self.leg.getJointAngles()
+        self.sw = time_sources.StopWatch()
+        self.sw.smoothStart(accel_duration)
+        
+        self.moving = False
+        self.done = False
+    
+    def isDone(self):
+        return self.done
+        
+    def update(self):
+        if self.moving and not self.leg.isMoving():
+            self.done = True
+        if not self.done:
+            self.moving = self.leg.isMoving()
+            self.target_angles[self.joint] += self.sw.getDelta() * self.vel
+            
+        return self.target_angles
+
+    
