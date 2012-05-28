@@ -2,6 +2,8 @@ from math_utils import *
 from scipy.linalg import norm
 import time_sources
 from leg_logger import logger
+from scipy import interpolate
+from time_sources import global_time
 
 class InterpolatedFootMove:
     """This is a smooth trajectory through given points in space and time. 
@@ -21,31 +23,32 @@ class InterpolatedFootMove:
         way_points = vstack((start_pos, way_points))
         """
         
-        time_array = way_points[:,0]
-        spatial_array = way_points[:,1:]
+        self.time_array = way_points[0]
+        self.spatial_array = way_points[1:,:]
         
-        start_error = self.leg.getFootPos(self.leg) - spatial_array[0]
-        print "foot position: ", sel
+        start_error = self.spatial_array[:,0] - self.leg.getFootPos()
         
         #adjust all values to be relative to actual start position
-        for i in range (0,way_points.shape[0]):
-            for j in range (0,2):
-                spatial_array[i,j] += start_error
+        for i in range (0,way_points.shape[1]):
+            self.spatial_array[:,i] -= start_error
         
-        f = interpolate.interp1d(time_array, spatial_array)
-        self.target_foot_pos = f[0]
+        self.f = interpolate.interp1d(self.time_array, self.spatial_array)
+        self.target_foot_pos = self.f(0)
         
-        self.stop_watch = time_sources.StopWatch(active=False)
+        self.stop_watch = time_sources.StopWatch(active=True, time_source=global_time)
         
     def isDone(self):
         return self.done and not self.stop_watch.isActive()
     
     def update(self):
-        if not self.done and self.stop_watch.getTime() >= time_array[time_array.shape[0]]:
+        if not self.done and self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]:
             self.done = True
             self.stop_watch.stop()
         if not self.isDone():
-            self.target_foot_pos = f[self.stop_watch.getTime()]
+            self.target_foot_pos = self.f(self.stop_watch.getTime())
+            print "time = ", self.stop_watch.getTime()
+            print "time^3 = ", self.stop_watch.getTime()**3
+            print "target_foot_pos =", self.target_foot_pos
             return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
 
 class PutFootOnGround:

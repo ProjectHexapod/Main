@@ -1,11 +1,10 @@
 from comparators import ArraysEqual
 from leg_controller import LegController
-from math_utils import array
+from math_utils import array 
 import mox
 from time_sources import global_time, resetTimeSourceForTestingPurposes
 from trajectories import PutFootOnGround, TrapezoidalFootMove, InterpolatedFootMove
 import unittest
-
 
 class InterpolatedFootMoveTestCase(unittest.TestCase):
     def setUp(self):
@@ -14,8 +13,10 @@ class InterpolatedFootMoveTestCase(unittest.TestCase):
         
         
     def testIsDone(self):
-        mox.Replay(self.mock_leg_controller)
         self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9]])
+        self.path = self.path.transpose()
+        self.mock_leg_controller.getFootPos().AndReturn([0,0,0])
+        mox.Replay(self.mock_leg_controller)
         ifm = InterpolatedFootMove(self.mock_leg_controller, self.path)
         self.assertFalse(ifm.isDone())
         ifm.done = True
@@ -24,18 +25,29 @@ class InterpolatedFootMoveTestCase(unittest.TestCase):
         
     def testCubic(self):
         self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9]])
-        self.mock_leg_controller.getFootPos(self.mock_leg_controller).AndReturn([0,0,0])
+        self.path = self.path.transpose()
+        self.mock_leg_controller.getFootPos().AndReturn([0,0,0])
+        target_foot_pos = array([0.,0.,0.])
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
         mox.Replay(self.mock_leg_controller)
         ifm = InterpolatedFootMove(self.mock_leg_controller, self.path)
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
         self.assertFalse(ifm.isDone())
-        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        ifm.update()
         global_time.updateDelta(0.1)
-        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        ifm.update()
         global_time.updateDelta(0.1)
-        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        ifm.update()
         global_time.updateDelta(0.1)
-        self.assertAlmostEqual(ifm.update(), global_time.getTime()^3)
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        ifm.update()
         global_time.updateDelta(0.1)
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
         mox.Verify(self.mock_leg_controller)
         
 
