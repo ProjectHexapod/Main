@@ -2,7 +2,7 @@ import time
 import sys
 from leg_logger import logger
 sys.path.append('../..')
-from RealWorldKit.BusInterface import *
+from RealWorldKit import *
 
 from cart_move import update
 #from move_one_joint import update
@@ -20,6 +20,7 @@ shock_encoder = EncoderNode(leg1, node_id=7, gain=1, offset=0, bias=(1200,1200))
 
 time_1 = 0.0
 try:
+    # XXX Make sure we've got angle samples to start.  Should be done better.
     yaw_encoder.startProbe()
     pitch_encoder.startProbe()
     knee_encoder.startProbe()
@@ -28,6 +29,7 @@ try:
 
     while True:
         time_0 = time.time()
+	# XXX Find a cleaner way to run at 500Hz.
         if int(time_0*500.0) != int(time_1*500.0):
 	    leg1.tick()
             lr = update(time_0, yaw_encoder.getAngle(), pitch_encoder.getAngle(), knee_encoder.getAngle(), shock_encoder.getPosition())
@@ -35,7 +37,9 @@ try:
                         hip_yaw_angle=yaw_encoder.getAngle(), hip_pitch_angle=pitch_encoder.getAngle(),
                         knee_pitch_angle=knee_encoder.getAngle(), shock_depth=shock_encoder.getPosition(),
                         time=time_0)
-            yaw_valve.setLengthRate(0.0)
+	    # XXX Yaw encoder is currently non-functional.
+	    lr[0] = 0.0
+            yaw_valve.setLengthRate(lr[0])
             pitch_valve.setLengthRate(lr[1])
             knee_valve.setLengthRate(lr[2])
 	    yaw_encoder.startProbe()

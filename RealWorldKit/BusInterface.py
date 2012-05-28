@@ -9,7 +9,7 @@ class BusNode:
     This class describes the memory map of the nodes and generates
     bus command strings with the ControlBus can use to talk to hardware.
     """
-    def __init__(self, bus, node_id):
+    def __init__(self, bus, node_id, name):
         """
         bus is the ControlBus object on which this BusNode exists
         node_id is the position of this node in the bus
@@ -18,6 +18,7 @@ class BusNode:
         assert type(node_id) == type(0)
         self.bus = bus
         self.node_id = node_id
+	self.name = name
 
         # These names describe what you will find at these indices
         self.m_to_s_names = ['NULL' for i in range(32)]
@@ -52,14 +53,14 @@ class ControlBus:
 	junk = self.port.read(16384)
 
 	# Ring out the number of nodes.
-	cnt_str = array('B')
-	cnt_str.append(0x00)
-	self.port.write(cnt_str.tostring()*20)
+	packet = chr(0x00)
+	self.port.write(packet*20)
 	resp = self.port.read(16384)
 	# Light validation of response.
 	assert len(resp) >= 4 and len(resp) <= 20
 	assert resp[-1] == resp[-2] and resp[-2] == resp[-3] and resp[-3] == resp[-4]
 	self.num_nodes = 16 - ord(resp[-1]) / 16
+	# XXX Can't distinguish 0 and 16; which should we allow?
 	assert self.num_nodes <= 15
 	print "number of nodes = %d" % self.num_nodes
 
@@ -96,83 +97,9 @@ class ControlBus:
 	    if data_len > 0:
 	        memory_offset = ord(packet[1])
 		data = packet[2:2+data_len-1]
+	    else:
+		memory_offset = 0
+		data = ""
 	    packet = packet[2+data_len-1:]
 	    self.nodes[node_id].callback(memory_offset, data)
 	self.old_packet = packet
-
-
-# 22.712 lpm
-# 0.0381 m / 0.0508 m
-# 0.0254 m
-
-
-SATURATION_LIMIT = 200.0
-
-class ValveNode(BusNode):
-    def __init__(self, bus, node_id, name, bore, rod, lpm, deadband=0):
-	self.name = name
-	BusNode.__init__(self, bus, node_id)
-	bore_section = pi*(bore/2)**2
-	rod_section = pi*(rod/2)**2
-	self.extend_rate = (lpm/1000.0/60.0) / bore_section
-	self.retract_rate = (lpm/1000.0/60.0) / (bore_section - rod_section)
-	self.deadband = deadband
-
-    def setLengthRate(self, rate):
-	pwm0 = 0
-	pwm1 = 0
-	if rate < 0:
-	    pwm0 = (-rate / self.retract_rate) * (255.0 - self.deadband) + self.deadband
-	    if pwm0 > SATURATION_LIMIT:
-		pwm0 = SATURATION_LIMIT
-	elif rate > 0:
-	    pwm1 = (rate / self.extend_rate) * (255.0 - self.deadband) + self.deadband
-	    if pwm1 > SATURATION_LIMIT:
-		pwm1 = SATURATION_LIMIT
-	print self.name, "pwm0=", pwm0, "pwm1=", pwm1, "rate=", rate
-	data = chr(int(pwm0)) + chr(int(pwm1))
-	self.startTransaction(0, data)
-
-    def stop(self):
-	data = chr(0)*2
-	self.startTransaction(0, data)
-
-    def callback(self, memory_offset, data):
-	pass
-
-
-class EncoderNode(BusNode):
-    def __init__(self, bus, node_id, gain, offset, bias):
-	BusNode.__init__(self, bus, node_id)
-	self.gain = gain
-	self.offset = offset
-	self.bias = bias
-	self.angle = 0
-
-    def startProbe(self):
-	data = chr(0)*4
-	self.startTransaction(0, data)
-
-    def callback(self, memory_offset, data):
-	assert memory_offset == 0 and len(data) == 4
-	sin_value = ord(data[0])*256+ord(data[1]) - self.bias[0]
-	cos_value = ord(data[2])*256+ord(data[3]) - self.bias[1]
-	length = sqrt(sin_value**2 + cos_value**2)
-	#assert length >= 100
-	self.angle = clipAngle(atan2(sin_value, cos_value) * self.gain + self.offset)
-	print sin_value, cos_value, self.angle*180/pi
-
-    def getAngle(self):
-	return self.angle
-
-    def getPosition(self):
-	# XXX Need to fill this in.
-	return 0
-
-
-def clipAngle(a):
-    if a > pi:
-	a -= 2*pi
-    elif a < -pi:
-	a += 2*pi
-    return a
