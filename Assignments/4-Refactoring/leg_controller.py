@@ -10,6 +10,10 @@ class LegController:
         self.THIGH_LEN = 1.372
         self.CALF_LEN = 1.283
 
+        # Actuator soft bounds
+        self.SOFT_MIN = -math.pi/2
+        self.SOFT_MAX = math.pi/2
+
         # State
         self.setLegState(0.0, 0.0, 0.0, 0.0)
 
@@ -17,10 +21,6 @@ class LegController:
         self.SHOCK_DEPTH_THRESHOLD_LOW = 0.01
         self.SHOCK_DEPTH_THRESHOLD_HIGH = 0.02
         self.foot_on_ground = False
-
-        # Actuator soft bounds
-        self.SOFT_MIN = -100
-        self.SOFT_MAX = 100
 
         # Joint control
         self.length_rate_commands = array([0.0, 0.0, 0.0])
