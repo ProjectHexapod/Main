@@ -31,7 +31,7 @@ class LegLog():
         self.publisher.addToCatalog("logging.time", self.get_time)
         self.publisher.addToCatalog("logging.hip_yaw_rate", self.get_hip_yaw_rate)
         self.publisher.addToCatalog("logging.hip_pitch_rate", self.get_hip_pitch_rate)
-        self.publisher.addToCatalog("logging.knee_pitch_rate", self.get_knee_pitch_pitch_rate)
+        self.publisher.addToCatalog("logging.knee_pitch_rate", self.get_knee_pitch_rate)
         self.publisher.addToCatalog("logging.hip_yaw_angle", self.get_hip_yaw_angle)
         self.publisher.addToCatalog("logging.hip_pitch_angle", self.get_hip_pitch_angle)
         self.publisher.addToCatalog("logging.knee_pitch_angle", self.get_knee_pitch_angle)
