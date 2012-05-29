@@ -1,11 +1,71 @@
 from comparators import ArraysEqual
 from leg_controller import LegController
-from math_utils import array
+from math_utils import array 
 import mox
 from time_sources import global_time, resetTimeSourceForTestingPurposes
-from trajectories import PutFootOnGround, TrapezoidalFootMove
+from trajectories import PutFootOnGround, TrapezoidalFootMove, InterpolatedFootMove
 import unittest
 
+class InterpolatedFootMoveTestCase(unittest.TestCase):
+    def setUp(self):
+        resetTimeSourceForTestingPurposes(global_time)
+        self.mock_leg_controller = mox.MockAnything()
+        
+        
+    def testIsDone(self):
+        print "testing isDone"
+        self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9],[3,28,28,28]])
+        self.path = self.path.transpose()
+        self.mock_leg_controller.getFootPos().AndReturn([0,0,0])
+        self.mock_leg_controller.jointAnglesFromFootPos(array([]))
+        mox.Replay(self.mock_leg_controller)
+        ifm = InterpolatedFootMove(self.mock_leg_controller, self.path)
+        ifm.update()
+        self.assertFalse(ifm.isDone())
+        ifm.done = True
+        global_time.updateDelta(4)
+        ifm.update()
+        self.assertTrue(ifm.isDone())
+        mox.Verify(self.mock_leg_controller)
+        
+    def testCubic(self):
+        print "testing cubic interpolation"
+        self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9],[3,28,28,28]])
+        self.path = self.path.transpose()
+        self.mock_leg_controller.getFootPos().AndReturn([0,0,0])
+        target_foot_pos = array([0.,0.,0.])
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(target_foot_pos))
+        mox.Replay(self.mock_leg_controller)
+        ifm = InterpolatedFootMove(self.mock_leg_controller, self.path)
+        print "TEST 1"
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        print "expected target_foot_pos = ", target_foot_pos
+        self.assertFalse(ifm.isDone())
+        ifm.update()
+        global_time.updateDelta(0.1)
+        print "TEST 2"
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        print "expected target_foot_pos = ", target_foot_pos
+        ifm.update()
+        global_time.updateDelta(0.1)
+        print "TEST 3"
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        print "expected target_foot_pos = ", target_foot_pos
+        ifm.update()
+        global_time.updateDelta(0.1)
+        print "TEST 4"
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        print "expected target_foot_pos = ", target_foot_pos
+        ifm.update()
+        global_time.updateDelta(0.1)
+        print "TEST 5"
+        target_foot_pos = array([ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3,ifm.stop_watch.getTime()**3])
+        print "expected target_foot_pos = ", target_foot_pos
+        mox.Verify(self.mock_leg_controller)
+        
 
 class PutFootOnGroundTestCase(unittest.TestCase):
     def setUp(self):
