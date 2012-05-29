@@ -30,7 +30,7 @@ class LegController:
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
             PidController(0.5, 0.0, 0.0),  # Yaw joint
-            PidController(1.0, 0.0, 0.0),  # Hip pitch joint
+            PidController(5.0, 0.0, 0.0),  # Hip pitch joint
             PidController(10.0, 0.0, 0.0)   # Knee pitch joint
         ]
 
@@ -130,6 +130,10 @@ class LegController:
     # Joint control
     def setDesiredJointAngles(self, desired_joint_angles):
         self.desired_joint_angles = desired_joint_angles
+        logger.info("LegController.setDesiredJointAngles()",
+                    hip_yaw_command=desired_joint_angles[YAW],
+                    hip_pitch_command=desired_joint_angles[HP],
+                    knee_pitch_command=desired_joint_angles[KP])
     def updateLengthRateCommands(self):
         for i in range(LEG_DOF):
             self.length_rate_commands[i] = self.controllers[i].update(
