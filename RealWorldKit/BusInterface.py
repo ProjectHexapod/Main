@@ -78,6 +78,7 @@ class ControlBus:
         self.nodes[node_id] = node
 
     def startTransaction(self, node_id, memory_offset, data):
+        assert len(data) <= 14
         if len(data) > 0:
             packet = chr(node_id * 16 + len(data) + 1)
             packet += chr(memory_offset)
