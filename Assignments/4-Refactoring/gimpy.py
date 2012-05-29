@@ -4,9 +4,10 @@ from leg_logger import logger
 sys.path.append('../..')
 from RealWorldKit import *
 
-from cart_move import update
-#from move_one_joint import update
+#from cart_move import update
+from move_one_joint import update
 #from hold_position import update
+#from knee_pid import update
 #from zero_flow_rate import update
 
 leg1 = ControlBus(device='/dev/ttyUSB0')
