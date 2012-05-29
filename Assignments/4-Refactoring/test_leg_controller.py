@@ -24,6 +24,21 @@ class LegControllerTestCase(unittest.TestCase):
         # Thigh should be pretty much the same length as the calf
         self.assertLess(abs(l.THIGH_LEN / l.CALF_LEN - 1.0), 0.3)
     
+    def testMeasurementOutOfSoftRangeError(self):
+        try:
+            self.leg.setLegState(0, -5, 0, 9e9)  # should error even though 0 is in range because -5 is not
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("Measured angle out of soft range!" in str(error))
+
+        try:
+            self.leg.setLegState(0, 5, 0, 9e9)  # should error even though 0 is in range because 5 is not
+            self.assertTrue(False)
+        except ValueError as error:
+            self.assertTrue("Measured angle out of soft range!" in str(error))
+
+        # The good case where the measurement is not out of range is covered by other tests
+    
     def testFootPosFromLegStateZeroAnglesIsSumOfLengthsInX(self):
         l = self.leg
         self.assertEqual(

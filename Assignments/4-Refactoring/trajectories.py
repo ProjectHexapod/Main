@@ -158,6 +158,7 @@ class MoveJoint:
         self.accel_duration = accel_duration
         
         self.target_angles = self.leg.getJointAngles()
+        self.stopping = False
         
         self.sw = time_sources.StopWatch()
         self.sw.smoothStart(self.accel_duration)
@@ -168,9 +169,34 @@ class MoveJoint:
     def update(self):
         if not self.isDone():
             self.target_angles[self.joint] += self.sw.getDelta() * self.vel
-            if self.sw.getTime() >= self.duration:
-                self.sw.stop()
-#                self.sw.smoothStop(self.accel_duration)
-        
+            if not self.stopping and self.sw.getTime() >= self.duration:
+                self.sw.smoothStop(self.accel_duration)
+                self.stopping = True
         return self.target_angles
+
+class FindJointStop:
+    def __init__(self, leg_controller, joint_idx, direction, velocity=0.005, accel_duration=0.25):
+        self.leg = leg_controller
+        self.joint = joint_idx
+        self.vel = direction * velocity
+        
+        self.target_angles = self.leg.getJointAngles()
+        self.sw = time_sources.StopWatch()
+        self.sw.smoothStart(accel_duration)
+        
+        self.moving = False
+        self.done = False
+    
+    def isDone(self):
+        return self.done
+        
+    def update(self):
+        if self.moving and not self.leg.isMoving():
+            self.done = True
+        if not self.done:
+            self.moving = self.leg.isMoving()
+            self.target_angles[self.joint] += self.sw.getDelta() * self.vel
+            
+        return self.target_angles
+
     
