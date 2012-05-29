@@ -7,13 +7,13 @@ from leg_logger import logger
 class LegController:
     def __init__(self):
         # Link lengths
-        self.YAW_LEN = 0.211
-        self.THIGH_LEN = 1.372
-        self.CALF_LEN = 1.283
+        self.YAW_LEN = 8.5 * 2.54 * 0.01
+        self.THIGH_LEN = 54.75 * 2.54 * 0.01
+        self.CALF_LEN = 51.0 * 2.54 * 0.01
 
         # Actuator soft bounds
-        self.SOFT_MIN = -math.pi/2
-        self.SOFT_MAX = math.pi/2
+        self.SOFT_MIN = -math.pi
+        self.SOFT_MAX = math.pi
 
         # State
         vel_corner = 100.0  # rad/s
@@ -30,8 +30,8 @@ class LegController:
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
             PidController(0.5, 0.0, 0.0),  # Yaw joint
-            PidController(0.5, 0.0, 0.0),  # Hip pitch joint
-            PidController(0.5, 0.0, 0.0)   # Knee pitch joint
+            PidController(1.0, 0.0, 0.0),  # Hip pitch joint
+            PidController(1.0, 0.0, 0.0)   # Knee pitch joint
         ]
 
 

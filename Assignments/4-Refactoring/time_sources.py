@@ -36,7 +36,6 @@ class TimeSource:
 
 global_time = TimeSource()
 
-
 class StopWatch:
     '''
     A StopWatch re-references a parent_time_source (usually global_time) so
