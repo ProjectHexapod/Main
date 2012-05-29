@@ -50,6 +50,7 @@ try:
             time_1 = time_0
 
 except:
+    logger.error("Main loop exception")
     yaw_valve.stop()
     pitch_valve.stop()
     knee_valve.stop()

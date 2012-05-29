@@ -31,6 +31,7 @@ try:
             time_1 = time
 
 except:
+    logger.error("Main loop exception!")
     yaw_joint.setLengthRate(0)
     pitch_joint.setLengthRate(0)
     knee_joint.setLengthRate(0)
