@@ -1,8 +1,8 @@
 from math_utils import *
 from scipy.linalg import norm
+from scipy import interpolate
 import time_sources
 from leg_logger import logger
-from scipy import interpolate
 from time_sources import global_time
 
 #note that at least 4 points must be specified
@@ -132,6 +132,25 @@ class TrapezoidalFootMove:
 
         return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
 
+class TrapezoidalJointMove:
+    """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
+        This class expects max velocity for end effector, not for angular velocity.
+    """
+    def __init__(self, leg_controller, final_angles, max_velocity, acceleration):
+
+        final_foot_pos = leg_controller.footPosFromLegState([final_angles,0])
+        self.foot_move = TrapezoidalFootMove(leg_controller, final_foot_pos, max_velocity, acceleration)
+
+        logger.info("New trajectory.", traj_name="TrapezoidalJointMove",
+                    final_foot_pos=final_foot_pos, final_angles=final_angles, max_velocity=max_velocity,
+                    acceleration=acceleration)
+        
+    def isDone(self):
+        return self.foot_move.isDone()
+
+    def update(self):
+        return self.foot_move.update()
+    
 class Pause:
     def __init__(self, leg_controller, duration):
         self.leg = leg_controller

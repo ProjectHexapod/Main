@@ -2,13 +2,12 @@ from leg_logger import logger
 from math_utils import *
 import time_sources
 from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause, MoveJoint
+from trajectories import PutFootOnGround, TrapezoidalJointMove, Pause
 from curses import wrapper, beep
 
 # Initialization
 leg = LegController()
 traj = None
-print('here')
 
 
 # States
@@ -36,7 +35,8 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     if traj.isDone():
         if state == S_INIT:
             print "Move"*1000
-            traj = MoveJoint(leg, joint_idx=2, duration=3.0, direction=1, velocity=.2)
+            traj = TrapezoidalJointMove(leg, final_angles=[0, -0.59483773, 1.81300376],
+                                        max_velocity=1, acceleration=.1) # Simulation starts at angles=[-0.7504911, -0.99483773, 1.21300376]
             state = S_MOVE_JOINT
             wrapper(lambda s:beep())
         elif state == S_MOVE_JOINT:
