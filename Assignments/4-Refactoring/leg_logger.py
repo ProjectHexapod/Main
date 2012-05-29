@@ -11,7 +11,7 @@ class LegLog():
         self.logger = logging.getLogger("hexapod")
         self.logger.setLevel(logging.DEBUG)
 
-        csv = logging.Formatter("%(time)s,%(hip_yaw_rate)s,%(hip_pitch_rate)s,%(knee_pitch_rate)s,%(hip_yaw_angle)s,%(hip_pitch_angle)s,%(knee_pitch_angle)s,%(shock_depth)s")
+        csv = logging.Formatter("%(time)s,%(hip_yaw_command)s,%(hip_pitch_command)s,%(knee_pitch_command)s,%(hip_yaw_angle)s,%(hip_pitch_angle)s,%(knee_pitch_angle)s,%(shock_depth)s,%(hip_yaw_rate)s,%(hip_pitch_rate)s,%(knee_pitch_rate)s")
 
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.DEBUG)

@@ -12,9 +12,10 @@ print('here')
 
 
 # States
-S_MOVE_JOINT = 0
-S_DONE = 1
-S_INIT = 2
+S_MOVE1 = 0
+S_MOVE2 = 1
+S_DONE = 10
+S_INIT = 11
 
 state = S_INIT
 
@@ -30,19 +31,24 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Init traj. Do this after the first update.
     if traj is None:
-	    traj = Pause(leg, 5.0)
+        traj = Pause(leg, 5.0)
+        traj.initial_angles[HP] = -0.6
 
     # Monitor trajectories
     if traj.isDone():
         if state == S_INIT:
             print "Move"*1000
-            traj = MoveJoint(leg, joint_idx=2, duration=3.0, direction=1, velocity=.2)
-            state = S_MOVE_JOINT
-            wrapper(lambda s:beep())
-        elif state == S_MOVE_JOINT:
+            traj = MoveJoint(leg, joint_idx=KP, duration=3.0, direction=1, velocity=0.2)
+            state = S_MOVE1
+        elif state == S_MOVE1:
+            print "Move"*1000
+            traj = MoveJoint(leg, joint_idx=KP, duration=3.0, direction=-1, velocity=0.2)
+            state = S_MOVE2
+            wrapper(lambda s:beep()) # Makes a beep to indicate state change
+        elif state == S_MOVE2:
             print "Done"*1000
-            state = S_DONE
-            wrapper(lambda s:beep())
+            state = S_INIT
+            wrapper(lambda s:beep()) # Makes a beep to indicate state change
             pass
         logger.info("State changed.", state=state)
     
@@ -52,4 +58,3 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Send commands
     return leg.getLengthRateCommands()
-
