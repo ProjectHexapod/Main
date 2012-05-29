@@ -1,5 +1,10 @@
+import sys
+sys.path.append('../..')
+
 import logging
 import logging.handlers
+from SimulationKit.pubsub import Publisher
+
 
 class LegLog():
     def __init__(self):
@@ -22,6 +27,17 @@ class LegLog():
         file_handler.setFormatter(csv)
         self.logger.addHandler(file_handler)
 
+        self.publisher = Publisher(5055)
+        self.publisher.addToCatalog("logging.time", self.get_time)
+        self.publisher.addToCatalog("logging.hip_yaw_rate", self.get_hip_yaw_rate)
+        self.publisher.addToCatalog("logging.hip_pitch_rate", self.get_hip_pitch_rate)
+        self.publisher.addToCatalog("logging.knee_pitch_rate", self.get_knee_pitch_pitch_rate)
+        self.publisher.addToCatalog("logging.hip_yaw_angle", self.get_hip_yaw_angle)
+        self.publisher.addToCatalog("logging.hip_pitch_angle", self.get_hip_pitch_angle)
+        self.publisher.addToCatalog("logging.knee_pitch_angle", self.get_knee_pitch_angle)
+        self.publisher.addToCatalog("logging.shock_depth", self.get_shock_depth)
+        self.publisher.start()
+
         self.state = {}
         self.state["time"] = "Not set"
         self.state["hip_yaw_rate"] =  "Not set"
@@ -31,6 +47,30 @@ class LegLog():
         self.state["hip_pitch_angle"] =  "Not set"
         self.state["knee_pitch_angle"] =  "Not set"
         self.state["shock_depth"] =  "Not set"
+
+    def get_time(self):
+        return self.state["time"]
+
+    def get_hip_yaw_rate(self):
+        return self.state["hip_yaw_rate"]
+
+    def get_hip_pitch_rate(self):
+        return self.state["hip_pitch_rate"]
+
+    def get_knee_pitch_rate(self):
+        return self.state["knee_pitch_rate"]
+
+    def get_hip_yaw_angle(self):
+        return self.state["hip_yaw_angle"]
+
+    def get_hip_pitch_angle(self):
+        return self.state["hip_pitch_angle"]
+
+    def get_knee_pitch_angle(self):
+        return self.state["knee_pitch_angle"]
+
+    def get_shock_depth(self):
+        return self.state["shock_depth"]
 
     def populate_state(self, kwargs):
         for k in kwargs:
