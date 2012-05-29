@@ -29,23 +29,23 @@ try:
 
     while True:
         time_0 = time.time()
-	# XXX Find a cleaner way to run at 500Hz.
+        # XXX Find a cleaner way to run at 500Hz.
         if int(time_0*500.0) != int(time_1*500.0):
-	    leg1.tick()
+            leg1.tick()
             lr = update(time_0, yaw_encoder.getAngle(), pitch_encoder.getAngle(), knee_encoder.getAngle(), shock_encoder.getPosition())
             logger.info("Gimpy main loop", hip_yaw_rate=0.0, hip_pitch_rate=lr[1], knee_pitch_rate=lr[2],
                         hip_yaw_angle=yaw_encoder.getAngle(), hip_pitch_angle=pitch_encoder.getAngle(),
                         knee_pitch_angle=knee_encoder.getAngle(), shock_depth=shock_encoder.getPosition(),
                         time=time_0)
-	    # XXX Yaw encoder is currently non-functional.
-	    lr[0] = 0.0
+            # XXX Yaw encoder is currently non-functional.
+            lr[0] = 0.0
             yaw_valve.setLengthRate(lr[0])
             pitch_valve.setLengthRate(lr[1])
             knee_valve.setLengthRate(lr[2])
-	    yaw_encoder.startProbe()
-	    pitch_encoder.startProbe()
-	    knee_encoder.startProbe()
-	    shock_encoder.startProbe()
+            yaw_encoder.startProbe()
+            pitch_encoder.startProbe()
+            knee_encoder.startProbe()
+            shock_encoder.startProbe()
         
             time_1 = time_0
 
