@@ -39,21 +39,19 @@ class InterpolatedFootMove:
         self.stop_watch = time_sources.StopWatch(active=True, time_source=global_time)
         
     def isDone(self):
-        #print "self.done = ", self.done
-        #print "self.stop_watch.isActive() = ", self.stop_watch.isActive()
-        #print "self.stop_watch.slope, curvature = ", self.stop_watch.slope, self.stop_watch.curvature
+        print "self.done = ", self.done
+        print "self.stop_watch.isActive() = ", self.stop_watch.isActive()
         return self.done and not self.stop_watch.isActive()
     
     def update(self):
-        #print "time up ", self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]
+        print "time up ", self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]
         if not self.done and self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]:
-        #    print "setting done"
             self.done = True
             self.stop_watch.stop()
         if not self.isDone():
             self.target_foot_pos = self.f(self.stop_watch.getTime())
-        #    print "time = ", self.stop_watch.getTime()
-        #    print "time^3 = ", self.stop_watch.getTime()**3
+            print "time = ", self.stop_watch.getTime()
+            print "time^3 = ", self.stop_watch.getTime()**3
             print "target_foot_pos =", self.target_foot_pos
             return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
 
@@ -136,22 +134,54 @@ class TrapezoidalFootMove:
 
 class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
-        This class expects max velocity for end effector, not for angular velocity.
+        This class expects max velocity for angular velocity.
     """
     def __init__(self, leg_controller, final_angles, max_velocity, acceleration):
-
-        final_foot_pos = leg_controller.footPosFromLegState([final_angles,0])
-        self.foot_move = TrapezoidalFootMove(leg_controller, final_foot_pos, max_velocity, acceleration)
-
-        logger.info("New trajectory.", traj_name="TrapezoidalJointMove",
-                    final_foot_pos=final_foot_pos, final_angles=final_angles, max_velocity=max_velocity,
+        logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
+                    final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         
+        self.leg = leg_controller
+        self.target_angles = self.leg.getJointAngles()
+        self.final_angles = final_angles
+        self.max_vel = max_velocity
+        self.vel = 0.0
+        self.acc = acceleration
+        
+        # Unit vector pointing towards the destination
+        self.dir = self.getNormalizedRemaining()
+        self.done = False
+
     def isDone(self):
-        return self.foot_move.isDone()
+        return self.done
+
+    def getNormalizedRemaining(self):
+        """Returns a normalized vector that points toward the current goal point.
+        """
+        return normalize(self.final_angles - self.target_angles)
 
     def update(self):
-        return self.foot_move.update()
+        if not self.isDone():
+            delta = time_sources.global_time.getDelta()
+            # if the remaining distance <= the time it would take to slow
+            # down times the average speed during such a deceleration (ie
+            # the distance it would take to stop)
+            
+            # rearranged multiplies to avoid confusing order of operations
+            # readability issues
+            remaining_vector = self.final_angles - self.target_angles
+            if norm(remaining_vector) <= .5 * self.vel**2 / self.acc:
+                self.vel -= self.acc * delta
+            else:
+                self.vel += self.acc * delta
+                self.vel = min(self.vel, self.max_vel)
+            self.target_angles += self.dir * self.vel * delta
+            
+            if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
+                self.done = True
+                self.target_angles = self.final_angles
+
+        return self.target_angles
     
 class Pause:
     def __init__(self, leg_controller, duration):
