@@ -39,19 +39,21 @@ class InterpolatedFootMove:
         self.stop_watch = time_sources.StopWatch(active=True, time_source=global_time)
         
     def isDone(self):
-        print "self.done = ", self.done
-        print "self.stop_watch.isActive() = ", self.stop_watch.isActive()
+        #print "self.done = ", self.done
+        #print "self.stop_watch.isActive() = ", self.stop_watch.isActive()
+        #print "self.stop_watch.slope, curvature = ", self.stop_watch.slope, self.stop_watch.curvature
         return self.done and not self.stop_watch.isActive()
     
     def update(self):
-        print "time up ", self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]
+        #print "time up ", self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]
         if not self.done and self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]:
+        #    print "setting done"
             self.done = True
             self.stop_watch.stop()
         if not self.isDone():
             self.target_foot_pos = self.f(self.stop_watch.getTime())
-            print "time = ", self.stop_watch.getTime()
-            print "time^3 = ", self.stop_watch.getTime()**3
+        #    print "time = ", self.stop_watch.getTime()
+        #    print "time^3 = ", self.stop_watch.getTime()**3
             print "target_foot_pos =", self.target_foot_pos
             return self.leg.jointAnglesFromFootPos(self.target_foot_pos)
 
