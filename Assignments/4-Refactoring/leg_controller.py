@@ -31,7 +31,7 @@ class LegController:
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
             PidController(0.5, 0.0, 0.0),  # Yaw joint
             PidController(5.0, 0.0, 0.0),  # Hip pitch joint
-            PidController(10.0, 0.0, 0.0)   # Knee pitch joint
+            PidController(1.0, 0.0, 0.0)   # Knee pitch joint
         ]
 
 

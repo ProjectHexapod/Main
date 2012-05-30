@@ -22,6 +22,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     # Init traj. Do this after the first update.
     if ja is None:
         ja = leg.getJointAngles()
+        ja[HP] = -0.7
         ja[KP] = 1.5
         sw = time_sources.StopWatch()
         print "SW1"
