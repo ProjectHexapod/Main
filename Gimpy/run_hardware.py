@@ -2,16 +2,13 @@ import time
 import sys
 sys.path.append('..')
 
-from ControlsKit import logger
 from RealWorldKit import *
+from ControlsKit import logger
+from ControlsKit.import_behavior import importBehavior
 
-#from cart_move import update
-from move_one_joint import update
-#from hold_position import update
-#from knee_pid import update
-#from zero_flow_rate import update
-#from calibrate_deadband import update
-#from bleed import update
+
+# Check command-line arguments to find the behavior module
+update = importBehavior()
 
 
 leg1 = ControlBus(device='/dev/ttyUSB0')
