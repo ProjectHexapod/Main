@@ -3,7 +3,6 @@ from math_utils import *
 import time_sources
 from leg_controller import LegController
 from trajectories import PutFootOnGround, TrapezoidalJointMove, Pause
-from curses import wrapper, beep
 
 # Initialization
 leg = LegController()
@@ -38,11 +37,9 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             traj = TrapezoidalJointMove(leg, final_angles=[0, -0.59483773, 1.81300376],
                                         max_velocity=1, acceleration=.1) # Simulation starts at angles=[-0.7504911, -0.99483773, 1.21300376]
             state = S_MOVE_JOINT
-            wrapper(lambda s:beep())
         elif state == S_MOVE_JOINT:
             print "Done"*1000
             state = S_DONE
-            wrapper(lambda s:beep())
             pass
         logger.info("State changed.", state=state)
     

@@ -3,7 +3,6 @@ from math_utils import *
 import time_sources
 from leg_controller import LegController
 from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause, MoveJoint
-from curses import wrapper, beep
 
 # Initialization
 leg = LegController()
@@ -44,11 +43,9 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             print "Move"*1000
             traj = MoveJoint(leg, joint_idx=KP, duration=3.0, direction=-1, velocity=0.2)
             state = S_MOVE2
-            wrapper(lambda s:beep()) # Makes a beep to indicate state change
         elif state == S_MOVE2:
             print "Done"*1000
             state = S_INIT
-            wrapper(lambda s:beep()) # Makes a beep to indicate state change
             pass
         logger.info("State changed.", state=state)
     
