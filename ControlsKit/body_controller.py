@@ -4,7 +4,8 @@ from math_utils import NUM_LEGS
 
 class BodyController:
     def __init__(self):
-        self.legs = [LegController(), LegController(), LegController(), LegController(), LegController(), LegController()]
+        self.legs = [LegController(), LegController(), LegController(),
+                     LegController(), LegController(), LegController()]
         assert len(self.legs) == NUM_LEGS
         
     def setBodyState(self, leg_sensor_matrix, orientation, angular_rates):
