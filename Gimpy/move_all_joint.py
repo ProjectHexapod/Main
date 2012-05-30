@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegController, logger
-from ControlsKit.trajectories import TrapezoidalJointMove, Pause
+from ControlsKit.leg_trajectories import TrapezoidalJointMove, Pause
 
 
 # Initialization
@@ -28,7 +28,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     if traj is None:
 	    traj = Pause(leg, 5.0)
 
-    # Monitor trajectories
+    # Monitor leg_trajectories
     if traj.isDone():
         if state == S_INIT:
             print "Move"*1000

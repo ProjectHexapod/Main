@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegController
-from ControlsKit.trajectories import Pause
+from ControlsKit.leg_trajectories import Pause
 
 
 # Initialization

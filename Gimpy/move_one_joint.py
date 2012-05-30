@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegController, logger
-from ControlsKit.trajectories import Pause, MoveJoint
+from ControlsKit.leg_trajectories import Pause, MoveJoint
 from ControlsKit.math_utils import HP, KP
 
 
@@ -31,7 +31,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
         traj = Pause(leg, 5.0)
         traj.initial_angles[HP] = -0.6
 
-    # Monitor trajectories
+    # Monitor leg_trajectories
     if traj.isDone():
         if state == S_INIT:
             print "Move"*1000
