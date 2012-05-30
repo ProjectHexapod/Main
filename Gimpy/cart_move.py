@@ -1,8 +1,6 @@
-from leg_logger import logger
-from math_utils import *
-import time_sources
-from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause, MoveJoint
+from ControlsKit import time_sources, LegController, logger
+from ControlsKit.math_utils import array
+from ControlsKit.trajectories import TrapezoidalFootMove, Pause
 
 
 # Initialization
@@ -29,7 +27,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Init traj. Do this after the first update.
     if traj is None:
-	    traj = Pause(leg, 5.0)
+        traj = Pause(leg, 5.0)
 
     # Monitor trajectories
     if traj.isDone():
@@ -50,4 +48,3 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Send commands
     return leg.getLengthRateCommands()
-

@@ -1,8 +1,5 @@
-from leg_logger import logger
-from math_utils import *
-import time_sources
-from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause
+from ControlsKit import time_sources, LegController
+from ControlsKit.math_utils import array
 
 
 # Initialization
@@ -25,4 +22,3 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
 
     return array([0.0, 5.0, 0.0])
-

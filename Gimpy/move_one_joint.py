@@ -1,13 +1,11 @@
-from leg_logger import logger
-from math_utils import *
-import time_sources
-from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause, MoveJoint
+from ControlsKit import time_sources, LegController, logger
+from ControlsKit.trajectories import Pause, MoveJoint
+from ControlsKit.math_utils import HP, KP
+
 
 # Initialization
 leg = LegController()
 traj = None
-print('here')
 
 
 # States

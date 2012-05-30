@@ -1,7 +1,8 @@
 import time
 import sys
-from leg_logger import logger
-sys.path.append('../..')
+sys.path.append('..')
+
+from ControlsKit import logger
 from RealWorldKit import *
 
 #from cart_move import update

@@ -1,11 +1,11 @@
 import sys
-sys.path.append('../..')
+sys.path.append('..')
 from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnStand
 from SimulationKit.helpers import *
-from leg_logger import logger
+from ControlsKit import logger
 
-from move_all_joint import update
+from row_the_cart import update
 
 d = {'offset':(0,0,0.67)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d, start_paused = True)

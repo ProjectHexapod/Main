@@ -1,14 +1,12 @@
-from leg_logger import logger
-from math_utils import *
-import time_sources
-from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalFootMove, Pause
+from ControlsKit import time_sources, LegController
+from ControlsKit.math_utils import YAW, HP, KP
 
 
 # Initialization
 leg = LegController()
 ja = None
 sw = None
+
 
 # Body of control loop
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
@@ -35,8 +33,6 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
         sw = time_sources.StopWatch()
     
     # Evaluate trajectory and joint control
-#    print "JA command:", ja
-#    print "JA measured:", leg.getJointAngles()
     leg.setDesiredJointAngles(ja)
     leg.updateLengthRateCommands()
 

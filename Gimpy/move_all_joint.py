@@ -1,8 +1,6 @@
-from leg_logger import logger
-from math_utils import *
-import time_sources
-from leg_controller import LegController
-from trajectories import PutFootOnGround, TrapezoidalJointMove, Pause
+from ControlsKit import time_sources, LegController, logger
+from ControlsKit.trajectories import TrapezoidalJointMove, Pause
+
 
 # Initialization
 leg = LegController()
