@@ -38,10 +38,11 @@ class SpiderWHydraulics(MultiBody):
         p = rotate3( r_30z, p )
         self.legs                  = [0,0,0,0,0,0]
         for i in range(6):
-            yaw_p  = mul3( p, (self.BODY_W/2.0) )
-            hip_p  = mul3( p, (self.BODY_W/2.0)+self.YAW_L )
-            knee_p = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L )
-            foot_p = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L+self.CALF_L )
+            yaw_p     = mul3( p, (self.BODY_W/2.0) )
+            hip_p     = mul3( p, (self.BODY_W/2.0)+self.YAW_L )
+            knee_p    = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L )
+            midshin_p = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L+.5*self.CALF_L )
+            foot_p    = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L+self.CALF_L )
             # Add hip yaw
             yaw_link = self.addBody( \
                 p1     = yaw_p, \
@@ -132,9 +133,9 @@ class SpiderWHydraulics(MultiBody):
             # Add calf and knee bend
             calf = self.addBody( \
                 p1     = knee_p, \
-                p2     = foot_p, \
+                p2     = midshin_p, \
                 radius = self.CALF_W, \
-                mass   = self.CALF_M )
+                mass   = self.CALF_M/2.0 )
             knee_pitch = self.addLinearControlledHingeJoint( \
                 body1        = thigh, \
                 body2        = calf, \
@@ -173,14 +174,33 @@ class SpiderWHydraulics(MultiBody):
             self.publisher.addToCatalog(\
                 "l%d.kp.flow_gpm"%i,\
                 knee_pitch.getHydraulicFlowGPM)
-
+            # Create the foot
+            # Add the compliant joint
+            foot = self.addBody( \
+                p1     = midshin_p, \
+                p2     = foot_p, \
+                radius = self.CALF_W, \
+                mass   = self.CALF_M/2 )
+            calf_axis  = norm3(sub3(midshin_p, foot_p))
+            foot_shock = self.addPrismaticSpringJoint( \
+                body1        = calf, \
+                body2        = foot, \
+                axis         = mul3(calf_axis,-1),\
+                spring_const = -20e3,\
+                hi_stop      = 0.1,\
+                lo_stop      = 0.0,\
+                neutral_position = 0.0,\
+                damping          = -1e2)
+                
             d                 = {}
             d['hip_yaw']      = hip_yaw
             d['hip_pitch']    = hip_pitch
             d['knee_pitch']   = knee_pitch
+            d['foot_shock']   = foot_shock
             d['hip_yaw_link'] = yaw_link
             d['thigh']        = thigh
             d['calf']         = calf
+            d['foot']         = foot
             self.legs[i]      = d
 
             p = rotate3( r_60z, p )
@@ -311,6 +331,13 @@ class SpiderWHydraulics(MultiBody):
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
+    def colorShockByDeflection( self, joint ):
+            b = joint.getBody(1)
+            r = abs(joint.getPosition()/joint.getHiStop())
+            if r >= 0.99:
+                b.color = (0,0,0,255)
+            else:
+                b.color = (255*r,255*(1-r),0,255)
     def colorJointByTorque( self, joint ):
             b = joint.getBody(1)
             r = abs(joint.getTorque()/joint.getTorqueLimit())
@@ -321,8 +348,9 @@ class SpiderWHydraulics(MultiBody):
     def colorTorque( self ):
         for i in range(6):
             # Color overtorque
-            self.colorJointByTorque( self.legs[i]['hip_yaw'] )
-            self.colorJointByTorque( self.legs[i]['hip_pitch'] )
-            self.colorJointByTorque( self.legs[i]['knee_pitch'] )
+            self.colorJointByTorque(     self.legs[i]['hip_yaw'] )
+            self.colorJointByTorque(     self.legs[i]['hip_pitch'] )
+            self.colorJointByTorque(     self.legs[i]['knee_pitch'] )
+            self.colorShockByDeflection( self.legs[i]['foot_shock'])
     def update( self ):
         MultiBody.update(self)
