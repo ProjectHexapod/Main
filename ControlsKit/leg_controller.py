@@ -18,7 +18,7 @@ class LegController:
         # State
         vel_corner = 100.0  # rad/s
         self.jv_filter = HighPassFilter(vel_corner, vel_corner)  # band limited differentiator
-        self.setLegState(0.0, 0.0, 0.0, 0.0)
+        self.setSensorReadings(0.0, 0.0, 0.0, 0.0)
 
         # Events
         self.SHOCK_DEPTH_THRESHOLD_LOW = 0.01
@@ -36,13 +36,13 @@ class LegController:
 
 
     # Store sensor readings
-    def setLegState(self, yaw, hip_pitch, knee_pitch, shock_depth):
+    def setSensorReadings(self, yaw, hip_pitch, knee_pitch, shock_depth):
         self.joint_angles = array([yaw, hip_pitch, knee_pitch])
         
         #throw errors if measured joint angles are NaN, out of bounds, etc
         for angle in self.joint_angles:
             if math.isnan(angle):
-                logger.error("LegController.setLegState: NaN where aN expected!",
+                logger.error("LegController.setSensorReadings: NaN where aN expected!",
                             angle=angle,
                             angle_index=self.joint_angles.searchsorted(angle),
                             yaw=yaw,

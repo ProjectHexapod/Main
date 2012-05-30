@@ -26,13 +26,13 @@ class LegControllerTestCase(unittest.TestCase):
     
     def testMeasurementOutOfSoftRangeError(self):
         try:
-            self.leg.setLegState(0, -5, 0, 9e9)  # should error even though 0 is in range because -5 is not
+            self.leg.setSensorReadings(0, -5, 0, 9e9)  # should error even though 0 is in range because -5 is not
             self.assertTrue(False)
         except ValueError as error:
             self.assertTrue("Measured angle out of soft range!" in str(error))
 
         try:
-            self.leg.setLegState(0, 5, 0, 9e9)  # should error even though 0 is in range because 5 is not
+            self.leg.setSensorReadings(0, 5, 0, 9e9)  # should error even though 0 is in range because 5 is not
             self.assertTrue(False)
         except ValueError as error:
             self.assertTrue("Measured angle out of soft range!" in str(error))
@@ -125,13 +125,13 @@ class LegControllerTestCase(unittest.TestCase):
     def testFootOnGroundTurnsOn(self):
         l = self.leg
         for sd in arange(0.0, 0.1, 0.001):
-            l.setLegState(0.0, 0.0, 0.0, sd)
+            l.setSensorReadings(0.0, 0.0, 0.0, sd)
             l.updateFootOnGround()
             self.assertEqual(sd > l.SHOCK_DEPTH_THRESHOLD_HIGH, l.isFootOnGround())
     def testFootOnGroundTurnsOff(self):
         l = self.leg
         for sd in arange(0.1, 0.0, -0.001):
-            l.setLegState(0.0, 0.0, 0.0, sd)
+            l.setSensorReadings(0.0, 0.0, 0.0, sd)
             l.updateFootOnGround()
             self.assertEqual(sd > l.SHOCK_DEPTH_THRESHOLD_LOW, l.isFootOnGround())
     def testFootOnGroundNoiseImmunity(self):
@@ -142,17 +142,17 @@ class LegControllerTestCase(unittest.TestCase):
         offset = (l.SHOCK_DEPTH_THRESHOLD_HIGH + l.SHOCK_DEPTH_THRESHOLD_LOW) / 2.0
         shock_depth = amp * sin(2*pi*time * 10.0) + offset
 
-        l.setLegState(0.0, 0.0, 0.0, 0.0)
+        l.setSensorReadings(0.0, 0.0, 0.0, 0.0)
         l.updateFootOnGround()
         for sd in shock_depth:
-            l.setLegState(0.0, 0.0, 0.0, sd)
+            l.setSensorReadings(0.0, 0.0, 0.0, sd)
             l.updateFootOnGround()
             self.assertFalse(l.isFootOnGround())
 
-        l.setLegState(0.0, 0.0, 0.0, l.SHOCK_DEPTH_THRESHOLD_HIGH * 2.0)
+        l.setSensorReadings(0.0, 0.0, 0.0, l.SHOCK_DEPTH_THRESHOLD_HIGH * 2.0)
         l.updateFootOnGround()
         for sd in shock_depth:
-            l.setLegState(0.0, 0.0, 0.0, sd)
+            l.setSensorReadings(0.0, 0.0, 0.0, sd)
             l.updateFootOnGround()
             self.assertTrue(l.isFootOnGround())
 
