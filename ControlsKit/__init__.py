@@ -1,3 +1,4 @@
+from body_controller import BodyController
 import filters
 from leg_controller import LegController
 from leg_logger import logger

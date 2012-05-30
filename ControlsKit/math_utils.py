@@ -8,6 +8,7 @@ pi_2 = pi / 2.0
 pi_4 = pi / 4.0
 
 LEG_DOF = 3
+NUM_LEGS = 6
 
 # Indices for joint angles
 YAW = 0
