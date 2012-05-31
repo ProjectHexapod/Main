@@ -7,7 +7,7 @@ from OpenGLLibrary import *
 from pubsub import *
 from helpers import *
 
-class Paver:
+class Paver(object):
     def __init__( self, center, sim ):
         """
         center is the initial center of the pavement
@@ -68,7 +68,7 @@ class Paver:
     def getGeoms(self):
         return self.pavement.values()
 
-class Simulator:
+class Simulator(object):
     """
     The simulator class is responsible for starting ODE,
     starting OpenGL (if requested), instantiating the robot
@@ -152,6 +152,10 @@ class Simulator:
             self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
     def getSimTime(self):
         return self.sim_t
+    def getPaused( self ):
+        return self.paused
+    def setPaused( self, new_pause_bool ):
+        self.paused = new_pause_bool
     def near_callback(self, args, geom1, geom2):
         """
         Callback function for the collide() method.
@@ -222,7 +226,6 @@ class Simulator:
                 print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
                 print "Timestep:       %f"%(step_dt)
                 print "Steps per sec:  %.0f"%(1./real_t_elapsed)
-		pass
             # Render if graphical
             if self.graphical:
                 self.handleInput()
@@ -377,8 +380,8 @@ class Simulator:
         # create a capsule geom for collision detection
         geom = ode.GeomSphere(self.space, radius)
         geom.setBody(body)
-	# create a reference to the body geom in case the user does not want to keep track of it.
-	body.geom = geom
+        # create a reference to the body geom in case the user does not want to keep track of it.
+        body.geom = geom
 
         body.color = (128,0,0,255)
         body.setPosition( pos )
@@ -400,8 +403,8 @@ class Simulator:
         # create a capsule geom for collision detection
         geom = ode.GeomCCylinder(self.space, radius, length)
         geom.setBody(body)
-	# create a reference to the body geom in case the user does not want to keep track of it.
-	body.geom = geom
+        # create a reference to the body geom in case the user does not want to keep track of it.
+        body.geom = geom
 
         body.color = (128,0,0,255)
         body.setPosition( pos )
