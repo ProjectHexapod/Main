@@ -1,7 +1,7 @@
 from leg_logger import logger
 
 class TimeSource:
-    def __init__(self, initial_time=0.0, initial_delta=0.0):
+    def __init__(self, initial_time=-1.0, initial_delta=0.0):
         self.initial_time = initial_time
         self.initial_delta = initial_delta
         
