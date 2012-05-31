@@ -29,16 +29,20 @@ class TimeSourceTestCase(unittest.TestCase):
         check(self, self.ts, 0.1, 0.1)
         self.ts.updateTime(0.33)
         check(self, self.ts, 0.33, 0.23)
-    def testUpdateTimeAlwaysIncreasesTime(self):
+    def testUpdateTimeAlwaysIncreasesTimeExceptZero(self):
+        self.ts.updateTime(0.0)  # no error because getTime() == 0.0
+        self.ts.updateTime(0.1)
+        self.assertRaises(ValueError, self.ts.updateTime, 0.1)
         self.assertRaises(ValueError, self.ts.updateTime, 0.0)
-        self.assertRaises(ValueError, self.ts.updateTime, -0.1)
         
     def testUpdateDelta(self):
         self.ts.updateDelta(0.1)
         check(self, self.ts, 0.1, 0.1)
         self.ts.updateDelta(0.45)
         check(self, self.ts, 0.55, 0.45)
-    def testUpdateDeltaAlwaysIncreasesTime(self):
+    def testUpdateDeltaAlwaysIncreasesTimeExceptZero(self):
+        self.ts.updateTime(0.0)  # no error because getTime() == 0.0
+        self.ts.updateTime(0.1)
         self.assertRaises(ValueError, self.ts.updateDelta, 0.0)
         self.assertRaises(ValueError, self.ts.updateDelta, -0.1)
 
