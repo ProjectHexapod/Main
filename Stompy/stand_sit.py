@@ -8,7 +8,7 @@ traj = None
 state = 0
 
 
-def update(time, leg_sensor_matrix, orientation, angular_rates):
+def update(time, leg_sensor_matrix, orientation, accelerations, angular_rates):
     global traj, state
     
     time_sources.global_time.updateTime(time)
