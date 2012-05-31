@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegController
-from ControlsKit.trajectories import Pause
+from ControlsKit.leg_trajectories import Pause
 
 
 # Initialization
@@ -14,7 +14,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Update leg
     time_sources.global_time.updateTime(time)
-    leg.setLegState(yaw, hip_pitch, knee_pitch, shock_depth)
+    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
     leg.updateFootOnGround()
 
     # Init traj. Do this after the first update.

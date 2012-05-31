@@ -8,12 +8,12 @@ class BodyController:
                      LegController(), LegController(), LegController()]
         assert len(self.legs) == NUM_LEGS
         
-    def setBodyState(self, leg_sensor_matrix, orientation, angular_rates):
+    def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
         for i,leg in zip(range(NUM_LEGS), self.legs):
-            leg.setLegState(*leg_sensor_matrix[i])
+            leg.setSensorReadings(*leg_sensor_matrix[i])
             leg.updateFootOnGround()
-        self.orientation = orientation
-        self.angular_rates = angular_rates
+        self.imu_orientation = imu_orientation
+        self.imu_angular_rates = imu_angular_rates
     
     def setDesiredJointAngles(self, joint_angle_matrix):
         for i,leg in zip(range(NUM_LEGS), self.legs):

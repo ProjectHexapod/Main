@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegController, logger
-from ControlsKit.trajectories import Pause, TrapezoidalFootMove, PutFootOnGround
+from ControlsKit.leg_trajectories import Pause, TrapezoidalFootMove, PutFootOnGround
 from ControlsKit.math_utils import array, Z
 
 
@@ -22,14 +22,14 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     
     # Update leg
     time_sources.global_time.updateTime(time)
-    leg.setLegState(yaw, hip_pitch, knee_pitch, shock_depth)
+    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
     leg.updateFootOnGround()
 
     # Init traj. Do this after the first update.
     if traj is None:
         traj = Pause(leg, 1.0)
     
-    # Monitor trajectories
+    # Monitor leg_trajectories
     if traj.isDone():
         if state == S_MOVE3:
             traj = TrapezoidalFootMove(leg,

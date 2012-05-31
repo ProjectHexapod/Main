@@ -17,7 +17,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Update leg
     time_sources.global_time.updateTime(time)
-    leg.setLegState(yaw, hip_pitch, knee_pitch, shock_depth)
+    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
     leg.updateFootOnGround()
 
     # Evaluate trajectory and joint control
