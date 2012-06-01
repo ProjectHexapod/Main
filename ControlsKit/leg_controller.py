@@ -1,3 +1,4 @@
+from ConfigParser import ConfigParser
 from math_utils import *
 from filters import HighPassFilter
 from pid_controller import PidController
@@ -5,15 +6,18 @@ import math
 from leg_logger import logger
 
 class LegController:
-    def __init__(self):
+    def __init__(self, config_file="leg_controller.conf", section="LegController"):
+        c = ConfigParser()
+        c.read(config_file)
+        
         # Link lengths
-        self.YAW_LEN = 8.5 * 2.54 * 0.01
-        self.THIGH_LEN = 54.75 * 2.54 * 0.01
-        self.CALF_LEN = 51.0 * 2.54 * 0.01
+        self.YAW_LEN = c.getfloat(section, "yaw_len")
+        self.THIGH_LEN = c.getfloat(section, "thigh_len")
+        self.CALF_LEN = c.getfloat(section, "calf_len")
 
         # Actuator soft bounds
-        self.SOFT_MIN = -math.pi
-        self.SOFT_MAX = math.pi
+        self.SOFT_MIN = c.getfloat(section, "joint_stop_low")
+        self.SOFT_MAX = c.getfloat(section, "joint_stop_high")
 
         # State
         vel_corner = 100.0  # rad/s
@@ -21,17 +25,25 @@ class LegController:
         self.setSensorReadings(0.0, 0.0, 0.0, 0.0)
 
         # Events
-        self.SHOCK_DEPTH_THRESHOLD_LOW = 0.01
-        self.SHOCK_DEPTH_THRESHOLD_HIGH = 0.02
+        self.SHOCK_DEPTH_THRESHOLD_LOW = c.getfloat(section, "shock_depth_threshold_low")
+        self.SHOCK_DEPTH_THRESHOLD_HIGH = c.getfloat(section, "shock_depth_threshold_high")
         self.foot_on_ground = False
 
         # Joint control
         self.length_rate_commands = array([0.0, 0.0, 0.0])
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-            PidController(0.5, 0.0, 0.0),  # Yaw joint
-            PidController(5.0, 0.0, 0.0),  # Hip pitch joint
-            PidController(1.0, 0.0, 0.0)   # Knee pitch joint
+            PidController(c.getfloat(section, "yaw_p"),  # Yaw joint
+                          c.getfloat(section, "yaw_i"),
+                          c.getfloat(section, "yaw_d")),
+
+            PidController(c.getfloat(section, "hp_p"),  # Hip pitch joint
+                          c.getfloat(section, "hp_i"),
+                          c.getfloat(section, "hp_d")),
+
+            PidController(c.getfloat(section, "kp_p"),  # Knee pitch joint
+                          c.getfloat(section, "kp_i"),
+                          c.getfloat(section, "kp_d")),
         ]
 
 
