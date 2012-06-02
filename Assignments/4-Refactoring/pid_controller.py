@@ -141,8 +141,8 @@ class HystereticPeakDetector:
         
         #Class Attributes to determine when a state transition has happened
         if not (hyst_low_limit < hyst_high_limit):
-			raise ValueError("HystereticPeakDetector: Can't instantiate with"+
-					" a hysteretic low bound greater than the hyst. high bound!")
+            raise ValueError("HystereticPeakDetector: Can't instantiate with"+
+                    " a hysteretic low bound greater than the hyst. high bound!")
         self.hyst_high_limit=hyst_high_limit
         self.hyst_low_limit=hyst_low_limit
         
@@ -224,13 +224,24 @@ class HystereticPeakDetector:
         peak_deltas = scipy.diff(self.peaks)
         trough_deltas = scipy.diff(self.troughs)
         
+        peak_envelope = self.envelopeFromArray(self.peaks)
+        trough_envelope = self.envelopeFromArray([-trough for trough in self.troughs])
+        
+        peak_envelope_deltas= scipy.diff(peak_envelope)
+        trough_envelope_deltas= scipy.diff(trough_envelope)
+        
         [unstable, limit_cycle, converging, converged]=[True, True, True, True]
         
         if len(self.peaks) > 1 and len(self.troughs) > 1:
             #only unstable if error always rises
-            unstable = (peak_deltas > 0.0).all() or (trough_deltas < 0.0).all()
+            unstable = ( (peak_deltas > 0.0).all() or 
+                        (trough_deltas < 0.0).all() or
+                        ( (peak_envelope_deltas > 0.0).all() and
+                            (trough_envelope_deltas > 0.0).all() ) )
             #only converging if error is always decreasing
-            converging = (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all()
+            converging = ( ( (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all() )
+                        or ((peak_envelope_deltas < 0.0).all() and 
+                            (trough_envelope_deltas < 0.0).all() ) )
             #in a limit cycle if error ever rises
             limit_cycle = not converging and not unstable
         else:
@@ -247,6 +258,14 @@ class HystereticPeakDetector:
         self.flags["limit_cycle"]=limit_cycle
         self.flags["converging"]=converging
         self.flags["converged"]=converged
+
+    def envelopeFromArray(self, array):
+        envelope=[]
+        diffs=scipy.diff(array)
+        for index in range( 1,len(diffs) ):
+            if diffs[index] < 0 and diffs[index-1] > 0:
+                envelope.append(array[index])
+        return envelope
 
     def getEdgeType(self):
         return self.edgetype
