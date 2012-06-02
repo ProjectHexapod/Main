@@ -18,7 +18,16 @@ class BodyController:
     def setDesiredJointAngles(self, joint_angle_matrix):
         for i,leg in zip(range(NUM_LEGS), self.legs):
             leg.setDesiredJointAngles(joint_angle_matrix[i])
-            leg.updateLengthRateCommands()
+            if not self.legsAreColliding():
+                leg.updateLengthRateCommands()
     
     def getLengthRateCommands(self):
         return map(LegController.getLengthRateCommands, self.legs)
+
+    def legsAreColliding(self):
+        """ Get bounding boxes for the lower section of each of the six legs, and check them for
+            intersection with the bounding boxes for the upper and lower sections of the
+            neighboring legs.
+        """
+        # TODO: write me
+        return False
