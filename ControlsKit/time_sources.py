@@ -9,7 +9,7 @@ class TimeSource:
         self.delta = self.initial_delta
     
     def updateTime(self, time):
-        if time <= self.time:
+        if time <= self.time and self.time != 0.0:
             logger.error("TimeSource.updateTime: Reversed time error!",
                          initial_time=self.initial_time,
                          initial_delta=self.initial_delta,
@@ -19,7 +19,7 @@ class TimeSource:
         self.delta = time - self.time
         self.time = time
     def updateDelta(self, delta):
-        if delta <= 0:
+        if delta <= 0.0 and self.time != 0.0:
             logger.error("TimeSource.updateDelta: Reversed time error!",
                          initial_time=self.initial_time,
                          initial_delta=self.initial_delta,
@@ -35,7 +35,6 @@ class TimeSource:
         return self.delta
 
 global_time = TimeSource()
-
 
 class StopWatch:
     '''

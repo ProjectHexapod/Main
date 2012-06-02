@@ -308,7 +308,7 @@ class LinearActuator:
     def setMinLength( self, l ):
         self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
 
-class MultiBody():
+class MultiBody(object):
     def __init__(self, sim, density=500, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
         """Creates a ragdoll of standard size at the given offset."""
 
@@ -330,6 +330,8 @@ class MultiBody():
 
 
         self.buildBody()
+	def getMass(self):
+		return self.totalMass
     def buildBody(self):
         """This is for the subclasses to define."""
         return

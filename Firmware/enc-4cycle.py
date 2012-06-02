@@ -14,7 +14,7 @@ for c in retval:
 print ''
 
 cmd = array('B')
-cmd.append(0x05)
+cmd.append(0x45)
 cmd.append(0x00)
 cmd.append(0x00)
 cmd.append(0x00)
@@ -22,7 +22,7 @@ cmd.append(0x00)
 cmd.append(0x00)
 
 while True:
-    cmd[0] = 0x05|(((cmd[0]&0xf0)+0x10)%0x40)
+    cmd[0] = 0x05|(((cmd[0]&0xf0)-0x40+0x10)%0x40+0x40)
     cmdstr = cmd.tostring()
     s.write(cmdstr)
     retval = s.read(len(cmdstr))
