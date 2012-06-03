@@ -57,37 +57,45 @@ class StompyPhysicalCharacteristics(object):
             leg_origin = rotate3( r_60z, leg_origin )
             leg_angle += pi/3.0
             self.LEGS.append(leg)
+        # As a test, let's make one of the legs kind of stubby...
+        #self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = (.5,0,-.2)
+        #self.LEGS[0].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), pi/2 )
+        #self.LEGS[0].THIGH_L = 1.0
+        #self.LEGS[0].CALF_L = 1.0
 
 class SpiderWHydraulics(MultiBody):
     def __init__( self, *args, **kwargs ):
         self.dimensions = StompyPhysicalCharacteristics()
         super(self.__class__, self).__init__(*args, **kwargs)
     def buildBody( self ):
-        """ Build an equilateral hexapod """
-        # These are the rotation matrices we will use
-        r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
-        r_60z = calcRotMatrix( (0,0,1), pi/3.0 )
-        r_90z = calcRotMatrix( (0,0,1), pi/2.0 )
-        # p_hip is the point where the hip is located.
-        # We want to start it 30 degrees into a rotation around Z
-        p_hip = (self.dimensions.BODY_W/2.0, 0, 0)
-        #p_hip = rotate3( r_30z, p_hip )
-        self.core = self.addBody( p_hip, mul3(p_hip, -1), self.dimensions.BODY_T, mass=self.dimensions.BODY_M )
+        """ Build a hexapod according to the dimensions laid out
+        in self.dimensions """
+        self.core = self.addBody( (self.dimensions.BODY_W/2,0,0),\
+            (-1*self.dimensions.BODY_W/2,0,0),\
+            self.dimensions.BODY_T,\
+            mass=self.dimensions.BODY_M )
 
         self.publisher.addToCatalog(\
             "body.totalflow_gpm",\
             self.getTotalHydraulicFlowGPM)
 
         # Start another rotation
-        p = (1, 0, 0)
-        p = rotate3( r_30z, p )
         self.legs                  = [0,0,0,0,0,0]
         for i in range(6):
-            yaw_p     = mul3( p, (self.dimensions.BODY_W/2.0) )
-            hip_p     = mul3( p, (self.dimensions.BODY_W/2.0)+self.dimensions.LEGS[i].YAW_L )
-            knee_p    = mul3( p, (self.dimensions.BODY_W/2.0)+self.dimensions.LEGS[i].YAW_L+self.dimensions.LEGS[i].THIGH_L )
-            midshin_p = add3( knee_p, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L) )
-            foot_p    = add3( midshin_p, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L) )
+            hip_offset = self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN
+            leg_rot    = self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN
+            yaw_p     = hip_offset
+            hip_p     = add3(yaw_p,\
+                mul3( rotate3( leg_rot, (1,0,0) ),\
+                self.dimensions.LEGS[i].YAW_L) )
+            knee_p     = add3(hip_p,\
+                mul3( rotate3( leg_rot, (1,0,0) ),\
+                self.dimensions.LEGS[i].THIGH_L ))
+            midshin_p = add3( knee_p, \
+                rotate3(leg_rot, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L)))
+            foot_p = add3( midshin_p, \
+                rotate3(leg_rot, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L)))
+
             # Add hip yaw
             yaw_link = self.addBody( \
                 p1     = yaw_p, \
@@ -129,8 +137,7 @@ class SpiderWHydraulics(MultiBody):
 
             # Add thigh and hip pitch
             # Calculate the axis of rotation for hip pitch
-            axis = rotate3( r_90z, p )
-            axis = mul3( axis, -1 )
+            axis = rotate3( leg_rot, (0,-1,0) )
             thigh = self.addBody(\
                 p1     = hip_p, \
                 p2     = knee_p, \
@@ -146,9 +153,6 @@ class SpiderWHydraulics(MultiBody):
                 a2y          = 0.35)
             #hip_pitch.setParam(ode.ParamLoStop, -pi/3)
             #hip_pitch.setParam(ode.ParamHiStop, +pi/3)
-            p1 = mul3( p, (self.dimensions.BODY_W/2.0)+self.dimensions.LEGS[i].YAW_L )
-            p1 = (p1[0], p1[1], 0.355)
-            p2 = mul3( p, (self.dimensions.BODY_W/2.0)+self.dimensions.LEGS[i].YAW_L+self.dimensions.LEGS[i].THIGH_L/2 )
             hip_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             hip_pitch.setAngleOffset(0.0)
             self.publisher.addToCatalog(\
@@ -190,9 +194,6 @@ class SpiderWHydraulics(MultiBody):
                 a2y          = 0.25)
             knee_pitch.setParam(ode.ParamLoStop, -pi/2)
             knee_pitch.setParam(ode.ParamHiStop, pi/3)
-            p1 = mul3( p, (self.dimensions.BODY_W/2.0)+self.dimensions.LEGS[i].YAW_L+(self.dimensions.LEGS[i].THIGH_L/4) )
-            p1 = (p1[0], p1[1], -0.1)
-            p2 = mul3( p, (self.dimensions.BODY_W/2.0)+self.dimensions.LEGS[i].YAW_L+self.dimensions.LEGS[i].THIGH_L-.355 )
             knee_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
             knee_pitch.setAngleOffset(deg2rad*90.0)
             self.publisher.addToCatalog(\
@@ -245,8 +246,6 @@ class SpiderWHydraulics(MultiBody):
             d['calf']         = calf
             d['foot']         = foot
             self.legs[i]      = d
-
-            p = rotate3( r_60z, p )
     def getEncoderAngleMatrix( self ):
         retval = []
         for i in range(6):
