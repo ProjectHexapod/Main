@@ -247,6 +247,14 @@ class SpiderWHydraulics(MultiBody):
             d['foot']         = foot
             self.legs[i]      = d
     def getEncoderAngleMatrix( self ):
+        """
+        Returns a list of tuples containing the joint angles at each joint.
+        Outer index is leg index
+        Inner index is joint index
+        So retval[0][0] is hip yaw for leg 0,
+        retval[1][0] is hip yaw for leg 1,
+        retval[0][2] is knee angle for leg 0, etc.
+        """
         retval = []
         for i in range(6):
             retval.append( (\
@@ -255,8 +263,19 @@ class SpiderWHydraulics(MultiBody):
                 self.legs[i]['knee_pitch'].getAngle(),\
                 self.legs[i]['foot_shock'].getPosition()) )
         return retval
-
-
+    def setLenRateMatrix( self, len_rate_matrix ):
+        """
+        Provides an interface to set the length rates of the actuators
+        at all joints at the same time.
+        len_rate_matrix outer indices are leg indices
+        inner indices specify joints
+        len_rate_matrix[0][1] is leg 0 hip pitch
+        len_rate_matrix[1][2] is leg 1 knee pitch
+        """
+        for i in range(6):
+            self.legs[i]['hip_yaw'   ].setLengthRate(len_rate_matrix[i][0])
+            self.legs[i]['hip_pitch' ].setLengthRate(len_rate_matrix[i][1])
+            self.legs[i]['knee_pitch'].setLengthRate(len_rate_matrix[i][2])
     def getTotalHydraulicFlowGPM( self ):
         total = 0
         for i in range(6):
@@ -276,7 +295,6 @@ class SpiderWHydraulics(MultiBody):
         p = rotate3( r_30z, p )
 
         i = 0
-
 
         for target_p in positions:
             yaw_p = mul3(p, (self.dimensions.BODY_W/2))
