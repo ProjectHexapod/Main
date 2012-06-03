@@ -1,11 +1,21 @@
+from ConfigParser import ConfigParser
 from leg_controller import LegController
 from math_utils import NUM_LEGS
 
 
 class BodyController:
-    def __init__(self):
-        self.legs = [LegController(), LegController(), LegController(),
-                     LegController(), LegController(), LegController()]
+    def __init__(self, config_file="body_controller.conf", section="BodyController"):
+        c = ConfigParser()
+        c.read(config_file)
+        
+        #leg0_offset_x = c.getfloat(section, "leg0_offset_x")
+        
+        self.legs = [LegController(config_file, "GenericLeg"),
+                     LegController(config_file, "GenericLeg"),
+                     LegController(config_file, "GenericLeg"),
+                     LegController(config_file, "GenericLeg"),
+                     LegController(config_file, "GenericLeg"),
+                     LegController(config_file, "GenericLeg")]
         assert len(self.legs) == NUM_LEGS
         
     def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
