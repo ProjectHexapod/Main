@@ -3,7 +3,7 @@ from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 
 
 class TrapezoidalFootMove:
-    """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
+    """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time. 
     """
     def __init__(self, leg_controller, final_foot_pos, max_velocity, acceleration):
         logger.info("New trajectory.", traj_name="TrapezoidalFootMove",

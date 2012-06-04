@@ -11,7 +11,6 @@ class InterpolatedFootMoveTestCase(unittest.TestCase):
         resetTimeSourceForTestingPurposes(global_time)
         self.mock_leg_controller = mox.MockAnything()
         
-        
     def testIsDone(self):
         print "testing isDone"
         self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9],[3,28,28,28]])
@@ -32,7 +31,6 @@ class InterpolatedFootMoveTestCase(unittest.TestCase):
         self.path = array([[0,1,1,1],[1,2,2,2],[2,9,9,9],[3,28,28,28]])
         self.path = self.path.transpose()
         self.mock_leg_controller.getFootPos().AndReturn([0,0,0])
-        #target_foot_pos = array([0.,0.,0.])
         self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(array([.0,.0,.0])))
         self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(array([.001,.001,.001])))
         self.mock_leg_controller.jointAnglesFromFootPos(ArraysEqual(array([.008,.008,.008])))
@@ -67,7 +65,7 @@ class InterpolatedFootMoveTestCase(unittest.TestCase):
         ifm.update()
         mox.Verify(self.mock_leg_controller)
         
-
+"""
 class PutFootOnGroundTestCase(unittest.TestCase):
     def setUp(self):
         resetTimeSourceForTestingPurposes(global_time)
@@ -200,6 +198,6 @@ class TrapezoidalFootMoveTestCase(unittest.TestCase):
         global_time.updateDelta(0.1)
         trap.update()
 
-
+"""
 if __name__ == '__main__':
     unittest.main()
