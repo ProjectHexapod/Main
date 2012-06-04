@@ -15,10 +15,10 @@ class TrapezoidalSitStand:
         
         current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
-            self.target_foot_positions(0,i) = final_height
+            self.target_foot_positions[0,i] = final_height
         
         for i in range (NUM_LEGS):
-            tfm(i) = TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)
+            self.tfm[i] = TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)
             
         self.done = False
     
@@ -27,5 +27,7 @@ class TrapezoidalSitStand:
     
     def update(self):
         if not self.done():
+            #logically and all of the 
+            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
             
-            
+            return [self.tfm[i].update() for i in range (NUM_LEGS)]
