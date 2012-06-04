@@ -15,7 +15,7 @@ class TrapezoidalSitStand:
         self.body. #get current foot positions
         self.target_foot_positions = #store target foot positions 
         
-        for i in range NUM_LEGS:
+        for i in range (NUM_LEGS):
             tfm = [(TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)]
             
     def update()
