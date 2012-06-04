@@ -15,5 +15,10 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     body.setSensorReadings(leg_sensor_matrix, imu_orientation, imu_angular_rates)
     
     joint_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
+    
+    
+    #THIS IS WHERE WE CALL ON THE TRAJ TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
+    
+    
     body.setDesiredJointAngles(joint_angle_matrix)
     return body.getLengthRateCommands()

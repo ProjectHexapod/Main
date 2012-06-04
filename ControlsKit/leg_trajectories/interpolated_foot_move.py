@@ -11,15 +11,6 @@ class InterpolatedFootMove:
         
         self.done = False
         
-        """
-        #make sure start position is within a reasonable distance of actual start position
-        if scipy.spatial.distance.pdist([start_pos, way_points[0,1:]], 'euclidean') > 0.1:
-            self.done = True
-            
-        #append actual start position to beginning of way_points
-        way_points = vstack((start_pos, way_points))
-        """
-        
         self.time_array = way_points[0]
         self.spatial_array = way_points[1:,:]
         
