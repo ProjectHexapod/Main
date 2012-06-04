@@ -15,7 +15,22 @@ class TrapezoidalSitStand:
         self.body. #get current foot positions
         self.target_foot_positions = #store target foot positions 
         
-        for i in range (NUM_LEGS):
+        for i in range NUM_LEGS:
             tfm = [(TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)]
             
     def update()
+
+class Pause:
+    def __init__(self, body_controller, duration):
+        self.body = body_controller
+        self.initial_angles = self.body.getJointAngleMatrix()
+        self.duration = duration
+        self.sw = time_sources.StopWatch();
+        self.done = False
+    
+    def isDone(self):
+        return self.done
+    
+    def update(self):
+        self.done = self.sw.getTime() >= self.duration
+        return self.initial_angles
