@@ -12,10 +12,20 @@ class TrapezoidalSitStand:
                     acceleration=acceleration)
         
         self.body = body_controller()
-        self.body. #get current foot positions
-        self.target_foot_positions = #store target foot positions 
+        
+        current_positions = self.body.getFootPositions()
+        for i in range (NUM_LEGS):
+            self.target_foot_positions(0,i) = final_height
         
         for i in range (NUM_LEGS):
-            tfm = [(TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)]
+            tfm(i) = TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)
             
-    def update()
+        self.done = False
+    
+    def isDone(self):
+        return self.done    
+    
+    def update(self):
+        if not self.done():
+            
+            
