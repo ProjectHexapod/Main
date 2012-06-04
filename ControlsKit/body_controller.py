@@ -28,6 +28,9 @@ class BodyController:
 
     def getLegs(self):
         return self.legs
+
+    def getJointAngleMatrix(self):
+        return [self.legs[i].getJointAngles() for i in range(NUM_LEGS)]
     
     def getFootPositions(self):
         return [self.legs[i].getFootPos() for i in range(NUM_LEGS)]
