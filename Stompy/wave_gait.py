@@ -5,6 +5,7 @@ from scipy import zeros
 body = BodyController()
 traj = None
 state = 0
+stride = 1  # in meters
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
     global traj, state

@@ -26,6 +26,9 @@ class BodyController:
     def getLengthRateCommands(self):
         return map(LegController.getLengthRateCommands, self.legs)
 
+    def getLegs(self):
+        return self.legs
+
     def legsAreColliding(self):
         """ Get bounding boxes for the lower section of each of the six legs, and check them for
             intersection with the bounding boxes for the upper and lower sections of the
