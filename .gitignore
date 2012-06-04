@@ -3,3 +3,4 @@
 *.pyc
 *~
 gimpy.csv
+*.DS_Store
