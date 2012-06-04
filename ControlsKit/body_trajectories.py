@@ -12,13 +12,25 @@ class TrapezoidalSitStand:
                     acceleration=acceleration)
         
         self.body = body_controller()
-        self.body. #get current foot positions
-        self.target_foot_positions = #store target foot positions 
         
-        for i in range NUM_LEGS:
-            tfm = [(TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)]
+        current_positions = self.body.getFootPositions()
+        for i in range (NUM_LEGS):
+            self.target_foot_positions[0,i] = final_height
+        
+        for i in range (NUM_LEGS):
+            self.tfm[i] = TrapezoidalFootMove(self.body.getLegs(i), target_foot_positions(i), max_velocity, acceleration)
             
-    def update()
+        self.done = False
+    
+    def isDone(self):
+        return self.done    
+    
+    def update(self):
+        if not self.done():
+            #logically and all of the isdone results from the trapezoidal foot move trajectories
+            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
+            
+            return [self.tfm[i].update() for i in range (NUM_LEGS)]
 
 class Pause:
     def __init__(self, body_controller, duration):
@@ -32,5 +44,7 @@ class Pause:
         return self.done
     
     def update(self):
-        self.done = self.sw.getTime() >= self.duration
+       if not self.done():
+            #logically and all of the isdone results from the trapezoidal foot move trajectories
+            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
         return self.initial_angles

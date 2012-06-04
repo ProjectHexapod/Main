@@ -33,8 +33,7 @@ class BodyController:
         return [self.legs[i].getJointAngles() for i in range(NUM_LEGS)]
     
     def getFootPositions(self):
-        for i in range(NUM_LEGS):
-            foot_positions[i] = [self.legs[i].getFootPos()]
+        return [self.legs[i].getFootPos() for i in range(NUM_LEGS)]
 
     def legsAreColliding(self):
         """ Get bounding boxes for the lower section of each of the six legs, and check them for
