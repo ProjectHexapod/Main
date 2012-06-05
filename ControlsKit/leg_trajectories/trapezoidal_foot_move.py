@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, logger
+from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 
 
@@ -6,7 +6,7 @@ class TrapezoidalFootMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time. 
     """
     def __init__(self, leg_controller, final_foot_pos, max_velocity, acceleration):
-        logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
+        leg_logger.logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
                     final_foot_pos=final_foot_pos, max_velocity=max_velocity,
                     acceleration=acceleration)
         
