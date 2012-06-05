@@ -5,6 +5,8 @@ class TrapezoidalSitStand:
     """This trajectory moves the hexapod body straight up or down with a trapezoidal velocity profile
     """
     
+    #TODO: check to make sure all legs are on the ground first
+    
     def __init__(self, body_controller, final_height, max_velocity, acceleration):
         
         logger.info("New trajectory.", traj_name="TrapezoidalSitStand",
@@ -44,7 +46,7 @@ class Pause:
         return self.done
     
     def update(self):
-       if not self.done():
+        if not self.done():
             #logically and all of the isdone results from the trapezoidal foot move trajectories
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
         return self.initial_angles
