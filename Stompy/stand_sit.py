@@ -1,5 +1,6 @@
 from ControlsKit import time_sources, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
+from ControlsKit.body_trajectories import TrapezoidalSitStand
 from scipy import zeros
 
 body = BodyController()

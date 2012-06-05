@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, logger
+from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 
 
