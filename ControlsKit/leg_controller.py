@@ -16,8 +16,15 @@ class LegController:
         self.CALF_LEN = c.getfloat(section, "calf_len")
 
         # Actuator soft bounds
-        self.SOFT_MIN = c.getfloat(section, "joint_stop_low")
-        self.SOFT_MAX = c.getfloat(section, "joint_stop_high")
+        soft_stops_section='SoftStops'
+        self.SOFT_MINS=array(
+                [c.getfloat(soft_stops_section,'yaw_stop_low'),
+                c.getfloat(soft_stops_section,'pitch_stop_low'),
+                c.getfloat(soft_stops_section,'knee_stop_low')])
+        self.SOFT_MAXES=array(
+                [c.getfloat(soft_stops_section,'yaw_stop_high'),
+                c.getfloat(soft_stops_section,'pitch_stop_high'),
+                c.getfloat(soft_stops_section,'knee_stop_high') ])
 
         # State
         vel_corner = 100.0  # rad/s
@@ -34,16 +41,16 @@ class LegController:
         self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
             PidController(c.getfloat(section, "yaw_p"),  # Yaw joint
-                          c.getfloat(section, "yaw_i"),
-                          c.getfloat(section, "yaw_d")),
+                        c.getfloat(section, "yaw_i"),
+                        c.getfloat(section, "yaw_d")),
 
             PidController(c.getfloat(section, "hp_p"),  # Hip pitch joint
-                          c.getfloat(section, "hp_i"),
-                          c.getfloat(section, "hp_d")),
+                        c.getfloat(section, "hp_i"),
+                        c.getfloat(section, "hp_d")),
 
             PidController(c.getfloat(section, "kp_p"),  # Knee pitch joint
-                          c.getfloat(section, "kp_i"),
-                          c.getfloat(section, "kp_d")),
+                        c.getfloat(section, "kp_i"),
+                        c.getfloat(section, "kp_d")),
         ]
 
 
@@ -52,7 +59,7 @@ class LegController:
         self.joint_angles = array([yaw, hip_pitch, knee_pitch])
         
         #throw errors if measured joint angles are NaN, out of bounds, etc
-        for angle in self.joint_angles:
+        for angle, soft_min, soft_max in zip(self.joint_angles, self.SOFT_MINS, self.SOFT_MAXES):
             if math.isnan(angle):
                 logger.error("LegController.setSensorReadings: NaN where aN expected!",
                             angle=angle,
@@ -64,7 +71,7 @@ class LegController:
                             bad_value="angle")
                 raise ValueError("LegController: Measured angle cannot be NaN.")
                 
-            if self.SOFT_MIN > angle or angle > self.SOFT_MAX:
+            if (soft_min > angle) or (angle > soft_max):
                 logger.error("LegController: Measured position outside of soft range!",
                         angle=angle,
                         angle_index=self.joint_angles.searchsorted(angle),
@@ -72,9 +79,12 @@ class LegController:
                         hip_pitch=hip_pitch,
                         knee_pitch=knee_pitch,
                         shock_depth=shock_depth,
-                        soft_min=self.SOFT_MIN,
-                        soft_max=self.SOFT_MAX,
+                        soft_min=soft_min,
+                        soft_max=soft_max,
                         bad_value="angle")
+                print soft_min
+                print soft_max
+                print angle
                 raise ValueError("LegController: Measured angle out of soft range!")
         self.shock_depth = shock_depth
         self.joint_velocities = self.jv_filter.update(self.joint_angles)
