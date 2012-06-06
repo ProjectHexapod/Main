@@ -1,7 +1,8 @@
 from ControlsKit import time_sources, leg_controller, leg_trajectories, leg_logger
 from ControlsKit.leg_trajectories import TrapezoidalFootMove
 from math_utils import NUM_LEGS
-from scipy import zeros
+from scipy import zeros, append
+from ControlsKit.math_utils import array
 
 class TrapezoidalSitStand:
     """This trajectory moves the hexapod body straight up or down with a trapezoidal velocity profile
@@ -16,14 +17,14 @@ class TrapezoidalSitStand:
         
         self.body = body_controller
         self.target_foot_positions = zeros((3, NUM_LEGS))
-        #self.tfm = 
+        self.tfm = array([])
         
         current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
             self.target_foot_positions[2,i] = final_height
         print self.target_foot_positions[:,1]
         for i in range (NUM_LEGS):
-            self.tfm[i] = TrapezoidalFootMove(self.body.getLegs()[i], self.target_foot_positions[:,i], max_velocity, acceleration)
+            self.tfm = append(self.tfm, TrapezoidalFootMove(self.body.getLegs()[i], self.target_foot_positions[:,i], max_velocity, acceleration))
             
         self.done = False
     
