@@ -17,7 +17,7 @@ class TrapezoidalSitStand:
         
         self.body = body_controller
         self.target_foot_positions = zeros((3, NUM_LEGS))
-        self.tfm = array([])
+        self.tfm = []
         
         current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
