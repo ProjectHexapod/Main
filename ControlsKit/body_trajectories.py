@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, leg_controller, leg_trajectories, leg_logger
-from ControlsKit.leg_trajectories import TrapezoidalFootMove
+from ControlsKit.leg_trajectories import TrapezoidalFootMove, Pause
 from math_utils import NUM_LEGS
 from scipy import zeros, append
 from ControlsKit.math_utils import array
@@ -16,15 +16,15 @@ class TrapezoidalSitStand:
                     acceleration=acceleration)
         
         self.body = body_controller
-        self.target_foot_positions = zeros((3, NUM_LEGS))
+        self.final_foot_positions = zeros((3, NUM_LEGS))
         self.tfm = []
         
         current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
-            self.target_foot_positions[2,i] = final_height
-        print self.target_foot_positions[:,1]
+            self.final_foot_positions[2,i] = final_height
         for i in range (NUM_LEGS):
-            self.tfm = append(self.tfm, TrapezoidalFootMove(self.body.getLegs()[i], self.target_foot_positions[:,i], max_velocity, acceleration))
+            #self.tfm = append(self.tfm, TrapezoidalFootMove(self.body.getLegs()[i], self.final_foot_positions[:,i], max_velocity, acceleration))
+            self.tfm = append(self.tfm, Pause(self.body.getLegs()[i], 10))
             
         self.done = False
     
@@ -35,10 +35,9 @@ class TrapezoidalSitStand:
         if not self.done():
             #logically and all of the isdone results from the trapezoidal foot move trajectories
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
-            
             return [self.tfm[i].update() for i in range (NUM_LEGS)]
 
-class Pause:
+class BodyPause:
     def __init__(self, body_controller, duration):
         self.body = body_controller
         self.initial_angles = self.body.getJointAngleMatrix()

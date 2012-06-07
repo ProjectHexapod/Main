@@ -36,4 +36,5 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     body.setDesiredJointAngles(joint_angle_matrix)
     
     # Send commands
+    print body.getLengthRateCommands()
     return body.getLengthRateCommands()
