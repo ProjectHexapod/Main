@@ -4,10 +4,14 @@ from filters import HighPassFilter
 from pid_controller import PidController
 import math
 from leg_logger import logger
+import os.path as path
 
 class LegController:
     def __init__(self, config_file="leg_controller.conf", section="LegController"):
         c = ConfigParser()
+        if not path.exists(config_file):
+            print 'Config file %s not found!'%config_file
+            raise IOError
         c.read(config_file)
         
         # Link lengths
