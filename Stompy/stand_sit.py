@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, BodyController
+from ControlsKit import time_sources, BodyController, logger
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
 from ControlsKit.body_trajectories import TrapezoidalSitStand
 from scipy import zeros
@@ -20,20 +20,20 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     joint_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
     
-    #THIS IS WHERE WE CALL ON THE TRAJ TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix
-    if state == STAND:
-        traj = TrapezoidalSitStand(body, 3, .2, 0.1)
-            
-    # Monitor leg_trajectories
+    #THIS IS WHERE WE CALL ON THE TRAJ TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
+    if traj is None:
+        traj = TrapezoidalSitStand(body, .2, 1, .5)
+        state = SIT
+    
     if traj.isDone():
-        if state == STAND:
-            state = SIT
-            traj = TrapezoidalSitStand(body, 1, .2, 0.1)
-        
+        if state == SIT:
+            traj = TrapezoidalSitStand(body, 0, 1, .5)
+            state = STAND
         logger.info("State changed.", state=state)
     
     # Evaluate trajectory and joint control
     joint_angle_matrix  = traj.update()
+
     body.setDesiredJointAngles(joint_angle_matrix)
     
     # Send commands
