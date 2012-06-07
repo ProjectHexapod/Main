@@ -23,8 +23,8 @@ class TrapezoidalSitStand:
         for i in range (NUM_LEGS):
             self.final_foot_positions[2,i] = final_height
         for i in range (NUM_LEGS):
-            #self.tfm = append(self.tfm, TrapezoidalFootMove(self.body.getLegs()[i], self.final_foot_positions[:,i], max_velocity, acceleration))
-            self.tfm = append(self.tfm, Pause(self.body.getLegs()[i], 10))
+            self.tfm = append(self.tfm, TrapezoidalFootMove(self.body.getLegs()[i], self.final_foot_positions[:,i], max_velocity, acceleration))
+            #self.tfm = append(self.tfm, Pause(self.body.getLegs()[i], 1))
             
         self.done = False
     
@@ -32,9 +32,10 @@ class TrapezoidalSitStand:
         return self.done    
     
     def update(self):
-        if not self.done():
+        if not self.done:
             #logically and all of the isdone results from the trapezoidal foot move trajectories
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
+            #self.done = reduce(lambda x,y: x and y, map(Pause.isDone, self.tfm))
             return [self.tfm[i].update() for i in range (NUM_LEGS)]
 
 class BodyPause:
