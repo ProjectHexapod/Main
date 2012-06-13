@@ -6,12 +6,12 @@ class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
         This class expects max velocity for angular velocity.
     """
-    def __init__(self, leg_controller, final_angles, max_velocity, acceleration):
+    def __init__(self, leg_model, final_angles, max_velocity, acceleration):
         logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         
-        self.leg = leg_controller
+        self.leg = leg_model
         self.target_angles = self.leg.getJointAngles()
         self.final_angles = final_angles
         self.max_vel = max_velocity

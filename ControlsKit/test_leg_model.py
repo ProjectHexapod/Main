@@ -1,14 +1,14 @@
 import unittest
 from math_utils import *
 
-from leg_controller import LegController
+from leg_model import LegModel
 
 
-class LegControllerTestCase(unittest.TestCase):
+class LegModelTestCase(unittest.TestCase):
     def setUp(self):
         installArrayTypeEqualityFunction(self)
         
-        self.leg = LegController()
+        self.leg = LegModel()
         self.leg_state = [array([0.0, 0.0, 0.0]), 0.0]
     def tearDown(self):
         pass

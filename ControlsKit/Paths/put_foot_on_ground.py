@@ -3,11 +3,11 @@ from ControlsKit.math_utils import Z
 
 
 class PutFootOnGround:
-    def __init__(self, leg_controller, velocity, accel_duration=0.1):
+    def __init__(self, leg_model, velocity, accel_duration=0.1):
         logger.info("New trajectory.", traj_name="PutFootOnGround",
                     velocity=velocity, accel_duration=accel_duration)
         
-        self.leg = leg_controller
+        self.leg = leg_model
         self.vel = velocity
         self.accel_duration = accel_duration
         

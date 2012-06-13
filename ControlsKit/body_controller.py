@@ -17,7 +17,7 @@ class BodyController:
         # JHW Wed 06 Jun 2012 04:24:57 PM EDT
         #self.legs = [LegController(config_file, "GenericLeg") for i in range(NUM_LEGS)]
         self.legs = [LegController() for i in range(NUM_LEGS)]
-        
+
     def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
         for i in range(NUM_LEGS):
             self.legs[i].setSensorReadings(*leg_sensor_matrix[i])

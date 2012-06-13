@@ -1,13 +1,12 @@
 from ConfigParser import ConfigParser
 from math_utils import *
 from filters import HighPassFilter
-from pid_controller import PidController
 import math
 from leg_logger import logger
 import os.path as path
 
-class LegController:
-    def __init__(self, config_file="leg_controller.conf", section="LegController"):
+class LegModel:
+    def __init__(self, config_file="leg_model.conf", section="LegModel"):
         c = ConfigParser()
         if not path.exists(config_file):
             print 'Config file %s not found!'%config_file
@@ -40,22 +39,23 @@ class LegController:
         self.SHOCK_DEPTH_THRESHOLD_HIGH = c.getfloat(section, "shock_depth_threshold_high")
         self.foot_on_ground = False
 
-        # Joint control
-        self.length_rate_commands = array([0.0, 0.0, 0.0])
-        self.controllers = [
-            # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-            PidController(c.getfloat(section, "yaw_p"),  # Yaw joint
-                        c.getfloat(section, "yaw_i"),
-                        c.getfloat(section, "yaw_d")),
-
-            PidController(c.getfloat(section, "hp_p"),  # Hip pitch joint
-                        c.getfloat(section, "hp_i"),
-                        c.getfloat(section, "hp_d")),
-
-            PidController(c.getfloat(section, "kp_p"),  # Knee pitch joint
-                        c.getfloat(section, "kp_i"),
-                        c.getfloat(section, "kp_d")),
-        ]
+#MOVE ME TO PLANNER
+        ## Joint control
+        #self.length_rate_commands = array([0.0, 0.0, 0.0])
+        #self.controllers = [
+        #    # TODO: replace these soft min and soft max values with more reasonable ones once they're known
+        #    PidController(c.getfloat(section, "yaw_p"),  # Yaw joint
+        #                c.getfloat(section, "yaw_i"),
+        #                c.getfloat(section, "yaw_d")),
+        #
+        #    PidController(c.getfloat(section, "hp_p"),  # Hip pitch joint
+        #                c.getfloat(section, "hp_i"),
+        #                c.getfloat(section, "hp_d")),
+        #
+        #    PidController(c.getfloat(section, "kp_p"),  # Knee pitch joint
+        #                c.getfloat(section, "kp_i"),
+        #                c.getfloat(section, "kp_d")),
+        #]
 
 
     # Store sensor readings
@@ -65,7 +65,7 @@ class LegController:
         #throw errors if measured joint angles are NaN, out of bounds, etc
         for angle, soft_min, soft_max in zip(self.joint_angles, self.SOFT_MINS, self.SOFT_MAXES):
             if math.isnan(angle):
-                logger.error("LegController.setSensorReadings: NaN where aN expected!",
+                logger.error("LegModel.setSensorReadings: NaN where aN expected!",
                             angle=angle,
                             angle_index=self.joint_angles.searchsorted(angle),
                             yaw=yaw,
@@ -73,10 +73,10 @@ class LegController:
                             knee_pitch=knee_pitch,
                             shock_depth=shock_depth,
                             bad_value="angle")
-                raise ValueError("LegController: Measured angle cannot be NaN.")
+                raise ValueError("LegModel: Measured angle cannot be NaN.")
                 
             if (soft_min > angle) or (angle > soft_max):
-                logger.error("LegController: Measured position outside of soft range!",
+                logger.error("LegModel: Measured position outside of soft range!",
                         angle=angle,
                         angle_index=self.joint_angles.searchsorted(angle),
                         yaw=yaw,
@@ -89,7 +89,7 @@ class LegController:
                 print soft_min
                 print soft_max
                 print angle
-                raise ValueError("LegController: Measured angle out of soft range!")
+                raise ValueError("LegModel: Measured angle out of soft range!")
         self.shock_depth = shock_depth
         self.joint_velocities = self.jv_filter.update(self.joint_angles)
         
@@ -153,18 +153,19 @@ class LegController:
     def isMoving(self, tolerance=0.001):
         return (abs(self.joint_velocities) >= tolerance).any()
 
-    # Joint control
-    def setDesiredJointAngles(self, desired_joint_angles):
-        self.desired_joint_angles = desired_joint_angles
-        logger.info("LegController.setDesiredJointAngles()",
-                    hip_yaw_command=desired_joint_angles[YAW],
-                    hip_pitch_command=desired_joint_angles[HP],
-                    knee_pitch_command=desired_joint_angles[KP])
-    def updateLengthRateCommands(self):
-        for i in range(LEG_DOF):
-            self.length_rate_commands[i] = self.controllers[i].update(
-                self.desired_joint_angles[i],
-                self.getJointAngles()[i])
-    def getLengthRateCommands(self):
-        return self.length_rate_commands
+#MOVE ME TO PLANNERS
+    ## Joint control
+    #def setDesiredJointAngles(self, desired_joint_angles):
+    #    self.desired_joint_angles = desired_joint_angles
+    #    logger.info("LegController.setDesiredJointAngles()",
+    #                hip_yaw_command=desired_joint_angles[YAW],
+    #                hip_pitch_command=desired_joint_angles[HP],
+    #                knee_pitch_command=desired_joint_angles[KP])
+    #def updateLengthRateCommands(self):
+    #    for i in range(LEG_DOF):
+    #        self.length_rate_commands[i] = self.controllers[i].update(
+    #            self.desired_joint_angles[i],
+    #            self.getJointAngles()[i])
+    #def getLengthRateCommands(self):
+    #    return self.length_rate_commands
 

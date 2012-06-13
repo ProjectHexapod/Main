@@ -6,8 +6,8 @@ class InterpolatedFootMove:
     """This is a smooth trajectory through given points in space and time. 
     """
     #way_points format: array([[t0,x0,y0,z0],[t1,x1,y1,z1],...])
-    def __init__(self, leg_controller, way_points):
-        self.leg = leg_controller
+    def __init__(self, leg_model, way_points):
+        self.leg = leg_model
         
         self.done = False
         
@@ -28,7 +28,7 @@ class InterpolatedFootMove:
     def isDone(self):
         print "self.done = ", self.done
         print "self.stop_watch.isActive() = ", self.stop_watch.isActive()
-        return self.done and not self.stop_watch.isActive()
+        return self.done and not self.stop_watch.isActive(i)
     
     def update(self):
         print "time up ", self.stop_watch.getTime() >= self.time_array[self.time_array.size-1]

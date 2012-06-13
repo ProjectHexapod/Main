@@ -17,15 +17,14 @@ class TrapezoidalSitStand:
         
         self.body = body_controller
         self.final_foot_positions = zeros((3, NUM_LEGS))
-        self.tfm = []
+        self.feet_traj = []
         
         current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
             self.final_foot_positions[2,i] = final_height
         for i in range (NUM_LEGS):
-            self.tfm = append(self.tfm, TrapezoidalFootMove(self.body.getLegs()[i], self.final_foot_positions[:,i], max_velocity, acceleration))
-            #self.tfm = append(self.tfm, Pause(self.body.getLegs()[i], 1))
-            
+            self.feet_traj = append(self.feet_traj, TrapezoidalFootMove(self.body.getLegs()[i], self.final_foot_positions[:,i], max_velocity, acceleration))
+        
         self.done = False
     
     def isDone(self):
@@ -34,23 +33,31 @@ class TrapezoidalSitStand:
     def update(self):
         if not self.done:
             #logically and all of the isdone results from the trapezoidal foot move trajectories
-            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
-            #self.done = reduce(lambda x,y: x and y, map(Pause.isDone, self.tfm))
-            return [self.tfm[i].update() for i in range (NUM_LEGS)]
+            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.feet_traj))
+            return [self.feet_traj[i].update() for i in range (NUM_LEGS)]
 
 class BodyPause:
+    """This trajectory pauses the hexapod body by pausing the legs
+    """
     def __init__(self, body_controller, duration):
+        leg_logger.logger.info("New trajectory.", traj_name="BodyPause",
+                               duration = duration)
+        
         self.body = body_controller
-        self.initial_angles = self.body.getJointAngleMatrix()
         self.duration = duration
-        self.sw = time_sources.StopWatch();
+        self.feet_traj = []
+        
+        current_positions = self.body.getFootPositions()
+        for i in range (NUM_LEGS):
+            self.feet_traj = append(self.feet_traj, Pause(self.body.getLegs()[i], self.duration))
+            
         self.done = False
     
     def isDone(self):
-        return self.done
+        return self.done    
     
     def update(self):
-        if not self.done():
-            #logically and all of the isdone results from the trapezoidal foot move trajectories
-            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.tfm))
-        return self.initial_angles
+        if not self.done:
+            #logically and all of the isdone results from the pause foot trajectories
+            self.done = reduce(lambda x,y: x and y, map(Pause.isDone, self.feet_traj))
+            return [self.feet_traj[i].update() for i in range (NUM_LEGS)]
