@@ -229,19 +229,25 @@ class HystereticPeakDetector:
         
         peak_envelope_deltas= scipy.diff(peak_envelope)
         trough_envelope_deltas= scipy.diff(trough_envelope)
+        envelope_detected=(len(peak_envelope_deltas) > 0 and
+                            len(trough_envelope_deltas) > 0)
         
         [unstable, limit_cycle, converging, converged]=[True, True, True, True]
         
         if len(self.peaks) > 1 and len(self.troughs) > 1:
             #only unstable if error always rises
             unstable = ( (peak_deltas > 0.0).all() or 
-                        (trough_deltas < 0.0).all() or
-                        ( (peak_envelope_deltas > 0.0).all() and
-                            (trough_envelope_deltas > 0.0).all() ) )
+                        (trough_deltas < 0.0).all()
+                        or (envelope_detected and
+                            (peak_envelope_deltas > 0.0).all() and
+                            (trough_envelope_deltas > 0.0).all() ) 
+                        )
             #only converging if error is always decreasing
             converging = ( ( (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all() )
-                        or ((peak_envelope_deltas < 0.0).all() and 
-                            (trough_envelope_deltas < 0.0).all() ) )
+                        or (envelope_detected and
+                            (peak_envelope_deltas < 0.0).all() and 
+                            (trough_envelope_deltas < 0.0).all() ) 
+                        )
             #in a limit cycle if error ever rises
             limit_cycle = not converging and not unstable
         else:
@@ -262,8 +268,9 @@ class HystereticPeakDetector:
     def envelopeFromArray(self, array):
         envelope=[]
         diffs=scipy.diff(array)
+        #identifies envelope peaks via first derivative
         for index in range( 1,len(diffs) ):
-            if diffs[index] < 0 and diffs[index-1] > 0:
+            if diffs[index] <= 0 and diffs[index-1] >= 0:
                 envelope.append(array[index])
         return envelope
 
