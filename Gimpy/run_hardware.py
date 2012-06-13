@@ -4,11 +4,11 @@ sys.path.append('..')
 
 from RealWorldKit import *
 from ControlsKit import logger
-from ControlsKit.import_behavior import importBehavior
+from ControlsKit.import_planner import importPlanner
 
 
-# Check command-line arguments to find the behavior module
-update = importBehavior()
+# Check command-line arguments to find the planner module
+update = importPlanner()
 
 
 leg1 = ControlBus(device='/dev/ttyUSB0')

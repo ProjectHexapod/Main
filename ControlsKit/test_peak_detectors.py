@@ -86,7 +86,7 @@ class PeakDetectorTestCase(unittest.TestCase):
     
     def testLimitCycleDetection(self):
         lc_sequence=[2.5*sin(math.pi*float(i)/10) 
-                    for i in range(41)]
+                    for i in range(201)]
         for element in lc_sequence:
             global_time.updateDelta(0.1)
             self.hpd.update(element)
