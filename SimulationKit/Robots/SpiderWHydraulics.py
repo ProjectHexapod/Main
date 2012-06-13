@@ -3,53 +3,107 @@ from SimulationKit.helpers import *
 from SimulationKit.pubsub import *
 import ode
 
-class SpiderWHydraulics(MultiBody):
-    BODY_W  = 0.4
-    BODY_T  = 0.3
-    YAW_L   = 0.3
-    YAW_W   = 0.1
-    THIGH_L = 1.83 # 6 feet
-    THIGH_W = 0.125
-    CALF_L  = 2.44  # 8 feet
-    CALF_W  = 0.1
-    BODY_M  = 454  # 1000 lbs
-    YAW_M   = 10.0 # 22 lbs
-    THIGH_M = 36.3 # 80 lbs
-    CALF_M  = 36.3 # 80 lbs
-    def buildBody( self ):
-        """ Build an equilateral hexapod """
+deg2rad = pi/180
+
+class StompyLegPhysicalCharacteristics(object):
+    """This class contains the physical characteristics of one of
+    Stompy's legs"""
+    def __init__(self):
+        self.YAW_L   = 0.3   # Length of yaw link
+        self.YAW_W   = 0.1   # Diameter of yaw link
+        self.THIGH_L = 1.83  # Length of thigh link, 6 feet
+        self.THIGH_W = 0.125 # Diameter of thigh link
+        self.CALF_L  = 2.44  # Length of calf link 8 feet
+        self.CALF_W  = 0.1   # Diameter of calf link
+        self.YAW_M   = 10.0  # Yaw link mass, 22 lbs
+        self.THIGH_M = 36.3  # Thigh link mass, 80 lbs
+        self.CALF_M  = 36.3  # Calf link mass, 80 lbs
+
+        # describe the neutral position of the leg
+        self.YAW_OFFSET   = 0.0
+        self.PITCH_OFFSET = 0.0
+        self.KNEE_OFFSET  = deg2rad*90.0
+        # Compliance of foot
+        self.COMPLIANCE_K   = 87560  # newtons/meter deflection of foot = 1000 pounds/2 inches
+        self.COMPLIANCE_LEN = 0.06  # how long til it bottoms out
+        # Leg origin from robot origin, expressed in Stompy's coordinate frame
+        self.OFFSET_FROM_ROBOT_ORIGIN   = (0,0,0)
+        # Row major 3x3 rotation matrix
+        self.ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), 0.0 )
+
+class StompyPhysicalCharacteristics(object):
+    """
+    This class is a container for Stompy's physical layout, including
+    link lengths, masses, offsets, actuator placements...
+    """
+    def __init__(self):
+        self.BODY_W  = 0.4 # Body diameter
+        self.BODY_T  = 0.3 # Thickness of the body capsule TODO: improve body model
+        self.BODY_M  = 500  # Body mass
+        self.LEGS = []
         # These are the rotation matrices we will use
         r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
         r_60z = calcRotMatrix( (0,0,1), pi/3.0 )
         r_90z = calcRotMatrix( (0,0,1), pi/2.0 )
-        # p_hip is the point where the hip is located.
-        # We want to start it 30 degrees into a rotation around Z
-        p_hip = (self.BODY_W/2.0, 0, 0)
-        #p_hip = rotate3( r_30z, p_hip )
-        self.core = [0,0,0]
-        self.core[0] = self.addBody( p_hip, mul3(p_hip, -1), self.BODY_T, mass=self.BODY_M )
+        # To start with, the layout of the body is perfectly hexagonal
+        leg_origin = (self.BODY_W/2.0, 0, 0)
+        leg_origin = rotate3( r_30z, leg_origin )
+        leg_angle  = pi/6.0
+        # Set their offsets and rotations from robot origin
+        for i in range(6):
+            leg = StompyLegPhysicalCharacteristics()
+            leg.OFFSET_FROM_ROBOT_ORIGIN   = leg_origin
+            leg.ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), leg_angle )
+            leg_origin = rotate3( r_60z, leg_origin )
+            leg_angle += pi/3.0
+            self.LEGS.append(leg)
+        # As a test, let's make one of the legs kind of stubby...
+        #self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = (.5,0,-.2)
+        #self.LEGS[0].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), pi/2 )
+        #self.LEGS[0].THIGH_L = 1.0
+        #self.LEGS[0].CALF_L = 1.0
+
+class SpiderWHydraulics(MultiBody):
+    def __init__( self, *args, **kwargs ):
+        self.dimensions = StompyPhysicalCharacteristics()
+        super(self.__class__, self).__init__(*args, **kwargs)
+    def buildBody( self ):
+        """ Build a hexapod according to the dimensions laid out
+        in self.dimensions """
+        self.core = self.addBody( (self.dimensions.BODY_W/2,0,0),\
+            (-1*self.dimensions.BODY_W/2,0,0),\
+            self.dimensions.BODY_T,\
+            mass=self.dimensions.BODY_M )
 
         self.publisher.addToCatalog(\
             "body.totalflow_gpm",\
             self.getTotalHydraulicFlowGPM)
 
         # Start another rotation
-        p = (1, 0, 0)
-        p = rotate3( r_30z, p )
         self.legs                  = [0,0,0,0,0,0]
         for i in range(6):
-            yaw_p  = mul3( p, (self.BODY_W/2.0) )
-            hip_p  = mul3( p, (self.BODY_W/2.0)+self.YAW_L )
-            knee_p = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L )
-            foot_p = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L+self.CALF_L )
+            hip_offset = self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN
+            leg_rot    = self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN
+            yaw_p     = hip_offset
+            hip_p     = add3(yaw_p,\
+                mul3( rotate3( leg_rot, (1,0,0) ),\
+                self.dimensions.LEGS[i].YAW_L) )
+            knee_p     = add3(hip_p,\
+                mul3( rotate3( leg_rot, (1,0,0) ),\
+                self.dimensions.LEGS[i].THIGH_L ))
+            midshin_p = add3( knee_p, \
+                rotate3(leg_rot, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L)))
+            foot_p = add3( midshin_p, \
+                rotate3(leg_rot, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L)))
+
             # Add hip yaw
             yaw_link = self.addBody( \
                 p1     = yaw_p, \
                 p2     = hip_p, \
-                radius = self.YAW_W, \
-                mass   = self.YAW_M )
-            hip_yaw = self.addLinearControlledHingeJoint( \
-                body1        = self.core[0], \
+                radius = self.dimensions.LEGS[i].YAW_W, \
+                mass   = self.dimensions.LEGS[i].YAW_M )
+            hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
+                body1        = self.core, \
                 body2        = yaw_link, \
                 anchor       = yaw_p, \
                 axis         = (0,0,1),\
@@ -57,7 +111,6 @@ class SpiderWHydraulics(MultiBody):
                 a2x          = 0.25,\
                 a2y          = 0.25)
             hip_yaw.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
-            hip_yaw.setGain(10.0)
             hip_yaw.setAngleOffset(0.0)
             self.publisher.addToCatalog(\
                 "l%d.hy.torque"%i,\
@@ -84,13 +137,13 @@ class SpiderWHydraulics(MultiBody):
 
             # Add thigh and hip pitch
             # Calculate the axis of rotation for hip pitch
-            axis = rotate3( r_90z, p )
+            axis = rotate3( leg_rot, (0,-1,0) )
             thigh = self.addBody(\
                 p1     = hip_p, \
                 p2     = knee_p, \
-                radius = self.THIGH_W, \
-                mass   = self.THIGH_M )
-            hip_pitch = self.addLinearControlledHingeJoint( \
+                radius = self.dimensions.LEGS[i].THIGH_W, \
+                mass   = self.dimensions.LEGS[i].THIGH_M )
+            hip_pitch = self.addLinearVelocityActuatedHingeJoint( \
                 body1        = yaw_link, \
                 body2        = thigh, \
                 anchor       = hip_p, \
@@ -100,11 +153,7 @@ class SpiderWHydraulics(MultiBody):
                 a2y          = 0.35)
             #hip_pitch.setParam(ode.ParamLoStop, -pi/3)
             #hip_pitch.setParam(ode.ParamHiStop, +pi/3)
-            p1 = mul3( p, (self.BODY_W/2.0)+self.YAW_L )
-            p1 = (p1[0], p1[1], 0.355)
-            p2 = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L/2 )
             hip_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
-            hip_pitch.setGain(10.0)
             hip_pitch.setAngleOffset(0.0)
             self.publisher.addToCatalog(\
                 "l%d.hp.torque"%i,\
@@ -132,10 +181,10 @@ class SpiderWHydraulics(MultiBody):
             # Add calf and knee bend
             calf = self.addBody( \
                 p1     = knee_p, \
-                p2     = foot_p, \
-                radius = self.CALF_W, \
-                mass   = self.CALF_M )
-            knee_pitch = self.addLinearControlledHingeJoint( \
+                p2     = midshin_p, \
+                radius = self.dimensions.LEGS[i].CALF_W, \
+                mass   = self.dimensions.LEGS[i].CALF_M/2.0 )
+            knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
                 body1        = thigh, \
                 body2        = calf, \
                 anchor       = knee_p, \
@@ -143,14 +192,10 @@ class SpiderWHydraulics(MultiBody):
                 a1x          = 0.25,\
                 a2x          = 0.25,\
                 a2y          = 0.25)
-            #knee_pitch.setParam(ode.ParamLoStop, -2*pi/3)
-            #knee_pitch.setParam(ode.ParamHiStop, 0.0)
-            p1 = mul3( p, (self.BODY_W/2.0)+self.YAW_L+(self.THIGH_L/4) )
-            p1 = (p1[0], p1[1], -0.1)
-            p2 = mul3( p, (self.BODY_W/2.0)+self.YAW_L+self.THIGH_L-.355 )
+            knee_pitch.setParam(ode.ParamLoStop, -pi/2)
+            knee_pitch.setParam(ode.ParamHiStop, pi/3)
             knee_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
-            knee_pitch.setGain(10.0)
-            knee_pitch.setAngleOffset(0.0)
+            knee_pitch.setAngleOffset(deg2rad*90.0)
             self.publisher.addToCatalog(\
                 "l%d.kp.torque"%i,\
                 knee_pitch.getTorque)
@@ -173,17 +218,64 @@ class SpiderWHydraulics(MultiBody):
             self.publisher.addToCatalog(\
                 "l%d.kp.flow_gpm"%i,\
                 knee_pitch.getHydraulicFlowGPM)
-
+            # Create the foot
+            # Add the compliant joint
+            foot = self.addBody( \
+                p1     = midshin_p, \
+                p2     = foot_p, \
+                radius = self.dimensions.LEGS[i].CALF_W, \
+                mass   = self.dimensions.LEGS[i].CALF_M/2 )
+            calf_axis  = norm3(sub3(midshin_p, foot_p))
+            foot_shock = self.addPrismaticSpringJoint( \
+                body1        = calf, \
+                body2        = foot, \
+                axis         = mul3(calf_axis,-1),\
+                spring_const = -20e3,\
+                hi_stop      = 0.1,\
+                lo_stop      = 0.0,\
+                neutral_position = 0.0,\
+                damping          = -1e2)
+                
             d                 = {}
             d['hip_yaw']      = hip_yaw
             d['hip_pitch']    = hip_pitch
             d['knee_pitch']   = knee_pitch
+            d['foot_shock']   = foot_shock
             d['hip_yaw_link'] = yaw_link
             d['thigh']        = thigh
             d['calf']         = calf
+            d['foot']         = foot
             self.legs[i]      = d
-
-            p = rotate3( r_60z, p )
+    def getEncoderAngleMatrix( self ):
+        """
+        Returns a list of tuples containing the joint angles at each joint.
+        Outer index is leg index
+        Inner index is joint index
+        So retval[0][0] is hip yaw for leg 0,
+        retval[1][0] is hip yaw for leg 1,
+        retval[0][2] is knee angle for leg 0, etc.
+        """
+        retval = []
+        for i in range(6):
+            retval.append( (\
+                self.legs[i]['hip_yaw'].getAngle(),\
+                self.legs[i]['hip_pitch'].getAngle(),\
+                self.legs[i]['knee_pitch'].getAngle(),\
+                self.legs[i]['foot_shock'].getPosition()) )
+        return retval
+    def setLenRateMatrix( self, len_rate_matrix ):
+        """
+        Provides an interface to set the length rates of the actuators
+        at all joints at the same time.
+        len_rate_matrix outer indices are leg indices
+        inner indices specify joints
+        len_rate_matrix[0][1] is leg 0 hip pitch
+        len_rate_matrix[1][2] is leg 1 knee pitch
+        """
+        for i in range(6):
+            self.legs[i]['hip_yaw'   ].setLengthRate(len_rate_matrix[i][0])
+            self.legs[i]['hip_pitch' ].setLengthRate(len_rate_matrix[i][1])
+            self.legs[i]['knee_pitch'].setLengthRate(len_rate_matrix[i][2])
     def getTotalHydraulicFlowGPM( self ):
         total = 0
         for i in range(6):
@@ -204,13 +296,12 @@ class SpiderWHydraulics(MultiBody):
 
         i = 0
 
-
         for target_p in positions:
-            yaw_p = mul3(p, (self.BODY_W/2))
+            yaw_p = mul3(p, (self.dimensions.BODY_W/2))
             # Calculate hip yaw
             hip_yaw_offset_angle     = atan2(yaw_p[1], yaw_p[0])
             hip_yaw_angle            = atan2( target_p[1], target_p[0] ) - hip_yaw_offset_angle
-            yaw_link_offset = mul3(p, self.YAW_L)
+            yaw_link_offset = mul3(p, self.dimensions.LEGS[i].YAW_L)
             yaw_link_offset = ( yaw_link_offset[0]*cos(hip_yaw_angle),\
                                 yaw_link_offset[1]*sin(hip_yaw_angle),\
                                 0)
@@ -219,25 +310,34 @@ class SpiderWHydraulics(MultiBody):
             # Calculate leg length
             leg_l                    = dist3( target_p, hip_p )
             # Use law of cosines on leg length to calculate knee angle 
-            knee_angle               = pi-thetaFromABC( self.THIGH_L, self.CALF_L, leg_l )
+            knee_angle               = pi-thetaFromABC( self.dimensions.LEGS[i].THIGH_L, self.dimensions.LEGS[i].CALF_L, leg_l )
             # Calculate target point relative to hip origin
             target_p                 = sub3( target_p, hip_p )
             # Calculate hip pitch
-            hip_offset_angle         = -thetaFromABC( self.THIGH_L, leg_l,  self.CALF_L )
+            hip_offset_angle         = -thetaFromABC( self.dimensions.LEGS[i].THIGH_L, leg_l,  self.dimensions.LEGS[i].CALF_L )
             hip_depression_angle     = -atan2( target_p[2], len3((target_p[0], target_p[1], 0)) )
             hip_pitch_angle          = hip_offset_angle + hip_depression_angle
-            self.legs[i]['hip_yaw'   ].setAngleTarget( -hip_yaw_angle   )
-            self.legs[i]['hip_pitch' ].setAngleTarget( -hip_pitch_angle )
-            self.legs[i]['knee_pitch'].setAngleTarget( -knee_angle      )
+            def controlLenRate( joint, target_ang, gain=10.0 ):
+                error = target_ang - joint.getAngle()
+                joint.setLengthRate( error*gain )
+            controlLenRate(self.legs[i]['hip_yaw'   ], -hip_yaw_angle   )
+            controlLenRate(self.legs[i]['hip_pitch' ],  hip_pitch_angle )
+            controlLenRate(self.legs[i]['knee_pitch'],  knee_angle      )
             # Calculate the hip base point for the next iteration
             p                    = rotate3( r_60z, p )
             i+=1
     def getBodyHeight( self ):
-        return self.core[0].getPosition()[2]
+        return self.core.getPosition()[2]
     def getPosition( self ):
-        return self.core[0].getPosition()
+        return self.core.getPosition()
+    def getAcceleration( self ):
+        return div3(self.core.getForce(), self.dimensions.BODY_M) # FIXME: Returns (0,0,0)
+    def getOrientation( self ):
+        return self.core.getRotation()
+    def getAngularRates( self ):
+        return self.core.getAngularVel()
     def getVelocity( self ):
-        return self.core[0].getLinearVel()
+        return self.core.getLinearVel()
     def naiveWalk( self ):
         gait_cycle=5.0
         foot_positions = []
@@ -311,6 +411,13 @@ class SpiderWHydraulics(MultiBody):
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
+    def colorShockByDeflection( self, joint ):
+            b = joint.getBody(1)
+            r = abs(joint.getPosition()/joint.getHiStop())
+            if r >= 0.99:
+                b.color = (0,0,0,255)
+            else:
+                b.color = (255*r,255*(1-r),0,255)
     def colorJointByTorque( self, joint ):
             b = joint.getBody(1)
             r = abs(joint.getTorque()/joint.getTorqueLimit())
@@ -321,8 +428,9 @@ class SpiderWHydraulics(MultiBody):
     def colorTorque( self ):
         for i in range(6):
             # Color overtorque
-            self.colorJointByTorque( self.legs[i]['hip_yaw'] )
-            self.colorJointByTorque( self.legs[i]['hip_pitch'] )
-            self.colorJointByTorque( self.legs[i]['knee_pitch'] )
+            self.colorJointByTorque(     self.legs[i]['hip_yaw'] )
+            self.colorJointByTorque(     self.legs[i]['hip_pitch'] )
+            self.colorJointByTorque(     self.legs[i]['knee_pitch'] )
+            self.colorShockByDeflection( self.legs[i]['foot_shock'])
     def update( self ):
         MultiBody.update(self)
