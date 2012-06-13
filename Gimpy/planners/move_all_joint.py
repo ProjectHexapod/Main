@@ -26,7 +26,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
 
     # Init traj. Do this after the first update.
     if traj is None:
-	    traj = Pause(leg, 5.0)
+        traj = Pause(leg, 5.0)
 
     # Monitor leg_trajectories
     if traj.isDone():

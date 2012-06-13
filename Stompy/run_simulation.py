@@ -4,11 +4,11 @@ from SimulationKit import Simulator
 from SimulationKit.Robots import SpiderWHydraulics
 from SimulationKit.helpers import *
 #from ControlsKit import logger
-from ControlsKit.import_behavior import importBehavior
+from ControlsKit.import_planner import importPlanner
 
 
-# Check command-line arguments to find the behavior module
-update = importBehavior()
+# Check command-line arguments to find the planner module
+update = importPlanner()
 
 
 d = {'offset':(0,0,2.5)}

@@ -1,9 +1,9 @@
 from sys import argv, exit
 
-def importBehavior(module_or_file_name = None):
+def importPlanner(module_or_file_name = None):
     if module_or_file_name is None:
         if len(argv) != 2:
-            print "Usage: %s <behavior-module>" % argv[0]
+            print "Usage: %s <planner-module>" % argv[0]
             exit(2)    
         module_or_file_name = argv[1].strip()
     
@@ -14,4 +14,4 @@ def importBehavior(module_or_file_name = None):
     try:
         return module.update
     except AttributeError:
-        raise AttributeError("The behavior module must have an update() function.")
+        raise AttributeError("The planner module must have an update() function.")
