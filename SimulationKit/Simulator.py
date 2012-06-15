@@ -178,7 +178,7 @@ class Simulator(object):
         world, contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
-            c.setMu(250) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
+            c.setMu(500) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
             j = ode.ContactJoint(self.world, self.contactgroup, c)
             self.contactlist.append(j)
             j.attach(geom1.getBody(), geom2.getBody())
