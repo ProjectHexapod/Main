@@ -99,10 +99,23 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         act = self.getActPath()
         act_ang = pi-atan2(act[1],act[0])
         return arate*self.a1_x*sin( act_ang )
+    def setCrossSection( self, area ):
+        self.setExtendCrossSection(area)
+        self.setRetractCrossSection(area)
+    def setExtendCrossSection( self, area ):
+        self.extend_cross_section = area
+    def setRetractCrossSection( self, area ):
+        self.retract_cross_section = area
     def getHydraulicFlow( self ):
-        return self.getLengthRate()*self.cross_section
+        """Returns the hydraulic flow on the supply line.  Note that the flow on
+        the supply and return lines can be different."""
+        arate = self.getAngleRate()
+        if arate > 0:
+            return arate*self.extend_cross_section
+        else:
+            return arate*self.retract_cross_section
     def getHydraulicFlowGPM( self ):
-        return self.getLengthRate()*self.cross_section*15850.3
+        return self.getHydraulicFlow()*15850.3
     def getActPath( self ):
         """
         Return the path of the actuator in the hinge plane
@@ -130,12 +143,23 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         return self.getLeverArm()*force
     def __torque_to_force( self, torque ):
         return torque/self.getLeverArm()
-    def setForceLimit( self , f ):
-        self.force_limit = f
+    def setForceLimit( self, f ):
+        self.setExtendForceLimit( f )
+        self.setRetractForceLimit( f )
+    def setExtendForceLimit( self, f ):
+        self.extend_force_limit = f
+    def setRetractForceLimit( self, f ):
+        self.retract_force_limit = f
     def setTorqueLimit( self, l ):
         print 'Cannot set torque limit on linear actuator controlled hinge'
     def getTorqueLimit( self ):
-        return abs(self.getLeverArm()*self.force_limit)
+        """The torque limit is directional depending on what side of the piston
+        is being driven.  This is dependent on which way we are pressurizing the
+        piston, not which way it's presently moving"""
+        if self.getAngleError()>0:
+            return abs(self.getLeverArm()*self.extend_force_limit)
+        else:
+            return abs(self.getLeverArm()*self.retract_force_limit)
     def update( self ):
         limit = self.getTorqueLimit()
         self.setParam(ode.ParamFMax,    limit)
@@ -160,6 +184,15 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         if self.getBody(0) == ode.environment:
             ang_vel = -1*ang_vel
         return ang_vel
+
+    def getTorqueLimit( self ):
+        """The torque limit is directional depending on what side of the piston
+        is being driven.  This is dependent on which way we are pressurizing the
+        piston, not which way it's presently moving"""
+        if self.lenrate > 0:
+            return abs(self.getLeverArm()*self.extend_force_limit)
+        else:
+            return abs(self.getLeverArm()*self.retract_force_limit)
  
     def setLengthRate(self, vel_mps):
         self.lenrate = vel_mps
