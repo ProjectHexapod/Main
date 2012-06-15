@@ -109,11 +109,11 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     def getHydraulicFlow( self ):
         """Returns the hydraulic flow on the supply line.  Note that the flow on
         the supply and return lines can be different."""
-        arate = self.getAngleRate()
-        if arate > 0:
-            return arate*self.extend_cross_section
+        lrate = self.getLengthRate()
+        if lrate > 0:
+            return lrate*self.extend_cross_section
         else:
-            return arate*self.retract_cross_section
+            return lrate*self.retract_cross_section
     def getHydraulicFlowGPM( self ):
         return self.getHydraulicFlow()*15850.3
     def getActPath( self ):
@@ -148,6 +148,10 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         self.setRetractForceLimit( f )
     def setExtendForceLimit( self, f ):
         self.extend_force_limit = f
+    def getExtendForceLimit( self ):
+        return self.extend_force_limit
+    def getRetractForceLimit( self ):
+        return self.retract_force_limit
     def setRetractForceLimit( self, f ):
         self.retract_force_limit = f
     def setTorqueLimit( self, l ):
