@@ -44,14 +44,20 @@ class ActuatorCharacteristics(object):
             "This actuator placement breaks sign conventions\
             ... actuator extend should increase joint angle"
         return extended_angle - retracted_angle
+    def getExtensionCrossSectionM2( self ):
+        """Returns piston cross sectional area in m^2 on the extend side of the
+        piston"""
+        return ((self.BORE_DIAMETER/2)**2)*pi
+    def getRetractionCrossSectionM2( self ):
+        """Returns piston cross sectional area in m^2 on the extend side of the
+        piston"""
+        return ((self.BORE_DIAMETER/2)**2-(self.ROD_DIAMETER/2)**2)*pi
     def getMaxExtensionForceNewtons( self ):
         """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
-        return ((self.BORE_DIAMETER/2)**2)*pi*self.SYSTEM_PRESSURE
+        return self.getExtensionCrossSectionM2()*self.SYSTEM_PRESSURE
     def getMaxRetractionForceNewtons( self, pressure = 0.0 ):
         """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
-        return
-        ((self.BORE_DIAMETER/2)**2-(self.ROD_DIAMETER/2)**2)*pi\
-            *self.SYSTEM_PRESSURE
+        return self.getRetractionCrossSectionM2()*self.SYSTEM_PRESSURE
 
 class StompyLegPhysicalCharacteristics(object):
     """
@@ -125,7 +131,7 @@ class StompyPhysicalCharacteristics(object):
     link lengths, masses, offsets, actuator placements...
     """
     def __init__(self):
-        self.BODY_W  = 2.2 # Body diameter
+        self.BODY_W  = 2.5 
         self.BODY_T  = 0.8 # Thickness of the body capsule TODO: improve body model
         self.BODY_M  = pound2kilo*2000
         #self.BODY_M  = pound2kilo*20
@@ -219,7 +225,10 @@ class SpiderWHydraulics(MultiBody):
                 a2y    = yaw_act_dim.PIVOT2[1])
             hip_yaw.setParam(ode.ParamLoStop, 0.0)
             hip_yaw.setParam(ode.ParamHiStop, yaw_act_dim.getRangeOfMotion())
-            hip_yaw.setForceLimit(yaw_act_dim.getMaxExtensionForceNewtons())
+            hip_yaw.setExtendForceLimit(yaw_act_dim.getMaxExtensionForceNewtons())
+            hip_yaw.setRetractForceLimit(yaw_act_dim.getMaxRetractionForceNewtons())
+            hip_yaw.setExtendCrossSection(yaw_act_dim.getExtensionCrossSectionM2())
+            hip_yaw.setRetractCrossSection(yaw_act_dim.getRetractionCrossSectionM2())
             hip_yaw.setAngleOffset(yaw_act_dim.ANG_OFFSET )
 
             # Add thigh and hip pitch
@@ -242,7 +251,10 @@ class SpiderWHydraulics(MultiBody):
                 a2y    = pitch_act_dim.PIVOT2[1])
             hip_pitch.setParam(ode.ParamLoStop, 0.0)
             hip_pitch.setParam(ode.ParamHiStop, pitch_act_dim.getRangeOfMotion())
-            hip_pitch.setForceLimit(pitch_act_dim.getMaxExtensionForceNewtons())
+            hip_pitch.setExtendForceLimit(pitch_act_dim.getMaxExtensionForceNewtons())
+            hip_pitch.setRetractForceLimit(pitch_act_dim.getMaxRetractionForceNewtons())
+            hip_pitch.setExtendCrossSection(pitch_act_dim.getExtensionCrossSectionM2())
+            hip_pitch.setRetractCrossSection(pitch_act_dim.getRetractionCrossSectionM2())
             hip_pitch.setAngleOffset(pitch_act_dim.ANG_OFFSET )
 
             # Add calf and knee bend
@@ -266,8 +278,12 @@ class SpiderWHydraulics(MultiBody):
                 a2y    = knee_act_dim.PIVOT2[1])
             knee_pitch.setParam(ode.ParamLoStop, 0.0)
             knee_pitch.setParam(ode.ParamHiStop, knee_act_dim.getRangeOfMotion())
-            knee_pitch.setForceLimit(knee_act_dim.getMaxExtensionForceNewtons())
+            knee_pitch.setExtendForceLimit(knee_act_dim.getMaxExtensionForceNewtons())
+            knee_pitch.setRetractForceLimit(knee_act_dim.getMaxRetractionForceNewtons())
+            knee_pitch.setExtendCrossSection(knee_act_dim.getExtensionCrossSectionM2())
+            knee_pitch.setRetractCrossSection(knee_act_dim.getRetractionCrossSectionM2())
             knee_pitch.setAngleOffset(knee_act_dim.ANG_OFFSET )
+
             # Create the foot
             # Add the compliant joint
             act_axis   = rotateAxisAngle( knee_act_dim.AXIS, \
@@ -292,72 +308,37 @@ class SpiderWHydraulics(MultiBody):
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
                 damping          = -1e2)
-            self.publisher.addToCatalog(\
-                "l%d.hy.torque"%i,\
-                hip_yaw.getTorque)
-            self.publisher.addToCatalog(\
-                "l%d.hy.torque_lim"%i,\
-                hip_yaw.getTorqueLimit)
-            self.publisher.addToCatalog(\
-                "l%d.hy.ang"%i,\
-                hip_yaw.getAngle)
-            self.publisher.addToCatalog(\
-                "l%d.hy.ang_target"%i,\
-                hip_yaw.getAngleTarget)
-            self.publisher.addToCatalog(\
-                "l%d.hy.len"%i,\
-                hip_yaw.getLength)
-            self.publisher.addToCatalog(\
-                "l%d.hy.len_rate"%i,\
-                hip_yaw.getLengthRate)
-            hip_yaw.cross_section = 2.02e-3 # 2 inch bore
-            self.publisher.addToCatalog(\
-                "l%d.hy.flow_gpm"%i,\
-                hip_yaw.getHydraulicFlowGPM)
-            self.publisher.addToCatalog(\
-                "l%d.hp.torque"%i,\
-                hip_pitch.getTorque)
-            self.publisher.addToCatalog(\
-                "l%d.hp.torque_lim"%i,\
-                hip_pitch.getTorqueLimit)
-            self.publisher.addToCatalog(\
-                "l%d.hp.ang"%i,\
-                hip_pitch.getAngle)
-            self.publisher.addToCatalog(\
-                "l%d.hp.ang_target"%i,\
-                hip_pitch.getAngleTarget)
-            self.publisher.addToCatalog(\
-                "l%d.hp.len"%i,\
-                hip_pitch.getLength)
-            self.publisher.addToCatalog(\
-                "l%d.hp.len_rate"%i,\
-                hip_pitch.getLengthRate)
-            hip_pitch.cross_section = 2.02e-3 # 2 inch bore
-            self.publisher.addToCatalog(\
-                "l%d.hp.flow_gpm"%i,\
-                hip_pitch.getHydraulicFlowGPM)
-            self.publisher.addToCatalog(\
-                "l%d.kp.torque"%i,\
-                knee_pitch.getTorque)
-            self.publisher.addToCatalog(\
-                "l%d.kp.torque_lim"%i,\
-                knee_pitch.getTorqueLimit)
-            self.publisher.addToCatalog(\
-                "l%d.kp.ang"%i,\
-                knee_pitch.getAngle)
-            self.publisher.addToCatalog(\
-                "l%d.kp.ang_target"%i,\
-                knee_pitch.getAngleTarget)
-            self.publisher.addToCatalog(\
-                "l%d.kp.len"%i,\
-                knee_pitch.getLength)
-            self.publisher.addToCatalog(\
-                "l%d.kp.len_rate"%i,\
-                knee_pitch.getLengthRate)
-            knee_pitch.cross_section = 2.02e-3 # 2 inch bore
-            self.publisher.addToCatalog(\
-                "l%d.kp.flow_gpm"%i,\
-                knee_pitch.getHydraulicFlowGPM)
+            def populatePublisher( dof_name, joint ):
+                self.publisher.addToCatalog(\
+                    "l%d.%s.torque"%(i,dof_name),\
+                    joint.getTorque)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.torque_lim"%(i,dof_name),\
+                    joint.getTorqueLimit)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.ang"%(i,dof_name),\
+                    joint.getAngle)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.len"%(i,dof_name),\
+                    joint.getLength)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.len_rate"%(i,dof_name),\
+                    joint.getLengthRate)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.flow_gpm"%(i,dof_name),\
+                    joint.getHydraulicFlowGPM)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.lever_arm"%(i,dof_name),\
+                    joint.getLeverArm)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.extend_force"%(i,dof_name),\
+                    joint.getExtendForceLimit)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.retract_force"%(i,dof_name),\
+                    joint.getRetractForceLimit)
+            populatePublisher('hy', hip_yaw)
+            populatePublisher('hp', hip_pitch)
+            populatePublisher('kp', knee_pitch)
                 
             d                 = {}
             d['hip_yaw']      = hip_yaw
@@ -501,9 +482,9 @@ class SpiderWHydraulics(MultiBody):
         step_cycle      = gait_cycle/2.0
         swing_overshoot = 1.00
         neutral_r       = 3.0     # radius from body center or foot resting, m
-        stride_length   = 2.00    # length of a stride, m
-        body_h          = 1.50    # height of body off the ground, m
-        foot_lift_h     = 0.45     # how high to lift feet in m
+        stride_length   = 1.70    # length of a stride, m
+        body_h          = 2.00    # height of body off the ground, m
+        foot_lift_h     = 0.45    # how high to lift feet in m
 
         foot_positions = []
         x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(self.sim.sim_t%step_cycle)/gait_cycle)
