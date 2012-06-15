@@ -174,11 +174,11 @@ class PlotFrame(wx.Frame):
         colors = ['red', 'green', 'blue', 'black']
         markers = []
         i = 0
-	z_i = 0
-	while not self.data['time'][z_i]:
-	    z_i += 1
-	    if z_i == len(self.data['time']):
-		return
+        z_i = 0
+        while not self.data['time'][z_i]:
+            z_i += 1
+            if z_i == len(self.data['time']):
+                return
         for k,v in self.data.items():
             if k == 'time':
                 continue
