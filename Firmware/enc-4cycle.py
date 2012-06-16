@@ -28,5 +28,6 @@ while True:
     retval = s.read(len(cmdstr))
     for c in retval:
         print '%.2x' % ord(c),
+    print ord(retval[2])*256+ord(retval[3]), ord(retval[4])*256+ord(retval[5]),
     print ''
     sleep(0.01/3)
