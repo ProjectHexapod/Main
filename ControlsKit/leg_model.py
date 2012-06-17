@@ -9,9 +9,9 @@ from leg_logger import logger
 from os import path
 
 class LegModel:
-    def __init__(self, config_file="../ControllsKit/leg_model.conf", section="LegModel"):
+    def __init__(self, config_file="../ControlsKit/leg_model.conf", section="LegModel"):
         c = ConfigParser()
-        if not path.exists(config_file):
+        if not path.exists(path.abspath(config_file)):
             print 'Config file %s not found!'%config_file
             raise IOError
         c.read(config_file)
