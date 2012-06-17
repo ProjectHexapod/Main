@@ -4,7 +4,7 @@ from math_utils import saturate
 import time_sources
 from hysteretic_peak_detector import HystereticPeakDetector
 
-class PIDController:
+class PidController:
     def __init__(self, kp, ki, kd):
         self.kp = kp
         self.ki = ki
@@ -32,7 +32,7 @@ class PIDController:
         
         if self.peak_detector.hasConverged():
             if self.peak_detector.isUnstable():
-                warningstring=("LimbController: Maximum error for the"+
+                warningstring=("PidController: Maximum error for the"+
                         " desired point has increased for %d seconds,"+
                         " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
@@ -42,7 +42,7 @@ class PIDController:
                         error=error, 
                         bad_value=error)
             elif self.peak_detector.isLimitCycle():
-                warningstring=("LimbController: Maximum error for the"+
+                warningstring=("PidController: Maximum error for the"+
                         " desired point has increased once or more for %d seconds,"+
                         " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
@@ -53,7 +53,7 @@ class PIDController:
                         bad_value=error)
         else:
             if self.peak_detector.isUnstable():
-                errorstring=("LimbController: Maximum error for the desired point"+ 
+                errorstring=("PidController: Maximum error for the desired point"+ 
                         "has increased for %d seconds.  System potentially unstable." %
                         self.peak_detector.getResolveTime() )
                 logger.error(errorstring,
@@ -63,7 +63,7 @@ class PIDController:
                         bad_value=error)
                 raise ValueError(errorstring)
             elif self.peak_detector.isLimitCycle():
-                errorstring=("LimbController: Controller has not converged"+ 
+                errorstring=("PidController: Controller has not converged"+ 
                 "over %d seconds.  System potentially in a limit cycle." %
                 self.peak_detector.getResolveTime() )
                 logger.error(errorstring,
@@ -97,7 +97,7 @@ class PIDController:
         
         #is error within available soft range?
         if error>(measured_pos-error_min) or error>(error_max-measured_pos):
-            logger.error("LimbController.isErrorInBounds: error out of soft bounds.",
+            logger.error("PidController.isErrorInBounds: error out of soft bounds.",
                         error=error,
                         measured_pos=measured_pos)
             raise ValueError("Error signal points to a position out of soft bounds.")
@@ -106,22 +106,22 @@ class PIDController:
     def boundDesiredPosition(self,desired_pos):
         #caps desired position to soft movement range
         if math.isnan(desired_pos):
-            logger.error("LimbController.boundDesiredPosition: NaN where aN expected!",
+            logger.error("PidController.boundDesiredPosition: NaN where aN expected!",
                         desired_pos=desired_pos,
                         bad_value="desired_pos")
-            raise ValueError("LimbController: desired_pos cannot be NaN.")
+            raise ValueError("PidController: desired_pos cannot be NaN.")
         
         command_min=-20
         command_max=20
         
         if desired_pos<command_min or desired_pos>command_max:
-            logger.error("LimbController.boundDesiredPosition:"+
+            logger.error("PidController.boundDesiredPosition:"+
                         " desired position out of bounds!",
                         desired_pos=desired_pos,
                         command_min=command_min,
                         command_max=command_max,
                         bad_value="desired_pos")
-            raise ValueError("LimbController.boundDesiredPosition:"+
+            raise ValueError("PidController.boundDesiredPosition:"+
                     " desired position out of soft bounds")
         
         bounded_pos=saturate(desired_pos,command_min,command_max)
@@ -131,6 +131,6 @@ class PIDController:
         #prevent the controller from commanding an unsafely fast actuator move
         if ( abs(actuator_command - measured_pos)/
                 time_sources.global_time.getDelta() > self.max_movement_rate):
-            raise ValueError("LimbController: Actuator command would cause"+
+            raise ValueError("PidController: Actuator command would cause"+
             "joint to move at an unsafe rate.")
         return actuator_command
