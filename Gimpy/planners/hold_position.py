@@ -1,32 +1,30 @@
-from ControlsKit import time_sources, LegController
-from ControlsKit.leg_trajectories import Pause
+from ControlsKit import time_sources, LegModel, LimbController
+from ControlsKit.Paths import Pause
 
 
 # Initialization
-leg = LegController()
-traj = None
+model = LegModel()
+controller = LimbController()
+path = None
 ja = None
 
 
 # Body of control loop
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
-    global traj, state, ja
+    global path, state, ja
 
-    # Update leg
+    # Update model
     time_sources.global_time.updateTime(time)
-    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
-    leg.updateFootOnGround()
+    model.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
+    model.updateFootOnGround()
 
-    # Init traj. Do this after the first update.
-    if traj is None:
-        ja = leg.getJointAngles()
-        traj = Pause(leg, 1.0)
+    # Init path. Do this after the first update.
+    if path is None:
+        ja = model.getJointAngles()
+        path = Pause(model, controller, 1.0)
     
-    # Evaluate trajectory and joint control
-#    print "JA command:", ja
-#    print "JA measured:", leg.getJointAngles()
-    leg.setDesiredJointAngles(ja)
-    leg.updateLengthRateCommands()
+    # Evaluate path and joint control
+    controller.update(path.update(),model.getJointAngles())
 
     # Send commands
-    return leg.getLengthRateCommands()
+    return controller.getLengthRateCommands()

@@ -1,8 +1,7 @@
 from ControlsKit import time_sources, leg_model, Paths, leg_logger
 from ControlsKit.Paths import TrapezoidalFootMove
-from math_utils import NUM_LEGS
 from scipy import zeros, append
-from ControlsKit.math_utils import array
+from ControlsKit.math_utils import array, NUM_LEGS
 
 class TrapezoidalSitStand:
     """This path moves the hexapod body straight up or down with a trapezoidal velocity profile

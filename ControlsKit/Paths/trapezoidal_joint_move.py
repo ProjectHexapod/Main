@@ -9,7 +9,7 @@ class TrapezoidalJointMove:
         This class expects max velocity for angular velocity.
     """
     def __init__(self, leg_model, limb_controller, final_angles, max_velocity, acceleration):
-        logger.info("New path.", path_name="TrapezoidalFootMove",
+        leg_logger.logger.info("New path.", path_name="TrapezoidalFootMove",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         

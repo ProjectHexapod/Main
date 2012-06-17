@@ -1,9 +1,10 @@
-from ControlsKit import time_sources, LegController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.math_utils import YAW, HP, KP
 
 
 # Initialization
-leg = LegController()
+model = LegModel()
+controller = LimbController()
 ja = None
 sw = None
 
@@ -12,14 +13,14 @@ sw = None
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     global state, ja, sw
 
-    # Update leg
+    # Update model
     time_sources.global_time.updateTime(time)
-    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
-    leg.updateFootOnGround()
+    model.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
+    model.updateFootOnGround()
 
-    # Init traj. Do this after the first update.
+    # Init path. Do this after the first update.
     if ja is None:
-        ja = leg.getJointAngles()
+        ja = model.getJointAngles()
         ja[HP] = -0.7
         ja[KP] = 1.5
         sw = time_sources.StopWatch()
@@ -32,12 +33,12 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             ja[KP] = 1.5
         sw = time_sources.StopWatch()
     
-    # Evaluate trajectory and joint control
-    leg.setDesiredJointAngles(ja)
-    leg.updateLengthRateCommands()
+    # Evaluate path and joint control
+    controller.update(ja,model.getJointAngles())
+
 
     # Send commands
-    lr = leg.getLengthRateCommands()
+    lr = controller.getLengthRateCommands()
     lr[YAW] = 0.0
     lr[HP] = 0.0
     return lr
