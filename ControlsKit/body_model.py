@@ -1,7 +1,7 @@
 from ConfigParser import ConfigParser
 from leg_model import LegModel
 from leg_logger import logger
-from math_utils import NUM_LEGS
+from math_utils import NUM_LEGS  # abuah? why is the leg count a math util?
 import os.path as path
 
 class BodyModel:
