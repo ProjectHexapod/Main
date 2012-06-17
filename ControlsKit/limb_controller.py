@@ -1,5 +1,5 @@
 from leg_logger import logger
-from pid_controller import PIDController
+from pid_controller import PidController
 
 class LimbController:
     def __init__(self, kparray, kiarray, kdarray):

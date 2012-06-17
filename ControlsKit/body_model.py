@@ -9,7 +9,7 @@ class BodyModel:
         c = ConfigParser()
         if not path.exists(config_file):
             print 'Config file %s not found!'%config_file
-            raise IOError # FIXME: Configure file is not in this directory!!
+            raise IOError 
         c.read(config_file)
         # FIXME: This references the wrong config file.
         # It's commented out right now to get it working,
