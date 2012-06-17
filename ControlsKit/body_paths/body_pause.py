@@ -1,7 +1,7 @@
 from ControlsKit import time_sources, leg_model, Paths, leg_logger
 from ControlsKit.Paths import Pause
 from scipy import zeros, append
-from ControlsKit.math_utils import array, NUM_LEGS
+from ControlsKit.math_utils import NUM_LEGS, array
 
 class BodyPause:
     """This path pauses the hexapod body by pausing the legs

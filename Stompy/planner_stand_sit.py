@@ -1,8 +1,9 @@
-from ControlsKit import time_sources, BodyModel, logger
+from ControlsKit import time_sources, BodyModel, logger, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
-from ControlsKit.body_paths import TrapezoidalSitStand
+from ControlsKit.body_paths import TrapezoidalSitStand, BodyPause
 from scipy import zeros
 
+body_controller = BodyController()
 body = BodyModel()
 path = None
 state = 0
@@ -22,7 +23,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     #THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
     if path is None:
-        path = Pause(body, 2)
+        path = BodyPause(body, 2)
         state = SIT
     
     if path.isDone():
@@ -35,6 +36,5 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     joint_angle_matrix  = path.update()
 
     body.setDesiredJointAngles(joint_angle_matrix)
-    
     # Send commands
-    return body.getLengthRateCommands()
+    return body_controller.update(leg_sensor_matrix, joint_angle_matrix)
