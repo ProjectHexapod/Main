@@ -1,9 +1,9 @@
-from ControlsKit import time_sources, BodyController
-from ControlsKit.leg_trajectories import Pause, TrapezoidalFootMove
+from ControlsKit import time_sources, BodyModel
+from ControlsKit.leg_paths import Pause, TrapezoidalFootMove
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
 from scipy import zeros
 
-body = BodyController()
+body = BodyModel()
 traj = None
 state = 0
 leg_pair = 0
