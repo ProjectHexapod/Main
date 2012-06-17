@@ -18,7 +18,7 @@ try:
     while True:
         s.step()
         if not s.getPaused():
-            time = s.getSimTime()
+            time = s.getSimTime()+.0001 # FIXME: first time time_delta is called, it returns zero, which means pid commands infinity
             # FIXME: Known bug, getAcceleration returns (0,0,0)
             lr = update(time,\
                 s.robot.getEncoderAngleMatrix(),\
