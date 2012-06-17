@@ -1,10 +1,10 @@
-from ControlsKit import time_sources, LegController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.math_utils import array, KP
 
 
 # Initialization
-leg = LegController()
-traj = None
+model = LegModel()
+path = None
 
 j_idx = KP
 delta = 0.00005
@@ -13,16 +13,16 @@ lr = array([0.0, 0.0, 0.0])
 
 # Body of control loop
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
-    global traj, state, lr
+    global path, state, lr
 
-    # Update leg
+    # Update model
     time_sources.global_time.updateTime(time)
-    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
-    leg.updateFootOnGround()
+    model.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
+    model.updateFootOnGround()
 
-    # Evaluate trajectory and joint control
-    leg.setDesiredJointAngles(array([0.0, 0.0, 0.0]))
-    leg.updateLengthRateCommands()
+    # Evaluate path and joint control
+    controller.update(array([0.0, 0.0, 0.0]),model.getJointAngles())
+
 
     lr[j_idx] += delta
     return lr

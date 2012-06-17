@@ -45,7 +45,7 @@ class TrapezoidalFootMove:
                         c.getfloat(section, "kp_d")] )
         
         self.sw = time_sources.StopWatch()
-        self.sw.smoothStart(self.accel_duration)
+        self.sw.smoothStart(1)#self.accel_duration)
 
     def isDone(self):
         return self.done
