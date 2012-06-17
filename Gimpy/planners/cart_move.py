@@ -44,7 +44,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     
     print "Foot:", model.getFootPos()
     # Evaluate path and joint control
-    controller.update(path.update(),model.getJointAngles())
+    controller.update(model.getJointAngles(), path.update())
 
 
     # Send commands

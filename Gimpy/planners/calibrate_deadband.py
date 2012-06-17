@@ -21,7 +21,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     model.updateFootOnGround()
 
     # Evaluate path and joint control
-    controller.update(array([0.0, 0.0, 0.0]),model.getJointAngles())
+    controller.update(model.getJointAngles(), array([0.0, 0.0, 0.0]))
 
 
     lr[j_idx] += delta

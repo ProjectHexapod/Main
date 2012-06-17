@@ -24,7 +24,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
         path = Pause(model, controller, 1.0)
     
     # Evaluate path and joint control
-    controller.update(path.update(),model.getJointAngles())
+    controller.update(model.getJointAngles(), path.update())
 
     # Send commands
     return controller.getLengthRateCommands()
