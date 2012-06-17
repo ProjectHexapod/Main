@@ -1,5 +1,5 @@
-from ControlsKit import time_sources, leg_model, body_model, body_controller, Paths, leg_logger
-from ControlsKit.Paths import Pause
+from ControlsKit import time_sources, leg_model, body_model, body_controller, leg_paths, leg_logger
+from ControlsKit.leg_paths import Pause
 from scipy import zeros, append
 from ControlsKit.math_utils import NUM_LEGS, array
 
