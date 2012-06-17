@@ -16,7 +16,7 @@ class LimbController:
         else:
             self.amount_of_joints=len(self.kp)
         
-        self.pid_controllers=[PIDController(kp,ki,kd) for kp, ki, kd
+        self.pid_controllers=[PidController(kp,ki,kd) for kp, ki, kd
                     in zip(self.kp, self.ki, self.kd) ]
                     
     def update(self, desired_pos_array, measured_pos_array):
