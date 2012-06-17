@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegModel, logger, LimbController
-from ControlsKit.Paths import Pause, MoveJoint
+from ControlsKit.leg_paths import Pause, MoveJoint
 from ControlsKit.math_utils import HP, KP
 
 

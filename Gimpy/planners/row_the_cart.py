@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegModel, leg_logger, LimbController
-from ControlsKit.Paths import Pause, TrapezoidalFootMove, PutFootOnGround
+from ControlsKit.leg_paths import Pause, TrapezoidalFootMove, PutFootOnGround
 from ControlsKit.math_utils import array, Z
 
 

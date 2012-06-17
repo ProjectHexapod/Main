@@ -3,7 +3,7 @@ from leg_model import LegModel
 from math_utils import array 
 import mox
 from time_sources import global_time, resetTimeSourceForTestingPurposes
-from Paths import PutFootOnGround, TrapezoidalFootMove, InterpolatedFootMove
+from leg_paths import PutFootOnGround, TrapezoidalFootMove, InterpolatedFootMove
 import unittest
 
 class InterpolatedFootMoveTestCase(unittest.TestCase):

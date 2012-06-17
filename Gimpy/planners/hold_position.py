@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, LegModel, LimbController
-from ControlsKit.Paths import Pause
+from ControlsKit.leg_paths import Pause
 
 
 # Initialization

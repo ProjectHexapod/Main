@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, BodyModel
-from ControlsKit.Paths import Pause, TrapezoidalFootMove
+from ControlsKit.leg_paths import Pause, TrapezoidalFootMove
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
 from scipy import zeros
 
