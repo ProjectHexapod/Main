@@ -35,6 +35,5 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     # Evaluate path and joint control
     joint_angle_matrix  = path.update()
 
-
     # Send commands
-    return controller.update(leg_sensor_matrix, joint_angle_matrix)
+    return controller.update(model.getJointAngleMatrix(), joint_angle_matrix)
