@@ -1,11 +1,11 @@
 from ConfigParser import ConfigParser
-from leg_controller import LegController
+from leg_model import LegModel
 from leg_logger import logger
 from math_utils import NUM_LEGS
 import os.path as path
 
-class BodyController:
-    def __init__(self, config_file="body_controller.conf", section="BodyController"):
+class BodyModel:
+    def __init__(self, config_file="body_model.conf", section="BodyModel"):
         c = ConfigParser()
         if not path.exists(config_file):
             print 'Config file %s not found!'%config_file
@@ -16,7 +16,7 @@ class BodyController:
         # I am not sure what the author's intent here was.
         # JHW Wed 06 Jun 2012 04:24:57 PM EDT
         #self.legs = [LegController(config_file, "GenericLeg") for i in range(NUM_LEGS)]
-        self.legs = [LegController() for i in range(NUM_LEGS)]
+        self.legs = [LegModel() for i in range(NUM_LEGS)]
 
     def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
         for i in range(NUM_LEGS):
@@ -32,7 +32,7 @@ class BodyController:
                 self.legs[i].updateLengthRateCommands()
     
     def getLengthRateCommands(self):
-        return map(LegController.getLengthRateCommands, self.legs)
+        return map(LegModel.getLengthRateCommands, self.legs)
 
     def getLegs(self):
         return self.legs
