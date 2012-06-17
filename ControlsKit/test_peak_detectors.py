@@ -1,7 +1,7 @@
 import unittest
 from math_utils import *
 import math
-from time_psources import global_time, resetTimeSourceForTestingPurposes
+from time_sources import global_time, resetTimeSourceForTestingPurposes
 
 from limb_controller import HystereticPeakDetector
 
