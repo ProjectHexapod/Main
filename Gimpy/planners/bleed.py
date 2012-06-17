@@ -18,7 +18,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
     model.updateFootOnGround()
 
     # Evaluate path and joint control
-    controller.update(path.update(),model.getJointAngles())
+    controller.update(model.getJointAngles(), path.update())
 
 
     return array([0.0, 5.0, 0.0])

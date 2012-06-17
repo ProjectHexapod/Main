@@ -24,7 +24,7 @@ class LimbController:
         for controller, kp, ki, kd in zip(self.pid_controllers, self.kp, self.ki, self.kd):
             controller.updateGainConstants(kp, ki, kd)
     
-    def update(self, desired_pos_array, measured_pos_array):
+    def update(self, measured_pos_array, desired_pos_array):
         actuator_commands=[]
         if (len(desired_pos_array)!=self.amount_of_joints or
             len(measured_pos_array)!=self.amount_of_joints):

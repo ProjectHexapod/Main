@@ -34,7 +34,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
         sw = time_sources.StopWatch()
     
     # Evaluate path and joint control
-    controller.update(ja,model.getJointAngles())
+    controller.update(model.getJointAngles(), ja)
 
 
     # Send commands
