@@ -1,4 +1,5 @@
 from ConfigParser import ConfigParser
+from ControlsKit.limb_controller import LimbController
 from math_utils import *
 from filters import HighPassFilter
 import math
@@ -40,22 +41,22 @@ class LegModel:
         self.foot_on_ground = False
 
 #MOVE ME TO PLANNER
-        ## Joint control
-        #self.length_rate_commands = array([0.0, 0.0, 0.0])
-        #self.controllers = [
-        #    # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-        #    PidController(c.getfloat(section, "yaw_p"),  # Yaw joint
-        #                c.getfloat(section, "yaw_i"),
-        #                c.getfloat(section, "yaw_d")),
-        #
-        #    PidController(c.getfloat(section, "hp_p"),  # Hip pitch joint
-        #                c.getfloat(section, "hp_i"),
-        #                c.getfloat(section, "hp_d")),
-        #
-        #    PidController(c.getfloat(section, "kp_p"),  # Knee pitch joint
-        #                c.getfloat(section, "kp_i"),
-        #                c.getfloat(section, "kp_d")),
-        #]
+        # Joint control
+        self.length_rate_commands = array([0.0, 0.0, 0.0])
+        self.controllers = [
+            # TODO: replace these soft min and soft max values with more reasonable ones once they're known
+            LimbController(c.getfloat(section, "yaw_p"),  # Yaw joint
+                        c.getfloat(section, "yaw_i"),
+                        c.getfloat(section, "yaw_d")),
+        
+            LimbController(c.getfloat(section, "hp_p"),  # Hip pitch joint
+                        c.getfloat(section, "hp_i"),
+                        c.getfloat(section, "hp_d")),
+        
+            LimbController(c.getfloat(section, "kp_p"),  # Knee pitch joint
+                        c.getfloat(section, "kp_i"),
+                        c.getfloat(section, "kp_d")),
+        ]
 
 
     # Store sensor readings
@@ -154,18 +155,18 @@ class LegModel:
         return (abs(self.joint_velocities) >= tolerance).any()
 
 #MOVE ME TO PLANNERS
-    ## Joint control
-    #def setDesiredJointAngles(self, desired_joint_angles):
-    #    self.desired_joint_angles = desired_joint_angles
-    #    logger.info("LegController.setDesiredJointAngles()",
-    #                hip_yaw_command=desired_joint_angles[YAW],
-    #                hip_pitch_command=desired_joint_angles[HP],
-    #                knee_pitch_command=desired_joint_angles[KP])
-    #def updateLengthRateCommands(self):
-    #    for i in range(LEG_DOF):
-    #        self.length_rate_commands[i] = self.controllers[i].update(
-    #            self.desired_joint_angles[i],
-    #            self.getJointAngles()[i])
-    #def getLengthRateCommands(self):
-    #    return self.length_rate_commands
+    # Joint control
+    def setDesiredJointAngles(self, desired_joint_angles):
+        self.desired_joint_angles = desired_joint_angles
+        logger.info("LegModel.setDesiredJointAngles()",
+                    hip_yaw_command=desired_joint_angles[YAW],
+                    hip_pitch_command=desired_joint_angles[HP],
+                    knee_pitch_command=desired_joint_angles[KP])
+    def updateLengthRateCommands(self):
+        for i in range(LEG_DOF):
+            self.length_rate_commands[i] = self.controllers[i].update(
+                self.desired_joint_angles[i],
+                self.getJointAngles()[i])
+    def getLengthRateCommands(self):
+        return self.length_rate_commands
 
