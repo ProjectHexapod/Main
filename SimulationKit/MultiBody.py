@@ -91,9 +91,6 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         self.a2_x = a2_x
         self.a2_y = a2_y
         self.neutral_angle = atan2(a2_y, a2_x)
-    def setAngleOffset( self, offset ):
-        self.neutral_angle -= offset
-        ControlledHingeJoint.setAngleOffset( self, offset )
     def getLength( self ):
         a = self.getActPath()
         return len2(a)
@@ -102,16 +99,32 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         act = self.getActPath()
         act_ang = pi-atan2(act[1],act[0])
         return arate*self.a1_x*sin( act_ang )
+    def setCrossSection( self, area ):
+        self.setExtendCrossSection(area)
+        self.setRetractCrossSection(area)
+    def setExtendCrossSection( self, area ):
+        self.extend_cross_section = area
+    def setRetractCrossSection( self, area ):
+        self.retract_cross_section = area
     def getHydraulicFlow( self ):
-        return self.getLengthRate()*self.cross_section
+        """Returns the hydraulic flow on the supply line.  Note that the flow on
+        the supply and return lines can be different."""
+        lrate = self.getLengthRate()
+        if lrate > 0:
+            return lrate*self.extend_cross_section
+        else:
+            return lrate*self.retract_cross_section
     def getHydraulicFlowGPM( self ):
-        return self.getLengthRate()*self.cross_section*15850.3
+        return self.getHydraulicFlow()*15850.3
     def getActPath( self ):
         """
         Return the path of the actuator in the hinge plane
         """
         # Apply joint rotation to one anchor
-        ang = self.neutral_angle + self.getAngle()
+        # FIXME: This is a confusing line... since getAngle adds an offset
+        # that the higher level wants but we don't care about,
+        # we explicitly subtract it back out JHW
+        ang = self.getAngle() - self.getAngleOffset()
         # Get the angle of the actuator with the horizontal
         act = rot2( (self.a2_x, self.a2_y), ang )
         act = (act[0] - self.a1_x, act[1])
@@ -130,12 +143,27 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         return self.getLeverArm()*force
     def __torque_to_force( self, torque ):
         return torque/self.getLeverArm()
-    def setForceLimit( self , f ):
-        self.force_limit = f
+    def setForceLimit( self, f ):
+        self.setExtendForceLimit( f )
+        self.setRetractForceLimit( f )
+    def setExtendForceLimit( self, f ):
+        self.extend_force_limit = f
+    def getExtendForceLimit( self ):
+        return self.extend_force_limit
+    def getRetractForceLimit( self ):
+        return self.retract_force_limit
+    def setRetractForceLimit( self, f ):
+        self.retract_force_limit = f
     def setTorqueLimit( self, l ):
         print 'Cannot set torque limit on linear actuator controlled hinge'
     def getTorqueLimit( self ):
-        return abs(self.getLeverArm()*self.force_limit)
+        """The torque limit is directional depending on what side of the piston
+        is being driven.  This is dependent on which way we are pressurizing the
+        piston, not which way it's presently moving"""
+        if self.getAngleError()>0:
+            return abs(self.getLeverArm()*self.extend_force_limit)
+        else:
+            return abs(self.getLeverArm()*self.retract_force_limit)
     def update( self ):
         limit = self.getTorqueLimit()
         self.setParam(ode.ParamFMax,    limit)
@@ -148,7 +176,7 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     def __init__(self, world):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         #LinearActuatorControlledHingeJoint.__init__(self, world)
-	self.lenrate = 0
+        self.lenrate = 0
 
     def getAngRate( self ):
         # FIXME: the hip yaw joints move in the opposite direction you command them to.
@@ -159,10 +187,19 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         ang_vel = self.lenrate / self.getLeverArm()
         if self.getBody(0) == ode.environment:
             ang_vel = -1*ang_vel
-	return ang_vel
+        return ang_vel
+
+    def getTorqueLimit( self ):
+        """The torque limit is directional depending on what side of the piston
+        is being driven.  This is dependent on which way we are pressurizing the
+        piston, not which way it's presently moving"""
+        if self.lenrate > 0:
+            return abs(self.getLeverArm()*self.extend_force_limit)
+        else:
+            return abs(self.getLeverArm()*self.retract_force_limit)
  
     def setLengthRate(self, vel_mps):
-	self.lenrate = vel_mps
+        self.lenrate = vel_mps
         
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
@@ -330,8 +367,8 @@ class MultiBody(object):
 
 
         self.buildBody()
-	def getMass(self):
-		return self.totalMass
+    def getMass(self):
+        return self.totalMass
     def buildBody(self):
         """This is for the subclasses to define."""
         return

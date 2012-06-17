@@ -2,10 +2,10 @@ from ControlsKit import time_sources
 
 
 class MoveJoint:
-    def __init__(self, leg_controller, joint_idx, duration, direction, velocity=0.1, accel_duration=0.1):
+    def __init__(self, leg_model, joint_idx, duration, direction, velocity=0.1, accel_duration=0.1):
         assert abs(direction) == 1
         
-        self.leg = leg_controller
+        self.leg = leg_model
         self.joint = joint_idx
         self.duration = duration
         self.vel = direction * velocity

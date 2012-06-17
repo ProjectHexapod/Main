@@ -1,35 +1,129 @@
 from SimulationKit.MultiBody import MultiBody
 from SimulationKit.helpers import *
 from SimulationKit.pubsub import *
+from math import *
 import ode
 
-deg2rad = pi/180
+# Convenience multipliers...
+deg2rad    = pi/180
+psi2pascal = 6894.76
+inch2meter = 2.54e-2
+pound2kilo = 0.455
+
+class ActuatorCharacteristics(object):
+    """
+    This describes the placement of a linear actuator relative to the joint it
+    is controlling.  It also provides convenience trig functions for figuring
+    out things like joint limits based on actuator extension.
+    """
+    def __init__(self):
+        self.BORE_DIAMETER          = 0.0
+        self.ROD_DIAMETER           = 0.0
+        self.ACT_RETRACTED_LEN      = 0.1
+        self.ACT_EXTENDED_LEN       = 0.1
+        self.PIVOT1_DIST_FROM_JOINT = 0.1
+        self.PIVOT2                 = (0.0,0.0)
+        self.AXIS                   = (0,0,1)
+        self.ANG_OFFSET             = 0.0
+        self.SYSTEM_PRESSURE        = 2000*psi2pascal
+    def getRangeOfMotion( self ):
+        """Returns an angle in radians"""
+        assert abs(len2(self.PIVOT2)-self.PIVOT1_DIST_FROM_JOINT) <\
+            self.ACT_RETRACTED_LEN, 'You can retract in to singularity'
+        retracted_angle = thetaFromABC(\
+            self.PIVOT1_DIST_FROM_JOINT,\
+            len2(self.PIVOT2),\
+            self.ACT_RETRACTED_LEN)
+        assert len2(self.PIVOT2)+self.PIVOT1_DIST_FROM_JOINT >\
+            self.ACT_EXTENDED_LEN, 'You can extend in to singularity'
+        extended_angle = thetaFromABC(\
+            self.PIVOT1_DIST_FROM_JOINT,\
+            len2(self.PIVOT2),\
+            self.ACT_EXTENDED_LEN)
+        assert extended_angle>retracted_angle, \
+            "This actuator placement breaks sign conventions\
+            ... actuator extend should increase joint angle"
+        return extended_angle - retracted_angle
+    def getExtensionCrossSectionM2( self ):
+        """Returns piston cross sectional area in m^2 on the extend side of the
+        piston"""
+        return ((self.BORE_DIAMETER/2)**2)*pi
+    def getRetractionCrossSectionM2( self ):
+        """Returns piston cross sectional area in m^2 on the extend side of the
+        piston"""
+        return ((self.BORE_DIAMETER/2)**2-(self.ROD_DIAMETER/2)**2)*pi
+    def getMaxExtensionForceNewtons( self ):
+        """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
+        return self.getExtensionCrossSectionM2()*self.SYSTEM_PRESSURE
+    def getMaxRetractionForceNewtons( self, pressure = 0.0 ):
+        """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
+        return self.getRetractionCrossSectionM2()*self.SYSTEM_PRESSURE
 
 class StompyLegPhysicalCharacteristics(object):
-    """This class contains the physical characteristics of one of
-    Stompy's legs"""
+    """
+    This class contains the physical characteristics of one of
+    Stompy's legs
+    """
     def __init__(self):
-        self.YAW_L   = 0.3   # Length of yaw link
-        self.YAW_W   = 0.1   # Diameter of yaw link
-        self.THIGH_L = 1.83  # Length of thigh link, 6 feet
-        self.THIGH_W = 0.125 # Diameter of thigh link
-        self.CALF_L  = 2.44  # Length of calf link 8 feet
-        self.CALF_W  = 0.1   # Diameter of calf link
-        self.YAW_M   = 10.0  # Yaw link mass, 22 lbs
-        self.THIGH_M = 36.3  # Thigh link mass, 80 lbs
-        self.CALF_M  = 36.3  # Calf link mass, 80 lbs
+        self.YAW_L   = inch2meter*8.0  # Length of yaw link
+        self.YAW_W   = 0.2             # Diameter of yaw link
+        self.THIGH_L = inch2meter*61.0 # Length of thigh link
+        self.THIGH_W = 0.2             # Diameter of thigh link
+        self.CALF_L  = inch2meter*84.0 # Length of calf link
+        self.CALF_W  = 0.2             # Diameter of calf link
+        self.YAW_M   = pound2kilo*20   # Yaw link mass
+        self.THIGH_M = pound2kilo*200  # Thigh link mass
+        self.CALF_M  = pound2kilo*150  # Calf link mass
 
-        # describe the neutral position of the leg
-        self.YAW_OFFSET   = 0.0
-        self.PITCH_OFFSET = 0.0
-        self.KNEE_OFFSET  = deg2rad*90.0
+        # Describe the actuator placements at each joint
+        self.YAW_ACT                          = ActuatorCharacteristics()
+        self.YAW_ACT.BORE_DIAMETER            = inch2meter*2.5
+        self.YAW_ACT.ROD_DIAMETER             = inch2meter*1.125
+        self.YAW_ACT.ACT_RETRACTED_LEN        = inch2meter*14.25
+        self.YAW_ACT.ACT_EXTENDED_LEN         = inch2meter*18.25
+        self.YAW_ACT.PIVOT1_DIST_FROM_JOINT   = inch2meter*16.18
+        self.YAW_ACT.PIVOT2                   = (inch2meter*2.32,inch2meter*3.3)
+        self.YAW_ACT.ANG_OFFSET               = deg2rad*-30.0
+        self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2000
+        self.YAW_ACT.AXIS                     = (0,0,-1)
+
+        self.PITCH_ACT                        = ActuatorCharacteristics()
+        self.PITCH_ACT.BORE_DIAMETER          = inch2meter*3.0
+        self.PITCH_ACT.ROD_DIAMETER           = inch2meter*1.5
+        self.PITCH_ACT.ACT_RETRACTED_LEN      = inch2meter*20.250
+        self.PITCH_ACT.ACT_EXTENDED_LEN       = inch2meter*30.250
+        self.PITCH_ACT.PIVOT1_DIST_FROM_JOINT = inch2meter*7.806
+        self.PITCH_ACT.PIVOT2                 = (inch2meter*25.29, inch2meter*10.21)
+        self.PITCH_ACT.ANG_OFFSET             = deg2rad*-81.5
+        self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2000
+        self.PITCH_ACT.AXIS                   = (0,-1,0)
+
+        self.KNEE_ACT                         = ActuatorCharacteristics()
+        self.KNEE_ACT.BORE_DIAMETER           = inch2meter*2.5
+        self.KNEE_ACT.ROD_DIAMETER            = inch2meter*1.25
+        self.KNEE_ACT.ACT_RETRACTED_LEN       = inch2meter*22.250
+        self.KNEE_ACT.ACT_EXTENDED_LEN        = inch2meter*34.250
+        self.KNEE_ACT.PIVOT1_DIST_FROM_JOINT  = inch2meter*28
+        self.KNEE_ACT.PIVOT2                  = (inch2meter*4.3,inch2meter*6.17)
+        self.KNEE_ACT.ANG_OFFSET              = deg2rad*61.84
+        self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2000
+        self.KNEE_ACT.AXIS                    = (0,-1,0)
+
         # Compliance of foot
         self.COMPLIANCE_K   = 87560  # newtons/meter deflection of foot = 1000 pounds/2 inches
         self.COMPLIANCE_LEN = 0.06  # how long til it bottoms out
         # Leg origin from robot origin, expressed in Stompy's coordinate frame
         self.OFFSET_FROM_ROBOT_ORIGIN   = (0,0,0)
         # Row major 3x3 rotation matrix
+        # calcRotMatrix takes an axis and an angle
         self.ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), 0.0 )
+    def setRotation( self, axis, angle ):
+        """
+        Sets the rotation of the leg in space.
+        Axis is a 3-vector, angle is a scalar in radians
+        """
+        rot_matrix = calcRotMatrix( axis, angle )
+        self.ROTATION_FROM_ROBOT_ORIGIN = rot_matrix
 
 class StompyPhysicalCharacteristics(object):
     """
@@ -37,31 +131,29 @@ class StompyPhysicalCharacteristics(object):
     link lengths, masses, offsets, actuator placements...
     """
     def __init__(self):
-        self.BODY_W  = 0.4 # Body diameter
-        self.BODY_T  = 0.3 # Thickness of the body capsule TODO: improve body model
-        self.BODY_M  = 500  # Body mass
+        self.BODY_W  = 2.5 
+        self.BODY_T  = 0.8 # Thickness of the body capsule TODO: improve body model
+        self.BODY_M  = pound2kilo*2000
+        #self.BODY_M  = pound2kilo*20
         self.LEGS = []
         # These are the rotation matrices we will use
         r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
         r_60z = calcRotMatrix( (0,0,1), pi/3.0 )
         r_90z = calcRotMatrix( (0,0,1), pi/2.0 )
         # To start with, the layout of the body is perfectly hexagonal
-        leg_origin = (self.BODY_W/2.0, 0, 0)
-        leg_origin = rotate3( r_30z, leg_origin )
         leg_angle  = pi/6.0
         # Set their offsets and rotations from robot origin
         for i in range(6):
             leg = StompyLegPhysicalCharacteristics()
-            leg.OFFSET_FROM_ROBOT_ORIGIN   = leg_origin
             leg.ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), leg_angle )
-            leg_origin = rotate3( r_60z, leg_origin )
             leg_angle += pi/3.0
             self.LEGS.append(leg)
-        # As a test, let's make one of the legs kind of stubby...
-        #self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = (.5,0,-.2)
-        #self.LEGS[0].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), pi/2 )
-        #self.LEGS[0].THIGH_L = 1.0
-        #self.LEGS[0].CALF_L = 1.0
+        self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 54, 24,-12),inch2meter)
+        self.LEGS[1].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0, 30,-12),inch2meter)
+        self.LEGS[2].OFFSET_FROM_ROBOT_ORIGIN = mul3((-54, 24,-12),inch2meter)
+        self.LEGS[3].OFFSET_FROM_ROBOT_ORIGIN = mul3((-54,-24,-12),inch2meter)
+        self.LEGS[4].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0,-30,-12),inch2meter)
+        self.LEGS[5].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 54,-24,-12),inch2meter)
 
 class SpiderWHydraulics(MultiBody):
     def __init__( self, *args, **kwargs ):
@@ -82,144 +174,125 @@ class SpiderWHydraulics(MultiBody):
         # Start another rotation
         self.legs                  = [0,0,0,0,0,0]
         for i in range(6):
-            hip_offset = self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN
-            leg_rot    = self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN
-            yaw_p     = hip_offset
-            hip_p     = add3(yaw_p,\
-                mul3( rotate3( leg_rot, (1,0,0) ),\
-                self.dimensions.LEGS[i].YAW_L) )
-            knee_p     = add3(hip_p,\
-                mul3( rotate3( leg_rot, (1,0,0) ),\
-                self.dimensions.LEGS[i].THIGH_L ))
-            midshin_p = add3( knee_p, \
-                rotate3(leg_rot, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L)))
-            foot_p = add3( midshin_p, \
-                rotate3(leg_rot, (0,0,-0.5*self.dimensions.LEGS[i].CALF_L)))
+            yaw_act_dim   = self.dimensions.LEGS[i].YAW_ACT
+            pitch_act_dim = self.dimensions.LEGS[i].PITCH_ACT
+            knee_act_dim  = self.dimensions.LEGS[i].KNEE_ACT
+            hip_offset    = self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN
+            leg_rot       = self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN
+            # Anchor of the hip yaw
+            yaw_p         = hip_offset
+            # Anchor of the hip pitch
+            hip_p         = mul3( (1,0,0), self.dimensions.LEGS[i].YAW_L )
+            hip_p         = rotateAxisAngle( hip_p, \
+                yaw_act_dim.AXIS, -yaw_act_dim.ANG_OFFSET )
+            hip_p         = rotate3( leg_rot, hip_p )
+            hip_p         = add3(hip_p, yaw_p)
+            # Anchor of the knee
+            knee_p         = mul3( (1,0,0), self.dimensions.LEGS[i].THIGH_L )
+            knee_p         = rotateAxisAngle( knee_p, \
+                pitch_act_dim.AXIS, -pitch_act_dim.ANG_OFFSET )
+            knee_p         = rotateAxisAngle( knee_p, \
+                yaw_act_dim.AXIS, -yaw_act_dim.ANG_OFFSET )
+            knee_p         = rotate3( leg_rot, knee_p )
+            knee_p         = add3(knee_p, hip_p)
+            # Anchor of the foot
+            foot_p         = mul3( (1,0,0), self.dimensions.LEGS[i].CALF_L )
+            foot_p         = rotateAxisAngle( foot_p, \
+                knee_act_dim.AXIS, -knee_act_dim.ANG_OFFSET )
+            foot_p         = rotateAxisAngle( foot_p, \
+                pitch_act_dim.AXIS, -pitch_act_dim.ANG_OFFSET )
+            foot_p         = rotateAxisAngle( foot_p, \
+                yaw_act_dim.AXIS, -yaw_act_dim.ANG_OFFSET )
+            foot_p         = rotate3( leg_rot, foot_p )
+            foot_p         = add3(foot_p, knee_p)
+            # Calculate the middle of the shin so we can place our shock joint
+            midshin_p = div3(add3(foot_p, knee_p), 2)
 
             # Add hip yaw
+            act_axis = rotate3(leg_rot,yaw_act_dim.AXIS)
             yaw_link = self.addBody( \
                 p1     = yaw_p, \
                 p2     = hip_p, \
                 radius = self.dimensions.LEGS[i].YAW_W, \
                 mass   = self.dimensions.LEGS[i].YAW_M )
             hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
-                body1        = self.core, \
-                body2        = yaw_link, \
-                anchor       = yaw_p, \
-                axis         = (0,0,1),\
-                a1x          = 0.25,\
-                a2x          = 0.25,\
-                a2y          = 0.25)
-            hip_yaw.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
-            hip_yaw.setAngleOffset(0.0)
-            self.publisher.addToCatalog(\
-                "l%d.hy.torque"%i,\
-                hip_yaw.getTorque)
-            self.publisher.addToCatalog(\
-                "l%d.hy.torque_lim"%i,\
-                hip_yaw.getTorqueLimit)
-            self.publisher.addToCatalog(\
-                "l%d.hy.ang"%i,\
-                hip_yaw.getAngle)
-            self.publisher.addToCatalog(\
-                "l%d.hy.ang_target"%i,\
-                hip_yaw.getAngleTarget)
-            self.publisher.addToCatalog(\
-                "l%d.hy.len"%i,\
-                hip_yaw.getLength)
-            self.publisher.addToCatalog(\
-                "l%d.hy.len_rate"%i,\
-                hip_yaw.getLengthRate)
-            hip_yaw.cross_section = 2.02e-3 # 2 inch bore
-            self.publisher.addToCatalog(\
-                "l%d.hy.flow_gpm"%i,\
-                hip_yaw.getHydraulicFlowGPM)
+                body1  = self.core,\
+                body2  = yaw_link,\
+                anchor = yaw_p,\
+                axis   = act_axis,\
+                a1x    = yaw_act_dim.PIVOT1_DIST_FROM_JOINT,\
+                a2x    = yaw_act_dim.PIVOT2[0],\
+                a2y    = yaw_act_dim.PIVOT2[1])
+            hip_yaw.setParam(ode.ParamLoStop, 0.0)
+            hip_yaw.setParam(ode.ParamHiStop, yaw_act_dim.getRangeOfMotion())
+            hip_yaw.setExtendForceLimit(yaw_act_dim.getMaxExtensionForceNewtons())
+            hip_yaw.setRetractForceLimit(yaw_act_dim.getMaxRetractionForceNewtons())
+            hip_yaw.setExtendCrossSection(yaw_act_dim.getExtensionCrossSectionM2())
+            hip_yaw.setRetractCrossSection(yaw_act_dim.getRetractionCrossSectionM2())
+            hip_yaw.setAngleOffset(yaw_act_dim.ANG_OFFSET )
 
             # Add thigh and hip pitch
             # Calculate the axis of rotation for hip pitch
-            axis = rotate3( leg_rot, (0,-1,0) )
+            act_axis   = rotateAxisAngle( pitch_act_dim.AXIS, \
+                yaw_act_dim.AXIS, -yaw_act_dim.ANG_OFFSET )
+            act_axis = rotate3(leg_rot,act_axis)
             thigh = self.addBody(\
                 p1     = hip_p, \
                 p2     = knee_p, \
                 radius = self.dimensions.LEGS[i].THIGH_W, \
                 mass   = self.dimensions.LEGS[i].THIGH_M )
             hip_pitch = self.addLinearVelocityActuatedHingeJoint( \
-                body1        = yaw_link, \
-                body2        = thigh, \
-                anchor       = hip_p, \
-                axis         = axis, \
-                a1x          = 0.35,\
-                a2x          = 0.35,\
-                a2y          = 0.35)
-            #hip_pitch.setParam(ode.ParamLoStop, -pi/3)
-            #hip_pitch.setParam(ode.ParamHiStop, +pi/3)
-            hip_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
-            hip_pitch.setAngleOffset(0.0)
-            self.publisher.addToCatalog(\
-                "l%d.hp.torque"%i,\
-                hip_pitch.getTorque)
-            self.publisher.addToCatalog(\
-                "l%d.hp.torque_lim"%i,\
-                hip_pitch.getTorqueLimit)
-            self.publisher.addToCatalog(\
-                "l%d.hp.ang"%i,\
-                hip_pitch.getAngle)
-            self.publisher.addToCatalog(\
-                "l%d.hp.ang_target"%i,\
-                hip_pitch.getAngleTarget)
-            self.publisher.addToCatalog(\
-                "l%d.hp.len"%i,\
-                hip_pitch.getLength)
-            self.publisher.addToCatalog(\
-                "l%d.hp.len_rate"%i,\
-                hip_pitch.getLengthRate)
-            hip_pitch.cross_section = 2.02e-3 # 2 inch bore
-            self.publisher.addToCatalog(\
-                "l%d.hp.flow_gpm"%i,\
-                hip_pitch.getHydraulicFlowGPM)
+                body1  = yaw_link, \
+                body2  = thigh, \
+                anchor = hip_p, \
+                axis   = act_axis, \
+                a1x    = pitch_act_dim.PIVOT1_DIST_FROM_JOINT,\
+                a2x    = pitch_act_dim.PIVOT2[0],\
+                a2y    = pitch_act_dim.PIVOT2[1])
+            hip_pitch.setParam(ode.ParamLoStop, 0.0)
+            hip_pitch.setParam(ode.ParamHiStop, pitch_act_dim.getRangeOfMotion())
+            hip_pitch.setExtendForceLimit(pitch_act_dim.getMaxExtensionForceNewtons())
+            hip_pitch.setRetractForceLimit(pitch_act_dim.getMaxRetractionForceNewtons())
+            hip_pitch.setExtendCrossSection(pitch_act_dim.getExtensionCrossSectionM2())
+            hip_pitch.setRetractCrossSection(pitch_act_dim.getRetractionCrossSectionM2())
+            hip_pitch.setAngleOffset(pitch_act_dim.ANG_OFFSET )
 
             # Add calf and knee bend
+            act_axis   = rotateAxisAngle( knee_act_dim.AXIS, \
+                pitch_act_dim.AXIS, -pitch_act_dim.ANG_OFFSET )
+            act_axis   = rotateAxisAngle( act_axis, \
+                yaw_act_dim.AXIS, -yaw_act_dim.ANG_OFFSET )
+            act_axis = rotate3(leg_rot,act_axis)
             calf = self.addBody( \
                 p1     = knee_p, \
                 p2     = midshin_p, \
                 radius = self.dimensions.LEGS[i].CALF_W, \
                 mass   = self.dimensions.LEGS[i].CALF_M/2.0 )
             knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
-                body1        = thigh, \
-                body2        = calf, \
-                anchor       = knee_p, \
-                axis         = axis, \
-                a1x          = 0.25,\
-                a2x          = 0.25,\
-                a2y          = 0.25)
-            knee_pitch.setParam(ode.ParamLoStop, -pi/2)
-            knee_pitch.setParam(ode.ParamHiStop, pi/3)
-            knee_pitch.setForceLimit(2.8e4)# 2 inch bore @ 2000 psi
-            knee_pitch.setAngleOffset(deg2rad*90.0)
-            self.publisher.addToCatalog(\
-                "l%d.kp.torque"%i,\
-                knee_pitch.getTorque)
-            self.publisher.addToCatalog(\
-                "l%d.kp.torque_lim"%i,\
-                knee_pitch.getTorqueLimit)
-            self.publisher.addToCatalog(\
-                "l%d.kp.ang"%i,\
-                knee_pitch.getAngle)
-            self.publisher.addToCatalog(\
-                "l%d.kp.ang_target"%i,\
-                knee_pitch.getAngleTarget)
-            self.publisher.addToCatalog(\
-                "l%d.kp.len"%i,\
-                knee_pitch.getLength)
-            self.publisher.addToCatalog(\
-                "l%d.kp.len_rate"%i,\
-                knee_pitch.getLengthRate)
-            knee_pitch.cross_section = 2.02e-3 # 2 inch bore
-            self.publisher.addToCatalog(\
-                "l%d.kp.flow_gpm"%i,\
-                knee_pitch.getHydraulicFlowGPM)
+                body1  = thigh, \
+                body2  = calf, \
+                anchor = knee_p, \
+                axis   = act_axis, \
+                a1x    = knee_act_dim.PIVOT1_DIST_FROM_JOINT,\
+                a2x    = knee_act_dim.PIVOT2[0],\
+                a2y    = knee_act_dim.PIVOT2[1])
+            knee_pitch.setParam(ode.ParamLoStop, 0.0)
+            knee_pitch.setParam(ode.ParamHiStop, knee_act_dim.getRangeOfMotion())
+            knee_pitch.setExtendForceLimit(knee_act_dim.getMaxExtensionForceNewtons())
+            knee_pitch.setRetractForceLimit(knee_act_dim.getMaxRetractionForceNewtons())
+            knee_pitch.setExtendCrossSection(knee_act_dim.getExtensionCrossSectionM2())
+            knee_pitch.setRetractCrossSection(knee_act_dim.getRetractionCrossSectionM2())
+            knee_pitch.setAngleOffset(knee_act_dim.ANG_OFFSET )
+
             # Create the foot
             # Add the compliant joint
+            act_axis   = rotateAxisAngle( knee_act_dim.AXIS, \
+                knee_act_dim.AXIS, -knee_act_dim.ANG_OFFSET )
+            act_axis   = rotateAxisAngle( act_axis, \
+                pitch_act_dim.AXIS, -pitch_act_dim.ANG_OFFSET )
+            act_axis   = rotateAxisAngle( act_axis, \
+                yaw_act_dim.AXIS, -yaw_act_dim.ANG_OFFSET )
+            act_axis = rotate3(leg_rot,act_axis)
             foot = self.addBody( \
                 p1     = midshin_p, \
                 p2     = foot_p, \
@@ -235,6 +308,37 @@ class SpiderWHydraulics(MultiBody):
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
                 damping          = -1e2)
+            def populatePublisher( dof_name, joint ):
+                self.publisher.addToCatalog(\
+                    "l%d.%s.torque"%(i,dof_name),\
+                    joint.getTorque)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.torque_lim"%(i,dof_name),\
+                    joint.getTorqueLimit)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.ang"%(i,dof_name),\
+                    joint.getAngle)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.len"%(i,dof_name),\
+                    joint.getLength)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.len_rate"%(i,dof_name),\
+                    joint.getLengthRate)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.flow_gpm"%(i,dof_name),\
+                    joint.getHydraulicFlowGPM)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.lever_arm"%(i,dof_name),\
+                    joint.getLeverArm)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.extend_force"%(i,dof_name),\
+                    joint.getExtendForceLimit)
+                self.publisher.addToCatalog(\
+                    "l%d.%s.retract_force"%(i,dof_name),\
+                    joint.getRetractForceLimit)
+            populatePublisher('hy', hip_yaw)
+            populatePublisher('hp', hip_pitch)
+            populatePublisher('kp', knee_pitch)
                 
             d                 = {}
             d['hip_yaw']      = hip_yaw
@@ -288,43 +392,40 @@ class SpiderWHydraulics(MultiBody):
         positions should be an iterable of 6 positions relative to the body
         """
         # These are the rotation matrices we will use
-        r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
-        r_60z = calcRotMatrix( (0,0,1), pi/3.0 )
-        r_90z = calcRotMatrix( (0,0,1), pi/2.0 )
-        p = (1,0,0)
-        p = rotate3( r_30z, p )
-
         i = 0
 
         for target_p in positions:
-            yaw_p = mul3(p, (self.dimensions.BODY_W/2))
-            # Calculate hip yaw
-            hip_yaw_offset_angle     = atan2(yaw_p[1], yaw_p[0])
-            hip_yaw_angle            = atan2( target_p[1], target_p[0] ) - hip_yaw_offset_angle
-            yaw_link_offset = mul3(p, self.dimensions.LEGS[i].YAW_L)
-            yaw_link_offset = ( yaw_link_offset[0]*cos(hip_yaw_angle),\
-                                yaw_link_offset[1]*sin(hip_yaw_angle),\
-                                0)
-            hip_p = add3(yaw_p, yaw_link_offset)
+            yaw_p = self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN
+            # Move the target point from the robot coordinate frame
+            # to the leg coordinate frame
+            target_p         = sub3(target_p, yaw_p)
+            rot              = invert3x3(self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN)
+            target_p         = rotate3( rot, target_p )
+            # Calculate hip yaw target angle
+            hip_yaw_angle    = atan2( target_p[1], target_p[0] )
+            # Move target_p to the coordinate frame based at hip pitch
+            target_p = rotateAxisAngle( target_p,\
+                self.dimensions.LEGS[i].YAW_ACT.AXIS, hip_yaw_angle )
+            target_p         = sub3( target_p, (self.dimensions.LEGS[i].YAW_L,0,0) )
             # Assign outputs
             # Calculate leg length
-            leg_l                    = dist3( target_p, hip_p )
+            leg_l            = len3( target_p )
             # Use law of cosines on leg length to calculate knee angle 
-            knee_angle               = pi-thetaFromABC( self.dimensions.LEGS[i].THIGH_L, self.dimensions.LEGS[i].CALF_L, leg_l )
-            # Calculate target point relative to hip origin
-            target_p                 = sub3( target_p, hip_p )
+            knee_angle       = pi-thetaFromABC( self.dimensions.LEGS[i].THIGH_L, self.dimensions.LEGS[i].CALF_L, leg_l )
             # Calculate hip pitch
-            hip_offset_angle         = -thetaFromABC( self.dimensions.LEGS[i].THIGH_L, leg_l,  self.dimensions.LEGS[i].CALF_L )
-            hip_depression_angle     = -atan2( target_p[2], len3((target_p[0], target_p[1], 0)) )
-            hip_pitch_angle          = hip_offset_angle + hip_depression_angle
+            knee_comp_angle  = thetaFromABC( leg_l, self.dimensions.LEGS[i].THIGH_L, self.dimensions.LEGS[i].CALF_L )
+            depression_angle = -atan2(target_p[2], target_p[0])
+            hip_pitch_angle  = depression_angle-knee_comp_angle
             def controlLenRate( joint, target_ang, gain=10.0 ):
                 error = target_ang - joint.getAngle()
                 joint.setLengthRate( error*gain )
-            controlLenRate(self.legs[i]['hip_yaw'   ], -hip_yaw_angle   )
+            controlLenRate(self.legs[i]['hip_yaw'   ],  hip_yaw_angle   )
             controlLenRate(self.legs[i]['hip_pitch' ],  hip_pitch_angle )
             controlLenRate(self.legs[i]['knee_pitch'],  knee_angle      )
+            #controlLenRate(self.legs[i]['hip_yaw'   ], 0)
+            #controlLenRate(self.legs[i]['hip_pitch' ], 0)
+            #controlLenRate(self.legs[i]['knee_pitch'], pi/2)
             # Calculate the hip base point for the next iteration
-            p                    = rotate3( r_60z, p )
             i+=1
     def getBodyHeight( self ):
         return self.core.getPosition()[2]
@@ -380,18 +481,11 @@ class SpiderWHydraulics(MultiBody):
         gait_cycle      = 3.0     # time in seconds
         step_cycle      = gait_cycle/2.0
         swing_overshoot = 1.00
-        neutral_r       = 2.5     # radius from body center or foot resting, m
-        stride_length   = 2.00    # length of a stride, m
-        body_h          = 2.20    # height of body off the ground, m
-        foot_lift_h     = 0.45     # how high to lift feet in m
+        neutral_r       = 3.0     # radius from body center or foot resting, m
+        stride_length   = 1.70    # length of a stride, m
+        body_h          = 2.00    # height of body off the ground, m
+        foot_lift_h     = 0.45    # how high to lift feet in m
 
-        #gait_cycle      = 1.8     # time in seconds
-        #step_cycle      = gait_cycle/2.0
-        #swing_overshoot = 1.00
-        #neutral_r       = 1.7     # radius from body center or foot resting, m
-        #stride_length   = 1.4     # length of a stride, m
-        #body_h          = 1.5     # height of body off the ground, m
-        #foot_lift_h     = 0.1     # how high to lift feet in m
         foot_positions = []
         x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(self.sim.sim_t%step_cycle)/gait_cycle)
         x_off_stance =  stride_length*(((self.sim.sim_t%step_cycle)/step_cycle)-0.5)

@@ -1,9 +1,9 @@
-from body_controller import BodyController
-import body_trajectories
+from body_model import BodyModel
+import body_paths
 import filters
-from leg_controller import LegController
+from leg_model import LegModel
 from leg_logger import logger
-import leg_trajectories
+import Paths
 import math_utils
-from pid_controller import PidController
+from limb_controller import LimbController
 import time_sources

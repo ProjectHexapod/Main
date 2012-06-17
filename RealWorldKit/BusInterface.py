@@ -57,7 +57,7 @@ class ControlBus:
         self.port.write(packet*20)
         resp = self.port.read(16384)
         # Light validation of response.
-        assert len(resp) >= 4 and len(resp) <= 20
+        assert len(resp) >= 4 and len(resp) <= 20, "Received len %d response"%len(resp)
         assert resp[-1] == resp[-2] and resp[-2] == resp[-3] and resp[-3] == resp[-4]
         self.num_nodes = 16 - ord(resp[-1]) / 16
         # XXX Can't distinguish 0 and 16; which should we allow?

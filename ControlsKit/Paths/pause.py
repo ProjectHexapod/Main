@@ -2,8 +2,8 @@ from ControlsKit import time_sources
 
 
 class Pause:
-    def __init__(self, leg_controller, duration):
-        self.leg = leg_controller
+    def __init__(self, leg_model, duration):
+        self.leg = leg_model
         self.initial_angles = self.leg.getJointAngles()
         self.duration = duration
         self.sw = time_sources.StopWatch();

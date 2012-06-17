@@ -4,7 +4,7 @@ from math_utils import saturate
 import time_sources
 import scipy
 
-class PidController:
+class LimbController:
     def __init__(self, kp, ki, kd):
         self.kp = kp
         self.ki = ki
@@ -32,7 +32,7 @@ class PidController:
         
         if self.peak_detector.hasConverged():
             if self.peak_detector.isUnstable():
-                warningstring=("PidController: Maximum error for the"+
+                warningstring=("LimbController: Maximum error for the"+
                         " desired point has increased for %d seconds,"+
                         " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
@@ -42,7 +42,7 @@ class PidController:
                         error=error, 
                         bad_value=error)
             elif self.peak_detector.isLimitCycle():
-                warningstring=("PidController: Maximum error for the"+
+                warningstring=("LimbController: Maximum error for the"+
                         " desired point has increased once or more for %d seconds,"+
                         " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
@@ -53,7 +53,7 @@ class PidController:
                         bad_value=error)
         else:
             if self.peak_detector.isUnstable():
-                errorstring=("PidController: Maximum error for the desired point"+ 
+                errorstring=("LimbController: Maximum error for the desired point"+ 
                         "has increased for %d seconds.  System potentially unstable." %
                         self.peak_detector.getResolveTime() )
                 logger.error(errorstring,
@@ -63,7 +63,7 @@ class PidController:
                         bad_value=error)
                 raise ValueError(errorstring)
             elif self.peak_detector.isLimitCycle():
-                errorstring=("PidController: Controller has not converged"+ 
+                errorstring=("LimbController: Controller has not converged"+ 
                 "over %d seconds.  System potentially in a limit cycle." %
                 self.peak_detector.getResolveTime() )
                 logger.error(errorstring,
@@ -97,7 +97,7 @@ class PidController:
         
         #is error within available soft range?
         if error>(measured_pos-error_min) or error>(error_max-measured_pos):
-            logger.error("PidController.isErrorInBounds: error out of soft bounds.",
+            logger.error("LimbController.isErrorInBounds: error out of soft bounds.",
                         error=error,
                         measured_pos=measured_pos)
             raise ValueError("Error signal points to a position out of soft bounds.")
@@ -106,22 +106,22 @@ class PidController:
     def boundDesiredPosition(self,desired_pos):
         #caps desired position to soft movement range
         if math.isnan(desired_pos):
-            logger.error("PidController.boundDesiredPosition: NaN where aN expected!",
+            logger.error("LimbController.boundDesiredPosition: NaN where aN expected!",
                         desired_pos=desired_pos,
                         bad_value="desired_pos")
-            raise ValueError("PidController: desired_pos cannot be NaN.")
+            raise ValueError("LimbController: desired_pos cannot be NaN.")
         
         command_min=-20
         command_max=20
         
         if desired_pos<command_min or desired_pos>command_max:
-            logger.error("PidController.boundDesiredPosition:"+
+            logger.error("LimbController.boundDesiredPosition:"+
                         " desired position out of bounds!",
                         desired_pos=desired_pos,
                         command_min=command_min,
                         command_max=command_max,
                         bad_value="desired_pos")
-            raise ValueError("PidController.boundDesiredPosition:"+
+            raise ValueError("LimbController.boundDesiredPosition:"+
                     " desired position out of soft bounds")
         
         bounded_pos=saturate(desired_pos,command_min,command_max)
@@ -131,7 +131,7 @@ class PidController:
         #prevent the controller from commanding an unsafely fast actuator move
         if ( abs(actuator_command - measured_pos)/
                 time_sources.global_time.getDelta() > self.max_movement_rate):
-            raise ValueError("PidController: Actuator command would cause"+
+            raise ValueError("LimbController: Actuator command would cause"+
             "joint to move at an unsafe rate.")
         return actuator_command
 
@@ -141,8 +141,8 @@ class HystereticPeakDetector:
         
         #Class Attributes to determine when a state transition has happened
         if not (hyst_low_limit < hyst_high_limit):
-			raise ValueError("HystereticPeakDetector: Can't instantiate with"+
-					" a hysteretic low bound greater than the hyst. high bound!")
+            raise ValueError("HystereticPeakDetector: Can't instantiate with"+
+                    " a hysteretic low bound greater than the hyst. high bound!")
         self.hyst_high_limit=hyst_high_limit
         self.hyst_low_limit=hyst_low_limit
         
@@ -224,13 +224,30 @@ class HystereticPeakDetector:
         peak_deltas = scipy.diff(self.peaks)
         trough_deltas = scipy.diff(self.troughs)
         
+        peak_envelope = self.envelopeFromArray(self.peaks)
+        trough_envelope = self.envelopeFromArray([-trough for trough in self.troughs])
+        
+        peak_envelope_deltas= scipy.diff(peak_envelope)
+        trough_envelope_deltas= scipy.diff(trough_envelope)
+        envelope_detected=(len(peak_envelope_deltas) > 0 and
+                            len(trough_envelope_deltas) > 0)
+        
         [unstable, limit_cycle, converging, converged]=[True, True, True, True]
         
         if len(self.peaks) > 1 and len(self.troughs) > 1:
             #only unstable if error always rises
-            unstable = (peak_deltas > 0.0).all() or (trough_deltas < 0.0).all()
+            unstable = ( (peak_deltas > 0.0).all() or 
+                        (trough_deltas < 0.0).all()
+                        or (envelope_detected and
+                            (peak_envelope_deltas > 0.0).all() and
+                            (trough_envelope_deltas > 0.0).all() ) 
+                        )
             #only converging if error is always decreasing
-            converging = (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all()
+            converging = ( ( (peak_deltas < 0.0).all() and (trough_deltas > 0.0).all() )
+                        or (envelope_detected and
+                            (peak_envelope_deltas < 0.0).all() and 
+                            (trough_envelope_deltas < 0.0).all() ) 
+                        )
             #in a limit cycle if error ever rises
             limit_cycle = not converging and not unstable
         else:
@@ -247,6 +264,15 @@ class HystereticPeakDetector:
         self.flags["limit_cycle"]=limit_cycle
         self.flags["converging"]=converging
         self.flags["converged"]=converged
+
+    def envelopeFromArray(self, array):
+        envelope=[]
+        diffs=scipy.diff(array)
+        #identifies envelope peaks via first derivative
+        for index in range( 1,len(diffs) ):
+            if diffs[index] <= 0 and diffs[index-1] >= 0:
+                envelope.append(array[index])
+        return envelope
 
     def getEdgeType(self):
         return self.edgetype
