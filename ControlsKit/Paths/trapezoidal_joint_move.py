@@ -1,5 +1,7 @@
 from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
+from ConfigParser import ConfigParser
+from os import path
 
 
 class TrapezoidalJointMove:

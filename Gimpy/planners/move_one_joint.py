@@ -48,8 +48,8 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             pass
         logger.info("State changed.", state=state)
     
-    # Evaluate path and joint control    
-    controller.update(path.update(),)
+    # Evaluate path and joint control
+    controller.update(path.update(),model.getJointAngles())
 
     # Send commands
     return controller.getLengthRateCommands()
