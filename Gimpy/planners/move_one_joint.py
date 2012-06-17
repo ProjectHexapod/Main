@@ -1,11 +1,12 @@
-from ControlsKit import time_sources, LegController, logger
-from ControlsKit.leg_trajectories import Pause, MoveJoint
+from ControlsKit import time_sources, LegModel, logger, LimbController
+from ControlsKit.Paths import Pause, MoveJoint
 from ControlsKit.math_utils import HP, KP
 
 
 # Initialization
-leg = LegController()
-traj = None
+model = LegModel()
+controller = LimbController()
+path = None
 
 
 # States
@@ -19,27 +20,27 @@ state = S_INIT
 
 # Body of control loop
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
-    global traj, state
+    global path, state
 
-    # Update leg
+    # Update leg model
     time_sources.global_time.updateTime(time)
-    leg.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
-    leg.updateFootOnGround()
+    model.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
+    model.updateFootOnGround()
 
-    # Init traj. Do this after the first update.
-    if traj is None:
-        traj = Pause(leg, 5.0)
-        traj.initial_angles[HP] = -0.6
+    # Init path. Do this after the first update.
+    if path is None:
+        path = Pause(model, controller, 5.0)
+        path.initial_angles[HP] = -0.6
 
-    # Monitor leg_trajectories
-    if traj.isDone():
+    # Monitor model_path
+    if path.isDone():
         if state == S_INIT:
             print "Move"*1000
-            traj = MoveJoint(leg, joint_idx=KP, duration=3.0, direction=1, velocity=0.2)
+            path = MoveJoint(model, controller, joint_idx=KP, duration=3.0, direction=1, velocity=0.2)
             state = S_MOVE1
         elif state == S_MOVE1:
             print "Move"*1000
-            traj = MoveJoint(leg, joint_idx=KP, duration=3.0, direction=-1, velocity=0.2)
+            path = MoveJoint(model, controller, joint_idx=KP, duration=3.0, direction=-1, velocity=0.2)
             state = S_MOVE2
         elif state == S_MOVE2:
             print "Done"*1000
@@ -47,9 +48,8 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
             pass
         logger.info("State changed.", state=state)
     
-    # Evaluate trajectory and joint control
-    leg.setDesiredJointAngles(traj.update())
-    leg.updateLengthRateCommands()
+    # Evaluate path and joint control    
+    controller.update(path.update(),)
 
     # Send commands
-    return leg.getLengthRateCommands()
+    return controller.getLengthRateCommands()

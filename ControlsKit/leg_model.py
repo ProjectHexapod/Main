@@ -1,7 +1,6 @@
 import sys
 sys.path.append('..')
 from ConfigParser import ConfigParser
-from ControlsKit.limb_controller import LimbController
 from math_utils import *
 from filters import HighPassFilter
 import math
@@ -42,21 +41,21 @@ class LegModel:
         self.SHOCK_DEPTH_THRESHOLD_HIGH = c.getfloat(section, "shock_depth_threshold_high")
         self.foot_on_ground = False
 
-#MOVE ME TO PLANNER
-        # Joint control
-        self.length_rate_commands = array([0.0, 0.0, 0.0])
-            # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-        self.controller=LimbController([c.getfloat(section, "yaw_p"),  # proportional terms
-                        c.getfloat(section, "hp_p"),
-                        c.getfloat(section, "kp_p")],
-        
-                        [c.getfloat(section, "yaw_i"),  # integral terms
-                        c.getfloat(section, "hp_i"),
-                        c.getfloat(section, "kp_i")],
-        
-                        [c.getfloat(section, "yaw_d"),  # differential terms
-                        c.getfloat(section, "hp_d"),
-                        c.getfloat(section, "kp_d")] )
+##MOVE ME TO PLANNER
+#        # Joint control
+#        self.length_rate_commands = array([0.0, 0.0, 0.0])
+#            # TODO: replace these soft min and soft max values with more reasonable ones once they're known
+#        self.controller=LimbController([c.getfloat(section, "yaw_p"),  # proportional terms
+#                        c.getfloat(section, "hp_p"),
+#                        c.getfloat(section, "kp_p")],
+#        
+#                        [c.getfloat(section, "yaw_i"),  # integral terms
+#                        c.getfloat(section, "hp_i"),
+#                        c.getfloat(section, "kp_i")],
+#        
+#                        [c.getfloat(section, "yaw_d"),  # differential terms
+#                        c.getfloat(section, "hp_d"),
+#                        c.getfloat(section, "kp_d")] )
 
 
     # Store sensor readings
@@ -156,15 +155,15 @@ class LegModel:
 
 #MOVE ME TO PLANNERS
     # Joint control
-    def setDesiredJointAngles(self, desired_joint_angles):
-        self.desired_joint_angles = desired_joint_angles
-        logger.info("LegModel.setDesiredJointAngles()",
-                    hip_yaw_command=desired_joint_angles[YAW],
-                    hip_pitch_command=desired_joint_angles[HP],
-                    knee_pitch_command=desired_joint_angles[KP])
-    def updateLengthRateCommands(self):
-        self.length_rate_commands = self.controller.update(
-                self.desired_joint_angles, self.getJointAngles())
-    def getLengthRateCommands(self):
-        return self.length_rate_commands
+    #def setDesiredJointAngles(self, desired_joint_angles):
+    #    self.desired_joint_angles = desired_joint_angles
+    #    logger.info("LegModel.setDesiredJointAngles()",
+    #                hip_yaw_command=desired_joint_angles[YAW],
+    #                hip_pitch_command=desired_joint_angles[HP],
+    #                knee_pitch_command=desired_joint_angles[KP])
+    #def updateLengthRateCommands(self):
+    #    self.length_rate_commands = self.controller.update(
+    #            self.desired_joint_angles, self.getJointAngles())
+    #def getLengthRateCommands(self):
+    #    return self.length_rate_commands
 
