@@ -1,5 +1,6 @@
 import sys
 sys.path.append('..')
+sys.path.append('planners')
 from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnStand
 from SimulationKit.helpers import *

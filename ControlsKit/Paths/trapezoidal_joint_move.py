@@ -1,22 +1,45 @@
 from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
+from ConfigParser import ConfigParser
+from os import path
 
 
 class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
         This class expects max velocity for angular velocity.
     """
-    def __init__(self, leg_model, final_angles, max_velocity, acceleration):
-        logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
+    def __init__(self, leg_model, limb_controller, final_angles, max_velocity, acceleration):
+        logger.info("New path.", path_name="TrapezoidalFootMove",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         
         self.leg = leg_model
+        self.controller = limb_controller
         self.target_angles = self.leg.getJointAngles()
         self.final_angles = final_angles
         self.max_vel = max_velocity
         self.vel = 0.0
         self.acc = acceleration
+        
+        # Set PID gains for this path
+        config_file="../ControlsKit/leg_model.conf"
+        section="LegModel"
+        c = ConfigParser()
+        if not path.exists(path.abspath(config_file)):
+            print 'Config file %s not found!'%config_file
+            raise IOError
+        c.read(config_file)
+        self.controller.updateGainConstants([c.getfloat(section, "yaw_p"),  # proportional terms
+                        c.getfloat(section, "hp_p"),
+                        c.getfloat(section, "kp_p")],
+        
+                        [c.getfloat(section, "yaw_i"),  # integral terms
+                        c.getfloat(section, "hp_i"),
+                        c.getfloat(section, "kp_i")],
+        
+                        [c.getfloat(section, "yaw_d"),  # differential terms
+                        c.getfloat(section, "hp_d"),
+                        c.getfloat(section, "kp_d")] )
         
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
