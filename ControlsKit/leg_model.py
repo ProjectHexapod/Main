@@ -45,20 +45,18 @@ class LegModel:
 #MOVE ME TO PLANNER
         # Joint control
         self.length_rate_commands = array([0.0, 0.0, 0.0])
-        self.controllers = [
             # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-            LimbController(c.getfloat(section, "yaw_p"),  # Yaw joint
-                        c.getfloat(section, "yaw_i"),
-                        c.getfloat(section, "yaw_d")),
+        self.controller=LimbController([c.getfloat(section, "yaw_p"),  # proportional terms
+                        c.getfloat(section, "hp_p"),
+                        c.getfloat(section, "kp_p")],
         
-            LimbController(c.getfloat(section, "hp_p"),  # Hip pitch joint
+                        [c.getfloat(section, "yaw_i"),  # integral terms
                         c.getfloat(section, "hp_i"),
-                        c.getfloat(section, "hp_d")),
+                        c.getfloat(section, "kp_i")],
         
-            LimbController(c.getfloat(section, "kp_p"),  # Knee pitch joint
-                        c.getfloat(section, "kp_i"),
-                        c.getfloat(section, "kp_d")),
-        ]
+                        [c.getfloat(section, "yaw_d"),  # differential terms
+                        c.getfloat(section, "hp_d"),
+                        c.getfloat(section, "kp_d")] )
 
 
     # Store sensor readings
@@ -165,10 +163,8 @@ class LegModel:
                     hip_pitch_command=desired_joint_angles[HP],
                     knee_pitch_command=desired_joint_angles[KP])
     def updateLengthRateCommands(self):
-        for i in range(LEG_DOF):
-            self.length_rate_commands[i] = self.controllers[i].update(
-                self.desired_joint_angles[i],
-                self.getJointAngles()[i])
+        self.length_rate_commands = self.controller.update(
+                self.desired_joint_angles, self.getJointAngles())
     def getLengthRateCommands(self):
         return self.length_rate_commands
 
