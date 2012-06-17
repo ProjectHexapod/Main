@@ -22,7 +22,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     #THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
     if path is None:
-        path = TrapezoidalSitStand(body, .2, 1, .5)
+        path = Pause(body, 2)
         state = SIT
     
     if path.isDone():

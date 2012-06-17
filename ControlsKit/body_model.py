@@ -25,14 +25,15 @@ class BodyModel:
         self.imu_orientation = imu_orientation
         self.imu_angular_rates = imu_angular_rates
     
-    def setDesiredJointAngles(self, joint_angle_matrix):
-        for i in range(NUM_LEGS):
-            self.legs[i].setDesiredJointAngles(joint_angle_matrix[i])
-            if not self.legsAreColliding():
-                self.legs[i].updateLengthRateCommands()
-    
-    def getLengthRateCommands(self):
-        return map(LegModel.getLengthRateCommands, self.legs)
+##MOVE TO PATH
+    #def setDesiredJointAngles(self, joint_angle_matrix):
+    #    for i in range(NUM_LEGS):
+    #        self.legs[i].setDesiredJointAngles(joint_angle_matrix[i])
+    #        if not self.legsAreColliding():
+    #            self.legs[i].updateLengthRateCommands()
+    #    
+    #def getLengthRateCommands(self):
+    #    return map(LegModel.getLengthRateCommands, self.legs)
 
     def getLegs(self):
         return self.legs
