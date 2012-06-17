@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, leg_model, Paths, leg_logger
+from ControlsKit import time_sources, leg_model, body_model, body_controller, Paths, leg_logger
 from ControlsKit.Paths import Pause
 from scipy import zeros, append
 from ControlsKit.math_utils import NUM_LEGS, array
@@ -6,17 +6,19 @@ from ControlsKit.math_utils import NUM_LEGS, array
 class BodyPause:
     """This path pauses the hexapod body by pausing the legs
     """
-    def __init__(self, body_model, duration):
+    def __init__(self, body_model, body_controller, duration):
         leg_logger.logger.info("New path.", path_name="BodyPause",
                                duration = duration)
         
         self.body = body_model
+        self.body_controller = body_controller
         self.duration = duration
         self.feet_path = []
         
         current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
-            self.feet_path = append(self.feet_path, Pause(self.body.getLegs()[i], self.duration))
+            self.feet_path = append(self.feet_path, Pause(self.body.getLegs()[i],
+                                    self.body_controller.getLimbControllers()[i], self.duration))
             
         self.done = False
     
