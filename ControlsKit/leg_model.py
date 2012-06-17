@@ -1,15 +1,17 @@
+import sys
+sys.path.append('..')
 from ConfigParser import ConfigParser
 from ControlsKit.limb_controller import LimbController
 from math_utils import *
 from filters import HighPassFilter
 import math
 from leg_logger import logger
-import os.path as path
+from os import path
 
 class LegModel:
-    def __init__(self, config_file="leg_model.conf", section="LegModel"):
+    def __init__(self, config_file="../ControlsKit/leg_model.conf", section="LegModel"):
         c = ConfigParser()
-        if not path.exists(config_file):
+        if not path.exists(path.abspath(config_file)):
             print 'Config file %s not found!'%config_file
             raise IOError
         c.read(config_file)
