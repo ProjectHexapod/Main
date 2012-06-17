@@ -1,8 +1,15 @@
 from leg_logger import logger
-from pid_controller import PidController
+from pid_controller import PIDController
 
 class LimbController:
-    def __init__(self, kparray, kiarray, kdarray):
+    def __init__(self, kparray=[0,0,0], kiarray=[0,0,0], kdarray=[0,0,0]):
+        self.length_rate_commands=[]
+        
+        self.pid_controllers=[PIDController() for i in range(len(kparray)) ]
+        self.updateGainConstants(kparray,kiarray,kdarray)
+        self.amount_of_joints=len(self.kp)
+                    
+    def updateGainConstants(self, kparray, kiarray, kdarray):
         self.kp = kparray
         self.ki = kiarray
         self.kd = kdarray
@@ -13,12 +20,10 @@ class LimbController:
                         kiarray=self.ki,
                         kdarray=self.kd)
             raise ValueError("LimbController.init: Gain array sizes mismatched!")
-        else:
-            self.amount_of_joints=len(self.kp)
         
-        self.pid_controllers=[PidController(kp,ki,kd) for kp, ki, kd
-                    in zip(self.kp, self.ki, self.kd) ]
-                    
+        for controller, kp, ki, kd in zip(self.pid_controllers, self.kp, self.ki, self.kd):
+            controller.updateGainConstants(kp, ki, kd)
+    
     def update(self, desired_pos_array, measured_pos_array):
         actuator_commands=[]
         if (len(desired_pos_array)!=self.amount_of_joints or
@@ -32,4 +37,7 @@ class LimbController:
             actuator_command=self.pid_controllers[i].update(
                 desired_pos_array[i], measured_pos_array[i])
             actuator_commands.append(actuator_command)
-        return actuator_commands
+        self.length_rate_commands=actuator_commands
+    
+    def getLengthRateCommands(self):            
+        return self.length_rate_commands
