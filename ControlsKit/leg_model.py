@@ -8,7 +8,7 @@ from leg_logger import logger
 from os import path
 
 class LegModel:
-    def __init__(self, config_file="../ControlsKit/leg_model.conf", section="LegModel"):
+    def __init__(self, config_file="leg_model.conf", section="LegModel"):
         c = ConfigParser()
         if not path.exists(path.abspath(config_file)):
             print 'Config file %s not found!'%config_file
@@ -30,21 +30,6 @@ class LegModel:
                 [c.getfloat(soft_stops_section,'yaw_stop_high'),
                 c.getfloat(soft_stops_section,'pitch_stop_high'),
                 c.getfloat(soft_stops_section,'knee_stop_high') ])
-        
-        # Default PID values
-        PID_section = 'DefaultPIDValues'
-        self.DEFAULT_YAW_PID = array(
-                [c.getfloat(PID_section,'yaw_p'),
-                c.getfloat(PID_section,'yaw_i'),
-                c.getfloat(PID_section,'yaw_d')])
-        self.DEFAULT_HP_PID = array(
-                [c.getfloat(PID_section,'hp_p'),
-                c.getfloat(PID_section,'hp_i'),
-                c.getfloat(PID_section,'hp_d')])
-        self.DEFAULT_KP_PID = array(
-                [c.getfloat(PID_section,'kp_p'),
-                c.getfloat(PID_section,'kp_i'),
-                c.getfloat(PID_section,'kp_d')])
 
         # State
         vel_corner = 100.0  # rad/s

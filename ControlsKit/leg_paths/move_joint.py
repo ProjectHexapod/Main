@@ -1,7 +1,4 @@
 from ControlsKit import time_sources
-from ConfigParser import ConfigParser
-from os import path
-
 
 class MoveJoint:
     def __init__(self, leg_model, limb_controller, joint_idx, duration, direction, velocity=0.1, accel_duration=0.1):
@@ -16,11 +13,7 @@ class MoveJoint:
         
         self.target_angles = self.model.getJointAngles()
         self.stopping = False
-        
-        # Set PID gains for this path
-        gains = zip(self.model.DEFAULT_YAW_PID, self.model.DEFAULT_HP_PID, self.model.DEFAULT_KP_PID)
-        self.controller.updateGainConstants(gains[0], gains[1], gains[2])
-       
+
         self.sw = time_sources.StopWatch()
         self.sw.smoothStart(self.accel_duration)
         

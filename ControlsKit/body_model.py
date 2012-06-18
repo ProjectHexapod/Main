@@ -5,7 +5,7 @@ from math_utils import NUM_LEGS  # abuah? why is the leg count a math util?
 import os.path as path
 
 class BodyModel:
-    def __init__(self, config_file="../ControlsKit/body_model.conf", section="BodyModel"):
+    def __init__(self, config_file="body_model.conf", section="BodyModel"):
         c = ConfigParser()
         if not path.exists(config_file):
             print 'Config file %s not found!'%config_file

@@ -1,7 +1,5 @@
 from ControlsKit import time_sources
 from scipy import interpolate
-from ConfigParser import ConfigParser
-from os import path
 
 #note that at least 4 points must be specified
 class InterpolatedFootMove:
@@ -18,11 +16,7 @@ class InterpolatedFootMove:
         self.spatial_array = way_points[1:,:]
         
         start_error = self.spatial_array[:,0] - self.model.getFootPos()
-                
-        # Set PID gains for this path
-        gains = zip(self.model.DEFAULT_YAW_PID, self.model.DEFAULT_HP_PID, self.model.DEFAULT_KP_PID)
-        self.controller.updateGainConstants(gains[0], gains[1], gains[2])
-        
+
         #adjust all values to be relative to actual start position
         for i in range (0,way_points.shape[1]):
             self.spatial_array[:,i] -= start_error

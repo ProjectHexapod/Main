@@ -1,8 +1,5 @@
 from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
-from ConfigParser import ConfigParser
-from os import path
-
 
 class TrapezoidalFootMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time. 
@@ -23,11 +20,7 @@ class TrapezoidalFootMove:
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
         self.done = False
-                
-        # Set PID gains for this path
-        gains = zip(self.model.DEFAULT_YAW_PID, self.model.DEFAULT_HP_PID, self.model.DEFAULT_KP_PID)
-        self.controller.updateGainConstants(gains[0], gains[1], gains[2])
- 
+     
         self.sw = time_sources.StopWatch()
         self.sw.smoothStart(1)#self.accel_duration)
         # FIXME:the above line should have accel_duration reinstated.

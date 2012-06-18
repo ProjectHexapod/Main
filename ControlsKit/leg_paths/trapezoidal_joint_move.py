@@ -1,8 +1,5 @@
 from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
-from ConfigParser import ConfigParser
-from os import path
-
 
 class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
@@ -20,11 +17,7 @@ class TrapezoidalJointMove:
         self.max_vel = max_velocity
         self.vel = 0.0
         self.acc = acceleration
-        
-        # Set PID gains for this path
-        gains = zip(self.model.DEFAULT_YAW_PID, self.model.DEFAULT_HP_PID, self.model.DEFAULT_KP_PID)
-        self.controller.updateGainConstants(gains[0], gains[1], gains[2])
-        
+
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
         self.done = False

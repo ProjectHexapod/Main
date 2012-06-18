@@ -1,12 +1,35 @@
 from leg_logger import logger
 from pid_controller import PIDController
+from ConfigParser import ConfigParser
+from os import path
+from scipy import array
 
 class LimbController:
-    def __init__(self, kparray=[0,0,0], kiarray=[0,0,0], kdarray=[0,0,0]):
+    def __init__(self, config_file="leg_model.conf", section="LimbController"):
+        c = ConfigParser()
+        if not path.exists(path.abspath(config_file)):
+            print 'Config file %s not found!'%config_file
+            raise IOError
+        c.read(config_file)
+        
+        # Default PID values
+        self.kparray = array(
+                [c.getfloat(section,'yaw_p'),
+                c.getfloat(section,'hp_p'),
+                c.getfloat(section,'kp_p')])
+        self.kiarray = array(
+                [c.getfloat(section,'yaw_i'),
+                c.getfloat(section,'hp_i'),
+                c.getfloat(section,'kp_i')])
+        self.kdarray = array(
+                [c.getfloat(section,'yaw_d'),
+                c.getfloat(section,'hp_d'),
+                c.getfloat(section,'kp_d')])
+        
         self.length_rate_commands=[]
         
-        self.pid_controllers=[PIDController() for i in range(len(kparray)) ]
-        self.updateGainConstants(kparray,kiarray,kdarray)
+        self.pid_controllers=[PIDController() for i in range(len(self.kparray)) ]
+        self.updateGainConstants(self.kparray,self.kiarray,self.kdarray)
         self.amount_of_joints=len(self.kp)
                     
     def updateGainConstants(self, kparray, kiarray, kdarray):

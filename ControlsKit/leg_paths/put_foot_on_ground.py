@@ -1,7 +1,5 @@
 from ControlsKit import time_sources, leg_logger
 from ControlsKit.math_utils import Z
-from ConfigParser import ConfigParser
-from os import path
 
 class PutFootOnGround:
     def __init__(self, leg_model, limb_controller, velocity, accel_duration=0.1):
@@ -18,11 +16,7 @@ class PutFootOnGround:
         self.stop_watch = time_sources.StopWatch(active=False)
         if not self.done:
             self.stop_watch.smoothStart(self.accel_duration)
-        
-        # Set PID gains for this path
-        gains = zip(self.model.DEFAULT_YAW_PID, self.model.DEFAULT_HP_PID, self.model.DEFAULT_KP_PID)
-        self.controller.updateGainConstants(gains[0], gains[1], gains[2])
-        
+    
         self.sw = time_sources.StopWatch()
         self.sw.smoothStart(self.accel_duration)
 
