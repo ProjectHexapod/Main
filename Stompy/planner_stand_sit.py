@@ -12,8 +12,6 @@ ORIENT = 1
 STAND = 2
 SIT = 3
 
-state = STAND
-
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
     global path, state
     
