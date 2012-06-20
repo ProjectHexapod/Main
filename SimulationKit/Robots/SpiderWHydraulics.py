@@ -132,7 +132,7 @@ class StompyPhysicalCharacteristics(object):
     """
     def __init__(self):
         self.BODY_W  = 2.5 
-        self.BODY_T  = 0.8 # Thickness of the body capsule TODO: improve body model
+        self.BODY_T  = 0.75 # Thickness of the body capsule TODO: improve body model
         self.BODY_M  = pound2kilo*2000
         #self.BODY_M  = pound2kilo*20
         self.LEGS = []
@@ -303,7 +303,7 @@ class SpiderWHydraulics(MultiBody):
                 body1        = calf, \
                 body2        = foot, \
                 axis         = mul3(calf_axis,-1),\
-                spring_const = -20e3,\
+                spring_const = -80e3,\
                 hi_stop      = 0.1,\
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
