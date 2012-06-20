@@ -144,9 +144,20 @@ class StompyPhysicalCharacteristics(object):
         # Set their offsets and rotations from robot origin
         for i in range(6):
             leg = StompyLegPhysicalCharacteristics()
-            leg.ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix( (0,0,1), leg_angle )
             leg_angle += pi/3.0
             self.LEGS.append(leg)
+        self.LEGS[0].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
+            (0,0,1),deg2rad*60 ) 
+        self.LEGS[1].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
+            (0,0,1),deg2rad*90 ) 
+        self.LEGS[2].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
+            (0,0,1),deg2rad*120 ) 
+        self.LEGS[3].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
+            (0,0,1),deg2rad*240 ) 
+        self.LEGS[4].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
+            (0,0,1),deg2rad*270 ) 
+        self.LEGS[5].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
+            (0,0,1),deg2rad*300 ) 
         self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 54, 24,-12),inch2meter)
         self.LEGS[1].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0, 30,-12),inch2meter)
         self.LEGS[2].OFFSET_FROM_ROBOT_ORIGIN = mul3((-54, 24,-12),inch2meter)
