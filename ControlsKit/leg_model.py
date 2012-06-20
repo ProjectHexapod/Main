@@ -8,7 +8,7 @@ from leg_logger import logger
 from os import path
 
 class LegModel:
-    def __init__(self, config_file="../ControlsKit/leg_model.conf", section="LegModel"):
+    def __init__(self, config_file="leg_model.conf", section="LegModel"):
         c = ConfigParser()
         if not path.exists(path.abspath(config_file)):
             print 'Config file %s not found!'%config_file
@@ -21,7 +21,7 @@ class LegModel:
         self.CALF_LEN = c.getfloat(section, "calf_len")
 
         # Actuator soft bounds
-        soft_stops_section='SoftStops'
+        soft_stops_section = 'SoftStops'
         self.SOFT_MINS=array(
                 [c.getfloat(soft_stops_section,'yaw_stop_low'),
                 c.getfloat(soft_stops_section,'pitch_stop_low'),
@@ -40,23 +40,6 @@ class LegModel:
         self.SHOCK_DEPTH_THRESHOLD_LOW = c.getfloat(section, "shock_depth_threshold_low")
         self.SHOCK_DEPTH_THRESHOLD_HIGH = c.getfloat(section, "shock_depth_threshold_high")
         self.foot_on_ground = False
-
-##MOVE ME TO PLANNER
-#        # Joint control
-#        self.length_rate_commands = array([0.0, 0.0, 0.0])
-#            # TODO: replace these soft min and soft max values with more reasonable ones once they're known
-#        self.controller=LimbController([c.getfloat(section, "yaw_p"),  # proportional terms
-#                        c.getfloat(section, "hp_p"),
-#                        c.getfloat(section, "kp_p")],
-#        
-#                        [c.getfloat(section, "yaw_i"),  # integral terms
-#                        c.getfloat(section, "hp_i"),
-#                        c.getfloat(section, "kp_i")],
-#        
-#                        [c.getfloat(section, "yaw_d"),  # differential terms
-#                        c.getfloat(section, "hp_d"),
-#                        c.getfloat(section, "kp_d")] )
-
 
     # Store sensor readings
     def setSensorReadings(self, yaw, hip_pitch, knee_pitch, shock_depth):
@@ -91,8 +74,7 @@ class LegModel:
                 print angle
                 raise ValueError("LegModel: Measured angle out of soft range!")
         self.shock_depth = shock_depth
-        self.joint_velocities = self.jv_filter.update(self.joint_angles)
-        
+        self.joint_velocities = self.jv_filter.update(self.joint_angles)        
 
     # Access state
     def getJointAngles(self):
@@ -152,18 +134,3 @@ class LegModel:
     
     def isMoving(self, tolerance=0.001):
         return (abs(self.joint_velocities) >= tolerance).any()
-
-#MOVE ME TO PLANNERS
-    # Joint control
-    #def setDesiredJointAngles(self, desired_joint_angles):
-    #    self.desired_joint_angles = desired_joint_angles
-    #    logger.info("LegModel.setDesiredJointAngles()",
-    #                hip_yaw_command=desired_joint_angles[YAW],
-    #                hip_pitch_command=desired_joint_angles[HP],
-    #                knee_pitch_command=desired_joint_angles[KP])
-    #def updateLengthRateCommands(self):
-    #    self.length_rate_commands = self.controller.update(
-    #            self.desired_joint_angles, self.getJointAngles())
-    #def getLengthRateCommands(self):
-    #    return self.length_rate_commands
-

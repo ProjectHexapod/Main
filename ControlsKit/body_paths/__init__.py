@@ -1,2 +1,3 @@
 from trapezoidal_sit_stand import TrapezoidalSitStand
 from body_pause import BodyPause
+from trapezoidal_feet_align import TrapezoidalFeetAlign
