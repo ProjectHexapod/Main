@@ -74,14 +74,15 @@ class Simulator(object):
     starting OpenGL (if requested), instantiating the robot
     and running for a specified period of time.
     """
-    def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=True, plane=False,\
-                    publish_int=5, robot=None, robot_kwargs={}, start_paused = True):
+    def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
+                    ground_slope=None, publish_int=5, robot=None, robot_kwargs={}, start_paused = True):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
         pave turns on uneven pavement
         plane turns on a smooth plane to walk on
-        publish_int is the interval between data publishes in timesteps"""
+        publish_int is the interval between data publishes in timesteps
+        ground_slope is a 3x3 rotation matrix applied to the ground"""
         self.sim_t             = 0
         self.dt                = dt
         self.graphical         = graphical
@@ -116,7 +117,8 @@ class Simulator(object):
             g.setPosition(pos)
             self.geoms.append(g)
             self.ground = g
-            #self.plane = ode.GeomPlane(self.space, (0, 0, 1), 0)
+            if ground_slope:
+                self.ground.setRotation(ground_slope)
 
         if self.pave:
             self.paver = Paver( (0,0), self )
@@ -178,7 +180,7 @@ class Simulator(object):
         world, contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
-            c.setMu(500) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
+            c.setMu(1000) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
             j = ode.ContactJoint(self.world, self.contactgroup, c)
             self.contactlist.append(j)
             j.attach(geom1.getBody(), geom2.getBody())
