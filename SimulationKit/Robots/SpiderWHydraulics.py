@@ -317,7 +317,7 @@ class SpiderWHydraulics(MultiBody):
                 hi_stop      = 0.1,\
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
-                damping          = -1e1)
+                damping          = -3e3)
             def populatePublisher( dof_name, joint ):
                 self.publisher.addToCatalog(\
                     "l%d.%s.torque"%(i,dof_name),\
