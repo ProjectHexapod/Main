@@ -1,4 +1,5 @@
-from sys import argv, exit
+from sys import argv, exit, path
+import string
 
 def importPlanner(module_or_file_name = None):
     if module_or_file_name is None:
@@ -9,8 +10,13 @@ def importPlanner(module_or_file_name = None):
     
     if module_or_file_name.endswith(".py"):
         module_or_file_name = module_or_file_name[:-3]
+    try:
+        dirname,filename = string.rsplit(module_or_file_name,'/',1)
+        path.append(dirname)
+    except ValueError:
+        filename = module_or_file_name
     
-    module = __import__(module_or_file_name)
+    module = __import__(filename)
     try:
         return module.update
     except AttributeError:

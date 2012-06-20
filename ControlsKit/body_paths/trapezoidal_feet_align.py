@@ -19,7 +19,6 @@ class TrapezoidalFeetAlign:
         self.final_joint_positions = self.model.getJointAngleMatrix()
         self.feet_path = []
         
-        print(self.final_joint_positions)
         for i in range (NUM_LEGS):
             self.final_joint_positions[i] = final_angles
         for i in range (NUM_LEGS):
