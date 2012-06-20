@@ -48,8 +48,8 @@ class LegLog():
     def __getattr__(self, name):
         if name in self.__dict__:
             return self.__dict__[name]
-        elif name[:3] == 'get' and name[4:] in self.state:
-            return lambda: self.state[name]
+        elif name[:4] == 'get_' and name[4:] in self.state:
+            return lambda: self.state[name[4:]]
         else:
             raise AttributeError(name+" not a get request or key not found.")
 
