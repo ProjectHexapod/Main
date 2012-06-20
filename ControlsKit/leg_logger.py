@@ -4,6 +4,7 @@ sys.path.append('..')
 import logging
 import logging.handlers
 from SimulationKit.pubsub import Publisher
+from collections import defaultdict
 
 
 class LegLog():
@@ -22,12 +23,12 @@ class LegLog():
         socket_handler.setLevel(logging.INFO)
         self.logger.addHandler(socket_handler)
 
-        file_handler = logging.FileHandler("gimpy.csv")
+        file_handler = logging.FileHandler("eventLog.csv")
         file_handler.setLevel(logging.INFO)
         file_handler.setFormatter(csv)
         self.logger.addHandler(file_handler)
 
-        self.publisher = Publisher(5055)
+        self.publisher = Publisher(5056)
         self.publisher.addToCatalog("logging.time", self.get_time)
         self.publisher.addToCatalog("logging.hip_yaw_rate", self.get_hip_yaw_rate)
         self.publisher.addToCatalog("logging.hip_pitch_rate", self.get_hip_pitch_rate)
@@ -38,7 +39,7 @@ class LegLog():
         self.publisher.addToCatalog("logging.shock_depth", self.get_shock_depth)
         self.publisher.start()
 
-        self.state = {}
+        self.state = {} 
         self.state["time"] = "Not set"
         self.state["hip_yaw_rate"] =  "Not set"
         self.state["hip_pitch_rate"] =  "Not set"
@@ -47,6 +48,10 @@ class LegLog():
         self.state["hip_pitch_angle"] =  "Not set"
         self.state["knee_pitch_angle"] =  "Not set"
         self.state["shock_depth"] =  "Not set"
+        self.state["hip_yaw_command"] =  "Not set"
+        self.state["hip_pitch_command"] =  "Not set"
+        self.state["knee_pitch_command"] =  "Not set"
+        self.state[""] =  "Not set"
 
     def get_time(self):
         return self.state["time"]
