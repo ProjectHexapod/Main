@@ -28,17 +28,6 @@ class LegLog():
         file_handler.setFormatter(csv)
         self.logger.addHandler(file_handler)
 
-        self.publisher = Publisher(5056)
-        self.publisher.addToCatalog("logging.time", self.get_time)
-        self.publisher.addToCatalog("logging.hip_yaw_rate", self.get_hip_yaw_rate)
-        self.publisher.addToCatalog("logging.hip_pitch_rate", self.get_hip_pitch_rate)
-        self.publisher.addToCatalog("logging.knee_pitch_rate", self.get_knee_pitch_rate)
-        self.publisher.addToCatalog("logging.hip_yaw_angle", self.get_hip_yaw_angle)
-        self.publisher.addToCatalog("logging.hip_pitch_angle", self.get_hip_pitch_angle)
-        self.publisher.addToCatalog("logging.knee_pitch_angle", self.get_knee_pitch_angle)
-        self.publisher.addToCatalog("logging.shock_depth", self.get_shock_depth)
-        self.publisher.start()
-
         self.state = {} 
         self.state["time"] = "Not set"
         self.state["hip_yaw_rate"] =  "Not set"
@@ -53,29 +42,24 @@ class LegLog():
         self.state["knee_pitch_command"] =  "Not set"
         self.state[""] =  "Not set"
 
-    def get_time(self):
-        return self.state["time"]
+        self.next_publisher_port = 5056
+        self.publisher = self.createPublisher(['time', 'hip_yaw_rate', 'hip_pitch_rate', 'knee_pitch_rate', 'hip_yaw_angle', 'hip_pitch_angle', 'knee_pitch_angle', 'shock_depth'])
 
-    def get_hip_yaw_rate(self):
-        return self.state["hip_yaw_rate"]
+    def __getattr__(self, name):
+        if name in self.__dict__:
+            return self.__dict__[name]
+        elif name[:3] == 'get' and name[4:] in self.state:
+            return lambda: self.state[name]
+        else:
+            raise AttributeError(name+" not a get request or key not found.")
 
-    def get_hip_pitch_rate(self):
-        return self.state["hip_pitch_rate"]
-
-    def get_knee_pitch_rate(self):
-        return self.state["knee_pitch_rate"]
-
-    def get_hip_yaw_angle(self):
-        return self.state["hip_yaw_angle"]
-
-    def get_hip_pitch_angle(self):
-        return self.state["hip_pitch_angle"]
-
-    def get_knee_pitch_angle(self):
-        return self.state["knee_pitch_angle"]
-
-    def get_shock_depth(self):
-        return self.state["shock_depth"]
+    def createPublisher(self, values_to_publish):
+        pub = Publisher(self.next_publisher_port)
+        self.next_publisher_port += 1
+        for val in values_to_publish:
+            pub.addToCatalog("logging."+val, self.__getattr__("get_"+val))
+        pub.start()
+        return pub
 
     def populate_state(self, kwargs):
         for k in kwargs:
