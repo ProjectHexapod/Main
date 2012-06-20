@@ -34,7 +34,7 @@ class LegModel:
         # State
         vel_corner = 100.0  # rad/s
         self.jv_filter = HighPassFilter(vel_corner, vel_corner)  # band limited differentiator
-        self.setSensorReadings(0.0, 0.0, 0.0, 0.0)
+        self.setSensorReadings(self.SOFT_MINS[0], self.SOFT_MINS[1], self.SOFT_MINS[2], 0.0)
 
         # Events
         self.SHOCK_DEPTH_THRESHOLD_LOW = c.getfloat(section, "shock_depth_threshold_low")

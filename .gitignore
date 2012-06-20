@@ -2,6 +2,6 @@
 /.pydevproject
 *.pyc
 *~
-gimpy.csv
+*.csv
 *.DS_Store
 .idea
