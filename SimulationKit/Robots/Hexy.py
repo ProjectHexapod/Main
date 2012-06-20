@@ -21,7 +21,7 @@ class serHandler(threading.Thread):
 
         self.serOpen = False
         self.serNum = 0
-	self.setDaemon(True)
+        self.setDaemon(True)
         self.start()
 
     def run(self):
@@ -37,7 +37,7 @@ class serHandler(threading.Thread):
                             toSend = self.sendQueue.pop(0)
                             send = True
                         if send: self.ser.write(str(toSend))
-			else: time.sleep(1e-6)
+                        else: time.sleep(1e-6)
 
     def connect(self):
         # auto attach to controller
@@ -167,12 +167,12 @@ class Hexy(MultiBody):
     THIGH_M = 0.05
     CALF_M  = 0.05
     def connectToHexy( self ):
-	"""Connect to the real hexy"""
+        """Connect to the real hexy"""
         self.hexy_conn = Controller()
     def buildBody( self ):
         """ Build an equilateral hexapod """
-	# Connect to the real hexy
-	self.connectToHexy()
+        # Connect to the real hexy
+        self.connectToHexy()
         # These are the rotation matrices we will use
         r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
         r_45z = calcRotMatrix( (0,0,1), pi/4.0 )
@@ -297,65 +297,65 @@ class Hexy(MultiBody):
             self.legs[i]      = d
 
             p = rotate3( r_45z, p )
-	    if i == 2:
-		p = rotate3( r_45z, p )
-	# Assign the servo numbers for interfacing with the real Hexy
-	self.legs[0]['hip_yaw'    ].servo = self.hexy_conn.servos[0]
-	self.legs[0]['hip_pitch'  ].servo = self.hexy_conn.servos[1]
-	self.legs[0]['knee_pitch' ].servo = self.hexy_conn.servos[2]
-	self.legs[1]['hip_yaw'    ].servo = self.hexy_conn.servos[4]
-	self.legs[1]['hip_pitch'  ].servo = self.hexy_conn.servos[5]
-	self.legs[1]['knee_pitch' ].servo = self.hexy_conn.servos[6]
-	self.legs[2]['hip_yaw'    ].servo = self.hexy_conn.servos[8]
-	self.legs[2]['hip_pitch'  ].servo = self.hexy_conn.servos[9]
-	self.legs[2]['knee_pitch' ].servo = self.hexy_conn.servos[10]
-	self.legs[3]['hip_yaw'    ].servo = self.hexy_conn.servos[24]
-	self.legs[3]['hip_pitch'  ].servo = self.hexy_conn.servos[25]
-	self.legs[3]['knee_pitch' ].servo = self.hexy_conn.servos[26]
-	self.legs[4]['hip_yaw'    ].servo = self.hexy_conn.servos[20]
-	self.legs[4]['hip_pitch'  ].servo = self.hexy_conn.servos[21]
-	self.legs[4]['knee_pitch' ].servo = self.hexy_conn.servos[22]
-	self.legs[5]['hip_yaw'    ].servo = self.hexy_conn.servos[16]
-	self.legs[5]['hip_pitch'  ].servo = self.hexy_conn.servos[17]
-	self.legs[5]['knee_pitch' ].servo = self.hexy_conn.servos[18]
+            if i == 2:
+                p = rotate3( r_45z, p )
+        # Assign the servo numbers for interfacing with the real Hexy
+        self.legs[0]['hip_yaw'    ].servo = self.hexy_conn.servos[0]
+        self.legs[0]['hip_pitch'  ].servo = self.hexy_conn.servos[1]
+        self.legs[0]['knee_pitch' ].servo = self.hexy_conn.servos[2]
+        self.legs[1]['hip_yaw'    ].servo = self.hexy_conn.servos[4]
+        self.legs[1]['hip_pitch'  ].servo = self.hexy_conn.servos[5]
+        self.legs[1]['knee_pitch' ].servo = self.hexy_conn.servos[6]
+        self.legs[2]['hip_yaw'    ].servo = self.hexy_conn.servos[8]
+        self.legs[2]['hip_pitch'  ].servo = self.hexy_conn.servos[9]
+        self.legs[2]['knee_pitch' ].servo = self.hexy_conn.servos[10]
+        self.legs[3]['hip_yaw'    ].servo = self.hexy_conn.servos[24]
+        self.legs[3]['hip_pitch'  ].servo = self.hexy_conn.servos[25]
+        self.legs[3]['knee_pitch' ].servo = self.hexy_conn.servos[26]
+        self.legs[4]['hip_yaw'    ].servo = self.hexy_conn.servos[20]
+        self.legs[4]['hip_pitch'  ].servo = self.hexy_conn.servos[21]
+        self.legs[4]['knee_pitch' ].servo = self.hexy_conn.servos[22]
+        self.legs[5]['hip_yaw'    ].servo = self.hexy_conn.servos[16]
+        self.legs[5]['hip_pitch'  ].servo = self.hexy_conn.servos[17]
+        self.legs[5]['knee_pitch' ].servo = self.hexy_conn.servos[18]
 
-	self.legs[0]['hip_yaw'    ].servo_offset = 0.0
-	self.legs[0]['hip_pitch'  ].servo_offset = 0.0
-	self.legs[0]['knee_pitch' ].servo_offset = -90.0
-	self.legs[1]['hip_yaw'    ].servo_offset = 0.0
-	self.legs[1]['hip_pitch'  ].servo_offset = 0.0
-	self.legs[1]['knee_pitch' ].servo_offset = -90.0
-	self.legs[2]['hip_yaw'    ].servo_offset = 0.0
-	self.legs[2]['hip_pitch'  ].servo_offset = 0.0
-	self.legs[2]['knee_pitch' ].servo_offset = -90.0
-	self.legs[3]['hip_yaw'    ].servo_offset = 0.0
-	self.legs[3]['hip_pitch'  ].servo_offset = 0.0
-	self.legs[3]['knee_pitch' ].servo_offset = -90.0
-	self.legs[4]['hip_yaw'    ].servo_offset = 0.0
-	self.legs[4]['hip_pitch'  ].servo_offset = 0.0
-	self.legs[4]['knee_pitch' ].servo_offset = -90.0
-	self.legs[5]['hip_yaw'    ].servo_offset = 0.0
-	self.legs[5]['hip_pitch'  ].servo_offset = 0.0
-	self.legs[5]['knee_pitch' ].servo_offset = -90.0
+        self.legs[0]['hip_yaw'    ].servo_offset = 0.0
+        self.legs[0]['hip_pitch'  ].servo_offset = 0.0
+        self.legs[0]['knee_pitch' ].servo_offset = -90.0
+        self.legs[1]['hip_yaw'    ].servo_offset = 0.0
+        self.legs[1]['hip_pitch'  ].servo_offset = 0.0
+        self.legs[1]['knee_pitch' ].servo_offset = -90.0
+        self.legs[2]['hip_yaw'    ].servo_offset = 0.0
+        self.legs[2]['hip_pitch'  ].servo_offset = 0.0
+        self.legs[2]['knee_pitch' ].servo_offset = -90.0
+        self.legs[3]['hip_yaw'    ].servo_offset = 0.0
+        self.legs[3]['hip_pitch'  ].servo_offset = 0.0
+        self.legs[3]['knee_pitch' ].servo_offset = -90.0
+        self.legs[4]['hip_yaw'    ].servo_offset = 0.0
+        self.legs[4]['hip_pitch'  ].servo_offset = 0.0
+        self.legs[4]['knee_pitch' ].servo_offset = -90.0
+        self.legs[5]['hip_yaw'    ].servo_offset = 0.0
+        self.legs[5]['hip_pitch'  ].servo_offset = 0.0
+        self.legs[5]['knee_pitch' ].servo_offset = -90.0
 
-	self.legs[0]['hip_yaw'    ].servo_mult =  1.0
-	self.legs[0]['hip_pitch'  ].servo_mult =  1.0
-	self.legs[0]['knee_pitch' ].servo_mult = -1.0
-	self.legs[1]['hip_yaw'    ].servo_mult =  1.0
-	self.legs[1]['hip_pitch'  ].servo_mult =  1.0
-	self.legs[1]['knee_pitch' ].servo_mult = -1.0
-	self.legs[2]['hip_yaw'    ].servo_mult =  1.0
-	self.legs[2]['hip_pitch'  ].servo_mult =  1.0
-	self.legs[2]['knee_pitch' ].servo_mult = -1.0
-	self.legs[3]['hip_yaw'    ].servo_mult =  1.0
-	self.legs[3]['hip_pitch'  ].servo_mult =  1.0
-	self.legs[3]['knee_pitch' ].servo_mult = -1.0
-	self.legs[4]['hip_yaw'    ].servo_mult =  1.0
-	self.legs[4]['hip_pitch'  ].servo_mult =  1.0
-	self.legs[4]['knee_pitch' ].servo_mult = -1.0
-	self.legs[5]['hip_yaw'    ].servo_mult =  1.0
-	self.legs[5]['hip_pitch'  ].servo_mult =  1.0
-	self.legs[5]['knee_pitch' ].servo_mult = -1.0
+        self.legs[0]['hip_yaw'    ].servo_mult =  1.0
+        self.legs[0]['hip_pitch'  ].servo_mult =  1.0
+        self.legs[0]['knee_pitch' ].servo_mult = -1.0
+        self.legs[1]['hip_yaw'    ].servo_mult =  1.0
+        self.legs[1]['hip_pitch'  ].servo_mult =  1.0
+        self.legs[1]['knee_pitch' ].servo_mult = -1.0
+        self.legs[2]['hip_yaw'    ].servo_mult =  1.0
+        self.legs[2]['hip_pitch'  ].servo_mult =  1.0
+        self.legs[2]['knee_pitch' ].servo_mult = -1.0
+        self.legs[3]['hip_yaw'    ].servo_mult =  1.0
+        self.legs[3]['hip_pitch'  ].servo_mult =  1.0
+        self.legs[3]['knee_pitch' ].servo_mult = -1.0
+        self.legs[4]['hip_yaw'    ].servo_mult =  1.0
+        self.legs[4]['hip_pitch'  ].servo_mult =  1.0
+        self.legs[4]['knee_pitch' ].servo_mult = -1.0
+        self.legs[5]['hip_yaw'    ].servo_mult =  1.0
+        self.legs[5]['hip_pitch'  ].servo_mult =  1.0
+        self.legs[5]['knee_pitch' ].servo_mult = -1.0
     def getTotalHydraulicFlowGPM( self ):
         total = 0
         for i in range(6):
@@ -366,7 +366,7 @@ class Hexy(MultiBody):
     def setDesiredFootPositions( self, positions ):
         """
         positions should be an iterable of 6 positions relative to the body
-	Hexy is not a perfect hexapod.  He is actually an octogon with two positions not populated
+        Hexy is not a perfect hexapod.  He is actually an octogon with two positions not populated
         """
         # These are the rotation matrices we will use
         r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
@@ -406,8 +406,8 @@ class Hexy(MultiBody):
             # Calculate the hip base point for the next iteration
             p                    = rotate3( r_45z, p )
             i+=1
-	    if i == 3:
-		p = rotate3( r_45z, p )
+            if i == 3:
+                p = rotate3( r_45z, p )
     def getBodyHeight( self ):
         return self.core[0].getPosition()[2]
     def getPosition( self ):
@@ -415,12 +415,12 @@ class Hexy(MultiBody):
     def getVelocity( self ):
         return self.core[0].getLinearVel()
     def __getLegAngleOffset( self, i ):
-	if i < 3:
-	    return (pi/4) + i*(pi/4)
-	elif i < 6:
-	    return (pi/2) + i*(pi/4)
-	else:
-	    raise
+        if i < 3:
+            return (pi/4) + i*(pi/4)
+        elif i < 6:
+            return (pi/2) + i*(pi/4)
+        else:
+            raise
     def constantSpeedWalk( self ):
         gait_cycle      = 4.0     # time in seconds
         step_cycle      = gait_cycle/2.0

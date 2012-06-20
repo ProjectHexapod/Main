@@ -134,7 +134,6 @@ class StompyPhysicalCharacteristics(object):
         self.BODY_W  = 2.5 
         self.BODY_T  = 0.75 # Thickness of the body capsule TODO: improve body model
         self.BODY_M  = pound2kilo*2000
-        #self.BODY_M  = pound2kilo*20
         self.LEGS = []
         # These are the rotation matrices we will use
         r_30z = calcRotMatrix( (0,0,1), pi/6.0 )
@@ -307,7 +306,7 @@ class SpiderWHydraulics(MultiBody):
                 hi_stop      = 0.1,\
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
-                damping          = -1e2)
+                damping          = -1e1)
             def populatePublisher( dof_name, joint ):
                 self.publisher.addToCatalog(\
                     "l%d.%s.torque"%(i,dof_name),\
@@ -422,10 +421,6 @@ class SpiderWHydraulics(MultiBody):
             controlLenRate(self.legs[i]['hip_yaw'   ],  hip_yaw_angle   )
             controlLenRate(self.legs[i]['hip_pitch' ],  hip_pitch_angle )
             controlLenRate(self.legs[i]['knee_pitch'],  knee_angle      )
-            #controlLenRate(self.legs[i]['hip_yaw'   ], 0)
-            #controlLenRate(self.legs[i]['hip_pitch' ], 0)
-            #controlLenRate(self.legs[i]['knee_pitch'], pi/2)
-            # Calculate the hip base point for the next iteration
             i+=1
     def getBodyHeight( self ):
         return self.core.getPosition()[2]
@@ -439,52 +434,13 @@ class SpiderWHydraulics(MultiBody):
         return self.core.getAngularVel()
     def getVelocity( self ):
         return self.core.getLinearVel()
-    def naiveWalk( self ):
-        gait_cycle=5.0
-        foot_positions = []
-        x_off =  1.00*cos(2*pi*self.sim.sim_t/gait_cycle)
-        z_off =  1.5*sin(2*pi*self.sim.sim_t/gait_cycle)
-        if z_off<0:
-            z_off *= -1
-        for i in range(6):
-            z = -2.0
-            if (i%2) ^ (self.sim.sim_t%gait_cycle<(gait_cycle/2.0)):
-                z += z_off
-            p = ( sign(i%2)*x_off + 2.29*cos(pi/6 + (i*pi/3)), 2.29*sin(pi/6 + (i*pi/3)), z )
-            foot_positions.append(p)
-        self.setDesiredFootPositions( foot_positions )
-        return foot_positions
-    def standUp( self ):
-        """Don't walk, just sort of try to stand up"""
-        gait_cycle      = 3.0     # time in seconds
-        step_cycle      = gait_cycle/2.0
-        neutral_r       = 2.5     # radius from body center or foot resting, m
-        stride_length   = 2.00    # length of a stride, m
-        body_h          = 2.20    # height of body off the ground, m
-        foot_lift_h     = 1.00     # how high to lift feet in m
-
-        foot_positions = []
-        z_off        =  foot_lift_h*sin(2*pi*self.sim.sim_t/gait_cycle)
-        if z_off<0:
-            z_off *= -1
-        for i in range(6):
-            x = neutral_r*cos(pi/6 + (i*pi/3))
-            y = neutral_r*sin(pi/6 + (i*pi/3))
-            z = -body_h
-            if (i%2) ^ (self.sim.sim_t%gait_cycle<(step_cycle)):
-                z += z_off
-            p = ( x, y, z )
-            foot_positions.append(p)
-        self.setDesiredFootPositions( foot_positions )
-        return foot_positions
     def constantSpeedWalk( self ):
         gait_cycle      = 3.0     # time in seconds
         step_cycle      = gait_cycle/2.0
         swing_overshoot = 1.00
-        neutral_r       = 3.0     # radius from body center or foot resting, m
         stride_length   = 1.70    # length of a stride, m
         body_h          = 2.00    # height of body off the ground, m
-        foot_lift_h     = 0.45    # how high to lift feet in m
+        foot_lift_h     = 0.25    # how high to lift feet in m
 
         foot_positions = []
         x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(self.sim.sim_t%step_cycle)/gait_cycle)
@@ -493,9 +449,10 @@ class SpiderWHydraulics(MultiBody):
         if z_off<0:
             z_off *= -1
         for i in range(6):
-            x = neutral_r*cos(pi/6 + (i*pi/3))
-            y = neutral_r*sin(pi/6 + (i*pi/3))
-            z = -body_h
+            # Neutral position in the leg coordinate frame
+            neutral_pos = (inch2meter*70, 0, -inch2meter*60)
+            tmp = rotate3( self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
+            x, y, z = add3( tmp, self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN )
             if (i%2) ^ (self.sim.sim_t%gait_cycle<(step_cycle)):
                 x += x_off_swing
                 z += z_off

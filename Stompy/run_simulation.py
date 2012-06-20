@@ -12,7 +12,7 @@ from ControlsKit.import_planner import importPlanner
 update = importPlanner()
 
 
-d = {'offset':(0,0,2.5)}
+d = {'offset':(0,0,1.0)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=SpiderWHydraulics,robot_kwargs=d, start_paused = True)
 
 try:
