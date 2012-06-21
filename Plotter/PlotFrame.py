@@ -175,16 +175,20 @@ class PlotFrame(wx.Frame):
         markers = []
         i = 0
         z_i = 0
+        # Skip unpopulated data.
         while not self.data['time'][z_i]:
             z_i += 1
             if z_i == len(self.data['time']):
                 return
+        y_axis_title = ''
         for k,v in self.data.items():
             if k == 'time':
                 continue
             markers.append( PolyMarker(zip(self.data['time'][z_i:], self.data[k][z_i:]), legend=k, colour=colors[i], marker='dot',size=3) )
+            y_axis_title += k+', '
             i+=1
-        graphics = PlotGraphics(markers,"Graph Title", "X Axis", "Y Axis")
+        y_axis_title = y_axis_title[:-2]
+        graphics = PlotGraphics(markers,"", "Time", y_axis_title)
         self.resetDefaults()
         self.client.SetXSpec('min')
         self.client.SetYSpec('min')
