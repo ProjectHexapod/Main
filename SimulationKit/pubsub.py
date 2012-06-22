@@ -12,12 +12,14 @@ class Publisher:
         self.conn         = None
         self.serverThread = None
         self.restartflag  = 0
-	self.ready_to_publish = 0
+        self.ready_to_publish = 0
 
         # Catalog lists all the data offered by the publisher
         self.catalog = {}
         # Subscriptions is a list of all the offerings the client is subscribing to
         self.subscriptions = []
+        # These are publishers that the remote side asked us to intantiate
+        self.sub_publishers = []
 
     def addToCatalog( self, name, callback ):
         self.catalog[name] = callback
@@ -40,10 +42,13 @@ class Publisher:
                     else:
                         frame[k] = f()
                 bytes_sent = self.conn.send(pickle.dumps(frame))
-		if not bytes_sent:
-		    print "Remote disconnect detected"
+                if not bytes_sent:
+                    print "Remote disconnect detected"
             except error, mesg:
                 print mesg
+        # Trigger the sub-publishers to publish
+        for publisher in self.sub_publishers:
+            publisher.publish()
 
     def run_server( self ):
         print 'Hello from the server thread'
@@ -65,22 +70,39 @@ class Publisher:
                 # Wait for request
                 try:
                     s = self.conn.recv(4096)
+                    # Presently two requests are supported:
+                    # A list of subscriptions
+                    # A new port to open another publisher on
                 except error, mesg:
                     print mesg
                     self.restartflag = 1
                 if s:
-                    # The request must be a list of catalog keys
                     try:
-                        keys = pickle.loads(s)
+                        data = pickle.loads(s)
+                        if type(data) == type(0):
+                            # Request to open another publisher on a different
+                            # port.
+                            port = data
+                            print "Received request for new publisher on port"\
+                                " %d"%port
+                            new_pub = Publisher(port)
+                            # FIXME: This feels hacky... new publisher refers to
+                            # the old publisher's catalog
+                            new_pub.catalog = self.catalog
+                            new_pub.start()
+                            self.sub_publishers.append(new_pub)
+                        elif type(data) == type([]):
+                            # Subscription request
+                            keys = data
                         self.subscriptions = keys
-			self.ready_to_publish = True
+                        self.ready_to_publish = True
                     except:
                         print 'Pickle fail'
                         self.restartflag = 1
                 else:
                     print "Timed out without receiving"
                     self.restartflag = 1
-	    self.ready_to_publish = False
+            self.ready_to_publish = False
             self.conn.close()
             self.conn = None
 
@@ -88,6 +110,8 @@ class Publisher:
         print 'Closing publisher gracefully'
         self.conn.close()
         self.sock.close()
+        for publisher in self.sub_publishers:
+            publisher.close()
 
 class Subscriber:
     def __init__(self, host, port):
@@ -97,8 +121,8 @@ class Subscriber:
         self.clientThread = None
         self.sock = socket( AF_INET, SOCK_STREAM )
         self.sock.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-	# Call this when the other side disconnects
-	self.remoteDisconnectCallback = None
+        # Call this when the other side disconnects
+        self.remoteDisconnectCallback = None
         while 1:
             try:
                 self.sock.connect( (host,port) )
@@ -112,8 +136,8 @@ class Subscriber:
             except error, desc:
                 print desc
                 time.sleep(1.0)
-            except:
-                print 'Pickle fail'
+            #except:
+            #    print 'Pickle fail'
         self.catalog.sort()
     def start( self ):
         self.stop_flag = 0
@@ -123,11 +147,13 @@ class Subscriber:
         self.clientThread.start()
     def subscribeTo( self, name_list ):
         self.sock.send( pickle.dumps(name_list) )
+    def requestAnotherPublisher( self, port ):
+        self.sock.send( pickle.dumps(port) )
     def run_client( self ):
         # The client waits to receive frames and then calls the callback
         while not self.stop_flag:
             try:
-		recv_string = self.sock.recv(4096)
+                recv_string = self.sock.recv(4096)
                 frame  = pickle.loads(recv_string)
                 self.frameReceivedCallback( frame )
             except error, mesg:
@@ -135,12 +161,12 @@ class Subscriber:
                 print mesg
             except:
                 print 'Pickle fail'
-		# Check if the socket is still connected
-		if not len(recv_string):
-		    print "Disconnect detected"
-		    self.stop_flag = 1
-		    if self.remoteDisconnectCallback:
-			self.remoteDisconnectCallback()
+                # Check if the socket is still connected
+                if not len(recv_string):
+                    print "Disconnect detected"
+                    self.stop_flag = 1
+                    if self.remoteDisconnectCallback:
+                        self.remoteDisconnectCallback()
     def setCallback( self, callback ):
         self.frameReceivedCallback = callback
     def close( self ):

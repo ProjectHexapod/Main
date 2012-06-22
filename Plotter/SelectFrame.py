@@ -1,3 +1,4 @@
+from PlotFrameSettings import *
 import wx
 from wx.lib.plot import *
 # Needs Numeric or numarray or NumPy
@@ -23,6 +24,7 @@ from SimulationKit.pubsub import *
 from PlotFrame import *
 import time
 import threading
+import os
 
 class SelectFrame(wx.Frame):
     def __init__(self, parent, id, title):
@@ -43,26 +45,19 @@ class SelectFrame(wx.Frame):
         # A status bar to tell people what's happening
         self.CreateStatusBar(1)
         
-        # To get around threading issues, some calls need to be made by
-        # wx's event handlers.  Here we set up a queue of functions to be called
-        # and a timer to check the queue every 50 ms
-        self.function_timer = wx.Timer(self)
-        self.function_queue = []
-        self.Bind(wx.EVT_TIMER, self.CheckFunctionQueue, self.function_timer)
-        self.function_timer.Start(50,0)
-        # FIXME:  Put this elsewhere
+        self.config = PlotFrameSettings()
+        # FIXME: we need to support plotting variables against eachother in the
+        # future
+        self.config.subscriptions.append('time')
+        self.next_port = 5056
+        
+        # Grab the catalog and close the subscriber
         self.subscriber    = Subscriber( 'localhost', 5055 )
-
-        self.subscriptions = {}
-        self.data = {}
-
+        self.subscriber.close()
         # For each entry in the catalog we must figure out where it belongs in the tree
         root_d={}
         for full_name in self.subscriber.catalog:
-            # FIXME: Eventually wee want to be able to plot vairables against eachother, not just against time.
-            # But since we can't do that right now time must always be selected
             if full_name == 'time':
-                self.subscriptions['time'] = 0
                 continue
             tokens = full_name.split('.')
             d = root_d
@@ -85,18 +80,14 @@ class SelectFrame(wx.Frame):
         walkDictForTree( root_d, root_item )
         self.Bind( wx.EVT_TREE_ITEM_ACTIVATED, self.OnCatalogItemActivated, self.catalog )
 
-        self.play_stop_button = wx.Button( self, -1, "Play" )
-        self.Bind( wx.EVT_BUTTON, self.OnPlayStopButton, self.play_stop_button )
+        self.play_button = wx.Button( self, -1, "Play" )
+        self.Bind( wx.EVT_BUTTON, self.OnPlayButton, self.play_button )
 
         self.vsizer_0.Add( self.catalog          , 1 , wx.EXPAND , 0 );
-        self.vsizer_0.Add( self.play_stop_button , 0 , wx.EXPAND , 0 );
+        self.vsizer_0.Add( self.play_button , 0 , wx.EXPAND , 0 );
         self.SetSizer(self.vsizer_0)
 
         self.Show(True)
-    def CheckFunctionQueue( self, event ):
-        for f in self.function_queue:
-            f()
-        self.function_queue = []
     def OnCatalogItemActivated( self, event ):
         itemid = event.GetId()
         tree = event.GetEventObject()
@@ -117,80 +108,40 @@ class SelectFrame(wx.Frame):
                 full_name = tree.GetItemText(item) + '.' + full_name
                 item = tree.GetItemParent( item )
             full_name = full_name[:-1]
-            if self.subscriptions.has_key(full_name):
-                tree.SetItemBackgroundColour( treeitem, (255,255,255) )
-                del self.subscriptions[full_name]
-                # Recurse up the tree, change colors appropriately
-                item = tree.GetItemParent( treeitem )
+            def recurseUpTreeChangingColors( root, item, color, inc=1 ):
                 while item != root:
                     # Check the active leaf count
                     count = tree.GetItemPyData( item )
                     if count:
-                        count -= 1
+                        count += inc
                     tree.SetItemPyData( item, count )
                     if not count:
-                        tree.SetItemBackgroundColour( item, (255,255,255) )
+                        tree.SetItemBackgroundColour( item, color )
                     item  = tree.GetItemParent( item )
+            if full_name in self.config.subscriptions:
+                # Item was already selected, remove from subscriptions
+                tree.SetItemBackgroundColour( treeitem, (255,255,255) )
+                self.config.subscriptions.remove(full_name)
+                item = tree.GetItemParent( treeitem )
+                # Recurse up the tree, change colors appropriately
+                recurseUpTreeChangingColors(root,item,(255,255,255))
             else:
+                # Add item to subscriptions
                 tree.SetItemBackgroundColour( treeitem, (100,255,100) )
-                self.subscriptions[full_name] = 0
+                self.config.subscriptions.append(full_name)
                 # Recurse up the tree, change colors appropriately
                 item = tree.GetItemParent( treeitem )
-                while item != root:
-                    # Check the active leaf count
-                    count = tree.GetItemPyData( item )
-                    if count == None:
-                        count = 0
-                    count += 1
-                    tree.SetItemPyData( item, count )
-                    tree.SetItemBackgroundColour( item, (255,255,100) )
-                    item  = tree.GetItemParent( item )
-    def OnDataFrameReceived( self, frame ):
-        for k,v in frame.items():
-            self.data[k].pop(0)
-            self.data[k].append(v)
+                recurseUpTreeChangingColors(root,item,(255,255,100),inc=-1)
     def OnRemoteDisconnect( self ):
         self.Stop(connect_callback=self.Play)
-    def TogglePlay( self, close_window = False ):
-        if self.play_stop_button.GetLabel() == 'Play':
-            self.Play()
-        else:
-            self.Stop( close_window )
-    def PlayIfInitialized( self ):
-        if len(self.subscriptions) > 1:
-            self.Play()
-    def Play( self ):
-        if self.play_stop_button.GetLabel() != 'Play':
-            # We are already playing!
-            return
-        self.play_stop_button.SetLabel('Stop')
-        self.data = { k:[0 for x in range(1000)] for k in self.subscriptions }
-        self.subscriber.subscribeTo( self.subscriptions )
-        self.subscriber.setCallback( self.OnDataFrameReceived )
-        self.subscriber.remoteDisconnectCallback = self.OnRemoteDisconnect
-        self.subscriber.start()
-        if hasattr(self, 'plot_frame'):
-            self.plot_frame.Destroy()
-        self.plot_frame = PlotFrame(self, -1, "PlotCanvas")
-        self.plot_frame.data = self.data
-        self.animation_timer = wx.Timer(self)
-        self.Bind(wx.EVT_TIMER, self.plot_frame.drawData, self.animation_timer)
-        self.animation_timer.Start(100,0)
-    def Stop( self, close_window=False, connect_callback = None ):
-        if self.play_stop_button.GetLabel() == 'Play':
-            # We are already stopped!
-            return
-        self.animation_timer.Stop()
-        self.play_stop_button.SetLabel('Play')
-        self.subscriber.close()
+    def OnPlayButton(self, event ):
+        self.config.port = self.next_port
+        self.next_port += 1
+        savePlotFrameSettingsToFile( self.config, 'plot_settings.pickle' )
         self.subscriber    = Subscriber( 'localhost', 5055 )
-        if close_window:
-            self.plot_frame.Destroy()
-            del self.plot_frame
-        if connect_callback:
-            self.function_queue.append( connect_callback )
-    def OnPlayStopButton(self, event ):
-        self.TogglePlay()
+        self.subscriber.requestAnotherPublisher(self.config.port)
+        self.subscriber.close()
+        os.system('python PlotFrame.py plot_settings.pickle &')
     def OnClose(self, event):
         self.subscriber.close()
         self.Destroy()
