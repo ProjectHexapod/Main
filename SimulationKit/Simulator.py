@@ -107,8 +107,11 @@ class Simulator(object):
         self.contactgroup = ode.JointGroup()
         self.contactlist  = []
 
-        self.geoms  = []
-        self.bodies = []
+        # FIXME:  Poorly named lists.
+        # bodies contains ode bodies that have mass and collision geometry
+        self.bodies   = []
+        self.geoms    = []
+        self.graphics = []
 
         if self.plane:
             g = self.createBoxGeom((1e2,1e2,1))
@@ -177,14 +180,17 @@ class Simulator(object):
         contacts = ode.collide(geom1, geom2)
 
         # create contact joints
-        world, contactgroup = args
+        self.world, self.contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
-            c.setMu(1000) # 0-5 = very slippery, 50-500 = normal, 5000 = very sticky
-            j = ode.ContactJoint(self.world, self.contactgroup, c)
+            c.setMu(1000) # TODO: I don't know what these units are
+
+            j = ode.ContactJoint(self.world, None, c)
+            # FIXME: Store the position of the contact
+            j.position = c.getContactGeomParams()[0] 
             self.contactlist.append(j)
             j.attach(geom1.getBody(), geom2.getBody())
-            #j.setFeedback()
+            j.setFeedback(True)
     def step( self ):
         real_t_present = getSysTime()
         if not self.paused:
@@ -199,6 +205,10 @@ class Simulator(object):
 
             # Remove all contact joints
             self.contactgroup.empty()
+            # FIXME: disable the joints and remove references... the garbage
+            # collector will grab them.  This is a bad solution.
+            #for contact in self.contactlist:
+            #    contact.disable()
             self.contactlist = []
             # Detect collisions and create contact joints
             self.space.collide((self.world, self.contactgroup), self.near_callback)
@@ -312,16 +322,24 @@ class Simulator(object):
             del b
         for b in self.robot.bodies:
             self.draw_body(b)
+        glLibColor( (0,0,200) )
+        for g in self.graphics:
+            self.draw_graphic(g)
+            del g
+        self.graphics = []
         # Draw force vectors on all contacts
         # FIXME:  ODE complains of:
         # ODE INTERNAL ERROR 2: Bad argument(s) in dJointSetFeedback()
-        #for j in self.contactlist:
-        #    self.draw_contact_force_vector(j)
+        for j in self.contactlist:
+            self.draw_contact_force_vector(j)
         self.window.flip()
+
     def draw_contact_force_vector( self, joint ):
         # TODO: Function incomplete
         forces1, torques1, forces2, torques2 = joint.getFeedback()
-        print forces1
+        p1 = joint.position
+        p2 = add3(p1, div3(forces1,1e3))
+        self.createCapsuleGraphic( p1, p2 )
     def draw_body(self, body):
         """Draw an ODE body."""
 
@@ -368,6 +386,13 @@ class Simulator(object):
                 else:
                     geom.glObj = glLibObjCube( geom.getLengths() )
             geom.glObj.myDraw( rot )
+    def draw_graphic( self, graphic ):
+        """
+        """
+        if isinstance(graphic, glLibObjCapsule):
+            graphic.myDraw( graphic.gl_matrix )
+        else:
+            raise NotImplemented
     def createSphere( self, mass=100, radius=1, pos=(0,0,0) ):
         """Creates a capsule body and corresponding geom."""
         body = ode.Body(self.world)
@@ -415,6 +440,28 @@ class Simulator(object):
         return body, geom
     def createBoxGeom( self, sizes=(1.0,1.0,1.0) ):
         return ode.GeomBox(self.space, sizes)
+    def createCapsuleGraphic( self, p1, p2, radius=0.05, detail=3 ):
+        """
+        Creates a capsule graphic entity... does not exist in the physics
+        engine, only graphical.
+        """
+        # define body rotation automatically from body axis
+        relative_v = sub3(p2,p1)
+        capsule_len = len3(relative_v)
+        za = div3(relative_v, capsule_len)
+        if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
+        else: xa = (0.0, 1.0, 0.0)
+        ya = cross(za, xa)
+        xa = norm3(cross(ya, za))
+        ya = cross(za, xa)
+        rot = (xa[0], ya[0], za[0], xa[1], ya[1], za[1], xa[2], ya[2], za[2])
+        offset = rotate3(rot, (0,0,capsule_len/2.0))
+        p = sub3(p1,offset)
+        gl_matrix = makeOpenGLMatrix(rot, p)
+        glLibColor((255,0,0))
+        gl_obj = glLibObjCapsule( radius, capsule_len, detail )
+        gl_obj.gl_matrix = gl_matrix
+        self.graphics.append(gl_obj)
 
 def getPower( l ):
     return abs(l.getVel()*l.getForceLimit())
