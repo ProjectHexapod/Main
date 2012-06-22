@@ -75,7 +75,8 @@ class Simulator(object):
     and running for a specified period of time.
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
-                    ground_slope=None, publish_int=5, robot=None, robot_kwargs={}, start_paused = True):
+                    ground_grade=0.0, ground_axis = (0,1,0), publish_int=5,\
+                    robot=None, robot_kwargs={}, start_paused = True):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
@@ -120,8 +121,8 @@ class Simulator(object):
             g.setPosition(pos)
             self.geoms.append(g)
             self.ground = g
-            if ground_slope:
-                self.ground.setRotation(ground_slope)
+            rot_matrix = calcRotMatrix(ground_axis, atan(ground_grade))
+            self.ground.setRotation(rot_matrix)
 
         if self.pave:
             self.paver = Paver( (0,0), self )
@@ -183,7 +184,7 @@ class Simulator(object):
         self.world, self.contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
-            c.setMu(1000) # TODO: I don't know what these units are
+            c.setMu(2000) # TODO: I don't know what these units are
 
             j = ode.ContactJoint(self.world, None, c)
             # FIXME: Store the position of the contact
