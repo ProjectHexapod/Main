@@ -2,16 +2,6 @@ import ode
 from math import *
 from helpers import *
 
-def calcAngularError( a1, a2 ):
-    """Given two angles in radians what is 
-    the difference between them?"""
-    error = (a1%(2*pi))-(a2%(2*pi))
-    if error > pi:
-        error -= 2*pi
-    elif error <= -1*pi:
-        error += 2*pi
-    return error
-
 class ControlledHingeJoint(ode.HingeJoint):
     """ControlledHingeJoint lets you set target positions and gives you
     torque feedback"""
