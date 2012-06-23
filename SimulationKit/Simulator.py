@@ -450,6 +450,9 @@ class Simulator(object):
         # define body rotation automatically from body axis
         relative_v = sub3(p2,p1)
         capsule_len = len3(relative_v)
+        #Protect against someone feeding in the same point twice
+        if capsule_len < 1e-5:
+            return
         za = div3(relative_v, capsule_len)
         if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
         else: xa = (0.0, 1.0, 0.0)
