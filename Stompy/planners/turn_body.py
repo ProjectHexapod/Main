@@ -1,6 +1,6 @@
 from ControlsKit import time_sources, BodyModel, logger, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
-from ControlsKit.body_paths import TrapezoidalSitStand, BodyPause, TrapezoidalFeetAlign
+from ControlsKit.body_paths import RotateFeetAboutOrigin, BodyPause, TrapezoidalFeetAlign
 from scipy import zeros
 
 controller = BodyController()
@@ -27,13 +27,13 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     if path.isDone():
         if state == ORIENT:
-            path = TrapezoidalFeetAlign(model, controller, [0, -1.4,  2.2], 2, 1)
+            path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
             state =STAND
         elif state == STAND:
-            path = TrapezoidalSitStand(model, controller, -1.75, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .25, 2, 1)
             state = SIT
         elif state == SIT:
-            path = TrapezoidalSitStand(model, controller, -.5, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.25, 2, 1)
             state = STAND
         elif state == 0:
             path = BodyPause(model, controller, 10)
