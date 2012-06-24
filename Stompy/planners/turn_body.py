@@ -28,15 +28,18 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     if path.isDone():
         if state == ORIENT:
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
-            state = CCLOCKWISE
+            state = 4
         elif state == CCLOCKWISE:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .2, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, [0], .6, 2, 1)
             state = CLOCKWISE
         elif state == CLOCKWISE:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.2, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, [0], -.6, 2, 1)
             state = CCLOCKWISE
         elif state == 0:
             path = BodyPause(model, controller, 10)
+        elif state == 4:
+            path = RotateFeetAboutOrigin(model, controller, [0], -.3, 2, 1)
+            state = CCLOCKWISE
 
         logger.info("State changed.", state=state)
     

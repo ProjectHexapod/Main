@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, leg_logger
-from ControlsKit.math_utils import normalize, norm, arraysAreEqual, rotateZ, array
+from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 from numpy import arctan2, sign, pi, cos, sin
 
 class RotateFootAboutOrigin:
@@ -46,7 +46,6 @@ class RotateFootAboutOrigin:
             # down times the average speed during such a deceleration (ie
             # the distance it would take to stop)
             
-            self.body_coord = [self.radius*cos(self.last_commanded_angle), self.radius*sin(self.last_commanded_angle), self.init_height]
             self.target_angle = self.last_commanded_angle
             remaining_angle = self.delta_angle + self.init_angle - self.target_angle
             
@@ -58,16 +57,13 @@ class RotateFootAboutOrigin:
             self.target_angle += self.dir * self.ang_vel * delta
             self.last_commanded_angle = self.target_angle
             self.target_foot_pos = [self.radius*cos(self.target_angle), self.radius*sin(self.target_angle), self.init_height]
-
+            
+            if self.leg_index == 0:
+                self.target_foot_pos = [self.radius*cos(self.target_angle), self.radius*sin(self.target_angle), 0]
+                print(norm(self.body_model.transformLeg2Body(self.leg_index, self.leg_model.getFootPos())))
+                
             if not sign(remaining_angle) == self.dir:
                 self.done = True
-                #self.target_foot_pos = self.final_foot_pos
-        a = self.body_model.transformBody2Leg(self.leg_index, self.target_foot_pos)
-        if self.leg_index == 0:
-            print("target angle", self.target_angle)
-            print("body_frame radius", norm([self.body_coord[0],self.body_coord[1]]))
-            print("stored radius value", self.radius)
-            print("target frame radius", norm([self.target_foot_pos[0],self.target_foot_pos[1]]))
-            print("transformed radius", norm([a[0],a[1]]))
-            print("---")
-        return self.leg_model.jointAnglesFromFootPos(a)
+                self.target_foot_pos = [self.radius*cos(self.delta_angle + self.init_angle), self.radius*sin(self.delta_angle + self.init_angle), self.init_height]
+
+        return self.leg_model.jointAnglesFromFootPos(self.body_model.transformBody2Leg(self.leg_index, self.target_foot_pos))
