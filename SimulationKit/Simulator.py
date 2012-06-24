@@ -184,8 +184,11 @@ class Simulator(object):
         self.world, self.contactgroup = args
         for c in contacts:
             c.setBounce(0.2)
+            # ode.ContactApprox1 makes maximum frictional force proportional to
+            # normal force
             c.setMode(ode.ContactApprox1)
-            c.setMu(0) # TODO: I don't know what these units are
+            # Friction coefficient: Max friction (tangent) force = Mu*Normal force
+            c.setMu(0.5)
 
             j = ode.ContactJoint(self.world, None, c)
             # FIXME: Store the position of the contact
