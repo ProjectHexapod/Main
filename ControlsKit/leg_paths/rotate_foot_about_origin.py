@@ -46,7 +46,7 @@ class RotateFootAboutOrigin:
             # down times the average speed during such a deceleration (ie
             # the distance it would take to stop)
             
-            self.body_coord = [self.radius*cos(self.last_commanded_angle), self.radius*sin(self.last_commanded_angle), self.init_height]
+            #self.body_coord = [self.radius*cos(self.last_commanded_angle), self.radius*sin(self.last_commanded_angle), self.init_height]
             self.target_angle = self.last_commanded_angle
             remaining_angle = self.delta_angle + self.init_angle - self.target_angle
             

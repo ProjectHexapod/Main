@@ -22,11 +22,11 @@ class TrapezoidalFeetAlign:
         for i in range (NUM_LEGS):
             self.final_joint_positions[i] = final_angles
         for i in range (NUM_LEGS):
-            self.feet_path = append(self.feet_path, TrapezoidalJointMove(
+            self.feet_path.append(TrapezoidalJointMove(
                 self.model.getLegs()[i],
                 self.controller.getLimbControllers()[i],
                 self.final_joint_positions[i],
-                max_velocity, acceleration))
+                max_velocity, acceleration) )
         
         self.done = False
     
@@ -38,3 +38,4 @@ class TrapezoidalFeetAlign:
             #logically and all of the isdone results from the trapezoidal joint move paths
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalJointMove.isDone, self.feet_path))
             return [self.feet_path[i].update() for i in range (NUM_LEGS)]
+ 
