@@ -11,7 +11,7 @@ class RotateFeetAboutOrigin:
     
     def __init__(self, body_model, body_controller, leg_indices, delta_angle, max_velocity, acceleration):
         leg_logger.logger.info("New path.", path_name="RotateFeetAboutOrigin",
-                    delat_angle=delta_angle, leg_indices = leg_indices, max_velocity=max_velocity,
+                    delta_angle=delta_angle, leg_indices = leg_indices, max_velocity=max_velocity,
                     acceleration=acceleration)
         
         self.model = body_model
