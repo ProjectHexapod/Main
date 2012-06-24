@@ -22,7 +22,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     #THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
     if path is None:
-        path = BodyPause(model, controller, 1)
+        path = BodyPause(model, controller, .1)
         state = ORIENT
     
     if path.isDone():
@@ -30,10 +30,10 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
             state =STAND
         elif state == STAND:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .25, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .1, 2, 1)
             state = SIT
         elif state == SIT:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.25, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.1, 2, 1)
             state = STAND
         elif state == 0:
             path = BodyPause(model, controller, 10)

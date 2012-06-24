@@ -1,7 +1,7 @@
 from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
 from ControlsKit.leg_paths import RotateFootAboutOrigin
-from ControlsKit.math_utils import NUM_LEGS, array
-from scipy import zeros, append
+from ControlsKit.math_utils import NUM_LEGS
+from scipy import zeros, append, array
 
 class RotateFeetAboutOrigin:
     """This path rotates some of the feet by a given angle about the vertical axis at the origin via a trapezoidal velocity profile
@@ -18,7 +18,7 @@ class RotateFeetAboutOrigin:
         self.controller = body_controller
         self.leg_indices = leg_indices
         self.final_joint_positions = self.model.getJointAngleMatrix()
-        self.feet_path = []
+        self.feet_path = []*NUM_LEGS
         self.delta_angle = delta_angle
         
         for i in self.leg_indices:
@@ -40,4 +40,7 @@ class RotateFeetAboutOrigin:
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
             self.done = reduce(lambda x,y: x and y, map(RotateFootAboutOrigin.isDone, self.feet_path))
-            return [self.feet_path[i].update() for i in self.leg_indices]
+            for i in self.leg_indices:
+                self.final_joint_positions[i] = self.feet_path[i].update()
+            return self.final_joint_positions
+
