@@ -30,10 +30,10 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
             state = CCLOCKWISE
         elif state == CCLOCKWISE:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .2, 20000, 10000)
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .2, 2, 1)
             state = CLOCKWISE
         elif state == CLOCKWISE:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.2, 20000, 10000)
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.2, 2, 1)
             state = CCLOCKWISE
         elif state == 0:
             path = BodyPause(model, controller, 10)
