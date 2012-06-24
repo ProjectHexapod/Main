@@ -450,7 +450,8 @@ class SpiderWHydraulics(MultiBody):
         step_cycle      = gait_cycle/2.0
         swing_overshoot = 1.00
         stride_length   = 1.70    # length of a stride, m
-        body_h          = 2.00    # height of body off the ground, m
+        neutral_r       = inch2meter*60
+        body_h          = inch2meter*72
         foot_lift_h     = 0.25    # how high to lift feet in m
 
         foot_positions = []
@@ -461,7 +462,10 @@ class SpiderWHydraulics(MultiBody):
             z_off *= -1
         for i in range(6):
             # Neutral position in the leg coordinate frame
-            neutral_pos = (inch2meter*70, 0, -inch2meter*60)
+            if i in (1,4):
+                neutral_pos = (neutral_r-inch2meter*00, 0, -body_h)
+            else:
+                neutral_pos = (neutral_r, 0, -body_h)
             tmp = rotate3( self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
             x, y, z = add3( tmp, self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN )
             if (i%2) ^ (self.sim.sim_t%gait_cycle<(step_cycle)):
