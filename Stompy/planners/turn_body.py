@@ -9,8 +9,8 @@ path = None
 state = 0
 
 ORIENT = 1
-STAND = 2
-SIT = 3
+CCLOCKWISE = 2
+CLOCKWISE = 3
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
     global path, state
@@ -28,13 +28,13 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     if path.isDone():
         if state == ORIENT:
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
-            state =STAND
-        elif state == STAND:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .1, 2, 1)
-            state = SIT
-        elif state == SIT:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.1, 2, 1)
-            state = STAND
+            state = CCLOCKWISE
+        elif state == CCLOCKWISE:
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .2, 20000, 10000)
+            state = CLOCKWISE
+        elif state == CLOCKWISE:
+            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.2, 20000, 10000)
+            state = CCLOCKWISE
         elif state == 0:
             path = BodyPause(model, controller, 10)
 

@@ -18,7 +18,7 @@ class RotateFeetAboutOrigin:
         self.controller = body_controller
         self.leg_indices = leg_indices
         self.final_joint_positions = self.model.getJointAngleMatrix()
-        self.feet_path = []*NUM_LEGS
+        self.feet_path = []
         self.delta_angle = delta_angle
         
         for i in self.leg_indices:

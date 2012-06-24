@@ -185,7 +185,7 @@ class Simulator(object):
         for c in contacts:
             c.setBounce(0.2)
             c.setMode(ode.ContactApprox1)
-            c.setMu(.5) # TODO: I don't know what these units are
+            c.setMu(0) # TODO: I don't know what these units are
 
             j = ode.ContactJoint(self.world, None, c)
             # FIXME: Store the position of the contact
