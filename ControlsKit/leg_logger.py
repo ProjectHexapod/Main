@@ -46,6 +46,16 @@ class LegLog():
         self.publisher = self.createPublisher(['time', 'hip_yaw_rate', 'hip_pitch_rate', 'knee_pitch_rate', 'hip_yaw_angle', 'hip_pitch_angle', 'knee_pitch_angle', 'shock_depth'])
 
     def __getattr__(self, name):
+        """Overrides the default getattr method to add dynamically generated get accessors.
+        
+        The graphing code requires references to get accessor methods, but the logging code
+        doesn't know what will be stored in its dictionary, thus the methods have to be generated
+        dynamically.  This method does that.
+
+        Usage:
+        logger.get_time() is a perfectly valid call to make, despite its not being explicitly
+        declared in the class.
+        """
         if name in self.__dict__:
             return self.__dict__[name]
         elif name[:4] == 'get_' and name[4:] in self.state:
@@ -54,6 +64,10 @@ class LegLog():
             raise AttributeError(name+" not a get request or key not found.")
 
     def createPublisher(self, values_to_publish):
+        """Creates a publisher on the next available port.  If you'd like a custom real time
+        graph simply call this method with a list of what you want graphed and then hook up a
+        consumer that graphs the output (SimulationKit.pubsub.Subscriber).
+        """
         pub = Publisher(self.next_publisher_port)
         self.next_publisher_port += 1
         for val in values_to_publish:
