@@ -24,9 +24,8 @@ class RotateFeetAboutOrigin:
         for i in self.leg_indices:
             self.feet_path = append(self.feet_path, RotateFootAboutOrigin(
                 self.model,
+                self.controller,
                 i,
-                self.model.getLegs()[i],
-                self.controller.getLimbControllers()[i],
                 self.delta_angle,
                 max_velocity,
                 acceleration))
