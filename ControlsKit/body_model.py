@@ -54,7 +54,7 @@ class BodyModel:
             array of xyz in the body frame
         """
         hip_offset = self.getHipOffset(leg_index)
-        rotated = rotateZ(array(leg_coord), hip_offset[2])
+        rotated = rotateZ(array(leg_coord), -hip_offset[2])
         body_coord = rotated+array([hip_offset[0], hip_offset[1], 0])
         return body_coord
         
@@ -64,7 +64,7 @@ class BodyModel:
         """
         hip_offset = self.getHipOffset(leg_index)
         translated = array(body_coord)-array([hip_offset[0], hip_offset[1], 0])
-        leg_coord = rotateZ(translated,-hip_offset[2])
+        leg_coord = rotateZ(translated, hip_offset[2])
         return leg_coord
     
     def getHipOffset(self,leg_index):
