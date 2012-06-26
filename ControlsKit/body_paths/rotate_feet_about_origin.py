@@ -18,11 +18,11 @@ class RotateFeetAboutOrigin:
         self.controller = body_controller
         self.leg_indices = leg_indices
         self.final_joint_positions = self.model.getJointAngleMatrix()
-        self.feet_path = []
+        self.foot_paths = []
         self.delta_angle = delta_angle
         
         for i in self.leg_indices:
-            self.feet_path = append(self.feet_path, RotateFootAboutOrigin(
+            self.foot_paths.append(RotateFootAboutOrigin(
                 self.model,
                 self.controller,
                 i,
@@ -38,8 +38,8 @@ class RotateFeetAboutOrigin:
     def update(self):
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
-            self.done = reduce(lambda x,y: x and y, map(RotateFootAboutOrigin.isDone, self.feet_path))
+            self.done = reduce(lambda x,y: x and y, map(RotateFootAboutOrigin.isDone, self.foot_paths))
             for i in self.leg_indices:
-                self.final_joint_positions[i] = self.feet_path[i].update()
+                self.final_joint_positions[i] = self.foot_paths[i].update()
             return self.final_joint_positions
 
