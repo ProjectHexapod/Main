@@ -7,7 +7,7 @@ class TrapezoidalFeetAlign:
     """This path aligns all the feet to a given set of angles via a trapezoidal velocity profile
     """
     
-    #TODO: check to make sure all legs are on the ground first
+    #TODO: check to make sure all legs are not on the ground first
     
     def __init__(self, body_model, body_controller, final_angles, max_velocity, acceleration):
         leg_logger.logger.info("New path.", path_name="TrapezoidalFeetAlign",

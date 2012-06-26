@@ -92,6 +92,9 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     def setCrossSection( self, area ):
         self.setExtendCrossSection(area)
         self.setRetractCrossSection(area)
+    def setMaxHydraulicFlow( self, new_max ):
+        self.max_extend_rate  = new_max/self.extend_cross_section
+        self.max_retract_rate = -new_max/self.retract_cross_section
     def setExtendCrossSection( self, area ):
         self.extend_cross_section = area
     def setRetractCrossSection( self, area ):
@@ -165,7 +168,6 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
 
     def __init__(self, world):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
-        #LinearActuatorControlledHingeJoint.__init__(self, world)
         self.lenrate = 0
 
     def getAngRate( self ):
@@ -190,6 +192,8 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
  
     def setLengthRate(self, vel_mps):
         self.lenrate = vel_mps
+        self.lenrate = max(self.lenrate, self.max_retract_rate)
+        self.lenrate = min(self.lenrate, self.max_extend_rate)
         
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())

@@ -16,9 +16,6 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     body.setSensorReadings(leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates)
     legs = body.getLegs()
 
-    if traj is None:
-        traj = Pause(leg, 1.0)
-
     if traj.isDone():
         pass
     # TODO: once the IK takes joint limits into account check it to see if the joint can go stride further

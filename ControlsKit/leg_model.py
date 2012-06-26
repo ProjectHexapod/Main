@@ -122,6 +122,13 @@ class LegModel:
         knee_pitch = pi - aL
         return array([yaw, hip_pitch, knee_pitch])
 
+    def posIsPossible(self, pos, lower_limits, upper_limits):
+        ikSolution = self.jointAnglesFromFootPos(pos)
+        for i in range(len(pos)):
+            if lower_limits[i] > pos[i] or pos[i] > upper_limits[i]:
+                return False
+        return True
+
     # Touch-down detection
     def isFootOnGround(self):
         return self.foot_on_ground
