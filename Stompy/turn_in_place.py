@@ -20,6 +20,8 @@ STAND = 6
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
     global path, state
     
+    target_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
+     
     time_sources.global_time.updateTime(time)
     model.setSensorReadings(leg_sensor_matrix, imu_orientation, imu_angular_rates)
     
@@ -28,24 +30,24 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         state = STAND
     
     if path.isDone():
-        if state==STAND:
+        if state == STAND:
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
-            state=RAISE_FIRST_TRIPOD
-        if state==RAISE_FIRST_TRIPOD:
+            state = RAISE_FIRST_TRIPOD
+        if state == RAISE_FIRST_TRIPOD:
             path = TrapezoidalFeetLiftLower(model, controller, [0,2,4], .3, 2, 1)
-            state=TURN_FIRST_TRIPOD
-        if state==TURN_FIRST_TRIPOD:
+            state = TURN_FIRST_TRIPOD
+        if state == TURN_FIRST_TRIPOD:
             path = RotateFeetAboutOrigin(model, controller, [0,2,4], .2, 2, 1)
-            state=RAISE_SECOND_TRIPOD
-        if state==RAISE_SECOND_TRIPOD:
+            state = RAISE_SECOND_TRIPOD
+        if state == RAISE_SECOND_TRIPOD:
             path = TrapezoidalFeetLiftLower(model, controller, [1,3,5], .3, 2, 1)
-            state=TURN_SECOND_TRIPOD
-        if state==TURN_SECOND_TRIPOD:
+            state = TURN_SECOND_TRIPOD
+        if state == TURN_SECOND_TRIPOD:
             path = RotateFeetAboutOrigin(model, controller, [1,3,5], .2, 2, 1)
-            state=RESOLVE
-        if state==RESOLVE:
+            state = RESOLVE
+        if state == RESOLVE:
             path = RotateFeetAboutOrigin(model, controller, range(5), -.2, 2, 1)
-            state=RAISE_FIRST_TRIPOD
+            state = RAISE_FIRST_TRIPOD
     
     
     target_angle_matrix = path.update()
