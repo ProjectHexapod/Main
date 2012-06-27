@@ -15,6 +15,7 @@ TURN_FIRST_TRIPOD = 2
 RAISE_SECOND_TRIPOD = 3
 TURN_SECOND_TRIPOD = 4
 RESOLVE = 5
+STAND = 6
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
     global path, state
@@ -24,9 +25,12 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     if path is None:
         path = BodyPause(model, controller, .1)
-        state = RAISE_FIRST_TRIPOD
+        state = STAND
     
     if path.isDone():
+        if state==STAND:
+            path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
+            state=RAISE_FIRST_TRIPOD
         if state==RAISE_FIRST_TRIPOD:
             path = TrapezoidalFeetLiftLower(model, controller, [0,2,4], .3, 2, 1)
             state=TURN_FIRST_TRIPOD
