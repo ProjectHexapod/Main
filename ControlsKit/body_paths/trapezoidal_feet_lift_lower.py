@@ -17,17 +17,20 @@ class TrapezoidalFeetLiftLower:
         self.leg_indices=leg_indices
         self.model = body_model
         self.controller = body_controller
-        self.foot_paths = []
+        
+        self.final_joint_positions = self.model.getJointAngleMatrix()
+        
+        self.foot_paths = [None for i in range(NUM_LEGS)]
         
         for i in self.leg_indices:
             current_leg_pos = self.model.getFootPositions()[i]
             desired_leg_pos = current_leg_pos + [0,0,delta_height]
 
-            self.foot_paths.append(TrapezoidalFootMove(
+            self.foot_paths[i]=TrapezoidalFootMove(
                 self.model.getLegs()[i],
                 self.controller.getLimbControllers()[i],
                 desired_leg_pos,
-                max_velocity, acceleration) )
+                max_velocity, acceleration)
         
         self.done = False
     
@@ -37,5 +40,8 @@ class TrapezoidalFeetLiftLower:
     def update(self):
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
-            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.foot_paths))
-            return [self.foot_paths[i].update() for i in range(len(self.leg_indices))]
+            activepaths=[self.foot_paths[i] for i in self.leg_indices]
+            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, activepaths))
+            for i in self.leg_indices:
+                self.final_joint_positions[i] = self.foot_paths[i].update()
+            return self.final_joint_positions
