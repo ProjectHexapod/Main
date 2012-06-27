@@ -9,9 +9,9 @@ class TrapezoidalFeetLiftLower:
     
     #TODO: check to make sure all legs are on the ground first
     
-    def __init__(self, body_model, body_controller, leg_indices, delta_height, max_velocity, acceleration):
+    def __init__(self, body_model, body_controller, leg_indices, delta_heights, max_velocity, acceleration):
         leg_logger.logger.info("New path.", path_name="TrapezoidalFeetLiftLower",
-                    leg_indices= leg_indices, delta_height=delta_height, 
+                    leg_indices= leg_indices, delta_height=delta_heights, 
                     max_velocity=max_velocity, acceleration=acceleration)
         
         self.leg_indices=leg_indices
@@ -24,7 +24,7 @@ class TrapezoidalFeetLiftLower:
         
         for i in self.leg_indices:
             current_leg_pos = self.model.getFootPositions()[i]
-            desired_leg_pos = current_leg_pos + [0,0,delta_height]
+            desired_leg_pos = current_leg_pos + [0,0,delta_heights[i]]
 
             self.foot_paths[i]=TrapezoidalFootMove(
                 self.model.getLegs()[i],
