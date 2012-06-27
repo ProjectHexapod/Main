@@ -6,7 +6,7 @@
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# githubog: http://ogp.me/ns/fb/githubog#">
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Project-Hexapod/Stompy/body_model.conf at master · jwhong/Project-Hexapod</title>
+        <title>Project-Hexapod/Stompy/planners/turn_body.py at master · jwhong/Project-Hexapod</title>
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub" />
     <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub" />
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -29,7 +29,7 @@
     
     
 
-      <link rel='permalink' href='/jwhong/Project-Hexapod/blob/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/body_model.conf'>
+      <link rel='permalink' href='/jwhong/Project-Hexapod/blob/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/planners/turn_body.py'>
     <meta property="og:title" content="Project-Hexapod"/>
     <meta property="og:type" content="githubog:gitrepository"/>
     <meta property="og:url" content="https://github.com/jwhong/Project-Hexapod"/>
@@ -264,7 +264,7 @@
               <div class="no-results js-not-filterable">Nothing to show</div>
                 <div class="commitish-item branch-commitish selector-item js-navigation-item js-navigation-target">
                   <h4>
-                      <a href="/jwhong/Project-Hexapod/blob/master/Stompy/body_model.conf" class="js-navigation-open" data-name="master" rel="nofollow">master</a>
+                      <a href="/jwhong/Project-Hexapod/blob/master/Stompy/planners/turn_body.py" class="js-navigation-open" data-name="master" rel="nofollow">master</a>
                   </h4>
                 </div>
             </div>
@@ -303,15 +303,15 @@
 
 
 
-<!-- block_view_fragment_key: views10/v8/blob:v21:5839775e4ed0a39292cd3dc720e3a483 -->
+<!-- block_view_fragment_key: views10/v8/blob:v21:9fc9c5bb5459f8f760866d43d9691260 -->
   <div id="slider">
 
-    <div class="breadcrumb" data-path="Stompy/body_model.conf/">
-      <b itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/jwhong/Project-Hexapod/tree/41da28f7241ce0cf12db672110037a26b02ce2e5" class="js-rewrite-sha" itemprop="url"><span itemprop="title">Project-Hexapod</span></a></b> / <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/jwhong/Project-Hexapod/tree/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy" class="js-rewrite-sha" itemscope="url"><span itemprop="title">Stompy</span></a></span> / <strong class="final-path">body_model.conf</strong> <span class="js-clippy mini-icon mini-icon-clippy " data-clipboard-text="Stompy/body_model.conf" data-copied-hint="copied!" data-copy-hint="copy to clipboard"></span>
+    <div class="breadcrumb" data-path="Stompy/planners/turn_body.py/">
+      <b itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/jwhong/Project-Hexapod/tree/41da28f7241ce0cf12db672110037a26b02ce2e5" class="js-rewrite-sha" itemprop="url"><span itemprop="title">Project-Hexapod</span></a></b> / <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/jwhong/Project-Hexapod/tree/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy" class="js-rewrite-sha" itemscope="url"><span itemprop="title">Stompy</span></a></span> / <span itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb"><a href="/jwhong/Project-Hexapod/tree/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/planners" class="js-rewrite-sha" itemscope="url"><span itemprop="title">planners</span></a></span> / <strong class="final-path">turn_body.py</strong> <span class="js-clippy mini-icon mini-icon-clippy " data-clipboard-text="Stompy/planners/turn_body.py" data-copied-hint="copied!" data-copy-hint="copy to clipboard"></span>
     </div>
 
 
-      <div class="commit file-history-tease" data-path="Stompy/body_model.conf/">
+      <div class="commit file-history-tease" data-path="Stompy/planners/turn_body.py/">
         <img class="main-avatar" height="24" src="https://secure.gravatar.com/avatar/2f3839aa58827aeabeac2e5c5871f558?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="24" />
         <span class="author"><a href="/jonaraphael">jonaraphael</a></span>
         <time class="js-relative-date" datetime="2012-06-26T18:27:32-07:00" title="2012-06-26 18:27:32">June 26, 2012</time>
@@ -335,7 +335,7 @@
       </div>
 
     <div class="frames">
-      <div class="frame frame-center" data-path="Stompy/body_model.conf/" data-permalink-url="/jwhong/Project-Hexapod/blob/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/body_model.conf" data-title="Project-Hexapod/Stompy/body_model.conf at master · jwhong/Project-Hexapod · GitHub" data-type="blob">
+      <div class="frame frame-center" data-path="Stompy/planners/turn_body.py/" data-permalink-url="/jwhong/Project-Hexapod/blob/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/planners/turn_body.py" data-title="Project-Hexapod/Stompy/planners/turn_body.py at master · jwhong/Project-Hexapod · GitHub" data-type="blob">
 
         <div id="files" class="bubble">
           <div class="file">
@@ -343,26 +343,26 @@
               <div class="info">
                 <span class="icon"><b class="mini-icon mini-icon-text-file"></b></span>
                 <span class="mode" title="File Mode">100644</span>
-                  <span>11 lines (9 sloc)</span>
-                <span>0.272 kb</span>
+                  <span>51 lines (40 sloc)</span>
+                <span>1.762 kb</span>
               </div>
               <ul class="button-group actions">
                   <li>
-                    <a class="grouped-button file-edit-link minibutton bigger lighter js-rewrite-sha" href="/jwhong/Project-Hexapod/edit/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/body_model.conf" data-method="post" rel="nofollow" data-hotkey="e">Edit this file</a>
+                    <a class="grouped-button file-edit-link minibutton bigger lighter js-rewrite-sha" href="/jwhong/Project-Hexapod/edit/41da28f7241ce0cf12db672110037a26b02ce2e5/Stompy/planners/turn_body.py" data-method="post" rel="nofollow" data-hotkey="e">Edit this file</a>
                   </li>
 
                 <li>
-                  <a href="/jwhong/Project-Hexapod/raw/master/Stompy/body_model.conf" class="minibutton btn-raw grouped-button bigger lighter" id="raw-url">Raw</a>
+                  <a href="/jwhong/Project-Hexapod/raw/master/Stompy/planners/turn_body.py" class="minibutton btn-raw grouped-button bigger lighter" id="raw-url">Raw</a>
                 </li>
                   <li>
-                    <a href="/jwhong/Project-Hexapod/blame/master/Stompy/body_model.conf" class="minibutton btn-blame grouped-button bigger lighter">Blame</a>
+                    <a href="/jwhong/Project-Hexapod/blame/master/Stompy/planners/turn_body.py" class="minibutton btn-blame grouped-button bigger lighter">Blame</a>
                   </li>
                 <li>
-                  <a href="/jwhong/Project-Hexapod/commits/master/Stompy/body_model.conf" class="minibutton btn-history grouped-button bigger lighter" rel="nofollow">History</a>
+                  <a href="/jwhong/Project-Hexapod/commits/master/Stompy/planners/turn_body.py" class="minibutton btn-history grouped-button bigger lighter" rel="nofollow">History</a>
                 </li>
               </ul>
             </div>
-              <div class="data type-text">
+              <div class="data type-python">
       <table cellpadding="0" cellspacing="0" class="lines">
         <tr>
           <td>
@@ -377,10 +377,49 @@
 <span id="L9" rel="#L9">9</span>
 <span id="L10" rel="#L10">10</span>
 <span id="L11" rel="#L11">11</span>
+<span id="L12" rel="#L12">12</span>
+<span id="L13" rel="#L13">13</span>
+<span id="L14" rel="#L14">14</span>
+<span id="L15" rel="#L15">15</span>
+<span id="L16" rel="#L16">16</span>
+<span id="L17" rel="#L17">17</span>
+<span id="L18" rel="#L18">18</span>
+<span id="L19" rel="#L19">19</span>
+<span id="L20" rel="#L20">20</span>
+<span id="L21" rel="#L21">21</span>
+<span id="L22" rel="#L22">22</span>
+<span id="L23" rel="#L23">23</span>
+<span id="L24" rel="#L24">24</span>
+<span id="L25" rel="#L25">25</span>
+<span id="L26" rel="#L26">26</span>
+<span id="L27" rel="#L27">27</span>
+<span id="L28" rel="#L28">28</span>
+<span id="L29" rel="#L29">29</span>
+<span id="L30" rel="#L30">30</span>
+<span id="L31" rel="#L31">31</span>
+<span id="L32" rel="#L32">32</span>
+<span id="L33" rel="#L33">33</span>
+<span id="L34" rel="#L34">34</span>
+<span id="L35" rel="#L35">35</span>
+<span id="L36" rel="#L36">36</span>
+<span id="L37" rel="#L37">37</span>
+<span id="L38" rel="#L38">38</span>
+<span id="L39" rel="#L39">39</span>
+<span id="L40" rel="#L40">40</span>
+<span id="L41" rel="#L41">41</span>
+<span id="L42" rel="#L42">42</span>
+<span id="L43" rel="#L43">43</span>
+<span id="L44" rel="#L44">44</span>
+<span id="L45" rel="#L45">45</span>
+<span id="L46" rel="#L46">46</span>
+<span id="L47" rel="#L47">47</span>
+<span id="L48" rel="#L48">48</span>
+<span id="L49" rel="#L49">49</span>
+<span id="L50" rel="#L50">50</span>
 </pre>
           </td>
           <td width="100%">
-                <div class="highlight"><pre><div class='line' id='LC1'><br/></div><div class='line' id='LC2'>[~~~ STOMPY BODY MODEL ~~~]</div><div class='line' id='LC3'><br/></div><div class='line' id='LC4'>[BodyModel]</div><div class='line' id='LC5'>basedon: http://wiki.artisansasylum.com/index.php/File:Hexapod-Stompy_coordinate_frames.png</div><div class='line' id='LC6'>leg0_offset_x:  1.6764</div><div class='line' id='LC7'>leg0_offset_y:  0.508</div><div class='line' id='LC8'>leg0_theta:     0.78539</div><div class='line' id='LC9'>leg1_offset_x:  0.0</div><div class='line' id='LC10'>leg1_offset_y:  0.762</div><div class='line' id='LC11'>chassis_bottom_z:   -0.6096</div></pre></div>
+                <div class="highlight"><pre><div class='line' id='LC1'><span class="kn">from</span> <span class="nn">ControlsKit</span> <span class="kn">import</span> <span class="n">time_sources</span><span class="p">,</span> <span class="n">BodyModel</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">BodyController</span></div><div class='line' id='LC2'><span class="kn">from</span> <span class="nn">ControlsKit.math_utils</span> <span class="kn">import</span> <span class="n">NUM_LEGS</span><span class="p">,</span> <span class="n">LEG_DOF</span></div><div class='line' id='LC3'><span class="kn">from</span> <span class="nn">ControlsKit.body_paths</span> <span class="kn">import</span> <span class="n">RotateFeetAboutOrigin</span><span class="p">,</span> <span class="n">BodyPause</span><span class="p">,</span> <span class="n">TrapezoidalFeetAlign</span></div><div class='line' id='LC4'><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">zeros</span></div><div class='line' id='LC5'><br/></div><div class='line' id='LC6'><span class="n">controller</span> <span class="o">=</span> <span class="n">BodyController</span><span class="p">()</span></div><div class='line' id='LC7'><span class="n">model</span> <span class="o">=</span> <span class="n">BodyModel</span><span class="p">()</span></div><div class='line' id='LC8'><span class="n">path</span> <span class="o">=</span> <span class="bp">None</span></div><div class='line' id='LC9'><span class="n">state</span> <span class="o">=</span> <span class="mi">0</span></div><div class='line' id='LC10'><br/></div><div class='line' id='LC11'><span class="n">ORIENT</span> <span class="o">=</span> <span class="mi">1</span></div><div class='line' id='LC12'><span class="n">CCLOCKWISE</span> <span class="o">=</span> <span class="mi">2</span></div><div class='line' id='LC13'><span class="n">CLOCKWISE</span> <span class="o">=</span> <span class="mi">3</span></div><div class='line' id='LC14'><br/></div><div class='line' id='LC15'><span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">leg_sensor_matrix</span><span class="p">,</span> <span class="n">imu_orientation</span><span class="p">,</span> <span class="n">imu_accelerations</span><span class="p">,</span> <span class="n">imu_angular_rates</span><span class="p">):</span></div><div class='line' id='LC16'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">global</span> <span class="n">path</span><span class="p">,</span> <span class="n">state</span></div><div class='line' id='LC17'>&nbsp;&nbsp;&nbsp;&nbsp;</div><div class='line' id='LC18'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">time_sources</span><span class="o">.</span><span class="n">global_time</span><span class="o">.</span><span class="n">updateTime</span><span class="p">(</span><span class="n">time</span><span class="p">)</span></div><div class='line' id='LC19'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">model</span><span class="o">.</span><span class="n">setSensorReadings</span><span class="p">(</span><span class="n">leg_sensor_matrix</span><span class="p">,</span> <span class="n">imu_orientation</span><span class="p">,</span> <span class="n">imu_angular_rates</span><span class="p">)</span></div><div class='line' id='LC20'>&nbsp;&nbsp;&nbsp;&nbsp;</div><div class='line' id='LC21'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">target_angle_matrix</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">((</span><span class="n">NUM_LEGS</span><span class="p">,</span> <span class="n">LEG_DOF</span><span class="p">))</span></div><div class='line' id='LC22'>&nbsp;&nbsp;&nbsp;&nbsp;</div><div class='line' id='LC23'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c">#THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)</span></div><div class='line' id='LC24'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span></div><div class='line' id='LC25'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">path</span> <span class="o">=</span> <span class="n">BodyPause</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">)</span></div><div class='line' id='LC26'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">state</span> <span class="o">=</span> <span class="n">ORIENT</span></div><div class='line' id='LC27'>&nbsp;&nbsp;&nbsp;&nbsp;</div><div class='line' id='LC28'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">if</span> <span class="n">path</span><span class="o">.</span><span class="n">isDone</span><span class="p">():</span></div><div class='line' id='LC29'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">ORIENT</span><span class="p">:</span></div><div class='line' id='LC30'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">path</span> <span class="o">=</span> <span class="n">TrapezoidalFeetAlign</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-.</span><span class="mi">7</span><span class="p">,</span>  <span class="mi">2</span><span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div><div class='line' id='LC31'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">state</span> <span class="o">=</span> <span class="mi">4</span></div><div class='line' id='LC32'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">elif</span> <span class="n">state</span> <span class="o">==</span> <span class="n">CCLOCKWISE</span><span class="p">:</span></div><div class='line' id='LC33'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">path</span> <span class="o">=</span> <span class="n">RotateFeetAboutOrigin</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div><div class='line' id='LC34'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">state</span> <span class="o">=</span> <span class="n">CLOCKWISE</span></div><div class='line' id='LC35'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">elif</span> <span class="n">state</span> <span class="o">==</span> <span class="n">CLOCKWISE</span><span class="p">:</span></div><div class='line' id='LC36'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">path</span> <span class="o">=</span> <span class="n">RotateFeetAboutOrigin</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="o">-.</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div><div class='line' id='LC37'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">state</span> <span class="o">=</span> <span class="n">CCLOCKWISE</span></div><div class='line' id='LC38'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">elif</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span></div><div class='line' id='LC39'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">path</span> <span class="o">=</span> <span class="n">BodyPause</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span></div><div class='line' id='LC40'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">elif</span> <span class="n">state</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span></div><div class='line' id='LC41'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">path</span> <span class="o">=</span> <span class="n">RotateFeetAboutOrigin</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span> <span class="o">-.</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div><div class='line' id='LC42'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">state</span> <span class="o">=</span> <span class="n">CCLOCKWISE</span></div><div class='line' id='LC43'><br/></div><div class='line' id='LC44'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s">&quot;State changed.&quot;</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state</span><span class="p">)</span></div><div class='line' id='LC45'>&nbsp;&nbsp;&nbsp;&nbsp;</div><div class='line' id='LC46'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c"># Evaluate path and joint control</span></div><div class='line' id='LC47'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">target_angle_matrix</span>  <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">update</span><span class="p">()</span></div><div class='line' id='LC48'><br/></div><div class='line' id='LC49'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c"># Send commands</span></div><div class='line' id='LC50'>&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">return</span> <span class="n">controller</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">getJointAngleMatrix</span><span class="p">(),</span> <span class="n">target_angle_matrix</span><span class="p">)</span></div></pre></div>
           </td>
         </tr>
       </table>
@@ -462,7 +501,7 @@
           <li><a href="https://github.com/security">Security</a></li>
       </ul>
 
-      <p>&copy; 2012 <span title="0.15378s from fe5.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
+      <p>&copy; 2012 <span title="0.15582s from fe5.rs.github.com">GitHub</span> Inc. All rights reserved.</p>
     </div><!-- /#legal or /#legal_ie-->
 
       <div class="sponsor">
@@ -833,7 +872,7 @@ I think you should use an
     
     
     
-    <span id='server_response_time' data-time='0.15593' data-host='fe5'></span>
+    <span id='server_response_time' data-time='0.15816' data-host='fe5'></span>
   </body>
 </html>
 

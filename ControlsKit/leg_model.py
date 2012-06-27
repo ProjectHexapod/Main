@@ -96,8 +96,8 @@ class LegModel:
         pos = rotateY(pos, leg_state[0][HP])
         pos[X] += self.YAW_LEN
         return rotateZ(pos, -leg_state[0][YAW])
-    def jointAnglesFromFootPos(self, pos, shock_depth=-9e9):
-        if shock_depth == -9e9:
+    def jointAnglesFromFootPos(self, pos, shock_depth=None):
+        if shock_depth == None:
             shock_depth = self.getShockDepth()
             
         # Yaw is independent of the other two joints
