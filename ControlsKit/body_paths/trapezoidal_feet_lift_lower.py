@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
-from ControlsKit.leg_paths import TrapezoidalJointMove
+from ControlsKit.leg_paths import TrapezoidalJointMove, TrapezoidalFootMove
 from ControlsKit.math_utils import NUM_LEGS, array
 from scipy import zeros, append
 
@@ -19,7 +19,7 @@ class TrapezoidalFeetLiftLower:
         self.foot_paths = []
         
         for i in leg_indices:
-            current_leg_pos = self.model.getFootPositions[i]
+            current_leg_pos = self.model.getFootPositions()[i]
             desired_leg_pos = current_leg_pos + [0,0,delta_height]
 
             self.foot_paths.append(TrapezoidalFootMove(

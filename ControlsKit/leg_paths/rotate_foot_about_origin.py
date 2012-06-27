@@ -10,7 +10,10 @@ class RotateFootAboutOrigin:
         leg_logger.logger.info("New path.", path_name="RotateFootAboutOrigin",
                     delta_angle=delta_angle, max_velocity=max_velocity,
                     acceleration=acceleration)
-
+        
+        self.file_name = "rotate_foot_about_origin_data_leg%d.csv" % leg_index
+        self.file = open(self.file_name, "a")
+        
         self.body_model = body_model
         self.leg_index = leg_index
         self.leg_model = self.body_model.getLegs()[self.leg_index]
@@ -59,8 +62,16 @@ class RotateFootAboutOrigin:
             self.last_commanded_angle = self.target_angle
             self.target_foot_pos = [self.radius*cos(self.target_angle), self.radius*sin(self.target_angle), self.init_height]
             
+            #if self.leg_index == 1:
+              #  self.target_foot_pos = [self.radius*cos(self.target_angle), self.radius*sin(self.target_angle), 0]
+               # print(norm(self.body_model.transformLeg2Body(self.leg_index, self.leg_model.getFootPos())))
+                
             if not sign(remaining_angle) == self.dir:
                 self.done = True
                 self.target_foot_pos = [self.radius*cos(self.delta_angle + self.init_angle), self.radius*sin(self.delta_angle + self.init_angle), self.init_height]
+        a = self.body_model.transformLeg2Body(self.leg_index,self.leg_model.getFootPos())
+        b = self.target_foot_pos
+        
+        self.file.write("%f,%f,%f,%f,%f,%f\n" % (a[0],a[1],a[2],b[0],b[1],b[2]))
 
         return self.leg_model.jointAnglesFromFootPos(self.body_model.transformBody2Leg(self.leg_index, self.target_foot_pos))
