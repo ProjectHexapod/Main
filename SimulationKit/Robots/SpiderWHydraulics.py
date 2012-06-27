@@ -71,7 +71,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.THIGH_L = inch2meter*54.0 # Length of thigh link
         self.THIGH_W = 0.2             # Diameter of thigh link
         self.CALF_L  = inch2meter*78.0 # Length of calf link
-        self.CALF_W  = 0.02             # Diameter of calf link
+        self.CALF_W  = 0.2             # Diameter of calf link
         self.YAW_M   = pound2kilo*20   # Yaw link mass
         self.THIGH_M = pound2kilo*200  # Thigh link mass
         self.CALF_M  = pound2kilo*150  # Calf link mass
