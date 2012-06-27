@@ -21,7 +21,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     global path, state
     
     target_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
-    
+     
     time_sources.global_time.updateTime(time)
     model.setSensorReadings(leg_sensor_matrix, imu_orientation, imu_angular_rates)
     
