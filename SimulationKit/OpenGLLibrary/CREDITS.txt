@@ -1,4 +1,5 @@
-OpenGL Library was made by Ian Mallett (A.K.A. Geometrian).  Email at ian@geometrian.com, or visit website http://www.geometrian.com/Programs.php
+OpenGL Library was made by Ian Mallett (A.K.A. Geometrian).  Email at ian@geometrian.com, or
+visit website http://www.geometrian.com/Programs.php
 
 You are free to use this code, just don't take credit for my work.
 
