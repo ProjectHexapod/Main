@@ -1,5 +1,5 @@
 from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
-from ControlsKit.leg_paths import TrapezoidalJointMove
+from ControlsKit.leg_paths import TrapezoidalFootMove
 from ControlsKit.math_utils import NUM_LEGS, array
 from scipy import zeros, append
 
@@ -14,12 +14,13 @@ class TrapezoidalFeetLiftLower:
                     leg_indices= leg_indices, delta_height=delta_height, 
                     max_velocity=max_velocity, acceleration=acceleration)
         
+        self.leg_indices=leg_indices
         self.model = body_model
         self.controller = body_controller
         self.foot_paths = []
         
-        for i in leg_indices:
-            current_leg_pos = self.model.getFootPositions[i]
+        for i in self.leg_indices:
+            current_leg_pos = self.model.getFootPositions()[i]
             desired_leg_pos = current_leg_pos + [0,0,delta_height]
 
             self.foot_paths.append(TrapezoidalFootMove(
@@ -36,5 +37,5 @@ class TrapezoidalFeetLiftLower:
     def update(self):
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
-            self.done = reduce(lambda x,y: x and y, map(TrapezoidalJointMove.isDone, self.feet_path))
-            return [self.feet_path[i].update() for i in range (NUM_LEGS)]
+            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, self.foot_paths))
+            return [self.foot_paths[i].update() for i in range(len(self.leg_indices))]
