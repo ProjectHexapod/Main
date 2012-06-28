@@ -95,18 +95,13 @@ class LegModel:
         pos[X] += self.THIGH_LEN
         pos = rotateY(pos, leg_state[0][HP])
         pos[X] += self.YAW_LEN
-        return rotateZ(pos, -leg_state[0][YAW])
+        return rotateZ(pos, leg_state[0][YAW])
     def jointAnglesFromFootPos(self, pos, shock_depth=None):
         if shock_depth == None:
             shock_depth = self.getShockDepth()
             
         # Yaw is independent of the other two joints
-        yaw = -atan2(pos[Y], pos[X])
-        # Choose the solution that keeps the leg outside of the body
-        if yaw > pi_2:
-            yaw -= pi
-        elif yaw < -pi_2:
-            yaw += pi
+        yaw = atan2(pos[Y], pos[X])
         
         # Now treat the other two joints like a 2-DOF leg in the X-Z plane
         pos = rotateZ(pos, yaw)
