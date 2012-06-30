@@ -5,3 +5,5 @@
 *.csv
 *.DS_Store
 .idea
+*.log
+*.swp
