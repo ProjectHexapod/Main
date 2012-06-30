@@ -1,6 +1,21 @@
 package UI;
 
 message Command {
-  optional string raw_command = 1;
-  optional string intended_command = 2;
+  optional string raw_command = 1;  // the raw value from whatever input device
+  optional GeneralMotionCommand intended_command = 2;  // if you only care where it goes
+
+
+
+  enum GeneralMotionCommand {
+    STOP = 0;
+    TURN_RIGHT = 1;
+    TURN_LEFT = 2;
+    FORWARD = 3;
+    CRAB_RIGHT = 4;
+    CRAB_LEFT = 5;
+    
+
+    SIT = 100;
+    STAND = 101;
+  }
 }
