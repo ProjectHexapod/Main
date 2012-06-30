@@ -1,0 +1,6 @@
+package UI;
+
+message Command {
+  optional string raw_command = 1;
+  optional string intended_command = 2;
+}
