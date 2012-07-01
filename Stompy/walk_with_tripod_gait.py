@@ -23,7 +23,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
             state = WALK
         elif state == WALK:
-            path = TripodGait(model, controller)
+            path = TripodGait(model)
             state = DONE
         logger.info("State changed.", state=state)
     
