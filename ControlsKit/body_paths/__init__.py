@@ -1,4 +1,5 @@
 from body_pause import BodyPause
+from feet_velocities import FeetVelocities
 from rotate_feet_about_origin import RotateFeetAboutOrigin
 from trapezoidal_feet_align import TrapezoidalFeetAlign
 from trapezoidal_feet_lift_lower import TrapezoidalFeetLiftLower
