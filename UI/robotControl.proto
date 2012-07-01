@@ -19,5 +19,7 @@ message Command {
 
     SIT = 100;
     STAND = 101;
+
+    DISCONNECT = 1000;
   }
 }

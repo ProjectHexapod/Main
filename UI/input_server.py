@@ -1,9 +1,9 @@
 import hashlib
 import random
-import robotControl_pb2
 import threading
 
 from ControlsKit import logger
+from robotControl_pb2 import Command
 
 class InputServer:
     """This class takes care of listening for incomming inputs and supplying an appropriate
@@ -33,7 +33,14 @@ class InputServer:
             try:
                 self.conn = self.sock.accept()
                 if self.authorizeConnection():
-                    pass
+                    continueConnection = True
+                    while continueConnection:
+                        command = Command()
+                        command.ParseFromString(self.conn.recv(4096))
+                        self.handleCommand(command)
+                        if (command.HasField('intended_command') and
+                            command.intended_command == Command.DISCONNECT):
+                            continueConnection = False
                 else:
                     self.conn.close()
                     logger.warning("Invalid login attempt!")
@@ -50,6 +57,15 @@ class InputServer:
         except error, msg:
             logger.error(msg, error=error)
             return False
+
+    def handleCommand(self, command):
+        if command.HasField('intended_command'):
+            # TODO: switch on command.intended_command and map to planners appropriately
+            pass
+        elif command.HasField('raw_command'):
+            # TODO: use the controls dictionary to look up the mapping from raw commands
+            # to intended_commands, and then set the appropriate planner
+            pass
 
     def stopListening(self):
         self.continueServing = False
