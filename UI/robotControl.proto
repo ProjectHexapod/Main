@@ -1,10 +1,14 @@
 package UI;
 
 message Command {
-  optional string raw_command = 1;  // the raw value from whatever input device
-  optional GeneralMotionCommand intended_command = 2;  // if you only care where it goes
+  optional Controller controller = 1;
+  optional string raw_command = 2;  // the raw value from whatever input device
+  optional GeneralMotionCommand intended_command = 3;  // if you only care where it goes
 
 
+  enum Controller {
+    PS3_CONTROLLER = 1;
+  }
 
   enum GeneralMotionCommand {
     STOP = 0;
@@ -13,7 +17,6 @@ message Command {
     FORWARD = 3;
     CRAB_RIGHT = 4;
     CRAB_LEFT = 5;
-    
 
     SIT = 100;
     STAND = 101;
