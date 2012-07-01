@@ -1,4 +1,5 @@
 from find_joint_stop import FindJointStop
+from foot_velocity import FootVelocity
 from interpolated_foot_move import InterpolatedFootMove
 from move_joint import MoveJoint
 from pause import Pause
