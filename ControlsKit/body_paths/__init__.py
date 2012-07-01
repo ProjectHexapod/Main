@@ -1,5 +1,5 @@
-from trapezoidal_sit_stand import TrapezoidalSitStand
 from body_pause import BodyPause
-from trapezoidal_feet_align import TrapezoidalFeetAlign
 from rotate_feet_about_origin import RotateFeetAboutOrigin
+from trapezoidal_feet_align import TrapezoidalFeetAlign
 from trapezoidal_feet_lift_lower import TrapezoidalFeetLiftLower
+from trapezoidal_sit_stand import TrapezoidalSitStand
