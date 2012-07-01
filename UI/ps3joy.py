@@ -131,6 +131,7 @@ class uinputjoy:
             if value[i] != self.value[i]:
                 os.write(self.file, struct.pack(input_event, th, tl, self.type[i], self.code[i], value[i]))
         self.value = list(value)
+        print self.value
 
 class BadJoystickException(Exception):
     def __init__(self):
@@ -161,7 +162,7 @@ class decoder:
             axflat[i] = 4
         for i in range(4,len(axmin)-4): # Buttons should be zero when not pressed
             axmin[i] = -axmax[i]
-        self.joy = uinputjoy(buttons, axes, axmin, axmax, axfuzz, axflat)
+        # self.joy = uinputjoy(buttons, axes, axmin, axmax, axfuzz, axflat)
         self.axmid = [sum(pair)/2 for pair in zip(axmin, axmax)]
         self.fullstop() # Probably useless because of uinput startup bug
         self.outlen = len(buttons) + len(axes)           
@@ -185,7 +186,8 @@ class decoder:
                 for k in range(0,8):
                     out.append(int((curbyte & (1 << k)) != 0))
             out = out + data
-            self.joy.update(out)
+            # self.joy.update(out)
+            print out
             axis_motion = [abs(out[17:][i] - self.axmid[i]) > 20 for i in range(0,len(out)-17-4)]  
                                                                        # 17 buttons, 4 inertial sensors
             if any(out[0:17]) or any(axis_motion):
@@ -200,7 +202,8 @@ class decoder:
             return self.step_error
 
     def fullstop(self):
-        self.joy.update([0] * 17 + self.axmid)
+        pass
+        #self.joy.update([0] * 17 + self.axmid)
 
     def run(self, intr, ctrl):
         activated = False

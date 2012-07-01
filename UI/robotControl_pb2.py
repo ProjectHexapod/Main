@@ -11,9 +11,71 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='robotControl.proto',
   package='UI',
-  serialized_pb='\n\x12robotControl.proto\x12\x02UI\"8\n\x07\x43ommand\x12\x13\n\x0braw_command\x18\x01 \x01(\t\x12\x18\n\x10intended_command\x18\x02 \x01(\t')
+  serialized_pb='\n\x12robotControl.proto\x12\x02UI\"\xa9\x02\n\x07\x43ommand\x12*\n\ncontroller\x18\x01 \x01(\x0e\x32\x16.UI.Command.Controller\x12\x13\n\x0braw_command\x18\x02 \x01(\t\x12:\n\x10intended_command\x18\x03 \x01(\x0e\x32 .UI.Command.GeneralMotionCommand\" \n\nController\x12\x12\n\x0ePS3_CONTROLLER\x10\x01\"\x7f\n\x14GeneralMotionCommand\x12\x08\n\x04STOP\x10\x00\x12\x0e\n\nTURN_RIGHT\x10\x01\x12\r\n\tTURN_LEFT\x10\x02\x12\x0b\n\x07\x46ORWARD\x10\x03\x12\x0e\n\nCRAB_RIGHT\x10\x04\x12\r\n\tCRAB_LEFT\x10\x05\x12\x07\n\x03SIT\x10\x64\x12\t\n\x05STAND\x10\x65')
 
 
+
+_COMMAND_CONTROLLER = descriptor.EnumDescriptor(
+  name='Controller',
+  full_name='UI.Command.Controller',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    descriptor.EnumValueDescriptor(
+      name='PS3_CONTROLLER', index=0, number=1,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=163,
+  serialized_end=195,
+)
+
+_COMMAND_GENERALMOTIONCOMMAND = descriptor.EnumDescriptor(
+  name='GeneralMotionCommand',
+  full_name='UI.Command.GeneralMotionCommand',
+  filename=None,
+  file=DESCRIPTOR,
+  values=[
+    descriptor.EnumValueDescriptor(
+      name='STOP', index=0, number=0,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='TURN_RIGHT', index=1, number=1,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='TURN_LEFT', index=2, number=2,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='FORWARD', index=3, number=3,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='CRAB_RIGHT', index=4, number=4,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='CRAB_LEFT', index=5, number=5,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='SIT', index=6, number=100,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='STAND', index=7, number=101,
+      options=None,
+      type=None),
+  ],
+  containing_type=None,
+  options=None,
+  serialized_start=197,
+  serialized_end=324,
+)
 
 
 _COMMAND = descriptor.Descriptor(
@@ -24,16 +86,23 @@ _COMMAND = descriptor.Descriptor(
   containing_type=None,
   fields=[
     descriptor.FieldDescriptor(
-      name='raw_command', full_name='UI.Command.raw_command', index=0,
-      number=1, type=9, cpp_type=9, label=1,
+      name='controller', full_name='UI.Command.controller', index=0,
+      number=1, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=1,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='raw_command', full_name='UI.Command.raw_command', index=1,
+      number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=unicode("", "utf-8"),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     descriptor.FieldDescriptor(
-      name='intended_command', full_name='UI.Command.intended_command', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=unicode("", "utf-8"),
+      name='intended_command', full_name='UI.Command.intended_command', index=2,
+      number=3, type=14, cpp_type=8, label=1,
+      has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -42,14 +111,20 @@ _COMMAND = descriptor.Descriptor(
   ],
   nested_types=[],
   enum_types=[
+    _COMMAND_CONTROLLER,
+    _COMMAND_GENERALMOTIONCOMMAND,
   ],
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=26,
-  serialized_end=82,
+  serialized_start=27,
+  serialized_end=324,
 )
 
+_COMMAND.fields_by_name['controller'].enum_type = _COMMAND_CONTROLLER
+_COMMAND.fields_by_name['intended_command'].enum_type = _COMMAND_GENERALMOTIONCOMMAND
+_COMMAND_CONTROLLER.containing_type = _COMMAND;
+_COMMAND_GENERALMOTIONCOMMAND.containing_type = _COMMAND;
 DESCRIPTOR.message_types_by_name['Command'] = _COMMAND
 
 class Command(message.Message):
