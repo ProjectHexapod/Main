@@ -5,7 +5,6 @@ message Command {
   optional string raw_command = 2;  // the raw value from whatever input device
   optional GeneralMotionCommand intended_command = 3;  // if you only care where it goes
 
-
   enum Controller {
     PS3_CONTROLLER = 1;
   }
