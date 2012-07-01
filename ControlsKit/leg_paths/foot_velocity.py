@@ -2,17 +2,19 @@ from ControlsKit.math_utils import array, saturate
 from ControlsKit.time_sources import global_time
 
 class FootVelocity:
-    def __init__(self, leg_model, limb_controller,
+    def __init__(self, leg_model,
                  max_acceleration=array([20.0, 20.0, 20.0]),
-                 initial_velocity=array([0.0, 0.0, 0.0]),
+                 initial_velocity=None,
                  initial_position=None,
                  time_source=global_time):
         self.model = leg_model
-        self.controller = limb_controller
-        self.setMaxAceleration(max_acceleration)
+        self.setMaxAcceleration(max_acceleration)
         self.ts = time_source
         
-        self.vel = initial_velocity
+        if initial_velocity is None:
+            self.vel = array([0.0, 0.0, 0.0])
+        else:
+            self.vel = initial_velocity
         if initial_position is None:
             self.pos = self.model.getFootPos()
         else:
