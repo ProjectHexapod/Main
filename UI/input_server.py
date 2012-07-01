@@ -3,6 +3,8 @@ import random
 import robotControl_pb2
 import threading
 
+from ControlsKit import logger
+
 class InputServer:
     """This class takes care of listening for incomming inputs and supplying an appropriate
     update functions to obey the inputs.  It also handles the mapping from raw input values
@@ -33,11 +35,10 @@ class InputServer:
                 if self.authorizeConnection():
                     pass
                 else:
-                    # TODO: log the bad login attempt
                     self.conn.close()
+                    logger.warning("Invalid login attempt!")
             except error, msg:
-                # TODO: log the msg
-                pass
+                logger.error(msg, error=error)
 
     def authorizeConnection(self):
         try:
@@ -47,7 +48,7 @@ class InputServer:
             expected_response = hashlib.sha1(self.password + challenge).hexdigest()
             return response == expected_response
         except error, msg:
-            # TODO: log the msg
+            logger.error(msg, error=error)
             return False
 
     def stopListening(self):
