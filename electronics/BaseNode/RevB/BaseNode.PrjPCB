@@ -83,66 +83,122 @@ DocumentPath=NC Drill\BaseNode.DRL
 DItemRevisionGUID=
 
 [GeneratedDocument2]
-DocumentPath=NC Drill\BaseNode.DRR
+DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.DRL
 DItemRevisionGUID=
 
 [GeneratedDocument3]
-DocumentPath=Gerber\BaseNode.EXTREP
+DocumentPath=NC Drill\BaseNode.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument4]
-DocumentPath=Gerber\BaseNode.GBL
+DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.DRR
 DItemRevisionGUID=
 
 [GeneratedDocument5]
-DocumentPath=Gerber\BaseNode.GBO
+DocumentPath=Gerber\BaseNode.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument6]
-DocumentPath=Gerber\BaseNode.GBS
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.EXTREP
 DItemRevisionGUID=
 
 [GeneratedDocument7]
-DocumentPath=Gerber\BaseNode.GM6
+DocumentPath=Gerber\BaseNode.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument8]
-DocumentPath=Gerber\BaseNode.GM13
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GBL
 DItemRevisionGUID=
 
 [GeneratedDocument9]
-DocumentPath=Gerber\BaseNode.GTL
+DocumentPath=Gerber\BaseNode.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument10]
-DocumentPath=Gerber\BaseNode.GTO
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GBO
 DItemRevisionGUID=
 
 [GeneratedDocument11]
-DocumentPath=Gerber\BaseNode.GTS
+DocumentPath=Gerber\BaseNode.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument12]
-DocumentPath=NC Drill\BaseNode.LDP
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GBS
 DItemRevisionGUID=
 
 [GeneratedDocument13]
-DocumentPath=Gerber\BaseNode.REP
+DocumentPath=Gerber\BaseNode.GM6
 DItemRevisionGUID=
 
 [GeneratedDocument14]
-DocumentPath=Gerber\BaseNode.RUL
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GM6
 DItemRevisionGUID=
 
 [GeneratedDocument15]
-DocumentPath=NC Drill\BaseNode.TXT
+DocumentPath=Gerber\BaseNode.GM13
 DItemRevisionGUID=
 
 [GeneratedDocument16]
-DocumentPath=BOM\Bill of Materials-BaseNode.xlsx
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GM13
 DItemRevisionGUID=
 
 [GeneratedDocument17]
+DocumentPath=Gerber\BaseNode.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=Gerber\BaseNode.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=Gerber\BaseNode.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument22]
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument23]
+DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument24]
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.REP
+DItemRevisionGUID=
+
+[GeneratedDocument25]
+DocumentPath=Gerber\BaseNode.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument26]
+DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument27]
+DocumentPath=NC Drill\BaseNode.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument28]
+DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument29]
+DocumentPath=BOM\Bill of Materials-BaseNode.xlsx
+DItemRevisionGUID=
+
+[GeneratedDocument30]
+DocumentPath=Project Outputs for BaseNode\BOM\Bill of Materials-BaseNode.xlsx
+DItemRevisionGUID=
+
+[GeneratedDocument31]
 DocumentPath=Project Outputs for BaseNode\Design Rule Check - BaseNode.html
 DItemRevisionGUID=
 
