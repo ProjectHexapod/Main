@@ -37,5 +37,5 @@ class TrapezoidalFeetAlign:
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalJointMove.isDone, self.feet_path))
-            return [self.feet_path[i].update() for i in range (NUM_LEGS)]
+        return [self.feet_path[i].update() for i in range (NUM_LEGS)]
  

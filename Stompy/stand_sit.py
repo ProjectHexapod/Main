@@ -12,7 +12,7 @@ ORIENT = 1
 STAND = 2
 SIT = 3
 
-def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
+def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
     global path, state
     
     time_sources.global_time.updateTime(time)

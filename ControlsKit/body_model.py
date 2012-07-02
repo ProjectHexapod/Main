@@ -58,14 +58,21 @@ class BodyModel:
         body_coord = rotated+array([hip_offset[0], hip_offset[1], 0])
         return body_coord
         
+    def rotateBody2Leg(self, leg_index, body_coord):
+        """ Takes in CARTESIAN coordinates in body space and returns a CARTESIAN
+            array of xyz that has been rotated such that is is aligned with that
+            leg's coordinate frame
+        """
+        hip_offset = self.getHipOffset(leg_index)
+        leg_aligned_coord = rotateZ(body_coord, -hip_offset[2])
+        return leg_aligned_coord
     def transformBody2Leg(self, leg_index, body_coord):
         """ Takes in CARTESIAN coordinates in body space and returns a CARTESIAN
             array of xyz in that leg's coordinate frame
         """
-
         hip_offset = self.getHipOffset(leg_index)
         translated = array(body_coord)-array([hip_offset[0], hip_offset[1], 0])
-        leg_coord = rotateZ(translated, -hip_offset[2])
+        leg_coord = self.rotateBody2Leg(translated)
         return leg_coord
     
     def getHipOffset(self,leg_index):

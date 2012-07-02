@@ -12,7 +12,7 @@ lr = array([0.0, 0.0, 0.0])
 
 
 # Body of control loop
-def update(time, yaw, hip_pitch, knee_pitch, shock_depth):
+def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     global path, state, lr
 
     # Update model

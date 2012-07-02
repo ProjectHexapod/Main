@@ -5,11 +5,13 @@ sys.path.append('..')
 from RealWorldKit import *
 from ControlsKit import logger
 from ControlsKit.import_planner import importPlanner
-
+from UI import InputServer
 
 # Check command-line arguments to find the planner module
 update = importPlanner()
 
+input_server = InputServer()  # TODO: pass along at least a password argument here
+input_server.startListening()
 
 leg1 = ControlBus(device='/dev/ttyUSB0')
 yaw_valve = ValveNode(leg1, node_id=1, name="yaw_valve", bore=0.0254, rod=0.0159, lpm=22.712, e_deadband=130, r_deadband=130)
@@ -38,7 +40,8 @@ try:
         # XXX Find a cleaner way to run at 500Hz.
         if int(time_0*500.0) != int(time_1*500.0):
             leg1.tick()
-            lr = update(time_0, yaw_encoder.getAngle(), pitch_encoder.getAngle(), knee_encoder.getAngle(), shock_encoder.getPosition())
+            command = input_server.getLastCommand()
+            lr = update(time_0, yaw_encoder.getAngle(), pitch_encoder.getAngle(), knee_encoder.getAngle(), shock_encoder.getPosition(), command)
             logger.info("Gimpy main loop", hip_yaw_rate=0.0, hip_pitch_rate=lr[1], knee_pitch_rate=lr[2],
                         hip_yaw_angle=yaw_encoder.getAngle(), hip_pitch_angle=pitch_encoder.getAngle(),
                         knee_pitch_angle=knee_encoder.getAngle(), shock_depth=shock_encoder.getPosition(),
@@ -56,6 +59,7 @@ try:
             time_1 = time_0
 
 except:
+    input_server.stopListening()
     logger.error("Main loop exception")
     yaw_valve.stop()
     pitch_valve.stop()
