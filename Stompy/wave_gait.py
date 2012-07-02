@@ -10,7 +10,7 @@ state = 0
 leg_pair = 0
 stride = 1  # in meters
 
-def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
+def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
     global traj, legs
 
     time_sources.global_time.updateTime(time)

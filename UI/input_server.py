@@ -16,15 +16,15 @@ class InputServer:
     update functions to obey the inputs.  It also handles the mapping from raw input values
     to the controls they represent.
     """
-    def __init__(self, input_handler, password="", host='localhost', port=7337):
+    def __init__(self, password="", host='localhost', port=7337):
         self.host = host
         self.port = port
         self.sock = None
         self.conn = None
         self.password = password
-        self.serverThread = None
-        self.continueServing = True
-        self.input_handler = input_handler
+        self.server_thread = None
+        self.continue_serving = True
+        self.last_command = None
 
     def startListening(self):
         self.continueServing = True
@@ -32,18 +32,18 @@ class InputServer:
         self.sock.bind( (self.host, self.port) )
         self.sock.settimeout(SOCKET_TIMEOUT)
         self.sock.listen(True)
-        self.serverThread = threading.Thread()
-        self.serverThread.run = self.serve
-        self.serverThread.start()
+        self.server_thread = threading.Thread()
+        self.server_thread.run = self.serve
+        self.server_thread.start()
 
     def serve(self):
-        while self.continueServing:
+        while self.continue_serving:
             try:
                 self.conn, addr = self.sock.accept()
                 print "Got connection from " + str(addr)
                 self.conn.settimeout(SOCKET_TIMEOUT)
                 if self.authorizeConnection():
-                    while self.continueServing:  # redundant check here to quit on Ctrl+C
+                    while self.continue_serving:  # redundant check here to quit on Ctrl+C
                         try:
                             proto_bin = self.conn.recv(4096)
                         except timeout:
@@ -52,7 +52,7 @@ class InputServer:
                             break  # so break out of the conn specific loop to await another conn
                         command = Command()
                         command.ParseFromString(proto_bin)
-                        self.input_handler(command)
+                        self.last_command = command
                         if (command.HasField('intended_command') and
                             command.intended_command == Command.DISCONNECT):
                             self.conn.close()
@@ -72,18 +72,21 @@ class InputServer:
         return response == expected_response
 
     def stopListening(self):
-        self.continueServing = False
+        self.continue_serving = False
         if self.conn:
             self.conn.close()
         if self.sock:
             self.sock.close()
+
+    def getLastCommand(self):
+        return self.last_command
 
 
 if __name__ == '__main__':
     server = InputServer()
     server.startListening()
     try:
-        while server.continueServing:
+        while server.continue_serving:
             time.sleep(.500)
     except:
         server.stopListening()
