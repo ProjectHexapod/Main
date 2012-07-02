@@ -11,7 +11,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='robotControl.proto',
   package='UI',
-  serialized_pb='\n\x12robotControl.proto\x12\x02UI\"\xa9\x02\n\x07\x43ommand\x12*\n\ncontroller\x18\x01 \x01(\x0e\x32\x16.UI.Command.Controller\x12\x13\n\x0braw_command\x18\x02 \x01(\t\x12:\n\x10intended_command\x18\x03 \x01(\x0e\x32 .UI.Command.GeneralMotionCommand\" \n\nController\x12\x12\n\x0ePS3_CONTROLLER\x10\x01\"\x7f\n\x14GeneralMotionCommand\x12\x08\n\x04STOP\x10\x00\x12\x0e\n\nTURN_RIGHT\x10\x01\x12\r\n\tTURN_LEFT\x10\x02\x12\x0b\n\x07\x46ORWARD\x10\x03\x12\x0e\n\nCRAB_RIGHT\x10\x04\x12\r\n\tCRAB_LEFT\x10\x05\x12\x07\n\x03SIT\x10\x64\x12\t\n\x05STAND\x10\x65')
+  serialized_pb='\n\x12robotControl.proto\x12\x02UI\"\xb2\x03\n\x07\x43ommand\x12*\n\ncontroller\x18\x01 \x01(\x0e\x32\x16.UI.Command.Controller\x12%\n\x0braw_command\x18\x02 \x03(\x0b\x32\x10.UI.Command.Axis\x12:\n\x10intended_command\x18\x03 \x01(\x0e\x32 .UI.Command.GeneralMotionCommand\x1a\x32\n\x04\x41xis\x12\r\n\x05index\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\x05\" \n\nController\x12\x12\n\x0ePS3_CONTROLLER\x10\x01\"\xc1\x01\n\x14GeneralMotionCommand\x12\x08\n\x04STOP\x10\x00\x12\x0e\n\nTURN_RIGHT\x10\x01\x12\r\n\tTURN_LEFT\x10\x02\x12\x0b\n\x07\x46ORWARD\x10\x03\x12\x0e\n\nCRAB_RIGHT\x10\x04\x12\r\n\tCRAB_LEFT\x10\x05\x12\x0b\n\x07REVERSE\x10\x06\x12\x07\n\x03SIT\x10\x64\x12\t\n\x05STAND\x10\x65\x12\x10\n\x0bROW_FORWARD\x10\xf4\x03\x12\x10\n\x0bROW_REVERSE\x10\xf5\x03\x12\x0f\n\nDISCONNECT\x10\xe8\x07')
 
 
 
@@ -28,8 +28,8 @@ _COMMAND_CONTROLLER = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=163,
-  serialized_end=195,
+  serialized_start=233,
+  serialized_end=265,
 )
 
 _COMMAND_GENERALMOTIONCOMMAND = descriptor.EnumDescriptor(
@@ -63,20 +63,77 @@ _COMMAND_GENERALMOTIONCOMMAND = descriptor.EnumDescriptor(
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='SIT', index=6, number=100,
+      name='REVERSE', index=6, number=6,
       options=None,
       type=None),
     descriptor.EnumValueDescriptor(
-      name='STAND', index=7, number=101,
+      name='SIT', index=7, number=100,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='STAND', index=8, number=101,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='ROW_FORWARD', index=9, number=500,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='ROW_REVERSE', index=10, number=501,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='DISCONNECT', index=11, number=1000,
       options=None,
       type=None),
   ],
   containing_type=None,
   options=None,
-  serialized_start=197,
-  serialized_end=324,
+  serialized_start=268,
+  serialized_end=461,
 )
 
+
+_COMMAND_AXIS = descriptor.Descriptor(
+  name='Axis',
+  full_name='UI.Command.Axis',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    descriptor.FieldDescriptor(
+      name='index', full_name='UI.Command.Axis.index', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='name', full_name='UI.Command.Axis.name', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    descriptor.FieldDescriptor(
+      name='value', full_name='UI.Command.Axis.value', index=2,
+      number=3, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=181,
+  serialized_end=231,
+)
 
 _COMMAND = descriptor.Descriptor(
   name='Command',
@@ -94,8 +151,8 @@ _COMMAND = descriptor.Descriptor(
       options=None),
     descriptor.FieldDescriptor(
       name='raw_command', full_name='UI.Command.raw_command', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=unicode("", "utf-8"),
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -109,7 +166,7 @@ _COMMAND = descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_COMMAND_AXIS, ],
   enum_types=[
     _COMMAND_CONTROLLER,
     _COMMAND_GENERALMOTIONCOMMAND,
@@ -118,10 +175,12 @@ _COMMAND = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=27,
-  serialized_end=324,
+  serialized_end=461,
 )
 
+_COMMAND_AXIS.containing_type = _COMMAND;
 _COMMAND.fields_by_name['controller'].enum_type = _COMMAND_CONTROLLER
+_COMMAND.fields_by_name['raw_command'].message_type = _COMMAND_AXIS
 _COMMAND.fields_by_name['intended_command'].enum_type = _COMMAND_GENERALMOTIONCOMMAND
 _COMMAND_CONTROLLER.containing_type = _COMMAND;
 _COMMAND_GENERALMOTIONCOMMAND.containing_type = _COMMAND;
@@ -129,6 +188,12 @@ DESCRIPTOR.message_types_by_name['Command'] = _COMMAND
 
 class Command(message.Message):
   __metaclass__ = reflection.GeneratedProtocolMessageType
+  
+  class Axis(message.Message):
+    __metaclass__ = reflection.GeneratedProtocolMessageType
+    DESCRIPTOR = _COMMAND_AXIS
+    
+    # @@protoc_insertion_point(class_scope:UI.Command.Axis)
   DESCRIPTOR = _COMMAND
   
   # @@protoc_insertion_point(class_scope:UI.Command)

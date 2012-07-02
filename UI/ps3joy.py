@@ -1,4 +1,15 @@
 #!/usr/bin/python
+
+
+# This is a modified version of the Willow Garage PS3 controller driver.
+# The original version included the following license, and probably had fewer bugs,
+# you should really go get the original instead of this one.  Willow Garage
+# does not in any way endorse this version.  With that out of the way,
+# I guess I'll go with a BSD license as well, it's easier than keeping track of
+# the parts I've changed.
+# --M@ Dunlap
+
+
 #***********************************************************
 #* Software License Agreement (BSD License)
 #*
@@ -36,14 +47,20 @@
 from bluetooth import *
 import select
 import fcntl
+import hashlib
 import os
 import time
 import sys                    
 import traceback
 import subprocess
 
+from robotControl_pb2 import Command
+from socket import socket, AF_INET, SOCK_STREAM, timeout
+
 L2CAP_PSM_HIDP_CTRL = 17
 L2CAP_PSM_HIDP_INTR = 19
+
+SOCKET_TIMEOUT = .5
 
 class uinput:
     EV_KEY = 1
@@ -168,9 +185,34 @@ class decoder:
         self.outlen = len(buttons) + len(axes)           
         self.inactivity_timeout = inactivity_timeout
 
+        self.host = "localhost"  # TODO: parameterize me
+        self.port = 7337  # TODO: parameterize me
+        self.sock = socket(AF_INET, SOCK_STREAM)
+        self.sock.settimeout(SOCKET_TIMEOUT)
+        self.password = ""  # TODO: parameterize me
+        self.connect()
+
     step_active = 1
     step_idle = 2
     step_error = 3
+
+    def connect(self):
+        self.sock.connect( (self.host, self.port) )
+        challenge = self.sock.recv(64)
+        response = hashlib.sha1(self.password + challenge).hexdigest()
+        try:
+            self.sock.send(response)
+        except timeout:
+            print "Sending timed out, buffer probably full"
+
+    def sendRawData(self, data):
+        command = Command()
+        command.controller = Command.PS3_CONTROLLER
+        for datum, i in zip(data, range(len(data))):
+            rc = command.raw_command.add()
+            rc.index = i
+            rc.value = datum
+        self.sock.send(command.SerializeToString())
 
     def step(self, rawdata): # Returns true if the packet was legal
         if len(rawdata) == 50:
@@ -187,6 +229,10 @@ class decoder:
                     out.append(int((curbyte & (1 << k)) != 0))
             out = out + data
             # self.joy.update(out)
+            try:
+                self.sendRawData(out)
+            except Exception, e:
+                print e
             print out
             axis_motion = [abs(out[17:][i] - self.axmid[i]) > 20 for i in range(0,len(out)-17-4)]  
                                                                        # 17 buttons, 4 inertial sensors
@@ -245,6 +291,7 @@ class decoder:
                 time.sleep(0.005) # No need to blaze through the loop when there is an error
         finally:
             self.fullstop()
+            self.sock.close()
 
 class Quit(Exception):
     def __init__(self, errorcode):
