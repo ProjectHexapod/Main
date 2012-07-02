@@ -2,12 +2,10 @@ import sys
 sys.path.append("..")
 
 import hashlib
-import import_planner
 import threading
 import time
 
 from ControlsKit import logger
-from defaultKeymap import getPlannerName
 from robotControl_pb2 import Command
 from socket import socket, AF_INET, SOCK_STREAM, timeout
 
@@ -18,7 +16,7 @@ class InputServer:
     update functions to obey the inputs.  It also handles the mapping from raw input values
     to the controls they represent.
     """
-    def __init__(self, password="", host='localhost', port=7337):
+    def __init__(self, input_handler, password="", host='localhost', port=7337):
         self.host = host
         self.port = port
         self.sock = None
@@ -26,10 +24,7 @@ class InputServer:
         self.password = password
         self.serverThread = None
         self.continueServing = True
-        self.updateFunctions = {}
-        default_planner = "hold_position"
-        self.importPlanner(default_planner)
-        self.currentPlanner = self.updateFunctions[default_planner]
+        self.input_handler = input_handler
 
     def startListening(self):
         self.continueServing = True
@@ -57,7 +52,7 @@ class InputServer:
                             break  # so break out of the conn specific loop to await another conn
                         command = Command()
                         command.ParseFromString(proto_bin)
-                        self.handleCommand(command)
+                        self.input_handler(command)
                         if (command.HasField('intended_command') and
                             command.intended_command == Command.DISCONNECT):
                             self.conn.close()
@@ -76,34 +71,12 @@ class InputServer:
         expected_response = hashlib.sha1(self.password + challenge).hexdigest()
         return response == expected_response
 
-    def handleCommand(self, command):
-        if command.HasField('intended_command'):
-            # TODO: switch on command.intended_command and map to planners appropriately
-            pass
-        else:
-            name = getPlannerName(command)
-            self.importPlanner(name)
-            self.currentPlanner = self.updateFunctions[name]
-
-
     def stopListening(self):
         self.continueServing = False
         if self.conn:
             self.conn.close()
         if self.sock:
             self.sock.close()
-
-    def importPlanner(self, planner_name):
-        if not planner_name in self.updateFunctions:
-            print planner_name
-            self.updateFunctions[planner_name] = import_planner.importPlanner(planner_name)
-
-    def getUpdateFunction(self):
-        return self.currentPlanner
-
-
-
-
 
 
 if __name__ == '__main__':
