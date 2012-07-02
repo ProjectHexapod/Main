@@ -79,126 +79,70 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 
 [GeneratedDocument1]
-DocumentPath=NC Drill\BaseNode.DRL
-DItemRevisionGUID=
-
-[GeneratedDocument2]
 DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.DRL
 DItemRevisionGUID=
 
-[GeneratedDocument3]
-DocumentPath=NC Drill\BaseNode.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument4]
+[GeneratedDocument2]
 DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.DRR
 DItemRevisionGUID=
 
-[GeneratedDocument5]
-DocumentPath=Gerber\BaseNode.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument6]
+[GeneratedDocument3]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.EXTREP
 DItemRevisionGUID=
 
-[GeneratedDocument7]
-DocumentPath=Gerber\BaseNode.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument8]
+[GeneratedDocument4]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GBL
 DItemRevisionGUID=
 
-[GeneratedDocument9]
-DocumentPath=Gerber\BaseNode.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument10]
+[GeneratedDocument5]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GBO
 DItemRevisionGUID=
 
-[GeneratedDocument11]
-DocumentPath=Gerber\BaseNode.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument12]
+[GeneratedDocument6]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GBS
 DItemRevisionGUID=
 
-[GeneratedDocument13]
-DocumentPath=Gerber\BaseNode.GM6
-DItemRevisionGUID=
-
-[GeneratedDocument14]
+[GeneratedDocument7]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GM6
 DItemRevisionGUID=
 
-[GeneratedDocument15]
-DocumentPath=Gerber\BaseNode.GM13
-DItemRevisionGUID=
-
-[GeneratedDocument16]
+[GeneratedDocument8]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GM13
 DItemRevisionGUID=
 
-[GeneratedDocument17]
-DocumentPath=Gerber\BaseNode.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument18]
+[GeneratedDocument9]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GTL
 DItemRevisionGUID=
 
-[GeneratedDocument19]
-DocumentPath=Gerber\BaseNode.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument20]
+[GeneratedDocument10]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GTO
 DItemRevisionGUID=
 
-[GeneratedDocument21]
-DocumentPath=Gerber\BaseNode.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument22]
+[GeneratedDocument11]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.GTS
 DItemRevisionGUID=
 
-[GeneratedDocument23]
+[GeneratedDocument12]
 DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.LDP
 DItemRevisionGUID=
 
-[GeneratedDocument24]
+[GeneratedDocument13]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.REP
 DItemRevisionGUID=
 
-[GeneratedDocument25]
-DocumentPath=Gerber\BaseNode.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument26]
+[GeneratedDocument14]
 DocumentPath=Project Outputs for BaseNode\Gerber\BaseNode.RUL
 DItemRevisionGUID=
 
-[GeneratedDocument27]
-DocumentPath=NC Drill\BaseNode.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument28]
+[GeneratedDocument15]
 DocumentPath=Project Outputs for BaseNode\NC Drill\BaseNode.TXT
 DItemRevisionGUID=
 
-[GeneratedDocument29]
-DocumentPath=BOM\Bill of Materials-BaseNode.xlsx
-DItemRevisionGUID=
-
-[GeneratedDocument30]
+[GeneratedDocument16]
 DocumentPath=Project Outputs for BaseNode\BOM\Bill of Materials-BaseNode.xlsx
 DItemRevisionGUID=
 
-[GeneratedDocument31]
+[GeneratedDocument17]
 DocumentPath=Project Outputs for BaseNode\Design Rule Check - BaseNode.html
 DItemRevisionGUID=
 
@@ -1010,7 +954,7 @@ Type55=1
 Type56=2
 Type57=1
 Type58=1
-Type59=0
+Type59=1
 Type60=1
 Type61=2
 Type62=2
@@ -1099,65 +1043,119 @@ ComponentSymbolReference0=Resistor
 ComponentUpdate0=0
 ComponentIsDeviceSheet0=0
 ComponentLibIdentifierKind1=Library Name And Type
-ComponentLibraryIdentifier1=Miscellaneous Devices.IntLib
-ComponentDesignItemID1=Inductor
-ComponentSymbolReference1=Inductor
+ComponentLibraryIdentifier1=Miscellaneous Connectors.IntLib
+ComponentDesignItemID1=Header 12
+ComponentSymbolReference1=Header 12
 ComponentUpdate1=0
 ComponentIsDeviceSheet1=0
 ComponentLibIdentifierKind2=Library Name And Type
-ComponentLibraryIdentifier2=whong.SchLib
-ComponentDesignItemID2=ADP2302ARDZ-3.3-R7
-ComponentSymbolReference2=ADP2302ARDZ-3.3-R7
+ComponentLibraryIdentifier2=Miscellaneous Connectors.IntLib
+ComponentDesignItemID2=Header 2
+ComponentSymbolReference2=Header 2
 ComponentUpdate2=0
 ComponentIsDeviceSheet2=0
 ComponentLibIdentifierKind3=Library Name And Type
-ComponentLibraryIdentifier3=whong.SchLib
-ComponentDesignItemID3=Capacitor
-ComponentSymbolReference3=Capacitor
+ComponentLibraryIdentifier3=Miscellaneous Connectors.IntLib
+ComponentDesignItemID3=Header 3X2
+ComponentSymbolReference3=Header 3X2
 ComponentUpdate3=0
 ComponentIsDeviceSheet3=0
 ComponentLibIdentifierKind4=Library Name And Type
-ComponentLibraryIdentifier4=whong.SchLib
-ComponentDesignItemID4=CDBA140-G
-ComponentSymbolReference4=CDBA140-G
+ComponentLibraryIdentifier4=Miscellaneous Connectors.IntLib
+ComponentDesignItemID4=Header 5
+ComponentSymbolReference4=Header 5
 ComponentUpdate4=0
 ComponentIsDeviceSheet4=0
 ComponentLibIdentifierKind5=Library Name And Type
-ComponentLibraryIdentifier5=whong.SchLib
-ComponentDesignItemID5=ECS-250-20-3X-EN-TR
-ComponentSymbolReference5=ECS-250-20-3X-EN-TR
-ComponentUpdate5=1
+ComponentLibraryIdentifier5=Miscellaneous Devices.IntLib
+ComponentDesignItemID5=Inductor
+ComponentSymbolReference5=Inductor
+ComponentUpdate5=0
 ComponentIsDeviceSheet5=0
 ComponentLibIdentifierKind6=Library Name And Type
 ComponentLibraryIdentifier6=whong.SchLib
-ComponentDesignItemID6=KSZ8051MLL
-ComponentSymbolReference6=KSZ8051MLL
+ComponentDesignItemID6=AS5045-ASSU
+ComponentSymbolReference6=AS5045-ASSU
 ComponentUpdate6=0
 ComponentIsDeviceSheet6=0
 ComponentLibIdentifierKind7=Library Name And Type
 ComponentLibraryIdentifier7=whong.SchLib
-ComponentDesignItemID7=LM4041EIM3X-1.2_1
-ComponentSymbolReference7=LM4041EIM3X-1.2_1
+ComponentDesignItemID7=BSS123
+ComponentSymbolReference7=BSS123
 ComponentUpdate7=0
 ComponentIsDeviceSheet7=0
 ComponentLibIdentifierKind8=Library Name And Type
 ComponentLibraryIdentifier8=whong.SchLib
-ComponentDesignItemID8=MCF51CN128CLH
-ComponentSymbolReference8=MCF51CN128CLH
+ComponentDesignItemID8=Capacitor
+ComponentSymbolReference8=Capacitor
 ComponentUpdate8=0
 ComponentIsDeviceSheet8=0
 ComponentLibIdentifierKind9=Library Name And Type
 ComponentLibraryIdentifier9=whong.SchLib
-ComponentDesignItemID9=Resistor
-ComponentSymbolReference9=Resistor
+ComponentDesignItemID9=CDBA140-G
+ComponentSymbolReference9=CDBA140-G
 ComponentUpdate9=0
 ComponentIsDeviceSheet9=0
 ComponentLibIdentifierKind10=Library Name And Type
 ComponentLibraryIdentifier10=whong.SchLib
-ComponentDesignItemID10=SS-6488-NF
-ComponentSymbolReference10=SS-6488-NF
+ComponentDesignItemID10=ECS-250-20-3X-EN-TR
+ComponentSymbolReference10=ECS-250-20-3X-EN-TR
 ComponentUpdate10=0
 ComponentIsDeviceSheet10=0
+ComponentLibIdentifierKind11=Library Name And Type
+ComponentLibraryIdentifier11=whong.SchLib
+ComponentDesignItemID11=KSZ8051MLL
+ComponentSymbolReference11=KSZ8051MLL
+ComponentUpdate11=1
+ComponentIsDeviceSheet11=0
+ComponentLibIdentifierKind12=Library Name And Type
+ComponentLibraryIdentifier12=whong.SchLib
+ComponentDesignItemID12=LM4041EIM3X-1.2_1
+ComponentSymbolReference12=LM4041EIM3X-1.2_1
+ComponentUpdate12=0
+ComponentIsDeviceSheet12=0
+ComponentLibIdentifierKind13=Library Name And Type
+ComponentLibraryIdentifier13=whong.SchLib
+ComponentDesignItemID13=LM5007MM/NOPB
+ComponentSymbolReference13=LM5007MM/NOPB
+ComponentUpdate13=0
+ComponentIsDeviceSheet13=0
+ComponentLibIdentifierKind14=Library Name And Type
+ComponentLibraryIdentifier14=whong.SchLib
+ComponentDesignItemID14=MCF51CN128CLH
+ComponentSymbolReference14=MCF51CN128CLH
+ComponentUpdate14=0
+ComponentIsDeviceSheet14=0
+ComponentLibIdentifierKind15=Library Name And Type
+ComponentLibraryIdentifier15=whong.SchLib
+ComponentDesignItemID15=MIC7221YM5 TR
+ComponentSymbolReference15=MIC7221YM5 TR
+ComponentUpdate15=0
+ComponentIsDeviceSheet15=0
+ComponentLibIdentifierKind16=Library Name And Type
+ComponentLibraryIdentifier16=whong.SchLib
+ComponentDesignItemID16=PBSS305PX,115
+ComponentSymbolReference16=PBSS305PX,115
+ComponentUpdate16=0
+ComponentIsDeviceSheet16=0
+ComponentLibIdentifierKind17=Library Name And Type
+ComponentLibraryIdentifier17=whong.SchLib
+ComponentDesignItemID17=Resistor
+ComponentSymbolReference17=Resistor
+ComponentUpdate17=0
+ComponentIsDeviceSheet17=0
+ComponentLibIdentifierKind18=Library Name And Type
+ComponentLibraryIdentifier18=whong.SchLib
+ComponentDesignItemID18=SS-6488-NF
+ComponentSymbolReference18=SS-6488-NF
+ComponentUpdate18=0
+ComponentIsDeviceSheet18=0
+ComponentLibIdentifierKind19=Library Name And Type
+ComponentLibraryIdentifier19=whong.SchLib
+ComponentDesignItemID19=TC1262-3.3VDBTR
+ComponentSymbolReference19=TC1262-3.3VDBTR
+ComponentUpdate19=0
+ComponentIsDeviceSheet19=0
 FullReplace=1
 UpdateDesignatorLock=1
 UpdatePartIDLock=1
@@ -1228,54 +1226,81 @@ ModelType3=PCBLIB
 ModelName3=1206
 ModelUpdate3=1
 ModelType4=PCBLIB
-ModelName4=1210
+ModelName4=Capacitor 12mm DIA POLAR
 ModelUpdate4=1
 ModelType5=PCBLIB
-ModelName5=Capacitor TH 0.2
+ModelName5=CSM-3X
 ModelUpdate5=1
 ModelType6=PCBLIB
-ModelName6=LQFP-48 7x7mm 0.5mm pitch
+ModelName6=HDR1X12
 ModelUpdate6=1
 ModelType7=PCBLIB
-ModelName7=LQFP-64 10x10mm .5mm pitch
+ModelName7=HDR1X2
 ModelUpdate7=1
 ModelType8=PCBLIB
-ModelName8=NR6028 Inductor
+ModelName8=HDR1X5
 ModelUpdate8=1
 ModelType9=PCBLIB
-ModelName9=Resistor Axial 100mil
+ModelName9=HDR2X3
 ModelUpdate9=1
 ModelType10=PCBLIB
-ModelName10=SMA-DIODE
+ModelName10=LQFP-48 7x7mm 0.5mm pitch
 ModelUpdate10=1
 ModelType11=PCBLIB
-ModelName11=SOIC8 W PAD
+ModelName11=LQFP-64 10x10mm .5mm pitch
 ModelUpdate11=1
 ModelType12=PCBLIB
-ModelName12=SS-6488-NF
+ModelName12=MSOP-8
 ModelUpdate12=1
+ModelType13=PCBLIB
+ModelName13=NR6028 Inductor
+ModelUpdate13=1
+ModelType14=PCBLIB
+ModelName14=SMA-DIODE
+ModelUpdate14=1
+ModelType15=PCBLIB
+ModelName15=SOT-223
+ModelUpdate15=1
+ModelType16=PCBLIB
+ModelName16=SOT-23
+ModelUpdate16=1
+ModelType17=PCBLIB
+ModelName17=SOT-23-5
+ModelUpdate17=1
+ModelType18=PCBLIB
+ModelName18=SOT-89 - PBSS305PX
+ModelUpdate18=1
+ModelType19=PCBLIB
+ModelName19=SS-6488-NF
+ModelUpdate19=1
+ModelType20=PCBLIB
+ModelName20=SSOP-16
+ModelUpdate20=1
 ModelTypeGroup1=SI
 ModelTypeUpdate1=1
-ModelType13=SI
-ModelName13=Cap
-ModelUpdate13=1
-ModelType14=SI
-ModelName14=Diode
-ModelUpdate14=1
-ModelType15=SI
-ModelName15=Res
-ModelUpdate15=1
+ModelType21=SI
+ModelName21=Cap
+ModelUpdate21=1
+ModelType22=SI
+ModelName22=Connector
+ModelUpdate22=1
+ModelType23=SI
+ModelName23=Diode
+ModelUpdate23=1
+ModelType24=SI
+ModelName24=Res
+ModelUpdate24=1
 ModelTypeGroup2=SIM
 ModelTypeUpdate2=1
-ModelType16=SIM
-ModelName16=CAP
-ModelUpdate16=1
-ModelType17=SIM
-ModelName17=RESISTOR
-ModelUpdate17=1
-ModelType18=SIM
-ModelName18=SKYDIODE
-ModelUpdate18=1
+ModelType25=SIM
+ModelName25=CAP
+ModelUpdate25=1
+ModelType26=SIM
+ModelName26=RESISTOR
+ModelUpdate26=1
+ModelType27=SIM
+ModelName27=SKYDIODE
+ModelUpdate27=1
 
 [DatabaseUpdateOptions]
 SelectedOnly=0
