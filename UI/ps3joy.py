@@ -229,11 +229,7 @@ class decoder:
                     out.append(int((curbyte & (1 << k)) != 0))
             out = out + data
             # self.joy.update(out)
-            try:
-                self.sendRawData(out)
-            except Exception, e:
-                print e
-            print out
+            self.sendRawData(out)
             axis_motion = [abs(out[17:][i] - self.axmid[i]) > 20 for i in range(0,len(out)-17-4)]  
                                                                        # 17 buttons, 4 inertial sensors
             if any(out[0:17]) or any(axis_motion):
