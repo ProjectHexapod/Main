@@ -166,11 +166,6 @@ class IIR(object):
         self.state += (1-adjusted_k)*val
         self.t = t
 
-class LinearTraj(object):
-    def __init__(self, start=1.0, end=1.0, over_time=1.0, start_time=0):
-        self.start = start
-        self.end = end
-
 class SpiderWHydraulics(MultiBody):
     def __init__( self, *args, **kwargs ):
         self.dimensions = StompyPhysicalCharacteristics()
