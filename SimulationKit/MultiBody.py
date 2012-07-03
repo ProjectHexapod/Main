@@ -192,8 +192,9 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
  
     def setLengthRate(self, vel_mps):
         self.lenrate = vel_mps
-        self.lenrate = max(self.lenrate, self.max_retract_rate)
-        self.lenrate = min(self.lenrate, self.max_extend_rate)
+        if hasattr(self, 'max_retract_rate'):
+            self.lenrate = max(self.lenrate, self.max_retract_rate)
+            self.lenrate = min(self.lenrate, self.max_extend_rate)
         
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
