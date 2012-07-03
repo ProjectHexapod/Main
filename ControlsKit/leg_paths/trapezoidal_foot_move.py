@@ -11,7 +11,12 @@ class TrapezoidalFootMove:
         
         self.model = leg_model
         self.controller = limb_controller
-        self.target_foot_pos = self.model.getFootPos()
+        # We want to start from the last commanded foot position,
+        # not the last actual foot position.
+        last_target_ang_array = self.controller.getDesiredPosAngle()
+        self.target_foot_pos = self.model.footPosFromLegState(\
+            (last_target_ang_array, 0.0) )
+        #self.target_foot_pos = self.model.getFootPos()
         self.final_foot_pos = final_foot_pos
         self.max_vel = max_velocity
         self.vel = 0.0
@@ -46,8 +51,11 @@ class TrapezoidalFootMove:
                 self.vel = min(self.vel, self.max_vel)
             self.target_foot_pos += self.dir * self.vel * delta
             
-            if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
+            if norm(self.final_foot_pos-self.target_foot_pos)<0.02:
                 self.done = True
                 self.target_foot_pos = self.final_foot_pos
+            #if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
+            #    self.done = True
+            #    self.target_foot_pos = self.final_foot_pos
 
-        return self.model.jointAnglesFromFootPos(self.target_foot_pos)
+        return self.model.jointAnglesFromFootPos(self.target_foot_pos, 0)
