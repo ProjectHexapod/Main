@@ -17,7 +17,7 @@ TURN_SECOND_TRIPOD = 4
 RESOLVE = 5
 STAND = 6
 
-def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
+def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates):
     global path, state
     
     time_sources.global_time.updateTime(time)
@@ -34,13 +34,15 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
             path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
             state = RAISE_FIRST_TRIPOD
         elif state == RAISE_FIRST_TRIPOD:
-            path = TrapezoidalFeetLiftLower(model, controller, [0,2,4], .3, 2, 1)
+            path = TrapezoidalFeetLiftLower(model, controller, range(NUM_LEGS), 
+                    [.1,-.1,.1,-.1,.1,-.1], 2, 1)
             state = TURN_FIRST_TRIPOD
         elif state == TURN_FIRST_TRIPOD:
             path = RotateFeetAboutOrigin(model, controller, [0,2,4], .2, 2, 1)
             state = RAISE_SECOND_TRIPOD
         elif state == RAISE_SECOND_TRIPOD:
-            path = TrapezoidalFeetLiftLower(model, controller, [1,3,5], .3, 2, 1)
+            path = TrapezoidalFeetLiftLower(model, controller, range(NUM_LEGS), 
+            [-.1,.1,-.1,.1,-.1,.1], 2, 1)
             state = TURN_SECOND_TRIPOD
         elif state == TURN_SECOND_TRIPOD:
             path = RotateFeetAboutOrigin(model, controller, [1,3,5], .2, 2, 1)
