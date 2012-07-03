@@ -20,10 +20,6 @@ class TrapezoidalFootMove:
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
         self.done = False
-     
-        self.sw = time_sources.StopWatch()
-        self.sw.smoothStart(1)#self.accel_duration)
-        # FIXME:the above line should have accel_duration reinstated.
 
     def isDone(self):
         return self.done
