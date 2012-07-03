@@ -3,6 +3,7 @@ from SimulationKit.helpers import *
 from SimulationKit.pubsub import *
 from math import *
 import ode
+from ActuatorCharacteristics import *
 
 # Convenience multipliers...
 deg2rad    = pi/180
@@ -10,55 +11,6 @@ psi2pascal = 6894.76
 inch2meter = 2.54e-2
 pound2kilo = 0.455
 gallon2cmps = 1/15850.4
-
-class ActuatorCharacteristics(object):
-    """
-    This describes the placement of a linear actuator relative to the joint it
-    is controlling.  It also provides convenience trig functions for figuring
-    out things like joint limits based on actuator extension.
-    """
-    def __init__(self):
-        self.BORE_DIAMETER          = 0.0
-        self.ROD_DIAMETER           = 0.0
-        self.ACT_RETRACTED_LEN      = 0.1
-        self.ACT_EXTENDED_LEN       = 0.1
-        self.PIVOT1_DIST_FROM_JOINT = 0.1
-        self.PIVOT2                 = (0.0,0.0)
-        self.AXIS                   = (0,0,1)
-        self.ANG_OFFSET             = 0.0
-        self.SYSTEM_PRESSURE        = 2000*psi2pascal
-    def getRangeOfMotion( self ):
-        """Returns an angle in radians"""
-        assert abs(len2(self.PIVOT2)-self.PIVOT1_DIST_FROM_JOINT) <\
-            self.ACT_RETRACTED_LEN, 'You can retract in to singularity'
-        retracted_angle = thetaFromABC(\
-            self.PIVOT1_DIST_FROM_JOINT,\
-            len2(self.PIVOT2),\
-            self.ACT_RETRACTED_LEN)
-        assert len2(self.PIVOT2)+self.PIVOT1_DIST_FROM_JOINT >\
-            self.ACT_EXTENDED_LEN, 'You can extend in to singularity'
-        extended_angle = thetaFromABC(\
-            self.PIVOT1_DIST_FROM_JOINT,\
-            len2(self.PIVOT2),\
-            self.ACT_EXTENDED_LEN)
-        assert extended_angle>retracted_angle, \
-            "This actuator placement breaks sign conventions\
-            ... actuator extend should increase joint angle"
-        return extended_angle - retracted_angle
-    def getExtensionCrossSectionM2( self ):
-        """Returns piston cross sectional area in m^2 on the extend side of the
-        piston"""
-        return ((self.BORE_DIAMETER/2)**2)*pi
-    def getRetractionCrossSectionM2( self ):
-        """Returns piston cross sectional area in m^2 on the extend side of the
-        piston"""
-        return ((self.BORE_DIAMETER/2)**2-(self.ROD_DIAMETER/2)**2)*pi
-    def getMaxExtensionForceNewtons( self ):
-        """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
-        return self.getExtensionCrossSectionM2()*self.SYSTEM_PRESSURE
-    def getMaxRetractionForceNewtons( self, pressure = 0.0 ):
-        """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
-        return self.getRetractionCrossSectionM2()*self.SYSTEM_PRESSURE
 
 class StompyLegPhysicalCharacteristics(object):
     """
@@ -214,11 +166,6 @@ class IIR(object):
         self.state += (1-adjusted_k)*val
         self.t = t
 
-class LinearTraj(object):
-    def __init__(self, start=1.0, end=1.0, over_time=1.0, start_time=0):
-        self.start = start
-        self.end = end
-
 class SpiderWHydraulics(MultiBody):
     def __init__( self, *args, **kwargs ):
         self.dimensions = StompyPhysicalCharacteristics()
@@ -235,6 +182,7 @@ class SpiderWHydraulics(MultiBody):
             (-1*self.dimensions.BODY_W/2,0,0),\
             self.dimensions.BODY_T,\
             mass=self.dimensions.BODY_M )
+        #self.addFixedJoint( ode.environment, self.core )
 
         self.publisher.addToCatalog(\
             "body.totalflow_gpm",\
@@ -379,7 +327,7 @@ class SpiderWHydraulics(MultiBody):
                 body2        = foot, \
                 axis         = mul3(calf_axis,-1),\
                 #spring_const = 0,\
-                spring_const = -80e3,\
+                spring_const = -00e3,\
                 hi_stop      = 0.1,\
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
@@ -563,6 +511,39 @@ class SpiderWHydraulics(MultiBody):
                 y += 0.0
             else:
                 y -= 0.0
+            p = ( x, y, z )
+            foot_positions.append(p)
+        self.setDesiredFootPositions( foot_positions )
+        return foot_positions
+    def bodyWiggle( self ):
+        gait_cycle      = 10.0     # time in seconds
+        step_cycle      = gait_cycle/2.0
+        ang_mag         = pi/20
+        neutral_r_outer = inch2meter*70
+        neutral_r_inner = inch2meter*75
+        body_h          = inch2meter*60
+        foot_lift_h     = 0.25    # how high to lift feet in m
+
+        foot_positions = []
+        ang_off      =  ang_mag*sin(2*pi*(self.sim.sim_t%gait_cycle)/gait_cycle)
+        z_off        =  abs(foot_lift_h*cos(2*pi*self.sim.sim_t/gait_cycle))
+        if z_off<0:
+            z_off *= -1
+        for i in range(6):
+            # Neutral position in the leg coordinate frame
+            if i in (1,4):
+                neutral_pos = (neutral_r_inner, 0, -body_h)
+            else:
+                neutral_pos = (neutral_r_outer, 0, -body_h)
+            tmp = rotate3( self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
+            x, y, z = add3( tmp, self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN )
+            x,y = rot2( (x,y), ang_off )
+            #if (i%2):
+            #    x,y = rot2( (x,y), ang_off )
+            #    z += z_off
+            #else:
+            #    x,y = rot2( (x,y), -ang_off )
+            #^ (self.sim.sim_t%gait_cycle<(step_cycle)):
             p = ( x, y, z )
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
