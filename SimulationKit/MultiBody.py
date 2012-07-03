@@ -169,6 +169,8 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     def __init__(self, world):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         self.lenrate = 0
+        self.max_retract_rate = -1e9
+        self.max_extend_rate  =  1e9
 
     def getAngRate( self ):
         # FIXME: the hip yaw joints move in the opposite direction you command them to.
@@ -192,9 +194,8 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
  
     def setLengthRate(self, vel_mps):
         self.lenrate = vel_mps
-        if hasattr(self, 'max_retract_rate'):
-            self.lenrate = max(self.lenrate, self.max_retract_rate)
-            self.lenrate = min(self.lenrate, self.max_extend_rate)
+        self.lenrate = max(self.lenrate, self.max_retract_rate)
+        self.lenrate = min(self.lenrate, self.max_extend_rate)
         
     def update(self):
         self.setParam(ode.ParamFMax, self.getTorqueLimit())
