@@ -6,6 +6,7 @@ from filters import HighPassFilter
 import math
 from leg_logger import logger
 from os import path
+from SimulationKit.helpers import *
 
 class LegModel:
     def __init__(self, config_file="leg_model.conf", section="LegModel"):
@@ -96,26 +97,24 @@ class LegModel:
         pos = rotateY(pos, leg_state[0][HP])
         pos[X] += self.YAW_LEN
         return rotateZ(pos, leg_state[0][YAW])
-    def jointAnglesFromFootPos(self, pos, shock_depth=None):
-        if shock_depth == None:
-            shock_depth = self.getShockDepth()
-            
-        # Yaw is independent of the other two joints
-        yaw = atan2(pos[Y], pos[X])
-        
-        # Now treat the other two joints like a 2-DOF leg in the X-Z plane
-        pos = rotateZ(pos, yaw)
-        pos[X] -= self.YAW_LEN
-        
-        # What is the included angle between the foot and the +X axis?
-        foot_pitch = -atan2(pos[Z], pos[X])
-        
-        aL, aC, aT = solveTriangle(norm(pos),
-                                self.CALF_LEN - shock_depth,
-                                self.THIGH_LEN)
-        hip_pitch = foot_pitch - aC
-        knee_pitch = pi - aL
-        return array([yaw, hip_pitch, knee_pitch])
+    def jointAnglesFromFootPos(self, pos, shock_depth=0.0):
+        # Calculate hip yaw
+        hip_yaw_angle   = atan2( pos[1], pos[0] )
+        # Calculate hip yaw offset
+        hip_p = norm2( (pos[0], pos[1]) )
+        hip_p = (self.YAW_LEN*hip_p[0], self.YAW_LEN*hip_p[1], 0.0)
+        # Calculate leg length
+        leg_l                    = dist3( pos, hip_p )
+        # Use law of cosines on leg length to calculate knee angle 
+        knee_angle               = pi-thetaFromABC( self.THIGH_LEN,\
+            self.CALF_LEN-shock_depth, leg_l )
+        # Calculate hip pitch
+        hip_offset_angle         = thetaFromABC( self.THIGH_LEN, leg_l,
+            self.CALF_LEN-shock_depth )
+        target_p                 = sub3(pos, hip_p)
+        hip_depression_angle     = atan2( -target_p[2], len2((target_p[0], target_p[1])) )
+        hip_pitch_angle          = hip_depression_angle - hip_offset_angle
+        return (hip_yaw_angle, hip_pitch_angle, knee_angle)
 
     def posIsPossible(self, pos, lower_limits, upper_limits):
         ikSolution = self.jointAnglesFromFootPos(pos)
