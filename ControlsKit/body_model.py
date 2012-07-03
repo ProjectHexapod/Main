@@ -72,7 +72,7 @@ class BodyModel:
         """
         hip_offset = self.getHipOffset(leg_index)
         translated = array(body_coord)-array([hip_offset[0], hip_offset[1], 0])
-        leg_coord = self.rotateBody2Leg(translated)
+        leg_coord = self.rotateBody2Leg(leg_index, translated)
         return leg_coord
     
     def getHipOffset(self,leg_index):
