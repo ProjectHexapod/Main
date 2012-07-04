@@ -2,7 +2,6 @@ import sys
 sys.path.append("..")
 
 import hashlib
-import network_args
 import threading
 import time
 
@@ -10,6 +9,7 @@ from command_wrapper import CommandWrapper
 from ControlsKit import logger
 from robotControl_pb2 import Command
 from socket import socket, AF_INET, SOCK_STREAM, timeout
+from UI import network_args
 
 SOCKET_TIMEOUT = .5
 
