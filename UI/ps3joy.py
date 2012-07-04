@@ -48,6 +48,7 @@ from bluetooth import *
 import select
 import fcntl
 import hashlib
+import network_args
 import os
 import time
 import sys                    
@@ -155,7 +156,7 @@ class BadJoystickException(Exception):
         Exception.__init__(self, "Unsupported joystick.")
 
 class decoder:
-    def __init__(self, inactivity_timeout = float(1e3000)):
+    def __init__(self, password="", host="localhost", port=7337, inactivity_timeout = float(1e3000)):
         #buttons=[uinput.BTN_SELECT, uinput.BTN_THUMBL, uinput.BTN_THUMBR, uinput.BTN_START, 
         #         uinput.BTN_FORWARD, uinput.BTN_RIGHT, uinput.BTN_BACK, uinput.BTN_LEFT, 
         #         uinput.BTN_TL, uinput.BTN_TR, uinput.BTN_TL2, uinput.BTN_TR2,
@@ -185,11 +186,12 @@ class decoder:
         self.outlen = len(buttons) + len(axes)           
         self.inactivity_timeout = inactivity_timeout
 
-        self.host = "localhost"  # TODO: parameterize me
-        self.port = 7337  # TODO: parameterize me
+        self.host = host
+        self.port = port
         self.sock = socket(AF_INET, SOCK_STREAM)
         self.sock.settimeout(SOCKET_TIMEOUT)
-        self.password = ""  # TODO: parameterize me
+        self.password = password
+        print self.password, " ", self.host,":",self.port
         self.connected = False
         self.connect()
 
@@ -410,6 +412,9 @@ def is_arg_with_param(arg, prefix):
 
 if __name__ == "__main__":
     errorcode = 0
+    password = ""
+    host = "localhost"
+    port = 7337
     try:
         inactivity_timeout = float(1e3000)
         disable_bluetoothd = True
@@ -455,7 +460,10 @@ if __name__ == "__main__":
                 print "No inactivity timeout was set. (Run with --help for details.)"
             else:
                 print "Inactivity timeout set to %.0f seconds."%inactivity_timeout
-            cm = connection_manager(decoder(inactivity_timeout = inactivity_timeout))
+            cm = connection_manager(decoder(password = network_args.password,
+                                            host = network_args.host,
+                                            port = network_args.port,
+                                            inactivity_timeout = inactivity_timeout))
             cm.listen_bluetooth()
         finally:
             if disable_bluetoothd:

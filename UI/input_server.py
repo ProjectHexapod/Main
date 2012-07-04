@@ -5,23 +5,23 @@ import hashlib
 import threading
 import time
 
+from command_wrapper import CommandWrapper
 from ControlsKit import logger
 from robotControl_pb2 import Command
 from socket import socket, AF_INET, SOCK_STREAM, timeout
+from UI import network_args
 
 SOCKET_TIMEOUT = .5
 
 class InputServer:
-    """This class takes care of listening for incomming inputs and supplying an appropriate
-    update functions to obey the inputs.  It also handles the mapping from raw input values
-    to the controls they represent.
+    """This class takes care of listening for incomming inputs from various control sources.
     """
-    def __init__(self, password="", host='localhost', port=7337):
-        self.host = host
-        self.port = port
+    def __init__(self):
+        self.host = network_args.host
+        self.port = network_args.port
         self.sock = None
         self.conn = None
-        self.password = password
+        self.password = network_args.password
         self.server_thread = None
         self.continue_serving = True
         self.last_command = None
@@ -52,7 +52,7 @@ class InputServer:
                             break  # so break out of the conn specific loop to await another conn
                         command = Command()
                         command.ParseFromString(proto_bin)
-                        self.last_command = command
+                        self.last_command = CommandWrapper(command)
                         if (command.HasField('intended_command') and
                             command.intended_command == Command.DISCONNECT):
                             self.conn.close()
