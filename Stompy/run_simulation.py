@@ -25,6 +25,7 @@ try:
             time = s.getSimTime()+.0001 # FIXME: first time time_delta is called, it returns zero, which means pid commands infinity
             # FIXME: Known bug, getAcceleration returns (0,0,0)
             command = input_server.getLastCommand()
+#            print command[15]
             lr = update(time,\
                 s.robot.getEncoderAngleMatrix(),\
                 s.robot.getOrientation(),\
