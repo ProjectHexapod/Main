@@ -1,12 +1,13 @@
 from ControlsKit import time_sources, LegModel, LimbController
-from ControlsKit.math_utils import array, KP
+from ControlsKit.math_utils import array, KP, HP, YAW
 
 
 # Initialization
 model = LegModel()
+controller = LimbController()
 path = None
 
-j_idx = KP
+j_idx = YAW
 delta = 0.00005
 lr = array([0.0, 0.0, 0.0])
 
@@ -21,7 +22,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     model.updateFootOnGround()
 
     # Evaluate path and joint control
-    controller.update(model.getJointAngles(), array([0.0, 0.0, 0.0]))
+    controller.update(model.getJointAngles(), array([0.0,0.0,0.0]))
 
 
     lr[j_idx] += delta
