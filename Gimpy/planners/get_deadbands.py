@@ -1,18 +1,13 @@
-from ControlsKit import time_sources, LegModel, leg_logger, LimbController
-from ControlsKit.leg_paths import Pause, TrapezoidalFootMove, PutFootOnGround
-from ControlsKit.math_utils import array, Z
-
-
 # Initialization
-model = LegModel()
-controller = LimbController()
+model = None
+controller = None
 path = None
 state = 0
 
 class IIR(object):
     def __init__(self, val_init, k=.9, t_init=0, t_const=1 ):
         """
-        By default, absorb .9 of the update value in 1 second
+        k is the amount to change over t_const
         """
         self.k = k**(t_const)
         self.state = val_init
@@ -21,119 +16,84 @@ class IIR(object):
         return self.state
     def update(self, val, t):
         dt = t-self.t
-        adjusted_k = self.k**(1/dt)
+        adjusted_k = 1-(1-self.k)**(dt)
         self.state *= (1-adjusted_k)
         self.state += adjusted_k*val
         self.t = t
 
-file_out = file('offsets.txt', 'w+')
-vel_IIR = None
-pwm_val = 0
-last_pos = 0
-last_t = 0
 
-MOVE_THRESH = .03
+class Gait:
+    def __init__(self):
+        self.file_out = file('offsets.txt', 'w+')
+        self.vel_IIR = None
+        self.pwm_val = 0
+        self.last_pos = 0
+        self.last_t = 0
+        self.MOVE_THRESH = .03
+        self.firstrun = True
+        self.dof_list = []
+        self.dof_list.append('hip_pitch_e')
+        self.dof_list.append('hip_pitch_r')
+        self.dof_list.append('knee_pitch_e')
+        self.dof_list.append('knee_pitch_r')
+        self.dof_list.append('hip_yaw_e')
+        self.dof_list.append('hip_yaw_r')
+    def update( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
+        # Have we made it through all the joints?
+        if not len(self.dof_list):
+            # If so, exit the program
+            self.file_out.close()
+            exit()
+        if self.dof_list[0][:-2] == 'hip_pitch':
+            pos = hip_pitch
+            cmd_i = 1
+        elif self.dof_list[0][:-2] == 'knee_pitch':
+            pos = knee_pitch
+            cmd_i = 2
+        elif self.dof_list[0][:-2] == 'hip_yaw':
+            pos = yaw
+            cmd_i = 0
+        else:
+            raise
+        if self.dof_list[0][-1] == 'e':
+            sign = 1
+        elif self.dof_list[0][-1] == 'r':
+            sign = -1
+        else:
+            raise
+        # Default command: command no movement on all valves
+        # valves are yaw, pitch, knee, in that order
+        # Scale depends on the mode of the underlying layer...
+        # sometimes it expects a length rate in meters/sec,
+        # sometimes it expects a command value between -255 and 255
+        cmd = [0,0,0]
+        # Is this our first tick on a new DOF?
+        if self.firstrun:
+            # Initialize state variables
+            print "Initializing for %s"%self.dof_list[0]
+            self.pwm_val = 0
+            self.vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.2 )
+            self.firstrun = False
+        else:
+            # Calculate velocity, update filter
+            dt = time-self.last_t
+            dpos = pos - self.last_pos
+            vel_est = dpos/dt
+            self.vel_IIR.update(vel_est, time)
+            self.pwm_val += dt*1e-2
+            cmd[cmd_i] = sign*self.pwm_val
+        self.last_t = time
+        self.last_pos = pos
+        # Are we moving faster than our threshold?
+        if abs(self.vel_IIR.getVal()) > self.MOVE_THRESH:
+            # If so, note the PWM value we had to apply and prepare to move the
+            # next joint
+            self.file_out.write( "%s: %f\n"%(self.dof_list[0],self.pwm_val) )
+            print "%s: %f"%(self.dof_list[0],self.pwm_val)
+            self.dof_list.pop(0)
+            self.firstrun = True
+        return cmd
 
-# Body of control loop
-def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
-    global path, state, file_out, vel_IIR, pwm_val, last_pos, last_t
-    
-    cmd = [0,0,0]
+gait = Gait()
 
-    if state == 0:
-        # Initialize to test hip pitch
-        vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-        last_t = time
-        last_pos = hip_pitch
-        state += 1
-    elif state == 1:
-        dt = time-last_time
-        vel_est = (hip_pitch-last_pos)/(time-last_t)
-        vel_IIR.update(vel_est, time)
-        pwm_val += dt*10
-        cmd[1] = pwm_val
-        last_t = time
-        last_pos = hip_pitch
-        if abs(vel_IIR.getVal()) > MOVE_THRESH:
-            file_out.write( "pitch extend: %f\n"%pwm_val )
-            print "Limit hit! %f"%pwm_val
-            pwm_val = 0
-            vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-            state += 1
-    elif state == 2:
-        dt = time-last_time
-        vel_est = (hip_pitch-last_pos)/(time-last_t)
-        vel_IIR.update(vel_est, time)
-        pwm_val += dt*10
-        cmd[1] = -pwm_val
-        last_t = time
-        last_pos = hip_pitch
-        if abs(vel_IIR.getVal()) > MOVE_THRESH:
-            file_out.write( "pitch retract: %f\n"%pwm_val )
-            print "Limit hit! %f"%pwm_val
-            pwm_val = 0
-            vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-            last_pos = knee_pitch
-            state += 1
-    elif state == 3:
-        dt = time-last_time
-        vel_est = (knee_pitch-last_pos)/(time-last_t)
-        vel_IIR.update(vel_est, time)
-        pwm_val += dt*10
-        cmd[2] = pwm_val
-        last_t = time
-        last_pos = knee_pitch
-        if abs(vel_IIR.getVal()) > MOVE_THRESH:
-            file_out.write( "knee extend: %f\n"%pwm_val )
-            print "Limit hit! %f"%pwm_val
-            pwm_val = 0
-            vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-            state += 1
-    elif state == 4:
-        dt = time-last_time
-        vel_est = (knee_pitch-last_pos)/(time-last_t)
-        vel_IIR.update(vel_est, time)
-        pwm_val += dt*10
-        cmd[2] = -pwm_val
-        last_t = time
-        last_pos = knee_pitch
-        if abs(vel_IIR.getVal()) > MOVE_THRESH:
-            file_out.write( "knee_retract: %f\n"%pwm_val )
-            print "Limit hit! %f"%pwm_val
-            pwm_val = 0
-            last_pos = yaw
-            vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-            state += 1
-    elif state == 5:
-        dt = time-last_time
-        vel_est = (yaw-last_pos)/(time-last_t)
-        vel_IIR.update(vel_est, time)
-        pwm_val += dt*10
-        cmd[0] = pwm_val
-        last_t = time
-        last_pos = yaw
-        if abs(vel_IIR.getVal()) > MOVE_THRESH:
-            file_out.write( "yaw extend: %f\n"%pwm_val )
-            print "Limit hit! %f"%pwm_val
-            pwm_val = 0
-            vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-            state += 1
-    elif state == 6:
-        dt = time-last_time
-        vel_est = (yaw-last_pos)/(time-last_t)
-        vel_IIR.update(vel_est, time)
-        pwm_val += dt*10
-        cmd[0] = -pwm_val
-        last_t = time
-        last_pos = yaw
-        if abs(vel_IIR.getVal()) > MOVE_THRESH:
-            file_out.write( "yaw retract: %f\n"%pwm_val )
-            print "Limit hit! %f"%pwm_val
-            pwm_val = 0
-            vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.5 )
-            state += 1
-    else:
-        file_out.close()
-    
-    # Send commands
-    return cmd
+update = gait.update
