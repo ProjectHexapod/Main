@@ -11,6 +11,9 @@ j_idx = YAW
 delta = 0.00005
 lr = array([0.0, 0.0, 0.0])
 
+file_name = "gimpy_calibration_of_joint_%d.csv" % j_idx
+flie = open(file_name, "w")
+
 
 # Body of control loop
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
@@ -22,8 +25,11 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     model.updateFootOnGround()
 
     # Evaluate path and joint control
-    controller.update(model.getJointAngles(), array([0.0,0.0,0.0]))
+    JA = model.getJointAngles()
+    controller.update(JA, array([0.0,0.0,0.0]))
 
 
+    flie.write("%f,%f,%f,%f,%f,%f\n" % (lr[0],lr[1],lr[2],JA[0],JA[1],JA[2]))
+    
     lr[j_idx] += delta
     return lr
