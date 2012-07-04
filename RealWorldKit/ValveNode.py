@@ -22,6 +22,19 @@ class ValveNode(BusNode):
     def getPWM1(self):
         return self.pwm1
 
+    def setPWM( self, pwm ):
+        """
+        Bypass length rate calculations, set pwms directly
+        """
+        self.pwm0 = 0
+        self.pwm1 = 0
+        if pwm < 0:
+            self.pwm0 = -pwm
+        else:
+            self.pwm1 = pwm
+        data = chr(int(self.pwm0)) + chr(int(self.pwm1))
+        self.startTransaction(memory_offset=0, data=data)
+
     def setLengthRate(self, rate):
         pwm0 = 0
         pwm1 = 0
