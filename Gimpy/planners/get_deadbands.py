@@ -1,34 +1,9 @@
+from ControlsKit.filters import LowPassFilter
+from ControlsKit.leg_paths import Pause, TrapezoidalFootMove, PutFootOnGround
+from ControlsKit import time_sources, LegModel, leg_logger, LimbController
+from ControlsKit.math_utils import array
+
 # Initialization
-model = None
-controller = None
-path = None
-state = 0
-
-class IIR(object):
-    def __init__(self, val_init, k=.632, t_init=0, t_const=1, corner_f=None ):
-        """
-        k is the amount to change over t_const
-        Default to .632 over 1 second.  This corresponds to a -3dB corner
-        frequency of 1Hz.
-        Corner frequency can be set directly by using the corner_f argument.
-        Note that this overrides k and t_const.
-        The corner_f argument is in Hz
-        """
-        if corner_f != None:
-            self.k = .632
-            t_const = 1/(2*pi*corner_f)
-        self.k = k**(t_const)
-        self.state = val_init
-        self.t = t_init
-    def getVal(self):
-        return self.state
-    def update(self, val, t):
-        dt = t-self.t
-        adjusted_k = 1-(1-self.k)**(dt)
-        self.state *= (1-adjusted_k)
-        self.state += adjusted_k*val
-        self.t = t
-
 
 class Gait:
     def __init__(self):
@@ -46,7 +21,22 @@ class Gait:
         self.dof_list.append('knee_pitch_r')
         self.dof_list.append('hip_yaw_e')
         self.dof_list.append('hip_yaw_r')
-    def update( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
+        self.callback = self.moveToInitialPosition
+        self.model = LegModel()
+        self.controller = LimbController()
+    def update( self, *args, **kwargs ):
+        return self.callback(*args, **kwargs)
+    def moveToInitialPosition( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
+        self.model.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
+        if not hasattr(self, 'initial_path'):
+            self.initial_path = TrapezoidalFootMove(self.model, self.controller,\
+                                       array([2.0, 0.0, -0.2]),\
+                                       0.2, 0.1)
+        self.controller.update(self.model.getJointAngles(), self.initial_path.update())
+        if self.initial_path.isDone():
+            self.callback = self.discoverDeadband
+        return self.controller.getLengthRateCommands()
+    def discoverDeadband( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
         # Have we made it through all the joints?
         if not len(self.dof_list):
             # If so, exit the program
@@ -80,20 +70,20 @@ class Gait:
             # Initialize state variables
             print "Initializing for %s"%self.dof_list[0]
             self.pwm_val = 0
-            self.vel_IIR = IIR( 0.0, k=.9, t_init=time, t_const=0.2 )
+            self.vel_IIR = LowPassFilter( gain=1.0, corner_frequency=1 )
             self.firstrun = False
         else:
             # Calculate velocity, update filter
             dt = time-self.last_t
             dpos = pos - self.last_pos
             vel_est = dpos/dt
-            self.vel_IIR.update(vel_est, time)
+            self.vel_IIR.update(vel_est)
             self.pwm_val += dt*1e-2
             cmd[cmd_i] = sign*self.pwm_val
         self.last_t = time
         self.last_pos = pos
         # Are we moving faster than our threshold?
-        if abs(self.vel_IIR.getVal()) > self.MOVE_THRESH:
+        if sign*self.vel_IIR.getVal() > self.MOVE_THRESH:
             # If so, note the PWM value we had to apply and prepare to move the
             # next joint
             self.file_out.write( "%s: %f\n"%(self.dof_list[0],self.pwm_val) )
