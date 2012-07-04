@@ -23,8 +23,8 @@ class RotateFootAboutOrigin:
         self.ang_acc = acceleration
         
         
-        self.body_coord = self.body_model.transformLeg2Body(self.leg_index, self.leg_model.footPosFromLegState([self.limb_controller.getDesiredPosAngle(), self.leg_model.getShockDepth()]))
-        self.body_coord = self.body_model.transformLeg2Body(self.leg_index,[2,0,-1])
+        self.body_coord = self.body_model.transformLeg2Body(self.leg_index, self.leg_model.footPosFromLegState([self.limb_controller.getDesiredPosAngle(), 0]))#self.leg_model.getShockDepth()]))
+        #self.body_coord = self.body_model.transformLeg2Body(self.leg_index,[2,0,-1])
         self.init_angle = arctan2(self.body_coord[1], self.body_coord[0])
         self.last_commanded_angle = self.init_angle
         self.target_angle = self.init_angle
@@ -38,6 +38,8 @@ class RotateFootAboutOrigin:
         self.sw = time_sources.StopWatch()
         self.sw.smoothStart(1)#self.accel_duration)
         # FIXME:the above line should have accel_duration reinstated.
+        
+    
 
     def isDone(self):
         return self.done
