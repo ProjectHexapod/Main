@@ -49,7 +49,7 @@ class LegModelTestCase(unittest.TestCase):
         
         self.leg_state[0][YAW] = pi_2
         self.assertEqual(
-                array([0.0, -(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN), 0.0]),
+                array([0.0, (l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN), 0.0]),
                 l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][HP] = pi_2
@@ -59,7 +59,7 @@ class LegModelTestCase(unittest.TestCase):
         
         self.leg_state[0][KP] = pi_2
         self.assertEqual(
-                array([0.0, l.CALF_LEN - l.YAW_LEN, -l.THIGH_LEN]),
+                array([0.0, l.YAW_LEN - l.CALF_LEN, -l.THIGH_LEN]),
                 l.footPosFromLegState(self.leg_state))
     def testFootPosFromLegStateShockDepthModifiesCalfLen(self):
         l = self.leg
@@ -81,14 +81,14 @@ class LegModelTestCase(unittest.TestCase):
         self.leg_state[0][HP] = -pi / 6.0
         self.assertEqual(
             array([(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
-                   (l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
+                   -(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
                    (l.THIGH_LEN + l.CALF_LEN) / 2.0]),
             l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][KP] = pi / 6.0
         self.assertEqual(
             array([(l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
-                   (l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
+                   -(l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
                    l.THIGH_LEN / 2.0]),
             l.footPosFromLegState(self.leg_state))
 
