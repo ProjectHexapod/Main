@@ -1,6 +1,7 @@
 import sys
 sys.path.append('..')
 sys.path.append('planners')
+
 from SimulationKit import Simulator
 from SimulationKit.Robots import SpiderWHydraulics
 from SimulationKit.helpers import *
@@ -14,7 +15,7 @@ update = importPlanner()
 
 d = {'offset':(0,0,1.0)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=SpiderWHydraulics,robot_kwargs=d, start_paused = True)
-input_server = InputServer()  # TODO: pass along at least a password argument here
+input_server = InputServer()
 input_server.startListening()
 
 

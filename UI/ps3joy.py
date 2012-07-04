@@ -48,6 +48,7 @@ from bluetooth import *
 import select
 import fcntl
 import hashlib
+import network_args
 import os
 import time
 import sys                    
@@ -443,12 +444,6 @@ if __name__ == "__main__":
                     print "Error opening file to redirect output:", str_value
                     raise Quit(1)
                 sys.stderr = sys.stdout
-            elif "--password=" in arg:
-                password = arg[len("--password="):]
-            elif "--host=" in arg:
-                host = arg[len("--host="):]
-            elif "--port=" in arg:
-                port = arg[len("--port="):]
             else:
                 print "Ignoring parameter: '%s'"%arg
         if os.getuid() != 0:
@@ -465,9 +460,9 @@ if __name__ == "__main__":
                 print "No inactivity timeout was set. (Run with --help for details.)"
             else:
                 print "Inactivity timeout set to %.0f seconds."%inactivity_timeout
-            cm = connection_manager(decoder(password = password,
-                                            host = host,
-                                            port = port,
+            cm = connection_manager(decoder(password = network_args.password,
+                                            host = network_args.host,
+                                            port = network_args.port,
                                             inactivity_timeout = inactivity_timeout))
             cm.listen_bluetooth()
         finally:
