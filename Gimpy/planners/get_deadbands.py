@@ -5,10 +5,18 @@ path = None
 state = 0
 
 class IIR(object):
-    def __init__(self, val_init, k=.9, t_init=0, t_const=1 ):
+    def __init__(self, val_init, k=.632, t_init=0, t_const=1, corner_f=None ):
         """
         k is the amount to change over t_const
+        Default to .632 over 1 second.  This corresponds to a -3dB corner
+        frequency of 1Hz.
+        Corner frequency can be set directly by using the corner_f argument.
+        Note that this overrides k and t_const.
+        The corner_f argument is in Hz
         """
+        if corner_f != None:
+            self.k = .632
+            t_const = 1/(2*pi*corner_f)
         self.k = k**(t_const)
         self.state = val_init
         self.t = t_init
