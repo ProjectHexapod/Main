@@ -20,6 +20,7 @@ STAND = 7
 
 LIFT_TRIPOD_024=[1,-1,1,-1,1,-1]
 LIFT_TRIPOD_135=[-i for i in LIFT_TRIPOD_024]
+TURN_ANGLE=.2
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command):
     global path, state, leg_lift_height
@@ -32,7 +33,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     if path is None:
         path = BodyPause(model, controller, 1)
         state = STAND
-        leg_lift_height = .1
+        leg_lift_height = .2
     
     if path.isDone():
         if state == STAND:
@@ -43,23 +44,23 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
                     [i*leg_lift_height for i in LIFT_TRIPOD_024], 2, 1)
             state = TURN_FIRST_TRIPOD
         elif state == TURN_FIRST_TRIPOD:
-            path = RotateFeetAboutOrigin(model, controller, [0,2,4], .2, 2, 1)
-            leg_lift_height = .2
+            path = RotateFeetAboutOrigin(model, controller, [0,2,4], TURN_ANGLE, 2, 1)
             state = RAISE_SECOND_TRIPOD
         elif state == RAISE_SECOND_TRIPOD:
+            leg_lift_height = .2
             path = TrapezoidalFeetLiftLower(model, controller, range(NUM_LEGS), 
                 [i*leg_lift_height for i in LIFT_TRIPOD_135], 2, 1)
             state = TURN_SECOND_TRIPOD
         elif state == TURN_SECOND_TRIPOD:
-            path = RotateFeetAboutOrigin(model, controller, [1,3,5], .2, 2, 1)
-            leg_lift_height = .1
+            path = RotateFeetAboutOrigin(model, controller, [1,3,5], TURN_ANGLE, 2, 1)
             state = FEET_ON_GROUND
         elif state == FEET_ON_GROUND:
+            leg_lift_height = .1
             path = TrapezoidalFeetLiftLower(model, controller, range(NUM_LEGS),
                 [i*leg_lift_height for i in LIFT_TRIPOD_024], 2, 1)
             state=RESOLVE
         elif state == RESOLVE:
-            path = RotateFeetAboutOrigin(model, controller, range(5), -.2, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, range(5), -TURN_ANGLE, 2, 1)
             state = RAISE_FIRST_TRIPOD
     
     
