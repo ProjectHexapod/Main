@@ -14,7 +14,12 @@ class glLibObj():
             if rotation[1] != 0: glRotatef(rotation[1],0,1,0)
             if rotation[2] != 0: glRotatef(rotation[2],0,0,1)
         glScalef(scalar,scalar,scalar)
-        glCallList(self.list)
+        try:
+            glCallList(self.list)
+        except Exception, mesg:
+            pass
+            print mesg
+            print self.list
         glPopMatrix()
     def myDraw(self,rot=[],scalar=1.0):
         #jwhong hacking

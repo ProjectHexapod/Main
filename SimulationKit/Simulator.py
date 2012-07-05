@@ -348,11 +348,12 @@ class Simulator(object):
             CAPSULE_STACKS = 6
             p = body.getPosition()
             r = body.getRotation()
+            # Since ODE and OpenGL define their capsules
+            # differently, we must apply an offset.
             offset = rotate3(r, (0,0,body.length/2.0))
             p = sub3(p,offset)
             rot = makeOpenGLMatrix(r, p)
             glLibColor(body.color)
-            cylHalfHeight = body.length / 2.0
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
             body.glObj.myDraw( rot )
@@ -370,6 +371,21 @@ class Simulator(object):
             glLibColor(body.color)
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCube( (body.lx, body.ly, body.lz) )
+            body.glObj.myDraw( rot )
+        elif body.shape == "custom":
+            # First we must apply the fixed offset tuned in to the object
+            #p = body.glObjOffset
+            #r = body.getRotation()
+            #p = rotate3( r, p )
+            #p = add3(body.getPosition(),p)
+
+            p = body.getPosition()
+            r = body.getRotation()
+            rot = makeOpenGLMatrix(r, p)
+            rot = mul4x4Matrices(rot, body.glObjOffset)
+            if not hasattr(body,'glObj'):
+                body.glObj = glLibObjFromFile( body.glObjPath )
+            glLibColor((255,255,255))
             body.glObj.myDraw( rot )
     def draw_geom(self, geom):
         if isinstance(geom, ode.GeomBox):
