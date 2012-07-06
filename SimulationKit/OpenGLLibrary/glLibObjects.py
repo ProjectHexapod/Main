@@ -72,9 +72,17 @@ class glLibObjUser(glLibObj):
         glNewList(self.list, GL_COMPILE)
     def finish(self):
         glEndList()
+# Optimization.  Check to see if we've loaded the object at the given filename
+# already.  If so, don't bother loading it again, just link to the same gl_list
+glLib_loaded_obj = {}
 class glLibObjFromFile(glLibObj):
     def __init__(self,path):
-        self.list = glLibOBJLoad.OBJ(path).gl_list
+        global glLib_loaded_obj
+        try:
+            self.list = glLib_loaded_obj[path]
+        except KeyError:
+            self.list = glLibOBJLoad.OBJ(path).gl_list
+            glLib_loaded_obj[path] = self.list
 class glLibObjCube(glLibObj):
     def __init__(self,sizes=(1.0,1.0,1.0)):
         sizex=sizes[0]/2.0
