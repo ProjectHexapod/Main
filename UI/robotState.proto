@@ -1,0 +1,22 @@
+package UI;
+
+message State {
+  optional double time = 1;
+
+  repeated LegState legs = 10;
+
+  message LegState {
+    optional double hip_yaw_command = 1;
+    optional double hip_pitch_command = 2;
+    optional double knee_pitch_command = 3;
+
+    optional double hip_yaw_angle = 4;
+    optional double hip_pitch_angle = 5;
+    optional double knee_pitch_angle = 6;
+    optional double shock_depth = 7;
+
+    optional double hip_yaw_rate = 8;
+    optional double hip_pitch_rate = 9;
+    optional double knee_pitch_rate = 10;
+  }
+}
