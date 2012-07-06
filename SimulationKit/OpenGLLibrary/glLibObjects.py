@@ -14,7 +14,12 @@ class glLibObj():
             if rotation[1] != 0: glRotatef(rotation[1],0,1,0)
             if rotation[2] != 0: glRotatef(rotation[2],0,0,1)
         glScalef(scalar,scalar,scalar)
-        glCallList(self.list)
+        try:
+            glCallList(self.list)
+        except Exception, mesg:
+            pass
+            print mesg
+            print self.list
         glPopMatrix()
     def myDraw(self,rot=[],scalar=1.0):
         #jwhong hacking
@@ -67,9 +72,17 @@ class glLibObjUser(glLibObj):
         glNewList(self.list, GL_COMPILE)
     def finish(self):
         glEndList()
+# Optimization.  Check to see if we've loaded the object at the given filename
+# already.  If so, don't bother loading it again, just link to the same gl_list
+glLib_loaded_obj = {}
 class glLibObjFromFile(glLibObj):
     def __init__(self,path):
-        self.list = glLibOBJLoad.OBJ(path).gl_list
+        global glLib_loaded_obj
+        try:
+            self.list = glLib_loaded_obj[path]
+        except KeyError:
+            self.list = glLibOBJLoad.OBJ(path).gl_list
+            glLib_loaded_obj[path] = self.list
 class glLibObjCube(glLibObj):
     def __init__(self,sizes=(1.0,1.0,1.0)):
         sizex=sizes[0]/2.0

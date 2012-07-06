@@ -76,7 +76,8 @@ class Simulator(object):
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
                     ground_grade=0.0, ground_axis = (0,1,0), publish_int=5,\
-                    robot=None, robot_kwargs={}, start_paused = True):
+                    robot=None, robot_kwargs={}, start_paused = True,\
+                    print_updates = False):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
@@ -95,6 +96,7 @@ class Simulator(object):
         self.real_t_lastrender = 0
         self.real_t_start      = getSysTime()
         self.paused            = start_paused
+        self.print_updates     = print_updates
         
         # ODE space object: handles collision detection
         self.space = ode.Space()
@@ -162,6 +164,8 @@ class Simulator(object):
         return self.paused
     def setPaused( self, new_pause_bool ):
         self.paused = new_pause_bool
+    def getPaused( self ):
+        return self.paused
     def near_callback(self, args, geom1, geom2):
         """
         Callback function for the collide() method.
@@ -199,15 +203,6 @@ class Simulator(object):
     def step( self ):
         real_t_present = getSysTime()
         if not self.paused:
-            # Try to lock simulation to realtime by controlling the timestep
-            if self.dt == 0:
-                step_dt = real_t_present - self.real_t_laststep
-                self.real_t_laststep = real_t_present
-                step_dt = min(1e-2,step_dt)
-                step_dt = max(1e-4,step_dt)
-            else:
-                step_dt = self.dt
-
             # Remove all contact joints
             self.contactgroup.empty()
             # FIXME: disable the joints and remove references... the garbage
@@ -219,8 +214,8 @@ class Simulator(object):
             self.space.collide((self.world, self.contactgroup), self.near_callback)
 
             # Simulation step
-            self.world.step(step_dt)
-            self.sim_t += step_dt
+            self.world.step(self.dt)
+            self.sim_t += self.dt
 
             self.n_iterations += 1
 
@@ -237,11 +232,11 @@ class Simulator(object):
         real_t_elapsed = max(getSysTime()-real_t_present, 0.0001)
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
-            if not self.paused:
+            if not self.paused and self.print_updates:
                 print ""
                 print "Sim time:       %.3f"%self.sim_t
-                print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
-                print "Timestep:       %f"%(step_dt)
+                print "Realtime ratio: %.3f"%(self.dt/real_t_elapsed)
+                print "Timestep:       %f"%(self.dt)
                 print "Steps per sec:  %.0f"%(1./real_t_elapsed)
             # Render if graphical
             if self.graphical:
@@ -353,11 +348,12 @@ class Simulator(object):
             CAPSULE_STACKS = 6
             p = body.getPosition()
             r = body.getRotation()
+            # Since ODE and OpenGL define their capsules
+            # differently, we must apply an offset.
             offset = rotate3(r, (0,0,body.length/2.0))
             p = sub3(p,offset)
             rot = makeOpenGLMatrix(r, p)
             glLibColor(body.color)
-            cylHalfHeight = body.length / 2.0
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
             body.glObj.myDraw( rot )
@@ -375,6 +371,18 @@ class Simulator(object):
             glLibColor(body.color)
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCube( (body.lx, body.ly, body.lz) )
+            body.glObj.myDraw( rot )
+        elif body.shape == "custom":
+            p = body.getPosition()
+            r = body.getRotation()
+            rot = makeOpenGLMatrix(r, p)
+            # We must apply both the offset built in to the object
+            # and the offset from the world.  Multiply the matrices together
+            # to get the compound move/rotation
+            rot = mul4x4Matrices(rot, body.glObjOffset)
+            if not hasattr(body,'glObj'):
+                body.glObj = glLibObjFromFile( body.glObjPath )
+            glLibColor((255,255,255))
             body.glObj.myDraw( rot )
     def draw_geom(self, geom):
         if isinstance(geom, ode.GeomBox):

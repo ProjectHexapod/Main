@@ -368,10 +368,13 @@ class MultiBody(object):
     def buildBody(self):
         """This is for the subclasses to define."""
         return
-    def addBody(self, p1, p2, radius, mass=None):
+    def addBody(self, p1, p2, radius, mass=None, upVec=(0,0,1)):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
         radius to the ragdoll.
+        upVec is the vector pointing up.  This resolves the ambiguity of
+        orienting a rotationally symetrical object between 2 points.
+        TODO: If p1->p2 || upVec, this will crash
         """
 
         p1 = add3(p1, self.offset)
@@ -402,8 +405,9 @@ class MultiBody(object):
 
         # define body rotation automatically from body axis
         za = norm3(sub3(p2, p1))
-        if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
-        else: xa = (0.0, 1.0, 0.0)
+        #if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
+        #else: xa = (0.0, 1.0, 0.0)
+        xa = upVec
         ya = cross(za, xa)
         xa = norm3(cross(ya, za))
         ya = cross(za, xa)

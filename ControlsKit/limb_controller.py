@@ -68,7 +68,10 @@ class LimbController:
         return self.length_rate_commands
     
     def getDesiredPosAngle(self):
-        return self.desired_pos_array
+        try:
+            return self.desired_pos_array
+        except AttributeError:
+            return None
     def getDesiredYaw(self):
         return self.desired_pos_array[0]
     def getDesiredPitch(self):

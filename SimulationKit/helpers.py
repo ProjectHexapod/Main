@@ -156,3 +156,21 @@ def getBodyRelVec(b, v):
     body b.
     """
     return rotate3(invert3x3(b.getRotation()), v)
+
+def mul3x3Matrices( matrix1, matrix2 ):
+    """Multiply matrices, assume 3x3 row major"""
+    new_matrix = [0 for i in range(9)]
+    for i in range(3):
+        for j in range(3):
+            for k in range(3):
+                new_matrix[3*i+j] += matrix1[3*i+k]*matrix2[3*k+j]
+    return new_matrix
+
+def mul4x4Matrices( matrix1, matrix2 ):
+    """Multiply matrices, assume 4x4 column major"""
+    new_matrix = [0 for i in range(16)]
+    for i in range(4):
+        for j in range(4):
+            for k in range(4):
+                new_matrix[i+4*j] += matrix1[i+4*k]*matrix2[k+4*j]
+    return new_matrix
