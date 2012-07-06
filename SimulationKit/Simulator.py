@@ -373,15 +373,12 @@ class Simulator(object):
                 body.glObj = glLibObjCube( (body.lx, body.ly, body.lz) )
             body.glObj.myDraw( rot )
         elif body.shape == "custom":
-            # First we must apply the fixed offset tuned in to the object
-            #p = body.glObjOffset
-            #r = body.getRotation()
-            #p = rotate3( r, p )
-            #p = add3(body.getPosition(),p)
-
             p = body.getPosition()
             r = body.getRotation()
             rot = makeOpenGLMatrix(r, p)
+            # We must apply both the offset built in to the object
+            # and the offset from the world.  Multiply the matrices together
+            # to get the compound move/rotation
             rot = mul4x4Matrices(rot, body.glObjOffset)
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjFromFile( body.glObjPath )
