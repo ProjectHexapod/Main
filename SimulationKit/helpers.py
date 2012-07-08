@@ -138,17 +138,17 @@ def rotateAxisAngle(v, ax, ang):
     m = calcRotMatrix( ax, ang )
     return rotate3( m, v )
 
-def makeOpenGLMatrix(r, p):
+def makeOpenGLMatrix(r, p, s=(1,1,1)):
     """
     Returns an OpenGL compatible (column-major, 4x4 homogeneous) transformation
     matrix from ODE compatible (row-major, 3x3) rotation matrix r and position
     vector p.
     """
     return (
-        r[0], r[3], r[6], 0.0,
-        r[1], r[4], r[7], 0.0,
-        r[2], r[5], r[8], 0.0,
-        p[0], p[1], p[2], 1.0)
+        r[0]*s[0], r[3]*s[1], r[6]*s[2], 0.0,
+        r[1]*s[0], r[4]*s[1], r[7]*s[2], 0.0,
+        r[2]*s[0], r[5]*s[1], r[8]*s[2], 0.0,
+        p[0],      p[1],      p[2],      1.0)
 
 def getBodyRelVec(b, v):
     """

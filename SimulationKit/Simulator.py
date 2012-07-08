@@ -78,7 +78,7 @@ class Simulator(object):
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
                     ground_grade=0.0, ground_axis = (0,1,0), publish_int=5,\
                     robot=None, robot_kwargs={}, start_paused = True,\
-                    print_updates = False):
+                    print_updates = False, renderObjs = False):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
@@ -98,6 +98,7 @@ class Simulator(object):
         self.real_t_start      = getSysTime()
         self.paused            = start_paused
         self.print_updates     = print_updates
+        self.renderObjs        = renderObjs
         
         # ODE space object: handles collision detection
         self.space = ode.Space()
@@ -206,10 +207,6 @@ class Simulator(object):
         if not self.paused:
             # Remove all contact joints
             self.contactgroup.empty()
-            # FIXME: disable the joints and remove references... the garbage
-            # collector will grab them.  This is a bad solution.
-            #for contact in self.contactlist:
-            #    contact.disable()
             self.contactlist = []
             # Detect collisions and create contact joints
             self.space.collide((self.world, self.contactgroup), self.near_callback)
@@ -330,15 +327,11 @@ class Simulator(object):
             self.draw_graphic(g)
             del g
         self.graphics = []
-        # Draw force vectors on all contacts
-        # FIXME:  ODE complains of:
-        # ODE INTERNAL ERROR 2: Bad argument(s) in dJointSetFeedback()
         for j in self.contactlist:
             self.draw_contact_force_vector(j)
         self.window.flip()
 
     def draw_contact_force_vector( self, joint ):
-        # TODO: Function incomplete
         forces1, torques1, forces2, torques2 = joint.getFeedback()
         p1 = joint.position
         p2 = add3(p1, div3(forces1,1e3))
@@ -346,7 +339,19 @@ class Simulator(object):
     def draw_body(self, body):
         """Draw an ODE body."""
 
-        if body.shape == "capsule":
+        if hasattr( body, 'glObjPath' ) and self.renderObjs:
+            p = body.getPosition()
+            r = body.getRotation()
+            rot = makeOpenGLMatrix(r, p)
+            # We must apply both the offset built in to the object
+            # and the offset from the world.  Multiply the matrices together
+            # to get the compound move/rotation
+            rot = mul4x4Matrices(rot, body.glObjOffset)
+            if not hasattr(body,'glObjCustom'):
+                body.glObjCustom = glLibObjFromFile( body.glObjPath )
+            glLibColor((255,255,255))
+            body.glObjCustom.myDraw( rot )
+        elif body.shape == "capsule":
             CAPSULE_SLICES = 6
             CAPSULE_STACKS = 6
             p = body.getPosition()
@@ -374,18 +379,6 @@ class Simulator(object):
             glLibColor(body.color)
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCube( (body.lx, body.ly, body.lz) )
-            body.glObj.myDraw( rot )
-        elif body.shape == "custom":
-            p = body.getPosition()
-            r = body.getRotation()
-            rot = makeOpenGLMatrix(r, p)
-            # We must apply both the offset built in to the object
-            # and the offset from the world.  Multiply the matrices together
-            # to get the compound move/rotation
-            rot = mul4x4Matrices(rot, body.glObjOffset)
-            if not hasattr(body,'glObj'):
-                body.glObj = glLibObjFromFile( body.glObjPath )
-            glLibColor((255,255,255))
             body.glObj.myDraw( rot )
     def draw_geom(self, geom):
         if isinstance(geom, ode.GeomBox):
