@@ -7,6 +7,8 @@ message Command {
 
   enum Controller {
     PS3_CONTROLLER = 1;
+    PYGAME = 2;
+    COMMAND_LINE = 3;
   }
 
   message Axis {
