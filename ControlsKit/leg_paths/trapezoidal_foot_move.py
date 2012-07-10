@@ -60,9 +60,5 @@ class TrapezoidalFootMove:
             
             if norm(self.final_foot_pos-self.target_foot_pos)<0.02:
                 self.done = True
-                self.target_foot_pos = self.final_foot_pos
-            #if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
-            #    self.done = True
-            #    self.target_foot_pos = self.final_foot_pos
-
+                #self.target_foot_pos = self.final_foot_pos
         return self.model.jointAnglesFromFootPos(self.target_foot_pos, 0)
