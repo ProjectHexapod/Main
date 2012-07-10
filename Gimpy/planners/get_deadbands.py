@@ -29,17 +29,27 @@ class Gait:
     def moveToInitialPosition( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
         self.model.setSensorReadings(yaw, hip_pitch, knee_pitch, shock_depth)
         if not hasattr(self, 'initial_path'):
+            print "Starting move to initial position"
             self.initial_path = TrapezoidalFootMove(self.model, self.controller,\
                                        array([2.0, 0.0, -0.2]),\
-                                       0.2, 0.1)
+                                       0.4, 0.2)
         self.controller.update(self.model.getJointAngles(), self.initial_path.update())
         if self.initial_path.isDone():
-            self.callback = self.discoverDeadband
+            self.callback = self.pause
         return self.controller.getLengthRateCommands()
+    def pause( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
+        if not hasattr( self, 'pause_path' ):
+            print "Waiting..."
+            self.pause_path = Pause( self.model, self.controller, 3.0 )
+        self.controller.update(self.model.getJointAngles(), self.pause_path.update())
+        if self.pause_path.isDone():
+            self.callback = self.discoverDeadband
+            del self.pause_path
+        return [0,0,0]
     def discoverDeadband( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
         # Have we made it through all the joints?
         if not len(self.dof_list):
-            # If so, exit the program
+            # FIXME: Exit safely
             self.file_out.close()
             exit()
         if self.dof_list[0][:-2] == 'hip_pitch':
@@ -69,8 +79,8 @@ class Gait:
         if self.firstrun:
             # Initialize state variables
             print "Initializing for %s"%self.dof_list[0]
-            self.pwm_val = 0
-            self.vel_IIR = LowPassFilter( gain=1.0, corner_frequency=1 )
+            self.pwm_val = 1
+            self.vel_IIR = LowPassFilter( gain=1.0, corner_frequency=.5 )
             self.firstrun = False
         else:
             # Calculate velocity, update filter
@@ -78,7 +88,7 @@ class Gait:
             dpos = pos - self.last_pos
             vel_est = dpos/dt
             self.vel_IIR.update(vel_est)
-            self.pwm_val += dt*1e-2
+            self.pwm_val += dt*15
             cmd[cmd_i] = sign*self.pwm_val
         self.last_t = time
         self.last_pos = pos
@@ -90,8 +100,10 @@ class Gait:
             print "%s: %f"%(self.dof_list[0],self.pwm_val)
             self.dof_list.pop(0)
             self.firstrun = True
+            self.callback = self.pause
         return cmd
 
 gait = Gait()
 
 update = gait.update
+controller = gait.controller
