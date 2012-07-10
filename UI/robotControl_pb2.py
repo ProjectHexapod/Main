@@ -11,7 +11,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = descriptor.FileDescriptor(
   name='robotControl.proto',
   package='UI',
-  serialized_pb='\n\x12robotControl.proto\x12\x02UI\"\xb2\x03\n\x07\x43ommand\x12*\n\ncontroller\x18\x01 \x01(\x0e\x32\x16.UI.Command.Controller\x12%\n\x0braw_command\x18\x02 \x03(\x0b\x32\x10.UI.Command.Axis\x12:\n\x10intended_command\x18\x03 \x01(\x0e\x32 .UI.Command.GeneralMotionCommand\x1a\x32\n\x04\x41xis\x12\r\n\x05index\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\x05\" \n\nController\x12\x12\n\x0ePS3_CONTROLLER\x10\x01\"\xc1\x01\n\x14GeneralMotionCommand\x12\x08\n\x04STOP\x10\x00\x12\x0e\n\nTURN_RIGHT\x10\x01\x12\r\n\tTURN_LEFT\x10\x02\x12\x0b\n\x07\x46ORWARD\x10\x03\x12\x0e\n\nCRAB_RIGHT\x10\x04\x12\r\n\tCRAB_LEFT\x10\x05\x12\x0b\n\x07REVERSE\x10\x06\x12\x07\n\x03SIT\x10\x64\x12\t\n\x05STAND\x10\x65\x12\x10\n\x0bROW_FORWARD\x10\xf4\x03\x12\x10\n\x0bROW_REVERSE\x10\xf5\x03\x12\x0f\n\nDISCONNECT\x10\xe8\x07')
+  serialized_pb='\n\x12robotControl.proto\x12\x02UI\"\xd0\x03\n\x07\x43ommand\x12*\n\ncontroller\x18\x01 \x01(\x0e\x32\x16.UI.Command.Controller\x12%\n\x0braw_command\x18\x02 \x03(\x0b\x32\x10.UI.Command.Axis\x12:\n\x10intended_command\x18\x03 \x01(\x0e\x32 .UI.Command.GeneralMotionCommand\x1a\x32\n\x04\x41xis\x12\r\n\x05index\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\x05\">\n\nController\x12\x12\n\x0ePS3_CONTROLLER\x10\x01\x12\n\n\x06PYGAME\x10\x02\x12\x10\n\x0c\x43OMMAND_LINE\x10\x03\"\xc1\x01\n\x14GeneralMotionCommand\x12\x08\n\x04STOP\x10\x00\x12\x0e\n\nTURN_RIGHT\x10\x01\x12\r\n\tTURN_LEFT\x10\x02\x12\x0b\n\x07\x46ORWARD\x10\x03\x12\x0e\n\nCRAB_RIGHT\x10\x04\x12\r\n\tCRAB_LEFT\x10\x05\x12\x0b\n\x07REVERSE\x10\x06\x12\x07\n\x03SIT\x10\x64\x12\t\n\x05STAND\x10\x65\x12\x10\n\x0bROW_FORWARD\x10\xf4\x03\x12\x10\n\x0bROW_REVERSE\x10\xf5\x03\x12\x0f\n\nDISCONNECT\x10\xe8\x07')
 
 
 
@@ -25,11 +25,19 @@ _COMMAND_CONTROLLER = descriptor.EnumDescriptor(
       name='PS3_CONTROLLER', index=0, number=1,
       options=None,
       type=None),
+    descriptor.EnumValueDescriptor(
+      name='PYGAME', index=1, number=2,
+      options=None,
+      type=None),
+    descriptor.EnumValueDescriptor(
+      name='COMMAND_LINE', index=2, number=3,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=233,
-  serialized_end=265,
+  serialized_end=295,
 )
 
 _COMMAND_GENERALMOTIONCOMMAND = descriptor.EnumDescriptor(
@@ -89,8 +97,8 @@ _COMMAND_GENERALMOTIONCOMMAND = descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=268,
-  serialized_end=461,
+  serialized_start=298,
+  serialized_end=491,
 )
 
 
@@ -175,7 +183,7 @@ _COMMAND = descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=27,
-  serialized_end=461,
+  serialized_end=491,
 )
 
 _COMMAND_AXIS.containing_type = _COMMAND;

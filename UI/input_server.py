@@ -2,6 +2,7 @@ import sys
 sys.path.append("..")
 
 import hashlib
+import network_args
 import threading
 import time
 
@@ -15,12 +16,12 @@ SOCKET_TIMEOUT = .5
 class InputServer:
     """This class takes care of listening for incomming inputs from various control sources.
     """
-    def __init__(self, password="", host='localhost', port=7337):
-        self.host = host
-        self.port = port
+    def __init__(self):
+        self.host = network_args.host
+        self.port = network_args.port
         self.sock = None
         self.conn = None
-        self.password = password
+        self.password = network_args.password
         self.server_thread = None
         self.continue_serving = True
         self.last_command = None

@@ -12,10 +12,11 @@ class CommandWrapper:
                 self.raw_key_values[raw.index] = raw.value
             if raw.HasField('name'):
                 self.raw_key_values[raw.name] = raw.value
+        self.fields = {k: v for k,v in proto.ListFields()}
 
     def __getitem__(self, name):
         if name in self.raw_key_values:
             return self.raw_key_values[name]
-        else:
-            return self.proto.__getattr__(name)
+        elif name in self.fields:
+            return self.fields[name]
 

@@ -6,6 +6,7 @@ from OpenGLLibrary import *
 
 from pubsub import *
 from helpers import *
+from UI.send_one_command import sendCommandFromEventKey
 
 class Paver(object):
     def __init__( self, center, sim ):
@@ -76,7 +77,8 @@ class Simulator(object):
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
                     ground_grade=0.0, ground_axis = (0,1,0), publish_int=5,\
-                    robot=None, robot_kwargs={}, start_paused = True):
+                    robot=None, robot_kwargs={}, start_paused = True,\
+                    print_updates = False, renderObjs = False):
         """If dt is set to 0, sim will try to match realtime
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
@@ -95,6 +97,8 @@ class Simulator(object):
         self.real_t_lastrender = 0
         self.real_t_start      = getSysTime()
         self.paused            = start_paused
+        self.print_updates     = print_updates
+        self.renderObjs        = renderObjs
         
         # ODE space object: handles collision detection
         self.space = ode.Space()
@@ -152,6 +156,7 @@ class Simulator(object):
             glLibColorMaterial(True) 
             glLibTexturing(True)
             glLibLighting(True)
+            glLibNormalize(True)
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
             self.cam_pos = (0,10,10)
@@ -162,6 +167,8 @@ class Simulator(object):
         return self.paused
     def setPaused( self, new_pause_bool ):
         self.paused = new_pause_bool
+    def getPaused( self ):
+        return self.paused
     def near_callback(self, args, geom1, geom2):
         """
         Callback function for the collide() method.
@@ -199,28 +206,15 @@ class Simulator(object):
     def step( self ):
         real_t_present = getSysTime()
         if not self.paused:
-            # Try to lock simulation to realtime by controlling the timestep
-            if self.dt == 0:
-                step_dt = real_t_present - self.real_t_laststep
-                self.real_t_laststep = real_t_present
-                step_dt = min(1e-2,step_dt)
-                step_dt = max(1e-4,step_dt)
-            else:
-                step_dt = self.dt
-
             # Remove all contact joints
             self.contactgroup.empty()
-            # FIXME: disable the joints and remove references... the garbage
-            # collector will grab them.  This is a bad solution.
-            #for contact in self.contactlist:
-            #    contact.disable()
             self.contactlist = []
             # Detect collisions and create contact joints
             self.space.collide((self.world, self.contactgroup), self.near_callback)
 
             # Simulation step
-            self.world.step(step_dt)
-            self.sim_t += step_dt
+            self.world.step(self.dt)
+            self.sim_t += self.dt
 
             self.n_iterations += 1
 
@@ -237,11 +231,11 @@ class Simulator(object):
         real_t_elapsed = max(getSysTime()-real_t_present, 0.0001)
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
-            if not self.paused:
+            if not self.paused and self.print_updates:
                 print ""
                 print "Sim time:       %.3f"%self.sim_t
-                print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
-                print "Timestep:       %f"%(step_dt)
+                print "Realtime ratio: %.3f"%(self.dt/real_t_elapsed)
+                print "Timestep:       %f"%(self.dt)
                 print "Steps per sec:  %.0f"%(1./real_t_elapsed)
             # Render if graphical
             if self.graphical:
@@ -269,6 +263,8 @@ class Simulator(object):
                     self.dt *= 1.2
                 elif event.key == K_MINUS:
                     self.dt /= 1.2
+                else:
+                    sendCommandFromEventKey(event.key)
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
@@ -332,15 +328,12 @@ class Simulator(object):
             self.draw_graphic(g)
             del g
         self.graphics = []
-        # Draw force vectors on all contacts
-        # FIXME:  ODE complains of:
-        # ODE INTERNAL ERROR 2: Bad argument(s) in dJointSetFeedback()
         for j in self.contactlist:
             self.draw_contact_force_vector(j)
         self.window.flip()
 
     def draw_contact_force_vector( self, joint ):
-        # TODO: Function incomplete
+        return
         forces1, torques1, forces2, torques2 = joint.getFeedback()
         p1 = joint.position
         p2 = add3(p1, div3(forces1,1e3))
@@ -348,16 +341,33 @@ class Simulator(object):
     def draw_body(self, body):
         """Draw an ODE body."""
 
-        if body.shape == "capsule":
+        if hasattr( body, 'glObjPath' ) and self.renderObjs:
+            p = body.getPosition()
+            r = body.getRotation()
+            rot = makeOpenGLMatrix(r, p)
+            # We must apply both the offset built in to the object
+            # and the offset from the world.  Multiply the matrices together
+            # to get the compound move/rotation
+            rot = mul4x4Matrices(rot, body.glObjOffset)
+            glLibColor((255,255,255))
+            if not hasattr(body,'glObjCustom'):
+                body.glObjCustom = glLibObjFromFile( body.glObjPath )
+            try:
+                scalar = body.scalar
+            except AttributeError:
+                scalar = 1
+            body.glObjCustom.myDraw( rot, scalar )
+        elif body.shape == "capsule":
             CAPSULE_SLICES = 6
             CAPSULE_STACKS = 6
             p = body.getPosition()
             r = body.getRotation()
+            # Since ODE and OpenGL define their capsules
+            # differently, we must apply an offset.
             offset = rotate3(r, (0,0,body.length/2.0))
             p = sub3(p,offset)
             rot = makeOpenGLMatrix(r, p)
             glLibColor(body.color)
-            cylHalfHeight = body.length / 2.0
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
             body.glObj.myDraw( rot )

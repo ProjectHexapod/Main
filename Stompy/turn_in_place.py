@@ -17,10 +17,11 @@ TURN_SECOND_TRIPOD = 4
 FEET_ON_GROUND = leg_lift_height = .2
 RESOLVE = 6
 STAND = 7
+PAUSE = 8
 
 LIFT_TRIPOD_024=[1,-1,1,-1,1,-1]
 LIFT_TRIPOD_135=[-i for i in LIFT_TRIPOD_024]
-TURN_ANGLE=.2
+TURN_ANGLE=0.2
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command):
     global path, state, leg_lift_height
@@ -47,7 +48,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
             path = RotateFeetAboutOrigin(model, controller, [0,2,4], TURN_ANGLE, 2, 1)
             state = RAISE_SECOND_TRIPOD
         elif state == RAISE_SECOND_TRIPOD:
-            leg_lift_height = .2
+            leg_lift_height = .4
             path = TrapezoidalFeetLiftLower(model, controller, range(NUM_LEGS), 
                 [i*leg_lift_height for i in LIFT_TRIPOD_135], 2, 1)
             state = TURN_SECOND_TRIPOD
@@ -55,15 +56,14 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
             path = RotateFeetAboutOrigin(model, controller, [1,3,5], TURN_ANGLE, 2, 1)
             state = FEET_ON_GROUND
         elif state == FEET_ON_GROUND:
-            leg_lift_height = .1
+            leg_lift_height = .2
             path = TrapezoidalFeetLiftLower(model, controller, range(NUM_LEGS),
                 [i*leg_lift_height for i in LIFT_TRIPOD_024], 2, 1)
             state=RESOLVE
         elif state == RESOLVE:
-            path = RotateFeetAboutOrigin(model, controller, range(5), -TURN_ANGLE, 2, 1)
+            path = RotateFeetAboutOrigin(model, controller, range(NUM_LEGS), -TURN_ANGLE, 2, 1)
             state = RAISE_FIRST_TRIPOD
-    
-    
+
     target_angle_matrix = path.update()
     #controller.setDesiredJointAngles(joint_angle_matrix)
     

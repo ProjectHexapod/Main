@@ -138,17 +138,17 @@ def rotateAxisAngle(v, ax, ang):
     m = calcRotMatrix( ax, ang )
     return rotate3( m, v )
 
-def makeOpenGLMatrix(r, p):
+def makeOpenGLMatrix(r, p, s=(1,1,1)):
     """
     Returns an OpenGL compatible (column-major, 4x4 homogeneous) transformation
     matrix from ODE compatible (row-major, 3x3) rotation matrix r and position
     vector p.
     """
     return (
-        r[0], r[3], r[6], 0.0,
-        r[1], r[4], r[7], 0.0,
-        r[2], r[5], r[8], 0.0,
-        p[0], p[1], p[2], 1.0)
+        r[0]*s[0], r[3]*s[1], r[6]*s[2], 0.0,
+        r[1]*s[0], r[4]*s[1], r[7]*s[2], 0.0,
+        r[2]*s[0], r[5]*s[1], r[8]*s[2], 0.0,
+        p[0],      p[1],      p[2],      1.0)
 
 def getBodyRelVec(b, v):
     """
@@ -156,3 +156,21 @@ def getBodyRelVec(b, v):
     body b.
     """
     return rotate3(invert3x3(b.getRotation()), v)
+
+def mul3x3Matrices( matrix1, matrix2 ):
+    """Multiply matrices, assume 3x3 row major"""
+    new_matrix = [0 for i in range(9)]
+    for i in range(3):
+        for j in range(3):
+            for k in range(3):
+                new_matrix[3*i+j] += matrix1[3*i+k]*matrix2[3*k+j]
+    return new_matrix
+
+def mul4x4Matrices( matrix1, matrix2 ):
+    """Multiply matrices, assume 4x4 column major"""
+    new_matrix = [0 for i in range(16)]
+    for i in range(4):
+        for j in range(4):
+            for k in range(4):
+                new_matrix[i+4*j] += matrix1[i+4*k]*matrix2[k+4*j]
+    return new_matrix

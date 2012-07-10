@@ -48,6 +48,7 @@ from bluetooth import *
 import select
 import fcntl
 import hashlib
+import network_args
 import os
 import time
 import sys                    
@@ -185,11 +186,12 @@ class decoder:
         self.outlen = len(buttons) + len(axes)           
         self.inactivity_timeout = inactivity_timeout
 
-        self.host = "localhost"  # TODO: parameterize me
-        self.port = 7337  # TODO: parameterize me
+        self.host = network_args.host
+        self.port = network_args.port
         self.sock = socket(AF_INET, SOCK_STREAM)
         self.sock.settimeout(SOCKET_TIMEOUT)
-        self.password = ""  # TODO: parameterize me
+        self.password = network_args.password
+        print self.password, " ", self.host,":",self.port
         self.connected = False
         self.connect()
 
