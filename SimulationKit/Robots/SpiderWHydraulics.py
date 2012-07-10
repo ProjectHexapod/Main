@@ -20,11 +20,11 @@ class StompyLegPhysicalCharacteristics(object):
     """
     def __init__(self):
         self.YAW_L   = inch2meter*10.0 # Length of yaw link
-        self.YAW_W   = 0.2             # Diameter of yaw link
+        self.YAW_W   = 0.1             # Diameter of yaw link
         self.THIGH_L = inch2meter*54.0 # Length of thigh link
-        self.THIGH_W = 0.2             # Diameter of thigh link
+        self.THIGH_W = 0.1             # Diameter of thigh link
         self.CALF_L  = inch2meter*78.0 # Length of calf link
-        self.CALF_W  = 0.2             # Diameter of calf link
+        self.CALF_W  = 0.1             # Diameter of calf link
         self.YAW_M   = pound2kilo*20   # Yaw link mass
         self.THIGH_M = pound2kilo*200  # Thigh link mass
         self.CALF_M  = pound2kilo*150  # Calf link mass
@@ -188,12 +188,14 @@ class SpiderWHydraulics(MultiBody):
             self.dimensions.BODY_T,\
             mass=self.dimensions.BODY_M )
         # glObjPath will be used by the simulator to populate the body
-        self.core.glObjPath   = graphics_dir+'/Spaceship.obj'
+        self.core.glObjPath   = graphics_dir+'/Chassis.obj'
         # This is the constant offset for aligning with the physics element
         # This is a 4x4 opengl style matrix, expressing an offset and a rotation
-        offset = (0,0,0)
+        offset = (0,0,0.2)
         rot    = calcRotMatrix( (0,0,1), -pi/2 )
-        self.core.glObjOffset = makeOpenGLMatrix( rot, offset, (1.5,1.5,2.5) )
+        rot2   = calcRotMatrix( (0,1,0), pi )
+        rot    = mul3x3Matrices( rot, rot2 ) 
+        self.core.glObjOffset = makeOpenGLMatrix( rot, offset, (1.0,1.0,1.0) )
         self.core.shape = 'capsule'
         self.publisher.addToCatalog(\
             "body.totalflow_gpm",\
@@ -252,7 +254,7 @@ class SpiderWHydraulics(MultiBody):
             # This is a 4x4 opengl style matrix, expressing an offset and a rotation
             offset = (-1.52,+.13,-0.15)
             rot    = calcRotMatrix( (0,1,0), 3*pi/2 )
-            scale  = (39,39,39)
+            scale = (39,39,39)
             yaw_link.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
             yaw_link.shape = 'capsule'
             hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
@@ -286,10 +288,12 @@ class SpiderWHydraulics(MultiBody):
             thigh.glObjPath   = graphics_dir+'/Thigh.obj'
             # This is the constant offset for aligning with the physics element
             # This is a 4x4 opengl style matrix, expressing an offset and a rotation
-            offset = (0.07,-0.10,2.18)
+            offset = (0.09,0.10,-2.23)
             rot    = calcRotMatrix( (0,0,1), pi )
-            rot2   = calcRotMatrix( (0,1,0), pi/26 )
+            rot2   = calcRotMatrix( (0,1,0), -pi/26 )
+            rot3   = calcRotMatrix( (1,0,0), pi )
             rot    = mul3x3Matrices( rot, rot2 ) 
+            rot    = mul3x3Matrices( rot, rot3 ) 
             scale  = (39,39,39)
             thigh.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
             thigh.shape = 'capsule'
@@ -325,7 +329,7 @@ class SpiderWHydraulics(MultiBody):
             calf.glObjPath   = graphics_dir+'/Calf.obj'
             # This is the constant offset for aligning with the physics element
             # This is a 4x4 opengl style matrix, expressing an offset and a rotation
-            offset = (-0.5,0.12,2.6)
+            offset = (-0.45,0.11,2.35)
             rot    = calcRotMatrix( (0,0,1), 0 )
             scale  = (39,39,39)
             calf.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
@@ -606,7 +610,7 @@ class SpiderWHydraulics(MultiBody):
         neutral_r_outer = inch2meter*65
         neutral_r_inner = inch2meter*70
         body_h          = inch2meter*60
-        foot_lift_h     = 0.15    # how high to lift feet in m
+        foot_lift_h     = 0.35    # how high to lift feet in m
 
         foot_positions = []
 
