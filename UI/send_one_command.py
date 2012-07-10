@@ -24,9 +24,9 @@ def sendCommand(command):
     sock = getSocket()
     try:
         sock.send(command.SerializeToString())
+        sock.close()
     except Exception, ex:
         logger.error("Could not send command to InputServer.", error=ex)
-    sock.close()
 
 def sendCommandFromEventKey(event_key):
     command = Command()
