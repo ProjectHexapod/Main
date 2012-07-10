@@ -12,13 +12,23 @@ S_MOVE0 = 0
 S_MOVE1 = 1
 S_MOVE2 = 2
 S_MOVE3 = 3
+PAUSE   = 4
 
 state = S_MOVE3
 
+points = []
+points.append( (1.5, -0.3, -0.85) )
+points.append( (1.5,  0.3, -0.85) )
+#points.append( (1.5,  0.6,  0.00) )
+#points.append( (2.1,  0.0,  0.00) )
+#points.append( (1.5, -0.6,  0.00) )
+#points.append( (2.1,  -0.0, -0.40) )
+#points.append( (1.1,  -0.0, -0.40) )
+index = 0
 
 # Body of control loop
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
-    global path, state
+    global points, path, index
     
     
     # Update model
@@ -30,28 +40,11 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     if path is None:
         path = Pause(model, controller, 1.0)
     
-    # Monitor leg_paths
     if path.isDone():
-        if state == S_MOVE3:
-            path = TrapezoidalFootMove(model, controller,
-                                       array([1.5, -0.6, -0.6]),
-                                       0.2, 0.1)
-            state = S_MOVE2
-        elif state == S_MOVE2:
-            path = TrapezoidalFootMove(model, controller,
-                                       array([1.5,  0.6, -0.6]),
-                                       0.2, 0.1)
-            state = S_MOVE1
-        elif state == S_MOVE1:
-            path = TrapezoidalFootMove(model, controller,
-                                       array([1.5,  0.6, -0.1]),
-                                       0.2, 0.1)
-            state = S_MOVE0
-        elif state == S_MOVE0:
-            path = TrapezoidalFootMove(model, controller,
-                                       array([1.5,  -0.6, -0.1]),
-                                       0.2, 0.1)
-            state = S_MOVE3
+        path = TrapezoidalFootMove(model, controller,
+                                       array(points[index]),
+                                       0.5, 0.4)
+        index = (index+1)%len(points)
         leg_logger.logger.info("State changed.", state=state)
 
     # Evaluate path and joint control
