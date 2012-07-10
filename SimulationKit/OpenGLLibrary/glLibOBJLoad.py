@@ -91,7 +91,6 @@ class OBJ:
                 # use diffuse texmap
                 glBindTexture(GL_TEXTURE_2D, mtl['texture_Kd'])
             else:
-                # just use diffuse colour
                 glColor(*mtl['Kd'])
  
             glBegin(GL_POLYGON)

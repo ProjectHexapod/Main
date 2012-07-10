@@ -156,6 +156,7 @@ class Simulator(object):
             glLibColorMaterial(True) 
             glLibTexturing(True)
             glLibLighting(True)
+            glLibNormalize(True)
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
             self.cam_pos = (0,10,10)
@@ -332,6 +333,7 @@ class Simulator(object):
         self.window.flip()
 
     def draw_contact_force_vector( self, joint ):
+        return
         forces1, torques1, forces2, torques2 = joint.getFeedback()
         p1 = joint.position
         p2 = add3(p1, div3(forces1,1e3))
@@ -347,10 +349,14 @@ class Simulator(object):
             # and the offset from the world.  Multiply the matrices together
             # to get the compound move/rotation
             rot = mul4x4Matrices(rot, body.glObjOffset)
+            glLibColor((255,255,255))
             if not hasattr(body,'glObjCustom'):
                 body.glObjCustom = glLibObjFromFile( body.glObjPath )
-            glLibColor((255,255,255))
-            body.glObjCustom.myDraw( rot )
+            try:
+                scalar = body.scalar
+            except AttributeError:
+                scalar = 1
+            body.glObjCustom.myDraw( rot, scalar )
         elif body.shape == "capsule":
             CAPSULE_SLICES = 6
             CAPSULE_STACKS = 6
