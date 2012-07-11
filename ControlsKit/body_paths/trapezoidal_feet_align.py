@@ -9,23 +9,25 @@ class TrapezoidalFeetAlign:
     
     #TODO: check to make sure all legs are not on the ground first
     
-    def __init__(self, body_model, body_controller, final_angles, max_velocity, acceleration):
+    
+    def __init__(self, body_model, body_controller, which_legs, final_angles, max_velocity, acceleration):
         leg_logger.logger.info("New path.", path_name="TrapezoidalFeetAlign",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         
+        self.which_legs = which_legs
         self.model = body_model
         self.controller = body_controller
         self.final_joint_positions = self.model.getJointAngleMatrix()
         self.feet_path = []
         
-        for i in range (NUM_LEGS):
-            self.final_joint_positions[i] = final_angles
-        for i in range (NUM_LEGS):
+        for i in range (len(self.which_legs)):
+            self.final_joint_positions[self.which_legs[i]] = final_angles
+        for i in range (len(self.which_legs)):
             self.feet_path.append(TrapezoidalJointMove(
-                self.model.getLegs()[i],
-                self.controller.getLimbControllers()[i],
-                self.final_joint_positions[i],
+                self.model.getLegs()[self.which_legs[i]],
+                self.controller.getLimbControllers()[self.which_legs[i]],
+                self.final_joint_positions[self.which_legs[i]],
                 max_velocity, acceleration) )
         
         self.done = False
@@ -37,5 +39,5 @@ class TrapezoidalFeetAlign:
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalJointMove.isDone, self.feet_path))
-            return [self.feet_path[i].update() for i in range (NUM_LEGS)]
+            return [self.feet_path[i].update() for i in range (len(self.which_legs))]
  

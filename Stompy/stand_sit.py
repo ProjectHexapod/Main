@@ -25,10 +25,16 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         path = BodyPause(model, controller, 1)
         state = ORIENT
     
+    i = 0; #index variable for orienting legs
+    
     if path.isDone():
         if state == ORIENT:
-            path = TrapezoidalFeetAlign(model, controller, [0, -1.4,  2.2], 2, 1)
-            state =STAND
+            path = TrapezoidalFeetAlign(model, controller, [i], [0, -1.4,  2.2], 2, 1)
+            i += 1
+            # path = TrapezoidalFeetAlign(model, controller, [0, -1.4,  2.2], 2, 1)
+            if i == 6:
+                i = 0
+                state =STAND
         elif state == STAND:
             path = TrapezoidalSitStand(model, controller, -1.75, 2, 1)
             state = SIT
