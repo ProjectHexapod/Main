@@ -1,8 +1,10 @@
 from SimulationKit.MultiBody import MultiBody
 from SimulationKit.helpers import *
 from SimulationKit.pubsub import *
+from SimulationKit.OpenGLLibrary import *
 from math import *
 import ode
+from ActuatorCharacteristics import *
 
 # Convenience multipliers...
 deg2rad    = pi/180
@@ -11,55 +13,6 @@ inch2meter = 2.54e-2
 pound2kilo = 0.455
 gallon2cmps = 1/15850.4
 
-class ActuatorCharacteristics(object):
-    """
-    This describes the placement of a linear actuator relative to the joint it
-    is controlling.  It also provides convenience trig functions for figuring
-    out things like joint limits based on actuator extension.
-    """
-    def __init__(self):
-        self.BORE_DIAMETER          = 0.0
-        self.ROD_DIAMETER           = 0.0
-        self.ACT_RETRACTED_LEN      = 0.1
-        self.ACT_EXTENDED_LEN       = 0.1
-        self.PIVOT1_DIST_FROM_JOINT = 0.1
-        self.PIVOT2                 = (0.0,0.0)
-        self.AXIS                   = (0,0,1)
-        self.ANG_OFFSET             = 0.0
-        self.SYSTEM_PRESSURE        = 2000*psi2pascal
-    def getRangeOfMotion( self ):
-        """Returns an angle in radians"""
-        assert abs(len2(self.PIVOT2)-self.PIVOT1_DIST_FROM_JOINT) <\
-            self.ACT_RETRACTED_LEN, 'You can retract in to singularity'
-        retracted_angle = thetaFromABC(\
-            self.PIVOT1_DIST_FROM_JOINT,\
-            len2(self.PIVOT2),\
-            self.ACT_RETRACTED_LEN)
-        assert len2(self.PIVOT2)+self.PIVOT1_DIST_FROM_JOINT >\
-            self.ACT_EXTENDED_LEN, 'You can extend in to singularity'
-        extended_angle = thetaFromABC(\
-            self.PIVOT1_DIST_FROM_JOINT,\
-            len2(self.PIVOT2),\
-            self.ACT_EXTENDED_LEN)
-        assert extended_angle>retracted_angle, \
-            "This actuator placement breaks sign conventions\
-            ... actuator extend should increase joint angle"
-        return extended_angle - retracted_angle
-    def getExtensionCrossSectionM2( self ):
-        """Returns piston cross sectional area in m^2 on the extend side of the
-        piston"""
-        return ((self.BORE_DIAMETER/2)**2)*pi
-    def getRetractionCrossSectionM2( self ):
-        """Returns piston cross sectional area in m^2 on the extend side of the
-        piston"""
-        return ((self.BORE_DIAMETER/2)**2-(self.ROD_DIAMETER/2)**2)*pi
-    def getMaxExtensionForceNewtons( self ):
-        """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
-        return self.getExtensionCrossSectionM2()*self.SYSTEM_PRESSURE
-    def getMaxRetractionForceNewtons( self, pressure = 0.0 ):
-        """Pressure is in Newtons/sq. meter.  Returned force is in Newtons"""
-        return self.getRetractionCrossSectionM2()*self.SYSTEM_PRESSURE
-
 class StompyLegPhysicalCharacteristics(object):
     """
     This class contains the physical characteristics of one of
@@ -67,11 +20,11 @@ class StompyLegPhysicalCharacteristics(object):
     """
     def __init__(self):
         self.YAW_L   = inch2meter*10.0 # Length of yaw link
-        self.YAW_W   = 0.2             # Diameter of yaw link
+        self.YAW_W   = 0.1             # Diameter of yaw link
         self.THIGH_L = inch2meter*54.0 # Length of thigh link
-        self.THIGH_W = 0.2             # Diameter of thigh link
+        self.THIGH_W = 0.1             # Diameter of thigh link
         self.CALF_L  = inch2meter*78.0 # Length of calf link
-        self.CALF_W  = 0.2             # Diameter of calf link
+        self.CALF_W  = 0.1             # Diameter of calf link
         self.YAW_M   = pound2kilo*20   # Yaw link mass
         self.THIGH_M = pound2kilo*200  # Thigh link mass
         self.CALF_M  = pound2kilo*150  # Calf link mass
@@ -197,6 +150,10 @@ class DDLimitController(object):
     def getVal( self ):
         return self.val
 
+#FIXME:  This belongs somewhere common...
+import os.path as path
+graphics_dir = path.dirname(path.realpath(__file__))+'/graphics'
+
 class IIR(object):
     def __init__(self, k=.9, t_init=0, t_const=1):
         """
@@ -214,11 +171,6 @@ class IIR(object):
         self.state += (1-adjusted_k)*val
         self.t = t
 
-class LinearTraj(object):
-    def __init__(self, start=1.0, end=1.0, over_time=1.0, start_time=0):
-        self.start = start
-        self.end = end
-
 class SpiderWHydraulics(MultiBody):
     def __init__( self, *args, **kwargs ):
         self.dimensions = StompyPhysicalCharacteristics()
@@ -235,7 +187,16 @@ class SpiderWHydraulics(MultiBody):
             (-1*self.dimensions.BODY_W/2,0,0),\
             self.dimensions.BODY_T,\
             mass=self.dimensions.BODY_M )
-
+        # glObjPath will be used by the simulator to populate the body
+        self.core.glObjPath   = graphics_dir+'/Chassis.obj'
+        # This is the constant offset for aligning with the physics element
+        # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+        offset = (0,0,0.2)
+        rot    = calcRotMatrix( (0,0,1), -pi/2 )
+        rot2   = calcRotMatrix( (0,1,0), pi )
+        rot    = mul3x3Matrices( rot, rot2 ) 
+        self.core.glObjOffset = makeOpenGLMatrix( rot, offset, (1.0,1.0,1.0) )
+        self.core.shape = 'capsule'
         self.publisher.addToCatalog(\
             "body.totalflow_gpm",\
             self.getTotalHydraulicFlowGPM)
@@ -287,6 +248,15 @@ class SpiderWHydraulics(MultiBody):
                 p2     = hip_p, \
                 radius = self.dimensions.LEGS[i].YAW_W, \
                 mass   = self.dimensions.LEGS[i].YAW_M )
+            # glObjPath will be used by the simulator to populate the body
+            yaw_link.glObjPath   = graphics_dir+'/Yaw.obj'
+            # This is the constant offset for aligning with the physics element
+            # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+            offset = (-1.52,+.13,-0.15)
+            rot    = calcRotMatrix( (0,1,0), 3*pi/2 )
+            scale = (39,39,39)
+            yaw_link.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
+            yaw_link.shape = 'capsule'
             hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
                 body1  = self.core,\
                 body2  = yaw_link,\
@@ -314,6 +284,19 @@ class SpiderWHydraulics(MultiBody):
                 p2     = knee_p, \
                 radius = self.dimensions.LEGS[i].THIGH_W, \
                 mass   = self.dimensions.LEGS[i].THIGH_M )
+            # glObjPath will be used by the simulator to populate the body
+            thigh.glObjPath   = graphics_dir+'/Thigh.obj'
+            # This is the constant offset for aligning with the physics element
+            # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+            offset = (0.09,0.10,-2.23)
+            rot    = calcRotMatrix( (0,0,1), pi )
+            rot2   = calcRotMatrix( (0,1,0), -pi/26 )
+            rot3   = calcRotMatrix( (1,0,0), pi )
+            rot    = mul3x3Matrices( rot, rot2 ) 
+            rot    = mul3x3Matrices( rot, rot3 ) 
+            scale  = (39,39,39)
+            thigh.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
+            thigh.shape = 'capsule'
             hip_pitch = self.addLinearVelocityActuatedHingeJoint( \
                 body1  = yaw_link, \
                 body2  = thigh, \
@@ -342,6 +325,15 @@ class SpiderWHydraulics(MultiBody):
                 p2     = midshin_p, \
                 radius = self.dimensions.LEGS[i].CALF_W, \
                 mass   = self.dimensions.LEGS[i].CALF_M/2.0 )
+            # glObjPath will be used by the simulator to populate the body
+            calf.glObjPath   = graphics_dir+'/Calf.obj'
+            # This is the constant offset for aligning with the physics element
+            # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+            offset = (-0.45,0.11,2.35)
+            rot    = calcRotMatrix( (0,0,1), 0 )
+            scale  = (39,39,39)
+            calf.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
+            calf.shape = 'capsule'
             knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
                 body1  = thigh, \
                 body2  = calf, \
@@ -373,13 +365,22 @@ class SpiderWHydraulics(MultiBody):
                 p2     = foot_p, \
                 radius = self.dimensions.LEGS[i].CALF_W, \
                 mass   = self.dimensions.LEGS[i].CALF_M/2 )
+            # glObjPath will be used by the simulator to populate the body
+            foot.glObjPath   = graphics_dir+'/Compliant.obj'
+            # This is the constant offset for aligning with the physics element
+            # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+            offset = (-0.55,0.06,1.5)
+            rot    = calcRotMatrix( (0,0,1), 0 )
+            scale  = (39,39,39)
+            foot.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
+            foot.shape = 'capsule'
             calf_axis  = norm3(sub3(midshin_p, foot_p))
             foot_shock = self.addPrismaticSpringJoint( \
                 body1        = calf, \
                 body2        = foot, \
                 axis         = mul3(calf_axis,-1),\
                 #spring_const = 0,\
-                spring_const = -80e3,\
+                spring_const = -00e3,\
                 hi_stop      = 0.1,\
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
@@ -567,16 +568,50 @@ class SpiderWHydraulics(MultiBody):
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
-    def constantSpeedWalkSmart( self ):
-        step_t          = 1.6
-        swing_f         = .85
-        down_f          = .05
-        up_f            = .10
+    def bodyWiggle( self ):
+        gait_cycle      = 10.0     # time in seconds
+        step_cycle      = gait_cycle/2.0
+        ang_mag         = pi/20
+        neutral_r_outer = inch2meter*70
+        neutral_r_inner = inch2meter*75
+        body_h          = inch2meter*60
+        foot_lift_h     = 0.25    # how high to lift feet in m
+
+        foot_positions = []
+        ang_off      =  ang_mag*sin(2*pi*(self.sim.sim_t%gait_cycle)/gait_cycle)
+        z_off        =  abs(foot_lift_h*cos(2*pi*self.sim.sim_t/gait_cycle))
+        if z_off<0:
+            z_off *= -1
+        for i in range(6):
+            # Neutral position in the leg coordinate frame
+            if i in (1,4):
+                neutral_pos = (neutral_r_inner, 0, -body_h)
+            else:
+                neutral_pos = (neutral_r_outer, 0, -body_h)
+            tmp = rotate3( self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
+            x, y, z = add3( tmp, self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN )
+            x,y = rot2( (x,y), ang_off )
+            #if (i%2):
+            #    x,y = rot2( (x,y), ang_off )
+            #    z += z_off
+            #else:
+            #    x,y = rot2( (x,y), -ang_off )
+            #^ (self.sim.sim_t%gait_cycle<(step_cycle)):
+            p = ( x, y, z )
+            foot_positions.append(p)
+        self.setDesiredFootPositions( foot_positions )
+        return foot_positions
+    def constantSpeedWalkSmart( self, x_scale=1.0, y_scale=0.0, z_scale=0.5, rot_scale=0.0 ):
+        step_t          = 2.6
+        swing_f         = 1.00
+        down_f          = 0.00
+        up_f            = 0.00
         stride_length   = 1.70    # length of a stride, m
         neutral_r_outer = inch2meter*65
         neutral_r_inner = inch2meter*70
         body_h          = inch2meter*60
-        foot_lift_h     = 0.15    # how high to lift feet in m
+        max_rot         = pi/3
+        foot_lift_h     = 0.55    # how high to lift feet in m
 
         foot_positions = []
 
@@ -597,9 +632,15 @@ class SpiderWHydraulics(MultiBody):
         # step_t is the time within the step
         step_phase = 2*(gait_phase%0.5)
 
-        x_off_stance = linearInterp(\
+        x_off_stance = y_off_stance = linearInterp(\
             (-0.5+down_f+up_f)*stride_length,\
             (+0.5)*stride_length,\
+            step_phase,\
+            0.0,\
+            1.0)
+        rot_stance = linearInterp(\
+            (-0.5+down_f+up_f)*max_rot,\
+            (+0.5)*max_rot,\
             step_phase,\
             0.0,\
             1.0)
@@ -607,17 +648,29 @@ class SpiderWHydraulics(MultiBody):
 
         if step_phase < swing_f:
             # Not transition
-            x_off_swing  = linearInterp(\
+            x_off_swing  = y_off_swing = linearInterp(\
                 (+0.5)*stride_length,\
                 (-0.5)*stride_length,\
                 step_phase,\
                 0.0,\
                 swing_f)
+            rot_swing = linearInterp(\
+                (+0.5)*max_rot,\
+                (-0.5)*max_rot,\
+                step_phase,\
+                0.0,\
+                swing_f)
             z_off_swing = foot_lift_h
         elif step_phase < swing_f + down_f:
-            x_off_swing  = linearInterp(\
+            x_off_swing  = y_off_swing = linearInterp(\
                 (-0.5)*stride_length,\
                 (-0.5+down_f)*stride_length,\
+                step_phase,\
+                swing_f,\
+                swing_f+down_f)
+            rot_swing = linearInterp(\
+                (+0.5)*max_rot,\
+                (-0.5)*max_rot,\
                 step_phase,\
                 swing_f,\
                 swing_f+down_f)
@@ -630,9 +683,15 @@ class SpiderWHydraulics(MultiBody):
                 swing_f+down_f)
         else:
             # foot up
-            x_off_swing  = linearInterp(\
+            x_off_swing  = y_off_swing = linearInterp(\
                 (-0.5+down_f)*stride_length,\
                 (-0.5+down_f+up_f)*stride_length,\
+                step_phase,\
+                swing_f+down_f,\
+                1)
+            rot_swing = linearInterp(\
+                (+0.5)*max_rot,\
+                (-0.5)*max_rot,\
                 step_phase,\
                 swing_f+down_f,\
                 1)
@@ -652,11 +711,17 @@ class SpiderWHydraulics(MultiBody):
             tmp = rotate3( self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
             x, y, z = add3( tmp, self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN )
             if (i%2)^(gait_phase > step_phase):
-                x += x_off_swing
-                z += z_off_swing
+                x -= x_off_swing*x_scale
+                y -= y_off_swing*y_scale
+                z += z_off_swing*z_scale
+                # apply rotation offsets
+                x,y = rot2( (x,y), rot_scale*rot_swing )
             else:
-                x += x_off_stance
-                z += z_off_stance
+                x -= x_off_stance*x_scale
+                y -= y_off_stance*y_scale
+                z += z_off_stance*z_scale
+                # apply rotation offsets
+                x,y = rot2( (x,y), rot_scale*rot_stance )
             p = ( x, y, z )
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )

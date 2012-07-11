@@ -11,7 +11,19 @@ class TrapezoidalFootMove:
         
         self.model = leg_model
         self.controller = limb_controller
-        self.target_foot_pos = self.model.getFootPos()
+        # We want to start from the last commanded foot position,
+        # not the last actual foot position.  However, this is not always
+        # possible, since a position command may not have been given before this
+        # point.
+        last_target_ang_array = self.controller.getDesiredPosAngle()
+        # If positions have been commanded to the controller
+        if last_target_ang_array != None:
+            # Base the starting position off that command
+            self.target_foot_pos = self.model.footPosFromLegState(\
+                (last_target_ang_array, 0.0) )
+        else:
+            # Base the starting position on the position of the model
+            self.target_foot_pos = self.model.getFootPos()
         self.final_foot_pos = final_foot_pos
         self.max_vel = max_velocity
         self.vel = 0.0
@@ -20,10 +32,6 @@ class TrapezoidalFootMove:
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
         self.done = False
-     
-        self.sw = time_sources.StopWatch()
-        self.sw.smoothStart(1)#self.accel_duration)
-        # FIXME:the above line should have accel_duration reinstated.
 
     def isDone(self):
         return self.done
@@ -50,8 +58,7 @@ class TrapezoidalFootMove:
                 self.vel = min(self.vel, self.max_vel)
             self.target_foot_pos += self.dir * self.vel * delta
             
-            if not arraysAreEqual(self.getNormalizedRemaining(), self.dir):
+            if norm(self.final_foot_pos-self.target_foot_pos)<0.02:
                 self.done = True
-                self.target_foot_pos = self.final_foot_pos
-
-        return self.model.jointAnglesFromFootPos(self.target_foot_pos)
+                #self.target_foot_pos = self.final_foot_pos
+        return self.model.jointAnglesFromFootPos(self.target_foot_pos, 0)

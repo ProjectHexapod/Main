@@ -1,0 +1,37 @@
+package UI;
+
+message Command {
+  optional Controller controller = 1;
+  repeated Axis raw_command = 2;  // the raw value from whatever input device
+  optional GeneralMotionCommand intended_command = 3;  // if you only care where it goes
+
+  enum Controller {
+    PS3_CONTROLLER = 1;
+    PYGAME = 2;
+    COMMAND_LINE = 3;
+  }
+
+  message Axis {
+    optional int32 index = 1;
+    optional string name = 2;
+    optional int32 value = 3;
+  }
+
+  enum GeneralMotionCommand {
+    STOP = 0;
+    TURN_RIGHT = 1;
+    TURN_LEFT = 2;
+    FORWARD = 3;
+    CRAB_RIGHT = 4;
+    CRAB_LEFT = 5;
+    REVERSE = 6;
+
+    SIT = 100;
+    STAND = 101;
+
+    ROW_FORWARD = 500;
+    ROW_REVERSE = 501;
+
+    DISCONNECT = 1000;
+  }
+}

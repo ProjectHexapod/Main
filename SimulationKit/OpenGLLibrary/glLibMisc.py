@@ -2,6 +2,11 @@
 from OpenGL.GL import *
 from OpenGL.GLU import gluUnProject
 import pygame
+def glLibNormalize(value):
+    if value:
+        glEnable(GL_NORMALIZE)
+    else:
+        glDisable(GL_NORMALIZE)
 def glLibColor(color):
     if   len(color) == 3: glColor3f(color[0]/255.0,color[1]/255.0,color[2]/255.0)
     elif len(color) == 4: glColor4f(color[0]/255.0,color[1]/255.0,color[2]/255.0,color[3]/255.0)

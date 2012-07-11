@@ -16,9 +16,6 @@ class PutFootOnGround:
         self.stop_watch = time_sources.StopWatch(active=False)
         if not self.done:
             self.stop_watch.smoothStart(self.accel_duration)
-    
-        self.sw = time_sources.StopWatch()
-        self.sw.smoothStart(self.accel_duration)
 
     def isDone(self):
         return self.done and not self.stop_watch.isActive()

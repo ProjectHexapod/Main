@@ -3,6 +3,7 @@ from pid_controller import PIDController
 from ConfigParser import ConfigParser
 from os import path
 from scipy import array
+from math import *
 
 class LimbController:
     def __init__(self, config_file="leg_model.conf", section="LimbController"):
@@ -68,4 +69,19 @@ class LimbController:
         return self.length_rate_commands
     
     def getDesiredPosAngle(self):
-        return self.desired_pos_array
+        try:
+            return self.desired_pos_array
+        except AttributeError:
+            return None
+    def getDesiredYaw(self):
+        return self.desired_pos_array[0]
+    def getDesiredPitch(self):
+        return self.desired_pos_array[1]
+    def getDesiredKnee(self):
+        return self.desired_pos_array[2]
+    def getDesiredYawDeg(self):
+        return 180*self.desired_pos_array[0]/pi
+    def getDesiredPitchDeg(self):
+        return 180*self.desired_pos_array[1]/pi
+    def getDesiredKneeDeg(self):
+        return 180*self.desired_pos_array[2]/pi

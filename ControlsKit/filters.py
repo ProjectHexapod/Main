@@ -8,14 +8,17 @@ class Filter(object):
     The init method is overridden by subclasses in order to calculate
     filter constants.
     """
-
     def _test_update(self, signal):
         """
         Increments time by 10 ms and then calculates the response.
         """
         global_time.updateDelta(0.01)
         return self.update(signal)
-
+    def getVal(self):
+        if hasattr(self, 'last_response'):
+            return self.last_response
+        else:
+            return 0
     def update(self, signal):
         """
         Calculate and return response.
