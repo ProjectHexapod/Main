@@ -6,11 +6,27 @@ from scipy import zeros
 controller = BodyController()
 model = BodyModel()
 path = None
-state = 0
 
+PAUSE = 0
 ORIENT = 1
 CCLOCKWISE = 2
 CLOCKWISE = 3
+HALFTURN = 4
+state = ORIENT
+
+class RotateComposite:
+    def __init__(self,delta_angle):
+        self.evens = RotateFeetAboutOrigin(model, controller, [0,2,4], delta_angle, 2, 1)
+        self.odds = RotateFeetAboutOrigin(model, controller, [1,3,5], delta_angle, 2, 1)    
+    def isDone(self):
+        return(self.evens.isDone() and self.odds.isDone())
+    def update(self):
+        even_commands = self.evens.update()
+        odd_commands = self.odds.update()
+        total_commands = [even_commands[0],odd_commands[1],even_commands[2],odd_commands[3],even_commands[4],odd_commands[5],]
+        return(total_commands)
+
+
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
     global path, state
@@ -27,19 +43,19 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         
     if path.isDone():
         if state == ORIENT:
-            path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
-            state = 4
-        elif state == CCLOCKWISE:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], .3, 2, 1)
+            path = TrapezoidalFeetAlign(model, controller, [0, -.5,  2], 2, 1)
+            state = HALFTURN
+        elif state == HALFTURN:
+            path = RotateComposite(-.15)
             state = CLOCKWISE
         elif state == CLOCKWISE:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.3, 2, 1)
+            path = RotateComposite(.3)
             state = CCLOCKWISE
-        elif state == 0:
+        elif state == CCLOCKWISE:
+            path = RotateComposite(-.3)
+            state = CLOCKWISE
+        elif state == PAUSE:
             path = BodyPause(model, controller, 10)
-        elif state == 4:
-            path = RotateFeetAboutOrigin(model, controller, [0,1,2,3,4,5], -.15, 2, 1)
-            state = CCLOCKWISE
 
         logger.info("State changed.", state=state)
     
