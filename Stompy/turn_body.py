@@ -13,19 +13,18 @@ CCLOCKWISE = 2
 CLOCKWISE = 3
 HALF_TURN = 4
 HALF_RAISE = 5
-RAISE_FIRST_TRIPOD = 6
-RAISE_SECOND_TRIPOD = 7
+RAISE_EVEN_TRIPOD = 6
+RAISE_ODD_TRIPOD = 7
 state = ORIENT
 
-LIFT_TRIPOD_024=[1,-1,1,-1,1,-1]
-LIFT_TRIPOD_135=[-i for i in LIFT_TRIPOD_024]
 delta_angle = .3
-lift_height = .4
+lift_height = .2
 
 class RotateComposite:
-    def __init__(self,delta_angle):
-        self.evens = RotateFeetAboutOrigin(model, controller, [0,2,4], delta_angle, 2, 1)
-        self.odds = RotateFeetAboutOrigin(model, controller, [1,3,5], -delta_angle, 2, 1)    
+    def __init__(self, delta_angle):
+        self.delta_angle = delta_angle
+        self.evens = RotateFeetAboutOrigin(model, controller, [0,2,4], delta_angle, 2, 5)
+        self.odds = RotateFeetAboutOrigin(model, controller, [1,3,5], -delta_angle, 2, 5)    
     def isDone(self):
         return(self.evens.isDone() and self.odds.isDone())
     def update(self):
@@ -35,17 +34,23 @@ class RotateComposite:
         return(total_commands)
         
 class LiftComposite:
-    def __init__(self,height):
-        self.evens = TrapezoidalFeetLiftLower(model, controller, [0,2,4], height, 2, 1)        
-        self.odds = TrapezoidalFeetLiftLower(model, controller, [1,3,5], -height, 2, 1)
+    def __init__(self, height):
+        self.height = height
+        self.evens = TrapezoidalFeetLiftLower(model, controller, [0,2,4], height, 2, 5)        
+        self.odds = TrapezoidalFeetLiftLower(model, controller, [1,3,5], -height, 2, 5)
     def isDone(self):
         return(self.evens.isDone() and self.odds.isDone())
     def update(self):
-        even_commands = self.evens.update()
-        odd_commands = self.odds.update()
-        total_commands = [even_commands[0],odd_commands[1],even_commands[2],odd_commands[3],even_commands[4],odd_commands[5],]
-        return(total_commands)
-
+        if self.height < 0:
+            if self.evens.isDone():
+                return(self.odds.update())
+            else:
+                return(self.evens.update())
+        else:
+            if self.odds.isDone():
+                return(self.evens.update())
+            else:
+                return(self.odds.update())
 
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
@@ -56,34 +61,33 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     target_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
     
-    #THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
     if path is None:
         path = BodyPause(model, controller, .1)
         state = ORIENT
         
     if path.isDone():
-        if state == ORIENT:
+        if state == ORIENT: # Put the feet in some reasonable location that they might have started from
             path = TrapezoidalFeetAlign(model, controller, [0, -.5,  2], 2, 1)
             state = HALF_RAISE
-        elif state == HALF_RAISE:
+        elif state == HALF_RAISE: # Raise one tripod half the total travel
             path = LiftComposite(-lift_height/2)
             state = HALF_TURN
-        elif state == HALF_TURN:
+        elif state == HALF_TURN: # Rotate half the total rotation
             path = RotateComposite(-delta_angle/2)
-            state = RAISE_FIRST_TRIPOD      
-        elif state == RAISE_FIRST_TRIPOD:
+            state = RAISE_EVEN_TRIPOD      
+        elif state == RAISE_EVEN_TRIPOD: # Raise a tripod
             path = LiftComposite(lift_height)
             state = CLOCKWISE
-        elif state == CLOCKWISE:
+        elif state == CLOCKWISE: # Rotate one direction
             path = RotateComposite(delta_angle)
-            state = RAISE_SECOND_TRIPOD
-        elif state == RAISE_SECOND_TRIPOD:
+            state = RAISE_ODD_TRIPOD
+        elif state == RAISE_ODD_TRIPOD: # Raise the other tripod
             path = LiftComposite(-lift_height)
             state = CCLOCKWISE
-        elif state == CCLOCKWISE:
+        elif state == CCLOCKWISE: # Rotate the other direction
             path = RotateComposite(-delta_angle)
-            state = RAISE_FIRST_TRIPOD
-        elif state == PAUSE:
+            state = RAISE_EVEN_TRIPOD
+        elif state == PAUSE: # Set state to 0 if you need 
             path = BodyPause(model, controller, 10)
 
         logger.info("State changed.", state=state)
