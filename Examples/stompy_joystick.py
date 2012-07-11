@@ -2,6 +2,8 @@ import sys
 sys.path.append('..')
 from SimulationKit import Simulator
 from SimulationKit.Robots import SpiderWHydraulics
+from ControlsKit.filters import LowPassFilter
+from ControlsKit.time_sources import global_time
 import pygame.joystick as joystick
 import time
 
@@ -22,11 +24,16 @@ stick_neutrals = []
 
 d = {'offset':(0,0,1.5)}
 s = Simulator(dt=2e-3,plane=1,pave=0,graphical=1,ground_grade=.00,robot=SpiderWHydraulics,robot_kwargs=d,\
-    renderObjs=0)
+    render_objs=1, draw_contacts=0)
 last_t = 0
+x_low = LowPassFilter( gain=1.0, corner_frequency=1.2 )
+y_low = LowPassFilter( gain=1.0, corner_frequency=1.2 )
+z_low = LowPassFilter( gain=1.0, corner_frequency=1.2 )
+r_low = LowPassFilter( gain=1.0, corner_frequency=1.2 )
 while True:
     s.step()
-    if s.getSimTime()-last_t > .01:
+    global_time.updateTime(s.getSimTime())
+    if s.getSimTime()-last_t > .001:
         x =   -(stick.get_axis(1)+.15466)
         if x < 0:
             x *= 2
@@ -39,6 +46,11 @@ while True:
         if z < 0:
             z *= 2
         rot = stick.get_axis(2)+.226806
+
+        x   = x_low.update(x)
+        y   = y_low.update(y)
+        z   = z_low.update(z)
+        rot = r_low.update(rot)
         print x, y, z, rot
         s.robot.constantSpeedWalkSmart(\
             x_scale =   x,\
