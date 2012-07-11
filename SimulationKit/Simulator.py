@@ -333,7 +333,6 @@ class Simulator(object):
         self.window.flip()
 
     def draw_contact_force_vector( self, joint ):
-        return
         forces1, torques1, forces2, torques2 = joint.getFeedback()
         p1 = joint.position
         p2 = add3(p1, div3(forces1,1e3))
