@@ -601,16 +601,17 @@ class SpiderWHydraulics(MultiBody):
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
-    def constantSpeedWalkSmart( self ):
-        step_t          = 1.6
-        swing_f         = .85
-        down_f          = .05
-        up_f            = .10
+    def constantSpeedWalkSmart( self, x_scale=1.0, y_scale=0.0, z_scale=0.5, rot_scale=0.0 ):
+        step_t          = 2.6
+        swing_f         = 1.00
+        down_f          = 0.00
+        up_f            = 0.00
         stride_length   = 1.70    # length of a stride, m
         neutral_r_outer = inch2meter*65
         neutral_r_inner = inch2meter*70
         body_h          = inch2meter*60
-        foot_lift_h     = 0.35    # how high to lift feet in m
+        max_rot         = pi/3
+        foot_lift_h     = 0.55    # how high to lift feet in m
 
         foot_positions = []
 
@@ -631,9 +632,15 @@ class SpiderWHydraulics(MultiBody):
         # step_t is the time within the step
         step_phase = 2*(gait_phase%0.5)
 
-        x_off_stance = linearInterp(\
+        x_off_stance = y_off_stance = linearInterp(\
             (-0.5+down_f+up_f)*stride_length,\
             (+0.5)*stride_length,\
+            step_phase,\
+            0.0,\
+            1.0)
+        rot_stance = linearInterp(\
+            (-0.5+down_f+up_f)*max_rot,\
+            (+0.5)*max_rot,\
             step_phase,\
             0.0,\
             1.0)
@@ -641,17 +648,29 @@ class SpiderWHydraulics(MultiBody):
 
         if step_phase < swing_f:
             # Not transition
-            x_off_swing  = linearInterp(\
+            x_off_swing  = y_off_swing = linearInterp(\
                 (+0.5)*stride_length,\
                 (-0.5)*stride_length,\
                 step_phase,\
                 0.0,\
                 swing_f)
+            rot_swing = linearInterp(\
+                (+0.5)*max_rot,\
+                (-0.5)*max_rot,\
+                step_phase,\
+                0.0,\
+                swing_f)
             z_off_swing = foot_lift_h
         elif step_phase < swing_f + down_f:
-            x_off_swing  = linearInterp(\
+            x_off_swing  = y_off_swing = linearInterp(\
                 (-0.5)*stride_length,\
                 (-0.5+down_f)*stride_length,\
+                step_phase,\
+                swing_f,\
+                swing_f+down_f)
+            rot_swing = linearInterp(\
+                (+0.5)*max_rot,\
+                (-0.5)*max_rot,\
                 step_phase,\
                 swing_f,\
                 swing_f+down_f)
@@ -664,9 +683,15 @@ class SpiderWHydraulics(MultiBody):
                 swing_f+down_f)
         else:
             # foot up
-            x_off_swing  = linearInterp(\
+            x_off_swing  = y_off_swing = linearInterp(\
                 (-0.5+down_f)*stride_length,\
                 (-0.5+down_f+up_f)*stride_length,\
+                step_phase,\
+                swing_f+down_f,\
+                1)
+            rot_swing = linearInterp(\
+                (+0.5)*max_rot,\
+                (-0.5)*max_rot,\
                 step_phase,\
                 swing_f+down_f,\
                 1)
@@ -686,11 +711,17 @@ class SpiderWHydraulics(MultiBody):
             tmp = rotate3( self.dimensions.LEGS[i].ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
             x, y, z = add3( tmp, self.dimensions.LEGS[i].OFFSET_FROM_ROBOT_ORIGIN )
             if (i%2)^(gait_phase > step_phase):
-                x -= x_off_swing
-                z += z_off_swing
+                x -= x_off_swing*x_scale
+                y -= y_off_swing*y_scale
+                z += z_off_swing*z_scale
+                # apply rotation offsets
+                x,y = rot2( (x,y), rot_scale*rot_swing )
             else:
-                x -= x_off_stance
-                z += z_off_stance
+                x -= x_off_stance*x_scale
+                y -= y_off_stance*y_scale
+                z += z_off_stance*z_scale
+                # apply rotation offsets
+                x,y = rot2( (x,y), rot_scale*rot_stance )
             p = ( x, y, z )
             foot_positions.append(p)
         self.setDesiredFootPositions( foot_positions )
