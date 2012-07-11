@@ -51,6 +51,7 @@ class LimbController:
     def update(self, measured_pos_array, desired_pos_array):
         self.desired_pos_array = desired_pos_array
         actuator_commands=[]
+        print self.desired_pos_array
         if (len(self.desired_pos_array)!=self.amount_of_joints or
             len(measured_pos_array)!=self.amount_of_joints):
             logger.error("LimbController.update: position array sizes mismatched!",
