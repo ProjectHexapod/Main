@@ -17,8 +17,8 @@ RAISE_EVEN_TRIPOD = 6
 RAISE_ODD_TRIPOD = 7
 state = ORIENT
 
-delta_angle = .3
-lift_height = .2
+delta_angle = .5 # Choose a number less than 0.9 radians
+lift_height = .2 # Choose a number greater than .15 meters
 
 class RotateComposite:
     def __init__(self, delta_angle):
@@ -41,16 +41,10 @@ class LiftComposite:
     def isDone(self):
         return(self.evens.isDone() and self.odds.isDone())
     def update(self):
-        if self.height < 0:
-            if self.evens.isDone():
-                return(self.odds.update())
-            else:
-                return(self.evens.update())
+        if (self.height < 0 and self.evens.isDone()) or (self.height > 0 and not self.odds.isDone()):
+            return(self.odds.update())
         else:
-            if self.odds.isDone():
-                return(self.evens.update())
-            else:
-                return(self.odds.update())
+            return(self.evens.update())
 
 
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
@@ -87,7 +81,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         elif state == CCLOCKWISE: # Rotate the other direction
             path = RotateComposite(-delta_angle)
             state = RAISE_EVEN_TRIPOD
-        elif state == PAUSE: # Set state to 0 if you need 
+        elif state == PAUSE: # Set state to PAUSE if you need to debug something
             path = BodyPause(model, controller, 10)
 
         logger.info("State changed.", state=state)
