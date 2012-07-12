@@ -33,9 +33,12 @@ def sendCommandFromEventKey(event_key):
     command.controller = Command.PYGAME
     raw = command.raw_command.add()
     raw.index = event_key
-    raw.name = chr(event_key)
     raw.value = 1
-    sendCommand(command)
+    try:
+        raw.name = chr(event_key)
+        sendCommand(command)
+    except ValueError:
+	pass
 
 def sendCommandFromCommandName(name, val=1):
     command = Command()
