@@ -21,6 +21,10 @@ class TrapezoidalJointMove:
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
         self.done = False
+        
+        
+        print "self.final_angles: ", self.final_angles
+        print "self.target_angles: ", self.target_angles
 
     def isDone(self):
         return self.done
@@ -28,6 +32,8 @@ class TrapezoidalJointMove:
     def getNormalizedRemaining(self):
         """Returns a normalized vector that points toward the current goal point.
         """
+        print "self.final_angles: ", self.final_angles
+        print "self.target_angles: ", self.target_angles
         return normalize(self.final_angles - self.target_angles)
 
     def update(self):
