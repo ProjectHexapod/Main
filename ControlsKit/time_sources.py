@@ -15,7 +15,7 @@ class TimeSource:
                          initial_delta=self.initial_delta,
                          current_time=self.time,
                          bad_value=time)
-            raise ValueError("TimeSource.updateTime(): time must be increasing")
+            raise ValueError("TimeSource.updateTime(): time must be increasing.\nLast time: %f\nNew time:  %d"%(self.time,time))
         self.delta = time - self.time
         self.time = time
     def updateDelta(self, delta):
