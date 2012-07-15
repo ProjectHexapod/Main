@@ -1,12 +1,13 @@
-from ControlsKit import time_sources, leg_logger
+from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
+from UI import logger
 
 class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
         This class expects max velocity for angular velocity.
     """
     def __init__(self, leg_model, limb_controller, final_angles, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="TrapezoidalFootMove",
+        logger.info("New path.", path_name="TrapezoidalFootMove",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         

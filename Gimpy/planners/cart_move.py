@@ -1,7 +1,7 @@
-from ControlsKit import time_sources, LegModel, logger, LimbController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.math_utils import array
 from ControlsKit.leg_paths import TrapezoidalFootMove, Pause
-
+from UI import logger
 
 # Initialization
 model = LegModel()

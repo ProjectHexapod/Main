@@ -1,6 +1,6 @@
 from ConfigParser import ConfigParser
 from leg_model import LegModel
-from leg_logger import logger
+from UI import logger
 from math_utils import NUM_LEGS, rotateZ
 from scipy import array, pi
 import os.path as path

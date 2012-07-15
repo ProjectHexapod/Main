@@ -1,6 +1,6 @@
 from ControlsKit.filters import LowPassFilter
 from ControlsKit.leg_paths import Pause, TrapezoidalFootMove, PutFootOnGround
-from ControlsKit import time_sources, LegModel, leg_logger, LimbController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.math_utils import array
 
 # Initialization

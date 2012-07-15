@@ -1,4 +1,4 @@
-from leg_logger import logger
+from UI import logger
 from pid_controller import PIDController
 from ConfigParser import ConfigParser
 from os import path

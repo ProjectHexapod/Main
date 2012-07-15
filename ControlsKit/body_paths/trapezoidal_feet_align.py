@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
+from ControlsKit import time_sources, leg_model, leg_paths
 from ControlsKit.leg_paths import TrapezoidalJointMove
 from ControlsKit.math_utils import NUM_LEGS, array
+from UI import logger
 from scipy import zeros, append
 
 class TrapezoidalFeetAlign:
@@ -12,7 +13,7 @@ class TrapezoidalFeetAlign:
     #legs is a list of the numbers of the legs to be moved
     #final_angles contains the corresponding positions to move each leg indicated in legs to 
     def __init__(self, body_model, body_controller, legs, final_angles, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="TrapezoidalFeetAlign",
+        logger.info("New path.", path_name="TrapezoidalFeetAlign",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         

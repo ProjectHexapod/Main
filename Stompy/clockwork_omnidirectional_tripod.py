@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
+from ControlsKit import time_sources, BodyModel, BodyController
 from SimulationKit.helpers import *
 from math import *
 

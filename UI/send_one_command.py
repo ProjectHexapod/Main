@@ -2,7 +2,7 @@ import hashlib
 import network_args
 import sys
 
-from ControlsKit.leg_logger import logger
+#from ControlsKit.leg_logger import logger
 from robotControl_pb2 import Command
 from socket import socket, AF_INET, SOCK_STREAM, timeout
 

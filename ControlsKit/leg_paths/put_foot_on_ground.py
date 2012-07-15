@@ -1,9 +1,10 @@
-from ControlsKit import time_sources, leg_logger
+from ControlsKit import time_sources
 from ControlsKit.math_utils import Z
+from UI import logger
 
 class PutFootOnGround:
     def __init__(self, leg_model, limb_controller, velocity, accel_duration=0.1):
-        leg_logger.logger.info("New trajectory.", traj_name="PutFootOnGround",
+        logger.info("New trajectory.", traj_name="PutFootOnGround",
                     velocity=velocity, accel_duration=accel_duration)
         
         self.model = leg_model

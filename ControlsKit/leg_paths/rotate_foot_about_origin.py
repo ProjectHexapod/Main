@@ -1,5 +1,6 @@
-from ControlsKit import time_sources, leg_logger
+from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual, rotateZ, array
+from UI import logger
 from numpy import arctan2, sign, pi, cos, sin
 
 class RotateFootAboutOrigin:
@@ -7,7 +8,7 @@ class RotateFootAboutOrigin:
         NOTE: Max velocity and acceleration are required to be in angular rates.
     """
     def __init__(self, body_model, body_controller, leg_index, delta_angle, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="RotateFootAboutOrigin",
+        logger.info("New path.", path_name="RotateFootAboutOrigin",
                     delta_angle=delta_angle, max_velocity=max_velocity,
                     acceleration=acceleration)
         

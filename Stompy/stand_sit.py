@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
+from ControlsKit import time_sources, BodyModel, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF, array
 from ControlsKit.body_paths import TrapezoidalSitStand, BodyPause, TrapezoidalFeetAlign
+from UI import logger
 from scipy import zeros
 
 controller = BodyController()

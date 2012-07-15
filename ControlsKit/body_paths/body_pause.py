@@ -1,13 +1,14 @@
-from ControlsKit import time_sources, leg_model, body_model, body_controller, leg_paths, leg_logger
+from ControlsKit import time_sources, leg_model, body_model, body_controller, leg_paths
 from ControlsKit.leg_paths import Pause
 from scipy import zeros, append
 from ControlsKit.math_utils import NUM_LEGS, array
+from UI import logger
 
 class BodyPause:
     """This path pauses the hexapod body by pausing the legs
     """
     def __init__(self, body_model, body_controller, duration):
-        leg_logger.logger.info("New path.", path_name="BodyPause",
+        logger.info("New path.", path_name="BodyPause",
                                duration = duration)
         
         self.body = body_model

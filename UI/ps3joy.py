@@ -211,6 +211,7 @@ class decoder:
             print ex
 
     def sendRawData(self, data):
+        print data
         command = Command()
         command.controller = Command.PS3_CONTROLLER
         for datum, i in zip(data, range(len(data))):

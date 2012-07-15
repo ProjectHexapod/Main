@@ -4,7 +4,7 @@ from ConfigParser import ConfigParser
 from math_utils import *
 from filters import HighPassFilter
 import math
-from leg_logger import logger
+from UI import logger
 from os import path
 from SimulationKit.helpers import *
 

@@ -1,4 +1,4 @@
-from leg_logger import logger
+from UI import logger
 import math
 from math_utils import saturate
 import time_sources
