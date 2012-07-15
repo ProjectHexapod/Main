@@ -15,6 +15,8 @@ s = Simulator(dt=2e-3, plane=1, pave=0, graphical=1, ground_grade=0., robot=Spid
 last_t = 0
 
 
+def toScale(val):
+    return float(val) / 128. - 1
 try:
     while True:
         s.step()
@@ -24,10 +26,10 @@ try:
             if not cmd:
                 time.sleep(.5)
                 continue
-            x = cmd[18] - 128
-            y = cmd[17] - 128
-            z = cmd[20] - 128
-            rot = cmd[19] - 128
+            x = toScale(cmd[18])
+            y = toScale(cmd[17])
+            z = toScale(cmd[20])
+            rot = toScale(cmd[19])
             print x, y, z, rot
             s.robot.constantSpeedWalkSmart(\
                 x_scale =   x,\
