@@ -652,6 +652,20 @@ class MultiBody(object):
         self.joints.append(joint)
 
         return joint
+    def getCOM( self ):
+        """
+        Expensive function!  Calculate the center of mass.
+        Iterates over all bodies.
+        """
+        center_of_mass   = (0,0,0)
+        accumulated_mass = 0.0
+        for body in self.bodies:
+            center_of_mass = add3( center_of_mass,\
+                mul3(body.getPosition(), body.getMass().mass) )
+            accumulated_mass += body.getMass().mass
+        center_of_mass = div3(center_of_mass, accumulated_mass)
+        return center_of_mass
+
     def update(self):
         for o in self.update_objects:
             o.update()

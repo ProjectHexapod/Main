@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
+from ControlsKit import time_sources, BodyModel, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
 from scipy import zeros
 from ControlsKit.body_paths import RotateFeetAboutOrigin, BodyPause
@@ -14,7 +14,7 @@ RAISE_FIRST_TRIPOD = 1
 TURN_FIRST_TRIPOD = 2
 RAISE_SECOND_TRIPOD = 3
 TURN_SECOND_TRIPOD = 4
-FEET_ON_GROUND = 5
+FEET_ON_GROUND = leg_lift_height = .2
 RESOLVE = 6
 STAND = 7
 PAUSE = 8

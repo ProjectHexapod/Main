@@ -78,14 +78,19 @@ class Simulator(object):
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
                     ground_grade=0.0, ground_axis = (0,1,0), publish_int=5,\
                     robot=None, robot_kwargs={}, start_paused = True,\
-                    print_updates = False, renderObjs = False):
-        """If dt is set to 0, sim will try to match realtime
+                    print_updates = False, render_objs = False,
+                    draw_contacts = False, draw_support = False,
+                    draw_COM = False):
+        """
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
         pave turns on uneven pavement
         plane turns on a smooth plane to walk on
         publish_int is the interval between data publishes in timesteps
-        ground_slope is a 3x3 rotation matrix applied to the ground"""
+        ground_grade slopes the ground around ground_axis by tan(ground_grade)
+            degrees
+        robot_kwargs get passed to the robot when it is instantiated
+        """
         self.sim_t             = 0
         self.dt                = dt
         self.graphical         = graphical
@@ -98,7 +103,10 @@ class Simulator(object):
         self.real_t_start      = getSysTime()
         self.paused            = start_paused
         self.print_updates     = print_updates
-        self.renderObjs        = renderObjs
+        self.render_objs       = render_objs
+        self.draw_contacts     = draw_contacts
+        self.draw_support      = draw_support
+        self.draw_COM          = draw_COM
         
         # ODE space object: handles collision detection
         self.space = ode.Space()
@@ -328,19 +336,35 @@ class Simulator(object):
             self.draw_graphic(g)
             del g
         self.graphics = []
-        for j in self.contactlist:
-            self.draw_contact_force_vector(j)
+        if self.draw_contacts:
+            for j in self.contactlist:
+                self.draw_contact_force_vector(j)
+        if self.draw_COM:
+            center_of_mass = self.robot.getCOM()
+            accel_vec = (0,0,-9.8)
+            accel_vec = add3( accel_vec, \
+                div3(self.robot.core.getForce(),self.robot.core.getMass().mass) )
+            self.createCapsuleGraphic(\
+                center_of_mass,\
+                add3(center_of_mass,(0,0,-3) ))
+        if self.draw_support:
+            if len(self.contactlist) >= 3:
+                for i in range(len(self.contactlist)):
+                    self.createCapsuleGraphic(\
+                        self.contactlist[i].position,\
+                        self.contactlist[(i+1)%len(self.contactlist)].position )
         self.window.flip()
 
     def draw_contact_force_vector( self, joint ):
         forces1, torques1, forces2, torques2 = joint.getFeedback()
-        p1 = joint.position
-        p2 = add3(p1, div3(forces1,1e3))
+        offset = div3(forces1,2e3)
+        p1 = sub3(joint.position, offset)
+        p2 = add3(joint.position, offset)
         self.createCapsuleGraphic( p1, p2 )
     def draw_body(self, body):
         """Draw an ODE body."""
 
-        if hasattr( body, 'glObjPath' ) and self.renderObjs:
+        if hasattr( body, 'glObjPath' ) and self.render_objs:
             p = body.getPosition()
             r = body.getRotation()
             rot = makeOpenGLMatrix(r, p)
@@ -454,7 +478,7 @@ class Simulator(object):
         return body, geom
     def createBoxGeom( self, sizes=(1.0,1.0,1.0) ):
         return ode.GeomBox(self.space, sizes)
-    def createCapsuleGraphic( self, p1, p2, radius=0.05, detail=3 ):
+    def createCapsuleGraphic( self, p1, p2, radius=0.03, detail=3 ):
         """
         Creates a capsule graphic entity... does not exist in the physics
         engine, only graphical.
@@ -472,14 +496,10 @@ class Simulator(object):
         xa = norm3(cross(ya, za))
         ya = cross(za, xa)
         rot = (xa[0], ya[0], za[0], xa[1], ya[1], za[1], xa[2], ya[2], za[2])
-        offset = rotate3(rot, (0,0,capsule_len/2.0))
-        p = sub3(p1,offset)
+        p = p1
         gl_matrix = makeOpenGLMatrix(rot, p)
         glLibColor((255,0,0))
         gl_obj = glLibObjCapsule( radius, capsule_len, detail )
         gl_obj.gl_matrix = gl_matrix
         self.graphics.append(gl_obj)
-
-def getPower( l ):
-    return abs(l.getVel()*l.getForceLimit())
 

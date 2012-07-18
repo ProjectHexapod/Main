@@ -1,5 +1,6 @@
-from ControlsKit import time_sources, LegModel, logger, LimbController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.leg_paths import TrapezoidalJointMove, Pause
+from UI import logger
 
 
 # Initialization

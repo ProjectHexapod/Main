@@ -1,5 +1,6 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
+from ControlsKit import time_sources, BodyModel, BodyController
 from ControlsKit.body_paths import TrapezoidalFeetAlign, TripodGait
+from UI import logger
 
 controller = BodyController()
 model = BodyModel()

@@ -7,7 +7,7 @@ import threading
 import time
 
 from command_wrapper import CommandWrapper
-from ControlsKit import logger
+#from ControlsKit import logger
 from robotControl_pb2 import Command
 from socket import socket, AF_INET, SOCK_STREAM, timeout
 

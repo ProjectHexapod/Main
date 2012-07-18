@@ -3,7 +3,7 @@ import sys
 sys.path.append('..')
 
 from RealWorldKit import *
-from ControlsKit import logger
+from UI import logger
 from ControlsKit.import_planner import importPlanner
 from SimulationKit.pubsub import *
 

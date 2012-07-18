@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
+from ControlsKit import time_sources, leg_model, leg_paths
 from ControlsKit.leg_paths import RotateFootAboutOrigin
 from ControlsKit.math_utils import NUM_LEGS
+from UI import logger
 from scipy import zeros, append, array
 
 class RotateFeetAboutOrigin:
@@ -10,7 +11,7 @@ class RotateFeetAboutOrigin:
     #TODO: check to make sure all legs are on the ground first
     
     def __init__(self, body_model, body_controller, leg_indices, delta_angle, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="RotateFeetAboutOrigin",
+        logger.info("New path.", path_name="RotateFeetAboutOrigin",
                     delta_angle=delta_angle, leg_indices = leg_indices, max_velocity=max_velocity,
                     acceleration=acceleration)
         

@@ -1,7 +1,8 @@
-from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
+from ControlsKit import time_sources, leg_model, leg_paths
 from ControlsKit.leg_paths import TrapezoidalFootMove
 from ControlsKit.math_utils import NUM_LEGS, array
 from scipy import zeros, append
+from UI import logger
 
 class TrapezoidalSitStand:
     """This path moves the hexapod body straight up or down with a trapezoidal velocity profile
@@ -10,7 +11,7 @@ class TrapezoidalSitStand:
     #TODO: check to make sure all legs are on the ground first
     
     def __init__(self, body_model, body_controller, final_height, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="TrapezoidalSitStand",
+        logger.info("New path.", path_name="TrapezoidalSitStand",
                     final_height=final_height, max_velocity=max_velocity,
                     acceleration=acceleration)
         

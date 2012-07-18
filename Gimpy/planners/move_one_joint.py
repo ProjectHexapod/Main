@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, LegModel, logger, LimbController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.leg_paths import Pause, MoveJoint
 from ControlsKit.math_utils import HP, KP
+from UI import logger
 
 
 # Initialization

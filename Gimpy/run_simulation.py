@@ -4,10 +4,9 @@ sys.path.append('planners')
 from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnStand
 from SimulationKit.helpers import *
-from ControlsKit import logger
 from ControlsKit.import_planner import importPlanner
 from ControlsKit.time_sources import global_time
-from UI import InputServer
+from UI import InputServer, logger
 
 
 # Check command-line arguments to find the planner module

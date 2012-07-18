@@ -5,9 +5,8 @@ sys.path.append('planners')
 from SimulationKit import Simulator
 from SimulationKit.Robots import SpiderWHydraulics
 from SimulationKit.helpers import *
-#from ControlsKit import logger
 from ControlsKit.import_planner import importPlanner
-from UI import InputServer
+from UI import InputServer, logger
 
 # Check command-line arguments to find the planner module
 update = importPlanner()

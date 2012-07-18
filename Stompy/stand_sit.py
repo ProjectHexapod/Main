@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
-from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
+from ControlsKit import time_sources, BodyModel, BodyController
+from ControlsKit.math_utils import NUM_LEGS, LEG_DOF, array
 from ControlsKit.body_paths import TrapezoidalSitStand, BodyPause, TrapezoidalFeetAlign
+from UI import logger
 from scipy import zeros
 
 controller = BodyController()
@@ -25,10 +26,16 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         path = BodyPause(model, controller, 1)
         state = ORIENT
     
+    i = 0; #index variable for orienting legs
+    
     if path.isDone():
+        print "State of Stand_sit is ", state
         if state == ORIENT:
-            path = TrapezoidalFeetAlign(model, controller, [0, -.5,  2], 2, 1)
-            state =STAND
+            path = TrapezoidalFeetAlign(model, controller, [i], [array([0, -1.4,  2.2])], 2, 1)
+            i += 1
+            if i == 6:
+                i = 0
+                state =STAND
         elif state == STAND:
             path = TrapezoidalSitStand(model, controller, -1.75, 2, 1)
             state = SIT
@@ -42,6 +49,6 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     # Evaluate path and joint control
     target_angle_matrix  = path.update()
-
+    print "target_angle_matrix in stand_sit: ", target_angle_matrix
     # Send commands
     return controller.update(model.getJointAngleMatrix(), target_angle_matrix)

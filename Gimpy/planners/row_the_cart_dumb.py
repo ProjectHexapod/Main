@@ -1,7 +1,7 @@
-from ControlsKit import time_sources, LegModel, leg_logger, LimbController
+from ControlsKit import time_sources, LegModel, LimbController
 from ControlsKit.leg_paths import Pause, TrapezoidalFootMove, PutFootOnGround
 from ControlsKit.math_utils import array, Z
-
+from UI import logger
 
 # Initialization
 model = LegModel()
@@ -45,7 +45,7 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
                                        array(points[index]),
                                        0.5, 0.4)
         index = (index+1)%len(points)
-        leg_logger.logger.info("State changed.", state=state)
+        logger.info("State changed.", state=state)
 
     # Evaluate path and joint control
     controller.update(model.getJointAngles(), path.update())

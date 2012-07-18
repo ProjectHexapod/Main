@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, leg_model, leg_paths, leg_logger
+from ControlsKit import time_sources, leg_model, leg_paths
 from ControlsKit.leg_paths import TrapezoidalFootMove
 from ControlsKit.math_utils import NUM_LEGS, array
+from UI import logger
 from scipy import zeros, append
 
 class TrapezoidalFeetLiftLower:
@@ -10,7 +11,7 @@ class TrapezoidalFeetLiftLower:
     #TODO: check to make sure all legs are on the ground first
     
     def __init__(self, body_model, body_controller, leg_indices, delta_heights, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="TrapezoidalFeetLiftLower",
+        logger.info("New path.", path_name="TrapezoidalFeetLiftLower",
                     leg_indices= leg_indices, delta_height=delta_heights, 
                     max_velocity=max_velocity, acceleration=acceleration)
         

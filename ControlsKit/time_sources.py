@@ -1,4 +1,4 @@
-from leg_logger import logger
+from UI import logger
 
 class TimeSource:
     def __init__(self, initial_time=0.0, initial_delta=0.0):
