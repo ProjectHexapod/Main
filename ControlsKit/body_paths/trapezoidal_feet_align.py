@@ -23,12 +23,12 @@ class TrapezoidalFeetAlign:
         self.feet_path = []
         self.legs = legs
         
-        print "final_angles: ", final_angles
+        print "final_angles in TrapezoidalFeetAlign:__init__: ", final_angles
         
         for i in range (len(self.legs)):
             self.final_joint_positions[self.legs[i]] = final_angles[self.legs[i]]
             
-            print "target joint angles: ", self.final_joint_positions
+            print "target joint anglesin TrapezoidalFeetAlign:__init__: ", self.final_joint_positions
             
         for i in range (NUM_LEGS):
             self.feet_path.append(TrapezoidalJointMove(
@@ -61,6 +61,11 @@ class TrapezoidalFeetAlign:
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
             self.done = reduce(lambda x,y: x and y, map(TrapezoidalJointMove.isDone, self.feet_path))
-            print "trapezoidal_feet_align return: ", [self.feet_path[i].update() for i in range (NUM_LEGS)]
-        return [self.feet_path[i].update() for i in range (NUM_LEGS)]
+            print "trapezoidal_feet_align update return: ", [self.feet_path[i].update() for i in range (NUM_LEGS)]
+        #return [self.feet_path[i].update() for i in range (NUM_LEGS)]
+        returnthis = []
+        for i in range (NUM_LEGS):
+            print "updating trapezoidal_joint_move ", i
+            returnthis.append(self.feet_path[i].update())
+        return returnthis
         

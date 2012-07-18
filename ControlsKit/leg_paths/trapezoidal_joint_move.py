@@ -1,6 +1,7 @@
 from ControlsKit import time_sources
-from ControlsKit.math_utils import normalize, norm, arraysAreEqual
+from ControlsKit.math_utils import normalize, norm, arraysAreEqual, array
 from UI import logger
+import numpy
 
 class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
@@ -24,8 +25,8 @@ class TrapezoidalJointMove:
         self.done = False
         
         
-        print "self.final_angles: ", self.final_angles
-        print "self.target_angles: ", self.target_angles
+        print "self.final_angles in TrapezoidalJointMove:__init__: ", self.final_angles
+        print "self.target_angles in TrapezoidalJointMove:__init__: ", self.target_angles
 
     def isDone(self):
         return self.done
@@ -33,9 +34,13 @@ class TrapezoidalJointMove:
     def getNormalizedRemaining(self):
         """Returns a normalized vector that points toward the current goal point.
         """
-        print "self.final_angles: ", self.final_angles
-        print "self.target_angles: ", self.target_angles
-        return normalize(self.final_angles - self.target_angles)
+        print "self.final_angles in TrapezoidalJointMove", id(self), ":getNormalizedRemaining: ", self.final_angles
+        print "self.target_angles in TrapezoidalJointMove", id(self), ":getNormalizedRemaining: ", self.target_angles
+        print "getNormalizedRemaining returning normalize(", self.final_angles - self.target_angles, ")"
+        if numpy.allclose(self.final_angles, self.target_angles):
+            return array([0., 0., 0.])
+        else: 
+            return normalize(self.final_angles - self.target_angles)
 
     def update(self):
         if not self.isDone():
