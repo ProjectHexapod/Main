@@ -26,5 +26,6 @@ class PutFootOnGround:
             self.done = True
             self.stop_watch.smoothStop(self.accel_duration)
         if not self.isDone():
+            self.target_foot_pos = list(self.target_foot_pos)
             self.target_foot_pos[Z] -= self.vel * self.stop_watch.getDelta()
         return self.model.jointAnglesFromFootPos(self.target_foot_pos)

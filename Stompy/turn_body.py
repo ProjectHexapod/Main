@@ -1,6 +1,6 @@
 from ControlsKit import time_sources, BodyModel, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
-from ControlsKit.body_paths import RotateFeetAboutOrigin, BodyPause, TrapezoidalFeetAlign, TrapezoidalFeetLiftLower
+from ControlsKit.body_paths import RotateFeetAboutOrigin, BodyPause, TrapezoidalFeetAlign, TrapezoidalFeetLiftLower, GoToStandardHexagon
 from UI import logger
 from scipy import zeros
 
@@ -60,7 +60,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         
     if path.isDone():
         if state == ORIENT: # Put the feet in some reasonable location that they might have started from
-            path = TrapezoidalFeetAlign(model, controller, [0, -.5,  2], 2, 1)
+            path = GoToStandardHexagon(model, controller, 2, 1)
             state = HALF_RAISE
         elif state == HALF_RAISE: # Raise one tripod half the total travel
             path = LiftComposite(-lift_height/2)

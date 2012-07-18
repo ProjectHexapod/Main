@@ -123,9 +123,7 @@ class GoToStandardHexagon:
         elif not self.phase_done:
             #logically and all of the isdone results from the joint move paths
             self.phase_done = all(map(lambda p: p.isDone(), active_paths))
-        
-        print self.state
-        
+            
         if not self.done:
             for i in active_index:
                 self.final_joint_positions[i] = self.foot_paths[i].update()

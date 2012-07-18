@@ -1,14 +1,12 @@
-from ControlsKit import time_sources
-from ControlsKit.math_utils import normalize, norm, arraysAreEqual, array
-from UI import logger
-import numpy
+from ControlsKit import time_sources, leg_logger
+from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 
 class TrapezoidalJointMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
         This class expects max velocity for angular velocity.
     """
     def __init__(self, leg_model, limb_controller, final_angles, max_velocity, acceleration):
-        logger.info("New path.", path_name="TrapezoidalFootMove",
+        leg_logger.logger.info("New path.", path_name="TrapezoidalFootMove",
                     final_angles=final_angles, max_velocity=max_velocity,
                     acceleration=acceleration)
         
@@ -23,10 +21,6 @@ class TrapezoidalJointMove:
         # Unit vector pointing towards the destination
         self.dir = self.getNormalizedRemaining()
         self.done = False
-        
-        
-        print "self.final_angles in TrapezoidalJointMove:__init__: ", self.final_angles
-        print "self.target_angles in TrapezoidalJointMove:__init__: ", self.target_angles
 
     def isDone(self):
         return self.done
@@ -34,13 +28,7 @@ class TrapezoidalJointMove:
     def getNormalizedRemaining(self):
         """Returns a normalized vector that points toward the current goal point.
         """
-        print "self.final_angles in TrapezoidalJointMove", id(self), ":getNormalizedRemaining: ", self.final_angles
-        print "self.target_angles in TrapezoidalJointMove", id(self), ":getNormalizedRemaining: ", self.target_angles
-        print "getNormalizedRemaining returning normalize(", self.final_angles - self.target_angles, ")"
-        if numpy.allclose(self.final_angles, self.target_angles):
-            return array([0., 0., 0.])
-        else: 
-            return normalize(self.final_angles - self.target_angles)
+        return normalize(self.final_angles - self.target_angles)
 
     def update(self):
         if not self.isDone():

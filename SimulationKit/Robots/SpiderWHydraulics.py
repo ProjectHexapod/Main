@@ -380,7 +380,7 @@ class SpiderWHydraulics(MultiBody):
                 body2        = foot, \
                 axis         = mul3(calf_axis,-1),\
                 #spring_const = 0,\
-                spring_const = -00e3,\
+                spring_const = -80e3,\
                 hi_stop      = 0.1,\
                 lo_stop      = 0.0,\
                 neutral_position = 0.0,\
