@@ -18,7 +18,7 @@ class TrapezoidalFeetLiftLower:
         self.model = body_model
         self.controller = body_controller
         
-        self.final_joint_positions = self.controller.getTargetJointAngleMatrix()#self.model.getJointAngleMatrix()
+        self.final_joint_positions = self.controller.getTargetJointAngleMatrix()
         
         self.foot_paths = [None for i in range(NUM_LEGS)]
         

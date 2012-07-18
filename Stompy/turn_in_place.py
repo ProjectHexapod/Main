@@ -2,7 +2,7 @@ from ControlsKit import time_sources, BodyModel, logger, BodyController
 from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
 from scipy import zeros
 from ControlsKit.body_paths import RotateFeetAboutOrigin, BodyPause
-from ControlsKit.body_paths import TrapezoidalFeetAlign, TrapezoidalFeetLiftLower
+from ControlsKit.body_paths import TrapezoidalFeetAlign, TrapezoidalFeetLiftLower, GoToStandardHexagon
 from ControlsKit.leg_paths import TrapezoidalFootMove
 
 controller=BodyController()
@@ -53,7 +53,8 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
                 [i*leg_lift_height for i in LIFT_TRIPOD_135], 2, 1)
             state = TURN_SECOND_TRIPOD
         elif state == TURN_SECOND_TRIPOD:
-            path = RotateFeetAboutOrigin(model, controller, [1,3,5], TURN_ANGLE, 2, 1)
+            #path = RotateFeetAboutOrigin(model, controller, [1,3,5], TURN_ANGLE, 2, 1)
+            path = GoToStandardHexagon(model, controller, 2, 1)
             state = FEET_ON_GROUND
         elif state == FEET_ON_GROUND:
             leg_lift_height = .2

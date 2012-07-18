@@ -53,8 +53,6 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     time_sources.global_time.updateTime(time)
     model.setSensorReadings(leg_sensor_matrix, imu_orientation, imu_angular_rates)
     
-    target_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
-    
     if path is None:
         path = BodyPause(model, controller, .1)
         state = ORIENT
