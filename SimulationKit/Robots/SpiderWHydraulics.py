@@ -603,15 +603,15 @@ class SpiderWHydraulics(MultiBody):
         return foot_positions
     def constantSpeedWalkSmart( self, x_scale=1.0, y_scale=0.0, z_scale=0.5, rot_scale=0.0 ):
         step_t          = 2.6
-        swing_f         = 1.00
-        down_f          = 0.00
-        up_f            = 0.00
+        swing_f         = 0.60
+        down_f          = 0.20
+        up_f            = 0.20
         stride_length   = 1.70    # length of a stride, m
         neutral_r_outer = inch2meter*65
         neutral_r_inner = inch2meter*70
-        body_h          = inch2meter*60
+        body_h          = inch2meter*70
         max_rot         = pi/3
-        foot_lift_h     = 0.55    # how high to lift feet in m
+        foot_lift_h     = 0.85    # how high to lift feet in m
 
         foot_positions = []
 
@@ -669,8 +669,8 @@ class SpiderWHydraulics(MultiBody):
                 swing_f,\
                 swing_f+down_f)
             rot_swing = linearInterp(\
-                (+0.5)*max_rot,\
                 (-0.5)*max_rot,\
+                (-0.5+down_f)*max_rot,\
                 step_phase,\
                 swing_f,\
                 swing_f+down_f)
@@ -690,8 +690,8 @@ class SpiderWHydraulics(MultiBody):
                 swing_f+down_f,\
                 1)
             rot_swing = linearInterp(\
-                (+0.5)*max_rot,\
-                (-0.5)*max_rot,\
+                (-0.5+down_f)*max_rot,\
+                (-0.5+down_f+up_f)*max_rot,\
                 step_phase,\
                 swing_f+down_f,\
                 1)
