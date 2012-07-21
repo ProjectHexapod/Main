@@ -13,7 +13,8 @@ class PutFootOnGround:
         self.accel_duration = accel_duration
         
         self.done = self.model.isFootOnGround()
-        self.target_foot_pos = self.controller.desired_pos_array
+        self.target_foot_pos = self.model.footPosFromLegState(
+            [self.controller.getDesiredPosAngle(),self.model.getShockDepth()])
         self.stop_watch = time_sources.StopWatch(active=False)
         if not self.done:
             self.stop_watch.smoothStart(self.accel_duration)

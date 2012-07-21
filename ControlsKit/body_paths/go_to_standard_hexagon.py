@@ -7,7 +7,7 @@ class GoToStandardHexagon:
     """This path aligns all the feet to a given set of angles via a trapezoidal velocity profile
     """
         
-    def __init__(self, body_model, body_controller, max_velocity, acceleration):
+    def __init__(self, body_model, body_controller, max_velocity=2.0, acceleration=1.0):
         leg_logger.logger.info("New path.", path_name="GoToStandardHexagon",
                     max_velocity=max_velocity, acceleration=acceleration)
         
@@ -33,17 +33,19 @@ class GoToStandardHexagon:
         self.state = self.LOWER_ALL
         
         self.on_ground = [leg.isFootOnGround() for leg in self.model.getLegs()]
+        self.in_place = [False]*6
         
         # Put all 6 legs in place
         for i in range(NUM_LEGS):
-            if self.on_ground[i] == False:
+            if not self.on_ground[i] and not self.in_place[i]:
                 self.foot_paths[i]=TrapezoidalFootMove(
                     self.model.getLegs()[i],
                     self.controller.getLimbControllers()[i],
                     self.lifted,
                     self.max_velocity, self.acceleration)
+                self.in_place[i] = True
         
-        if not any(self.on_ground):
+        if all(self.in_place):
             self.state = self.STAND
         
         self.phase_done = False
@@ -52,7 +54,7 @@ class GoToStandardHexagon:
     def isDone(self):
         return self.done    
     
-    def update(self):
+    def update(self):        
         active_paths = []
         active_index = []
         for i in range(NUM_LEGS):
@@ -61,18 +63,21 @@ class GoToStandardHexagon:
                 active_paths.append(self.foot_paths[i])
 
         if self.phase_done:
+            self.on_ground = [leg.isFootOnGround() for leg in self.model.getLegs()]
+            
             if self.state == self.LOWER_ALL:
                 for i in range(NUM_LEGS):
-                    if self.on_ground[i] == False:
+                    if not self.on_ground[i]:
                         self.foot_paths[i]=PutFootOnGround(
                             self.model.getLegs()[i],
                             self.controller.getLimbControllers()[i],
-                            self.max_velocity, self.acceleration)
+                            self.max_velocity/5)
+                        self.in_place[i] = True
                 self.state = self.EVENS
                 self.phase_done = False
             elif self.state == self.EVENS:
                 for i in range(NUM_LEGS):
-                    if not i%2:
+                    if not i%2 and not self.in_place[i]:
                         self.foot_paths[i]=TrapezoidalFootMove(
                             self.model.getLegs()[i],
                             self.controller.getLimbControllers()[i],
@@ -82,16 +87,17 @@ class GoToStandardHexagon:
                 self.phase_done = False
             elif self.state == self.LOWER_EVENS:
                 for i in range(NUM_LEGS):
-                    if self.on_ground[i] == False:
+                    if not self.on_ground[i]:
                         self.foot_paths[i]=PutFootOnGround(
                             self.model.getLegs()[i],
                             self.controller.getLimbControllers()[i],
-                            self.max_velocity, self.acceleration)
+                            self.max_velocity/5)
+                        self.in_place[i] = True
                 self.state = self.ODDS
                 self.phase_done = False
             elif self.state == self.ODDS:
                 for i in range(NUM_LEGS):
-                    if i%2:
+                    if i%2 and not self.in_place[i]:
                         self.foot_paths[i]=TrapezoidalFootMove(
                             self.model.getLegs()[i],
                             self.controller.getLimbControllers()[i],
@@ -101,11 +107,12 @@ class GoToStandardHexagon:
                 self.phase_done = False
             elif self.state == self.LOWER_ODDS:
                 for i in range(NUM_LEGS):
-                    if self.on_ground[i] == False:
+                    if not self.on_ground[i]:
                         self.foot_paths[i]=PutFootOnGround(
                             self.model.getLegs()[i],
                             self.controller.getLimbControllers()[i],
-                            self.max_velocity, self.acceleration)
+                            self.max_velocity/5)
+                        self.in_place[i] = True
                 self.state = self.STAND
                 self.phase_done = False
             elif self.state == self.STAND:
@@ -123,7 +130,6 @@ class GoToStandardHexagon:
         elif not self.phase_done:
             #logically and all of the isdone results from the joint move paths
             self.phase_done = all(map(lambda p: p.isDone(), active_paths))
-            
         if not self.done:
             for i in active_index:
                 self.final_joint_positions[i] = self.foot_paths[i].update()

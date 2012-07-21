@@ -18,14 +18,16 @@ RAISE_EVEN_TRIPOD = 6
 RAISE_ODD_TRIPOD = 7
 state = ORIENT
 
-delta_angle = .5 # Choose a number less than 0.9 radians
+delta_angle = .4 # Choose a number less than 0.9 radians
 lift_height = .2 # Choose a number greater than .15 meters
+tip_speed = 2.0 # Max speed of end effector
+tip_accel = 5.0 # Max acceleration of end effector
 
 class RotateComposite:
     def __init__(self, delta_angle):
         self.delta_angle = delta_angle
-        self.evens = RotateFeetAboutOrigin(model, controller, [0,2,4], delta_angle, 2, 5)
-        self.odds = RotateFeetAboutOrigin(model, controller, [1,3,5], -delta_angle, 2, 5)    
+        self.evens = RotateFeetAboutOrigin(model, controller, [0,2,4], delta_angle, tip_speed, tip_accel)
+        self.odds = RotateFeetAboutOrigin(model, controller, [1,3,5], -delta_angle, tip_speed, tip_accel)    
     def isDone(self):
         return(self.evens.isDone() and self.odds.isDone())
     def update(self):
@@ -37,8 +39,8 @@ class RotateComposite:
 class LiftComposite:
     def __init__(self, height):
         self.height = height
-        self.evens = TrapezoidalFeetLiftLower(model, controller, [0,2,4], height, 2, 5)        
-        self.odds = TrapezoidalFeetLiftLower(model, controller, [1,3,5], -height, 2, 5)
+        self.evens = TrapezoidalFeetLiftLower(model, controller, [0,2,4], height, tip_speed, tip_accel)        
+        self.odds = TrapezoidalFeetLiftLower(model, controller, [1,3,5], -height, tip_speed, tip_accel)
     def isDone(self):
         return(self.evens.isDone() and self.odds.isDone())
     def update(self):
@@ -60,7 +62,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
         
     if path.isDone():
         if state == ORIENT: # Put the feet in some reasonable location that they might have started from
-            path = GoToStandardHexagon(model, controller, 2, 1)
+            path = GoToStandardHexagon(model, controller)
             state = HALF_RAISE
         elif state == HALF_RAISE: # Raise one tripod half the total travel
             path = LiftComposite(-lift_height/2)
@@ -89,4 +91,5 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     target_angle_matrix  = path.update()
 
     # Send commands
+
     return controller.update(model.getJointAngleMatrix(), target_angle_matrix)
