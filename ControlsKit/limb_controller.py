@@ -1,6 +1,6 @@
 from UI import logger
 from pid_controller import PIDController
-from ConfigParser import ConfigParser
+import ConfigParser
 from os import path
 from scipy import array
 from math import *
@@ -8,33 +8,40 @@ from time_sources import global_time
 
 class LimbController:
     def __init__(self, config_file="leg_model.conf", section="LimbController"):
-        c = ConfigParser()
+        c = ConfigParser.ConfigParser()
         if not path.exists(path.abspath(config_file)):
             print 'Config file %s not found!'%config_file
             raise IOError
         c.read(config_file)
         
+        def readFloatWithDefault( c, sec, name, val=0.0 ):
+            try:
+                return c.getfloat(sec,name)
+            except ConfigParser.Error, mesg:
+                print mesg
+                print "Using default value %f for %s:%s"%(val,sec,name)
+                return val
         # Default PID values
         self.kparray = array(
-                [c.getfloat(section,'yaw_p'),
-                c.getfloat(section,'hp_p'),
-                c.getfloat(section,'kp_p')])
+                [readFloatWithDefault(c, section,'yaw_p'),
+                 readFloatWithDefault(c, section,'hp_p'),
+                 readFloatWithDefault(c, section,'kp_p')])
         self.kiarray = array(
-                [c.getfloat(section,'yaw_i'),
-                c.getfloat(section,'hp_i'),
-                c.getfloat(section,'kp_i')])
+                [readFloatWithDefault(c, section,'yaw_i'),
+                 readFloatWithDefault(c, section,'hp_i'),
+                 readFloatWithDefault(c, section,'kp_i')])
         self.kdarray = array(
-                [c.getfloat(section,'yaw_d'),
-                c.getfloat(section,'hp_d'),
-                c.getfloat(section,'kp_d')])
+                [readFloatWithDefault(c, section,'yaw_d'),
+                 readFloatWithDefault(c, section,'hp_d'),
+                 readFloatWithDefault(c, section,'kp_d')])
         self.kffarray = array(
-                [c.getfloat(section,'yaw_ff'),
-                c.getfloat(section,'hp_ff'),
-                c.getfloat(section,'kp_ff')])
+                [readFloatWithDefault(c, section,'yaw_ff'),
+                 readFloatWithDefault(c, section,'hp_ff'),
+                 readFloatWithDefault(c, section,'kp_ff')])
         self.kfaarray = array(
-                [c.getfloat(section,'yaw_fa'),
-                c.getfloat(section,'hp_fa'),
-                c.getfloat(section,'kp_fa')])
+                [readFloatWithDefault(c, section,'yaw_fa'),
+                 readFloatWithDefault(c, section,'hp_fa'),
+                 readFloatWithDefault(c, section,'kp_fa')])
         
         self.length_rate_commands=[]
         
