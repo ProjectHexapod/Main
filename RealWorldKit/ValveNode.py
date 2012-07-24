@@ -3,8 +3,8 @@ from math import *
 
 # XXX This is to constrain the speed of the pistons in the leg cart.  The
 # valves are capable of driving them much faster than is safe.
-SATURATION_LIMIT = 150.0
-RATE_EQUALS_ZERO_TOLERANCE = 0.001
+SATURATION_LIMIT = 100.0
+RATE_EQUALS_ZERO_TOLERANCE = 0.0001
 
 class ValveNode(BusNode):
     def __init__(self, bus, node_id, name, bore, rod, lpm, e_deadband=0, r_deadband=0):
