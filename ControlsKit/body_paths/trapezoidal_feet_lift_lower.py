@@ -19,7 +19,7 @@ class TrapezoidalFeetLiftLower:
         self.model = body_model
         self.controller = body_controller
         
-        self.final_joint_positions = self.controller.getTargetJointAngleMatrix()#self.model.getJointAngleMatrix()
+        self.final_joint_positions = self.controller.getTargetJointAngleMatrix()
         
         self.foot_paths = [None for i in range(NUM_LEGS)]
         
@@ -45,7 +45,8 @@ class TrapezoidalFeetLiftLower:
         if not self.done:
             #logically and all of the isdone results from the trapezoidal joint move paths
             activepaths=[self.foot_paths[i] for i in self.leg_indices]
-            self.done = reduce(lambda x,y: x and y, map(TrapezoidalFootMove.isDone, activepaths))
+            self.done = all(map(lambda p: p.isDone(), activepaths))
+
             for i in self.leg_indices:
                 self.final_joint_positions[i] = self.foot_paths[i].update()
             return self.final_joint_positions

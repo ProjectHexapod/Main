@@ -23,8 +23,9 @@ class BodyModel:
         self.CHASSIS_BOTTOM_Z = c.getfloat(section, "chassis_bottom_z")
 
     def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
+        self.leg_sensor_matrix = leg_sensor_matrix
         for i in range(NUM_LEGS):
-            self.legs[i].setSensorReadings(*leg_sensor_matrix[i])
+            self.legs[i].setSensorReadings(*self.leg_sensor_matrix[i])
             self.legs[i].updateFootOnGround()
         self.imu_orientation = imu_orientation
         self.imu_angular_rates = imu_angular_rates

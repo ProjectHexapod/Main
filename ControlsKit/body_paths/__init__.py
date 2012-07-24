@@ -5,3 +5,4 @@ from trapezoidal_feet_align import TrapezoidalFeetAlign
 from trapezoidal_feet_lift_lower import TrapezoidalFeetLiftLower
 from trapezoidal_sit_stand import TrapezoidalSitStand
 from tripod_gait import TripodGait
+from go_to_standard_hexagon import GoToStandardHexagon
