@@ -12,7 +12,6 @@ import time
 import threading
 
 # Check command-line arguments to find the planner module
-update, controller = importPlanner()
 retval = importPlanner()
 # FIXME: This is to allow backwards compatibility to older versions of importPlanner
 if type(retval) == tuple:
