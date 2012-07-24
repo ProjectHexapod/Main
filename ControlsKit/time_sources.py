@@ -32,7 +32,8 @@ class TimeSource:
     def getTime(self):
         return self.time
     def getDelta(self):
-        return self.delta
+        # FIXME: Hacked explosion prevention
+        return min( max(1e-3,self.delta), 0.1 )
 
 global_time = TimeSource()
 
