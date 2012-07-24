@@ -4,6 +4,7 @@ from ConfigParser import ConfigParser
 from os import path
 from scipy import array
 from math import *
+from time_sources import global_time
 
 class LimbController:
     def __init__(self, config_file="leg_model.conf", section="LimbController"):
@@ -26,17 +27,28 @@ class LimbController:
                 [c.getfloat(section,'yaw_d'),
                 c.getfloat(section,'hp_d'),
                 c.getfloat(section,'kp_d')])
+        self.kffarray = array(
+                [c.getfloat(section,'yaw_ff'),
+                c.getfloat(section,'hp_ff'),
+                c.getfloat(section,'kp_ff')])
+        self.kfaarray = array(
+                [c.getfloat(section,'yaw_fa'),
+                c.getfloat(section,'hp_fa'),
+                c.getfloat(section,'kp_fa')])
         
         self.length_rate_commands=[]
         
         self.pid_controllers=[PIDController() for i in range(len(self.kparray)) ]
-        self.updateGainConstants(self.kparray,self.kiarray,self.kdarray)
+        self.updateGainConstants(self.kparray,self.kiarray,self.kdarray,self.kffarray, self.kfaarray)
         self.amount_of_joints=len(self.kp)
+        self.desired_vel_array = array([0,0,0])
                     
-    def updateGainConstants(self, kparray, kiarray, kdarray):
+    def updateGainConstants(self, kparray, kiarray, kdarray, kffarray, kfaarray):
         self.kp = kparray
         self.ki = kiarray
         self.kd = kdarray
+        self.kff= kffarray
+        self.kfa= kfaarray
         
         if (len(self.kp)!=len(self.ki) or len(self.ki)!=len(self.kd) ):
             logger.error("LimbController.init: Gain array sizes mismatched!",
@@ -45,10 +57,16 @@ class LimbController:
                         kdarray=self.kd)
             raise ValueError("LimbController.init: Gain array sizes mismatched!")
         
-        for controller, kp, ki, kd in zip(self.pid_controllers, self.kp, self.ki, self.kd):
-            controller.updateGainConstants(kp, ki, kd)
+        for controller, kp, ki, kd, kff, kfa in zip(self.pid_controllers, self.kp, self.ki, self.kd, self.kff, self.kfa):
+            controller.updateGainConstants(kp, ki, kd, kff, kfa)
     
     def update(self, measured_pos_array, desired_pos_array):
+        if hasattr(self, 'desired_pos_array'):
+            # update target velocities
+            for i in range(3):
+                self.desired_vel_array[i] = (desired_pos_array[i]-self.desired_pos_array[i])/global_time.getDelta()
+        else:
+            self.desired_vel_array = array([0,0,0])
         self.desired_pos_array = desired_pos_array
         actuator_commands=[]
         if (len(self.desired_pos_array)!=self.amount_of_joints or
