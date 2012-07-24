@@ -3,10 +3,21 @@ import math
 from math_utils import saturate
 import time_sources
 from hysteretic_peak_detector import HystereticPeakDetector
+from filters import LowPassFilter
 
 class PIDController:
-    def __init__(self, kp=0, ki=0, kd=0):
-        self.updateGainConstants(kp, ki, kd)
+    def __init__(self, kp=0, ki=0, kd=0, kff=None, kfa=None, derivative_corner=10):
+        """
+        kp = proportional gain term
+        ki = integral gain term
+        kd = derivative gain term
+        kff= feed forward velocity term.  Applies signal relative to dervative of the target
+        derivative_corner = corner frequency of derivative filter.
+        Our real world signals are too noisy to use without significant filtering
+        kfa= feed forward acceleration term.  Applies signal relative to the difference in
+        rate of change of the target and desired.
+        """
+        self.updateGainConstants(kp, ki, kd, kff, kfa)
         
         self.max_movement_rate = 1e6
 
@@ -18,18 +29,30 @@ class PIDController:
         self.peak_detector=HystereticPeakDetector(0.0, -1.0,
         1.0, math.pi/20)
 
-    def updateGainConstants(self, kp, ki, kd):
+        self.d_lowpass = LowPassFilter( gain=1.0, corner_frequency=derivative_corner )
+
+    def updateGainConstants(self, kp, ki, kd, kff = None, kfa=None):
         self.kp = kp
         self.ki = ki
         self.kd = kd
+        if kff != None:
+            self.kff = kff
+        else:
+            self.kff = 0.0
+        if kfa != None:
+            self.kfa = kfa
+        else:
+            self.kfa = 0.0
 
     def update(self, desired_pos, measured_pos):
+        delta_time = time_sources.global_time.getDelta()
         
         # bound the desired position
         desired_pos = self.boundDesiredPosition(desired_pos)
 
+        desired_vel = (desired_pos - self.prev_desired_pos)/delta_time
+
         error = desired_pos - measured_pos
-        delta_time = time_sources.global_time.getDelta()
 
         self.peak_detector.update(error)
         
@@ -77,12 +100,14 @@ class PIDController:
                 raise ValueError(errorstring)
         
         self.integral_error_accumulator += self.ki * error * delta_time
-        derivative_error = (error - self.prev_error) / delta_time
+        derivative_error = self.d_lowpass.update((error - self.prev_error) / delta_time)
+
+        velocity_error = desired_vel - derivative_error
 
         self.prev_error = error
         self.prev_desired_pos = desired_pos
         
-        actuator_command = self.kp * error + self.integral_error_accumulator + self.kd * derivative_error
+        actuator_command = self.kp * error + self.integral_error_accumulator + self.kd * derivative_error + self.kff*desired_vel + self.kfa*velocity_error
         actuator_command = self.boundActuatorCommand(actuator_command, measured_pos)
         
         return actuator_command
