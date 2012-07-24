@@ -8,6 +8,8 @@ class EncoderNode(BusNode):
         self.offset = offset
         self.bias = bias
         self.angle = None
+        self.sin_value = 0
+        self.cos_value = 0
 
     def startProbe(self):
         data = chr(0)*4
@@ -20,9 +22,14 @@ class EncoderNode(BusNode):
         length = sqrt(sin_value**2 + cos_value**2)
         # XXX Sanity check that the output is sane.  Should be done better.
         #assert length >= 200 and length <= 1200
+        self.sin_value = sin_value
+        self.cos_value = cos_value
         self.angle = clipAngle(atan2(sin_value, cos_value) * self.gain + self.offset)
         #print self.name, "sin", sin_value, "cos", cos_value, "angle", self.angle*180/pi
-
+    def getSinValue(self):
+        return self.sin_value
+    def getCosValue(self):
+        return self.cos_value
     def getAngle(self):
         return self.angle
     def getAngleDeg(self):
