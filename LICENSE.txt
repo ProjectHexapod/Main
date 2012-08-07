@@ -6,8 +6,8 @@ www.projecthexapod.com
 SimulationKit, plotter and Examples: James Whong ( james dot whong at gmail dot
 com ) Dan Cody ( dtydc5 at gmail dot com ) helpers.py and MultiBody.py branched
 from arkaein's excellent pyode ragdoll tutorial at
-http://monsterden.net/software/ragdoll-pyode-tutorial OpenGL Library by Ian
-Mallett (A.K.A. Geometrian), with minor mods by Whong.
+http://monsterden.net/software/ragdoll-pyode-tutorial
+OpenGL Library by Ian Mallett (A.K.A. Geometrian), with minor mods by Whong.
 
 Electronics: James Whong ( james dot whong at gmail dot com )
 
