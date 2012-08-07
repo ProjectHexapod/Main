@@ -8,66 +8,10 @@ from pubsub import *
 from helpers import *
 from UI.send_one_command import sendCommandFromEventKey
 
-class Paver(object):
-    def __init__( self, center, sim ):
-        """
-        center is the initial center of the pavement
-        space is the ODE space in which to place our pavement tiles
-        """
-        self.center = list(center)
-        self.sim    = sim
-        self.pavement = {}
-        for x in range(center[0]-5,center[0]+6):
-            for y in range(center[1]-5,center[1]+6):
-                self.pave(x,y)
-    def recenter( self, new_center ):
-        """
-        Figure out if we need to shift our pavement tiles.
-        """
-        if new_center[0] + .5 < self.center[0]:
-            self.center[0] -= 1
-            x = self.center[0]-5
-            for y in range( self.center[1]-5,self.center[1]+6):
-                self.unpave(x+11, y)
-                self.pave(  x,   y)
-        elif new_center[0] - .5 > self.center[0]:
-            self.center[0] += 1
-            x = self.center[0]+5
-            for y in range( self.center[1]-5,self.center[1]+6):
-                self.unpave(x-11, y)
-                self.pave(  x,   y)
-
-        if new_center[1] + .5 < self.center[1]:
-            self.center[1] -= 1
-            y = self.center[1]-5
-            for x in range( self.center[0]-5,self.center[0]+6):
-                self.unpave(     x, y+11)
-                self.pave(       x, y)
-        elif new_center[1] - .5 > self.center[1]:
-            self.center[1] += 1
-            y = self.center[1]+5
-            for x in range(self.center[0]-5,self.center[0]+6):
-                self.unpave(    x, y-11)
-                self.pave(      x, y)
-    def pave(self,x,y):
-        """Put down a pavement tile"""
-        g = self.sim.createBoxGeom((0.99,0.99,0.99))
-        g.color = (0,128,0,255)
-        pos = (x,y,random.uniform(-0.5, -0.3))
-        rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
-        rand_unit = div3(rand_unit, len3(rand_unit))
-        rot = calcRotMatrix(rand_unit, random.uniform(0,0*2*pi/120))
-        g.setPosition(pos)
-        g.setRotation(rot)
-        self.pavement[(x,y)]=g
-    def unpave(self,x,y):
-        """Pull up a pavement tile"""
-        g = self.pavement[(x,y)]
-        self.sim.space.remove(g)
-        del self.pavement[(x,y)]
-        del g
-    def getGeoms(self):
-        return self.pavement.values()
+#FIXME:  This belongs somewhere common...
+import os.path as path
+graphics_dir = path.dirname(path.realpath(__file__))+'/graphics'
+terrain_dir  = path.dirname(path.realpath(__file__))+'/terrain'
 
 class Simulator(object):
     """
@@ -80,11 +24,10 @@ class Simulator(object):
                     robot=None, robot_kwargs={}, start_paused = True,\
                     print_updates = False, render_objs = False,
                     draw_contacts = False, draw_support = False,
-                    draw_COM = False):
+                    draw_COM = False, height_map = None, terrain_scales=(1,1,1)):
         """
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
-        pave turns on uneven pavement
         plane turns on a smooth plane to walk on
         publish_int is the interval between data publishes in timesteps
         ground_grade slopes the ground around ground_axis by tan(ground_grade)
@@ -94,8 +37,8 @@ class Simulator(object):
         self.sim_t             = 0
         self.dt                = dt
         self.graphical         = graphical
-        self.pave              = pave
         self.plane             = plane
+        self.height_map        = height_map
         self.publish_int       = publish_int
         self.n_iterations      = 0
         self.real_t_laststep   = 0
@@ -135,9 +78,41 @@ class Simulator(object):
             self.ground = g
             rot_matrix = calcRotMatrix(ground_axis, atan(ground_grade))
             self.ground.setRotation(rot_matrix)
-
-        if self.pave:
-            self.paver = Paver( (0,0), self )
+            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
+        if self.height_map:
+            self.mesh = []
+            surf = pygame.image.load(os.path.join(terrain_dir, self.height_map))
+            dims = surf.get_size()
+            self.ground_offset = (-dims[0]/2.0,-dims[1]/2.0,0.0)
+            # Create a list of lists.  Map color to height.
+            # Black = 0 height
+            # Pure white = 1 meter height
+            self.height_map = [[(terrain_scales[2]/(4*255.))*sum(surf.get_at((x,y))) for y in range(dims[1])] for x in range(dims[0])]
+            max_height = 0
+            # TODO: Verify height normalization correct in some other way
+            for row in self.height_map:
+                for h in row:
+                    max_height = max(max_height, h)
+            print "Max height: %f"%max_height
+            verts = []
+            faces = []
+            for x in range(dims[0]):
+                for y in range(dims[1]):
+                    #verts.append((x+self.ground_offset[0],\
+                    #              y+self.ground_offset[1],\
+                    #              self.height_map[x][y]) )
+                    verts.append((x+self.ground_offset[0],\
+                                  y+self.ground_offset[1],\
+                                  self.height_map[y][x]) )
+            def i_from_xy(x,y):
+                return dims[1]*x+y
+            for x in range(dims[0]-1):
+                for y in range(dims[1]-1):
+                    faces.append( (i_from_xy(x,y),     i_from_xy(x+1,y), i_from_xy(x,y+1)) )
+                    faces.append( (i_from_xy(x+1,y+1), i_from_xy(x,y+1), i_from_xy(x+1,y)) )
+            tm = ode.TriMeshData()
+            tm.build(verts, faces)
+            self.ground_geom = ode.GeomTriMesh( tm, self.space )
 
         # This is the publisher where we make data available
         self.publisher = Publisher(5055)
@@ -151,6 +126,7 @@ class Simulator(object):
         self.publisher.addToCatalog( 'body.height', lambda: self.robot.getPosition()[2] )
         self.publisher.addToCatalog( 'body.distance', lambda: len3(self.robot.getPosition()) )
         self.publisher.addToCatalog( 'body.velocity', lambda: len3(self.robot.getVelocity()) )
+
 
         if self.graphical:
             # initialize pygame
@@ -168,7 +144,8 @@ class Simulator(object):
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
             self.cam_pos = (0,10,10)
-            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
+            if self.height_map:
+                self.ground_obj = glLibObjMap(self.height_map,normals=GLLIB_VERTEX_NORMALS,heightscalar=1.0)
     def getSimTime(self):
         return self.sim_t
     def getPaused( self ):
@@ -233,9 +210,6 @@ class Simulator(object):
                 self.publisher.publish()
 
 
-            # repave the road
-            if self.pave:
-                self.paver.recenter(self.robot.getPosition())
         real_t_elapsed = max(getSysTime()-real_t_present, 0.0001)
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
@@ -305,7 +279,7 @@ class Simulator(object):
         """
         self.real_t_lastrender = getSysTime()
         p = self.robot.getPosition()
-        self.camera.center = add3(p, (0,0,0.3))
+        self.camera.center = add3(p, (0,-2,-0.6))
         self.camera.pos = add3(p,self.cam_pos)
         self.window.clear()
         self.camera.set_camera()
@@ -314,9 +288,8 @@ class Simulator(object):
         # Thu 22 Mar 2012 07:30:51 PM EDT
         self.robot.colorTorque()
 
-        if self.pave:
-            for g in self.paver.getGeoms():
-                self.draw_geom(g)
+        if hasattr(self, "ground_obj"):
+            self.ground_obj.draw(self.ground_offset)
         for g in self.geoms:
             self.draw_geom(g)
         prune = []
@@ -472,6 +445,12 @@ class Simulator(object):
         body.geom = geom
 
         body.color = (128,0,0,255)
+        body.glObjPath = graphics_dir+"/2003eclipse.obj"
+        # This is the constant offset for aligning with the physics element
+        # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+        offset = (0,0,0)
+        rot    = calcRotMatrix( (0,0,1), 0 )
+        body.glObjOffset = makeOpenGLMatrix( rot, offset, (1.0,1.0,1.0) )
         body.setPosition( pos )
         self.bodies.append(body)
 
