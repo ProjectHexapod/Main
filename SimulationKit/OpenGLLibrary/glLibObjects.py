@@ -232,13 +232,13 @@ class glLibObjMap(glLibObj):
                 if normals == GLLIB_VERTEX_NORMALS:
                     Normals = []
                     t = 0
-                    flip = True
+                    flip = False
                     leftpoint = rightpoint = uppoint = downpoint = False
-                    normalpoint = (x,  heightscalar*mapdata[z  ][x  ],z  )
-                    if x-1 >= 0:                 leftpoint   = (x-1,heightscalar*mapdata[z  ][x-1],z  )#; print "leftpoint", leftpoint
-                    if x+1 <= len(mapdata[0])-1: rightpoint  = (x+1,heightscalar*mapdata[z  ][x+1],z  )#; print "rightpoint", rightpoint
-                    if z+1 <= len(mapdata)-1:    uppoint     = (x,  heightscalar*mapdata[z+1][x  ],z+1)#; print "uppoint", uppoint
-                    if z-1 >= 0:                 downpoint   = (x,  heightscalar*mapdata[z-1][x  ],z-1)#; print "downpoint", downpoint
+                    normalpoint = (x,  z, heightscalar*mapdata[z  ][x  ])
+                    if x-1 >= 0:                 leftpoint   = (x-1,z,  heightscalar*mapdata[z  ][x-1])#; print "leftpoint", leftpoint
+                    if x+1 <= len(mapdata[0])-1: rightpoint  = (x+1,z,  heightscalar*mapdata[z  ][x+1])#; print "rightpoint", rightpoint
+                    if z+1 <= len(mapdata)-1:    uppoint     = (x,  z+1,heightscalar*mapdata[z+1][x  ])#; print "uppoint", uppoint
+                    if z-1 >= 0:                 downpoint   = (x,  z-1,heightscalar*mapdata[z-1][x  ])#; print "downpoint", downpoint
                     if rightpoint and uppoint:   Normals.append(GetNormal(normalpoint,rightpoint,uppoint,flip))
                     if uppoint and leftpoint:    Normals.append(GetNormal(normalpoint,uppoint,leftpoint,flip))
                     if leftpoint and downpoint:  Normals.append(GetNormal(normalpoint,leftpoint,downpoint,flip))
@@ -268,10 +268,10 @@ class glLibObjMap(glLibObj):
             for x in xrange(len(zrow1)-1):
                 if normals == GLLIB_FACE_NORMALS:
                     Normals = []
-                    Normals.append(GetNormal((x,  heightscalar*mapdata[z-1  ][x-1  ],z  ),(x,  heightscalar*mapdata[z-1+1][x-1  ],z+1),(x+1,heightscalar*mapdata[z-1  ][x-1+1],z  )))
-                    Normals.append(GetNormal((x,  heightscalar*mapdata[z-1+1][x-1  ],z+1),(x+1,heightscalar*mapdata[z-1+1][x-1+1],z+1),(x,  heightscalar*mapdata[z-1  ][x-1  ],z  )))
-                    Normals.append(GetNormal((x+1,heightscalar*mapdata[z-1  ][x-1+1],z  ),(x,  heightscalar*mapdata[z-1  ][x-1  ],z  ),(x+1,heightscalar*mapdata[z-1+1][x-1+1],z+1)))
-                    Normals.append(GetNormal((x+1,heightscalar*mapdata[z-1+1][x-1+1],z+1),(x+1,heightscalar*mapdata[z-1  ][x-1+1],z  ),(x,  heightscalar*mapdata[z-1+1][x-1  ],z+1)))
+                    Normals.append(GetNormal((x,  z,  heightscalar*mapdata[z-1  ][x-1  ]),(x,  z+1,heightscalar*mapdata[z-1+1][x-1  ]),(x+1,z,  heightscalar*mapdata[z-1  ][x-1+1])))
+                    Normals.append(GetNormal((x,  z+1,heightscalar*mapdata[z-1+1][x-1  ]),(x+1,z+1,heightscalar*mapdata[z-1+1][x-1+1]),(x,  z,  heightscalar*mapdata[z-1  ][x-1  ])))
+                    Normals.append(GetNormal((x+1,z,  heightscalar*mapdata[z-1  ][x-1+1]),(x,  z,  heightscalar*mapdata[z-1  ][x-1  ]),(x+1,z+1,heightscalar*mapdata[z-1+1][x-1+1])))
+                    Normals.append(GetNormal((x+1,z+1,heightscalar*mapdata[z-1+1][x-1+1]),(x+1,z,  heightscalar*mapdata[z-1  ][x-1+1]),(x,  z+1,heightscalar*mapdata[z-1+1][x-1  ])))
                     xcomp = []; ycomp = []; zcomp = []
                     for n in Normals:
                         xcomp.append(n[0]);ycomp.append(n[1]);zcomp.append(n[2])
@@ -281,16 +281,16 @@ class glLibObjMap(glLibObj):
                     glNormal3f(*normal)
                 if normals == GLLIB_VERTEX_NORMALS: glNormal3f(*normalmap[z-1  ][x-1  ])
                 if texturing: glTexCoord2f(*texturemap[z  ][x  ])
-                glVertex3f(x,  heightscalar*zrow1[x-1  ],z  )
+                glVertex3f(x,  z,   heightscalar*zrow1[x-1  ])
                 if normals == GLLIB_VERTEX_NORMALS: glNormal3f(*normalmap[z-1  ][x-1+1])
                 if texturing: glTexCoord2f(*texturemap[z  ][x+1])
-                glVertex3f(x+1,heightscalar*zrow1[x-1+1],z  )
+                glVertex3f(x+1,z,   heightscalar*zrow1[x-1+1])
                 if normals == GLLIB_VERTEX_NORMALS: glNormal3f(*normalmap[z-1+1][x-1+1])
                 if texturing: glTexCoord2f(*texturemap[z+1][x+1])
-                glVertex3f(x+1,heightscalar*zrow2[x-1+1],z+1)
+                glVertex3f(x+1,z+1, heightscalar*zrow2[x-1+1])
                 if normals == GLLIB_VERTEX_NORMALS: glNormal3f(*normalmap[z-1+1][x-1  ])
                 if texturing: glTexCoord2f(*texturemap[z+1][x  ])
-                glVertex3f(x,  heightscalar*zrow2[x-1  ],z+1)
+                glVertex3f(x,  z+1, heightscalar*zrow2[x-1  ])
         glEnd()
         if alreadytexturing: glEnable(GL_TEXTURE_2D)
         glEndList()
