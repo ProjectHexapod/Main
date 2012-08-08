@@ -169,6 +169,8 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     def __init__(self, world):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         self.lenrate = 0
+        self.max_retract_rate = -1e9
+        self.max_extend_rate  =  1e9
 
     def getAngRate( self ):
         # FIXME: the hip yaw joints move in the opposite direction you command them to.
@@ -366,10 +368,13 @@ class MultiBody(object):
     def buildBody(self):
         """This is for the subclasses to define."""
         return
-    def addBody(self, p1, p2, radius, mass=None):
+    def addBody(self, p1, p2, radius, mass=None, upVec=(0,0,1)):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
         radius to the ragdoll.
+        upVec is the vector pointing up.  This resolves the ambiguity of
+        orienting a rotationally symetrical object between 2 points.
+        TODO: If p1->p2 || upVec, this will crash
         """
 
         p1 = add3(p1, self.offset)
@@ -400,8 +405,9 @@ class MultiBody(object):
 
         # define body rotation automatically from body axis
         za = norm3(sub3(p2, p1))
-        if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
-        else: xa = (0.0, 1.0, 0.0)
+        #if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
+        #else: xa = (0.0, 1.0, 0.0)
+        xa = upVec
         ya = cross(za, xa)
         xa = norm3(cross(ya, za))
         ya = cross(za, xa)
@@ -646,6 +652,20 @@ class MultiBody(object):
         self.joints.append(joint)
 
         return joint
+    def getCOM( self ):
+        """
+        Expensive function!  Calculate the center of mass.
+        Iterates over all bodies.
+        """
+        center_of_mass   = (0,0,0)
+        accumulated_mass = 0.0
+        for body in self.bodies:
+            center_of_mass = add3( center_of_mass,\
+                mul3(body.getPosition(), body.getMass().mass) )
+            accumulated_mass += body.getMass().mass
+        center_of_mass = div3(center_of_mass, accumulated_mass)
+        return center_of_mass
+
     def update(self):
         for o in self.update_objects:
             o.update()

@@ -1,4 +1,4 @@
-from leg_logger import logger
+from UI import logger
 
 class TimeSource:
     def __init__(self, initial_time=0.0, initial_delta=0.0):
@@ -15,7 +15,7 @@ class TimeSource:
                          initial_delta=self.initial_delta,
                          current_time=self.time,
                          bad_value=time)
-            raise ValueError("TimeSource.updateTime(): time must be increasing")
+            raise ValueError("TimeSource.updateTime(): time must be increasing.\nLast time: %f\nNew time:  %d"%(self.time,time))
         self.delta = time - self.time
         self.time = time
     def updateDelta(self, delta):
@@ -32,7 +32,8 @@ class TimeSource:
     def getTime(self):
         return self.time
     def getDelta(self):
-        return self.delta
+        # FIXME: Hacked explosion prevention
+        return min( max(1e-3,self.delta), 0.1 )
 
 global_time = TimeSource()
 

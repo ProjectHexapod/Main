@@ -1,6 +1,6 @@
 from ConfigParser import ConfigParser
 from leg_model import LegModel
-from leg_logger import logger
+from UI import logger
 from math_utils import NUM_LEGS, rotateZ
 from scipy import array, pi
 import os.path as path
@@ -23,8 +23,9 @@ class BodyModel:
         self.CHASSIS_BOTTOM_Z = c.getfloat(section, "chassis_bottom_z")
 
     def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
+        self.leg_sensor_matrix = leg_sensor_matrix
         for i in range(NUM_LEGS):
-            self.legs[i].setSensorReadings(*leg_sensor_matrix[i])
+            self.legs[i].setSensorReadings(*self.leg_sensor_matrix[i])
             self.legs[i].updateFootOnGround()
         self.imu_orientation = imu_orientation
         self.imu_angular_rates = imu_angular_rates
@@ -72,7 +73,7 @@ class BodyModel:
         """
         hip_offset = self.getHipOffset(leg_index)
         translated = array(body_coord)-array([hip_offset[0], hip_offset[1], 0])
-        leg_coord = self.rotateBody2Leg(translated)
+        leg_coord = self.rotateBody2Leg(leg_index, translated)
         return leg_coord
     
     def getHipOffset(self,leg_index):

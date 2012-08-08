@@ -1,5 +1,6 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
-from ControlsKit.body_paths import TrapezoidalFeetAlign, TripodGait
+from ControlsKit import time_sources, BodyModel, BodyController
+from ControlsKit.body_paths import GoToStandardHexagon, TripodGait, BodyPause
+from UI import logger
 
 controller = BodyController()
 model = BodyModel()
@@ -18,9 +19,13 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     time_sources.global_time.updateTime(time)
     model.setSensorReadings(leg_sensor_matrix, imu_orientation, imu_angular_rates)
     
-    if path is None or path.isDone():
+    if path is None:
+        path = BodyPause(model, controller, .1)
+        state = ORIENT
+    
+    if path.isDone():
         if state == ORIENT:
-            path = TrapezoidalFeetAlign(model, controller, [0, -.7,  2], 2, 1)
+            path = GoToStandardHexagon(model, controller)
             state = WALK
         elif state == WALK:
             path = TripodGait(model)

@@ -1,5 +1,6 @@
-from ControlsKit import time_sources, leg_logger
+from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual, rotateZ, array
+from UI import logger
 from numpy import arctan2, sign, pi, cos, sin
 
 class RotateFootAboutOrigin:
@@ -7,9 +8,12 @@ class RotateFootAboutOrigin:
         NOTE: Max velocity and acceleration are required to be in angular rates.
     """
     def __init__(self, body_model, body_controller, leg_index, delta_angle, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="RotateFootAboutOrigin",
+        logger.info("New path.", path_name="RotateFootAboutOrigin",
                     delta_angle=delta_angle, max_velocity=max_velocity,
                     acceleration=acceleration)
+        
+        self.file_name = "rotate_foot_about_origin_data_leg%d.csv" % leg_index
+        self.file = open(self.file_name, "w")
         
         self.body_model = body_model
         self.leg_index = leg_index
@@ -23,8 +27,8 @@ class RotateFootAboutOrigin:
         self.ang_acc = acceleration
         
         
-        self.body_coord = self.body_model.transformLeg2Body(self.leg_index, self.leg_model.footPosFromLegState([self.limb_controller.getDesiredPosAngle(), self.leg_model.getShockDepth()]))
-        self.body_coord = self.body_model.transformLeg2Body(self.leg_index,[2,0,-1])
+        self.body_coord = self.body_model.transformLeg2Body(self.leg_index, self.leg_model.footPosFromLegState([self.limb_controller.getDesiredPosAngle(), 0]))#self.leg_model.getShockDepth()]))
+        #self.body_coord = self.body_model.transformLeg2Body(self.leg_index,[2,0,-1])
         self.init_angle = arctan2(self.body_coord[1], self.body_coord[0])
         self.last_commanded_angle = self.init_angle
         self.target_angle = self.init_angle
@@ -38,6 +42,8 @@ class RotateFootAboutOrigin:
         self.sw = time_sources.StopWatch()
         self.sw.smoothStart(1)#self.accel_duration)
         # FIXME:the above line should have accel_duration reinstated.
+        
+    
 
     def isDone(self):
         return self.done
@@ -64,5 +70,9 @@ class RotateFootAboutOrigin:
             if not sign(remaining_angle) == self.dir:
                 self.done = True
                 self.target_foot_pos = [self.radius*cos(self.delta_angle + self.init_angle), self.radius*sin(self.delta_angle + self.init_angle), self.init_height]
+        a = self.body_model.transformLeg2Body(self.leg_index,self.leg_model.getFootPos())
+        b = self.target_foot_pos
+        
+        self.file.write("%f,%f,%f,%f,%f,%f\n" % (a[0],a[1],a[2],b[0],b[1],b[2]))
 
         return self.leg_model.jointAnglesFromFootPos(self.body_model.transformBody2Leg(self.leg_index, self.target_foot_pos))

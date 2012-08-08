@@ -48,6 +48,7 @@ from bluetooth import *
 import select
 import fcntl
 import hashlib
+import network_args
 import os
 import time
 import sys                    
@@ -185,11 +186,13 @@ class decoder:
         self.outlen = len(buttons) + len(axes)           
         self.inactivity_timeout = inactivity_timeout
 
-        self.host = "localhost"  # TODO: parameterize me
-        self.port = 7337  # TODO: parameterize me
+        self.host = network_args.host
+        self.port = network_args.port
         self.sock = socket(AF_INET, SOCK_STREAM)
         self.sock.settimeout(SOCKET_TIMEOUT)
-        self.password = ""  # TODO: parameterize me
+        self.password = network_args.password
+        print self.password, " ", self.host,":",self.port
+        self.connected = False
         self.connect()
 
     step_active = 1
@@ -197,13 +200,15 @@ class decoder:
     step_error = 3
 
     def connect(self):
-        self.sock.connect( (self.host, self.port) )
-        challenge = self.sock.recv(64)
-        response = hashlib.sha1(self.password + challenge).hexdigest()
         try:
+            self.sock.connect( (self.host, self.port) )
+            challenge = self.sock.recv(64)
+            response = hashlib.sha1(self.password + challenge).hexdigest()
             self.sock.send(response)
-        except timeout:
-            print "Sending timed out, buffer probably full"
+            self.connected = True
+        except Exception, ex:
+            print self.sock.getpeername()
+            print ex
 
     def sendRawData(self, data):
         command = Command()

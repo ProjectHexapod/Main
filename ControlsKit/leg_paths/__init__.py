@@ -7,3 +7,4 @@ from put_foot_on_ground import PutFootOnGround
 from rotate_foot_about_origin import RotateFootAboutOrigin
 from trapezoidal_foot_move import TrapezoidalFootMove
 from trapezoidal_joint_move import TrapezoidalJointMove
+from dumb_foot_move import DumbFootMove

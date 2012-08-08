@@ -6,67 +6,12 @@ from OpenGLLibrary import *
 
 from pubsub import *
 from helpers import *
+from UI.send_one_command import sendCommandFromEventKey
 
-class Paver(object):
-    def __init__( self, center, sim ):
-        """
-        center is the initial center of the pavement
-        space is the ODE space in which to place our pavement tiles
-        """
-        self.center = list(center)
-        self.sim    = sim
-        self.pavement = {}
-        for x in range(center[0]-5,center[0]+6):
-            for y in range(center[1]-5,center[1]+6):
-                self.pave(x,y)
-    def recenter( self, new_center ):
-        """
-        Figure out if we need to shift our pavement tiles.
-        """
-        if new_center[0] + .5 < self.center[0]:
-            self.center[0] -= 1
-            x = self.center[0]-5
-            for y in range( self.center[1]-5,self.center[1]+6):
-                self.unpave(x+11, y)
-                self.pave(  x,   y)
-        elif new_center[0] - .5 > self.center[0]:
-            self.center[0] += 1
-            x = self.center[0]+5
-            for y in range( self.center[1]-5,self.center[1]+6):
-                self.unpave(x-11, y)
-                self.pave(  x,   y)
-
-        if new_center[1] + .5 < self.center[1]:
-            self.center[1] -= 1
-            y = self.center[1]-5
-            for x in range( self.center[0]-5,self.center[0]+6):
-                self.unpave(     x, y+11)
-                self.pave(       x, y)
-        elif new_center[1] - .5 > self.center[1]:
-            self.center[1] += 1
-            y = self.center[1]+5
-            for x in range(self.center[0]-5,self.center[0]+6):
-                self.unpave(    x, y-11)
-                self.pave(      x, y)
-    def pave(self,x,y):
-        """Put down a pavement tile"""
-        g = self.sim.createBoxGeom((0.99,0.99,0.99))
-        g.color = (0,128,0,255)
-        pos = (x,y,random.uniform(-0.5, -0.3))
-        rand_unit = tuple([random.uniform(-1,1) for i in range(3)])
-        rand_unit = div3(rand_unit, len3(rand_unit))
-        rot = calcRotMatrix(rand_unit, random.uniform(0,0*2*pi/120))
-        g.setPosition(pos)
-        g.setRotation(rot)
-        self.pavement[(x,y)]=g
-    def unpave(self,x,y):
-        """Pull up a pavement tile"""
-        g = self.pavement[(x,y)]
-        self.sim.space.remove(g)
-        del self.pavement[(x,y)]
-        del g
-    def getGeoms(self):
-        return self.pavement.values()
+#FIXME:  This belongs somewhere common...
+import os.path as path
+graphics_dir = path.dirname(path.realpath(__file__))+'/graphics'
+terrain_dir  = path.dirname(path.realpath(__file__))+'/terrain'
 
 class Simulator(object):
     """
@@ -76,25 +21,35 @@ class Simulator(object):
     """
     def __init__(self, dt=1e-2, end_t=0, graphical=True, pave=False, plane=True,\
                     ground_grade=0.0, ground_axis = (0,1,0), publish_int=5,\
-                    robot=None, robot_kwargs={}, start_paused = True):
-        """If dt is set to 0, sim will try to match realtime
+                    robot=None, robot_kwargs={}, start_paused = True,\
+                    print_updates = False, render_objs = False,
+                    draw_contacts = False, draw_support = False,
+                    draw_COM = False, height_map = None, terrain_scales=(1,1,1)):
+        """
         if end_t is set to 0, sim will run indefinitely
         if graphical is set to true, graphical interface will be started
-        pave turns on uneven pavement
         plane turns on a smooth plane to walk on
         publish_int is the interval between data publishes in timesteps
-        ground_slope is a 3x3 rotation matrix applied to the ground"""
+        ground_grade slopes the ground around ground_axis by tan(ground_grade)
+            degrees
+        robot_kwargs get passed to the robot when it is instantiated
+        """
         self.sim_t             = 0
         self.dt                = dt
         self.graphical         = graphical
-        self.pave              = pave
         self.plane             = plane
+        self.height_map        = height_map
         self.publish_int       = publish_int
         self.n_iterations      = 0
         self.real_t_laststep   = 0
         self.real_t_lastrender = 0
         self.real_t_start      = getSysTime()
         self.paused            = start_paused
+        self.print_updates     = print_updates
+        self.render_objs       = render_objs
+        self.draw_contacts     = draw_contacts
+        self.draw_support      = draw_support
+        self.draw_COM          = draw_COM
         
         # ODE space object: handles collision detection
         self.space = ode.Space()
@@ -123,9 +78,41 @@ class Simulator(object):
             self.ground = g
             rot_matrix = calcRotMatrix(ground_axis, atan(ground_grade))
             self.ground.setRotation(rot_matrix)
-
-        if self.pave:
-            self.paver = Paver( (0,0), self )
+            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
+        if self.height_map:
+            self.mesh = []
+            surf = pygame.image.load(os.path.join(terrain_dir, self.height_map))
+            dims = surf.get_size()
+            self.ground_offset = (-dims[0]/2.0,-dims[1]/2.0,0.0)
+            # Create a list of lists.  Map color to height.
+            # Black = 0 height
+            # Pure white = 1 meter height
+            self.height_map = [[(terrain_scales[2]/(4*255.))*sum(surf.get_at((x,y))) for y in range(dims[1])] for x in range(dims[0])]
+            max_height = 0
+            # TODO: Verify height normalization correct in some other way
+            for row in self.height_map:
+                for h in row:
+                    max_height = max(max_height, h)
+            print "Max height: %f"%max_height
+            verts = []
+            faces = []
+            for x in range(dims[0]):
+                for y in range(dims[1]):
+                    #verts.append((x+self.ground_offset[0],\
+                    #              y+self.ground_offset[1],\
+                    #              self.height_map[x][y]) )
+                    verts.append((x+self.ground_offset[0],\
+                                  y+self.ground_offset[1],\
+                                  self.height_map[y][x]) )
+            def i_from_xy(x,y):
+                return dims[1]*x+y
+            for x in range(dims[0]-1):
+                for y in range(dims[1]-1):
+                    faces.append( (i_from_xy(x,y),     i_from_xy(x+1,y), i_from_xy(x,y+1)) )
+                    faces.append( (i_from_xy(x+1,y+1), i_from_xy(x,y+1), i_from_xy(x+1,y)) )
+            tm = ode.TriMeshData()
+            tm.build(verts, faces)
+            self.ground_geom = ode.GeomTriMesh( tm, self.space )
 
         # This is the publisher where we make data available
         self.publisher = Publisher(5055)
@@ -140,6 +127,7 @@ class Simulator(object):
         self.publisher.addToCatalog( 'body.distance', lambda: len3(self.robot.getPosition()) )
         self.publisher.addToCatalog( 'body.velocity', lambda: len3(self.robot.getVelocity()) )
 
+
         if self.graphical:
             # initialize pygame
             pygame.init()
@@ -152,16 +140,20 @@ class Simulator(object):
             glLibColorMaterial(True) 
             glLibTexturing(True)
             glLibLighting(True)
+            glLibNormalize(True)
             Sun = glLibLight([400,200,250],self.camera)
             Sun.enable()
             self.cam_pos = (0,10,10)
-            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
+            if self.height_map:
+                self.ground_obj = glLibObjMap(self.height_map,normals=GLLIB_VERTEX_NORMALS,heightscalar=1.0)
     def getSimTime(self):
         return self.sim_t
     def getPaused( self ):
         return self.paused
     def setPaused( self, new_pause_bool ):
         self.paused = new_pause_bool
+    def getPaused( self ):
+        return self.paused
     def near_callback(self, args, geom1, geom2):
         """
         Callback function for the collide() method.
@@ -199,28 +191,15 @@ class Simulator(object):
     def step( self ):
         real_t_present = getSysTime()
         if not self.paused:
-            # Try to lock simulation to realtime by controlling the timestep
-            if self.dt == 0:
-                step_dt = real_t_present - self.real_t_laststep
-                self.real_t_laststep = real_t_present
-                step_dt = min(1e-2,step_dt)
-                step_dt = max(1e-4,step_dt)
-            else:
-                step_dt = self.dt
-
             # Remove all contact joints
             self.contactgroup.empty()
-            # FIXME: disable the joints and remove references... the garbage
-            # collector will grab them.  This is a bad solution.
-            #for contact in self.contactlist:
-            #    contact.disable()
             self.contactlist = []
             # Detect collisions and create contact joints
             self.space.collide((self.world, self.contactgroup), self.near_callback)
 
             # Simulation step
-            self.world.step(step_dt)
-            self.sim_t += step_dt
+            self.world.step(self.dt)
+            self.sim_t += self.dt
 
             self.n_iterations += 1
 
@@ -231,17 +210,14 @@ class Simulator(object):
                 self.publisher.publish()
 
 
-            # repave the road
-            if self.pave:
-                self.paver.recenter(self.robot.getPosition())
         real_t_elapsed = max(getSysTime()-real_t_present, 0.0001)
         # TODO: this is hardcoded 10fps
         if real_t_present - self.real_t_lastrender >= 0.1:
-            if not self.paused:
+            if not self.paused and self.print_updates:
                 print ""
                 print "Sim time:       %.3f"%self.sim_t
-                print "Realtime ratio: %.3f"%(step_dt/real_t_elapsed)
-                print "Timestep:       %f"%(step_dt)
+                print "Realtime ratio: %.3f"%(self.dt/real_t_elapsed)
+                print "Timestep:       %f"%(self.dt)
                 print "Steps per sec:  %.0f"%(1./real_t_elapsed)
             # Render if graphical
             if self.graphical:
@@ -269,6 +245,8 @@ class Simulator(object):
                     self.dt *= 1.2
                 elif event.key == K_MINUS:
                     self.dt /= 1.2
+                else:
+                    sendCommandFromEventKey(event.key)
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
@@ -301,7 +279,7 @@ class Simulator(object):
         """
         self.real_t_lastrender = getSysTime()
         p = self.robot.getPosition()
-        self.camera.center = add3(p, (0,0,0.3))
+        self.camera.center = add3(p, (0,-2,-0.6))
         self.camera.pos = add3(p,self.cam_pos)
         self.window.clear()
         self.camera.set_camera()
@@ -310,9 +288,8 @@ class Simulator(object):
         # Thu 22 Mar 2012 07:30:51 PM EDT
         self.robot.colorTorque()
 
-        if self.pave:
-            for g in self.paver.getGeoms():
-                self.draw_geom(g)
+        if hasattr(self, "ground_obj"):
+            self.ground_obj.draw(self.ground_offset)
         for g in self.geoms:
             self.draw_geom(g)
         prune = []
@@ -332,32 +309,61 @@ class Simulator(object):
             self.draw_graphic(g)
             del g
         self.graphics = []
-        # Draw force vectors on all contacts
-        # FIXME:  ODE complains of:
-        # ODE INTERNAL ERROR 2: Bad argument(s) in dJointSetFeedback()
-        for j in self.contactlist:
-            self.draw_contact_force_vector(j)
+        if self.draw_contacts:
+            for j in self.contactlist:
+                self.draw_contact_force_vector(j)
+        if self.draw_COM:
+            center_of_mass = self.robot.getCOM()
+            accel_vec = (0,0,-9.8)
+            accel_vec = add3( accel_vec, \
+                div3(self.robot.core.getForce(),self.robot.core.getMass().mass) )
+            self.createCapsuleGraphic(\
+                center_of_mass,\
+                add3(center_of_mass,(0,0,-3) ))
+        if self.draw_support:
+            if len(self.contactlist) >= 3:
+                for i in range(len(self.contactlist)):
+                    self.createCapsuleGraphic(\
+                        self.contactlist[i].position,\
+                        self.contactlist[(i+1)%len(self.contactlist)].position )
         self.window.flip()
 
     def draw_contact_force_vector( self, joint ):
-        # TODO: Function incomplete
         forces1, torques1, forces2, torques2 = joint.getFeedback()
-        p1 = joint.position
-        p2 = add3(p1, div3(forces1,1e3))
+        offset = div3(forces1,2e3)
+        p1 = sub3(joint.position, offset)
+        p2 = add3(joint.position, offset)
         self.createCapsuleGraphic( p1, p2 )
     def draw_body(self, body):
         """Draw an ODE body."""
 
-        if body.shape == "capsule":
+        if hasattr( body, 'glObjPath' ) and self.render_objs:
+            p = body.getPosition()
+            r = body.getRotation()
+            rot = makeOpenGLMatrix(r, p)
+            # We must apply both the offset built in to the object
+            # and the offset from the world.  Multiply the matrices together
+            # to get the compound move/rotation
+            rot = mul4x4Matrices(rot, body.glObjOffset)
+            glLibColor((255,255,255))
+            if not hasattr(body,'glObjCustom'):
+                body.glObjCustom = glLibObjFromFile( body.glObjPath )
+            try:
+                scalar = body.scalar
+            except AttributeError:
+                scalar = 1
+            body.glObjCustom.myDraw( rot, scalar )
+        elif body.shape == "capsule":
             CAPSULE_SLICES = 6
             CAPSULE_STACKS = 6
             p = body.getPosition()
             r = body.getRotation()
+            # Since ODE and OpenGL define their capsules
+            # differently, we must apply an offset.
             offset = rotate3(r, (0,0,body.length/2.0))
             p = sub3(p,offset)
             rot = makeOpenGLMatrix(r, p)
             glLibColor(body.color)
-            cylHalfHeight = body.length / 2.0
             if not hasattr(body,'glObj'):
                 body.glObj = glLibObjCapsule( body.radius, body.length, CAPSULE_SLICES )
             body.glObj.myDraw( rot )
@@ -439,13 +445,19 @@ class Simulator(object):
         body.geom = geom
 
         body.color = (128,0,0,255)
+        body.glObjPath = graphics_dir+"/2003eclipse.obj"
+        # This is the constant offset for aligning with the physics element
+        # This is a 4x4 opengl style matrix, expressing an offset and a rotation
+        offset = (0,0,0)
+        rot    = calcRotMatrix( (0,0,1), 0 )
+        body.glObjOffset = makeOpenGLMatrix( rot, offset, (1.0,1.0,1.0) )
         body.setPosition( pos )
         self.bodies.append(body)
 
         return body, geom
     def createBoxGeom( self, sizes=(1.0,1.0,1.0) ):
         return ode.GeomBox(self.space, sizes)
-    def createCapsuleGraphic( self, p1, p2, radius=0.05, detail=3 ):
+    def createCapsuleGraphic( self, p1, p2, radius=0.03, detail=3 ):
         """
         Creates a capsule graphic entity... does not exist in the physics
         engine, only graphical.
@@ -463,14 +475,10 @@ class Simulator(object):
         xa = norm3(cross(ya, za))
         ya = cross(za, xa)
         rot = (xa[0], ya[0], za[0], xa[1], ya[1], za[1], xa[2], ya[2], za[2])
-        offset = rotate3(rot, (0,0,capsule_len/2.0))
-        p = sub3(p1,offset)
+        p = p1
         gl_matrix = makeOpenGLMatrix(rot, p)
         glLibColor((255,0,0))
         gl_obj = glLibObjCapsule( radius, capsule_len, detail )
         gl_obj.gl_matrix = gl_matrix
         self.graphics.append(gl_obj)
-
-def getPower( l ):
-    return abs(l.getVel()*l.getForceLimit())
 

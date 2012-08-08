@@ -3,8 +3,8 @@ from math import *
 
 # XXX This is to constrain the speed of the pistons in the leg cart.  The
 # valves are capable of driving them much faster than is safe.
-SATURATION_LIMIT = 220.0
-RATE_EQUALS_ZERO_TOLERANCE = 0.001
+SATURATION_LIMIT = 100.0
+RATE_EQUALS_ZERO_TOLERANCE = 0.0001
 
 class ValveNode(BusNode):
     def __init__(self, bus, node_id, name, bore, rod, lpm, e_deadband=0, r_deadband=0):
@@ -15,6 +15,25 @@ class ValveNode(BusNode):
         self.max_retract_rate = (lpm/1000.0/60.0) / (bore_section - rod_section)
         self.e_deadband = e_deadband
         self.r_deadband = r_deadband
+        self.pwm0 = 0
+        self.pwm1 = 0
+    def getPWM0(self):
+        return self.pwm0
+    def getPWM1(self):
+        return self.pwm1
+
+    def setPWM( self, pwm ):
+        """
+        Bypass length rate calculations, set pwms directly
+        """
+        self.pwm0 = 0
+        self.pwm1 = 0
+        if pwm < 0:
+            self.pwm0 = -pwm
+        else:
+            self.pwm1 = pwm
+        data = chr(int(self.pwm0)) + chr(int(self.pwm1))
+        self.startTransaction(memory_offset=0, data=data)
 
     def setLengthRate(self, rate):
         pwm0 = 0
@@ -30,7 +49,9 @@ class ValveNode(BusNode):
             pwm1 = (rate / self.max_extend_rate) * (255.0 - self.e_deadband) + self.e_deadband
             if pwm1 > SATURATION_LIMIT:
                 pwm1 = SATURATION_LIMIT
-        print self.name, "pwm0", pwm0, "pwm1", pwm1, "rate", rate
+        self.pwm0 = pwm0
+        self.pwm1 = pwm1
+        #print self.name, "pwm0", pwm0, "pwm1", pwm1, "rate", rate
         data = chr(int(pwm0)) + chr(int(pwm1))
         self.startTransaction(memory_offset=0, data=data)
 

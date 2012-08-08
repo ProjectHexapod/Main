@@ -1,6 +1,7 @@
-from ControlsKit import time_sources, BodyModel, logger, BodyController
-from ControlsKit.math_utils import NUM_LEGS, LEG_DOF
-from ControlsKit.body_paths import TrapezoidalSitStand, BodyPause, TrapezoidalFeetAlign
+from ControlsKit import time_sources, BodyModel, BodyController
+from ControlsKit.math_utils import NUM_LEGS, LEG_DOF, array
+from ControlsKit.body_paths import TrapezoidalSitStand, BodyPause, GoToStandardHexagon
+from UI import logger
 from scipy import zeros
 
 controller = BodyController()
@@ -24,16 +25,16 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     if path is None:
         path = BodyPause(model, controller, 1)
         state = ORIENT
-    
+        
     if path.isDone():
         if state == ORIENT:
-            path = TrapezoidalFeetAlign(model, controller, [0, -1.4,  2.2], 2, 1)
+            path = GoToStandardHexagon(model, controller)
             state =STAND
         elif state == STAND:
-            path = TrapezoidalSitStand(model, controller, -1.75, 2, 1)
+            path = TrapezoidalSitStand(model, controller, -1.6764, 1, .1)
             state = SIT
         elif state == SIT:
-            path = TrapezoidalSitStand(model, controller, -.5, 2, 1)
+            path = TrapezoidalSitStand(model, controller, -0.6096, 1, .1)
             state = STAND
         elif state == 0:
             path = BodyPause(model, controller, 10)
@@ -42,6 +43,5 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     # Evaluate path and joint control
     target_angle_matrix  = path.update()
-
     # Send commands
     return controller.update(model.getJointAngleMatrix(), target_angle_matrix)
