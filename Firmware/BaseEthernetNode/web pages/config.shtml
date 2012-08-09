@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="toplevellocal.css" />
+<style type="text/css"><!-- #ftr{position:absolute;} --></style>
+<title>Configuration Page</title>
+</head>
+<body>
+<div id="pgctwrp">
+<div id="mncnt" class="cframe">
+<a title="Freescale" href="http://www.freescale.com"><img border="0" alt="Freescale Semiconductor" src="NEWEDFS_LOGO.gif"/></a>
+<br /><br />
+<div class="hrw"><hr /></div>
+<h1>UART Options*</h1>
+<div class="hrw"><hr /></div>
+<br />
+<div class="lcn">
+<p style="color:#FF0000">*All info is updated until next reset.</p>
+<form method="POST" action="uart.cgi">
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>Actual Baudrate: <!--#echo var="BAUD"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="BAUD" size="4">
+<option value="300">300</option>
+<option value="600">600</option>
+<option value="1200">1200</option>
+<option value="1800">1800</option>
+<option value="2400">2400</option>
+<option value="4800">4800</option>
+<option value="9600">9600</option>
+<option value="19200" selected>19200</option>
+<option value="38400">38400</option>
+<option value="57600">57600</option>
+<option value="115200">115200</option>
+</select>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Actual Port: <!--#echo var="PORT"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="PORT" size="3">
+<option value="0" selected>UART0</option>
+<option value="1">UART1</option>
+<option value="2">UART2</option>
+</select>
+<br /> <br /> <br />
+</div>
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>Actual Parity: <!--#echo var="PARI"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="PARI" size="3">
+<option value="0" selected>NONE</option>
+<option value="1">ODD</option>
+<option value="2">EVEN</option>
+</select>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Actual Number of Bits: <!--#echo var="BITS"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="BITS" size="2">
+<option value="3" selected>8 bits</option>
+<option value="4">9 bits</option>
+</select>
+<br /><br /><br />
+</div>
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>Actual Number of Stop Bits: <!--#echo var="STOP"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="STOP" size="1">
+<option value="0" selected>1 bit</option>
+</select>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Actual Flow Control: <!--#echo var="FLOW"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="FLOW" size="3">
+<option value="0">None</option>
+<option value="1">Hardware</option>
+<option value="2" selected>Software</option>
+</select>
+</div>
+<div class="pdtn"></div>
+<div class="pdtn"></div>
+<div class="pdtn"></div>
+<div style="text-align:center; width:585px;">
+<input type="SUBMIT" value="SEND">
+<input type="BUTTON" value="RESET uC" onclick="document.reset.submit();">
+</div>
+</center>
+</form>
+<form method="POST" action="reset.cgi" name="reset"></form>
+<div class="bkflt"></div>
+</div>
+<div class="rc">
+<div class="iu">
+<h1>MCU Configurations</h1>
+<ul>
+<li><a href="config.shtml">UART Details</a></li>
+<li><a href="spi.shtml">SPI Details</a></li>
+<li><a href="mac.shtml">MAC Details</a></li>
+<li><a href="tcp.shtml">TCP Details</a></li>
+<li><a href="iic.shtml">IIC Details</a></li>
+</ul>
+</div>
+<div class="iu">
+<h1>Applications</h1>
+<ul>
+<li><a href="MCF51CN128.pdf">MCF51CN128FS</a></li>
+<li><a href="dynamic.shtml">Dynamic Information</a></li>
+<li><a href="ajax.htm">Ajax Content</a></li>
+<li><a href="tasks.htm">Tasks running</a></li>
+</ul>
+</div>
+</div>
+<div class="bkflt"></div>
+<div id="ftr">
+ <center>&#169; Freescale Semiconductor, Inc. 2004 - 2009. All Rights Reserved.<center>
+</div>
+</div>
+</div>
+</body>
+</html>

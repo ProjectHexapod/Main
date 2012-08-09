@@ -1,0 +1,1829 @@
+
+# Unreferenced symbols:
+	(mcf51cn128_c.obj )	[whole file]
+	(sdcard_main_c.obj )	[whole file]
+	(uif_terminal_c.obj )	[whole file]
+	(mii_c.obj )	[whole file]
+	(adc_rtos_c.obj )	[whole file]
+	(signals_c.obj )	[whole file]
+	_sockets	(sockets_c.obj )
+	_select_cb_list	(sockets_c.obj )
+	(netdb_c.obj )	[whole file]
+	(err_c.obj )	[whole file]
+	_@LOCAL@inet_ntoa__F7in_addr@str	(inet_c.obj )
+	(igmp_c.obj )	[whole file]
+	(msg_out_c.obj )	[whole file]
+	(msg_in_c.obj )	[whole file]
+	(mib_structs_c.obj )	[whole file]
+	(mib2_c.obj )	[whole file]
+	(asn1_enc_c.obj )	[whole file]
+	(asn1_dec_c.obj )	[whole file]
+	(stats_c.obj )	[whole file]
+	(raw_c.obj )	[whole file]
+	(vj_c.obj )	[whole file]
+	(randm_c.obj )	[whole file]
+	(ppp_oe_c.obj )	[whole file]
+	(ppp_c.obj )	[whole file]
+	(pap_c.obj )	[whole file]
+	(md5_c.obj )	[whole file]
+	(magic_c.obj )	[whole file]
+	(lcp_c.obj )	[whole file]
+	(ipcp_c.obj )	[whole file]
+	(fsm_c.obj )	[whole file]
+	(chpms_c.obj )	[whole file]
+	(chap_c.obj )	[whole file]
+	(auth_c.obj )	[whole file]
+	(slipif_c.obj )	[whole file]
+	(loopif_c.obj )	[whole file]
+	(ethernetif_c.obj )	[whole file]
+	(rand_c.obj )	[whole file]
+	(io_c.obj )	[whole file]
+	(assert_c.obj )	[whole file]
+	_pcTraceBufferStart	(tasks_c.obj )
+	(croutine_c.obj )	[whole file]
+
+
+
+# .abs_vector_0
+  00000000 00000004 .abs    vector_0	(exceptions_c.obj)
+
+# .abs_vector_1
+  00000004 00000004 .abs    vector_1	(exceptions_c.obj)
+
+# .abs_vector_2
+  00000008 00000004 .abs    vector_2	(exceptions_c.obj)
+
+# .abs_vector_3
+  0000000C 00000004 .abs    vector_3	(exceptions_c.obj)
+
+# .abs_vector_4
+  00000010 00000004 .abs    vector_4	(exceptions_c.obj)
+
+# .abs_vector_5
+  00000014 00000004 .abs    vector_5	(exceptions_c.obj)
+
+# .abs_vector_6
+  00000018 00000004 .abs    vector_6	(exceptions_c.obj)
+
+# .abs_vector_7
+  0000001C 00000004 .abs    vector_7	(exceptions_c.obj)
+
+# .abs_vector_8
+  00000020 00000004 .abs    vector_8	(exceptions_c.obj)
+
+# .abs_vector_9
+  00000024 00000004 .abs    vector_9	(exceptions_c.obj)
+
+# .abs_vector_10
+  00000028 00000004 .abs    vector_10	(exceptions_c.obj)
+
+# .abs_vector_11
+  0000002C 00000004 .abs    vector_11	(exceptions_c.obj)
+
+# .abs_vector_12
+  00000030 00000004 .abs    vector_12	(exceptions_c.obj)
+
+# .abs_vector_13
+  00000034 00000004 .abs    vector_13	(exceptions_c.obj)
+
+# .abs_vector_14
+  00000038 00000004 .abs    vector_14	(exceptions_c.obj)
+
+# .abs_vector_15
+  0000003C 00000004 .abs    vector_15	(exceptions_c.obj)
+
+# .abs_vector_16
+  00000040 00000004 .abs    vector_16	(exceptions_c.obj)
+
+# .abs_vector_17
+  00000044 00000004 .abs    vector_17	(exceptions_c.obj)
+
+# .abs_vector_18
+  00000048 00000004 .abs    vector_18	(exceptions_c.obj)
+
+# .abs_vector_19
+  0000004C 00000004 .abs    vector_19	(exceptions_c.obj)
+
+# .abs_vector_20
+  00000050 00000004 .abs    vector_20	(exceptions_c.obj)
+
+# .abs_vector_21
+  00000054 00000004 .abs    vector_21	(exceptions_c.obj)
+
+# .abs_vector_22
+  00000058 00000004 .abs    vector_22	(exceptions_c.obj)
+
+# .abs_vector_23
+  0000005C 00000004 .abs    vector_23	(exceptions_c.obj)
+
+# .abs_vector_24
+  00000060 00000004 .abs    vector_24	(exceptions_c.obj)
+
+# .abs_vector_25
+  00000064 00000004 .abs    vector_25	(exceptions_c.obj)
+
+# .abs_vector_26
+  00000068 00000004 .abs    vector_26	(exceptions_c.obj)
+
+# .abs_vector_27
+  0000006C 00000004 .abs    vector_27	(exceptions_c.obj)
+
+# .abs_vector_28
+  00000070 00000004 .abs    vector_28	(exceptions_c.obj)
+
+# .abs_vector_29
+  00000074 00000004 .abs    vector_29	(exceptions_c.obj)
+
+# .abs_vector_30
+  00000078 00000004 .abs    vector_30	(exceptions_c.obj)
+
+# .abs_vector_31
+  0000007C 00000004 .abs    vector_31	(exceptions_c.obj)
+
+# .abs_vector_32
+  00000080 00000004 .abs    vector_32	(exceptions_c.obj)
+
+# .abs_vector_33
+  00000084 00000004 .abs    vector_33	(exceptions_c.obj)
+
+# .abs_vector_34
+  00000088 00000004 .abs    vector_34	(exceptions_c.obj)
+
+# .abs_vector_35
+  0000008C 00000004 .abs    vector_35	(exceptions_c.obj)
+
+# .abs_vector_36
+  00000090 00000004 .abs    vector_36	(exceptions_c.obj)
+
+# .abs_vector_37
+  00000094 00000004 .abs    vector_37	(exceptions_c.obj)
+
+# .abs_vector_38
+  00000098 00000004 .abs    vector_38	(exceptions_c.obj)
+
+# .abs_vector_39
+  0000009C 00000004 .abs    vector_39	(exceptions_c.obj)
+
+# .abs_vector_40
+  000000A0 00000004 .abs    vector_40	(exceptions_c.obj)
+
+# .abs_vector_41
+  000000A4 00000004 .abs    vector_41	(exceptions_c.obj)
+
+# .abs_vector_42
+  000000A8 00000004 .abs    vector_42	(exceptions_c.obj)
+
+# .abs_vector_43
+  000000AC 00000004 .abs    vector_43	(exceptions_c.obj)
+
+# .abs_vector_44
+  000000B0 00000004 .abs    vector_44	(exceptions_c.obj)
+
+# .abs_vector_45
+  000000B4 00000004 .abs    vector_45	(exceptions_c.obj)
+
+# .abs_vector_46
+  000000B8 00000004 .abs    vector_46	(exceptions_c.obj)
+
+# .abs_vector_47
+  000000BC 00000004 .abs    vector_47	(exceptions_c.obj)
+
+# .abs_vector_48
+  000000C0 00000004 .abs    vector_48	(exceptions_c.obj)
+
+# .abs_vector_49
+  000000C4 00000004 .abs    vector_49	(exceptions_c.obj)
+
+# .abs_vector_50
+  000000C8 00000004 .abs    vector_50	(exceptions_c.obj)
+
+# .abs_vector_51
+  000000CC 00000004 .abs    vector_51	(exceptions_c.obj)
+
+# .abs_vector_52
+  000000D0 00000004 .abs    vector_52	(exceptions_c.obj)
+
+# .abs_vector_53
+  000000D4 00000004 .abs    vector_53	(exceptions_c.obj)
+
+# .abs_vector_54
+  000000D8 00000004 .abs    vector_54	(exceptions_c.obj)
+
+# .abs_vector_55
+  000000DC 00000004 .abs    vector_55	(exceptions_c.obj)
+
+# .abs_vector_56
+  000000E0 00000004 .abs    vector_56	(exceptions_c.obj)
+
+# .abs_vector_57
+  000000E4 00000004 .abs    vector_57	(exceptions_c.obj)
+
+# .abs_vector_58
+  000000E8 00000004 .abs    vector_58	(exceptions_c.obj)
+
+# .abs_vector_59
+  000000EC 00000004 .abs    vector_59	(exceptions_c.obj)
+
+# .abs_vector_60
+  000000F0 00000004 .abs    vector_60	(exceptions_c.obj)
+
+# .abs_vector_61
+  000000F4 00000004 .abs    vector_61	(exceptions_c.obj)
+
+# .abs_vector_62
+  000000F8 00000004 .abs    vector_62	(exceptions_c.obj)
+
+# .abs_vector_63
+  000000FC 00000004 .abs    vector_63	(exceptions_c.obj)
+
+# .abs_vector_64
+  00000100 00000004 .abs    vector_64	(exceptions_c.obj)
+
+# .abs_vector_65
+  00000104 00000004 .abs    vector_65	(exceptions_c.obj)
+
+# .abs_vector_66
+  00000108 00000004 .abs    vector_66	(exceptions_c.obj)
+
+# .abs_vector_67
+  0000010C 00000004 .abs    vector_67	(exceptions_c.obj)
+
+# .abs_vector_68
+  00000110 00000004 .abs    vector_68	(exceptions_c.obj)
+
+# .abs_vector_69
+  00000114 00000004 .abs    vector_69	(exceptions_c.obj)
+
+# .abs_vector_70
+  00000118 00000004 .abs    vector_70	(exceptions_c.obj)
+
+# .abs_vector_71
+  0000011C 00000004 .abs    vector_71	(exceptions_c.obj)
+
+# .abs_vector_72
+  00000120 00000004 .abs    vector_72	(exceptions_c.obj)
+
+# .abs_vector_73
+  00000124 00000004 .abs    vector_73	(exceptions_c.obj)
+
+# .abs_vector_74
+  00000128 00000004 .abs    vector_74	(exceptions_c.obj)
+
+# .abs_vector_75
+  0000012C 00000004 .abs    vector_75	(exceptions_c.obj)
+
+# .abs_vector_76
+  00000130 00000004 .abs    vector_76	(spi_c.obj)
+
+# .abs_vector_77
+  00000134 00000004 .abs    vector_77	(spi_c.obj)
+
+# .abs_vector_78
+  00000138 00000004 .abs    vector_78	(exceptions_c.obj)
+
+# .abs_vector_79
+  0000013C 00000004 .abs    vector_79	(exceptions_c.obj)
+
+# .abs_vector_80
+  00000140 00000004 .abs    vector_80	(uart_c.obj)
+
+# .abs_vector_81
+  00000144 00000004 .abs    vector_81	(uart_c.obj)
+
+# .abs_vector_82
+  00000148 00000004 .abs    vector_82	(exceptions_c.obj)
+
+# .abs_vector_83
+  0000014C 00000004 .abs    vector_83	(uart_c.obj)
+
+# .abs_vector_84
+  00000150 00000004 .abs    vector_84	(uart_c.obj)
+
+# .abs_vector_85
+  00000154 00000004 .abs    vector_85	(exceptions_c.obj)
+
+# .abs_vector_86
+  00000158 00000004 .abs    vector_86	(exceptions_c.obj)
+
+# .abs_vector_87
+  0000015C 00000004 .abs    vector_87	(fec_c.obj)
+
+# .abs_vector_88
+  00000160 00000004 .abs    vector_88	(exceptions_c.obj)
+
+# .abs_vector_89
+  00000164 00000004 .abs    vector_89	(exceptions_c.obj)
+
+# .abs_vector_90
+  00000168 00000004 .abs    vector_90	(exceptions_c.obj)
+
+# .abs_vector_91
+  0000016C 00000004 .abs    vector_91	(exceptions_c.obj)
+
+# .abs_vector_92
+  00000170 00000004 .abs    vector_92	(exceptions_c.obj)
+
+# .abs_vector_93
+  00000174 00000004 .abs    vector_93	(exceptions_c.obj)
+
+# .abs_vector_94
+  00000178 00000004 .abs    vector_94	(exceptions_c.obj)
+
+# .abs_vector_95
+  0000017C 00000004 .abs    vector_95	(exceptions_c.obj)
+
+# .abs_vector_96
+  00000180 00000004 .abs    vector_96	(exceptions_c.obj)
+
+# .abs_vector_97
+  00000184 00000004 .abs    vector_97	(exceptions_c.obj)
+
+# .abs_vector_98
+  00000188 00000004 .abs    vector_98	(exceptions_c.obj)
+
+# .abs_vector_99
+  0000018C 00000004 .abs    vector_99	(exceptions_c.obj)
+
+# .abs_vector_100
+  00000190 00000004 .abs    vector_100	(exceptions_c.obj)
+
+# .abs_vector_101
+  00000194 00000004 .abs    vector_101	(uart_c.obj)
+
+# .abs_vector_102
+  00000198 00000004 .abs    vector_102	(uart_c.obj)
+
+# .abs_vector_103
+  0000019C 00000004 .abs    vector_103	(exceptions_c.obj)
+
+# .abs_vector_104
+  000001A0 00000004 .abs    vector_104	(exceptions_c.obj)
+
+# .abs_vector_105
+  000001A4 00000004 .abs    vector_105	(exceptions_c.obj)
+
+# .abs_vector_106
+  000001A8 00000004 .abs    vector_106	(exceptions_c.obj)
+
+# .abs_vector_107
+  000001AC 00000004 .abs    vector_107	(exceptions_c.obj)
+
+# .abs_vector_108
+  000001B0 00000004 .abs    vector_108	(exceptions_c.obj)
+
+# .abs_vector_109
+  000001B4 00000004 .abs    vector_109	(exceptions_c.obj)
+
+# .abs_vector_110
+  000001B8 00000004 .abs    vector_110	(exceptions_c.obj)
+
+# .abs_vector_111
+  000001BC 00000004 .abs    vector_111	(exceptions_c.obj)
+
+# .abs_vector_112
+  000001C0 00000004 .abs    vector_112	(adc_c.obj)
+
+# .abs_vector_113
+  000001C4 00000004 .abs    vector_113	(exceptions_c.obj)
+
+# .abs_vector_114
+  000001C8 00000004 .abs    vector_114	(port_c.obj)
+#>00000000          ___heap_size (linker command file)
+#>00000100          ___stack_size (linker command file)
+#>00800000          ___RAM_ADDRESS (linker command file)
+#>00006000          ___RAM_SIZE (linker command file)
+#>00000000          ___FLASH_ADDRESS (linker command file)
+#>00020000          ___FLASH_SIZE (linker command file)
+
+# .userram
+
+# .code
+
+# .userrom
+
+# .custom_rom
+  0001FC00 000000AC .rodata params	(constants_c.obj)
+
+# .webpages
+  00000410 00000074 .rodata ajax_fsl	(static_web_pages_c.obj)
+  00000484 00001277 .rodata ajax_htm	(static_web_pages_c.obj)
+  000016FB 00000283 .rodata bargraph_bmp	(static_web_pages_c.obj)
+  0000197E 00000056 .rodata bullet_square1_gif	(static_web_pages_c.obj)
+  000019D4 00000F97 .rodata config_shtml	(static_web_pages_c.obj)
+  0000296B 000004C9 .rodata dynamic_shtml	(static_web_pages_c.obj)
+  00002E34 0000002C .rodata hr1_gif	(static_web_pages_c.obj)
+  00002E60 00000E5A .rodata index_shtml	(static_web_pages_c.obj)
+  00003CBA 00000187 .rodata line_bmp	(static_web_pages_c.obj)
+  00003E41 00000C60 .rodata mac_shtml	(static_web_pages_c.obj)
+  00004AA1 00000FF6 .rodata more_htm	(static_web_pages_c.obj)
+  00005A97 00000713 .rodata NEWEDFS_LOGO_gif	(static_web_pages_c.obj)
+  000061AA 00000F44 .rodata spi_shtml	(static_web_pages_c.obj)
+  000070EE 00000B96 .rodata tcp_shtml	(static_web_pages_c.obj)
+  00007C84 00000D05 .rodata toplevellocal_css	(static_web_pages_c.obj)
+  00008989 00000009 .rodata @1	(static_web_pages_c.obj)
+  00008992 00000009 .rodata @2	(static_web_pages_c.obj)
+  0000899B 0000000D .rodata @3	(static_web_pages_c.obj)
+  000089A8 00000013 .rodata @4	(static_web_pages_c.obj)
+  000089BB 0000000D .rodata @5	(static_web_pages_c.obj)
+  000089C8 0000000E .rodata @6	(static_web_pages_c.obj)
+  000089D6 00000008 .rodata @7	(static_web_pages_c.obj)
+  000089DE 0000000C .rodata @8	(static_web_pages_c.obj)
+  000089EA 00000009 .rodata @9	(static_web_pages_c.obj)
+  000089F3 0000000A .rodata @10	(static_web_pages_c.obj)
+  000089FD 00000009 .rodata @11	(static_web_pages_c.obj)
+  00008A06 00000011 .rodata @12	(static_web_pages_c.obj)
+  00008A17 0000000A .rodata @13	(static_web_pages_c.obj)
+  00008A21 0000000A .rodata @14	(static_web_pages_c.obj)
+  00008A2B 00000012 .rodata @15	(static_web_pages_c.obj)
+  00008A3E 0000001E .rodata InternalMemoryLengths	(static_web_pages_c.obj)
+  00008A5C 00000001 .rodata number_of_files	(static_web_pages_c.obj)
+
+# .text
+  00008A60 00000004 .text   __initialize_hardware	(startcf_c.obj)
+  00008A64 00000004 .text   __initialize_system	(startcf_c.obj)
+  00008A68 0000001C .text   __copy_rom_section	(startcf_c.obj)
+  00008A84 00000068 .text   clear_mem	(startcf_c.obj)
+  00008AEC 00000094 .text   _startup	(startcf_c.obj)
+  00008B80 0000011C .text   .text	(mcf5xxx_s.obj)
+  00008B80 00000000 .text   asm_set_ipl	(mcf5xxx_s.obj)
+  00008B80 0000011C .text   @DummyFn1	(mcf5xxx_s.obj)
+  00008B80 00000000 .text   asm_set_ipl	(mcf5xxx_s.obj)
+  00008BB6 00000000 .text   mcf5xxx_wr_cpucr	(mcf5xxx_s.obj)
+  00008BB6 00000000 .text   mcf5xxx_wr_cpucr	(mcf5xxx_s.obj)
+  00008BBE 00000000 .text   mcf5xxx_byterev	(mcf5xxx_s.obj)
+  00008BBE 00000000 .text   mcf5xxx_byterev	(mcf5xxx_s.obj)
+  00008BC2 00000000 .text   mcf5xxx_reset	(mcf5xxx_s.obj)
+  00008BC2 00000000 .text   mcf5xxx_reset	(mcf5xxx_s.obj)
+  00008BCE 00000000 .text   mcf5xxx_wr_sr	(mcf5xxx_s.obj)
+  00008BCE 00000000 .text   mcf5xxx_wr_sr	(mcf5xxx_s.obj)
+  00008BD2 00000000 .text   mcf5xxx_wr_cacr	(mcf5xxx_s.obj)
+  00008BD2 00000000 .text   mcf5xxx_wr_cacr	(mcf5xxx_s.obj)
+  00008BDA 00000000 .text   mcf5xxx_wr_asid	(mcf5xxx_s.obj)
+  00008BDA 00000000 .text   mcf5xxx_wr_asid	(mcf5xxx_s.obj)
+  00008BE2 00000000 .text   mcf5xxx_wr_acr0	(mcf5xxx_s.obj)
+  00008BE2 00000000 .text   mcf5xxx_wr_acr0	(mcf5xxx_s.obj)
+  00008BEA 00000000 .text   mcf5xxx_wr_acr1	(mcf5xxx_s.obj)
+  00008BEA 00000000 .text   mcf5xxx_wr_acr1	(mcf5xxx_s.obj)
+  00008BF2 00000000 .text   mcf5xxx_wr_acr2	(mcf5xxx_s.obj)
+  00008BF2 00000000 .text   mcf5xxx_wr_acr2	(mcf5xxx_s.obj)
+  00008BFA 00000000 .text   mcf5xxx_wr_acr3	(mcf5xxx_s.obj)
+  00008BFA 00000000 .text   mcf5xxx_wr_acr3	(mcf5xxx_s.obj)
+  00008C02 00000000 .text   mcf5xxx_wr_mmubar	(mcf5xxx_s.obj)
+  00008C02 00000000 .text   mcf5xxx_wr_mmubar	(mcf5xxx_s.obj)
+  00008C0A 00000000 .text   mcf5xxx_wr_other_a7	(mcf5xxx_s.obj)
+  00008C0A 00000000 .text   mcf5xxx_wr_other_a7	(mcf5xxx_s.obj)
+  00008C12 00000000 .text   mcf5xxx_wr_vbr	(mcf5xxx_s.obj)
+  00008C12 00000000 .text   mcf5xxx_wr_vbr	(mcf5xxx_s.obj)
+  00008C1A 00000000 .text   mcf5xxx_wr_macsr	(mcf5xxx_s.obj)
+  00008C1A 00000000 .text   mcf5xxx_wr_macsr	(mcf5xxx_s.obj)
+  00008C22 00000000 .text   mcf5xxx_wr_mask	(mcf5xxx_s.obj)
+  00008C22 00000000 .text   mcf5xxx_wr_mask	(mcf5xxx_s.obj)
+  00008C2A 00000000 .text   mcf5xxx_wr_acc0	(mcf5xxx_s.obj)
+  00008C2A 00000000 .text   mcf5xxx_wr_acc0	(mcf5xxx_s.obj)
+  00008C32 00000000 .text   mcf5xxx_wr_accext01	(mcf5xxx_s.obj)
+  00008C32 00000000 .text   mcf5xxx_wr_accext01	(mcf5xxx_s.obj)
+  00008C3A 00000000 .text   mcf5xxx_wr_accext23	(mcf5xxx_s.obj)
+  00008C3A 00000000 .text   mcf5xxx_wr_accext23	(mcf5xxx_s.obj)
+  00008C42 00000000 .text   mcf5xxx_wr_acc1	(mcf5xxx_s.obj)
+  00008C42 00000000 .text   mcf5xxx_wr_acc1	(mcf5xxx_s.obj)
+  00008C4A 00000000 .text   mcf5xxx_wr_acc2	(mcf5xxx_s.obj)
+  00008C4A 00000000 .text   mcf5xxx_wr_acc2	(mcf5xxx_s.obj)
+  00008C52 00000000 .text   mcf5xxx_wr_acc3	(mcf5xxx_s.obj)
+  00008C52 00000000 .text   mcf5xxx_wr_acc3	(mcf5xxx_s.obj)
+  00008C5A 00000000 .text   mcf5xxx_wr_pc	(mcf5xxx_s.obj)
+  00008C5A 00000000 .text   mcf5xxx_wr_pc	(mcf5xxx_s.obj)
+  00008C62 00000000 .text   mcf5xxx_wr_rombar0	(mcf5xxx_s.obj)
+  00008C62 00000000 .text   mcf5xxx_wr_rombar0	(mcf5xxx_s.obj)
+  00008C6A 00000000 .text   mcf5xxx_wr_rombar1	(mcf5xxx_s.obj)
+  00008C6A 00000000 .text   mcf5xxx_wr_rombar1	(mcf5xxx_s.obj)
+  00008C72 00000000 .text   mcf5xxx_wr_rambar0	(mcf5xxx_s.obj)
+  00008C72 00000000 .text   mcf5xxx_wr_rambar0	(mcf5xxx_s.obj)
+  00008C7A 00000000 .text   mcf5xxx_wr_rambar1	(mcf5xxx_s.obj)
+  00008C7A 00000000 .text   mcf5xxx_wr_rambar1	(mcf5xxx_s.obj)
+  00008C82 00000000 .text   mcf5xxx_wr_mpcr	(mcf5xxx_s.obj)
+  00008C82 00000000 .text   mcf5xxx_wr_mpcr	(mcf5xxx_s.obj)
+  00008C8A 00000000 .text   mcf5xxx_wr_secmbar	(mcf5xxx_s.obj)
+  00008C8A 00000000 .text   mcf5xxx_wr_secmbar	(mcf5xxx_s.obj)
+  00008C92 00000000 .text   mcf5xxx_wr_mbar	(mcf5xxx_s.obj)
+  00008C92 00000000 .text   mcf5xxx_wr_mbar	(mcf5xxx_s.obj)
+  00008C9C 00000014 .text   derivative_interrupt	(exceptions_c.obj)
+  00008CB0 000001D4 .text   mcf_exception_handler	(exceptions_c.obj)
+  00008E84 00000024 .text   asm_exception_handler	(exceptions_c.obj)
+  00008EA8 00000070 .text   netconn_rcv_req	(utilities_c.obj)
+  00008F18 00000008 .text   netconn_set_timeout	(utilities_c.obj)
+  00008F20 00000054 .text   MIME_GetMediaType	(utilities_c.obj)
+  00008F74 00000094 .text   base64_encodeblock	(utilities_c.obj)
+  00009008 00000080 .text   base64_encode	(utilities_c.obj)
+  00009088 000000BC .text   ip_convert_address	(utilities_c.obj)
+  00009144 00000094 .text   parse_ethaddr	(utilities_c.obj)
+  000091D8 00000028 .text   parse_number	(utilities_c.obj)
+  00009200 0000005C .text   parse_mac_ip_address_string	(utilities_c.obj)
+  0000925C 000000B8 .text   search_string_linked_list	(utilities_c.obj)
+  00009314 00000058 .text   search_string	(utilities_c.obj)
+  0000936C 0000005C .text   SerialGetChar	(serial_configuration_c.obj)
+  000093C8 0000003C .text   SerialSetChar	(serial_configuration_c.obj)
+  00009404 00000034 .text   set_command_pamameter_four_bytes	(serial_configuration_c.obj)
+  00009438 00000038 .text   get_command_parameter_four_bytes	(serial_configuration_c.obj)
+  00009470 00000038 .text   set_command_parameter_nth_bytes	(serial_configuration_c.obj)
+  000094A8 00000038 .text   get_command_parameters_nth_bytes	(serial_configuration_c.obj)
+  000094E0 0000022C .text   SerialParser	(serial_configuration_c.obj)
+  0000970C 00000134 .text   vSerialBridgeConfiguration	(serial_configuration_c.obj)
+  00009840 00000100 .text   vDHCPClient	(dhcp_app_c.obj)
+  00009940 00000010 .text   Email_init	(email_client_c.obj)
+  00009950 00000060 .text   Email_send	(email_client_c.obj)
+  000099B0 00000010 .text   Email_res_val	(email_client_c.obj)
+  000099C0 00000414 .text   vEmailClient	(email_client_c.obj)
+  00009DD4 000001B4 .text   vFTPConnection	(ftp_server_c.obj)
+  00009F88 00000044 .text   FTP_QUIT_OR_WRONG_REQUEST	(ftp_server_c.obj)
+  00009FCC 00000040 .text   FTP_OpenDataPort	(ftp_server_c.obj)
+  0000A00C 00000018 .text   FTP_CloseDataPort	(ftp_server_c.obj)
+  0000A024 00000208 .text   FTP_DataFlowControl	(ftp_server_c.obj)
+  0000A22C 00000074 .text   FTP_Does_File_Exist	(ftp_server_c.obj)
+  0000A2A0 00000034 .text   FTP_SD_send	(ftp_server_c.obj)
+  0000A2D4 00000018 .text   FTP_CompareFile	(ftp_server_c.obj)
+  0000A2EC 00000060 .text   FTP_Read_List_Of_Files	(ftp_server_c.obj)
+  0000A34C 0000006C .text   FTP_Read_Is_Possible	(ftp_server_c.obj)
+  0000A3B8 000000A4 .text   FTP_Read_File	(ftp_server_c.obj)
+  0000A45C 000000DC .text   FTP_Write_File	(ftp_server_c.obj)
+  0000A538 000000F8 .text   vBasicFTPServer	(ftp_server_c.obj)
+  0000A630 0000003C .text   BRIDGE_SPI_ETH_CLOSE	(spi_bridge_c.obj)
+  0000A66C 00000064 .text   BRIDGE_SPI_ETH_SEND	(spi_bridge_c.obj)
+  0000A6D0 00000008 .text   BRIDGE_SPI_ETH_ERROR	(spi_bridge_c.obj)
+  0000A6D8 0000003C .text   BRIDGE_SPI_ETH_SEND_CALLBACK	(spi_bridge_c.obj)
+  0000A714 00000060 .text   BRIDGE_SPI_Accept	(spi_bridge_c.obj)
+  0000A774 00000154 .text   BRIDGE_SPI_ETH_RX	(spi_bridge_c.obj)
+  0000A8C8 000000A4 .text   BRIDGE_SPI_ETH_TX	(spi_bridge_c.obj)
+  0000A96C 00000190 .text   BRIDGE_SPI_Task	(spi_bridge_c.obj)
+  0000AAFC 0000003C .text   BRIDGE_UART_ETH_CLOSE	(uart_bridge_c.obj)
+  0000AB38 0000006C .text   BRIDGE_UART_ETH_SEND	(uart_bridge_c.obj)
+  0000ABA4 00000008 .text   BRIDGE_UART_ETH_ERROR	(uart_bridge_c.obj)
+  0000ABAC 0000003C .text   BRIDGE_UART_ETH_SEND_CALLBACK	(uart_bridge_c.obj)
+  0000ABE8 00000060 .text   BRIDGE_UART_Accept	(uart_bridge_c.obj)
+  0000AC48 0000007C .text   BRIDGE_UART_ETH_RX	(uart_bridge_c.obj)
+  0000ACC4 0000009C .text   BRIDGE_UART_ETH_TX	(uart_bridge_c.obj)
+  0000AD60 00000180 .text   BRIDGE_UART_Task	(uart_bridge_c.obj)
+  0000AEE0 00000058 .text   CGI_parser	(http_cgi_c.obj)
+  0000AF38 00000018 .text   reset_configuration_process	(http_cgi_c.obj)
+  0000AF50 000000C8 .text   uart_configuration_process	(http_cgi_c.obj)
+  0000B018 000000C8 .text   spi_configuration_process	(http_cgi_c.obj)
+  0000B0E0 0000012C .text   mac_configuration_process	(http_cgi_c.obj)
+  0000B20C 000000A0 .text   tcp_configuration_process	(http_cgi_c.obj)
+  0000B2AC 000000F8 .text   HTTP_ProcessConnection	(http_server_c.obj)
+  0000B3A4 000000FC .text   HTTP_ProcessRequest	(http_server_c.obj)
+  0000B4A0 00000160 .text   HTTP_GetFileFromSDcard	(http_server_c.obj)
+  0000B600 00000074 .text   HTTP_GetFileFromInternalMemory	(http_server_c.obj)
+  0000B674 00000070 .text   HTTP_GetLanguageIndex	(http_server_c.obj)
+  0000B6E4 00000048 .text   HTTP_SendWebPage	(http_server_c.obj)
+  0000B72C 00000030 .text   HTTP_IsDynamicExtension	(http_server_c.obj)
+  0000B75C 000000A4 .text   HTTP_SendHeader	(http_server_c.obj)
+  0000B800 0000002C .text   HTTP_SendData	(http_server_c.obj)
+  0000B82C 000000C8 .text   HTTP_SendDynamicData	(http_server_c.obj)
+  0000B8F4 0000006C .text   HTTP_ShowTasksStatus	(http_server_c.obj)
+  0000B960 00000064 .text   HTTP_SendDynamicPacket	(http_server_c.obj)
+  0000B9C4 00000010 .text   HTTP_SendDynamicFooter	(http_server_c.obj)
+  0000B9D4 0000002C .text   HTTP_SendError	(http_server_c.obj)
+  0000BA00 00000138 .text   HTTP_Server_Task	(http_server_c.obj)
+  0000BB38 00000054 .text   SSI_parser	(http_ssi_c.obj)
+  0000BB8C 00000004 .text   max_number_of_languages	(http_ssi_c.obj)
+  0000BB90 00000034 .text   adc_channel0	(http_ssi_c.obj)
+  0000BBC4 00000034 .text   adc_channel1	(http_ssi_c.obj)
+  0000BBF8 00000034 .text   adc_channel2	(http_ssi_c.obj)
+  0000BC2C 00000034 .text   html_counter	(http_ssi_c.obj)
+  0000BC60 00000034 .text   language_greeting	(http_ssi_c.obj)
+  0000BC94 00000030 .text   baudrate_reader	(http_ssi_c.obj)
+  0000BCC4 00000048 .text   flowcontrol_reader	(http_ssi_c.obj)
+  0000BD0C 00000048 .text   serialport_reader	(http_ssi_c.obj)
+  0000BD54 00000048 .text   serialparity_reader	(http_ssi_c.obj)
+  0000BD9C 0000003C .text   serialbits_reader	(http_ssi_c.obj)
+  0000BDD8 00000020 .text   serialstopbits_reader	(http_ssi_c.obj)
+  0000BDF8 00000068 .text   mac_macaddress_reader	(http_ssi_c.obj)
+  0000BE60 00000054 .text   mac_ipaddress_reader	(http_ssi_c.obj)
+  0000BEB4 00000054 .text   mac_ipmkaddress_reader	(http_ssi_c.obj)
+  0000BF08 00000054 .text   mac_ipgwaddress_reader	(http_ssi_c.obj)
+  0000BF5C 00000054 .text   mac_ipserveraddress_reader	(http_ssi_c.obj)
+  0000BFB0 00000034 .text   mac_static_reader	(http_ssi_c.obj)
+  0000BFE4 00000110 .text   spi_baudrate_reader	(http_ssi_c.obj)
+  0000C0F4 00000034 .text   spi_port_reader	(http_ssi_c.obj)
+  0000C128 00000034 .text   spi_polarity_reader	(http_ssi_c.obj)
+  0000C15C 00000034 .text   spi_phase_reader	(http_ssi_c.obj)
+  0000C190 00000034 .text   spi_mode_reader	(http_ssi_c.obj)
+  0000C1C4 00000034 .text   spi_interrupt_reader	(http_ssi_c.obj)
+  0000C1F8 00000034 .text   tcp_server_reader	(http_ssi_c.obj)
+  0000C22C 00000034 .text   tcp_config_reader	(http_ssi_c.obj)
+  0000C260 00000034 .text   tcp_output_reader	(http_ssi_c.obj)
+  0000C294 00000030 .text   tcp_port_reader	(http_ssi_c.obj)
+  0000C2C4 00000020 .text   main	(main_c.obj)
+  0000C2E4 000000B0 .text   start_tasks	(main_c.obj)
+  0000C394 0000001C .text   ADC_ISR_LowLevel	(adc_c.obj)
+  0000C3B0 00000138 .text   NBUF_init	(fec_c.obj)
+  0000C4E8 00000020 .text   NBUF_GetStartBufferPointer	(fec_c.obj)
+  0000C508 00000078 .text   NBUF_AllocRX	(fec_c.obj)
+  0000C580 0000007C .text   NBUF_AllocTX	(fec_c.obj)
+  0000C5FC 00000028 .text   NBUF_ReleaseRX	(fec_c.obj)
+  0000C624 0000001C .text   NBUF_ReleaseTX	(fec_c.obj)
+  0000C640 0000001C .text   NBUF_ReadyTx	(fec_c.obj)
+  0000C65C 00000020 .text   NBUF_ReadyRX	(fec_c.obj)
+  0000C67C 00000008 .text   FEC_ReadyTx	(fec_c.obj)
+  0000C684 00000008 .text   FEC_ReadyRX	(fec_c.obj)
+  0000C68C 0000000C .text   FEC_GetAvailableReadyRX	(fec_c.obj)
+  0000C698 0000000C .text   FEC_ackRX	(fec_c.obj)
+  0000C6A4 00000008 .text   FEC_SetRxCallback	(fec_c.obj)
+  0000C6AC 0000001C .text   FEC_IsrRX	(fec_c.obj)
+  0000C6C8 0000005C .text   FEC_HashAddress	(fec_c.obj)
+  0000C724 00000070 .text   FEC_SetAddress	(fec_c.obj)
+  0000C794 00000088 .text   FEC_ResetProcessing	(fec_c.obj)
+  0000C81C 0000001C .text   FEC_LowLevelEnable	(fec_c.obj)
+  0000C838 00000014 .text   FlashInit	(flash_c.obj)
+  0000C84C 0000008C .text   GPIO_FECPinsInit	(gpio_c.obj)
+  0000C8D8 00000058 .text   MCU_init	(clock_c.obj)
+  0000C930 00000008 .text   MCU_low_level_reset	(clock_c.obj)
+  0000C938 000000A0 .text   low_power_init	(clock_c.obj)
+  0000C9D8 000000A4 .text   prvSetupExternal_25MHzCrystal	(clock_c.obj)
+  0000CA7C 00000230 .text   uart_init	(uart_c.obj)
+  0000CCAC 00000010 .text   uart_assign_call_back	(uart_c.obj)
+  0000CCBC 00000034 .text   uart_getchar	(uart_c.obj)
+  0000CCF0 00000034 .text   uart_putchar	(uart_c.obj)
+  0000CD24 00000030 .text   uart_enable_tx_interrupt	(uart_c.obj)
+  0000CD54 00000030 .text   uart_disable_tx_interrupt	(uart_c.obj)
+  0000CD84 00000030 .text   uart_enable_rx_interrupt	(uart_c.obj)
+  0000CDB4 00000018 .text   uart_get_CTS_state	(uart_c.obj)
+  0000CDCC 0000001C .text   uart_send_tx_stop	(uart_c.obj)
+  0000CDE8 0000001C .text   uart_send_tx_go	(uart_c.obj)
+  0000CE04 0000001C .text   uart1_tx_irq	(uart_c.obj)
+  0000CE20 0000001C .text   uart2_tx_irq	(uart_c.obj)
+  0000CE3C 0000001C .text   uart3_tx_irq	(uart_c.obj)
+  0000CE58 0000001C .text   uart1_rx_irq	(uart_c.obj)
+  0000CE74 0000001C .text   uart2_rx_irq	(uart_c.obj)
+  0000CE90 0000001C .text   uart3_rx_irq	(uart_c.obj)
+  0000CEAC 00000188 .text   spi_init	(spi_c.obj)
+  0000D034 00000010 .text   spi_assign_call_back	(spi_c.obj)
+  0000D044 00000020 .text   spi_enable_chip_select	(spi_c.obj)
+  0000D064 00000020 .text   spi_disable_chip_select	(spi_c.obj)
+  0000D084 00000064 .text   spi_set_baudrate	(spi_c.obj)
+  0000D0E8 0000001C .text   spi_getchar	(spi_c.obj)
+  0000D104 0000001C .text   spi_putchar	(spi_c.obj)
+  0000D120 00000024 .text   spi_is_tx_buffer_empty	(spi_c.obj)
+  0000D144 00000024 .text   spi_is_rx_buffer_full	(spi_c.obj)
+  0000D168 00000020 .text   spi_enable_tx_interrupt	(spi_c.obj)
+  0000D188 00000020 .text   spi_disable_tx_interrupt	(spi_c.obj)
+  0000D1A8 00000020 .text   spi_enable_rx_interrupt	(spi_c.obj)
+  0000D1C8 00000020 .text   spi_disable_rx_interrupt	(spi_c.obj)
+  0000D1E8 00000070 .text   spi_send_receive_waiting	(spi_c.obj)
+  0000D258 0000001C .text   spi1_irq	(spi_c.obj)
+  0000D274 0000001C .text   spi2_irq	(spi_c.obj)
+  0000D290 0000001C .text   sys_init	(sys_arch_c.obj)
+  0000D2AC 0000000C .text   sys_arch_protect	(sys_arch_c.obj)
+  0000D2B8 00000008 .text   sys_arch_unprotect	(sys_arch_c.obj)
+  0000D2C0 0000000C .text   sys_assert	(sys_arch_c.obj)
+  0000D2CC 000000B4 .text   sys_thread_new	(sys_arch_c.obj)
+  0000D380 00000034 .text   sys_arch_thread_current	(sys_arch_c.obj)
+  0000D3B4 00000030 .text   sys_arch_timeouts	(sys_arch_c.obj)
+  0000D3E4 00000058 .text   sys_sem_new	(sys_arch_c.obj)
+  0000D43C 00000054 .text   sys_mult_sem_new	(sys_arch_c.obj)
+  0000D490 00000028 .text   sys_sem_free	(sys_arch_c.obj)
+  0000D4B8 0000002C .text   sys_sem_signal	(sys_arch_c.obj)
+  0000D4E4 00000074 .text   sys_arch_sem_wait	(sys_arch_c.obj)
+  0000D558 00000010 .text   sys_mbox_new	(sys_arch_c.obj)
+  0000D568 00000068 .text   sys_mbox_free	(sys_arch_c.obj)
+  0000D5D0 0000002C .text   sys_mbox_post	(sys_arch_c.obj)
+  0000D5FC 00000024 .text   sys_mbox_trypost	(sys_arch_c.obj)
+  0000D620 00000088 .text   sys_arch_mbox_fetch	(sys_arch_c.obj)
+  0000D6A8 00000008 .text   set_lwip_ready	(mcu_init_c.obj)
+  0000D6B0 00000008 .text   get_lwip_ready	(mcu_init_c.obj)
+  0000D6B8 0000000C .text   lwip_interface_is_up	(mcu_init_c.obj)
+  0000D6C4 000000E0 .text   vlwIPInit	(mcu_init_c.obj)
+  0000D7A4 0000000C .text   MCU_startup	(mcu_init_c.obj)
+  0000D7B0 00000008 .text   MCU_reset	(mcu_init_c.obj)
+  0000D7B8 000000C0 .text   MAC_output_raw	(mac_rtos_c.obj)
+  0000D878 000000B4 .text   MAC_Rx_Task	(mac_rtos_c.obj)
+  0000D92C 0000003C .text   MAC_Send	(mac_rtos_c.obj)
+  0000D968 00000050 .text   MAC_ISR	(mac_rtos_c.obj)
+  0000D9B8 00000018 .text   arp_timer	(mac_rtos_c.obj)
+  0000D9D0 0000004C .text   eth_input	(mac_rtos_c.obj)
+  0000DA1C 00000020 .text   MAC_Reset	(mac_rtos_c.obj)
+  0000DA3C 00000008 .text   MAC_GetMacAddress	(mac_rtos_c.obj)
+  0000DA44 00000014 .text   MAC_Enable	(mac_rtos_c.obj)
+  0000DA58 00000134 .text   MAC_init	(mac_rtos_c.obj)
+  0000DB8C 00000094 .text   update_board_params	(setget_c.obj)
+  0000DC20 00000010 .text   get_all_params	(setget_c.obj)
+  0000DC30 00000040 .text   set_all_params	(setget_c.obj)
+  0000DC70 00000034 .text   board_get_eth_ethaddr	(setget_c.obj)
+  0000DCA4 00000028 .text   board_get_eth_ip_add	(setget_c.obj)
+  0000DCCC 00000028 .text   board_get_eth_netmask	(setget_c.obj)
+  0000DCF4 00000028 .text   board_get_eth_gateway	(setget_c.obj)
+  0000DD1C 00000028 .text   board_get_eth_server_add	(setget_c.obj)
+  0000DD44 0000000C .text   board_get_eth_dhcp_auto	(setget_c.obj)
+  0000DD50 0000000C .text   board_get_bridge_configuration	(setget_c.obj)
+  0000DD5C 0000000C .text   board_get_bridge_tcp_mode	(setget_c.obj)
+  0000DD68 0000000C .text   board_get_bridge_tcp_server	(setget_c.obj)
+  0000DD74 0000000C .text   board_get_bridge_tcp_port	(setget_c.obj)
+  0000DD80 0000000C .text   board_get_uart_port	(setget_c.obj)
+  0000DD8C 0000000C .text   board_get_uart_baud	(setget_c.obj)
+  0000DD98 0000000C .text   board_get_uart_parity	(setget_c.obj)
+  0000DDA4 0000000C .text   board_get_uart_number_of_bits	(setget_c.obj)
+  0000DDB0 0000000C .text   board_get_uart_stop_bits	(setget_c.obj)
+  0000DDBC 0000000C .text   board_get_uart_flow_control	(setget_c.obj)
+  0000DDC8 0000000C .text   board_get_spi_port	(setget_c.obj)
+  0000DDD4 0000000C .text   board_get_spi_baud	(setget_c.obj)
+  0000DDE0 0000000C .text   board_get_spi_polarity	(setget_c.obj)
+  0000DDEC 0000000C .text   board_get_spi_phase	(setget_c.obj)
+  0000DDF8 0000000C .text   board_get_spi_master	(setget_c.obj)
+  0000DE04 0000000C .text   board_get_spi_interrupt	(setget_c.obj)
+  0000DE10 00000024 .text   board_get_email_username	(setget_c.obj)
+  0000DE34 00000024 .text   board_get_email_password	(setget_c.obj)
+  0000DE58 0000002C .text   board_get_email_smtp_server	(setget_c.obj)
+  0000DE84 0000000C .text   board_get_email_authentication_required	(setget_c.obj)
+  0000DE90 0000000C .text   board_set_eth_ethaddr	(setget_c.obj)
+  0000DE9C 00000014 .text   board_set_eth_ip_add	(setget_c.obj)
+  0000DEB0 00000014 .text   board_set_eth_netmask	(setget_c.obj)
+  0000DEC4 00000014 .text   board_set_eth_gateway	(setget_c.obj)
+  0000DED8 00000014 .text   board_set_eth_server_add	(setget_c.obj)
+  0000DEEC 00000014 .text   board_set_eth_dhcp_auto	(setget_c.obj)
+  0000DF00 00000014 .text   board_set_bridge_configuration	(setget_c.obj)
+  0000DF14 00000014 .text   board_set_bridge_tcp_mode	(setget_c.obj)
+  0000DF28 00000014 .text   board_set_bridge_tcp_server	(setget_c.obj)
+  0000DF3C 00000014 .text   board_set_bridge_tcp_port	(setget_c.obj)
+  0000DF50 00000014 .text   board_set_uart_port	(setget_c.obj)
+  0000DF64 00000014 .text   board_set_uart_baud	(setget_c.obj)
+  0000DF78 00000014 .text   board_set_uart_parity	(setget_c.obj)
+  0000DF8C 00000014 .text   board_set_uart_number_of_bits	(setget_c.obj)
+  0000DFA0 00000014 .text   board_set_uart_stop_bits	(setget_c.obj)
+  0000DFB4 00000014 .text   board_set_uart_flow_control	(setget_c.obj)
+  0000DFC8 00000014 .text   board_set_spi_port	(setget_c.obj)
+  0000DFDC 00000014 .text   board_set_spi_baud	(setget_c.obj)
+  0000DFF0 00000014 .text   board_set_spi_polarity	(setget_c.obj)
+  0000E004 00000014 .text   board_set_spi_phase	(setget_c.obj)
+  0000E018 00000014 .text   board_set_spi_master	(setget_c.obj)
+  0000E02C 00000014 .text   board_set_spi_interrupt	(setget_c.obj)
+  0000E040 0000000C .text   board_set_email_username	(setget_c.obj)
+  0000E04C 0000000C .text   board_set_email_password	(setget_c.obj)
+  0000E058 0000000C .text   board_set_email_smtp_server	(setget_c.obj)
+  0000E064 00000018 .text   board_set_email_authentication_required	(setget_c.obj)
+  0000E07C 00000004 .text   get_one_byte_elements	(setget_c.obj)
+  0000E080 00000004 .text   get_two_bytes_elements	(setget_c.obj)
+  0000E084 00000004 .text   get_four_bytes_elements	(setget_c.obj)
+  0000E088 00000004 .text   get_six_bytes_elements	(setget_c.obj)
+  0000E08C 000000C8 .text   xSPIinit	(spi_rtos_c.obj)
+  0000E154 0000000C .text   xSPIChangeToPolling	(spi_rtos_c.obj)
+  0000E160 00000010 .text   xSPIMasterSendChar	(spi_rtos_c.obj)
+  0000E170 00000014 .text   xSPIMasterReceiveChar	(spi_rtos_c.obj)
+  0000E184 0000007C .text   xSPIMasterSetGetChar	(spi_rtos_c.obj)
+  0000E200 0000001C .text   xSPISlaveReceiveChar	(spi_rtos_c.obj)
+  0000E21C 00000050 .text   xSPISlaveSendChar	(spi_rtos_c.obj)
+  0000E26C 000000F4 .text   spi_isr	(spi_rtos_c.obj)
+  0000E360 000000EC .text   xUARTinit	(uart_rtos_c.obj)
+  0000E44C 00000010 .text   xUARTSetBufferLength	(uart_rtos_c.obj)
+  0000E45C 00000010 .text   xUARTGetBufferLength	(uart_rtos_c.obj)
+  0000E46C 0000002C .text   xUARTGetCharWithFlowControl	(uart_rtos_c.obj)
+  0000E498 00000038 .text   xUARTPutChar	(uart_rtos_c.obj)
+  0000E4D0 00000020 .text   xUARTSetXON	(uart_rtos_c.obj)
+  0000E4F0 00000140 .text   xUARTtxISR	(uart_rtos_c.obj)
+  0000E630 00000148 .text   xUARTrxISR	(uart_rtos_c.obj)
+  0000E778 00000030 .text   tcpip_tcp_timer	(tcpip_c.obj)
+  0000E7A8 00000034 .text   tcp_timer_needed	(tcpip_c.obj)
+  0000E7DC 00000018 .text   ip_reass_timer	(tcpip_c.obj)
+  0000E7F4 00000018 .text   arp_timer	(tcpip_c.obj)
+  0000E80C 0000001C .text   dhcp_timer_coarse	(tcpip_c.obj)
+  0000E828 00000018 .text   dhcp_timer_fine	(tcpip_c.obj)
+  0000E840 00000018 .text   autoip_timer	(tcpip_c.obj)
+  0000E858 00000018 .text   dns_timer	(tcpip_c.obj)
+  0000E870 00000140 .text   tcpip_thread	(tcpip_c.obj)
+  0000E9B0 00000064 .text   tcpip_input	(tcpip_c.obj)
+  0000EA14 00000078 .text   tcpip_callback_with_block	(tcpip_c.obj)
+  0000EA8C 00000048 .text   tcpip_apimsg	(tcpip_c.obj)
+  0000EAD4 0000006C .text   tcpip_netifapi	(tcpip_c.obj)
+  0000EB40 00000050 .text   tcpip_init	(tcpip_c.obj)
+  0000EB90 00000024 .text   lwip_socket_init	(sockets_c.obj)
+  0000EBB4 0000003C .text   do_netifapi_netif_common	(netifapi_c.obj)
+  0000EBF0 00000034 .text   netifapi_netif_common	(netifapi_c.obj)
+  0000EC24 00000028 .text   netbuf_delete	(netbuf_c.obj)
+  0000EC4C 000000D8 .text   recv_udp	(api_msg_c.obj)
+  0000ED24 000000B8 .text   recv_tcp	(api_msg_c.obj)
+  0000EDDC 00000040 .text   poll_tcp	(api_msg_c.obj)
+  0000EE1C 00000080 .text   sent_tcp	(api_msg_c.obj)
+  0000EE9C 000000B0 .text   err_tcp	(api_msg_c.obj)
+  0000EF4C 00000050 .text   setup_tcp	(api_msg_c.obj)
+  0000EF9C 00000088 .text   accept_function	(api_msg_c.obj)
+  0000F024 000000C0 .text   pcb_new	(api_msg_c.obj)
+  0000F0E4 0000002C .text   do_newconn	(api_msg_c.obj)
+  0000F110 00000088 .text   netconn_alloc	(api_msg_c.obj)
+  0000F198 000000E8 .text   netconn_free	(api_msg_c.obj)
+  0000F280 00000118 .text   do_close_internal	(api_msg_c.obj)
+  0000F398 00000088 .text   do_delconn	(api_msg_c.obj)
+  0000F420 0000007C .text   do_bind	(api_msg_c.obj)
+  0000F49C 00000038 .text   do_connected	(api_msg_c.obj)
+  0000F4D4 00000098 .text   do_connect	(api_msg_c.obj)
+  0000F56C 000000E0 .text   do_listen	(api_msg_c.obj)
+  0000F64C 00000050 .text   do_recv	(api_msg_c.obj)
+  0000F69C 0000015C .text   do_writemore	(api_msg_c.obj)
+  0000F7F8 00000050 .text   do_write	(api_msg_c.obj)
+  0000F848 00000034 .text   do_close	(api_msg_c.obj)
+  0000F87C 00000058 .text   do_dns_found	(api_msg_c.obj)
+  0000F8D4 00000044 .text   do_gethostbyname	(api_msg_c.obj)
+  0000F918 000000B4 .text   netconn_new_with_proto_and_callback	(api_lib_c.obj)
+  0000F9CC 00000034 .text   netconn_delete	(api_lib_c.obj)
+  0000FA00 00000048 .text   netconn_bind	(api_lib_c.obj)
+  0000FA48 00000048 .text   netconn_connect	(api_lib_c.obj)
+  0000FA90 00000040 .text   netconn_listen_with_backlog	(api_lib_c.obj)
+  0000FAD0 00000080 .text   netconn_accept	(api_lib_c.obj)
+  0000FB50 000001C8 .text   netconn_recv	(api_lib_c.obj)
+  0000FD18 00000060 .text   netconn_write	(api_lib_c.obj)
+  0000FD78 0000003C .text   netconn_close	(api_lib_c.obj)
+  0000FDB4 00000084 .text   netconn_gethostbyname	(api_lib_c.obj)
+  0000FE38 00000044 .text   ip_reass_tmr	(ip_frag_c.obj)
+  0000FE7C 000000E4 .text   ip_reass_free_complete_datagram	(ip_frag_c.obj)
+  0000FF60 00000090 .text   ip_reass_remove_oldest_datagram	(ip_frag_c.obj)
+  0000FFF0 00000078 .text   ip_reass_enqueue_new_datagram	(ip_frag_c.obj)
+  00010068 00000040 .text   ip_reass_dequeue_datagram	(ip_frag_c.obj)
+  000100A8 000001DC .text   ip_reass_chain_frag_into_datagram_and_validate	(ip_frag_c.obj)
+  00010284 000001CC .text   ip_reass	(ip_frag_c.obj)
+  00010450 000001D4 .text   ip_frag	(ip_frag_c.obj)
+  00010624 00000044 .text   ip_addr_isbroadcast	(ip_addr_c.obj)
+  00010668 00000060 .text   ip_route	(ip_c.obj)
+  000106C8 000001E0 .text   ip_input	(ip_c.obj)
+  000108A8 00000130 .text   ip_output_if	(ip_c.obj)
+  000109D8 0000004C .text   ip_output	(ip_c.obj)
+  00010A24 0000005C .text   lwip_standard_chksum	(inet_chksum_c.obj)
+  00010A80 000000FC .text   inet_chksum_pseudo	(inet_chksum_c.obj)
+  00010B7C 00000030 .text   inet_chksum	(inet_chksum_c.obj)
+  00010BAC 00000094 .text   inet_chksum_pbuf	(inet_chksum_c.obj)
+  00010C40 00000018 .text   inet_addr	(inet_c.obj)
+  00010C58 000001B8 .text   inet_aton	(inet_c.obj)
+  00010E10 000001E0 .text   icmp_input	(icmp_c.obj)
+  00010FF0 000000B4 .text   icmp_dest_unreach	(icmp_c.obj)
+  000110A4 000000B4 .text   icmp_time_exceeded	(icmp_c.obj)
+  00011158 00000004 .text   autoip_init	(autoip_c.obj)
+  0001115C 0000002C .text   autoip_handle_arp_conflict	(autoip_c.obj)
+  00011188 00000054 .text   autoip_create_rand_addr	(autoip_c.obj)
+  000111DC 00000040 .text   autoip_arp_announce	(autoip_c.obj)
+  0001121C 00000040 .text   autoip_bind	(autoip_c.obj)
+  0001125C 0000010C .text   autoip_start	(autoip_c.obj)
+  00011368 0000015C .text   autoip_tmr	(autoip_c.obj)
+  000114C4 000000D8 .text   autoip_arp_reply	(autoip_c.obj)
+  0001159C 00000248 .text   udp_input	(udp_c.obj)
+  000117E4 00000044 .text   udp_sendto	(udp_c.obj)
+  00011828 0000013C .text   udp_sendto_if	(udp_c.obj)
+  00011964 000000B0 .text   udp_bind	(udp_c.obj)
+  00011A14 00000078 .text   udp_connect	(udp_c.obj)
+  00011A8C 00000014 .text   udp_recv	(udp_c.obj)
+  00011AA0 00000054 .text   udp_remove	(udp_c.obj)
+  00011AF4 00000028 .text   udp_new	(udp_c.obj)
+  00011B1C 0000001C .text   tcp_send_ctrl	(tcp_out_c.obj)
+  00011B38 0000003C .text   tcp_write	(tcp_out_c.obj)
+  00011B74 00000504 .text   tcp_enqueue	(tcp_out_c.obj)
+  00012078 000002C4 .text   tcp_output	(tcp_out_c.obj)
+  0001233C 0000010C .text   tcp_output_segment	(tcp_out_c.obj)
+  00012448 000000C4 .text   tcp_rst	(tcp_out_c.obj)
+  0001250C 0000004C .text   tcp_rexmit_rto	(tcp_out_c.obj)
+  00012558 00000040 .text   tcp_rexmit	(tcp_out_c.obj)
+  00012598 000000C8 .text   tcp_keepalive	(tcp_out_c.obj)
+  00012660 00000118 .text   tcp_zero_window_probe	(tcp_out_c.obj)
+  00012778 0000052C .text   tcp_input	(tcp_in_c.obj)
+  00012CA4 00000194 .text   tcp_listen_input	(tcp_in_c.obj)
+  00012E38 00000044 .text   tcp_timewait_input	(tcp_in_c.obj)
+  00012E7C 00000580 .text   tcp_process	(tcp_in_c.obj)
+  000133FC 00000AA4 .text   tcp_receive	(tcp_in_c.obj)
+  00013EA0 000000A8 .text   tcp_parseopt	(tcp_in_c.obj)
+  00013F48 00000024 .text   tcp_tmr	(tcp_c.obj)
+  00013F6C 00000128 .text   tcp_close	(tcp_c.obj)
+  00014094 000000DC .text   tcp_abort	(tcp_c.obj)
+  00014170 00000128 .text   tcp_bind	(tcp_c.obj)
+  00014298 00000004 .text   tcp_accept_null	(tcp_c.obj)
+  0001429C 0000010C .text   tcp_listen_with_backlog	(tcp_c.obj)
+  000143A8 0000008C .text   tcp_recved	(tcp_c.obj)
+  00014434 0000009C .text   tcp_new_port	(tcp_c.obj)
+  000144D0 00000164 .text   tcp_connect	(tcp_c.obj)
+  00014634 000003FC .text   tcp_slowtmr	(tcp_c.obj)
+  00014A30 0000008C .text   tcp_fasttmr	(tcp_c.obj)
+  00014ABC 00000028 .text   tcp_segs_free	(tcp_c.obj)
+  00014AE4 00000030 .text   tcp_seg_free	(tcp_c.obj)
+  00014B14 00000008 .text   tcp_setprio	(tcp_c.obj)
+  00014B1C 00000038 .text   tcp_seg_copy	(tcp_c.obj)
+  00014B54 00000020 .text   tcp_recv_null	(tcp_c.obj)
+  00014B74 0000005C .text   tcp_kill_prio	(tcp_c.obj)
+  00014BD0 0000003C .text   tcp_kill_timewait	(tcp_c.obj)
+  00014C0C 000000E4 .text   tcp_alloc	(tcp_c.obj)
+  00014CF0 00000010 .text   tcp_new	(tcp_c.obj)
+  00014D00 00000008 .text   tcp_arg	(tcp_c.obj)
+  00014D08 00000008 .text   tcp_recv	(tcp_c.obj)
+  00014D10 00000008 .text   tcp_sent	(tcp_c.obj)
+  00014D18 00000008 .text   tcp_err	(tcp_c.obj)
+  00014D20 00000008 .text   tcp_accept	(tcp_c.obj)
+  00014D28 0000000C .text   tcp_poll	(tcp_c.obj)
+  00014D34 00000064 .text   tcp_pcb_purge	(tcp_c.obj)
+  00014D98 000000C8 .text   tcp_pcb_remove	(tcp_c.obj)
+  00014E60 00000014 .text   tcp_next_iss	(tcp_c.obj)
+  00014E74 00000030 .text   tcp_eff_send_mss	(tcp_c.obj)
+  00014EA4 00000084 .text   sys_mbox_fetch	(sys_c.obj)
+  00014F28 00000080 .text   sys_sem_wait	(sys_c.obj)
+  00014FA8 000000B8 .text   sys_timeout	(sys_c.obj)
+  00015060 00000080 .text   sys_untimeout	(sys_c.obj)
+  000150E0 00000268 .text   pbuf_alloc	(pbuf_c.obj)
+  00015348 000000D0 .text   pbuf_realloc	(pbuf_c.obj)
+  00015418 000000C0 .text   pbuf_header	(pbuf_c.obj)
+  000154D8 000000D0 .text   pbuf_free	(pbuf_c.obj)
+  000155A8 00000014 .text   pbuf_clen	(pbuf_c.obj)
+  000155BC 00000024 .text   pbuf_ref	(pbuf_c.obj)
+  000155E0 00000078 .text   pbuf_cat	(pbuf_c.obj)
+  00015658 00000018 .text   pbuf_chain	(pbuf_c.obj)
+  00015670 00000114 .text   pbuf_copy	(pbuf_c.obj)
+  00015784 000000A0 .text   pbuf_copy_partial	(pbuf_c.obj)
+  00015824 00000084 .text   netif_add	(netif_c.obj)
+  000158A8 00000038 .text   netif_set_addr	(netif_c.obj)
+  000158E0 0000009C .text   netif_set_ipaddr	(netif_c.obj)
+  0001597C 00000010 .text   netif_set_gw	(netif_c.obj)
+  0001598C 00000010 .text   netif_set_netmask	(netif_c.obj)
+  0001599C 00000008 .text   netif_set_default	(netif_c.obj)
+  000159A4 0000002C .text   netif_set_up	(netif_c.obj)
+  000159D0 00000014 .text   netif_set_down	(netif_c.obj)
+  000159E4 00000010 .text   netif_is_up	(netif_c.obj)
+  000159F4 00000060 .text   memp_init	(memp_c.obj)
+  00015A54 00000060 .text   memp_malloc	(memp_c.obj)
+  00015AB4 00000044 .text   memp_free	(memp_c.obj)
+  00015AF8 00000100 .text   plug_holes	(mem_c.obj)
+  00015BF8 00000070 .text   mem_init	(mem_c.obj)
+  00015C68 000000A4 .text   mem_free	(mem_c.obj)
+  00015D0C 00000154 .text   mem_realloc	(mem_c.obj)
+  00015E60 000001A0 .text   mem_malloc	(mem_c.obj)
+  00016000 00000024 .text   lwip_init	(init_c.obj)
+  00016024 00000064 .text   dns_init	(dns_c.obj)
+  00016088 00000024 .text   dns_setserver	(dns_c.obj)
+  000160AC 00000010 .text   dns_tmr	(dns_c.obj)
+  000160BC 00000054 .text   dns_lookup	(dns_c.obj)
+  00016110 00000038 .text   dns_compare_name	(dns_c.obj)
+  00016148 0000002C .text   dns_parse_name	(dns_c.obj)
+  00016174 00000124 .text   dns_send	(dns_c.obj)
+  00016298 00000114 .text   dns_check_entry	(dns_c.obj)
+  000163AC 0000001C .text   dns_check_entries	(dns_c.obj)
+  000163C8 000001A0 .text   dns_recv	(dns_c.obj)
+  00016568 000000C0 .text   dns_enqueue	(dns_c.obj)
+  00016628 00000078 .text   dns_gethostbyname	(dns_c.obj)
+  000166A0 00000054 .text   dhcp_handle_nak	(dhcp_c.obj)
+  000166F4 00000034 .text   dhcp_check	(dhcp_c.obj)
+  00016728 0000004C .text   dhcp_handle_offer	(dhcp_c.obj)
+  00016774 00000164 .text   dhcp_select	(dhcp_c.obj)
+  000168D8 00000060 .text   dhcp_coarse_tmr	(dhcp_c.obj)
+  00016938 0000004C .text   dhcp_fine_tmr	(dhcp_c.obj)
+  00016984 00000090 .text   dhcp_timeout	(dhcp_c.obj)
+  00016A14 00000020 .text   dhcp_t1_timeout	(dhcp_c.obj)
+  00016A34 00000020 .text   dhcp_t2_timeout	(dhcp_c.obj)
+  00016A54 00000174 .text   dhcp_handle_ack	(dhcp_c.obj)
+  00016BC8 000000CC .text   dhcp_start	(dhcp_c.obj)
+  00016C94 00000150 .text   dhcp_discover	(dhcp_c.obj)
+  00016DE4 0000013C .text   dhcp_bind	(dhcp_c.obj)
+  00016F20 00000100 .text   dhcp_renew	(dhcp_c.obj)
+  00017020 00000104 .text   dhcp_rebind	(dhcp_c.obj)
+  00017124 0000013C .text   dhcp_release	(dhcp_c.obj)
+  00017260 00000060 .text   dhcp_stop	(dhcp_c.obj)
+  000172C0 00000010 .text   dhcp_set_state	(dhcp_c.obj)
+  000172D0 00000070 .text   dhcp_option	(dhcp_c.obj)
+  00017340 00000040 .text   dhcp_option_byte	(dhcp_c.obj)
+  00017380 00000074 .text   dhcp_option_short	(dhcp_c.obj)
+  000173F4 000000C0 .text   dhcp_option_long	(dhcp_c.obj)
+  000174B4 000000EC .text   dhcp_unfold_reply	(dhcp_c.obj)
+  000175A0 00000030 .text   dhcp_free_reply	(dhcp_c.obj)
+  000175D0 00000100 .text   dhcp_recv	(dhcp_c.obj)
+  000176D0 00000220 .text   dhcp_create_request	(dhcp_c.obj)
+  000178F0 00000068 .text   dhcp_delete_request	(dhcp_c.obj)
+  00017958 000000A4 .text   dhcp_option_trailer	(dhcp_c.obj)
+  000179FC 000000CC .text   dhcp_get_option_ptr	(dhcp_c.obj)
+  00017AC8 00000004 .text   dhcp_get_option_byte	(dhcp_c.obj)
+  00017ACC 0000002C .text   dhcp_get_option_long	(dhcp_c.obj)
+  00017AF8 0000006C .text   free_etharp_q	(etharp_c.obj)
+  00017B64 00000070 .text   etharp_tmr	(etharp_c.obj)
+  00017BD4 00000204 .text   find_entry	(etharp_c.obj)
+  00017DD8 0000006C .text   etharp_send_ip	(etharp_c.obj)
+  00017E44 000000FC .text   update_arp_entry	(etharp_c.obj)
+  00017F40 00000048 .text   etharp_ip_input	(etharp_c.obj)
+  00017F88 000001A8 .text   etharp_arp_input	(etharp_c.obj)
+  00018130 000000D8 .text   etharp_output	(etharp_c.obj)
+  00018208 000001BC .text   etharp_query	(etharp_c.obj)
+  000183C4 00000130 .text   etharp_raw	(etharp_c.obj)
+  000184F4 00000040 .text   etharp_request	(etharp_c.obj)
+  00018534 00000080 .text   ethernet_input	(etharp_c.obj)
+  000185B4 00000018 .text   isspace	(stdlib_c.obj)
+  000185CC 00000038 .text   isalnum	(stdlib_c.obj)
+  00018604 00000018 .text   toupper	(stdlib_c.obj)
+  0001861C 00000100 .text   strtoul	(stdlib_c.obj)
+  0001871C 00000020 .text   strlen	(stdlib_c.obj)
+  0001873C 00000030 .text   strcat	(stdlib_c.obj)
+  0001876C 00000020 .text   strcpy	(stdlib_c.obj)
+  0001878C 0000002C .text   strncpy	(stdlib_c.obj)
+  000187B8 0000001C .text   strcmp	(stdlib_c.obj)
+  000187D4 00000028 .text   strncmp	(stdlib_c.obj)
+  000187FC 00000050 .text   strstr	(stdlib_c.obj)
+  0001884C 00000020 .text   strchr	(stdlib_c.obj)
+  0001886C 00000028 .text   strupr	(stdlib_c.obj)
+  00018894 00000028 .text   memcpy	(stdlib_c.obj)
+  000188BC 00000020 .text   memset	(stdlib_c.obj)
+  000188DC 00000034 .text   memcmp	(stdlib_c.obj)
+  00018910 00000008 .text   LWordSwap	(stdlib_c.obj)
+  00018918 00000030 .text   printk_putc	(printf_c.obj)
+  00018948 000000A0 .text   printk_mknumstr	(printf_c.obj)
+  000189E8 00000034 .text   printk_pad_zero	(printf_c.obj)
+  00018A1C 00000034 .text   printk_pad_space	(printf_c.obj)
+  00018A50 0000052C .text   printk	(printf_c.obj)
+  00018F7C 0000003C .text   sprintf	(printf_c.obj)
+  00018FB8 00000088 .text   free	(alloc_c.obj)
+  00019040 00000090 .text   malloc	(alloc_c.obj)
+  000190D0 0000003C .text   FAT_INIT	(Fat_c.obj)
+  0001910C 00000008 .text   FAT_Close	(Fat_c.obj)
+  00019114 000000DC .text   FAT_Read_Master_Block	(Fat_c.obj)
+  000191F0 000000D4 .text   FAT_LS	(Fat_c.obj)
+  000192C4 00000130 .text   FAT_FileClose	(Fat_c.obj)
+  000193F4 00000084 .text   FAT_SearchAvailableFAT	(Fat_c.obj)
+  00019478 00000084 .text   FAT_Entry	(Fat_c.obj)
+  000194FC 000000E0 .text   FAT_FileWrite	(Fat_c.obj)
+  000195DC 000000A0 .text   FAT_FileRead	(Fat_c.obj)
+  0001967C 00000030 .text   FAT_FileNameOrganizer	(Fat_c.obj)
+  000196AC 000000D0 .text   FAT_FileDelete	(Fat_c.obj)
+  0001977C 000002B0 .text   FAT_FileOpen	(Fat_c.obj)
+  00019A2C 00000000 .text   ulPortSetIPL	(portasm_S.obj)
+  00019A2C 0000007C .text   @DummyFn1	(portasm_S.obj)
+  00019A2C 0000007C .text   .text	(portasm_S.obj)
+  00019A2C 00000000 .text   ulPortSetIPL	(portasm_S.obj)
+  00019A60 00000000 .text   mcf5xxx_wr_cacrx	(portasm_S.obj)
+  00019A60 00000000 .text   mcf5xxx_wr_cacrx	(portasm_S.obj)
+  00019A6C 00000000 .text   vPortYieldISR	(portasm_S.obj)
+  00019A6C 00000000 .text   vPortYieldISR	(portasm_S.obj)
+  00019A94 00000000 .text   vPortStartFirstTask	(portasm_S.obj)
+  00019A94 00000000 .text   vPortStartFirstTask	(portasm_S.obj)
+  00019AA8 00000030 .text   pxPortInitialiseStack	(port_c.obj)
+  00019AD8 00000018 .text   xPortStartScheduler	(port_c.obj)
+  00019AF0 00000014 .text   prvSetupTimerInterrupt	(port_c.obj)
+  00019B04 00000028 .text   vPortEnterCritical	(port_c.obj)
+  00019B2C 0000001C .text   vPortExitCritical	(port_c.obj)
+  00019B48 00000024 .text   vPortYieldHandler	(port_c.obj)
+  00019B6C 00000044 .text   vPortTickISR	(port_c.obj)
+  00019BB0 00000024 .text   pvPortMalloc	(heap_3_c.obj)
+  00019BD4 00000020 .text   vPortFree	(heap_3_c.obj)
+  00019BF4 00000134 .text   xTaskCreate	(tasks_c.obj)
+  00019D28 00000080 .text   vTaskDelete	(tasks_c.obj)
+  00019DA8 00000088 .text   vTaskDelay	(tasks_c.obj)
+  00019E30 00000048 .text   vTaskStartScheduler	(tasks_c.obj)
+  00019E78 00000014 .text   vTaskSuspendAll	(tasks_c.obj)
+  00019E8C 00000114 .text   xTaskResumeAll	(tasks_c.obj)
+  00019FA0 0000001C .text   xTaskGetTickCount	(tasks_c.obj)
+  00019FBC 000000D4 .text   vTaskList	(tasks_c.obj)
+  0001A090 000000D8 .text   vTaskIncrementTick	(tasks_c.obj)
+  0001A168 00000100 .text   vTaskSwitchContext	(tasks_c.obj)
+  0001A268 0000009C .text   vTaskPlaceOnEventList	(tasks_c.obj)
+  0001A304 0000008C .text   xTaskRemoveFromEventList	(tasks_c.obj)
+  0001A390 00000014 .text   vTaskSetTimeOutState	(tasks_c.obj)
+  0001A3A4 00000078 .text   xTaskCheckForTimeOut	(tasks_c.obj)
+  0001A41C 00000008 .text   vTaskMissedYield	(tasks_c.obj)
+  0001A424 00000028 .text   prvIdleTask	(tasks_c.obj)
+  0001A44C 00000058 .text   prvInitialiseTCBVariables	(tasks_c.obj)
+  0001A4A4 0000007C .text   prvInitialiseTaskLists	(tasks_c.obj)
+  0001A520 00000088 .text   prvCheckTasksWaitingTermination	(tasks_c.obj)
+  0001A5A8 00000050 .text   prvAllocateTCBAndStack	(tasks_c.obj)
+  0001A5F8 000000CC .text   prvListTaskWithinSingleList	(tasks_c.obj)
+  0001A6C4 00000018 .text   usTaskCheckFreeStackSpace	(tasks_c.obj)
+  0001A6DC 0000001C .text   prvDeleteTCB	(tasks_c.obj)
+  0001A6F8 0000001C .text   xTaskGetCurrentTaskHandle	(tasks_c.obj)
+  0001A714 00000094 .text   vTaskPriorityInherit	(tasks_c.obj)
+  0001A7A8 0000005C .text   vTaskPriorityDisinherit	(tasks_c.obj)
+  0001A804 00000098 .text   xQueueCreate	(queue_c.obj)
+  0001A89C 0000005C .text   xQueueCreateMutex	(queue_c.obj)
+  0001A8F8 0000001C .text   xQueueCreateCountingSemaphore	(queue_c.obj)
+  0001A914 00000140 .text   xQueueGenericSend	(queue_c.obj)
+  0001AA54 00000078 .text   xQueueGenericSendFromISR	(queue_c.obj)
+  0001AACC 000001A8 .text   xQueueGenericReceive	(queue_c.obj)
+  0001AC74 00000078 .text   xQueueReceiveFromISR	(queue_c.obj)
+  0001ACEC 00000020 .text   uxQueueMessagesWaiting	(queue_c.obj)
+  0001AD0C 00000008 .text   uxQueueMessagesWaitingFromISR	(queue_c.obj)
+  0001AD14 0000001C .text   vQueueDelete	(queue_c.obj)
+  0001AD30 0000007C .text   prvCopyDataToQueue	(queue_c.obj)
+  0001ADAC 00000030 .text   prvCopyDataFromQueue	(queue_c.obj)
+  0001ADDC 0000008C .text   prvUnlockQueue	(queue_c.obj)
+  0001AE68 00000024 .text   prvIsQueueEmpty	(queue_c.obj)
+  0001AE8C 00000028 .text   prvIsQueueFull	(queue_c.obj)
+  0001AEB4 0000001C .text   vListInitialise	(list_c.obj)
+  0001AED0 00000008 .text   vListInitialiseItem	(list_c.obj)
+  0001AED8 00000030 .text   vListInsertEnd	(list_c.obj)
+  0001AF08 00000050 .text   vListInsert	(list_c.obj)
+  0001AF58 00000034 .text   vListRemove	(list_c.obj)
+  0001AF8C 00000150 .text   SD_Init	(SD_c.obj)
+  0001B0DC 000000CC .text   SD_Write_Block	(SD_c.obj)
+  0001B1A8 0000009C .text   SD_Read_Block	(SD_c.obj)
+  0001B244 00000084 .text   SD_SendCommand	(SD_c.obj)
+  0001B2C8 00000030 .text   SD_CLKDelay	(SD_c.obj)
+  0001B2F8 0000001C .text   __call_static_initializers	(librt.a cf_staticinitia)
+  0001B314 0000003E .text   __ldivu__	(librt.a cf_runtime.o   )
+  0001B352 00000034 .text   __ldiv__	(librt.a cf_runtime.o   )
+  0001B386 0000003C .text   __lmodu__	(librt.a cf_runtime.o   )
+  0001B3C2 00000034 .text   __lmod__	(librt.a cf_runtime.o   )
+  0001B3F8 00000041 .rodata cb64	(utilities_c.obj)
+  0001B439 00000005 .rodata @233	(utilities_c.obj)
+  0001B43E 0000000A .rodata @234	(utilities_c.obj)
+  0001B448 00000007 .rodata @235	(utilities_c.obj)
+  0001B44F 00000005 .rodata @236	(utilities_c.obj)
+  0001B454 00000009 .rodata @237	(utilities_c.obj)
+  0001B45D 00000005 .rodata @238	(utilities_c.obj)
+  0001B462 0000000B .rodata @239	(utilities_c.obj)
+  0001B46D 00000005 .rodata @240	(utilities_c.obj)
+  0001B472 00000005 .rodata @241	(utilities_c.obj)
+  0001B477 0000000B .rodata @242	(utilities_c.obj)
+  0001B482 00000006 .rodata @243	(utilities_c.obj)
+  0001B488 00000005 .rodata @244	(utilities_c.obj)
+  0001B48D 0000000A .rodata @245	(utilities_c.obj)
+  0001B497 00000005 .rodata @246	(utilities_c.obj)
+  0001B49C 0000000A .rodata @247	(utilities_c.obj)
+  0001B4A6 00000048 .rodata MIME_TYPE_ARRAY	(utilities_c.obj)
+  0001B4EE 00000019 .rodata @296	(utilities_c.obj)
+  0001B507 00000019 .rodata @458	(dhcp_app_c.obj)
+  0001B520 00000018 .rodata @459	(dhcp_app_c.obj)
+  0001B538 00000057 .rodata @460	(dhcp_app_c.obj)
+  0001B58F 00000005 .rodata @255	(email_client_c.obj)
+  0001B594 0000000F .rodata @341	(email_client_c.obj)
+  0001B5A3 0000000F .rodata @342	(email_client_c.obj)
+  0001B5B2 00000004 .rodata @343	(email_client_c.obj)
+  0001B5B6 0000000D .rodata @344	(email_client_c.obj)
+  0001B5C3 00000004 .rodata @345	(email_client_c.obj)
+  0001B5C7 00000005 .rodata @346	(email_client_c.obj)
+  0001B5CC 00000004 .rodata @347	(email_client_c.obj)
+  0001B5D0 00000012 .rodata @348	(email_client_c.obj)
+  0001B5E2 00000010 .rodata @349	(email_client_c.obj)
+  0001B5F2 00000007 .rodata @350	(email_client_c.obj)
+  0001B5F9 00000004 .rodata @351	(email_client_c.obj)
+  0001B5FD 00000026 .rodata @352	(email_client_c.obj)
+  0001B623 00000006 .rodata @353	(email_client_c.obj)
+  0001B629 00000007 .rodata @354	(email_client_c.obj)
+  0001B630 00000014 .rodata @301	(ftp_server_c.obj)
+  0001B644 00000005 .rodata @302	(ftp_server_c.obj)
+  0001B649 00000005 .rodata @303	(ftp_server_c.obj)
+  0001B64E 0000000E .rodata @304	(ftp_server_c.obj)
+  0001B65C 00000017 .rodata @305	(ftp_server_c.obj)
+  0001B673 00000005 .rodata @306	(ftp_server_c.obj)
+  0001B678 00000005 .rodata @307	(ftp_server_c.obj)
+  0001B67D 0000001B .rodata @308	(ftp_server_c.obj)
+  0001B698 00000005 .rodata @309	(ftp_server_c.obj)
+  0001B69D 0000000D .rodata @310	(ftp_server_c.obj)
+  0001B6AA 00000015 .rodata @311	(ftp_server_c.obj)
+  0001B6BF 00000015 .rodata @312	(ftp_server_c.obj)
+  0001B6D4 0000001F .rodata @313	(ftp_server_c.obj)
+  0001B6F3 00000005 .rodata @342	(ftp_server_c.obj)
+  0001B6F8 0000000D .rodata @343	(ftp_server_c.obj)
+  0001B705 0000001B .rodata @344	(ftp_server_c.obj)
+  0001B720 0000000E .rodata @415	(ftp_server_c.obj)
+  0001B72E 00000005 .rodata @416	(ftp_server_c.obj)
+  0001B733 0000000E .rodata @417	(ftp_server_c.obj)
+  0001B741 00000012 .rodata @418	(ftp_server_c.obj)
+  0001B753 0000001C .rodata @419	(ftp_server_c.obj)
+  0001B76F 00000005 .rodata @420	(ftp_server_c.obj)
+  0001B774 0000000E .rodata @421	(ftp_server_c.obj)
+  0001B782 00000005 .rodata @422	(ftp_server_c.obj)
+  0001B787 0000000E .rodata @423	(ftp_server_c.obj)
+  0001B795 0000001C .rodata @424	(ftp_server_c.obj)
+  0001B7B1 00000003 .rodata @476	(ftp_server_c.obj)
+  0001B7B4 00000009 .rodata @48	(http_cgi_c.obj)
+  0001B7BD 00000008 .rodata @49	(http_cgi_c.obj)
+  0001B7C5 00000008 .rodata @50	(http_cgi_c.obj)
+  0001B7CD 00000008 .rodata @51	(http_cgi_c.obj)
+  0001B7D5 0000000A .rodata @52	(http_cgi_c.obj)
+  0001B7E0 00000028 .rodata CGI_CMD_ARRAY	(http_cgi_c.obj)
+  0001B808 00000002 .rodata @85	(http_cgi_c.obj)
+  0001B80A 00000005 .rodata @97	(http_cgi_c.obj)
+  0001B80F 0000000D .rodata @98	(http_cgi_c.obj)
+  0001B81C 0000000A .rodata @123	(http_cgi_c.obj)
+  0001B826 0000000A .rodata @159	(http_cgi_c.obj)
+  0001B830 0000000A .rodata @179	(http_cgi_c.obj)
+  0001B83A 00000006 .rodata @345	(http_server_c.obj)
+  0001B840 00000007 .rodata @346	(http_server_c.obj)
+  0001B847 0000000A .rodata @396	(http_server_c.obj)
+  0001B851 00000007 .rodata @397	(http_server_c.obj)
+  0001B858 00000012 .rodata @503	(http_server_c.obj)
+  0001B86A 00000003 .rodata @504	(http_server_c.obj)
+  0001B86D 00000047 .rodata @645	(http_server_c.obj)
+  0001B8B4 000000C3 .rodata @646	(http_server_c.obj)
+  0001B977 0000004C .rodata @647	(http_server_c.obj)
+  0001B9C3 00000007 .rodata @661	(http_server_c.obj)
+  0001B9CA 00000008 .rodata @679	(http_server_c.obj)
+  0001B9D2 00000041 .rodata @686	(http_server_c.obj)
+  0001BA13 00000053 .rodata @687	(http_server_c.obj)
+  0001BA66 00000005 .rodata @STRING@HTTP_SendDynamicData__FP7netconnPUcPUcUsUc@0	(http_server_c.obj)
+  0001BA6B 00000010 .rodata @STRING@HTTP_SendDynamicData(netconn*,unsigned char*,unsigned char*,unsigned short,unsigned char)	(http_server_c.obj)
+  0001BA7B 0000001F .rodata @STRING@HTTP_SendHeader__FP7netconnPUcUsUc@3	(http_server_c.obj)
+  0001BA9A 00000005 .rodata @STRING@HTTP_SendHeader__FP7netconnPUcUsUc@2	(http_server_c.obj)
+  0001BA9F 00000005 .rodata @STRING@HTTP_SendHeader__FP7netconnPUcUsUc@1	(http_server_c.obj)
+  0001BAA4 00000013 .rodata @STRING@HTTP_SendHeader__FP7netconnPUcUsUc@0	(http_server_c.obj)
+  0001BAB7 00000039 .rodata @STRING@HTTP_SendHeader(netconn*,unsigned char*,unsigned short,unsigned char)	(http_server_c.obj)
+  0001BAF0 00000005 .rodata @STRING@HTTP_IsDynamicExtension__FPUc@0	(http_server_c.obj)
+  0001BAF5 00000007 .rodata @STRING@HTTP_IsDynamicExtension(unsigned char*)	(http_server_c.obj)
+  0001BAFC 00000009 .rodata @65	(http_ssi_c.obj)
+  0001BB05 00000009 .rodata @66	(http_ssi_c.obj)
+  0001BB0E 00000009 .rodata @67	(http_ssi_c.obj)
+  0001BB17 00000008 .rodata @68	(http_ssi_c.obj)
+  0001BB1F 00000009 .rodata @69	(http_ssi_c.obj)
+  0001BB28 00000005 .rodata @70	(http_ssi_c.obj)
+  0001BB2D 00000005 .rodata @71	(http_ssi_c.obj)
+  0001BB32 00000005 .rodata @72	(http_ssi_c.obj)
+  0001BB37 00000005 .rodata @73	(http_ssi_c.obj)
+  0001BB3C 00000005 .rodata @74	(http_ssi_c.obj)
+  0001BB41 00000005 .rodata @75	(http_ssi_c.obj)
+  0001BB46 00000007 .rodata @76	(http_ssi_c.obj)
+  0001BB4D 00000009 .rodata @77	(http_ssi_c.obj)
+  0001BB56 00000009 .rodata @78	(http_ssi_c.obj)
+  0001BB5F 00000009 .rodata @79	(http_ssi_c.obj)
+  0001BB68 00000009 .rodata @80	(http_ssi_c.obj)
+  0001BB71 00000008 .rodata @81	(http_ssi_c.obj)
+  0001BB79 00000008 .rodata @82	(http_ssi_c.obj)
+  0001BB81 00000007 .rodata @83	(http_ssi_c.obj)
+  0001BB88 00000008 .rodata @84	(http_ssi_c.obj)
+  0001BB90 00000007 .rodata @85	(http_ssi_c.obj)
+  0001BB97 00000008 .rodata @86	(http_ssi_c.obj)
+  0001BB9F 00000008 .rodata @87	(http_ssi_c.obj)
+  0001BBA7 00000008 .rodata @88	(http_ssi_c.obj)
+  0001BBAF 00000009 .rodata @89	(http_ssi_c.obj)
+  0001BBB8 00000007 .rodata @90	(http_ssi_c.obj)
+  0001BBBF 00000007 .rodata @91	(http_ssi_c.obj)
+  0001BBC8 000000D8 .rodata SSI_CMD_ARRAY	(http_ssi_c.obj)
+  0001BCA0 00000008 .rodata @92	(http_ssi_c.obj)
+  0001BCA8 00000003 .rodata @93	(http_ssi_c.obj)
+  0001BCAB 00000008 .rodata @94	(http_ssi_c.obj)
+  0001BCB3 00000003 .rodata @95	(http_ssi_c.obj)
+  0001BCB6 00000008 .rodata @96	(http_ssi_c.obj)
+  0001BCBE 00000003 .rodata @97	(http_ssi_c.obj)
+  0001BCC1 00000006 .rodata @98	(http_ssi_c.obj)
+  0001BCC7 00000003 .rodata @99	(http_ssi_c.obj)
+  0001BCCA 00000007 .rodata @100	(http_ssi_c.obj)
+  0001BCD1 00000003 .rodata @101	(http_ssi_c.obj)
+  0001BCD4 00000007 .rodata @102	(http_ssi_c.obj)
+  0001BCDB 00000003 .rodata @103	(http_ssi_c.obj)
+  0001BCDE 00000006 .rodata @104	(http_ssi_c.obj)
+  0001BCE4 00000003 .rodata @105	(http_ssi_c.obj)
+  0001BCE7 00000007 .rodata @106	(http_ssi_c.obj)
+  0001BCEE 00000003 .rodata @107	(http_ssi_c.obj)
+  0001BCF1 00000007 .rodata @108	(http_ssi_c.obj)
+  0001BCF8 00000003 .rodata @109	(http_ssi_c.obj)
+  0001BCFB 00000009 .rodata @110	(http_ssi_c.obj)
+  0001BD04 00000003 .rodata @111	(http_ssi_c.obj)
+  0001BD07 00000007 .rodata @112	(http_ssi_c.obj)
+  0001BD0E 00000003 .rodata @113	(http_ssi_c.obj)
+  0001BD11 00000007 .rodata @114	(http_ssi_c.obj)
+  0001BD18 00000003 .rodata @115	(http_ssi_c.obj)
+  0001BD1B 00000007 .rodata @116	(http_ssi_c.obj)
+  0001BD22 00000003 .rodata @117	(http_ssi_c.obj)
+  0001BD28 00000068 .rodata WEB_LANGUAGES	(http_ssi_c.obj)
+  0001BD90 00000003 .rodata @153	(http_ssi_c.obj)
+  0001BD93 00000003 .rodata @206	(http_ssi_c.obj)
+  0001BD96 00000005 .rodata @238	(http_ssi_c.obj)
+  0001BD9B 00000009 .rodata @239	(http_ssi_c.obj)
+  0001BDA4 00000009 .rodata @240	(http_ssi_c.obj)
+  0001BDAD 00000006 .rodata @254	(http_ssi_c.obj)
+  0001BDB3 00000006 .rodata @255	(http_ssi_c.obj)
+  0001BDB9 00000006 .rodata @256	(http_ssi_c.obj)
+  0001BDBF 00000005 .rodata @270	(http_ssi_c.obj)
+  0001BDC4 00000004 .rodata @271	(http_ssi_c.obj)
+  0001BDC8 00000005 .rodata @272	(http_ssi_c.obj)
+  0001BDCD 00000007 .rodata @285	(http_ssi_c.obj)
+  0001BDD4 00000007 .rodata @286	(http_ssi_c.obj)
+  0001BDDB 00000006 .rodata @298	(http_ssi_c.obj)
+  0001BDE1 0000001E .rodata @306	(http_ssi_c.obj)
+  0001BDFF 0000000C .rodata @330	(http_ssi_c.obj)
+  0001BE0B 00000007 .rodata @415	(http_ssi_c.obj)
+  0001BE12 00000005 .rodata @416	(http_ssi_c.obj)
+  0001BE17 00000007 .rodata @437	(http_ssi_c.obj)
+  0001BE1E 00000007 .rodata @438	(http_ssi_c.obj)
+  0001BE25 00000008 .rodata @439	(http_ssi_c.obj)
+  0001BE2D 00000008 .rodata @440	(http_ssi_c.obj)
+  0001BE35 00000008 .rodata @441	(http_ssi_c.obj)
+  0001BE3D 00000006 .rodata @442	(http_ssi_c.obj)
+  0001BE43 00000006 .rodata @443	(http_ssi_c.obj)
+  0001BE49 00000006 .rodata @444	(http_ssi_c.obj)
+  0001BE4F 00000006 .rodata @445	(http_ssi_c.obj)
+  0001BE55 00000007 .rodata @446	(http_ssi_c.obj)
+  0001BE5C 00000005 .rodata @459	(http_ssi_c.obj)
+  0001BE61 00000005 .rodata @460	(http_ssi_c.obj)
+  0001BE66 00000005 .rodata @473	(http_ssi_c.obj)
+  0001BE6B 00000004 .rodata @474	(http_ssi_c.obj)
+  0001BE6F 00000007 .rodata @487	(http_ssi_c.obj)
+  0001BE76 00000006 .rodata @488	(http_ssi_c.obj)
+  0001BE7C 00000006 .rodata @501	(http_ssi_c.obj)
+  0001BE82 00000007 .rodata @502	(http_ssi_c.obj)
+  0001BE89 00000008 .rodata @515	(http_ssi_c.obj)
+  0001BE91 0000000A .rodata @516	(http_ssi_c.obj)
+  0001BE9B 00000007 .rodata @529	(http_ssi_c.obj)
+  0001BEA2 00000007 .rodata @530	(http_ssi_c.obj)
+  0001BEA9 00000007 .rodata @543	(http_ssi_c.obj)
+  0001BEB0 00000007 .rodata @544	(http_ssi_c.obj)
+  0001BEB7 00000005 .rodata @557	(http_ssi_c.obj)
+  0001BEBC 00000004 .rodata @558	(http_ssi_c.obj)
+  0001BEC0 00000004 .rodata @549	(main_c.obj)
+  0001BEC4 00000004 .rodata @550	(main_c.obj)
+  0001BEC8 00000005 .rodata @551	(main_c.obj)
+  0001BECD 00000004 .rodata @552	(main_c.obj)
+  0001BED1 00000004 .rodata @553	(main_c.obj)
+  0001BED6 00000028 .rodata spi_array	(spi_c.obj)
+  0001BEFE 0000001B .rodata @152	(sys_arch_c.obj)
+  0001BF19 00000021 .rodata @293	(sys_arch_c.obj)
+  0001BF3A 00000028 .rodata @322	(sys_arch_c.obj)
+  0001BF62 0000002D .rodata @341	(sys_arch_c.obj)
+  0001BF8F 00000022 .rodata @356	(sys_arch_c.obj)
+  0001BFB1 00000024 .rodata @370	(sys_arch_c.obj)
+  0001BFD5 00000027 .rodata @400	(sys_arch_c.obj)
+  0001BFFC 00000025 .rodata @445	(sys_arch_c.obj)
+  0001C021 00000029 .rodata @446	(sys_arch_c.obj)
+  0001C04A 00000024 .rodata @467	(sys_arch_c.obj)
+  0001C06E 0000002B .rodata @515	(sys_arch_c.obj)
+  0001C099 00000005 .rodata @464	(mcu_init_c.obj)
+  0001C09E 0000001F .rodata @306	(mac_rtos_c.obj)
+  0001C0BD 00000020 .rodata @361	(mac_rtos_c.obj)
+  0001C0DD 00000004 .rodata @471	(mac_rtos_c.obj)
+  0001C0E4 00000020 .rodata six_bytes_array	(setget_c.obj)
+  0001C104 00000028 .rodata four_bytes_array	(setget_c.obj)
+  0001C12C 00000010 .rodata two_bytes_array	(setget_c.obj)
+  0001C13C 00000078 .rodata one_byte_array	(setget_c.obj)
+  0001C1B4 00000006 .rodata @689	(tcpip_c.obj)
+  0001C1BA 00000022 .rodata @551	(api_msg_c.obj)
+  0001C1DC 0000001F .rodata @552	(api_msg_c.obj)
+  0001C1FB 0000001E .rodata @553	(api_msg_c.obj)
+  0001C219 00000022 .rodata @610	(api_msg_c.obj)
+  0001C23B 0000001F .rodata @611	(api_msg_c.obj)
+  0001C25A 0000001E .rodata @612	(api_msg_c.obj)
+  0001C278 0000000D .rodata @641	(api_msg_c.obj)
+  0001C285 00000016 .rodata @679	(api_msg_c.obj)
+  0001C29B 0000002A .rodata @753	(api_msg_c.obj)
+  0001C2C5 0000001F .rodata @784	(api_msg_c.obj)
+  0001C2E4 0000002E .rodata @867	(api_msg_c.obj)
+  0001C312 0000000D .rodata @920	(api_msg_c.obj)
+  0001C31F 0000001E .rodata @921	(api_msg_c.obj)
+  0001C33D 00000024 .rodata @922	(api_msg_c.obj)
+  0001C361 00000013 .rodata @923	(api_msg_c.obj)
+  0001C374 0000001D .rodata @1212	(api_msg_c.obj)
+  0001C391 0000001E .rodata @1213	(api_msg_c.obj)
+  0001C3AF 00000021 .rodata @1362	(api_msg_c.obj)
+  0001C3D0 00000021 .rodata @534	(api_lib_c.obj)
+  0001C3F1 00000019 .rodata @535	(api_lib_c.obj)
+  0001C40A 00000015 .rodata @536	(api_lib_c.obj)
+  0001C41F 00000021 .rodata @537	(api_lib_c.obj)
+  0001C440 0000001B .rodata @616	(api_lib_c.obj)
+  0001C45B 0000001E .rodata @634	(api_lib_c.obj)
+  0001C479 0000001D .rodata @666	(api_lib_c.obj)
+  0001C496 0000001D .rodata @695	(api_lib_c.obj)
+  0001C4B3 00000023 .rodata @696	(api_lib_c.obj)
+  0001C4D6 0000001B .rodata @761	(api_lib_c.obj)
+  0001C4F1 0000001C .rodata @833	(api_lib_c.obj)
+  0001C50D 00000022 .rodata @834	(api_lib_c.obj)
+  0001C52F 0000001C .rodata @850	(api_lib_c.obj)
+  0001C54B 00000024 .rodata @876	(api_lib_c.obj)
+  0001C56F 00000024 .rodata @877	(api_lib_c.obj)
+  0001C593 0000000C .rodata @300	(ip_frag_c.obj)
+  0001C59F 00000012 .rodata @301	(ip_frag_c.obj)
+  0001C5B1 0000001B .rodata @302	(ip_frag_c.obj)
+  0001C5CC 00000019 .rodata @405	(ip_frag_c.obj)
+  0001C5E5 0000001E .rodata @514	(ip_frag_c.obj)
+  0001C603 00000037 .rodata @515	(ip_frag_c.obj)
+  0001C63A 0000000D .rodata @516	(ip_frag_c.obj)
+  0001C647 00000022 .rodata @517	(ip_frag_c.obj)
+  0001C669 0000002D .rodata @518	(ip_frag_c.obj)
+  0001C696 00000020 .rodata @688	(ip_frag_c.obj)
+  0001C6B6 00000004 .rodata ip_addr_broadcast	(ip_addr_c.obj)
+  0001C6BA 0000002D .rodata @524	(ip_c.obj)
+  0001C6E7 00000033 .rodata @323	(icmp_c.obj)
+  0001C71A 00000036 .rodata @324	(icmp_c.obj)
+  0001C750 00000028 .rodata @325	(icmp_c.obj)
+  0001C778 00000032 .rodata @326	(icmp_c.obj)
+  0001C7AA 00000021 .rodata @327	(icmp_c.obj)
+  0001C7CB 0000002C .rodata @373	(icmp_c.obj)
+  0001C7F7 00000014 .rodata @329	(udp_c.obj)
+  0001C80B 00000014 .rodata @330	(udp_c.obj)
+  0001C81F 0000002E .rodata @451	(udp_c.obj)
+  0001C84D 0000000C .rodata @514	(udp_c.obj)
+  0001C859 0000003F .rodata @585	(tcp_out_c.obj)
+  0001C898 00000046 .rodata @586	(tcp_out_c.obj)
+  0001C8DE 0000003C .rodata @587	(tcp_out_c.obj)
+  0001C91A 00000034 .rodata @588	(tcp_out_c.obj)
+  0001C94E 0000000D .rodata @589	(tcp_out_c.obj)
+  0001C95B 00000026 .rodata @590	(tcp_out_c.obj)
+  0001C981 00000033 .rodata @591	(tcp_out_c.obj)
+  0001C9B4 00000014 .rodata @592	(tcp_out_c.obj)
+  0001C9C8 00000020 .rodata @593	(tcp_out_c.obj)
+  0001C9E8 00000017 .rodata @777	(tcp_out_c.obj)
+  0001C9FF 0000002E .rodata @929	(tcp_out_c.obj)
+  0001CA2D 00000027 .rodata @528	(tcp_in_c.obj)
+  0001CA54 0000002A .rodata @529	(tcp_in_c.obj)
+  0001CA7E 00000027 .rodata @530	(tcp_in_c.obj)
+  0001CAA5 0000002B .rodata @531	(tcp_in_c.obj)
+  0001CAD0 0000002A .rodata @532	(tcp_in_c.obj)
+  0001CAFA 0000002D .rodata @533	(tcp_in_c.obj)
+  0001CB27 00000020 .rodata @848	(tcp_in_c.obj)
+  0001CB47 00000016 .rodata @849	(tcp_in_c.obj)
+  0001CB5D 00000014 .rodata @850	(tcp_in_c.obj)
+  0001CB71 00000028 .rodata @1196	(tcp_in_c.obj)
+  0001CB99 00000020 .rodata @1197	(tcp_in_c.obj)
+  0001CBB9 00000010 .rodata @1198	(tcp_in_c.obj)
+  0001CBC9 0000000F .rodata @1199	(tcp_in_c.obj)
+  0001CBD8 00000010 .rodata @1200	(tcp_in_c.obj)
+  0001CBE8 00000013 .rodata @1201	(tcp_in_c.obj)
+  0001CBFB 0000000D .rodata tcp_backoff	(tcp_c.obj)
+  0001CC08 00000007 .rodata tcp_persist_backoff	(tcp_c.obj)
+  0001CC0F 0000002B .rodata @539	(tcp_c.obj)
+  0001CC3A 00000022 .rodata @614	(tcp_c.obj)
+  0001CC5C 00000032 .rodata @762	(tcp_c.obj)
+  0001CC8E 0000002A .rodata @924	(tcp_c.obj)
+  0001CCB8 0000002A .rodata @925	(tcp_c.obj)
+  0001CCE2 0000002D .rodata @926	(tcp_c.obj)
+  0001CD0F 0000002B .rodata @927	(tcp_c.obj)
+  0001CD3A 0000002A .rodata @928	(tcp_c.obj)
+  0001CD64 0000002F .rodata @929	(tcp_c.obj)
+  0001CD93 00000027 .rodata @930	(tcp_c.obj)
+  0001CDBA 00000026 .rodata @931	(tcp_c.obj)
+  0001CDE0 00000018 .rodata @1302	(tcp_c.obj)
+  0001CDF8 00000019 .rodata @1303	(tcp_c.obj)
+  0001CE11 00000017 .rodata @1304	(tcp_c.obj)
+  0001CE28 0000001D .rodata @507	(sys_c.obj)
+  0001CE45 0000001E .rodata @508	(sys_c.obj)
+  0001CE63 00000020 .rodata @560	(sys_c.obj)
+  0001CE83 0000001B .rodata @250	(pbuf_c.obj)
+  0001CE9E 0000002D .rodata @251	(pbuf_c.obj)
+  0001CECB 00000031 .rodata @252	(pbuf_c.obj)
+  0001CEFC 00000014 .rodata @253	(pbuf_c.obj)
+  0001CF10 0000002D .rodata @254	(pbuf_c.obj)
+  0001CF3D 0000002B .rodata @255	(pbuf_c.obj)
+  0001CF68 0000001B .rodata @256	(pbuf_c.obj)
+  0001CF83 0000001B .rodata @348	(pbuf_c.obj)
+  0001CF9E 00000011 .rodata @349	(pbuf_c.obj)
+  0001CFAF 0000001B .rodata @350	(pbuf_c.obj)
+  0001CFCA 0000000A .rodata @410	(pbuf_c.obj)
+  0001CFD4 0000001E .rodata @411	(pbuf_c.obj)
+  0001CFF2 0000000E .rodata @412	(pbuf_c.obj)
+  0001D000 00000015 .rodata @471	(pbuf_c.obj)
+  0001D015 00000016 .rodata @472	(pbuf_c.obj)
+  0001D02B 00000035 .rodata @540	(pbuf_c.obj)
+  0001D060 0000002D .rodata @541	(pbuf_c.obj)
+  0001D08D 00000010 .rodata @542	(pbuf_c.obj)
+  0001D09D 00000030 .rodata @655	(pbuf_c.obj)
+  0001D0CD 0000000D .rodata @656	(pbuf_c.obj)
+  0001D0DA 00000017 .rodata @657	(pbuf_c.obj)
+  0001D0F1 0000001B .rodata @658	(pbuf_c.obj)
+  0001D10C 0000002B .rodata @659	(pbuf_c.obj)
+  0001D137 00000021 .rodata @721	(pbuf_c.obj)
+  0001D158 00000025 .rodata @722	(pbuf_c.obj)
+  0001D17D 0000001A .rodata memp_sizes	(memp_c.obj)
+  0001D197 0000001A .rodata memp_num	(memp_c.obj)
+  0001D1B1 0000001D .rodata @560	(memp_c.obj)
+  0001D1CE 00000023 .rodata @561	(memp_c.obj)
+  0001D1F1 00000020 .rodata @585	(memp_c.obj)
+  0001D211 00000017 .rodata @183	(mem_c.obj)
+  0001D228 0000001A .rodata @184	(mem_c.obj)
+  0001D242 0000001B .rodata @185	(mem_c.obj)
+  0001D25D 0000002A .rodata @186	(mem_c.obj)
+  0001D287 00000021 .rodata @238	(mem_c.obj)
+  0001D2A8 00000017 .rodata @239	(mem_c.obj)
+  0001D2BF 00000014 .rodata @240	(mem_c.obj)
+  0001D2D3 0000001A .rodata @294	(mem_c.obj)
+  0001D2ED 00000023 .rodata @295	(mem_c.obj)
+  0001D310 00000019 .rodata @379	(mem_c.obj)
+  0001D329 00000030 .rodata @380	(mem_c.obj)
+  0001D359 0000002F .rodata @381	(mem_c.obj)
+  0001D388 00000023 .rodata @382	(mem_c.obj)
+  0001D3AB 0000000F .rodata @244	(dns_c.obj)
+  0001D3BA 00000018 .rodata @404	(dns_c.obj)
+  0001D3D2 00000021 .rodata @405	(dns_c.obj)
+  0001D3F3 0000001A .rodata @406	(dns_c.obj)
+  0001D40D 0000001A .rodata @467	(dns_c.obj)
+  0001D427 0000001F .rodata @468	(dns_c.obj)
+  0001D446 0000000E .rodata @620	(dhcp_c.obj)
+  0001D454 00000019 .rodata @746	(dhcp_c.obj)
+  0001D46D 00000018 .rodata @747	(dhcp_c.obj)
+  0001D485 00000019 .rodata @884	(dhcp_c.obj)
+  0001D49E 00000048 .rodata @914	(dhcp_c.obj)
+  0001D4E6 0000003B .rodata @931	(dhcp_c.obj)
+  0001D521 00000041 .rodata @947	(dhcp_c.obj)
+  0001D562 00000040 .rodata @968	(dhcp_c.obj)
+  0001D5A2 0000000D .rodata @1013	(dhcp_c.obj)
+  0001D5AF 00000010 .rodata @1014	(dhcp_c.obj)
+  0001D5BF 00000032 .rodata @1015	(dhcp_c.obj)
+  0001D5F1 0000001C .rodata @1016	(dhcp_c.obj)
+  0001D60D 00000023 .rodata @1182	(dhcp_c.obj)
+  0001D630 00000022 .rodata @1183	(dhcp_c.obj)
+  0001D652 00000029 .rodata @1184	(dhcp_c.obj)
+  0001D67B 0000002B .rodata @1185	(dhcp_c.obj)
+  0001D6A6 00000044 .rodata @1186	(dhcp_c.obj)
+  0001D6EA 00000023 .rodata @1282	(dhcp_c.obj)
+  0001D70D 00000022 .rodata @1283	(dhcp_c.obj)
+  0001D72F 00000029 .rodata @1284	(dhcp_c.obj)
+  0001D758 0000002B .rodata @1285	(dhcp_c.obj)
+  0001D783 00000022 .rodata @1328	(dhcp_c.obj)
+  0001D7A5 0000002C .rodata @1329	(dhcp_c.obj)
+  0001D7D1 0000003F .rodata @1330	(dhcp_c.obj)
+  0001D810 00000006 .rodata ethbroadcast	(etharp_c.obj)
+  0001D816 0000000A .rodata @289	(etharp_c.obj)
+  0001D820 0000000D .rodata @290	(etharp_c.obj)
+  0001D82D 0000000D .rodata @291	(etharp_c.obj)
+  0001D83A 00000017 .rodata @432	(etharp_c.obj)
+  0001D851 00000013 .rodata @433	(etharp_c.obj)
+  0001D864 00000044 .rodata @516	(etharp_c.obj)
+  0001D8A8 00000027 .rodata @564	(etharp_c.obj)
+  0001D8CF 0000000E .rodata @664	(etharp_c.obj)
+  0001D8DD 00000028 .rodata @880	(etharp_c.obj)
+  0001D905 0000001A .rodata @881	(etharp_c.obj)
+  0001D91F 00000031 .rodata @962	(etharp_c.obj)
+  0001D950 00000021 .rodata @1030	(etharp_c.obj)
+  0001D971 00000005 .rodata @216	(tasks_c.obj)
+  0001D976 00000003 .rodata @297	(tasks_c.obj)
+  0001D979 00000012 .rodata @551	(tasks_c.obj)
+#>0001D98C          ___ROM_AT (linker command file)
+#>0001D98C          ___DATA_ROM (linker command file)
+
+# .data
+#>00800000          ___DATA_RAM (linker command file)
+#>00800000          __exception_table_start__ (linker command file)
+# Exception index
+  00800000 00000000         Exception Table Index	()
+#>00800000          __exception_table_end__ (linker command file)
+#>00800000          ___sinit__ (linker command file)
+# Linker generated symbols
+  00800000 00000004         static initializer	(linker generated)
+#>00800004          __START_DATA (linker command file)
+  00800010 00000074 .relocate_code Flash_Cmd	(flash_c.obj)
+  00800084 00000001 .data   @LOCAL@adc_channel1__FPv@counter2	(http_ssi_c.obj)
+  00800085 00000001 .data   @LOCAL@adc_channel2__FPv@counter3	(http_ssi_c.obj)
+  00800086 00000001 .data   @LOCAL@html_counter__FPv@counter4	(http_ssi_c.obj)
+  00800088 0000003C .data   InternalMemoryFilenames	(static_web_pages_c.obj)
+  008000C4 0000003C .data   InternalMemoryPointers	(static_web_pages_c.obj)
+  00800100 00000002 .data   @LOCAL@tcp_new_port__Fv@port	(tcp_c.obj)
+  00800102 00000004 .data   @LOCAL@tcp_next_iss__Fv@iss	(tcp_c.obj)
+  00800106 00000004 .data   xid	(dhcp_c.obj)
+  0080010C 00000004 .data   ulCriticalNesting	(port_c.obj)
+  00800110 00000004 .data   uxPreviousTask	(tasks_c.obj)
+#>00800114          __END_DATA (linker command file)
+#>00800114          __START_SDATA (linker command file)
+#>00800114          __END_SDATA (linker command file)
+#>00800114          ___DATA_END (linker command file)
+#>00800114          __SDA_BASE (linker command file)
+
+# .bss
+#>00800114          ___BSS_START (linker command file)
+#>00800114          __START_SBSS (linker command file)
+#>00800114          __END_SBSS (linker command file)
+#>00800114          __START_BSS (linker command file)
+  00800114 00000004 .bss    SPIConfigHandle	(serial_configuration_c.obj)
+  00800118 00000004 .bss    UARTConfigHandle	(serial_configuration_c.obj)
+  0080011C 00000001 .bss    serial_interface	(serial_configuration_c.obj)
+  0080011D 00000004 .bss    EMailMutex	(email_client_c.obj)
+  00800121 00000004 .bss    SDbuffer	(ftp_server_c.obj)
+  00800125 00000004 .bss    SD_FTP_Handle	(ftp_server_c.obj)
+  00800129 00000004 .bss    spi_receive_array	(spi_bridge_c.obj)
+  0080012D 00000004 .bss    SPImutex	(spi_bridge_c.obj)
+  00800131 00000004 .bss    SPIhandle	(spi_bridge_c.obj)
+  00800135 00000008 .bss    p_spi_tx_state	(spi_bridge_c.obj)
+  0080013D 00000004 .bss    @LOCAL@BRIDGE_UART_Task__FPv@serial_receive_array	(uart_bridge_c.obj)
+  00800141 00000004 .bss    UARTmutex	(uart_bridge_c.obj)
+  00800145 00000004 .bss    UARThandle	(uart_bridge_c.obj)
+  00800149 00000008 .bss    p_uart_tx_state	(uart_bridge_c.obj)
+  00800151 00000001 .bss    reset_var	(http_cgi_c.obj)
+  00800154 00000004 .bss    u8Archivo	(http_cgi_c.obj)
+  00800158 00000001 .bss    SD_present	(http_server_c.obj)
+  00800159 00000004 .bss    SD_Web_Handle	(http_server_c.obj)
+  0080015D 00000001 .bss    @LOCAL@adc_channel0__FPv@counter1	(http_ssi_c.obj)
+  0080015E 00000001 .bss    default_language	(http_ssi_c.obj)
+  00800160 00000004 .bss    adc_callback	(adc_c.obj)
+  00800164 00000004 .bss    tx_buf	(fec_c.obj)
+  00800168 00000004 .bss    rx_buf	(fec_c.obj)
+  0080016C 00000004 .bss    rx_nbuf	(fec_c.obj)
+  00800170 00000004 .bss    tx_nbuf	(fec_c.obj)
+  00800174 00000600 .bss    unaligned_tx_buf	(fec_c.obj)
+  00800774 00000BF0 .bss    unaligned_rx_buf	(fec_c.obj)
+  00801364 00000020 .bss    unaligned_rx_nbuf	(fec_c.obj)
+  00801384 00000020 .bss    unaligned_tx_nbuf	(fec_c.obj)
+  008013A4 00000001 .bss    rx_bd_idx	(fec_c.obj)
+  008013A5 00000001 .bss    tx_bd_idx	(fec_c.obj)
+  008013A8 00000004 .bss    fec_Callback	(fec_c.obj)
+  008013AC 00000008 .bss    sci_callback	(uart_c.obj)
+  008013B4 00000008 .bss    spi_callback	(spi_c.obj)
+  008013BC 00000004 .bss    tasks	(sys_arch_c.obj)
+  008013C0 00000001 .bss    lwip_ready	(mcu_init_c.obj)
+  008013C1 00000035 .bss    fec5xxx_if	(mcu_init_c.obj)
+  008013F6 00000004 .bss    fecif_g	(mac_rtos_c.obj)
+  008013FC 00000004 .bss    xSPISemaphore	(spi_rtos_c.obj)
+  00801400 00000020 .bss    xPortStatus	(spi_rtos_c.obj)
+  00801420 00000004 .bss    xUARTSemaphore	(uart_rtos_c.obj)
+  00801424 00000006 .bss    buffer_length	(uart_rtos_c.obj)
+  0080142C 00000030 .bss    xPortStatus	(uart_rtos_c.obj)
+  0080145C 00000004 .bss    mbox	(tcpip_c.obj)
+  00801460 00000004 .bss    tcpip_tcp_timer_active	(tcpip_c.obj)
+  00801464 00000004 .bss    tcpip_init_done_arg	(tcpip_c.obj)
+  00801468 00000004 .bss    tcpip_init_done	(tcpip_c.obj)
+  0080146C 00000004 .bss    selectsem	(sockets_c.obj)
+  00801470 00000004 .bss    socksem	(sockets_c.obj)
+  00801474 00000002 .bss    ip_reass_pbufcount	(ip_frag_c.obj)
+  00801476 00000004 .bss    reassdatagrams	(ip_frag_c.obj)
+  0080147A 00000004 .bss    ip_addr_any	(ip_addr_c.obj)
+  0080147E 00000002 .bss    @LOCAL@ip_output_if__FP4pbufP7ip_addrP7ip_addrUcUcUcP5netif@ip_id	(ip_c.obj)
+  00801480 00000004 .bss    udp_pcbs	(udp_c.obj)
+  00801484 00000004 .bss    tcp_input_pcb	(tcp_in_c.obj)
+  00801488 00000004 .bss    recv_data	(tcp_in_c.obj)
+  0080148C 00000001 .bss    recv_flags	(tcp_in_c.obj)
+  0080148D 00000002 .bss    tcplen	(tcp_in_c.obj)
+  0080148F 00000001 .bss    flags	(tcp_in_c.obj)
+  00801490 00000004 .bss    ackno	(tcp_in_c.obj)
+  00801494 00000004 .bss    seqno	(tcp_in_c.obj)
+  00801498 00000004 .bss    iphdr	(tcp_in_c.obj)
+  0080149C 00000004 .bss    tcphdr	(tcp_in_c.obj)
+  008014A0 00000012 .bss    inseg	(tcp_in_c.obj)
+  008014B2 00000001 .bss    tcp_timer	(tcp_c.obj)
+  008014B3 00000004 .bss    tcp_tmp_pcb	(tcp_c.obj)
+  008014B7 00000004 .bss    tcp_tw_pcbs	(tcp_c.obj)
+  008014BB 00000004 .bss    tcp_active_pcbs	(tcp_c.obj)
+  008014BF 00000004 .bss    tcp_listen_pcbs	(tcp_c.obj)
+  008014C3 00000004 .bss    tcp_bound_pcbs	(tcp_c.obj)
+  008014C7 00000004 .bss    tcp_ticks	(tcp_c.obj)
+  008014CB 00000001 .bss    @LOCAL@netif_add__FP5netifP7ip_addrP7ip_addrP7ip_addrPvPFP5netif_ScPFP4pbufP5netif_Sc@netifnum	(netif_c.obj)
+  008014CC 00000004 .bss    netif_default	(netif_c.obj)
+  008014D0 00000004 .bss    netif_list	(netif_c.obj)
+  008014D4 0000173B .bss    memp_memory	(memp_c.obj)
+  00802C0F 00000034 .bss    memp_tab	(memp_c.obj)
+  00802C44 00000004 .bss    mem_sem	(mem_c.obj)
+  00802C48 00000004 .bss    lfree	(mem_c.obj)
+  00802C4C 00000004 .bss    ram_end	(mem_c.obj)
+  00802C50 00000004 .bss    ram	(mem_c.obj)
+  00802C54 00000A14 .bss    ram_heap	(mem_c.obj)
+  00803668 00000008 .bss    dns_servers	(dns_c.obj)
+  00803670 0000022C .bss    dns_table	(dns_c.obj)
+  0080389C 00000001 .bss    dns_seqno	(dns_c.obj)
+  0080389D 00000004 .bss    dns_pcb	(dns_c.obj)
+  008038A1 00000006 .bss    ethzero	(etharp_c.obj)
+  008038A7 00000001 .bss    etharp_cached_entry	(etharp_c.obj)
+  008038A8 00000028 .bss    arp_table	(etharp_c.obj)
+  008038D0 00000004 .bss    freep	(alloc_c.obj)
+  008038D4 00000010 .bss    base	(alloc_c.obj)
+  008038E4 00000001 .bss    sd_configured	(Fat_c.obj)
+  008038E5 00000001 .bss    @LOCAL@FAT_FileRead__FP11_FATHandlerPUc@flag_next_entry	(Fat_c.obj)
+  008038E6 00000033 .bss    FATLocalhandle	(Fat_c.obj)
+  0080391C 00000004 .bss    pxCurrentTCB	(tasks_c.obj)
+  00803920 00000004 .bss    uxTasksDeleted	(tasks_c.obj)
+  00803924 00000004 .bss    uxCurrentNumberOfTasks	(tasks_c.obj)
+  00803928 00000002 .bss    xTickCount	(tasks_c.obj)
+  0080392C 00000004 .bss    uxTopUsedPriority	(tasks_c.obj)
+  00803930 00000004 .bss    uxTopReadyPriority	(tasks_c.obj)
+  00803934 00000004 .bss    xSchedulerRunning	(tasks_c.obj)
+  00803938 00000004 .bss    uxSchedulerSuspended	(tasks_c.obj)
+  0080393C 00000004 .bss    uxMissedTicks	(tasks_c.obj)
+  00803940 00000004 .bss    xMissedYield	(tasks_c.obj)
+  00803944 00000004 .bss    xNumOfOverflows	(tasks_c.obj)
+  00803948 00000004 .bss    uxTaskNumber	(tasks_c.obj)
+  0080394C 00000004 .bss    xTracing	(tasks_c.obj)
+  00803950 00000032 .bss    pcStatusString	(tasks_c.obj)
+  00803984 00000004 .bss    pcTraceBufferEnd	(tasks_c.obj)
+  00803988 00000004 .bss    pcTraceBuffer	(tasks_c.obj)
+  0080398C 00000014 .bss    xSuspendedTaskList	(tasks_c.obj)
+  008039A0 00000014 .bss    xTasksWaitingTermination	(tasks_c.obj)
+  008039B4 00000014 .bss    xPendingReadyList	(tasks_c.obj)
+  008039C8 00000004 .bss    pxOverflowDelayedTaskList	(tasks_c.obj)
+  008039CC 00000004 .bss    pxDelayedTaskList	(tasks_c.obj)
+  008039D0 00000014 .bss    xDelayedTaskList2	(tasks_c.obj)
+  008039E4 00000014 .bss    xDelayedTaskList1	(tasks_c.obj)
+  008039F8 00000078 .bss    pxReadyTasksLists	(tasks_c.obj)
+  00803A70 00000004 .bss    SDhandle	(SD_c.obj)
+#>00803A74          __END_BSS (linker command file)
+#>00803A74          ___BSS_END (linker command file)
+
+# .custom
+#>00803A74          ___SP_END (linker command file)
+#>00803B74          ___SP_INIT (linker command file)
+#>00803B74          ___HEAP_START (linker command file)
+#>00803B74          ___heap_addr (linker command file)
+#>00805FFC          ___HEAP_END (linker command file)
+#>00002488          ___HEAP_SIZE (linker command file)
+#>00803B74          __SP_INIT (linker command file)
+#>00803B74          ___SP_AFTER_RESET (linker command file)
+#>0001FC00          ___CUSTOM_ROM (linker command file)
+#>0333B700          ___CUSTOM_ROM_SIZE (linker command file)
+#>0001DAA0          _romp_at (linker command file)
+
+# .romp
+#>0001DAA0          __S_romp (linker command file)
+
+
+# Memory map:
+  v_addr   p_addr   size     name
+  00000000 00000000 00000004 .abs_vector_0 abs_vector_0
+  00000004 00000004 00000004 .abs_vector_1 abs_vector_1
+  00000008 00000008 00000004 .abs_vector_2 abs_vector_2
+  0000000C 0000000C 00000004 .abs_vector_3 abs_vector_3
+  00000010 00000010 00000004 .abs_vector_4 abs_vector_4
+  00000014 00000014 00000004 .abs_vector_5 abs_vector_5
+  00000018 00000018 00000004 .abs_vector_6 abs_vector_6
+  0000001C 0000001C 00000004 .abs_vector_7 abs_vector_7
+  00000020 00000020 00000004 .abs_vector_8 abs_vector_8
+  00000024 00000024 00000004 .abs_vector_9 abs_vector_9
+  00000028 00000028 00000004 .abs_vector_10 abs_vector_10
+  0000002C 0000002C 00000004 .abs_vector_11 abs_vector_11
+  00000030 00000030 00000004 .abs_vector_12 abs_vector_12
+  00000034 00000034 00000004 .abs_vector_13 abs_vector_13
+  00000038 00000038 00000004 .abs_vector_14 abs_vector_14
+  0000003C 0000003C 00000004 .abs_vector_15 abs_vector_15
+  00000040 00000040 00000004 .abs_vector_16 abs_vector_16
+  00000044 00000044 00000004 .abs_vector_17 abs_vector_17
+  00000048 00000048 00000004 .abs_vector_18 abs_vector_18
+  0000004C 0000004C 00000004 .abs_vector_19 abs_vector_19
+  00000050 00000050 00000004 .abs_vector_20 abs_vector_20
+  00000054 00000054 00000004 .abs_vector_21 abs_vector_21
+  00000058 00000058 00000004 .abs_vector_22 abs_vector_22
+  0000005C 0000005C 00000004 .abs_vector_23 abs_vector_23
+  00000060 00000060 00000004 .abs_vector_24 abs_vector_24
+  00000064 00000064 00000004 .abs_vector_25 abs_vector_25
+  00000068 00000068 00000004 .abs_vector_26 abs_vector_26
+  0000006C 0000006C 00000004 .abs_vector_27 abs_vector_27
+  00000070 00000070 00000004 .abs_vector_28 abs_vector_28
+  00000074 00000074 00000004 .abs_vector_29 abs_vector_29
+  00000078 00000078 00000004 .abs_vector_30 abs_vector_30
+  0000007C 0000007C 00000004 .abs_vector_31 abs_vector_31
+  00000080 00000080 00000004 .abs_vector_32 abs_vector_32
+  00000084 00000084 00000004 .abs_vector_33 abs_vector_33
+  00000088 00000088 00000004 .abs_vector_34 abs_vector_34
+  0000008C 0000008C 00000004 .abs_vector_35 abs_vector_35
+  00000090 00000090 00000004 .abs_vector_36 abs_vector_36
+  00000094 00000094 00000004 .abs_vector_37 abs_vector_37
+  00000098 00000098 00000004 .abs_vector_38 abs_vector_38
+  0000009C 0000009C 00000004 .abs_vector_39 abs_vector_39
+  000000A0 000000A0 00000004 .abs_vector_40 abs_vector_40
+  000000A4 000000A4 00000004 .abs_vector_41 abs_vector_41
+  000000A8 000000A8 00000004 .abs_vector_42 abs_vector_42
+  000000AC 000000AC 00000004 .abs_vector_43 abs_vector_43
+  000000B0 000000B0 00000004 .abs_vector_44 abs_vector_44
+  000000B4 000000B4 00000004 .abs_vector_45 abs_vector_45
+  000000B8 000000B8 00000004 .abs_vector_46 abs_vector_46
+  000000BC 000000BC 00000004 .abs_vector_47 abs_vector_47
+  000000C0 000000C0 00000004 .abs_vector_48 abs_vector_48
+  000000C4 000000C4 00000004 .abs_vector_49 abs_vector_49
+  000000C8 000000C8 00000004 .abs_vector_50 abs_vector_50
+  000000CC 000000CC 00000004 .abs_vector_51 abs_vector_51
+  000000D0 000000D0 00000004 .abs_vector_52 abs_vector_52
+  000000D4 000000D4 00000004 .abs_vector_53 abs_vector_53
+  000000D8 000000D8 00000004 .abs_vector_54 abs_vector_54
+  000000DC 000000DC 00000004 .abs_vector_55 abs_vector_55
+  000000E0 000000E0 00000004 .abs_vector_56 abs_vector_56
+  000000E4 000000E4 00000004 .abs_vector_57 abs_vector_57
+  000000E8 000000E8 00000004 .abs_vector_58 abs_vector_58
+  000000EC 000000EC 00000004 .abs_vector_59 abs_vector_59
+  000000F0 000000F0 00000004 .abs_vector_60 abs_vector_60
+  000000F4 000000F4 00000004 .abs_vector_61 abs_vector_61
+  000000F8 000000F8 00000004 .abs_vector_62 abs_vector_62
+  000000FC 000000FC 00000004 .abs_vector_63 abs_vector_63
+  00000100 00000100 00000004 .abs_vector_64 abs_vector_64
+  00000104 00000104 00000004 .abs_vector_65 abs_vector_65
+  00000108 00000108 00000004 .abs_vector_66 abs_vector_66
+  0000010C 0000010C 00000004 .abs_vector_67 abs_vector_67
+  00000110 00000110 00000004 .abs_vector_68 abs_vector_68
+  00000114 00000114 00000004 .abs_vector_69 abs_vector_69
+  00000118 00000118 00000004 .abs_vector_70 abs_vector_70
+  0000011C 0000011C 00000004 .abs_vector_71 abs_vector_71
+  00000120 00000120 00000004 .abs_vector_72 abs_vector_72
+  00000124 00000124 00000004 .abs_vector_73 abs_vector_73
+  00000128 00000128 00000004 .abs_vector_74 abs_vector_74
+  0000012C 0000012C 00000004 .abs_vector_75 abs_vector_75
+  00000130 00000130 00000004 .abs_vector_76 abs_vector_76
+  00000134 00000134 00000004 .abs_vector_77 abs_vector_77
+  00000138 00000138 00000004 .abs_vector_78 abs_vector_78
+  0000013C 0000013C 00000004 .abs_vector_79 abs_vector_79
+  00000140 00000140 00000004 .abs_vector_80 abs_vector_80
+  00000144 00000144 00000004 .abs_vector_81 abs_vector_81
+  00000148 00000148 00000004 .abs_vector_82 abs_vector_82
+  0000014C 0000014C 00000004 .abs_vector_83 abs_vector_83
+  00000150 00000150 00000004 .abs_vector_84 abs_vector_84
+  00000154 00000154 00000004 .abs_vector_85 abs_vector_85
+  00000158 00000158 00000004 .abs_vector_86 abs_vector_86
+  0000015C 0000015C 00000004 .abs_vector_87 abs_vector_87
+  00000160 00000160 00000004 .abs_vector_88 abs_vector_88
+  00000164 00000164 00000004 .abs_vector_89 abs_vector_89
+  00000168 00000168 00000004 .abs_vector_90 abs_vector_90
+  0000016C 0000016C 00000004 .abs_vector_91 abs_vector_91
+  00000170 00000170 00000004 .abs_vector_92 abs_vector_92
+  00000174 00000174 00000004 .abs_vector_93 abs_vector_93
+  00000178 00000178 00000004 .abs_vector_94 abs_vector_94
+  0000017C 0000017C 00000004 .abs_vector_95 abs_vector_95
+  00000180 00000180 00000004 .abs_vector_96 abs_vector_96
+  00000184 00000184 00000004 .abs_vector_97 abs_vector_97
+  00000188 00000188 00000004 .abs_vector_98 abs_vector_98
+  0000018C 0000018C 00000004 .abs_vector_99 abs_vector_99
+  00000190 00000190 00000004 .abs_vector_100 abs_vector_100
+  00000194 00000194 00000004 .abs_vector_101 abs_vector_101
+  00000198 00000198 00000004 .abs_vector_102 abs_vector_102
+  0000019C 0000019C 00000004 .abs_vector_103 abs_vector_103
+  000001A0 000001A0 00000004 .abs_vector_104 abs_vector_104
+  000001A4 000001A4 00000004 .abs_vector_105 abs_vector_105
+  000001A8 000001A8 00000004 .abs_vector_106 abs_vector_106
+  000001AC 000001AC 00000004 .abs_vector_107 abs_vector_107
+  000001B0 000001B0 00000004 .abs_vector_108 abs_vector_108
+  000001B4 000001B4 00000004 .abs_vector_109 abs_vector_109
+  000001B8 000001B8 00000004 .abs_vector_110 abs_vector_110
+  000001BC 000001BC 00000004 .abs_vector_111 abs_vector_111
+  000001C0 000001C0 00000004 .abs_vector_112 abs_vector_112
+  000001C4 000001C4 00000004 .abs_vector_113 abs_vector_113
+  000001C8 000001C8 00000004 .abs_vector_114 abs_vector_114
+  00000410 00000410 00000000 .code      code
+  00000410 00000410 00008650 .webpages  code
+  00008A60 00008A60 00014F2C .text      code
+  0001FC00 0001FC00 00000000 .userrom   userrom
+  0001FC00 0001FC00 000000AC .custom_rom userrom
+  00800000 00800000 00000000 .userram   userram
+  00800000 0001D98C 00000114 .data      userram
+  00800114 00800114 00003960 .bss       userram
+  00803A74 00803A74 00000000 .custom    userram
+  00803A74 0001DAA0 00000018 .romp      userram
+
+# Link start time: Mon Aug 06 17:04:12 2012
+# Link end time: Mon Aug 06 17:04:13 2012

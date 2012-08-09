@@ -1,0 +1,8 @@
+#define M51CN128EVB
+#define COLDFIRE_V1_CODEWARRIOR
+
+/* settings imported from old "C/C++ Language" panel */
+
+#if !__option(precompile)
+#include "mwerks.h" /* was "Prefix file" */
+#endif

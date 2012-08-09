@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="toplevellocal.css" />
+<style type="text/css"><!-- #ftr{position:absolute;} --></style>
+<title>Configuration Page</title>
+</head>
+<body>
+<div id="pgctwrp">
+<div id="mncnt" class="cframe">
+<a title="Freescale" href="http://www.freescale.com"><img border="0" alt="Freescale Semiconductor" src="NEWEDFS_LOGO.gif"/></a>
+<br /><br />
+<div class="hrw"><hr /></div>
+<h1>SPI Options*</h1>
+<div class="hrw"><hr /></div>
+<br />
+<div class="lcn">
+<p style="color:#FF0000">*All info is updated until next reset.</p>
+<form method="POST" action="spi.cgi">
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>Actual Baudrate: <!--#echo var="SPIBAUD"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="SPIBAUD" size="2">
+<option value="12">12Kbps</option>
+<option value="50">50Kbps</option>
+<option value="100">100Kbps</option>
+<option value="300">300Kbps</option>
+<option value="500">500Kbps</option>
+<option value="1000" selected>1Mbps</option>
+<option value="2000">2Mbps</option>
+<option value="4200">4Mbps</option>
+<option value="6250">6Mbps</option>
+<option value="12500">12Mbps</option>
+</select>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Actual Port: <!--#echo var="SPIPORT"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="SPIPORT" size="2">
+<option value="0" selected>SPI0</option>
+<option value="1">SPI1</option>
+</select>
+<br /> <br /> <br />
+</div>
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>Actual Polarity: <!--#echo var="SPIPOLA"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="SPIPOLA" size="2">
+<option value="0" selected>LOW</option>
+<option value="1">HIGH</option>
+</select>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Actual Phase: <!--#echo var="SPIPHASE"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="SPIPHASE" size="2">
+<option value="0" selected>Middle</option>
+<option value="1">Start</option>
+</select>
+<br /><br /><br />
+</div>
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>Actual SPI Mode: <!--#echo var="SPIMAS"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="SPIMAS" size="2">
+<option value="0">Slave</option>
+<option value="1" selected>Master</option>
+</select>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Actual SPI Transfer: <!--#echo var="SPIINT"--></h2>
+<div class="hrw"><hr></div>
+<br />
+<select multiple name="SPIINT" size="2">
+<option value="0" selected>Polling</option>
+<option value="1">Interrupt</option>
+</select>
+</div>
+<div class="pdtn"></div>
+<div class="pdtn"></div>
+<div class="pdtn"></div>
+<div style="text-align:center; width:585px;">
+<input type="SUBMIT" value="SEND">
+<input type="BUTTON" value="RESET uC" onclick="document.reset.submit();">
+</div>
+</center>
+</form>
+<form method="POST" action="reset.cgi" name="reset"></form>
+<div class="bkflt"></div>
+</div>
+<div class="rc">
+<div class="iu">
+<h1>MCU Configurations</h1>
+<ul>
+<li><a href="config.shtml">UART Details</a></li>
+<li><a href="spi.shtml">SPI Details</a></li>
+<li><a href="mac.shtml">MAC Details</a></li>
+<li><a href="tcp.shtml">TCP Details</a></li>
+<li><a href="iic.shtml">IIC Details</a></li>
+</ul>
+</div>
+<div class="iu">
+<h1>Applications</h1>
+<ul>
+<li><a href="MCF51CN128.pdf">MCF51CN128FS</a></li>
+<li><a href="dynamic.shtml">Dynamic Information</a></li>
+<li><a href="ajax.htm">Ajax Content</a></li>
+<li><a href="tasks.htm">Tasks running</a></li>
+</ul>
+</div>
+</div>
+<div class="bkflt"></div>
+<div id="ftr">
+ <center>&#169; Freescale Semiconductor, Inc. 2004 - 2009. All Rights Reserved.<center>
+</div>
+</div>
+</div>
+</body>
+</html>

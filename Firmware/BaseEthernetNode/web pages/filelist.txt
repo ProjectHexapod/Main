@@ -1,0 +1,20 @@
+* emg static web page description file
+* The files listed below will be concantenated into a 
+* single C compatable file.
+* by Eric Gregori
+
+ajax.fsl
+ajax.htm
+bargraph.bmp
+bullet_square1.gif
+config.shtml
+dynamic.shtml
+hr1.gif
+index.shtml
+line.bmp
+mac.shtml
+more.htm
+NEWEDFS_LOGO.gif
+spi.shtml
+tcp.shtml
+toplevellocal.css

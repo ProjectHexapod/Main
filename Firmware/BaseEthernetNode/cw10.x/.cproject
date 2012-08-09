@@ -1,0 +1,770 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?>
+
+<cproject>
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.freescale.coldfire.toolchain.configuration.1019454570">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.freescale.coldfire.toolchain.configuration.1019454570" moduleId="org.eclipse.cdt.core.settings" name="Register Passing">
+				<macros>
+					<stringMacro name="CW_Project" type="VALUE_PATH_DIR" value="${ProjDirPath}/.."/>
+					<stringMacro name="CW_Compiler" type="VALUE_PATH_DIR" value="C:\Freescale\CW MCU v10.2\MCU"/>
+				</macros>
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.managedbuilder.core.ManagedBuildManager" point="org.eclipse.cdt.core.ScannerInfoProvider"/>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.LltErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.AsmErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.IcodeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.CobjErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.MwcfErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="com.freescale.core.ide.cdt.errorParsers.LnkErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="elf" artifactName="Project" buildProperties="" buildReferences="true" buildReferencingConfigurations="false" cleanCommand="&quot;${system:ECLIPSE_HOME}/../gnu/bin/rm&quot; -f" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;com.freescale.core.ide.cdt.errorParsers.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser;com.freescale.core.ide.cdt.errorParsers.LnkErrorParser;com.freescale.core.ide.cdt.errorParsers.AsmErrorParser;com.freescale.core.ide.cdt.errorParsers.CobjErrorParser;com.freescale.core.ide.cdt.errorParsers.IcodeErrorParser;com.freescale.core.ide.cdt.errorParsers.LltErrorParser;com.freescale.core.ide.cdt.errorParsers.MwcfErrorParser" id="com.freescale.coldfire.toolchain.configuration.1019454570" name="Register Passing" parent="com.freescale.coldfire.toolchain.configuration" produceBuildErrorsWithMissingReferences="true">
+					<folderInfo id="com.freescale.coldfire.toolchain.configuration.1019454570." name="/" resourcePath="">
+						<toolChain id="com.freescale.coldfire.toolchain.toolchain.project.97089544" name="ColdFire Toolchain Tools" superClass="com.freescale.coldfire.toolchain.toolchain.project">
+							<option id="com.freescale.coldfire.toolchain.sharedoption.processor.1715168232" name="Processor Family (-proc)" superClass="com.freescale.coldfire.toolchain.sharedoption.processor" value="com.freescale.coldfire.toolchain.sharedoption.processor.51CN" valueType="enumerated"/>
+							<option id="com.freescale.coldfire.toolchain.sharedoption.print.1573329589" name="Print formats" superClass="com.freescale.coldfire.toolchain.sharedoption.print" value="com.freescale.coldfire.toolchain.sharedoption.print.int_FP" valueType="enumerated"/>
+							<option id="com.freescale.coldfire.toolchain.sharedoption.scan.1995378389" name="Scan formats" superClass="com.freescale.coldfire.toolchain.sharedoption.scan" value="com.freescale.coldfire.toolchain.sharedoption.scan.int_FP" valueType="enumerated"/>
+							<option id="com.freescale.coldfire.toolchain.sharedoption.iomode.574095886" name="IO mode" superClass="com.freescale.coldfire.toolchain.sharedoption.iomode" value="com.freescale.coldfire.toolchain.sharedoption.iomode.buffered" valueType="enumerated"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="com.freescale.coldfire.toolchain.platform.324319646" name="ColdFire Target Platform" superClass="com.freescale.coldfire.toolchain.platform"/>
+							<builder buildPath="${ProjDirPath}/Register Passing" id="com.freescale.coldfire.toolchain.builder.86969462" keepEnvironmentInBuildfile="false" name="GNU Make Builder" parallelBuildWorkspaceOn="true" parallelizationNumber="-1" superClass="com.freescale.coldfire.toolchain.builder"/>
+							<tool id="coldfire.toolchain.burner.560790629" name="Burner" superClass="coldfire.toolchain.burner"/>
+							<tool id="com.freescale.coldfire.toolchain.linker.debug.110150320" name="ColdFire Linker" superClass="com.freescale.coldfire.toolchain.linker.debug">
+								<option id="com.freescale.coldfire.toolchain.linker.base.input.lcf_file.1963102813" name="Link Command File (.lcf)" superClass="com.freescale.coldfire.toolchain.linker.base.input.lcf_file" value="${CW_Project}\prm\project_cw10.lcf" valueType="string"/>
+								<option id="com.freescale.coldfire.toolchain.linker.base.input.lpath.1612165268" name="Library Search Paths (-L+path)" superClass="com.freescale.coldfire.toolchain.linker.base.input.lpath" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\ewl\lib&quot;"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.linker.base.input.force.active.1890418642" name="Force Active Symbols:" superClass="com.freescale.coldfire.toolchain.linker.base.input.force.active" valueType="stringList">
+									<listOptionValue builtIn="false" value="_params"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.linker.base.generateLinkMap.651914411" name="Generate Link Map" superClass="com.freescale.coldfire.toolchain.linker.base.generateLinkMap" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.linker.base.generateLinkMap.unusedObjs.466518300" name="Generate Link Map - List Unused Objects" superClass="com.freescale.coldfire.toolchain.linker.base.generateLinkMap.unusedObjs" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.linker.base.generateSrec.length.2102765020" name="Max S-Record Length" superClass="com.freescale.coldfire.toolchain.linker.base.generateSrec.length" value="32" valueType="string"/>
+								<option id="com.freescale.coldfire.toolchain.linker.base.generateRawBinImg.gap.330982671" name="Max Raw-Binary Gap" superClass="com.freescale.coldfire.toolchain.linker.base.generateRawBinImg.gap" value="0" valueType="string"/>
+								<inputType id="com.freescale.coldfire.toolchain.linker.base.input.1990235733" name="Linker Input" superClass="com.freescale.coldfire.toolchain.linker.base.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="com.freescale.coldfire.toolchain.compiler.debug.2034419198" name="ColdFire Compiler" superClass="com.freescale.coldfire.toolchain.compiler.debug">
+								<option id="com.freescale.coldfire.toolchain.compiler.base.debugging.nosyspath.580222317" name="Always Search User Paths (-nosyspath)" superClass="com.freescale.coldfire.toolchain.compiler.base.debugging.nosyspath" value="false" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.preprocessor.include.prefixfile.1680273367" name="Prefix File (-prefix)" superClass="com.freescale.coldfire.toolchain.compiler.base.preprocessor.include.prefixfile" value="${ProjDirPath}\..\Register Passing.prefix" valueType="string"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.1949933711" name="User Path (-i)" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\bin&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\prm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\src&quot;"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.recurs.1211347586" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include.recurs" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\core&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\ipv4\lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\arch&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\source&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\UART&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\MAC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\High Level Startup&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\Non Volatile Memory&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FEC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FLASH&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\MCG&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\SCI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\PHY&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\Common Utilities&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\APPLICATIONS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FreeRTOS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SPI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FAT&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\SDCARD&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SIGNALS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\ADC&quot;"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.system.464455136" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include.system" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\asm_include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\hcs08_compatibility&quot;"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.system.recurs.56388666" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include.system.recurs" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\ewl&quot;"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.warnings.implicitconv.2016279345" name="Implicit Arithmetic Conversions" superClass="com.freescale.coldfire.toolchain.compiler.base.warnings.implicitconv" value="false" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.warnings.unusedarg.78678067" name="Unused Arguments" superClass="com.freescale.coldfire.toolchain.compiler.base.warnings.unusedarg" value="false" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.options.optLevel.855684080" name="Optimization Level (-opt)" superClass="com.freescale.coldfire.toolchain.compiler.base.options.optLevel" value="com.freescale.coldfire.toolchain.compiler.base.optionCategory.optimization.optlevel.4" valueType="enumerated"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.options.speedSpace.1582616324" name="Speed vs. Size" superClass="com.freescale.coldfire.toolchain.compiler.base.options.speedSpace" value="com.freescale.coldfire.toolchain.compiler.base.optionCategory.optimization.speedspace.speed" valueType="enumerated"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.options.inlining.1960309352" name="Inlining" superClass="com.freescale.coldfire.toolchain.compiler.base.options.inlining" value="com.freescale.coldfire.toolchain.compiler.base.options.inlining.auto.smart" valueType="enumerated"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.code.1323226415" name="Code Model" superClass="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.code" value="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.code.far" valueType="enumerated"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.coloring.578535820" name="Register Coloring (-coloring)" superClass="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.coloring" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.sche.837099568" name="Instruction Scheduling (-scheduling)" superClass="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.sche" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.peep.22631425" name="Peephole (-peephole)" superClass="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.peep" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.sdata.909147791" name="Use .sdata/.sbiss for (byte in integer between -1..32K)" superClass="com.freescale.coldfire.toolchain.compiler.base.optionCategory.processor.sdata" value="0" valueType="string"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.general.otherflags.prototype.1935933573" name="Require Prototypes (-requireprotos)" superClass="com.freescale.coldfire.toolchain.compiler.base.general.otherflags.prototype" value="false" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.general.otherflags.bool.1715988934" name="Enable C++ 'bool' type, 'true' and 'false' Constants (-bool)" superClass="com.freescale.coldfire.toolchain.compiler.base.general.otherflags.bool" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.general.wchar.off.506515100" name="Enable wchar_t Support" superClass="com.freescale.coldfire.toolchain.compiler.base.general.wchar.off" value="true" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.general.unsignedchar.1232724719" name="Use Unsigned Chars" superClass="com.freescale.coldfire.toolchain.compiler.base.general.unsignedchar" value="false" valueType="boolean"/>
+								<inputType id="com.freescale.coldfire.toolchain.compiler.base.input.398103007" name="C Source File" superClass="com.freescale.coldfire.toolchain.compiler.base.input"/>
+								<inputType id="com.freescale.coldfire.toolchain.compiler.base.input.c++.606142019" name="C++ Source File" superClass="com.freescale.coldfire.toolchain.compiler.base.input.c++"/>
+							</tool>
+							<tool id="com.freescale.coldfire.toolchain.assembler.debug.757138760" name="ColdFire Assembler" superClass="com.freescale.coldfire.toolchain.assembler.debug">
+								<option id="com.freescale.coldfire.toolchain.assembler.base.debugging.nosyspath.1043364117" name="Always Search User Paths (-nosyspath)" superClass="com.freescale.coldfire.toolchain.assembler.base.debugging.nosyspath" value="false" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.1897113432" name="User Path (-i)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\bin&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\prm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\core&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\ipv4\lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\arch&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\source&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\UART&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\MAC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\High Level Startup&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\Non Volatile Memory&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FEC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FLASH&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\MCG&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\SCI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\PHY&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\Common Utilities&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\APPLICATIONS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FreeRTOS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SPI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FAT&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\SDCARD&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SIGNALS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\ADC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\Derivatives\device\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\Derivatives\device\asm_include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\hcs08_compatibility&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\ewl&quot;"/>
+								</option>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs.1364263378" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs" valueType="includePath"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.378719239" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system" valueType="includePath"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs.1173443783" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs" valueType="includePath"/>
+								<inputType id="com.freescale.coldfire.toolchain.assembler.base.input.1253014853" name="ColdFire Assembler Input" superClass="com.freescale.coldfire.toolchain.assembler.base.input"/>
+							</tool>
+							<tool id="com.freescale.coldfire.toolchain.preprocessor.debug.988152396" name="ColdFire Preprocessor" superClass="com.freescale.coldfire.toolchain.preprocessor.debug">
+								<option id="com.freescale.coldfire.toolchain.compiler.base.preprocessor.fullpath.1934271506" name="Show full path (-ppopt full)" superClass="com.freescale.coldfire.toolchain.compiler.base.preprocessor.fullpath" value="false" valueType="boolean"/>
+							</tool>
+							<tool id="com.freescale.coldfire.toolchain.disassembler.debug.2080737941" name="ColdFire Disassembler" superClass="com.freescale.coldfire.toolchain.disassembler.debug">
+								<option id="com.freescale.coldfire.toolchain.disassembler.base.settings.verbose.1462124149" name="Verbose Info" superClass="com.freescale.coldfire.toolchain.disassembler.base.settings.verbose" value="false" valueType="boolean"/>
+								<option id="com.freescale.coldfire.toolchain.disassembler.base.settings.dbg.876180369" name="Show Debug Info" superClass="com.freescale.coldfire.toolchain.disassembler.base.settings.dbg" value="true" valueType="boolean"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+					<fileInfo id="com.freescale.coldfire.toolchain.configuration.1019454570..cproject" name=".cproject" rcbsApplicability="disable" resourcePath=".cproject" toolsToInvoke=""/>
+					<fileInfo id="com.freescale.coldfire.toolchain.configuration.1019454570..project" name=".project" rcbsApplicability="disable" resourcePath=".project" toolsToInvoke=""/>
+					<sourceEntries>
+						<entry excluding=".cproject|.project" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
+			<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+			<storageModule moduleId="scannerConfiguration">
+				<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
+				<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="makefileGenerator">
+						<runAction arguments="-f ${project_name}_scd.mk" command="make" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfile">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileCPP">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileC">
+					<buildOutputProvider>
+						<openAction enabled="true" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.coldfire.cdt.toolchain.linux.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCInstallDir}/m68k-linux-gnu-gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.coldfire.cdt.cpp.toolchain.linux.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCInstallDir}/m68k-linux-gnu-g++" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.coldfire.cdt.toolchain.uclinux.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCUCInstallDir}/m68k-uclinux-gcc" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.coldfire.cdt.cpp.toolchain.uclinux.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCUCInstallDir}/m68k-uclinux-g++" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.coldfire.cdt.cpp.symbols.toolchain.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.coldfire.cdt.c.symbols.toolchain.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.hc08.cdt.toolchain.hcs08.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.hc08.cdt.toolchain.rs08.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="false"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="true"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.arm.cdt.toolchain.c.symbols.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="false"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.dsc.cdt.c.symbols.toolchain.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="false"/>
+					</scannerInfoProvider>
+				</profile>
+				<profile id="com.freescale.s12z.c.symbols.toolchain.discoveryProfile">
+					<buildOutputProvider>
+						<openAction enabled="false" filePath=""/>
+						<parser enabled="true"/>
+					</buildOutputProvider>
+					<scannerInfoProvider id="specsFile">
+						<runAction arguments="" command="" useDefault="true"/>
+						<parser enabled="false"/>
+					</scannerInfoProvider>
+				</profile>
+				<scannerConfigBuildInfo instanceId="com.freescale.coldfire.toolchain.configuration.1019454570;com.freescale.coldfire.toolchain.configuration.1019454570.;com.freescale.coldfire.toolchain.compiler.debug.2034419198;com.freescale.coldfire.toolchain.compiler.base.input.c++.606142019">
+					<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.freescale.coldfire.cdt.cpp.symbols.toolchain.discoveryProfile"/>
+					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="makefileGenerator">
+							<runAction arguments="-f ${project_name}_scd.mk" command="make" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileCPP">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileC">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.toolchain.linux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCInstallDir}/m68k-linux-gnu-gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.cpp.toolchain.linux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCInstallDir}/m68k-linux-gnu-g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.toolchain.uclinux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCUCInstallDir}/m68k-uclinux-gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.cpp.toolchain.uclinux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCUCInstallDir}/m68k-uclinux-g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.cpp.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.c.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.hc08.cdt.toolchain.hcs08.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.hc08.cdt.toolchain.rs08.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.arm.cdt.toolchain.c.symbols.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="false"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.dsc.cdt.c.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="false"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.s12z.c.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="false"/>
+						</scannerInfoProvider>
+					</profile>
+				</scannerConfigBuildInfo>
+				<scannerConfigBuildInfo instanceId="com.freescale.coldfire.toolchain.configuration.1019454570;com.freescale.coldfire.toolchain.configuration.1019454570.;com.freescale.coldfire.toolchain.compiler.debug.2034419198;com.freescale.coldfire.toolchain.compiler.base.input.398103007">
+					<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.freescale.coldfire.cdt.c.symbols.toolchain.discoveryProfile"/>
+					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="makefileGenerator">
+							<runAction arguments="-f ${project_name}_scd.mk" command="make" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileCPP">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileCPP">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.cpp" command="g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="org.eclipse.cdt.managedbuilder.core.GCCWinManagedMakePerProjectProfileC">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/specs.c" command="gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.toolchain.linux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCInstallDir}/m68k-linux-gnu-gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.cpp.toolchain.linux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCInstallDir}/m68k-linux-gnu-g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.toolchain.uclinux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCUCInstallDir}/m68k-uclinux-gcc" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.cpp.toolchain.uclinux.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="${CFGCCUCInstallDir}/m68k-uclinux-g++" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.cpp.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.coldfire.cdt.c.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="true" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.hc08.cdt.toolchain.hcs08.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.hc08.cdt.toolchain.rs08.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="false"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="true"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.arm.cdt.toolchain.c.symbols.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="false"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.dsc.cdt.c.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="false"/>
+						</scannerInfoProvider>
+					</profile>
+					<profile id="com.freescale.s12z.c.symbols.toolchain.discoveryProfile">
+						<buildOutputProvider>
+							<openAction enabled="false" filePath=""/>
+							<parser enabled="true"/>
+						</buildOutputProvider>
+						<scannerInfoProvider id="specsFile">
+							<runAction arguments="" command="" useDefault="true"/>
+							<parser enabled="false"/>
+						</scannerInfoProvider>
+					</profile>
+				</scannerConfigBuildInfo>
+			</storageModule>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="v1_v10.1.com.freescale.coldfire.toolchain.projecttype.444852519" name="Freescale Coldfire" projectType="com.freescale.coldfire.toolchain.projecttype"/>
+	</storageModule>
+</cproject>

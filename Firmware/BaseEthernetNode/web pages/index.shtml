@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="toplevellocal.css" />
+<style type="text/css"><!-- #ftr{ position:absolute; } --></style>
+<title>MCF51CN128 Web Page</title>
+</head>
+<body>
+<div id="pgctwrp">
+<div id="mncnt" class="cframe">
+<a title="Freescale" href="http://www.freescale.com"><img border="0" alt="Freescale Semiconductor" src="NEWEDFS_LOGO.gif"/></a>
+<br><br>
+<div class="hrw"><hr /></div><h1><!--#echo var="GREETING"--></h1><div class="hrw"><hr /></div>
+<br>
+<div class="lcn">
+<p>This web page is stored on the MCF51CN128 uC from Freescale Semiconductor. A low cost chip with 128KB of FLASH + 24KB of RAM in a 48-pin QFN package running FreeRTOS and lwIP. Some features of this software include:</p>
+<ul class="boxes">
+<li>Dynamic Address</li>
+<li>Mail Client</li>
+<li>FTP Server</li>
+<li>Serial Bridge</li>
+<li>SDcard+FAT16</li>
+</ul>
+<br />
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>About lwIP</h2>
+<div class="hrw"><hr></div>
+<p>lwIP is a light-weight implementation of the TCP/IP protocol suite that was originally written by Adam Dunkels of the Swedish Institute of Computer Science but now is being actively developed by a team of developers distributed world-wide headed by Leon Woestenberg. The developement <a href="http://savannah.nongnu.org/projects/lwip">homepage</a> has the latest news and releases.</p>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>About FreeRTOS</h2>
+<div class="hrw"><hr></div>
+<p> <a href="http://www.freertos.org" target="_top">FreeRTOS</a><SMALL><SUP>TM</SUP></SMALL> is a portable, open source, mini Real Time Kernel - a free to download and royalty free RTOS that can be used in commercial applications.</p>
+<br /> <br /> <br /> <br />
+</div>
+<div class="gbl">
+<div class="hrw"><hr></div>
+<h2>More about MCF51CN128</h2>
+<div class="hrw"><hr></div>
+<a href="more.htm">MCF51CN128 Details</a>
+</div>
+<div class="gbr">
+<div class="hrw"><hr></div>
+<h2>Applications</h2>
+<div class="hrw"><hr></div>
+<ul class="boxes">
+<li><a href="config.shtml">MCU Configuration</a></li>
+<li><a href="dynamic.shtml">SSI Example</a></li>
+<li><a href="ajax.htm">Ajax Example</a></li>
+<li><a href="tasks.htm">Tasks' Status</a></li>
+</ul>
+</div>
+<div class="bkflt"></div>
+</div>
+<div class="rc">
+<div class="iu">
+<h1>Training & Documentation</h1>
+<ul>
+<li><a href="http://www.freescale.com/files/32bit/doc/data_sheet/MCF51CN128.pdf" >MCF51CN128 Data Sheet </a></li>
+<li><a href="http://www.freescale.com/files/32bit/doc/ref_manual/MCF51CN128RM.pdf">MCF51CN128 Reference Manual </a></li>
+<li><a href="http://www.freescale.com/files/microcontrollers/doc/fact_sheet/MCF51CN128FS.pdf">MCF51CN128 Fact Sheet</a></li>
+</ul>
+</div>
+<div class="iu">
+<h1>Links of Interest</h1>
+<ul>
+<li><a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=CW-MICROCONTROLLERS">CodeWarrior&reg; for HC(S)08/RS08 Download</a></li>
+<li><a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=USBMULTILINKBDM">BDM Multilink </a></li>
+<li><a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=USBSPYDER08">USBSPYDER08 Debug Tool </a></li>
+<li><a href="http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=KITPROXIMITYEVM">Proximity Sensing Electrode Board</a></li>
+</ul>
+</div>
+</div>
+<div class="bkflt"></div>
+<div id="ftr">
+<center>&#169; Freescale Semiconductor, Inc. 2004 - 2009. All Rights Reserved.
+</center></div>
+</div>
+</div>
+</body>
+</html>

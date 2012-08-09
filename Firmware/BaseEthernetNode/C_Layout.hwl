@@ -1,0 +1,18 @@
+OPEN source 0 0 60 64
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN assembly 60 0 40 15 ;i
+Assembly < attributes ADR on,CODE off,ABSADR on,SYMB off,FORMAT Auto,FREEZE off,TOPPC 0x16D66
+OPEN procedure 0 64 60 35
+Procedure < attributes VALUES on,TYPES off
+OPEN register 60 15 40 21 ;i
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 60 0 40 51
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0x802100
+OPEN data 60 51 40 38
+Data < attributes SCOPE local,COMPLEMENT None,FORMAT Hex,MODE automatic,SORT NotSort,UPDATERATE 10,NAMEWIDTH 16
+OPEN command 60 89 40 11
+Command < attributes CACHESIZE 1000
+bckcolor 50331647
+font 'Courier New' 9 BLACK
+AUTOSIZE on
+ACTIVATE "Assembly" "Register" "Command" "Procedure" "Memory" "Source" "Data"

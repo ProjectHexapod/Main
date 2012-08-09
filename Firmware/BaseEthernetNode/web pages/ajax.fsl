@@ -1,0 +1,4 @@
+<!--#echo var="CHANNEL0"-->
+<!--#echo var="CHANNEL1"-->
+<!--#echo var="CHANNEL2"-->
+<!--#echo var="COUNTER"-->

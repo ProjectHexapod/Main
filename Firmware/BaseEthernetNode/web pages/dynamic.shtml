@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="toplevellocal.css" />
+<style type="text/css"><!-- #ftr{position:absolute;} --></style>
+<title>Dynamic content with SSI</title>
+</head>
+<body>
+<div id="pgctwrp">
+<div id="mncnt" class="cframe">
+<a title="Freescale" href="http://www.freescale.com"><img border="0" alt="Freescale Semiconductor" src="NEWEDFS_LOGO.gif"/></a>
+<br />
+<br />
+<div class="hrw"><hr /></div>
+<h1>Updated Information</h1>
+<div class="hrw"><hr /></div>
+<br />
+<div class="lcn">
+<p>Here's my dynamic data:</p>
+<ul class="boxes">
+<li>Counter 0 = <strong><!--#echo var="CHANNEL0"--></strong></li>
+<li>Counter 1 = <strong><!--#echo var="CHANNEL1"--></strong></li>
+<li>Counter 2 = <strong><!--#echo var="CHANNEL2"--></strong></li>
+<li>Counter 3 = <strong><!--#echo var="COUNTER"--></strong></li>
+</ul>
+<p>Thanks!</p>
+<div class="bkflt"></div>
+</div>
+<div class="bkflt"></div>
+<div id="ftr">
+<center>&#169; Freescale Semiconductor, Inc. 2004 - 2009. All Rights Reserved.
+</center></div>
+</div>
+</div>
+</body>
+</html>

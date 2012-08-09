@@ -1,0 +1,149 @@
+# Sample Linker Command File for CodeWarrior for ColdFire MCF51CN128
+
+# Memory ranges
+
+MEMORY 
+{
+   #vector      (RX)  : ORIGIN = 0x00000000, LENGTH = 0x00000400
+   #FSL:10 bytes for reserved flash module memory locations
+   code        (RX)  : ORIGIN = 0x00000410, LENGTH = 0x0001FBF0
+   #FSL:logical page: 1KB for user
+   userrom     (RX)  : ORIGIN = 0x0001FC00, LENGTH = 0x00000400   
+   userram     (RWX) : ORIGIN = 0x00800000, LENGTH = 0x00006000
+}
+
+#FSL:needed for default info
+FORCE_ACTIVE{_params}
+
+SECTIONS 
+{
+# Heap and Stack sizes definition
+  ___heap_size     = 0;   #FSL:the rest of the RAM memory is used by the HEAP.
+  ___stack_size    = 256; #FSL:only needed by init process called main :)
+
+# MCF51CN128 Derivative Memory map definitions from linker command files:
+# ___RAM_ADDRESS, ___RAM_SIZE, ___FLASH_ADDRESS, ___FLASH_SIZE linker
+# symbols must be defined in the linker command file.
+
+# 24 Kbytes Internal SRAM
+   ___RAM_ADDRESS = 0x00800000;
+   ___RAM_SIZE    = 0x00006000;
+
+# 128 KByte Internal Flash Memory
+   ___FLASH_ADDRESS  = 0x00000000;
+   ___FLASH_SIZE     = 0x00020000;
+
+  .userram        : {} > userram
+  .code           : {} > code
+  .userrom        : {} > userrom
+
+  #FSL:custom area to store non-volatile information during start-up
+  .custom_rom :
+  {
+    constants_c.c (.rodata)
+  } >> userrom
+
+  .webpages :
+  {
+    static_web_pages_c.c (.rodata)
+    . = ALIGN (0x4);
+  } >> code
+
+  .text :
+  {    
+    *(.text)
+    . = ALIGN (0x4);    
+    
+    *(.rodata)
+    . = ALIGN (0x4);
+    ___ROM_AT = .;
+    ___DATA_ROM = .;
+  } >> code
+
+  .data : AT(___ROM_AT)
+  {
+    ___DATA_RAM = .;
+    . = ALIGN(0x4);
+    *(.exception)
+    . = ALIGN(0x4);
+    __exception_table_start__ = .;
+    EXCEPTION
+    __exception_table_end__ = .;
+
+    ___sinit__ = .;
+      STATICINIT
+    __START_DATA = .;
+    
+    . = ALIGN(0x10);
+    #FSL:custom sections to copy during runtime
+    *(.relocate_code)
+		*(.relocate_const)
+		*(.relocate_data)
+
+    *(.data)
+    . = ALIGN (0x4);
+    __END_DATA = .;
+
+    __START_SDATA = .;
+    *(.sdata)
+    . = ALIGN (0x4);
+    __END_SDATA = .;
+
+    ___DATA_END = .;
+    __SDA_BASE = .;
+    . = ALIGN (0x4);
+  } >> userram
+
+  .bss :
+  {
+    ___BSS_START = .;
+    __START_SBSS = .;
+    *(.sbss)
+    . = ALIGN (0x4);
+    *(SCOMMON)
+    __END_SBSS = .;
+
+    __START_BSS = .;
+    *(.bss)
+    . = ALIGN (0x4);
+    *(COMMON)
+    __END_BSS = .;
+    ___BSS_END = .;
+
+    . = ALIGN(0x4);
+  } >> userram
+
+  .custom :
+  {   
+    ___SP_END           = .;
+    ___SP_INIT          = ___SP_END + ___stack_size;
+
+    ___HEAP_START       = ___SP_INIT;
+    ___heap_addr        = ___HEAP_START;
+    #FSL: rest of RAM used for HEAP
+    ___HEAP_END         = ___RAM_ADDRESS + ___RAM_SIZE - 4;
+    ___HEAP_SIZE        = ___HEAP_END - ___HEAP_START;
+    . = ALIGN (0x4);
+   
+  } >> userram
+
+  __SP_INIT             = ___SP_INIT;
+  ___SP_AFTER_RESET     = __SP_INIT;
+  
+  
+  #FSL:copy during runtime
+  ___CUSTOM_ROM		 = ADDR(.userrom);
+  ___CUSTOM_ROM_SIZE= LENGTH(.userrom);
+
+  _romp_at = ___ROM_AT + SIZEOF(.data);
+  .romp : AT(_romp_at)
+  {
+    __S_romp = _romp_at;
+    WRITEW(___ROM_AT);
+    WRITEW(ADDR(.data));
+    WRITEW(SIZEOF(.data));
+    WRITEW(0);
+    WRITEW(0);
+    WRITEW(0);
+  }
+}

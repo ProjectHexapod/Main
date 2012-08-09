@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<link rel="stylesheet" type="text/css" media="screen, projection" href="toplevellocal.css" />
+<style type="text/css"><!-- #ftr{ position:absolute; } --></style>
+<title>Freescale Lasko</title>
+</head>
+<body>
+<div id="pgctwrp">
+<div id="mncnt" class="cframe">
+<a title="Freescale" href="http://www.freescale.com"><img border="0" alt="Freescale Semiconductor" src="NEWEDFS_LOGO.gif"/></a>
+<br /><br />
+<div class="hrw"><hr /></div>
+<h1>Real-Time Information Using AJAX technique</h1>
+<div class="hrw"><hr /></div>
+<br />
+<div class="lcn">
+<DIV STYLE="position:absolute; top:520px; left:182px;"><IMG SRC="line.bmp" width=280 height=5></DIV>
+<DIV STYLE="position:absolute; top:386px; left:182px;"><IMG SRC="line.bmp" width=280 height=5></DIV>
+<DIV STYLE="position:absolute; top:253px; left:182px;"><IMG SRC="line.bmp" width=280 height=5></DIV>
+<DIV STYLE="position:absolute; top:120px; left:182px;"><IMG SRC="line.bmp" width=280 height=5></DIV>
+<DIV id="pbargraph1" STYLE="position:absolute; top:450px; left:207px;"><IMG SRC="bargraph.bmp" id="bargraph1" width=50></DIV>
+<DIV id="gvalue1" STYLE="position:absolute; top:540px; left:217px;"><FONT SIZE="+0" COLOR="BLACK">0</FONT></DIV>
+<DIV id="pbargraph2" STYLE="position:absolute; top:450px; left:267px;"><IMG SRC="bargraph.bmp" id="bargraph2" width=50></DIV>
+<DIV id="gvalue2" STYLE="position:absolute; top:540px; left:277px;"><FONT SIZE="+0" COLOR="BLACK">0</FONT></DIV>
+<DIV id="pbargraph3" STYLE="position:absolute; top:450px; left:327px;"><IMG SRC="bargraph.bmp" id="bargraph3" width=50></DIV>
+<DIV id="gvalue3" STYLE="position:absolute; top:540px; left:337px;"><FONT SIZE="+0" COLOR="BLACK">0</FONT></DIV>
+<DIV id="pbargraph4" STYLE="position:absolute; top:450px; left:387px;"><IMG SRC="bargraph.bmp" id="bargraph4" width=50></DIV>
+<DIV id="gvalue4" STYLE="position:absolute; top:540px; left:397px;"><FONT SIZE="+0" COLOR="BLACK">0</FONT></DIV>
+</div>
+<div class="bkflt"></div>
+<div id="ftr">
+<center>&#169; Freescale Semiconductor, Inc. 2004 - 2009. All Rights Reserved.<center>
+</div>
+</div>
+</div>
+<script language="JavaScript">
+var pot_value = new Array(4);
+var bargraph1=document.getElementById("bargraph1");
+var bargraph2=document.getElementById("bargraph2");
+var bargraph3=document.getElementById("bargraph3");
+var bargraph4=document.getElementById("bargraph4");
+var pbargraph1=document.getElementById("pbargraph1");
+var pbargraph2=document.getElementById("pbargraph2");
+var pbargraph3=document.getElementById("pbargraph3");
+var pbargraph4=document.getElementById("pbargraph4");
+var gvalue1=document.getElementById("gvalue1");
+var gvalue2=document.getElementById("gvalue2");
+var gvalue3=document.getElementById("gvalue3");
+var gvalue4=document.getElementById("gvalue4");
+var data_received = 0;
+function parse_vars( data ){
+var a=475;
+var parsed = data.split('\n');
+pot_value[0]=parseInt(parsed[0]);
+pot_value[1]=parseInt(parsed[1]);
+pot_value[2]=parseInt(parsed[2]);
+pot_value[3]=parseInt(parsed[3]);
+bargraph1.height = pot_value[0]/10;
+pbargraph1.style.top=a-(pot_value[0]/10)+'px';
+gvalue1.innerHTML = pot_value[0]/10;
+bargraph2.height = pot_value[1]/10;
+pbargraph2.style.top=a-(pot_value[1]/10)+'px';
+gvalue2.innerHTML = pot_value[1]/10;
+bargraph3.height = pot_value[2]/10;
+pbargraph3.style.top=a-(pot_value[2]/10)+'px';
+gvalue3.innerHTML = pot_value[2]/10;
+bargraph4.height = pot_value[3]/10;
+pbargraph4.style.top=a-(pot_value[3]/10)+'px';
+gvalue4.innerHTML = pot_value[3]/10;
+}
+function makeRequest(url){
+var http_request = false;
+data_received = 1;
+if (window.XMLHttpRequest){
+http_request = new XMLHttpRequest();
+if (http_request.overrideMimeType){
+http_request.overrideMimeType('text/xml');
+}
+}
+else if (window.ActiveXObject){
+try{
+http_request = new ActiveXObject("Msxml2.XMLHTTP");
+}
+catch (e){
+try{
+http_request = new ActiveXObject("Microsoft.XMLHTTP");
+}
+catch (e){}
+}
+}
+if(!http_request){
+alert('Giving up :( Cannot create an XMLHTTP instance');
+return false;
+}
+http_request.onreadystatechange = function() { alertContents(http_request); };
+http_request.open('GET', url, true);
+http_request.send(null);
+}
+function alertContents(http_request){
+if (http_request.readyState == 4){
+if (http_request.status == 200){
+parse_vars(http_request.responseText);
+data_received = 0;
+}
+else{
+alert('There was a problem with the request.');
+alert( http_request.status );
+}
+}
+}
+function loop()
+{
+if( !data_received )
+makeRequest("ajax.fsl");
+setTimeout("loop()",1000);
+}
+window.onload=loop;
+</script>
+</body>
+</html>
