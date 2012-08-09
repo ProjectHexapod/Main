@@ -51,7 +51,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HIL/lwIP/netif/etharp_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/lwIP/src/netif/etharp.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #16 $<'
+	@echo 'Executing target #14 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HIL/lwIP/netif/etharp.args" -o "Sources/HIL/lwIP/netif/etharp_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -64,7 +64,7 @@ Sources/HIL/lwIP/netif/etharp_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Fir
 
 Sources/HIL/lwIP/netif/ethernetif_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/lwIP/src/netif/ethernetif.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #17 $<'
+	@echo 'Executing target #15 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HIL/lwIP/netif/ethernetif.args" -o "Sources/HIL/lwIP/netif/ethernetif_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -77,7 +77,7 @@ Sources/HIL/lwIP/netif/ethernetif_c.d: C:/Users/jwhong/Documents/Project-Hexapod
 
 Sources/HIL/lwIP/netif/loopif_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/lwIP/src/netif/loopif.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #18 $<'
+	@echo 'Executing target #16 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HIL/lwIP/netif/loopif.args" -o "Sources/HIL/lwIP/netif/loopif_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -90,7 +90,7 @@ Sources/HIL/lwIP/netif/loopif_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Fir
 
 Sources/HIL/lwIP/netif/slipif_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/lwIP/src/netif/slipif.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #19 $<'
+	@echo 'Executing target #17 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HIL/lwIP/netif/slipif.args" -o "Sources/HIL/lwIP/netif/slipif_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

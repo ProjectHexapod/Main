@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/FEC/fec_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #84 $<'
+	@echo 'Executing target #82 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/FEC/fec.args" -o "Sources/HAL/FEC/fec_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

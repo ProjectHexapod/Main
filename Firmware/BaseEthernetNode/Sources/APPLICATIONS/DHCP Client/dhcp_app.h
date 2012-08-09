@@ -1,7 +1,7 @@
 #ifndef _DHCP_APP_H_
 #define _DHCP_APP_H_
 
-#define EMAIL_NOTIFICATION_AFTER_GETTING_IP_ADDRESS   1
+#define EMAIL_NOTIFICATION_AFTER_GETTING_IP_ADDRESS   0
 #define DHCP_TASK_PRIORITY                            1
 #define LED_TASK_PRIORITY                             1
 

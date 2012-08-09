@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Applications/Serial\ Bridge/SPI\ Bridge/spi_bridge_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/SPI\ bridge/spi_bridge.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #93 $<'
+	@echo 'Executing target #89 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Applications/Serial Bridge/SPI Bridge/spi_bridge.args" -o "Sources/Applications/Serial Bridge/SPI Bridge/spi_bridge_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Libs/mcf51cn128_c.obj: $(MCUToolsBaseDirEnv_ESCAPED)/ColdFire_Support/Derivatives/device/src/mcf51cn128.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #103 $<'
+	@echo 'Executing target #96 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Libs/MCF51CN128.args" -o "Libs/mcf51cn128_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

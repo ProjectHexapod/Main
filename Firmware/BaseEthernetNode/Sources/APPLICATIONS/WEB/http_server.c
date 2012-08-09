@@ -63,8 +63,8 @@
 #include "api.h"
 
 /* ------------------------ Project includes ------------------------------ */
-#include "SD.h"         /* SD Card Driver (SPI mode) */
-#include "FAT.h"
+//#include "SD.h"         /* SD Card Driver (SPI mode) */
+//#include "FAT.h"
 
 /* ------------------------ Project includes ------------------------------ */
 #include "http_server.h"
@@ -83,11 +83,6 @@ extern const uint8 index_shtml[];/*FSL: default webpage*/
 extern LANGUAGES WEB_LANGUAGES[];
 extern uint8 default_language;
 extern uint8 reset_var;
-
-#if HTTP_SD_CARD_SUPPORT 
-/*Handle SD card*/
-FATHandler *SD_Web_Handle;
-#endif
 
 /*Read Buffer for App*/  
 extern UINT8 *u8Archivo;
@@ -250,13 +245,6 @@ HTTP_ProcessRequest(struct netconn *pcb, void *request, uint8 *temporal_buffer, 
               {                 
                  //TODO: more support if file was succesfully found and sent
               }
-              #if HTTP_SD_CARD_SUPPORT
-              /*look for file - SD card*/
-              else if( !HTTP_GetFileFromSDcard(pcb, temporal_buffer) )
-              {
-                 //TODO: more support if file was succesfully found and sent
-              }
-              #endif
               #if HTTP_TASKS_STACK_USE == 1
           	  //default service: tasks.htm: just for debugging!!!
           	  else if(!strcmp(temporal_buffer,"TASKS.HTM"))
@@ -283,86 +271,6 @@ HTTP_ProcessRequest(struct netconn *pcb, void *request, uint8 *temporal_buffer, 
      }
      return;  
 }
-
-#if HTTP_SD_CARD_SUPPORT
-/**
- * Look for a file from SDcard
- *
- * @param connection descriptor
- * @param file's name
- * @return zero if OK, otherwise file not found
- */
-static uint8
-HTTP_GetFileFromSDcard(struct netconn *pcb, uint8 *array)
-{  
-  uint8 dynamic_proc;
-  UINT16 u16Length;
-  UINT8 result = 1;
-  
-  /*dont even look if SDcard is not present*/
-  if( !SD_present || IS_SD_CONNECTED)
-  {
-    /*SDcard init was correct but but SD not longer present, delete it buffer*/
-    if( SD_present == TRUE )
-    {
-        SD_present = FALSE;
-        //vPortFree(u8Archivo);
-    }
-
-    return result;/*file not found*/
-  }
-  
-  /*FSL: SD Mutex Enter*/
-  WEB_SD_MUTEX_ENTER  
-  
-  /*Look for file on SD card: uppercase is needed*/
-  if( !FAT_FileOpen(SD_Web_Handle,u8Archivo,(uint8 *)array,READ) )
-  {                       
-     /*check file's name for dynamic support if ends with selected extension*/
-     /*(ie. SHTML, FSL, etc)*/
-     dynamic_proc = HTTP_IsDynamicExtension(array);
-
-     /*chuncked header for BLOCK support*/
-     HTTP_SendHeader(pcb,array,NULL,TRUE);
-     
-     while( (u16Length=FAT_FileRead(SD_Web_Handle,u8Archivo)) == BLOCK_SIZE )
-     {     
-       /*start sending SD BLOCKs*/     
-       if( dynamic_proc )/*dynamic process*/
-       {
-          HTTP_SendDynamicData(pcb,array,u8Archivo,BLOCK_SIZE,SDCARD_BLOCK_FEATURE);
-       }
-       /*static processing*/
-       else
-       {
-          HTTP_SendDynamicPacket(pcb,u8Archivo,BLOCK_SIZE,NETCONN_COPY);
-       }     
-     }
-     if(u16Length)
-     {
-       /*start sending remaining SD BLOCK*/     
-       if( dynamic_proc )/*dynamic process*/
-       {
-          HTTP_SendDynamicData(pcb,array,u8Archivo,u16Length,SDCARD_BLOCK_FEATURE);
-       }
-       /*static processing*/
-       else
-       {
-          HTTP_SendDynamicPacket(pcb,u8Archivo,u16Length,NETCONN_COPY);
-       }      
-     }    
-     /*send last web page packet*/
-     HTTP_SendDynamicFooter(pcb);
-     
-     result = 0;/*file found*/
-  }
-
-  /*SD Mutex Exit*/
-  WEB_SD_MUTEX_EXIT  
-  
-  return result;/*file not found*/
-}
-#endif
 
 /**
  * Look for a file from internal flash system
@@ -716,37 +624,12 @@ HTTP_Server_Task( void *pvParameters )
       /*Task no longer needed, delete it!*/
       goto http_server_exit;      
     }
-    else
+    /*recycling buffer space due to low RAM space*/
+    /*one extra byte to work with strings (ASCII mode)*/
+    else if( (u8Archivo=(static uint8 *)mem_malloc( BLOCK_SIZE+1 )) == NULL )
     {
-      /*recycling buffer space due to low RAM space*/
-      /*one extra byte to work with strings (ASCII mode)*/
-      if( (u8Archivo=(static uint8 *)mem_malloc( BLOCK_SIZE+1 )) != NULL )
-      {
-#if HTTP_SD_CARD_SUPPORT 
-        /*only tries to start sdcard in configuration mode, not in bridge mode*/
-        if( !(uint8)board_get_bridge_configuration() )
-        {
-          /* SD Card Initialization */
-          if( (SD_Web_Handle = FAT_INIT(u8Archivo)) == NULL )
-          {
-            ///*delete requested memory*/
-            //vPortFree(u8Archivo);      
-            /*error*/
-            FAT_Close();
-          }
-          else
-          {
-            /*SDcard can be used*/
-            SD_present = TRUE;
-          }
-        }
-#endif
-      }
-      else
-      {
         /*Task no longer needed, delete it!*/
-        goto http_server_exit;        
-      }
+        goto http_server_exit;
     }    
     /*FSL: initial state of sessions*/
     for(i=0;i<HTTP_SESSIONS;i++)

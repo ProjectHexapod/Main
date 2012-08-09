@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/SPI/spi_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #78 $<'
+	@echo 'Executing target #76 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/SPI/spi.args" -o "Sources/HAL/SPI/spi_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

@@ -21,7 +21,6 @@
 #include "dhcp_app.h"
 #include "signals.h"
 
-#include "email_client.h"
 #include "utilities.h"
 
 /*user name and password*/
@@ -64,58 +63,6 @@ vDHCPClient( void *pvParameters )
     board_set_eth_ip_add( fecif->ip_addr.addr );
     board_set_eth_netmask( fecif->netmask.addr );
     board_set_eth_gateway( fecif->gw.addr );
-
-#if EMAIL_NOTIFICATION_AFTER_GETTING_IP_ADDRESS    
-    {
-      EMAIL_TEMPLATE email;
-      CHAR *temporal_buffer;
-      T32_8 ip;   /* IP address */
-      
-      if( (temporal_buffer = ( CHAR * )mem_malloc( 128 )) == NULL )
-      {
-        goto dhcp_exit_routine;
-      }
-      
-      ip.lword = board_get_eth_ip_add();
-      /*filling info*/
-      email.to      = EMAIL_RECIPIENT;
-      email.subject = EMAIL_SUBJECT;
-      
-      /*fill data with IP address*/
-      sprintf(temporal_buffer,EMAIL_DATA_STRING,ip.bytes[0],ip.bytes[1],ip.bytes[2],ip.bytes[3]);
-      email.data    = temporal_buffer;
-      
-      /*init email*/
-      Email_init();
-    
-      /*send email: first*/
-      Email_send(&email);
-      
-      while( email.flag )
-      {        
-        /*wait for completition*/
-        vTaskDelay(100);
-        /*a context switch might be called*/
-      }
-dhcp_exit_routine:
-
-      /*delete space used by the variable until email is sent*/
-      mem_free(temporal_buffer);
-
-      /*FSL: at this point email has been sent or a failure has been found*/
-#if 0      
-      //how to test if an email has been sent or failed                  
-      if( email.ready == 0 )
-      {
-         //sucessfully sent
-      }
-      else
-      {
-         //error!!!        
-      }
-#endif
-    }
-#endif
 
     /*FSL: start LED task: removed due to small ram memory */
     //( void )xTaskCreate( vToggleLED, (const signed portCHAR *)"LED", LED_STACK_SPACE, NULL, LED_TASK_PRIORITY, NULL );

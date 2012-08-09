@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/MCG/clock_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #81 $<'
+	@echo 'Executing target #79 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/MCG/clock.args" -o "Sources/HAL/MCG/clock_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

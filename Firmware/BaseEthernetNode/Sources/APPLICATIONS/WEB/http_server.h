@@ -12,7 +12,6 @@
 #define HTTP_TASK_PRIORITY          ( tskIDLE_PRIORITY + 4 )
 #define HTTP_TASKS_STACK_USE        1/*FSL: tasks consumption of RAM*/
 #define HTTP_DYNAMIC_SUPPORT        1/*FSL: support dynamic content with SSI*/
-#define HTTP_SD_CARD_SUPPORT        1/*FSL: SD card support*/
 #define WEBPAGE_INDEX_LENGTH        3673
 
 /*HTTP Options*/
@@ -37,6 +36,10 @@
 #define HTTP_TASK_STATUS_START      "<html><head><meta http-equiv=\"refresh\" content=\"2\"></head><BODY \"bgcolor=\"silver\">Running tasks:"\
                                     "<p><pre>Task          State  Priority  Stack    #<br>*****************************************<br>"
 #define HTTP_TASK_STATUS_END        "\r\nFreeRTOS+lwip port (c)2009 by Freescale Semiconductor</pre></BODY></html>"
+
+//FIXME:  This is a hack.  We removed SD.h from the project but http_server.c relies on this definition.
+// I don't have the care-power to figure out a more elegant way out of this right now.
+#define BLOCK_SIZE      512
 
 /*Web Connection Options*/
 typedef enum

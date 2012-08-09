@@ -80,11 +80,9 @@ C_DEPS_QUOTED :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-Sources/Services/SDCARD \
 Sources/Services/FreeRTOS/Source \
 Sources/Services/FreeRTOS/Source/Memory \
 Sources/Services/FreeRTOS/Source/Arch-Dependent \
-Sources/Services/FAT \
 Sources/Services/Common\ Utilities \
 Sources/HIL/lwIP/netif \
 Sources/HIL/lwIP/netif/ppp \
@@ -113,12 +111,7 @@ Sources/Applications/Web\ Server/Static\ Web\ Pages \
 Sources/Applications/Web\ Server/SSI \
 Sources/Applications/Web\ Server/HTTP/HTTP\ Server \
 Sources/Applications/Web\ Server/CGI \
-Sources/Applications/User\ Interface \
-Sources/Applications/Serial\ Bridge/UART\ Bridge \
 Sources/Applications/Serial\ Bridge/SPI\ Bridge \
-Sources/Applications/SDcard\ Example \
-Sources/Applications/FTP\ Server \
-Sources/Applications/Email\ Client \
 Sources/Applications/DHCP\ Client \
 Sources/Applications/Configuration\ Interface \
 Sources/Applications/Common\ Utilities \

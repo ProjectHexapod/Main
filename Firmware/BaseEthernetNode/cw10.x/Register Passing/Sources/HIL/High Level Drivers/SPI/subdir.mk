@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HIL/High\ Level\ Drivers/SPI/spi_rtos_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/SPI/spi_rtos.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #70 $<'
+	@echo 'Executing target #68 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HIL/High Level Drivers/SPI/spi_rtos.args" -o "Sources/HIL/High Level Drivers/SPI/spi_rtos_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

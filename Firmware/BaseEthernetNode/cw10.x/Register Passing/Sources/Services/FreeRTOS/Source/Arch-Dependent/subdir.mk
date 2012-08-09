@@ -39,7 +39,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #7 $<'
+	@echo 'Executing target #6 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Services/FreeRTOS/Source/Arch-Dependent/port.args" -o "Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -52,7 +52,7 @@ Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d: C:/Users/jwhong/Docume
 
 Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S
 	@echo 'Building file: $<'
-	@echo 'Executing target #8 $<'
+	@echo 'Executing target #7 $<'
 	@echo 'Invoking: ColdFire Assembler'
 	"$(CF_ToolsDirEnv)/mwasmmcf" @@"Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm.args" -o "Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj" "$<"
 	@echo 'Finished building: $<'

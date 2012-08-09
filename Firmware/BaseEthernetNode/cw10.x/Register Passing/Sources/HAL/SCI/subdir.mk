@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/SCI/uart_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #79 $<'
+	@echo 'Executing target #77 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/SCI/uart.args" -o "Sources/HAL/SCI/uart_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

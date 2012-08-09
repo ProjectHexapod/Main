@@ -51,7 +51,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Services/FreeRTOS/Source/croutine_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/croutine.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #2 $<'
+	@echo 'Executing target #1 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Services/FreeRTOS/Source/croutine.args" -o "Sources/Services/FreeRTOS/Source/croutine_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -64,7 +64,7 @@ Sources/Services/FreeRTOS/Source/croutine_c.d: C:/Users/jwhong/Documents/Project
 
 Sources/Services/FreeRTOS/Source/list_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/list.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #3 $<'
+	@echo 'Executing target #2 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Services/FreeRTOS/Source/list.args" -o "Sources/Services/FreeRTOS/Source/list_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -77,7 +77,7 @@ Sources/Services/FreeRTOS/Source/list_c.d: C:/Users/jwhong/Documents/Project-Hex
 
 Sources/Services/FreeRTOS/Source/queue_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/queue.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #4 $<'
+	@echo 'Executing target #3 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Services/FreeRTOS/Source/queue.args" -o "Sources/Services/FreeRTOS/Source/queue_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -90,7 +90,7 @@ Sources/Services/FreeRTOS/Source/queue_c.d: C:/Users/jwhong/Documents/Project-He
 
 Sources/Services/FreeRTOS/Source/tasks_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/tasks.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #5 $<'
+	@echo 'Executing target #4 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Services/FreeRTOS/Source/tasks.args" -o "Sources/Services/FreeRTOS/Source/tasks_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

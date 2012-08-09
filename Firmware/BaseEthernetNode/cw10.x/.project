@@ -204,27 +204,7 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>Sources/Applications/Email Client</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/FTP Server</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/SDcard Example</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>Sources/Applications/Serial Bridge</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/User Interface</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -304,17 +284,7 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>Sources/Services/FAT</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>Sources/Services/FreeRTOS</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Services/SDCARD</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -349,54 +319,9 @@
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/DHCP%20Client/dhcp_app.h</locationURI>
 		</link>
 		<link>
-			<name>Sources/Applications/Email Client/email_client.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/Email%20Client/email_client.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Email Client/email_client.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/Email%20Client/email_client.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/FTP Server/ftp_server.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/FTP%20Server/ftp_server.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/FTP Server/ftp_server.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/FTP%20Server/ftp_server.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/SDcard Example/sdcard_main.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/SDcard/sdcard_main.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/SDcard Example/sdcard_main.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/SDcard/sdcard_main.h</locationURI>
-		</link>
-		<link>
 			<name>Sources/Applications/Serial Bridge/SPI Bridge</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Serial Bridge/UART Bridge</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/User Interface/uif_terminal.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/UIF%20Terminal/uif_terminal.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/User Interface/uif_terminal.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/UIF%20Terminal/uif_terminal.h</locationURI>
 		</link>
 		<link>
 			<name>Sources/Applications/Web Server/CGI</name>
@@ -619,16 +544,6 @@
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/Common%20Utilities/stdlib.h</locationURI>
 		</link>
 		<link>
-			<name>Sources/Services/FAT/Fat.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/FAT/Fat.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Services/FAT/Fat.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/FAT/Fat.h</locationURI>
-		</link>
-		<link>
 			<name>Sources/Services/FreeRTOS/FreeRTOSConfig.h</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/FreeRTOS/FreeRTOSConfig.h</locationURI>
@@ -644,16 +559,6 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>Sources/Services/SDCARD/SD.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/SDCARD/SD.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Services/SDCARD/SD.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/SDCARD/SD.h</locationURI>
-		</link>
-		<link>
 			<name>Sources/Applications/Serial Bridge/SPI Bridge/spi_bridge.c</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/SPI%20bridge/spi_bridge.c</locationURI>
@@ -662,16 +567,6 @@
 			<name>Sources/Applications/Serial Bridge/SPI Bridge/spi_bridge.h</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/SPI%20bridge/spi_bridge.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Serial Bridge/UART Bridge/uart_bridge.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/UART%20bridge/uart_bridge.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Serial Bridge/UART Bridge/uart_bridge.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/UART%20bridge/uart_bridge.h</locationURI>
 		</link>
 		<link>
 			<name>Sources/Applications/Web Server/CGI/http_cgi.c</name>

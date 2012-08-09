@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/PHY/mii_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #80 $<'
+	@echo 'Executing target #78 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/PHY/mii.args" -o "Sources/HAL/PHY/mii_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

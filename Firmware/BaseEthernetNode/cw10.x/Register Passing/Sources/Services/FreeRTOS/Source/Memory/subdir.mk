@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #6 $<'
+	@echo 'Executing target #5 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Services/FreeRTOS/Source/Memory/heap_3.args" -o "Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

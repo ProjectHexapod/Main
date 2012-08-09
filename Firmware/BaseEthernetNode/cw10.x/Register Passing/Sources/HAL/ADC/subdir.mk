@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/ADC/adc_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #85 $<'
+	@echo 'Executing target #83 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/ADC/adc.args" -o "Sources/HAL/ADC/adc_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

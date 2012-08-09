@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 103
+#Progress monitor hint: 96
 first : all
 -include ../makefile.init
 
@@ -14,11 +14,9 @@ RM := "$(Gnu_Make_Install_DirEnv)/rm" -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include Sources/Services/SDCARD/subdir.mk
 -include Sources/Services/FreeRTOS/Source/subdir.mk
 -include Sources/Services/FreeRTOS/Source/Memory/subdir.mk
 -include Sources/Services/FreeRTOS/Source/Arch-Dependent/subdir.mk
--include Sources/Services/FAT/subdir.mk
 -include Sources/Services/Common\ Utilities/subdir.mk
 -include Sources/HIL/lwIP/netif/subdir.mk
 -include Sources/HIL/lwIP/netif/ppp/subdir.mk
@@ -47,12 +45,7 @@ RM := "$(Gnu_Make_Install_DirEnv)/rm" -f
 -include Sources/Applications/Web\ Server/SSI/subdir.mk
 -include Sources/Applications/Web\ Server/HTTP/HTTP\ Server/subdir.mk
 -include Sources/Applications/Web\ Server/CGI/subdir.mk
--include Sources/Applications/User\ Interface/subdir.mk
--include Sources/Applications/Serial\ Bridge/UART\ Bridge/subdir.mk
 -include Sources/Applications/Serial\ Bridge/SPI\ Bridge/subdir.mk
--include Sources/Applications/SDcard\ Example/subdir.mk
--include Sources/Applications/FTP\ Server/subdir.mk
--include Sources/Applications/Email\ Client/subdir.mk
 -include Sources/Applications/DHCP\ Client/subdir.mk
 -include Sources/Applications/Configuration\ Interface/subdir.mk
 -include Sources/Applications/Common\ Utilities/subdir.mk
@@ -119,14 +112,14 @@ endif
 # Tool invocations
 Project.elf: $(OBJS) $(USER_OBJS) C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/prm/project_cw10.lcf
 	@echo 'Building target: $@'
-	@echo 'Executing target #104 $@'
+	@echo 'Executing target #97 $@'
 	@echo 'Invoking: ColdFire Linker'
 	"$(CF_ToolsDirEnv)/mwldmcf" @@"Project.args" -o "Project.elf"  $(USER_OBJS_QUOTED) $(LIBS_QUOTED)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Project.elf.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #105 $@'
+	@echo 'Executing target #98 $@'
 	@echo 'Invoking: Burner'
 	"$(HC08ToolsEnv)/burner.exe"  -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'

@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Applications/Configuration\ Interface/serial_configuration_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/Configuration\ Interface/serial_configuration.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #98 $<'
+	@echo 'Executing target #91 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/Applications/Configuration Interface/serial_configuration.args" -o "Sources/Applications/Configuration Interface/serial_configuration_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
