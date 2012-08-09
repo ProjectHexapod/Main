@@ -80,6 +80,8 @@ class Simulator(object):
             self.ground.setRotation(rot_matrix)
             self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
         if self.height_map:
+            # initialize pygame
+            pygame.init()
             self.mesh = []
             surf = pygame.image.load(os.path.join(terrain_dir, self.height_map))
             dims = surf.get_size()
