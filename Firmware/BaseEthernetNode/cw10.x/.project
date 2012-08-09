@@ -204,7 +204,7 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>Sources/Applications/Serial Bridge</name>
+			<name>Sources/Applications/Magnetic Encoder</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
@@ -319,9 +319,14 @@
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/DHCP%20Client/dhcp_app.h</locationURI>
 		</link>
 		<link>
-			<name>Sources/Applications/Serial Bridge/SPI Bridge</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
+			<name>Sources/Applications/Magnetic Encoder/mag_enc.c</name>
+			<type>1</type>
+			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/MagEncoderMonitor/mag_enc.c</locationURI>
+		</link>
+		<link>
+			<name>Sources/Applications/Magnetic Encoder/mag_enc.h</name>
+			<type>1</type>
+			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/MagEncoderMonitor/mag_enc.h</locationURI>
 		</link>
 		<link>
 			<name>Sources/Applications/Web Server/CGI</name>
@@ -557,16 +562,6 @@
 			<name>Sources/Services/FreeRTOS/include</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Serial Bridge/SPI Bridge/spi_bridge.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/SPI%20bridge/spi_bridge.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Serial Bridge/SPI Bridge/spi_bridge.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/SPI%20bridge/spi_bridge.h</locationURI>
 		</link>
 		<link>
 			<name>Sources/Applications/Web Server/CGI/http_cgi.c</name>

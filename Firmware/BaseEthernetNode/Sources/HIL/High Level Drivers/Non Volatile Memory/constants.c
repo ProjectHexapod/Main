@@ -53,7 +53,7 @@ const  params =
     /*FSL:SPI options*/
     SPI_PORT,                                 /*spi port*/
     BAUD_1000,                                /*spi baudrate*/
-    0,                                        /*idle high*/
+    1,                                        /*idle high*/
     0,                                        /*middle sample*/
     1,                                        /*spi master mode*/
     0,                                        /*polling*/

@@ -13,7 +13,8 @@
 
 /* ------------------------ Application includes -------------------------- */
 #include "http_server.h"
-#include "spi_bridge.h"
+//#include "spi_bridge.h"
+#include "mag_enc.h"
 #include "utilities.h"
 
 /*b06862: Dec/10/2009: startup changes*/
@@ -63,7 +64,8 @@ start_tasks()
 
     /* Always start the webserver */
     ( void )sys_thread_new("WEB", HTTP_Server_Task, NULL, WEBSERVER_STACK_SPACE, HTTP_TASK_PRIORITY );
-    ( void )sys_thread_new("SPI", BRIDGE_SPI_Task, NULL, SPI_BRIDGE_STACK_SPACE, SPI_BRIDGE_TASK_PRIORITY );
+    //( void )sys_thread_new("SPI", BRIDGE_SPI_Task, NULL, SPI_BRIDGE_STACK_SPACE, SPI_BRIDGE_TASK_PRIORITY );
+    ( void )sys_thread_new("MAG", MAG_ENC_Task, NULL, MAG_ENC_STACK_SPACE, MAG_ENC_TASK_PRIORITY );
 }
 
 /*-----------------------------------------------------------*/

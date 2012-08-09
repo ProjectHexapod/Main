@@ -12,15 +12,11 @@
 
 /*FSL: Stack space neede by each Task*/
 #define WEBSERVER_STACK_SPACE		  160//OK
-#define UART_BRIDGE_STACK_SPACE   144//OK
 #define SPI_BRIDGE_STACK_SPACE    144//??
+#define MAG_ENC_STACK_SPACE       144//??
 #define DHCP_STACK_SPACE          112//OK
 #define LED_STACK_SPACE            32//NO
-#define EMAILCLIENT_STACK_SPACE		 96//OK
 #define SRL_BRIDGE_BUFFER_LIMIT    96//???
-#define TERMINAL_STACK_SPACE      144//OK
-#define SDCARD_STACK_SPACE        224//???
-#define FTPSERVER_STACK_SPACE     144//OK
 
 /*MIME Media Types*/
 #define CONTENT_HTML      "text/html"                 /*HTM, HTML, SHTML*/
