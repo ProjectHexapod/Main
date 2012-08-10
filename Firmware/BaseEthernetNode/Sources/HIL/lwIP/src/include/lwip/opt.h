@@ -226,7 +226,9 @@
  * (requires the ARP_QUEUEING option)
  */
 #ifndef MEMP_NUM_ARP_QUEUE
-#define MEMP_NUM_ARP_QUEUE              30
+//#define MEMP_NUM_ARP_QUEUE              30
+//JWHONG TEST
+#define MEMP_NUM_ARP_QUEUE              10
 #endif
 
 /**
@@ -312,7 +314,7 @@
  * resolution.
  */
 #ifndef ARP_QUEUEING
-#define ARP_QUEUEING                    1
+#define ARP_QUEUEING                    0
 #endif
 
 /**
@@ -607,7 +609,7 @@
  * LWIP_UDPLITE==1: Turn on UDP-Lite. (Requires LWIP_UDP)
  */
 #ifndef LWIP_UDPLITE
-#define LWIP_UDPLITE                    0
+#define LWIP_UDPLITE                    1
 #endif
 
 /**

@@ -52,7 +52,7 @@
 
 #define UART_BAUD				      115200 /* 19200 */
 #define ADC_CHANNEL           3//ADP3
-#define SPI_PORT              1/*Second Port*/
+#define SPI_PORT              0
 
 /*
  * ColdFire Port specific

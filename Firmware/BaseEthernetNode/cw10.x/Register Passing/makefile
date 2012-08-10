@@ -45,7 +45,7 @@ RM := "$(Gnu_Make_Install_DirEnv)/rm" -f
 -include Sources/Applications/Web\ Server/SSI/subdir.mk
 -include Sources/Applications/Web\ Server/HTTP/HTTP\ Server/subdir.mk
 -include Sources/Applications/Web\ Server/CGI/subdir.mk
--include Sources/Applications/Serial\ Bridge/SPI\ Bridge/subdir.mk
+-include Sources/Applications/Magnetic\ Encoder/subdir.mk
 -include Sources/Applications/DHCP\ Client/subdir.mk
 -include Sources/Applications/Configuration\ Interface/subdir.mk
 -include Sources/Applications/Common\ Utilities/subdir.mk
