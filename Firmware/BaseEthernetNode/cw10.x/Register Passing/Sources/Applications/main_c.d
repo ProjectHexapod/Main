@@ -49,4 +49,5 @@ Sources/Applications/main_c.obj: C:\Users\jwhong\Documents\Project-Hexapod\Firmw
 	C:\Users\jwhong\Documents\Project-Hexapod\Firmware\BaseEthernetNode\Sources\HIL\lwIP\src\include\lwip\memp_std.h \
 	C:\Users\jwhong\Documents\Project-Hexapod\Firmware\BaseEthernetNode\Sources\APPLICATIONS\WEB\http_server.h \
 	C:\Users\jwhong\Documents\Project-Hexapod\Firmware\BaseEthernetNode\Sources\APPLICATIONS\MagEncoderMonitor\mag_enc.h \
+	C:\Users\jwhong\Documents\Project-Hexapod\Firmware\BaseEthernetNode\Sources\APPLICATIONS\ValveDriver\valve.h \
 	C:\Users\jwhong\Documents\Project-Hexapod\Firmware\BaseEthernetNode\Sources\APPLICATIONS\Utilities\utilities.h 

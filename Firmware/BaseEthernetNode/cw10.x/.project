@@ -209,6 +209,11 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
+			<name>Sources/Applications/Valve Driver</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
 			<name>Sources/Applications/Web Server</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
@@ -327,6 +332,16 @@
 			<name>Sources/Applications/Magnetic Encoder/mag_enc.h</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/MagEncoderMonitor/mag_enc.h</locationURI>
+		</link>
+		<link>
+			<name>Sources/Applications/Valve Driver/valve.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Sources/APPLICATIONS/ValveDriver/valve.c</locationURI>
+		</link>
+		<link>
+			<name>Sources/Applications/Valve Driver/valve.h</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Sources/APPLICATIONS/ValveDriver/valve.h</locationURI>
 		</link>
 		<link>
 			<name>Sources/Applications/Web Server/CGI</name>
