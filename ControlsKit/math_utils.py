@@ -1,6 +1,6 @@
 import unittest
 from math import acos, asin, atan, atan2
-from scipy import array, arange, linspace, pi, cos, sin
+from scipy import array, arange, linspace, pi, cos, sin, dot
 from scipy.linalg import norm
 
 
@@ -75,3 +75,30 @@ def solveTriangle(a, b, c):
     B = acos((c**2+a**2-b**2)/(2*c*a))
     C = acos((a**2+b**2-c**2)/(2*a*b))
     return A, B, C
+
+# Does a gravity vector project a point into a triangle
+# Follows logic from http://www.blackpawn.com/texts/pointinpoly/default.html
+def inTriangle(P, A, B, C, g = [0,0,-1]):
+    r = array(P)-array(A)
+    x1 = array(B)-array(A)
+    x2 = array(C)-array(A)
+    x3 = -array(g)
+    
+    dr1 = dot(r,x1)
+    dr2 = dot(r,x2)
+    dr3 = dot(r,x3)
+    d11 = dot(x1,x1)
+    d12 = dot(x1,x2)
+    d13 = dot(x1,x3)
+    d22 = dot(x2,x2)
+    d23 = dot(x2,x3)
+    d33 = dot(x3,x3)
+    
+    u = (dr1-d12/(d22-d23*d23/d33)*(dr2-dr3*d23/d33)-d13/d33*(dr3-d23/(d22-d23*
+            d23/d33)*(dr2-dr3*d23/d33)))/(d11+d12/(d22-d23*d23/d33)*(d13*d23/
+            d33-d12)-d13/d33*(d13+d23/(d22-d23*d23/d33)*(d13*d23/d33-d12)))
+    v = (dr2-dr3*d23/d33-u*(d12-d13*d23/d33))/(d22-d23*d23/d33)
+    w = (dr3-u*d13-v*d23)/d33
+    
+    return (u>0 and v>0 and u+v<1)
+    
