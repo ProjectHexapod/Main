@@ -61,5 +61,6 @@ class SafeMove:
                 self.path = TrapezoidalFootMove(self.model, self.controller, self.final_foot_pos, self.max_vel, self.acc)
                 self.done = False
         
+        print(self.initial_foot_pos, self.projected_initial, self.projected_final, self.final_foot_pos)
         
         return self.target_angles

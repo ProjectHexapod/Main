@@ -45,7 +45,7 @@ class TrapezoidalFootMove:
         return normalize(self.final_foot_pos - self.target_foot_pos)
 
     def update(self):
-        if not self.isDone():# and (self.start_on_ground or not self.model.isFootOnGround()):
+        if not self.isDone() and (self.start_on_ground or not self.model.isFootOnGround()):
             delta = time_sources.global_time.getDelta()
             # if the remaining distance <= the time it would take to slow
             # down times the average speed during such a deceleration (ie
@@ -60,7 +60,10 @@ class TrapezoidalFootMove:
                 self.vel += self.acc * delta
                 self.vel = min(self.vel, self.max_vel)
             self.target_foot_pos += self.dir * self.vel * delta
-            
-        if norm(self.final_foot_pos-self.target_foot_pos)<0.02:
+            if norm(self.final_foot_pos-self.target_foot_pos)<0.02:
+                self.done = True
+        else:
             self.done = True
+            
+
         return self.model.jointAnglesFromFootPos(self.target_foot_pos, 0)
