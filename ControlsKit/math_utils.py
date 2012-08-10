@@ -76,14 +76,16 @@ def solveTriangle(a, b, c):
     C = acos((a**2+b**2-c**2)/(2*a*b))
     return A, B, C
 
-# Does a gravity vector project a point into a triangle
+# Determine if a gravity vector projects a point into a triangle
 # Follows logic from http://www.blackpawn.com/texts/pointinpoly/default.html
 def inTriangle(P, A, B, C, g = [0,0,-1]):
+    # Recast 3-space in new basis vectors
     r = array(P)-array(A)
     x1 = array(B)-array(A)
     x2 = array(C)-array(A)
     x3 = -array(g)
     
+    # Calculate all the relevant dot-products
     dr1 = dot(r,x1)
     dr2 = dot(r,x2)
     dr3 = dot(r,x3)
@@ -94,11 +96,15 @@ def inTriangle(P, A, B, C, g = [0,0,-1]):
     d23 = dot(x2,x3)
     d33 = dot(x3,x3)
     
+    # Recast the point P as a sum of factors of the new basis vectors (r = u*x1+v*x2+w*x3)
     u = (dr1-d12/(d22-d23*d23/d33)*(dr2-dr3*d23/d33)-d13/d33*(dr3-d23/(d22-d23*
             d23/d33)*(dr2-dr3*d23/d33)))/(d11+d12/(d22-d23*d23/d33)*(d13*d23/
             d33-d12)-d13/d33*(d13+d23/(d22-d23*d23/d33)*(d13*d23/d33-d12)))
     v = (dr2-dr3*d23/d33-u*(d12-d13*d23/d33))/(d22-d23*d23/d33)
     w = (dr3-u*d13-v*d23)/d33
+    print(u)
+    print(v)
+    print(w)
     
-    return (u>0 and v>0 and u+v<1)
+    return (u-w*d13>0 and v-w*d23>0 and u+v-w*(d13+d23)<1)
     
