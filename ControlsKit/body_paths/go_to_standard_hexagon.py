@@ -45,8 +45,6 @@ class GoToStandardHexagon:
                     self.max_velocity, self.acceleration)
                 self.in_place[i] = True
         
-        if all(self.in_place):
-            self.state = self.STAND
         
         self.phase_done = False
         self.done = False        
@@ -74,6 +72,8 @@ class GoToStandardHexagon:
                             self.max_velocity/5)
                         self.in_place[i] = True
                 self.state = self.EVENS
+                if all(self.in_place):
+                    self.state = self.STAND 
                 self.phase_done = False
             elif self.state == self.EVENS:
                 for i in range(NUM_LEGS):
