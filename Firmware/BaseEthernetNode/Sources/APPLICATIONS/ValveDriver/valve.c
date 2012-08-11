@@ -14,7 +14,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-#include "sockets.h"
+#include "api.h"
 
 /* ------------------------ Project includes ------------------------------ */
 #include "valve.h"
@@ -70,11 +70,10 @@ VALVE_Task( void *pvParameters )
 	uint32 gateway_addr;
 	uint32 retval;
 	uint8  no_data_ticks_counter = 0;
-	int recv_sock;
-	uint8* recv_buff;
-	struct sockaddr_in* bind_addr;
-	struct sockaddr_in* recv_addr;
-	socklen_t recv_len;
+	struct netconn* recv_conn;
+	struct netbuf* recv_buf;
+	void*  payload;
+	uint16 payload_len;
 	
 	/*FSL: create mutex for shared resource*/
 	valve_mutex = xSemaphoreCreateMutex(); 
@@ -105,65 +104,31 @@ VALVE_Task( void *pvParameters )
     PTED_PTED3   = 1;
     PTED_PTED4   = 1;
     
-    if( (recv_buff = (void*)malloc(RECV_BUFFSIZE)) == NULL )
-    {
-    	// Memory allocaiton failure
-    	vTaskDelete(NULL);
-    }
-    
     /*wait until ip stack has a valid IP address*/
 	while( get_lwip_ready() == FALSE )
 	{
 	   /*Leave execution for 100 ticks*/
 	   vTaskDelay(100);
 	}
-    
-    while( !xSemaphoreTake(lwip_mutex, 1) )
-    			;
-    // Receive socket initialization
-    // Create a socket to receive UDP data on
-    if( (recv_sock = lwip_socket(0x00, SOCK_DGRAM, IPPROTO_UDP)) == -1 )
-    {
-    	// Failed to create socket
-    	vTaskDelete(NULL);
-    }
 
-	gateway_addr = board_get_eth_gateway();
+    /* Create a new UDP connection handle. */
+	recv_conn = netconn_new(NETCONN_UDP);
+	recv_buf  = netbuf_new();
 	
-	bind_addr = (struct sockaddr_in*)mem_malloc(sizeof(struct sockaddr_in));
-	bind_addr->sin_family = AF_INET;
-	bind_addr->sin_len    = sizeof(struct in_addr);
-	bind_addr->sin_port   = 1545;
-	bind_addr->sin_addr.s_addr = INADDR_ANY;
-	
-	// Bind the socket.  We are now ready to receive packets.
-	if( lwip_bind(recv_sock, (struct sockaddr*)bind_addr, sizeof(struct sockaddr_in)) )
-	{
-		// Bind error!
-		vTaskDelete(NULL);
-	}
-	xSemaphoreGive(lwip_mutex);
-	
-	// Allocate space for the receive address information
-	recv_addr = (struct sockaddr_in*)mem_malloc(sizeof(struct sockaddr_in));
-	recv_len = sizeof(struct sockaddr_in);
+	netconn_bind(recv_conn, IP_ADDR_ANY, 1545);
 	
 	/* Loop forever */
 	for( ;; )
 	{
 		while( !xSemaphoreTake(valve_mutex, 1) )
 			;
-		if( (retval = lwip_recvfrom(
-				recv_sock, 		//Socket to receive from
-				recv_buff, 		//Buffer to write data in to
-				RECV_BUFFSIZE, 	//size of buffer
-				O_NONBLOCK,		//flags
-				(struct sockaddr*)recv_addr, 		//Where to put sender information
-		        &recv_len)) == 2 ) 	//Length of receive from adress structure
+		recv_buf = netconn_recv( recv_conn );
+		if( recv_buf != NULL )
 		{
-			// We received the right amount of data!
-			setDriveDir ((int8)recv_buff[1]);
-			setDutyCycle(recv_buff[0]);
+			// We received data!
+			netbuf_data(recv_buf, &payload, &payload_len);
+			setDriveDir (((int8*) payload)[1]);
+			setDutyCycle(((uint8*)payload)[0]);
 			no_data_ticks_counter = 0;
 		}
 		else

@@ -14,7 +14,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-#include "sockets.h"
+#include "api.h"
 
 /* ------------------------ Project includes ------------------------------ */
 #include "mag_enc.h"
@@ -45,21 +45,14 @@ void
 MAG_ENC_Task( void *pvParameters )
 {
 	static uint8 i;
-	int send_sock;
-	struct sockaddr_in* target;
-	uint32 gateway_addr;
-
-	gateway_addr = board_get_eth_gateway();
-	
-	target = (struct sockaddr_in*)mem_malloc(sizeof(struct sockaddr_in));
-	target->sin_family = AF_INET;
-	target->sin_len    = sizeof(gateway_addr);
-	target->sin_port   = 1544;
-	target->sin_addr.s_addr = gateway_addr; 
+	struct netconn* send_conn;
+	struct netbuf* send_buf;
+	struct ip_addr target_addr;
+	int8*  spi_receive_array;
 	
     /*SPI array space*/
 	/* 3 bytes is all that is required for mag enc */
-    if( (spi_receive_array = ( static int8 * )mem_malloc( 3 )) == NULL )
+    if( (spi_receive_array = ( int8 * )mem_malloc( 3 )) == NULL )
     {
       vTaskDelete(NULL);
     }
@@ -73,14 +66,16 @@ MAG_ENC_Task( void *pvParameters )
 	   /*Leave execution for 100 ticks*/
 	   vTaskDelay(100);
 	}
-	while( !xSemaphoreTake(lwip_mutex, 1) )
-	    			;
-    // Create a socket to blast UDP data out on
-    if( (send_sock = lwip_socket(0x00, SOCK_DGRAM, IPPROTO_UDP)) == -1)
-    {
-    	vTaskDelete(NULL);
-    }
-    xSemaphoreGive(lwip_mutex);
+
+    /* Create a new UDP connection handle. */
+    send_conn = netconn_new(NETCONN_UDP);
+    send_buf  = netbuf_new();
+    
+    // Set target IP
+    target_addr.addr = board_get_eth_gateway();
+    send_buf->addr = &target_addr;
+    send_buf->port = 1544;
+	
     /**********************FSL: spi start-up*******************************/
     SPIhandle = xSPIinit(    (eSPIPort)board_get_spi_port(), 
                              (spiBaud)board_get_spi_baud(), 
@@ -113,12 +108,11 @@ MAG_ENC_Task( void *pvParameters )
 		PTCD_PTCD4 = 1;
 		if( lwip_interface_is_up() )
 		{
-			lwip_sendto(	send_sock, 	// Socket number
-							(const void*)(spi_receive_array), // Buffer to send from 
-							3, 			// Number of bytes to send
-							0x00000000, // Flags
-							(struct sockaddr*)target,		// Address to send to
-							sizeof(struct sockaddr_in));	// Length of the address structure
+			// TODO: There will be filtering and intelligence here,
+			// but for now just blindly copy what we get over SPI
+			// Point the netbuf at the data we want to send
+			netbuf_ref(send_buf, spi_receive_array, 3);
+			netconn_send( send_conn, send_buf );
 		}
 		xSemaphoreGive(SPImutex);
 		/* Leave execution for 1 tick */
