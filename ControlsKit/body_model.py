@@ -1,8 +1,8 @@
 from ConfigParser import ConfigParser
 from leg_model import LegModel
 from UI import logger
-from math_utils import NUM_LEGS, rotateZ
-from scipy import array, pi
+from math_utils import NUM_LEGS, rotateZ, formPermutations, inTriangle
+from scipy import array, pi, nonzero
 import os.path as path
 
 class BodyModel:
@@ -38,6 +38,9 @@ class BodyModel:
     
     def getFootPositions(self):
         return [self.legs[i].getFootPos() for i in range(NUM_LEGS)]
+    
+    def getFootPositionsInBodyFrame(self):
+        return [self.transformLeg2Body(i,self.legs[i].getFootPos()) for i in range(NUM_LEGS)]
 
     def legsAreColliding(self):
         """ Get bounding boxes for the lower section of each of the six legs, and check them for
@@ -67,6 +70,7 @@ class BodyModel:
         hip_offset = self.getHipOffset(leg_index)
         leg_aligned_coord = rotateZ(body_coord, -hip_offset[2])
         return leg_aligned_coord
+    
     def transformBody2Leg(self, leg_index, body_coord):
         """ Takes in CARTESIAN coordinates in body space and returns a CARTESIAN
             array of xyz in that leg's coordinate frame
@@ -94,4 +98,26 @@ class BodyModel:
         else:
             raise ValueError ("BodyModel.getHipOffset: Leg index out of bounds.")
         return hip_offset
-            
+    
+    def canLift(self, leg_index):
+        """ Takes in a set of leg indices, and reports if all of them can be lifted simultaneously
+        """
+        foot_pos = self.getFootPositionsInBodyFrame()
+        COM = [0,0,0] # Calculate this for real in another section of the body model?
+        g = [0,0,-1]#self.imu_orientation # DELETE THIS COMMENT once someone confirms this is in the form of a vector pointing parallel to gravity
+        on_ground = [self.getLegs()[i].isFootOnGround() for i in range(NUM_LEGS)]
+        for i in leg_index:
+            on_ground[i] = False
+        on_ground_indices = nonzero(on_ground)[0]
+        possible_triangles = formPermutations(on_ground_indices,3)
+        can_lift = False
+        for tri in possible_triangles:
+            if inTriangle(COM,foot_pos[tri[0]],foot_pos[tri[1]],foot_pos[tri[2]],g):
+                can_lift = True
+                break
+        return can_lift
+    
+    
+    
+    
+    

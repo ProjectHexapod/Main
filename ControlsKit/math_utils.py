@@ -105,3 +105,15 @@ def inTriangle(P, A, B, C, g = [0,0,-1]):
     
     return (u-w*d13>0 and v-w*d23>0 and u+v-w*(d13+d23)<1)
     
+def choose_iter(elements, length):
+    for i in xrange(len(elements)):
+        if length == 1:
+            yield (elements[i],)
+        else:
+            for next in choose_iter(elements[i+1:len(elements)], length-1):
+                yield (elements[i],) + next
+def formPermutations(l, k):
+    return list(choose_iter(l, k))
+
+
+
