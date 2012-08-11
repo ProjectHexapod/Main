@@ -111,6 +111,7 @@ Sources/Applications/Web\ Server/Static\ Web\ Pages \
 Sources/Applications/Web\ Server/SSI \
 Sources/Applications/Web\ Server/HTTP/HTTP\ Server \
 Sources/Applications/Web\ Server/CGI \
+Sources/Applications/Valve\ Driver \
 Sources/Applications/Magnetic\ Encoder \
 Sources/Applications/DHCP\ Client \
 Sources/Applications/Configuration\ Interface \

@@ -14,6 +14,7 @@
 #define WEBSERVER_STACK_SPACE		  160//OK
 #define SPI_BRIDGE_STACK_SPACE    144//??
 #define MAG_ENC_STACK_SPACE       144//??
+#define VALVE_STACK_SPACE         160//??
 #define DHCP_STACK_SPACE          112//OK
 #define LED_STACK_SPACE            32//NO
 #define SRL_BRIDGE_BUFFER_LIMIT    96//???

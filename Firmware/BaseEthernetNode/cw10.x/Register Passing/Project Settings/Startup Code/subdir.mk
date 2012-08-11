@@ -46,7 +46,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Project\ Settings/Startup\ Code/exceptions_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #93 $<'
+	@echo 'Executing target #94 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Project Settings/Startup Code/exceptions.args" -o "Project Settings/Startup Code/exceptions_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -59,7 +59,7 @@ Project\ Settings/Startup\ Code/exceptions_c.d: C:/Users/jwhong/Documents/Projec
 
 Project\ Settings/Startup\ Code/mcf5xxx_s.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s
 	@echo 'Building file: $<'
-	@echo 'Executing target #94 $<'
+	@echo 'Executing target #95 $<'
 	@echo 'Invoking: ColdFire Assembler'
 	"$(CF_ToolsDirEnv)/mwasmmcf" @@"Project Settings/Startup Code/mcf5xxx.args" -o "Project Settings/Startup Code/mcf5xxx_s.obj" "$<"
 	@echo 'Finished building: $<'
@@ -67,7 +67,7 @@ Project\ Settings/Startup\ Code/mcf5xxx_s.obj: C:/Users/jwhong/Documents/Project
 
 Project\ Settings/Startup\ Code/startcf_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #95 $<'
+	@echo 'Executing target #96 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Project Settings/Startup Code/startcf.args" -o "Project Settings/Startup Code/startcf_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
