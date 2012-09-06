@@ -511,7 +511,7 @@ MAC_init( struct netif *netif )
     //uint16		reg0;	
 #endif
         
-    mcf5xxxfec_if_t *fecif = mem_malloc( sizeof( mcf5xxxfec_if_t ) );
+    mcf5xxxfec_if_t *fecif = (mcf5xxxfec_if_t *)mem_malloc( sizeof( mcf5xxxfec_if_t ) );
 
     if( fecif != NULL )
     {

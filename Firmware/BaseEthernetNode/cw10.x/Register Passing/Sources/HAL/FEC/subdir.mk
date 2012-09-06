@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c \
 
 OBJS += \
 ./Sources/HAL/FEC/fec_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/FEC/fec_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c
+Sources/HAL/FEC/fec_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #82 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/FEC/fec_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/Ba
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/FEC/fec_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c
+Sources/HAL/FEC/fec_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/FEC/fec.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

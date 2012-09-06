@@ -20,6 +20,7 @@
 #include "mag_enc.h"
 #include "spi_rtos.h"
 #include "setget.h"
+#include "mem.h"
 
 /*****************************************************************************/
 

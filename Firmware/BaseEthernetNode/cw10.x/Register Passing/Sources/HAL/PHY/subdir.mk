@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c \
 
 OBJS += \
 ./Sources/HAL/PHY/mii_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/PHY/mii_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c
+Sources/HAL/PHY/mii_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #78 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/PHY/mii_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/Ba
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/PHY/mii_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c
+Sources/HAL/PHY/mii_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/PHY/mii.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

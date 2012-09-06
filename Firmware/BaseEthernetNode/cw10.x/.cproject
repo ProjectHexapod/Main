@@ -159,9 +159,9 @@
 									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\hcs08_compatibility&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\ewl&quot;"/>
 								</option>
-								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs.1364263378" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs" valueType="includePath"/>
-								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.378719239" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system" valueType="includePath"/>
-								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs.1173443783" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs" valueType="includePath"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs.1364263378" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.378719239" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs.1173443783" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs"/>
 								<inputType id="com.freescale.coldfire.toolchain.assembler.base.input.1253014853" name="ColdFire Assembler Input" superClass="com.freescale.coldfire.toolchain.assembler.base.input"/>
 							</tool>
 							<tool id="com.freescale.coldfire.toolchain.preprocessor.debug.988152396" name="ColdFire Preprocessor" superClass="com.freescale.coldfire.toolchain.preprocessor.debug">

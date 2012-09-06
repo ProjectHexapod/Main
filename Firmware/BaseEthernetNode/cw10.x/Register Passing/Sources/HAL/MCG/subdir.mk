@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c \
 
 OBJS += \
 ./Sources/HAL/MCG/clock_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/MCG/clock_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c
+Sources/HAL/MCG/clock_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #79 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/MCG/clock_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/MCG/clock_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c
+Sources/HAL/MCG/clock_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/MCG/clock.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

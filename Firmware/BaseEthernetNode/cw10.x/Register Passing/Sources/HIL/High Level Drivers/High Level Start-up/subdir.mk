@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High Level Drivers/High Level Startup/mcu_init.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/HIL/High Level Drivers/High Level Startup/mcu_init.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/High\ Level\ Startup/mcu_init.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/High\ Level\ Startup/mcu_init.c \
 
 OBJS += \
 ./Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/mcu_init_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/mcu_init_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/High\ Level\ Startup/mcu_init.c
+Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/mcu_init_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/High\ Level\ Startup/mcu_init.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #73 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/mcu_init_c.obj: C:/Users/
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/mcu_init_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/High\ Level\ Startup/mcu_init.c
+Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/mcu_init_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/High\ Level\ Startup/mcu_init.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

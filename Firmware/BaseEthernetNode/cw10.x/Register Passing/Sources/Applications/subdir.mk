@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c \
 
 OBJS += \
 ./Sources/Applications/main_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/Applications/main_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
+Sources/Applications/main_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #84 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/Applications/main_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmw
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Applications/main_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
+Sources/Applications/main_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

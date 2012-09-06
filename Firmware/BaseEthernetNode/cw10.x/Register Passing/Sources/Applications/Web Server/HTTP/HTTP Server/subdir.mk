@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c \
 
 OBJS += \
 ./Sources/Applications/Web\ Server/HTTP/HTTP\ Server/http_server_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/Applications/Web\ Server/HTTP/HTTP\ Server/http_server_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c
+Sources/Applications/Web\ Server/HTTP/HTTP\ Server/http_server_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #87 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/Applications/Web\ Server/HTTP/HTTP\ Server/http_server_c.obj: C:/Users/j
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Applications/Web\ Server/HTTP/HTTP\ Server/http_server_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c
+Sources/Applications/Web\ Server/HTTP/HTTP\ Server/http_server_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/WEB/http_server.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

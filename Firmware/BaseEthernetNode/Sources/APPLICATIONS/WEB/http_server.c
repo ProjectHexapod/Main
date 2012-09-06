@@ -72,6 +72,8 @@
 #include "http_cgi.h"
 #include "utilities.h"
 #include "mcu_init.h"
+// JWHONG HACK
+#include "mem.h"
 
 /* ------------------------ External Variables ----------------------------- */
 extern const CHAR *InternalMemoryFilenames[];

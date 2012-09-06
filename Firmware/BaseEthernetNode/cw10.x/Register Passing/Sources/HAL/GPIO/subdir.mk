@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c" \
+"E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c" \
 
 C_SRCS += \
-C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c \
+E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c \
 
 OBJS += \
 ./Sources/HAL/GPIO/gpio_c.obj \
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/GPIO/gpio_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c
+Sources/HAL/GPIO/gpio_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #80 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/GPIO/gpio_c.obj: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/GPIO/gpio_c.d: C:/Users/jwhong/Documents/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c
+Sources/HAL/GPIO/gpio_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
