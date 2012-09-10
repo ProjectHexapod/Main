@@ -6,20 +6,20 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/alloc.c" \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/assert.c" \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/io.c" \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/printf.c" \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/rand.c" \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/stdlib.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/alloc.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/assert.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/io.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/printf.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/rand.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common Utilities/stdlib.c" 
 
 C_SRCS += \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/alloc.c \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/assert.c \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/io.c \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/printf.c \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/rand.c \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/stdlib.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/alloc.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/assert.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/io.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/printf.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/rand.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/stdlib.c 
 
 OBJS += \
 ./Sources/Services/Common\ Utilities/alloc_c.obj \
@@ -27,7 +27,7 @@ OBJS += \
 ./Sources/Services/Common\ Utilities/io_c.obj \
 ./Sources/Services/Common\ Utilities/printf_c.obj \
 ./Sources/Services/Common\ Utilities/rand_c.obj \
-./Sources/Services/Common\ Utilities/stdlib_c.obj \
+./Sources/Services/Common\ Utilities/stdlib_c.obj 
 
 OBJS_QUOTED += \
 "./Sources/Services/Common Utilities/alloc_c.obj" \
@@ -35,7 +35,7 @@ OBJS_QUOTED += \
 "./Sources/Services/Common Utilities/io_c.obj" \
 "./Sources/Services/Common Utilities/printf_c.obj" \
 "./Sources/Services/Common Utilities/rand_c.obj" \
-"./Sources/Services/Common Utilities/stdlib_c.obj" \
+"./Sources/Services/Common Utilities/stdlib_c.obj" 
 
 C_DEPS += \
 ./Sources/Services/Common\ Utilities/alloc_c.d \
@@ -43,7 +43,7 @@ C_DEPS += \
 ./Sources/Services/Common\ Utilities/io_c.d \
 ./Sources/Services/Common\ Utilities/printf_c.d \
 ./Sources/Services/Common\ Utilities/rand_c.d \
-./Sources/Services/Common\ Utilities/stdlib_c.d \
+./Sources/Services/Common\ Utilities/stdlib_c.d 
 
 OBJS_OS_FORMAT += \
 ./Sources/Services/Common\ Utilities/alloc_c.obj \
@@ -51,7 +51,7 @@ OBJS_OS_FORMAT += \
 ./Sources/Services/Common\ Utilities/io_c.obj \
 ./Sources/Services/Common\ Utilities/printf_c.obj \
 ./Sources/Services/Common\ Utilities/rand_c.obj \
-./Sources/Services/Common\ Utilities/stdlib_c.obj \
+./Sources/Services/Common\ Utilities/stdlib_c.obj 
 
 C_DEPS_QUOTED += \
 "./Sources/Services/Common Utilities/alloc_c.d" \
@@ -59,11 +59,11 @@ C_DEPS_QUOTED += \
 "./Sources/Services/Common Utilities/io_c.d" \
 "./Sources/Services/Common Utilities/printf_c.d" \
 "./Sources/Services/Common Utilities/rand_c.d" \
-"./Sources/Services/Common Utilities/stdlib_c.d" \
+"./Sources/Services/Common Utilities/stdlib_c.d" 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/Services/Common\ Utilities/alloc_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/alloc.c
+Sources/Services/Common\ Utilities/alloc_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/alloc.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #8 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -71,12 +71,12 @@ Sources/Services/Common\ Utilities/alloc_c.obj: E:/Main/Firmware/BaseEthernetNod
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/Common\ Utilities/alloc_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/alloc.c
+Sources/Services/Common\ Utilities/alloc_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/alloc.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Services/Common\ Utilities/assert_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/assert.c
+Sources/Services/Common\ Utilities/assert_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/assert.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #9 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -84,12 +84,12 @@ Sources/Services/Common\ Utilities/assert_c.obj: E:/Main/Firmware/BaseEthernetNo
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/Common\ Utilities/assert_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/assert.c
+Sources/Services/Common\ Utilities/assert_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/assert.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Services/Common\ Utilities/io_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/io.c
+Sources/Services/Common\ Utilities/io_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/io.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #10 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -97,12 +97,12 @@ Sources/Services/Common\ Utilities/io_c.obj: E:/Main/Firmware/BaseEthernetNode/S
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/Common\ Utilities/io_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/io.c
+Sources/Services/Common\ Utilities/io_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/io.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Services/Common\ Utilities/printf_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/printf.c
+Sources/Services/Common\ Utilities/printf_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/printf.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #11 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -110,12 +110,12 @@ Sources/Services/Common\ Utilities/printf_c.obj: E:/Main/Firmware/BaseEthernetNo
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/Common\ Utilities/printf_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/printf.c
+Sources/Services/Common\ Utilities/printf_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/printf.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Services/Common\ Utilities/rand_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/rand.c
+Sources/Services/Common\ Utilities/rand_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/rand.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #12 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -123,12 +123,12 @@ Sources/Services/Common\ Utilities/rand_c.obj: E:/Main/Firmware/BaseEthernetNode
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/Common\ Utilities/rand_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/rand.c
+Sources/Services/Common\ Utilities/rand_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/rand.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Services/Common\ Utilities/stdlib_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/stdlib.c
+Sources/Services/Common\ Utilities/stdlib_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/stdlib.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #13 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -136,7 +136,7 @@ Sources/Services/Common\ Utilities/stdlib_c.obj: E:/Main/Firmware/BaseEthernetNo
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/Common\ Utilities/stdlib_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/stdlib.c
+Sources/Services/Common\ Utilities/stdlib_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/Common\ Utilities/stdlib.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

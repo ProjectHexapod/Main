@@ -85,6 +85,8 @@ typedef struct
 /* ------------------------ Static variables ------------------------------ */
 /*static volatile*/ mcf5xxxfec_if_t *fecif_g;
 
+extern uint8 interface[128];
+
 /* ------------------------ Static functions ------------------------------ */
 static err_t    MAC_Send( struct netif *, struct pbuf *, struct ip_addr * );
 static err_t    MAC_output_raw( struct netif *, struct pbuf * );
@@ -342,9 +344,18 @@ MAC_Send( struct netif * netif, struct pbuf * p, struct ip_addr * ipaddr )
 void 
 MAC_ISR(void)
 {
-	portBASE_TYPE xHighPriorityTaskWoken;
+	//portBASE_TYPE xHighPriorityTaskWoken;
+	mcf5xxxfec_if_t *fecif;
+	struct pbuf    *p, *q;
+	nbuf_t         *pNBuf;
+	nbuf_t		   *pNBufTX;
+	uint8          *pPayLoad;
+	uint32			i;
+	uint8			c, interface_i, block_len;
 	
-	xHighPriorityTaskWoken = pdFALSE;
+	//xSemaphoreGiveFromISR( fecif_g->rx_sem, &xHighPriorityTaskWoken );
+	
+	//xHighPriorityTaskWoken = pdFALSE;
     /* Set Debug PIN to high to measure RX latency. */
     FEC_DEBUG_RX_TIMING( 1 );
 
@@ -354,10 +365,91 @@ MAC_ISR(void)
         /* ACK interrupt flag */
         FEC_ackRX();
         
-        xSemaphoreGiveFromISR( fecif_g->rx_sem, &xHighPriorityTaskWoken );
-    }
+        // JWHONG HACK: Short circuit and echo packets back out.
+        
+        fecif = fecif_g;
+	
+		while( NBUF_ReadyRX(  ) )
+		{
+			pNBuf = NBUF_AllocRX( );
+
+			if( pNBuf != NULL )
+			{
+				/*FSL: removed to avoid get stuck if a BABR happens*/
+				//LWIP_ASSERT( "MAC_Rx_Task: pNBuf->status & RX_BD_L ",
+				//             pNBuf->status & RX_BD_L );
+
+				/* This flags indicate that the frame has been damaged. In
+				 * this case we must update the link stats if enabled and
+				 * remove the frame from the FEC. */
+				//if ( pNBuf->status & RX_ERROR_ALL_FLAGS )
+				// FIXME: turn off CRC checking for now... it is throwing error even when I manually check the received packet
+				// as byte-for-byte correct
+				if ( !(pNBuf->status & (RX_ERROR_ALL_FLAGS & ~RX_ERROR_CHKSM_FLAG)) )
+				{
+					// The frame must now be valid.
+					// Now interpret the data.
+					// First check for magic number in the ethertype field
+					// We arbitrarily designate 0x69
+					pPayLoad = pNBuf->data;
+
+					/* Ethernet frame received. Handling it is not device
+					 * dependent and therefore done in another function.
+					 */
+					// JWHONG HACK:  Swap MACs so the reply goes back to the sender.
+					//for(i = 0; i < 6; i++)
+					//{
+					//	pPayLoad[i  ] ^= pPayLoad[i+6];
+					//	pPayLoad[i+6] ^= pPayLoad[i  ];
+					//	pPayLoad[i  ] ^= pPayLoad[i+6];
+					//}
+					// Interpret the payload
+					// Check for magic word
+					//if(pPayLoad[12] != 0x69)
+					//{
+					//	goto MAC_ISR_FREE;
+					//}
+					/* wait until we have a free Tx buffer */
+					while( (pNBufTX = NBUF_AllocTX() ) == NULL );
+					// Start after the MAC and magic word
+					// But before the CRC
+					// TEMP HACK: Just load in a chunk of the interface block
+					portDISABLE_INTERRUPTS();
+					//memcpy(pPayLoad+12, interface, 24);
+					
+					memcpy( pNBufTX->data+ 0, pPayLoad+6,  6 );
+					memcpy( pNBufTX->data+ 6, pPayLoad+0,  6 );
+					memcpy( pNBufTX->data+12,  interface, 52 );
+					portENABLE_INTERRUPTS();
+					pNBufTX->length = 64;
+
+					/* Set Frame ready for transmission. */
+					NBUF_ReadyTx( pNBufTX );
+					/* Mark the buffer as not in use so the FEC can take it. */
+					NBUF_ReleaseTX( pNBufTX );
+					/* Indicate that a new transmit buffer has been produced. */
+					FEC_ReadyTx();				
+
+					//p->len -= 4;
+					//MAC_output_raw( fecif->netif, p );
+					//p->len += 4;
+					
+					//pbuf_free(p);
+				}
+				/*release the buffer under any circumstance*/
+				
+				/*now we can release buffer*/
+				NBUF_ReleaseRX( pNBuf );
+
+				/* Tell the HW that there are new free RX buffers. */
+				FEC_ReadyRX();
+			}
+		}
+		/* Set RX Debug PIN to low since handling of next frame is possible. */
+		FEC_DEBUG_RX_TIMING( 0 );
+	}
     
-    portEND_SWITCHING_ISR( xHighPriorityTaskWoken );	
+    //portEND_SWITCHING_ISR( xHighPriorityTaskWoken );	
 }
 
 /**
@@ -530,7 +622,7 @@ MAC_init( struct netif *netif )
         {
             res = ERR_MEM;
         }
-        else if( sys_thread_new("FEC", MAC_Rx_Task, (void *)fecif, FEC_RX_STACK_SPACE, FEC_TASK_PRIORITY) == NULL )
+        else if( 0 )//JWHONG HACKOUT sys_thread_new("FEC", MAC_Rx_Task, (void *)fecif, FEC_RX_STACK_SPACE, FEC_TASK_PRIORITY) == NULL )
         {
             res = ERR_MEM;
         }

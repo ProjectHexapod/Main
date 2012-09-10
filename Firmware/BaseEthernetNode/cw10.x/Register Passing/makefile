@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 97
+#Progress monitor hint: 91
 first : all
 -include ../makefile.init
 
@@ -41,13 +41,6 @@ RM := "$(Gnu_Make_Install_DirEnv)/rm" -f
 -include Sources/HAL/FEC/subdir.mk
 -include Sources/HAL/ADC/subdir.mk
 -include Sources/Applications/subdir.mk
--include Sources/Applications/Web\ Server/Static\ Web\ Pages/subdir.mk
--include Sources/Applications/Web\ Server/SSI/subdir.mk
--include Sources/Applications/Web\ Server/HTTP/HTTP\ Server/subdir.mk
--include Sources/Applications/Web\ Server/CGI/subdir.mk
--include Sources/Applications/Valve\ Driver/subdir.mk
--include Sources/Applications/Magnetic\ Encoder/subdir.mk
--include Sources/Applications/DHCP\ Client/subdir.mk
 -include Sources/Applications/Configuration\ Interface/subdir.mk
 -include Sources/Applications/Common\ Utilities/subdir.mk
 -include Project\ Settings/Startup\ Code/subdir.mk
@@ -111,16 +104,16 @@ all: Project.elf
 endif
 
 # Tool invocations
-Project.elf: $(OBJS) $(USER_OBJS) E:/Main/Firmware/BaseEthernetNode/prm/project_cw10.lcf
+Project.elf: $(OBJS) $(USER_OBJS) /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/prm/project_cw10.lcf
 	@echo 'Building target: $@'
-	@echo 'Executing target #98 $@'
+	@echo 'Executing target #92 $@'
 	@echo 'Invoking: ColdFire Linker'
 	"$(CF_ToolsDirEnv)/mwldmcf" @@"Project.args" -o "Project.elf"  $(USER_OBJS_QUOTED) $(LIBS_QUOTED)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Project.elf.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #99 $@'
+	@echo 'Executing target #93 $@'
 	@echo 'Invoking: Burner'
 	"$(HC08ToolsEnv)/burner.exe"  -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'

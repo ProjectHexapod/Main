@@ -6,38 +6,38 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 S_UPPER_SRCS_QUOTED += \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S" 
 
 S_UPPER_SRCS += \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S 
 
 C_SRCS_QUOTED += \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c" 
 
 C_SRCS += \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c 
 
 OBJS += \
 ./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj \
-./Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj \
+./Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj 
 
 OBJS_QUOTED += \
 "./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj" \
-"./Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj" \
+"./Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj" 
 
 C_DEPS += \
-./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d \
+./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d 
 
 OBJS_OS_FORMAT += \
 ./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj \
-./Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj \
+./Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj 
 
 C_DEPS_QUOTED += \
-"./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d" \
+"./Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d" 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c
+Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #6 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -45,12 +45,12 @@ Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.obj: E:/Main/Firmware/Bas
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c
+Sources/Services/FreeRTOS/Source/Arch-Dependent/port_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/port.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S
+Sources/Services/FreeRTOS/Source/Arch-Dependent/portasm_S.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/CodeWarrior/ColdFire_V1/portasm.S
 	@echo 'Building file: $<'
 	@echo 'Executing target #7 $<'
 	@echo 'Invoking: ColdFire Assembler'

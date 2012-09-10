@@ -6,29 +6,29 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c" 
 
 C_SRCS += \
-E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c 
 
 OBJS += \
-./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj \
+./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj 
 
 OBJS_QUOTED += \
-"./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj" \
+"./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj" 
 
 C_DEPS += \
-./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.d \
+./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.d 
 
 OBJS_OS_FORMAT += \
-./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj \
+./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj 
 
 C_DEPS_QUOTED += \
-"./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.d" \
+"./Sources/Services/FreeRTOS/Source/Memory/heap_3_c.d" 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c
+Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #5 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/Services/FreeRTOS/Source/Memory/heap_3_c.obj: E:/Main/Firmware/BaseEther
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Services/FreeRTOS/Source/Memory/heap_3_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c
+Sources/Services/FreeRTOS/Source/Memory/heap_3_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/Services/FreeRTOS/Sources/portable/MemMang/heap_3.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

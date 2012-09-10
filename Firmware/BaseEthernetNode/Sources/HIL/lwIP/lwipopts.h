@@ -147,7 +147,7 @@ a lot of data that needs to be copied, this should be set high. */
 #define TCPIP_MBOX_SIZE                 32
 
 /* ------------------------ TCP options ----------------------------------- */
-#define LWIP_TCP                1
+#define LWIP_TCP                0
 #define TCP_TTL                 255
 
 /* Controls if TCP should queue segments that arrive out of
@@ -211,13 +211,13 @@ a lot of data that needs to be copied, this should be set high. */
 /* Define LWIP_DHCP to 1 if you want DHCP configuration of
    interfaces. DHCP is not implemented in lwIP 0.5.1, however, so
    turning this on does currently not work. */
-#define LWIP_DHCP               1
+#define LWIP_DHCP               0
 #define LWIP_AUTOIP             1
 #define LWIP_NETIF_API          1
 #define LWIP_DHCP_AUTOIP_COOP   0 /*b06862*/
 
 /* ------------------------ DNS options ----------------------------------- */
-#define LWIP_DNS                1
+#define LWIP_DNS                0
 #define DNS_USES_STATIC_BUF     2/*dynamically allocated*/
 #define DNS_TABLE_SIZE          2/*b06862: was 4*/
 
@@ -226,7 +226,7 @@ a lot of data that needs to be copied, this should be set high. */
 #define DHCP_DOES_ARP_CHECK     0/*b06862:1:we trust in the DHCP server :-)*/
 
 /* ------------------------ UDP options ----------------------------------- */
-#define LWIP_UDP                1/*needed because of DHCP*/
+#define LWIP_UDP                0/*needed because of DHCP*/
 #define UDP_TTL                 255
 
 /* ------------------------ Statistics options ---------------------------- */

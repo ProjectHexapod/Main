@@ -35,7 +35,7 @@ typedef void(*FEC_CallbackType)(void);
 /* Number of Receive and Transmit Buffers and Buffer Descriptors */
 #define NUM_RXBDS               ( 2 )
 /*FSL: workaround to send duplicate messages*/
-#define NUM_TXBDS               ( 2 )   /*FSL:tentative value*/
+#define NUM_TXBDS               ( 2 )
 
 /* ------------------------ Defines ( Buffer Descriptor Flags )------------ */
 

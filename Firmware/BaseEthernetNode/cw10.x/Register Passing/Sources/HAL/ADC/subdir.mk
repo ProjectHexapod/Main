@@ -6,29 +6,29 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c" \
+"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c" 
 
 C_SRCS += \
-E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c \
+/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c 
 
 OBJS += \
-./Sources/HAL/ADC/adc_c.obj \
+./Sources/HAL/ADC/adc_c.obj 
 
 OBJS_QUOTED += \
-"./Sources/HAL/ADC/adc_c.obj" \
+"./Sources/HAL/ADC/adc_c.obj" 
 
 C_DEPS += \
-./Sources/HAL/ADC/adc_c.d \
+./Sources/HAL/ADC/adc_c.d 
 
 OBJS_OS_FORMAT += \
-./Sources/HAL/ADC/adc_c.obj \
+./Sources/HAL/ADC/adc_c.obj 
 
 C_DEPS_QUOTED += \
-"./Sources/HAL/ADC/adc_c.d" \
+"./Sources/HAL/ADC/adc_c.d" 
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/ADC/adc_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c
+Sources/HAL/ADC/adc_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #83 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/ADC/adc_c.obj: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/ADC/adc_c.d: E:/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c
+Sources/HAL/ADC/adc_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/ADC/adc.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
