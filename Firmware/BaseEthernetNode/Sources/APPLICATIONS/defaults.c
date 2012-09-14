@@ -1,0 +1,13 @@
+#include "interface.h"
+
+const interface_struct _interface_rom = 
+{
+	{0x00,0xCF,0x52,0x35,0x00,0x07}, // My MAC
+	{0x00,0x00,0x00,0x00,0x00,0x00}, // Destination MAC
+	{0x00,0x00,0x00},	// MR encoder data
+	0,					// valve power
+	0,					// valve dir
+	0,					//P
+	0,					//I
+	0					//D
+};

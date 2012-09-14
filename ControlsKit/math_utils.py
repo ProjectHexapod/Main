@@ -83,7 +83,7 @@ def inTriangle(P, A, B, C, g = [0,0,-1]):
     r = array(P)-array(A)
     x1 = array(B)-array(A)
     x2 = array(C)-array(A)
-    x3 = -array(g)
+    x3 = -normalize(array(g))
     
     # Calculate all the relevant dot-products
     dr1 = dot(r,x1)
@@ -102,9 +102,18 @@ def inTriangle(P, A, B, C, g = [0,0,-1]):
             d33-d12)-d13/d33*(d13+d23/(d22-d23*d23/d33)*(d13*d23/d33-d12)))
     v = (dr2-dr3*d23/d33-u*(d12-d13*d23/d33))/(d22-d23*d23/d33)
     w = (dr3-u*d13-v*d23)/d33
-    print(u)
-    print(v)
-    print(w)
     
     return (u-w*d13>0 and v-w*d23>0 and u+v-w*(d13+d23)<1)
     
+def choose_iter(elements, length):
+    for i in xrange(len(elements)):
+        if length == 1:
+            yield (elements[i],)
+        else:
+            for next in choose_iter(elements[i+1:len(elements)], length-1):
+                yield (elements[i],) + next
+def formPermutations(l, k):
+    return list(choose_iter(l, k))
+
+
+

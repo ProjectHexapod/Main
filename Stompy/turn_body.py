@@ -19,13 +19,13 @@ RAISE_ODD_TRIPOD = 7
 state = ORIENT
 
 delta_angle = .4 # Choose a number less than 0.9 radians
-lift_height = .2 # Choose a number greater than .15 meters
+lift_height = .3 # Choose a number greater than .15 meters
 tip_speed = 2.0 # Max speed of end effector
 tip_accel = 5.0 # Max acceleration of end effector
 
 class RotateComposite:
     def __init__(self, delta_angle):
-        self.delta_angle = delta_angle
+        delta_angle = delta_angle
         self.evens = RotateFeetAboutOrigin(model, controller, [0,2,4], delta_angle, tip_speed, tip_accel)
         self.odds = RotateFeetAboutOrigin(model, controller, [1,3,5], -delta_angle, tip_speed, tip_accel)    
     def isDone(self):

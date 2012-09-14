@@ -7,7 +7,7 @@
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.freescale.coldfire.toolchain.configuration.1019454570" moduleId="org.eclipse.cdt.core.settings" name="Register Passing">
 				<macros>
 					<stringMacro name="CW_Project" type="VALUE_PATH_DIR" value="${ProjDirPath}/.."/>
-					<stringMacro name="CW_Compiler" type="VALUE_PATH_DIR" value="C:\Freescale\CW MCU v10.2\MCU"/>
+					<stringMacro name="CW_Compiler" type="VALUE_PATH_DIR" value="/usr/local/Freescale/CodeWarrior_MCU_10.2/MCU"/>
 				</macros>
 				<externalSettings/>
 				<extensions>
@@ -37,9 +37,9 @@
 							<builder buildPath="${ProjDirPath}/Register Passing" id="com.freescale.coldfire.toolchain.builder.86969462" keepEnvironmentInBuildfile="false" name="GNU Make Builder" parallelBuildWorkspaceOn="true" parallelizationNumber="-1" superClass="com.freescale.coldfire.toolchain.builder"/>
 							<tool id="coldfire.toolchain.burner.560790629" name="Burner" superClass="coldfire.toolchain.burner"/>
 							<tool id="com.freescale.coldfire.toolchain.linker.debug.110150320" name="ColdFire Linker" superClass="com.freescale.coldfire.toolchain.linker.debug">
-								<option id="com.freescale.coldfire.toolchain.linker.base.input.lcf_file.1963102813" name="Link Command File (.lcf)" superClass="com.freescale.coldfire.toolchain.linker.base.input.lcf_file" value="${CW_Project}\prm\project_cw10.lcf" valueType="string"/>
+								<option id="com.freescale.coldfire.toolchain.linker.base.input.lcf_file.1963102813" name="Link Command File (.lcf)" superClass="com.freescale.coldfire.toolchain.linker.base.input.lcf_file" value="${CW_Project}/prm/project_cw10.lcf" valueType="string"/>
 								<option id="com.freescale.coldfire.toolchain.linker.base.input.lpath.1612165268" name="Library Search Paths (-L+path)" superClass="com.freescale.coldfire.toolchain.linker.base.input.lpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\ewl\lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/ewl/lib&quot;"/>
 								</option>
 								<option id="com.freescale.coldfire.toolchain.linker.base.input.force.active.1890418642" name="Force Active Symbols:" superClass="com.freescale.coldfire.toolchain.linker.base.input.force.active" valueType="stringList">
 									<listOptionValue builtIn="false" value="_params"/>
@@ -55,51 +55,51 @@
 							</tool>
 							<tool id="com.freescale.coldfire.toolchain.compiler.debug.2034419198" name="ColdFire Compiler" superClass="com.freescale.coldfire.toolchain.compiler.debug">
 								<option id="com.freescale.coldfire.toolchain.compiler.base.debugging.nosyspath.580222317" name="Always Search User Paths (-nosyspath)" superClass="com.freescale.coldfire.toolchain.compiler.base.debugging.nosyspath" value="false" valueType="boolean"/>
-								<option id="com.freescale.coldfire.toolchain.compiler.base.preprocessor.include.prefixfile.1680273367" name="Prefix File (-prefix)" superClass="com.freescale.coldfire.toolchain.compiler.base.preprocessor.include.prefixfile" value="${ProjDirPath}\..\Register Passing.prefix" valueType="string"/>
+								<option id="com.freescale.coldfire.toolchain.compiler.base.preprocessor.include.prefixfile.1680273367" name="Prefix File (-prefix)" superClass="com.freescale.coldfire.toolchain.compiler.base.preprocessor.include.prefixfile" value="${ProjDirPath}/../Register Passing.prefix" valueType="string"/>
 								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.1949933711" name="User Path (-i)" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${CW_Project}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\bin&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\prm&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/bin&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/prm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/Derivatives/device/src&quot;"/>
 								</option>
 								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.recurs.1211347586" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include.recurs" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\api&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\core&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\ipv4\lwip&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\lwip&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\netif&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\netif&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\arch&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\source&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\UART&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\MAC&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\High Level Startup&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\Non Volatile Memory&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FEC&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FLASH&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\MCG&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\SCI&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\PHY&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\Common Utilities&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\APPLICATIONS&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FreeRTOS&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SPI&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FAT&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\SDCARD&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SIGNALS&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\ADC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/core&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/include/ipv4/lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/include/lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/include/netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP+FreeRTOS/arch&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP+FreeRTOS/source&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/UART&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/MAC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/High Level Startup&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/Non Volatile Memory&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/FEC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/FLASH&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/MCG&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/SCI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/PHY&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/Common Utilities&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/APPLICATIONS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/FreeRTOS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/SPI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/FAT&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/SDCARD&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/SIGNALS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/ADC&quot;"/>
 								</option>
 								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.system.464455136" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include.system" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\asm_include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\hcs08_compatibility&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/Derivatives/device/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/Derivatives/device/asm_include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/hcs08_compatibility&quot;"/>
 								</option>
 								<option id="com.freescale.coldfire.toolchain.compiler.base.input.include.system.recurs.56388666" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.compiler.base.input.include.system.recurs" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\ewl&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/ewl&quot;"/>
 								</option>
 								<option id="com.freescale.coldfire.toolchain.compiler.base.warnings.implicitconv.2016279345" name="Implicit Arithmetic Conversions" superClass="com.freescale.coldfire.toolchain.compiler.base.warnings.implicitconv" value="false" valueType="boolean"/>
 								<option id="com.freescale.coldfire.toolchain.compiler.base.warnings.unusedarg.78678067" name="Unused Arguments" superClass="com.freescale.coldfire.toolchain.compiler.base.warnings.unusedarg" value="false" valueType="boolean"/>
@@ -122,46 +122,46 @@
 								<option id="com.freescale.coldfire.toolchain.assembler.base.debugging.nosyspath.1043364117" name="Always Search User Paths (-nosyspath)" superClass="com.freescale.coldfire.toolchain.assembler.base.debugging.nosyspath" value="false" valueType="boolean"/>
 								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.1897113432" name="User Path (-i)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${CW_Project}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\bin&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\prm&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}\ColdFire_Support\Derivatives\device\src&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\api&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\core&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\ipv4\lwip&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\lwip&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\include\netif&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP\src\netif&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\arch&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\lwIP+FreeRTOS\source&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\UART&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\MAC&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\High Level Startup&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\Non Volatile Memory&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FEC&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\FLASH&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\MCG&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\SCI&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128\drivers\PHY&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\Common Utilities&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\APPLICATIONS&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL\mcf51cn128&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HAL&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FreeRTOS&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SPI&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\FAT&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\Services\SDCARD&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\SIGNALS&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${CW_Project}\Sources\HIL\High Level Drivers\ADC&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\Derivatives\device\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\Derivatives\device\asm_include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\hcs08_compatibility&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;C:\Freescale\CW MCU v10.2\MCU\ColdFire_Support\ewl&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/bin&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/prm&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Compiler}/ColdFire_Support/Derivatives/device/src&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/api&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/core&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/include/ipv4/lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/include/lwip&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/include/netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP/src/netif&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP+FreeRTOS/arch&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/lwIP+FreeRTOS/source&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/UART&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/MAC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/High Level Startup&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/Non Volatile Memory&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/FEC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/FLASH&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/MCG&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/SCI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128/drivers/PHY&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/Common Utilities&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/APPLICATIONS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL/mcf51cn128&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HAL&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/FreeRTOS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/SPI&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/FAT&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/Services/SDCARD&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/SIGNALS&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${CW_Project}/Sources/HIL/High Level Drivers/ADC&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;/usr/local/Freescale/CodeWarrior_MCU_10.2/MCU/ColdFire_Support/Derivatives/device/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;/usr/local/Freescale/CodeWarrior_MCU_10.2/MCU/ColdFire_Support/Derivatives/device/asm_include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;/usr/local/Freescale/CodeWarrior_MCU_10.2/MCU/ColdFire_Support/hcs08_compatibility&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;/usr/local/Freescale/CodeWarrior_MCU_10.2/MCU/ColdFire_Support/ewl&quot;"/>
 								</option>
-								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs.1364263378" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs" valueType="includePath"/>
-								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.378719239" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system" valueType="includePath"/>
-								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs.1173443783" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs" valueType="includePath"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs.1364263378" name="User Recursive Path (-ir )" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.recurs"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.378719239" name="System Path (-I- -I)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system"/>
+								<option id="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs.1173443783" name="System Recursive Path (-I- -ir)" superClass="com.freescale.coldfire.toolchain.assembler.base.input.include.system.recurs"/>
 								<inputType id="com.freescale.coldfire.toolchain.assembler.base.input.1253014853" name="ColdFire Assembler Input" superClass="com.freescale.coldfire.toolchain.assembler.base.input"/>
 							</tool>
 							<tool id="com.freescale.coldfire.toolchain.preprocessor.debug.988152396" name="ColdFire Preprocessor" superClass="com.freescale.coldfire.toolchain.preprocessor.debug">

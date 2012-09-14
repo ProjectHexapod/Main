@@ -300,12 +300,12 @@ lwip_getaddrinfo(const char *nodename, const char *servname,
     addr.addr = INADDR_LOOPBACK;
   }
 
-  ai = mem_malloc(sizeof(struct addrinfo));
+  ai = (struct addrinfo*)mem_malloc(sizeof(struct addrinfo));
   if (ai == NULL) {
     goto memerr;
   }
   memset(ai, 0, sizeof(struct addrinfo));
-  sa = mem_malloc(sizeof(struct sockaddr_in));
+  sa = (struct sockaddr_in*)mem_malloc(sizeof(struct sockaddr_in));
   if (sa == NULL) {
     goto memerr;
   }
@@ -326,7 +326,7 @@ lwip_getaddrinfo(const char *nodename, const char *servname,
   if (nodename != NULL) {
     /* copy nodename to canonname if specified */
     /*size_t*/unsigned namelen = strlen(nodename);
-    ai->ai_canonname = mem_malloc(namelen + 1);
+    ai->ai_canonname = (char*)mem_malloc(namelen + 1);
     if (ai->ai_canonname == NULL) {
       goto memerr;
     }

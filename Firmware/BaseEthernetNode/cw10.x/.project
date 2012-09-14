@@ -23,7 +23,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>
-					<value>${system:ECLIPSE_HOME}/../gnu/bin/mingw32-make</value>
+					<value>${system:ECLIPSE_HOME}/../gnu/bin/make</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
@@ -199,29 +199,14 @@
 			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
-			<name>Sources/Applications/DHCP Client</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Magnetic Encoder</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Valve Driver</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
 			<name>Sources/Applications/main.c</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/main.c</locationURI>
+		</link>
+		<link>
+			<name>Sources/Applications/static_web_pages.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Sources/APPLICATIONS/WEB/static_web_pages.c</locationURI>
 		</link>
 		<link>
 			<name>Sources/HAL/ADC</name>
@@ -312,56 +297,6 @@
 			<name>Sources/Applications/Configuration Interface/serial_configuration.h</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/Configuration%20Interface/serial_configuration.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/DHCP Client/dhcp_app.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/DHCP%20Client/dhcp_app.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/DHCP Client/dhcp_app.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/DHCP%20Client/dhcp_app.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Magnetic Encoder/mag_enc.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/MagEncoderMonitor/mag_enc.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Magnetic Encoder/mag_enc.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/MagEncoderMonitor/mag_enc.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Valve Driver/valve.c</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Sources/APPLICATIONS/ValveDriver/valve.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Valve Driver/valve.h</name>
-			<type>1</type>
-			<locationURI>PARENT-1-PROJECT_LOC/Sources/APPLICATIONS/ValveDriver/valve.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/CGI</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/HTTP</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/SSI</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/Static Web Pages</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
 		</link>
 		<link>
 			<name>Sources/HAL/ADC/adc.c</name>
@@ -577,36 +512,6 @@
 			<name>Sources/Services/FreeRTOS/include</name>
 			<type>2</type>
 			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/CGI/http_cgi.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/http_cgi.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/CGI/http_cgi.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/http_cgi.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/HTTP/HTTP Server</name>
-			<type>2</type>
-			<locationURI>virtual:/virtual</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/SSI/http_ssi.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/http_ssi.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/SSI/http_ssi.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/http_ssi.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/Static Web Pages/static_web_pages.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/static_web_pages.c</locationURI>
 		</link>
 		<link>
 			<name>Sources/HIL/FreeRTOS+lwIP/include/cc.h</name>
@@ -937,16 +842,6 @@
 			<name>Sources/Services/FreeRTOS/include/task.h</name>
 			<type>1</type>
 			<locationURI>CW_IMPORTER_ProjectDir/Sources/Services/FreeRTOS/Sources/include/task.h</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/HTTP/HTTP Server/http_server.c</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/http_server.c</locationURI>
-		</link>
-		<link>
-			<name>Sources/Applications/Web Server/HTTP/HTTP Server/http_server.h</name>
-			<type>1</type>
-			<locationURI>CW_IMPORTER_ProjectDir/Sources/APPLICATIONS/WEB/http_server.h</locationURI>
 		</link>
 		<link>
 			<name>Sources/HIL/lwIP/core/ipv4/autoip.c</name>
@@ -1387,7 +1282,7 @@
 	<variableList>
 		<variable>
 			<name>CW_IMPORTER_Compiler</name>
-			<value>file:/C:/Freescale/CW%20MCU%20v10.2/MCU</value>
+			<value>file:/usr/local/Freescale/CodeWarrior_MCU_10.2/MCU</value>
 		</variable>
 		<variable>
 			<name>CW_IMPORTER_ProjectDir</name>

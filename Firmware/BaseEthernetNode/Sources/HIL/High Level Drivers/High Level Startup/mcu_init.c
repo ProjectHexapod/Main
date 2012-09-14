@@ -19,7 +19,6 @@
 #include "setget.h"
 #include "utilities.h"
 
-#include "dhcp_app.h"
 #include "clock.h"
 
 /*FSL: default interface descriptor: ETH0*/
@@ -90,21 +89,11 @@ vlwIPInit( void )
     tcpip_init( NULL, NULL );
 
     /**********************FSL: FEC start-up**********************************/
-
-    /*check if static or dynamic ip address is required*/
-    if( !(uint8)board_get_eth_dhcp_auto() )
-    {      
-      /* Create and configure the FEC interface. */
-      xIpAddr.addr = board_get_eth_ip_add();
-      xNetMast.addr = board_get_eth_netmask();   
-      xGateway.addr = board_get_eth_gateway();
-    }
-    else
-    {
-      xIpAddr.addr = 0;
-      xNetMast.addr = 0;
-      xGateway.addr = 0;
-    }
+     
+	  /* Create and configure the FEC interface. */
+	  xIpAddr.addr = board_get_eth_ip_add();
+	  xNetMast.addr = board_get_eth_netmask();   
+	  xGateway.addr = board_get_eth_gateway();
 
     /*add configured interface and gring up MAC controller*/
     netif_add( &fec5xxx_if, &xIpAddr, &xNetMast, &xGateway, NULL, MAC_init, tcpip_input );
@@ -112,19 +101,11 @@ vlwIPInit( void )
     /* make it the default interface */
     netif_set_default( &fec5xxx_if );
     
-    /*get ip addresses*/
-    if( (uint8)board_get_eth_dhcp_auto() != 0)
-    {       
-       /*FSL: start DHCP client to request a valid IP address */
-       ( void )sys_thread_new("DHCP", vDHCPClient, (void *)&fec5xxx_if, DHCP_STACK_SPACE, DHCP_TASK_PRIORITY );       
-    }
-    else
-    {
-       /* bring it up */
-       netif_set_up( &fec5xxx_if );
-       /*FSL:stack init is ready*/
-       set_lwip_ready(TRUE);
-    }
+
+   /* bring it up */
+   netif_set_up( &fec5xxx_if );
+   /*FSL:stack init is ready*/
+   set_lwip_ready(TRUE);
     
     return;
 }

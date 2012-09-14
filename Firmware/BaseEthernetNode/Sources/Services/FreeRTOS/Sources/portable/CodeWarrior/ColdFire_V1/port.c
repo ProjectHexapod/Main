@@ -227,7 +227,8 @@ unsigned portLONG ulSavedInterruptMask;
 	portCLEAR_INTERRUPT_MASK_FROM_ISR( ulSavedInterruptMask );
 }
 /*-----------------------------------------------------------*/
-
+ // JWHONG HACKERY
+#if 0
 void interrupt VectorNumber_Vrtc vPortTickISR( void )
 {
 unsigned portLONG ulSavedInterruptMask;
@@ -252,4 +253,4 @@ unsigned portLONG ulSavedInterruptMask;
 	}
 	#endif
 }
-
+#endif

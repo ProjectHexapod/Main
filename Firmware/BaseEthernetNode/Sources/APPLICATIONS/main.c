@@ -1,33 +1,104 @@
 /* ------------------------ System includes ------------------------------- */
 #include "stdlib.h"
 #include "mcu_init.h"
+#include "cc.h"
 
 /* ------------------------ FreeRTOS includes ----------------------------- */
-#include "FreeRTOS.h"
-#include "task.h"
+//#include "FreeRTOS.h"
+//#include "task.h"
+#include "spi_rtos.h"
 
 /* ------------------------ LWIP includes --------------------------------- */
-#include "lwip/api.h"
-#include "lwip/tcpip.h"
-#include "lwip/memp.h"
+//#include "lwip/api.h"
+//#include "lwip/tcpip.h"
+//#include "lwip/memp.h"
 
 /* ------------------------ Application includes -------------------------- */
-#include "http_server.h"
-#include "mag_enc.h"
-#include "valve.h"
+//#include "http_server.h"
+//#include "mag_enc.h"
+//#include "valve.h"
 #include "utilities.h"
 
 /*b06862: Dec/10/2009: startup changes*/
 
 /*********************************Prototypes**********************************/
+// global buffer that provides interface to outside world
+uint8 interface[128];
+#define MAC_I     0
+#define MAC_L     6
+#define MAC_W_I   MAC_I+MAC_L
+#define MAC_W_L   1
+#define MAG_ENC_I MAC_W_I + MAC_W_L
+#define MAG_ENC_L 3
+#define VALVE_I   MAG_ENC_INDEX + MAG_ENC_SIZE
+#define VALVE_L   1
 
-static void 
-start_tasks();
-
-// global mutex to prevent thread conflicts for lwip
-xSemaphoreHandle lwip_mutex;
+// Global handle for Mag Encoder SPI
+xSPIPortHandle SPIhandle;
 
 /*********************************Functions***********************************/
+
+void setDutyCycle(uint16 new_val)
+{
+	TPM1C2V = new_val;
+}
+
+void setDriveDir( int8 dir )
+{
+	if(dir>0)
+	{
+		PTED_PTED4 = 0; // Coil 0 inhibit OFF
+		PTED_PTED3 = 1; // Coil 1 inhibit ON
+		return;
+	}
+	if(dir<0)
+	{
+		PTED_PTED4 = 1; // Coil 0 inhibit ON
+		PTED_PTED3 = 0; // Coil 1 inhibit OFF
+		return;
+	}
+	// Inhibit both sides
+	PTED_PTED4 = 1; // Coil 0 inhibit ON
+	PTED_PTED3 = 1; // Coil 1 inhibit ON
+}
+
+void interrupt VectorNumber_Vrtc TickISR( void )
+{
+	//unsigned portLONG ulSavedInterruptMask;
+	uint8 i;
+	/*SPI array space*/
+	/* 3 bytes is all that is required for mag enc */
+	static uint8  spi_receive_array[3];
+
+	/* Clear the interrupt. */
+	RTCSC |= RTCSC_RTIF_MASK;
+
+	//__RESET_WATCHDOG(); /* feeds the dog */
+
+	// SERVICE MAGNETIC ENCODER ON SPI PORT
+	// Assert CS
+	PTCD_PTCD4 = 0;
+	// Read Data
+	for( i=0; i < 3; i++ )
+	{
+		xSPIMasterSetGetChar(	SPIhandle,
+								SPI_DONTCARE,  // Data to write
+								(signed char*)(spi_receive_array + i), //Address to write to 
+								portMAX_DELAY); //Timeout 
+	}
+	// Deassert CS
+	PTCD_PTCD4 = 1;
+	
+	// SERVICE THE VALVE DRIVER
+	setDriveDir (0);
+	setDutyCycle(0);
+	
+	// COPY NEW DATA IN TO INTERFACE BUFFER
+	portDISABLE_INTERRUPTS();
+	memcpy(interface+MAG_ENC_I, spi_receive_array, 3);
+	portENABLE_INTERRUPTS();
+	//portCLEAR_INTERRUPT_MASK_FROM_ISR( ulSavedInterruptMask );
+}
 
 /**
  * Main Routine: calls all inits
@@ -44,7 +115,9 @@ main(void)
     /*TCP/IP stack init*/
     vlwIPInit(  );
 
-#if 0
+	portDISABLE_INTERRUPTS();
+    
+#if 1
     // PWM Init 
 	/* TPM1SC: TOF=0,TOIE=0,CPWMS=0,CLKSB=0,CLKSA=0,PS2=0,PS1=0,PS0=0 */
 	TPM1SC = 0x00;              /* Disable device */ 
@@ -66,57 +139,53 @@ main(void)
 	TPM1SC = 0x08;              /* Run the counter (set CLKSB:CLKSA) */ 
 	/* PTEPF1: E5=3 */
 	PTEPF1 |= 0x0C;
+	// Set up the inhibit pins as GPIO outputs
+	PTEDD_PTEDD3 = 1;
+	PTEDD_PTEDD4 = 1;
+	// Start with both coils inhibited
+	PTED_PTED3   = 1;
+	PTED_PTED4   = 1;
+#endif
+#if 1
+	// SPI Init
+	
+	/**********************FSL: spi start-up*******************************/
+	SPIhandle = xSPIinit(    (eSPIPort)serSPI1, 
+							 (spiBaud)spi1000, 
+							 (spiPolarity)serIDLEshigh, 
+							 (spiPhase)serMiddleSample, 
+							 (spiMode)serMaster,
+							 (spiInterrupt)serPolling,  
+							 16/*SPI buffer limit*/); 
+
+	/**********************FSL: low level start-up****************************/
+
+	// Set GPIO direction
+	PTCD_PTCD4 = 0;
+	PTCDD_PTCDD4 = 1;
 #endif
 	
-	lwip_mutex = xSemaphoreCreateMutex();
+	// Setup the core ticker
+	/* 1KHz clock. */
+	RTCSC |= 8;
 	
-    /*FSL:start the applications*/
-    start_tasks();
-            
-    /* Now all the tasks have been started - start the scheduler. */
-    vTaskStartScheduler();
+#define TICK_RATE_HZ          ( ( portTickType ) 2000 )
+#define RTC_CLOCK_HZ		  ( ( u32_t ) 1000 )
+	
+	RTCMOD = RTC_CLOCK_HZ / TICK_RATE_HZ;
+	
+	/* Enable the RTC to generate interrupts - interrupts are already disabled
+	when this code executes. */
+	RTCSC_RTIE = 1;
+	
+	portENABLE_INTERRUPTS();
+    
+    while(1)
+    {
+    	
+    }
     
     /* please make sure that you never leave main */
     for(;;)
     ;
 }
-
-/**
- * Starts tasks to be schedulled by FreeRTOS
- *
- * @param none 
- * @return none
- */
-static void 
-start_tasks()
-{
-
-    /* Always start the webserver */
-    ( void )sys_thread_new("WEB", HTTP_Server_Task, NULL, WEBSERVER_STACK_SPACE, HTTP_TASK_PRIORITY );
-    ( void )sys_thread_new("MAG", MAG_ENC_Task, 	NULL, MAG_ENC_STACK_SPACE, MAG_ENC_TASK_PRIORITY );
-    ( void )sys_thread_new("VLV", VALVE_Task, 		NULL, VALVE_STACK_SPACE, VALVE_TASK_PRIORITY );
-}
-
-/*-----------------------------------------------------------*/
-#if 0
-/**
- * Callback if a task's stack is overflow
- *
- * @param task
- * @param task's name
- * @return none
- */
-void vApplicationStackOverflowHook( xTaskHandle *pxTask, signed portCHAR *pcTaskName )
-{
-	/* This will get called if a stack overflow is detected during the context
-	switch.  Set configCHECK_FOR_STACK_OVERFLOWS to 2 to also check for stack
-	problems within nested interrupts, but only do this for debug purposes as
-	it will increase the context switch time. */
-
-	( void ) pxTask;
-	( void ) pcTaskName;
-
-	for( ;; )
-	;/*infinite loop*/
-}
-#endif

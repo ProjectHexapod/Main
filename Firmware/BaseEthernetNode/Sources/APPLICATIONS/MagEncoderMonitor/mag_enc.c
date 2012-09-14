@@ -20,6 +20,7 @@
 #include "mag_enc.h"
 #include "spi_rtos.h"
 #include "setget.h"
+#include "mem.h"
 
 /*****************************************************************************/
 
@@ -30,7 +31,7 @@ extern xSemaphoreHandle lwip_mutex;
 static signed portCHAR *spi_receive_array;
 
 /*Handle for SPI capabilities*/
-xSPIPortHandle SPIhandle;
+extern xSPIPortHandle SPIhandle;
 
 /*Mutex to MAC buffers*/
 xSemaphoreHandle SPImutex;
