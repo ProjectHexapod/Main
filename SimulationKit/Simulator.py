@@ -69,6 +69,38 @@ class Simulator(object):
         self.geoms    = []
         self.graphics = []
 
+
+        # This is the publisher where we make data available
+        self.publisher = Publisher(5055)
+        self.publisher.start()
+
+        # These are the bodies and geoms that are in the universe
+        self.robot  = robot(self, publisher=self.publisher, **robot_kwargs)
+
+        # Start populating the publisher
+        self.publisher.addToCatalog( 'time', self.getSimTime )
+        self.publisher.addToCatalog( 'body.height', lambda: self.robot.getPosition()[2] )
+        self.publisher.addToCatalog( 'body.distance', lambda: len3(self.robot.getPosition()) )
+        self.publisher.addToCatalog( 'body.velocity', lambda: len3(self.robot.getVelocity()) )
+
+        # Do graphics initialization
+        if self.graphical:
+            # initialize pygame
+            pygame.init()
+            # create the program window
+            Screen = (800,600)
+            self.window = glLibWindow(Screen,caption="Robot Simulator")
+            View3D = glLibView3D((0,0,Screen[0],Screen[1]),45)
+            View3D.set_view() 
+            self.camera = glLibCamera( pos=(0, 10, 10), center=(0,0,0), upvec=(0,0,1) )
+            glLibColorMaterial(True) 
+            glLibTexturing(True)
+            glLibLighting(True)
+            glLibNormalize(True)
+            Sun = glLibLight([400,200,250],self.camera)
+            Sun.enable()
+            self.cam_pos = (0,10,10)
+        # Create a plane for the robot to walk on
         if self.plane:
             g = self.createBoxGeom((1e2,1e2,1))
             g.color = (0,128,0,255)
@@ -78,7 +110,9 @@ class Simulator(object):
             self.ground = g
             rot_matrix = calcRotMatrix(ground_axis, atan(ground_grade))
             self.ground.setRotation(rot_matrix)
-            self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
+            if self.graphical:
+                self.ground.texture = glLibTexture(TEXTURE_DIR+"dot.bmp")
+        # Create a textured terrain from a heightmap image
         if self.height_map:
             # initialize pygame
             pygame.init()
@@ -115,39 +149,8 @@ class Simulator(object):
             tm = ode.TriMeshData()
             tm.build(verts, faces)
             self.ground_geom = ode.GeomTriMesh( tm, self.space )
-
-        # This is the publisher where we make data available
-        self.publisher = Publisher(5055)
-        self.publisher.start()
-
-        # These are the bodies and geoms that are in the universe
-        self.robot  = robot(self, publisher=self.publisher, **robot_kwargs)
-
-        # Start populating the publisher
-        self.publisher.addToCatalog( 'time', self.getSimTime )
-        self.publisher.addToCatalog( 'body.height', lambda: self.robot.getPosition()[2] )
-        self.publisher.addToCatalog( 'body.distance', lambda: len3(self.robot.getPosition()) )
-        self.publisher.addToCatalog( 'body.velocity', lambda: len3(self.robot.getVelocity()) )
-
-
-        if self.graphical:
-            # initialize pygame
-            pygame.init()
-            # create the program window
-            Screen = (800,600)
-            self.window = glLibWindow(Screen,caption="Robot Simulator")
-            View3D = glLibView3D((0,0,Screen[0],Screen[1]),45)
-            View3D.set_view() 
-            self.camera = glLibCamera( pos=(0, 10, 10), center=(0,0,0), upvec=(0,0,1) )
-            glLibColorMaterial(True) 
-            glLibTexturing(True)
-            glLibLighting(True)
-            glLibNormalize(True)
-            Sun = glLibLight([400,200,250],self.camera)
-            Sun.enable()
-            self.cam_pos = (0,10,10)
-            if self.height_map:
-                self.ground_obj = glLibObjMap(self.height_map,normals=GLLIB_VERTEX_NORMALS,heightscalar=1.0)
+        if self.graphical and self.height_map:
+            self.ground_obj = glLibObjMap(self.height_map,normals=GLLIB_VERTEX_NORMALS,heightscalar=1.0)
     def getSimTime(self):
         return self.sim_t
     def getPaused( self ):
