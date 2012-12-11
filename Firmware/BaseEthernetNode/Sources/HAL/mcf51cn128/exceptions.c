@@ -10,7 +10,7 @@
 
 #define REGISTER_ABI __REGABI__
 
-extern asm void interrupt VectorNumber_VL1swi vPortYieldISR( void );
+//extern asm void interrupt VectorNumber_VL1swi vPortYieldISR( void );
 
 /***********************************************************************/
 /*
@@ -439,7 +439,8 @@ __declspec(weak) vectorTableEntryType vector_105 @VL5swi = asm_exception_handler
 __declspec(weak) vectorTableEntryType vector_106 @VL4swi = asm_exception_handler;
 __declspec(weak) vectorTableEntryType vector_107 @VL3swi = asm_exception_handler;
 __declspec(weak) vectorTableEntryType vector_108 @VL2swi = asm_exception_handler;
-__declspec(weak) vectorTableEntryType vector_109 @VL1swi = vPortYieldISR;
+__declspec(weak) vectorTableEntryType vector_109 @VL1swi = asm_exception_handler;
+//__declspec(weak) vectorTableEntryType vector_109 @VL1swi = vPortYieldISR;
 __declspec(weak) vectorTableEntryType vector_110 @Viic1 = asm_exception_handler;
 __declspec(weak) vectorTableEntryType vector_111 @Viic2 = asm_exception_handler;
 __declspec(weak) vectorTableEntryType vector_112 @Vadc = asm_exception_handler;

@@ -30,7 +30,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/HAL/GPIO/gpio_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/GPIO/gpio.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #80 $<'
+	@echo 'Executing target #7 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Sources/HAL/GPIO/gpio.args" -o "Sources/HAL/GPIO/gpio_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

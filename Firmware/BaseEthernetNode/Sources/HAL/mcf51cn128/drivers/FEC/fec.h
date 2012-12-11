@@ -33,9 +33,9 @@ typedef void(*FEC_CallbackType)(void);
 #define TX_BUFFER_SIZE          ( 1520 )
 
 /* Number of Receive and Transmit Buffers and Buffer Descriptors */
-#define NUM_RXBDS               ( 2 )
+#define NUM_RXBDS               ( 1 )
 /*FSL: workaround to send duplicate messages*/
-#define NUM_TXBDS               ( 2 )
+#define NUM_TXBDS               ( 1 )
 
 /* ------------------------ Defines ( Buffer Descriptor Flags )------------ */
 

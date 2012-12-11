@@ -80,24 +80,8 @@ C_DEPS_QUOTED :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-Sources/Services/FreeRTOS/Source \
-Sources/Services/FreeRTOS/Source/Memory \
-Sources/Services/FreeRTOS/Source/Arch-Dependent \
-Sources/Services/Common\ Utilities \
-Sources/HIL/lwIP/netif \
-Sources/HIL/lwIP/netif/ppp \
-Sources/HIL/lwIP/core \
-Sources/HIL/lwIP/core/snmp \
-Sources/HIL/lwIP/core/ipv4 \
-Sources/HIL/lwIP/api \
-Sources/HIL/High\ Level\ Drivers/UART \
-Sources/HIL/High\ Level\ Drivers/SPI \
-Sources/HIL/High\ Level\ Drivers/SIGNALS \
-Sources/HIL/High\ Level\ Drivers/Non-volatile\ Memory \
 Sources/HIL/High\ Level\ Drivers/MAC \
 Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up \
-Sources/HIL/High\ Level\ Drivers/ADC \
-Sources/HIL/FreeRTOS+lwIP/source \
 Sources/HAL/SPI \
 Sources/HAL/SCI \
 Sources/HAL/PHY \
@@ -107,8 +91,6 @@ Sources/HAL/FLASH \
 Sources/HAL/FEC \
 Sources/HAL/ADC \
 Sources/Applications \
-Sources/Applications/Configuration\ Interface \
-Sources/Applications/Common\ Utilities \
 Project\ Settings/Startup\ Code \
 Libs \
 

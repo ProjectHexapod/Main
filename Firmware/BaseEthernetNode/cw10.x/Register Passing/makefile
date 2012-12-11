@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 91
+#Progress monitor hint: 16
 first : all
 -include ../makefile.init
 
@@ -14,24 +14,8 @@ RM := "$(Gnu_Make_Install_DirEnv)/rm" -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include Sources/Services/FreeRTOS/Source/subdir.mk
--include Sources/Services/FreeRTOS/Source/Memory/subdir.mk
--include Sources/Services/FreeRTOS/Source/Arch-Dependent/subdir.mk
--include Sources/Services/Common\ Utilities/subdir.mk
--include Sources/HIL/lwIP/netif/subdir.mk
--include Sources/HIL/lwIP/netif/ppp/subdir.mk
--include Sources/HIL/lwIP/core/subdir.mk
--include Sources/HIL/lwIP/core/snmp/subdir.mk
--include Sources/HIL/lwIP/core/ipv4/subdir.mk
--include Sources/HIL/lwIP/api/subdir.mk
--include Sources/HIL/High\ Level\ Drivers/UART/subdir.mk
--include Sources/HIL/High\ Level\ Drivers/SPI/subdir.mk
--include Sources/HIL/High\ Level\ Drivers/SIGNALS/subdir.mk
--include Sources/HIL/High\ Level\ Drivers/Non-volatile\ Memory/subdir.mk
 -include Sources/HIL/High\ Level\ Drivers/MAC/subdir.mk
 -include Sources/HIL/High\ Level\ Drivers/High\ Level\ Start-up/subdir.mk
--include Sources/HIL/High\ Level\ Drivers/ADC/subdir.mk
--include Sources/HIL/FreeRTOS+lwIP/source/subdir.mk
 -include Sources/HAL/SPI/subdir.mk
 -include Sources/HAL/SCI/subdir.mk
 -include Sources/HAL/PHY/subdir.mk
@@ -41,8 +25,6 @@ RM := "$(Gnu_Make_Install_DirEnv)/rm" -f
 -include Sources/HAL/FEC/subdir.mk
 -include Sources/HAL/ADC/subdir.mk
 -include Sources/Applications/subdir.mk
--include Sources/Applications/Configuration\ Interface/subdir.mk
--include Sources/Applications/Common\ Utilities/subdir.mk
 -include Project\ Settings/Startup\ Code/subdir.mk
 -include Libs/subdir.mk
 -include objects.mk
@@ -106,14 +88,14 @@ endif
 # Tool invocations
 Project.elf: $(OBJS) $(USER_OBJS) /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/prm/project_cw10.lcf
 	@echo 'Building target: $@'
-	@echo 'Executing target #92 $@'
+	@echo 'Executing target #17 $@'
 	@echo 'Invoking: ColdFire Linker'
 	"$(CF_ToolsDirEnv)/mwldmcf" @@"Project.args" -o "Project.elf"  $(USER_OBJS_QUOTED) $(LIBS_QUOTED)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Project.elf.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #93 $@'
+	@echo 'Executing target #18 $@'
 	@echo 'Invoking: Burner'
 	"$(HC08ToolsEnv)/burner.exe"  -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'
@@ -121,7 +103,7 @@ Project.elf.s19: $(BBL_SRCS) $(EXECUTABLES)
 
 # Other Targets
 clean:
-	-$(RM) "./*/*.obj" "./*/*/*.obj" "./*/*/*/*.obj" "./*/*/*/*/*.obj" "./*/*/*/*/*/*.obj"  $(CPP_DEPS_QUOTED) $(CC_DEPS_QUOTED) $(_OUTPUTTYPE_NAME_BURNER_OUTPUT_OUTPUTS_QUOTED) $(CXX_DEPS_QUOTED) $(C_UPPER_DEPS_QUOTED) $(C++_DEPS_QUOTED) $(EXECUTABLES_QUOTED) "./*/*.d" "./*/*/*.d" "./*/*/*/*.d" "./*/*/*/*/*.d" "./*/*/*/*/*/*.d"  Project.elf
+	-$(RM) "./*/*.obj" "./*/*/*.obj" "./*/*/*/*.obj" "./*/*/*/*/*.obj"  $(CPP_DEPS_QUOTED) $(CC_DEPS_QUOTED) $(_OUTPUTTYPE_NAME_BURNER_OUTPUT_OUTPUTS_QUOTED) $(CXX_DEPS_QUOTED) $(C_UPPER_DEPS_QUOTED) $(C++_DEPS_QUOTED) $(EXECUTABLES_QUOTED) "./*/*.d" "./*/*/*.d" "./*/*/*/*.d" "./*/*/*/*/*.d"  Project.elf
 	-@echo ' '
 
 .PHONY: all clean dependents

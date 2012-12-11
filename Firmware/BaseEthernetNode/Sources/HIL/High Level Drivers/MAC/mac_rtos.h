@@ -32,52 +32,40 @@
 #ifndef _MAC_RTOS_H_
 #define _MAC_RTOS_H_
 
-/* ------------------------ lwIP includes --------------------------------- */
-#include "lwip/opt.h"
-#include "lwip/def.h"
-#include "lwip/mem.h"
-#include "lwip/err.h"
-#include "lwip/pbuf.h"
-#include "lwip/sys.h"
-#include "lwip/stats.h"
-#include "lwip/debug.h"
-#include "netif/etharp.h"
+#include "interface.h"
 
 /* ------------------------ Defines --------------------------------------- */
 
+#define   Cpu_DisableInt() asm {move.w SR,D0; ori.l #0x0700,D0; move.w D0,SR;} /* Disable interrupts */
+#define   Cpu_EnableInt()  asm {move.w SR,D0; andi.l #0xF8FF,D0; move.w D0,SR;} /* Enable interrupts */
+
+
+#define ERR_OK          0    /* No error, everything OK. */
+#define ERR_MEM        -1    /* Out of memory error.     */
+#define ERR_BUF        -2    /* Buffer error.            */
+#define ERR_RTE        -3    /* Routing problem.         */
+
+#define ERR_IS_FATAL(e) ((e) < ERR_RTE)
+
+#define ERR_ABRT       -4    /* Connection aborted.      */
+#define ERR_RST        -5    /* Connection reset.        */
+#define ERR_CLSD       -6    /* Connection closed.       */
+#define ERR_CONN       -7    /* Not connected.           */
+
+#define ERR_VAL        -8    /* Illegal value.           */
+
+#define ERR_ARG        -9    /* Illegal argument.        */
+
+#define ERR_USE        -10   /* Address in use.          */
+
+#define ERR_IF         -11   /* Low-level netif error    */
+#define ERR_ISCONN     -12   /* Already connected.       */
+
+#define ERR_TIMEOUT    -13   /* Timeout.                 */
+
+#define ERR_INPROGRESS -14   /* Operation in progress    */
+
 /* ------------------------ Prototypes ------------------------------------ */
-/**
- * Output information thru Ethernet
- *
- * @param MAC interface descriptor
- * @param network buffer to send
- * @return error code
- */
-err_t
-MAC_output_raw( struct netif *netif, struct pbuf *p );
-
-/**
- * Ethernet rx task being called periodically by FreeRTOS
- *
- * @param MAC interface descriptor
- * @return none
- */
-void
-MAC_Rx_Task(void *arg );
-
-/**
- * This function is called by the TCP/IP stack when an IP packet should be
- * sent. It uses the ethernet ARP module provided by lwIP to resolve the
- * destination MAC address. The ARP module will later call our low level
- * output function MAC_output_raw.
- *
- * @param MAC interface descriptor
- * @param network buffers
- * @param ip address to send ARP message
- * @return none
- */ 
-err_t
-MAC_Send( struct netif * netif, struct pbuf * p, struct ip_addr * ipaddr );
 
 /**
  * FEC ISR
@@ -88,34 +76,6 @@ MAC_Send( struct netif * netif, struct pbuf * p, struct ip_addr * ipaddr );
 void 
 MAC_ISR(void);
 
-/**
- * Handles all ARP timeouts
- *
- * @param none
- * @return none
- */
-static void
-arp_timer( void *arg );
-/**
- * Handles all ethernet input from lwIP stacks
- *
- * @param MAC controller descriptor
- * @param buffer to send to upper layers
- * @return none
- */
-void
-eth_input( struct netif *netif, struct pbuf *p );
-
-
-/**
- * returns MAC address
- *
- * @param MAC address holder
- * @return none
- */
-void
-MAC_GetMacAddress(struct eth_addr *mac );
-
 
 /**
  * Starts MAC controller
@@ -123,7 +83,7 @@ MAC_GetMacAddress(struct eth_addr *mac );
  * @param MAC interface descriptor      
  * @return error code
  */
-err_t
-MAC_init( struct netif *netif );
+unsigned char
+MAC_init( struct eth_addr *mac );
 
 #endif

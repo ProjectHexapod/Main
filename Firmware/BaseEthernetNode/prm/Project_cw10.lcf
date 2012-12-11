@@ -36,18 +36,11 @@ SECTIONS
   .userram        : {} > userram
   .code           : {} > code
   .userrom        : {} > userrom
-
-  #FSL:custom area to store non-volatile information during start-up
+  
   .custom_rom :
   {
-    constants.c (.rodata)
+    defaults.c (.rodata)
   } >> userrom
-
-  .webpages :
-  {
-    static_web_pages.c (.rodata)
-    . = ALIGN (0x4);
-  } >> code
 
   .text :
   {    
@@ -133,7 +126,7 @@ SECTIONS
   
   #FSL:copy during runtime
   ___CUSTOM_ROM		 = ADDR(.userrom);
-  ___CUSTOM_ROM_SIZE= LENGTH(.userrom);
+  ___CUSTOM_ROM_SIZE = LENGTH(.userrom);
 
   _romp_at = ___ROM_AT + SIZEOF(.data);
   .romp : AT(_romp_at)

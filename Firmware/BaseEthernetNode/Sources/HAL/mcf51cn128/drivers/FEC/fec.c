@@ -21,16 +21,14 @@ static uint8    rx_bd_idx;
 /* Data Buffers -- must be aligned on a 16-byte boundary. */
 /*__relocate_data__*/ static uint8  unaligned_rx_buf[(RX_BUFFER_SIZE * NUM_RXBDS) + 16];
 /*FSL: workaround to only use 1 tx buffer with two buffer rings*/
-// JWHONG HACK:  For some reason NUM_TXBDs was not in the line below... it was hardcoded to 1.
-/*__relocate_data__*/ static uint8  unaligned_tx_buf[(TX_BUFFER_SIZE * NUM_TXBDS) + 16];
-///*__relocate_data__*/ static uint8  unaligned_tx_buf[(TX_BUFFER_SIZE * 1) + 16];
-
+/*__relocate_data__*/ static uint8  unaligned_tx_buf[(TX_BUFFER_SIZE * 1) + 16];
 /*FSL:variables holding BDs*/
-/*__relocate_data__*/ static nbuf_t *tx_nbuf;
-/*__relocate_data__*/ static nbuf_t *rx_nbuf;
 
-/*__relocate_data__*/ static uint8  *rx_buf;
-/*__relocate_data__*/ static uint8  *tx_buf;
+static nbuf_t *tx_nbuf;
+static nbuf_t *rx_nbuf;
+
+static uint8  *rx_buf;
+static uint8  *tx_buf;
 
 /* ------------------------ Start implementation -------------------------- */
 

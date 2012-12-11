@@ -46,7 +46,7 @@ C_DEPS_QUOTED += \
 # Each subdirectory must supply rules for building sources it contributes
 Project\ Settings/Startup\ Code/exceptions_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #88 $<'
+	@echo 'Executing target #13 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Project Settings/Startup Code/exceptions.args" -o "Project Settings/Startup Code/exceptions_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -59,7 +59,7 @@ Project\ Settings/Startup\ Code/exceptions_c.d: /home/jwhong/VMShared/Main/Firmw
 
 Project\ Settings/Startup\ Code/mcf5xxx_s.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s
 	@echo 'Building file: $<'
-	@echo 'Executing target #89 $<'
+	@echo 'Executing target #14 $<'
 	@echo 'Invoking: ColdFire Assembler'
 	"$(CF_ToolsDirEnv)/mwasmmcf" @@"Project Settings/Startup Code/mcf5xxx.args" -o "Project Settings/Startup Code/mcf5xxx_s.obj" "$<"
 	@echo 'Finished building: $<'
@@ -67,7 +67,7 @@ Project\ Settings/Startup\ Code/mcf5xxx_s.obj: /home/jwhong/VMShared/Main/Firmwa
 
 Project\ Settings/Startup\ Code/startcf_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #90 $<'
+	@echo 'Executing target #15 $<'
 	@echo 'Invoking: ColdFire Compiler'
 	"$(CF_ToolsDirEnv)/mwccmcf" @@"Project Settings/Startup Code/startcf.args" -o "Project Settings/Startup Code/startcf_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
