@@ -6,12 +6,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c" \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c" 
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c" \
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c" 
 
 C_SRCS += \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c 
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c \
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c 
 
 OBJS += \
 ./Sources/Applications/defaults_c.obj \
@@ -35,7 +35,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/Applications/defaults_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c
+Sources/Applications/defaults_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #11 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -43,12 +43,12 @@ Sources/Applications/defaults_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEth
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Applications/defaults_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c
+Sources/Applications/defaults_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/defaults.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Sources/Applications/main_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
+Sources/Applications/main_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #12 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -56,7 +56,7 @@ Sources/Applications/main_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEtherne
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/Applications/main_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
+Sources/Applications/main_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/APPLICATIONS/main.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

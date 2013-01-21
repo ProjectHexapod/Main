@@ -6,18 +6,18 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c" \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c" 
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c" \
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c" 
 
 C_SRCS += \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c 
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c \
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c 
 
 S_SRCS += \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s 
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s 
 
 S_SRCS_QUOTED += \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s" 
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s" 
 
 OBJS += \
 ./Project\ Settings/Startup\ Code/exceptions_c.obj \
@@ -44,7 +44,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Project\ Settings/Startup\ Code/exceptions_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c
+Project\ Settings/Startup\ Code/exceptions_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #13 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -52,12 +52,12 @@ Project\ Settings/Startup\ Code/exceptions_c.obj: /home/jwhong/VMShared/Main/Fir
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Project\ Settings/Startup\ Code/exceptions_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c
+Project\ Settings/Startup\ Code/exceptions_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/exceptions.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
 
-Project\ Settings/Startup\ Code/mcf5xxx_s.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s
+Project\ Settings/Startup\ Code/mcf5xxx_s.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/mcf5xxx.s
 	@echo 'Building file: $<'
 	@echo 'Executing target #14 $<'
 	@echo 'Invoking: ColdFire Assembler'
@@ -65,7 +65,7 @@ Project\ Settings/Startup\ Code/mcf5xxx_s.obj: /home/jwhong/VMShared/Main/Firmwa
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Project\ Settings/Startup\ Code/startcf_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c
+Project\ Settings/Startup\ Code/startcf_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #15 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -73,7 +73,7 @@ Project\ Settings/Startup\ Code/startcf_c.obj: /home/jwhong/VMShared/Main/Firmwa
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Project\ Settings/Startup\ Code/startcf_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c
+Project\ Settings/Startup\ Code/startcf_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/startcf.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c" 
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c" 
 
 C_SRCS += \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c 
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c 
 
 OBJS += \
 ./Sources/HAL/SPI/spi_c.obj 
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/SPI/spi_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c
+Sources/HAL/SPI/spi_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #3 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/SPI/spi_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/SPI/spi_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c
+Sources/HAL/SPI/spi_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SPI/spi.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

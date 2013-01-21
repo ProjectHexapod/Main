@@ -131,10 +131,11 @@ MAC_ISR(void)
 				/* This flags indicate that the frame has been damaged. In
 				 * this case we must update the link stats if enabled and
 				 * remove the frame from the FEC. */
-				//if ( pNBuf->status & RX_ERROR_ALL_FLAGS )
 				// FIXME: turn off CRC checking for now... it is throwing error even when I manually check the received packet
 				// as byte-for-byte correct
-				if ( !(pNBuf->status & (RX_ERROR_ALL_FLAGS & ~RX_ERROR_CHKSM_FLAG)) )
+				// FIXME part 2: CRC suddenly works again, don't know what changed.  Spooky.
+				//if ( !(pNBuf->status & (RX_ERROR_ALL_FLAGS & ~RX_ERROR_CHKSM_FLAG)) )
+				if ( !(pNBuf->status & RX_ERROR_ALL_FLAGS) )
 				{
 					// The frame must now be valid.
 					// Now interpret the data.
@@ -154,7 +155,7 @@ MAC_ISR(void)
 					/* Mark the buffer as not in use so the FEC can take it. */
 					NBUF_ReleaseTX( pNBufTX );
 					/* Indicate that a new transmit buffer has been produced. */
-					FEC_ReadyTx();				
+					FEC_ReadyTx();	
 				}
 				/*release the buffer under any circumstance*/
 				

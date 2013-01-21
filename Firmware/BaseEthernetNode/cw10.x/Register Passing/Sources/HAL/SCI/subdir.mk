@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c" 
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c" 
 
 C_SRCS += \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c 
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c 
 
 OBJS += \
 ./Sources/HAL/SCI/uart_c.obj 
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HAL/SCI/uart_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c
+Sources/HAL/SCI/uart_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #4 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HAL/SCI/uart_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HAL/SCI/uart_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c
+Sources/HAL/SCI/uart_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HAL/mcf51cn128/drivers/SCI/uart.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '

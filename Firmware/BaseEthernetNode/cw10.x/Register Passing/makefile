@@ -86,7 +86,7 @@ all: Project.elf
 endif
 
 # Tool invocations
-Project.elf: $(OBJS) $(USER_OBJS) /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/prm/project_cw10.lcf
+Project.elf: $(OBJS) $(USER_OBJS) /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/prm/project_cw10.lcf
 	@echo 'Building target: $@'
 	@echo 'Executing target #17 $@'
 	@echo 'Invoking: ColdFire Linker'

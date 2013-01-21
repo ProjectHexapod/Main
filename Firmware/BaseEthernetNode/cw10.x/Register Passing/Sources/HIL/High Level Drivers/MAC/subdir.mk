@@ -6,10 +6,10 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS_QUOTED += \
-"/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HIL/High Level Drivers/MAC/mac_rtos.c" 
+"/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High Level Drivers/MAC/mac_rtos.c" 
 
 C_SRCS += \
-/home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos.c 
+/home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos.c 
 
 OBJS += \
 ./Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos_c.obj 
@@ -28,7 +28,7 @@ C_DEPS_QUOTED += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos_c.obj: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos.c
+Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos_c.obj: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos.c
 	@echo 'Building file: $<'
 	@echo 'Executing target #1 $<'
 	@echo 'Invoking: ColdFire Compiler'
@@ -36,7 +36,7 @@ Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos_c.obj: /home/jwhong/VMShared/Main/
 	@echo 'Finished building: $<'
 	@echo ' '
 
-Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos_c.d: /home/jwhong/VMShared/Main/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos.c
+Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos_c.d: /home/jwhong/Project-Hexapod/Firmware/BaseEthernetNode/Sources/HIL/High\ Level\ Drivers/MAC/mac_rtos.c
 	@echo 'Regenerating dependency file: $@'
 	
 	@echo ' '
