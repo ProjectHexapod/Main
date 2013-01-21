@@ -289,11 +289,6 @@ main(void)
 	
 	Cpu_EnableInt()
     
-    while(1)
-    {
-    	
-    }
-    
     /* please make sure that you never leave main */
     for(;;)
     ;

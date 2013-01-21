@@ -437,6 +437,11 @@ FEC_ResetProcessing(const uint8 *pa)
 
 #endif
 
+    // JWHONG EDIT:  Need to reset the address recognition hash tables
+    IAUR = 0;
+    IALR = 0;
+    GAUR = 0;
+    GALR = 0;
     FEC_SetAddress( pa);
 
     /* Set Receive Buffer Size */
