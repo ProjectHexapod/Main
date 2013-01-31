@@ -124,10 +124,6 @@ MAC_ISR(void)
 
 			if( pNBuf != NULL )
 			{
-				/*FSL: removed to avoid get stuck if a BABR happens*/
-				//LWIP_ASSERT( "MAC_Rx_Task: pNBuf->status & RX_BD_L ",
-				//             pNBuf->status & RX_BD_L );
-
 				/* This flags indicate that the frame has been damaged. In
 				 * this case we must update the link stats if enabled and
 				 * remove the frame from the FEC. */

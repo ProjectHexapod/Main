@@ -54,6 +54,7 @@ class PHBusInterface(object):
         stream_payload.write(str(stream_header))
         stream_payload.write(payload)
         self.bus_sub.stdin.write(stream_payload.getvalue())
+        self.bus_sub.stdin.flush()
     def recv( self, timeout=1.0 ):
         """
         Receive a single packet from the interface.
@@ -77,14 +78,37 @@ class PHBusInterface(object):
         else:
             return ''
 
+def getmac(iface):
+    import commands
+    import array
+    words = commands.getoutput("ifconfig " + iface).split()
+    if "HWaddr" in words:
+        mac_str = words[ words.index("HWaddr") + 1 ]
+        mac_pieces = mac_str.split(':')
+        mac_addr = array.array('B')
+        for i in range(len(mac_pieces)):
+            mac_addr.append( int(mac_pieces[i], 16) )
+        return mac_str, mac_addr.tostring()
+    else:
+        return '\x00\x00\x00\x00\x00\x00'
+
 if __name__=='__main__':
-   iface = PHBusInterface('eth0') 
-   iface.send('testtesttesttest')
-   count = 0
-   while 1:
-       pack = iface.recv()
-       if pack:
-           print '%04d. Received %d bytes'%(count,len(pack))
-           count += 1
-       else:
-           break
+    iface_name = 'eth0'
+    iface = PHBusInterface(iface_name) 
+    dst_addr = '\x00\xCF\x52\x35\x00\x07'
+    mac_str, src_addr = getmac(iface_name)
+    magic_word = '\x69\x00'
+    print iface.bus_sub.poll()
+    print 'Sending...'
+    iface.send(dst_addr+src_addr+magic_word+'fuuuuck')
+    print 'Sent'
+    print iface.bus_sub.poll()
+    count = 0
+    while 1:
+        pack = iface.recv()
+        print iface.bus_sub.poll()
+        if pack:
+            print '%04d. Received %d bytes'%(count,len(pack))
+            count += 1
+        else:
+            break

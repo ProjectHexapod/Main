@@ -70,7 +70,8 @@ void writeInterfaceToFlash(void)
 
 enum CIDS {
 	CMD_GENERIC_READWRITE,
-	CMD_WRITE_TO_FLASH
+	CMD_WRITE_TO_FLASH,
+	CMD_RESET
 };
 
 struct pHeader {
@@ -134,6 +135,9 @@ void interpretCommandBuffer( unsigned char* payload, unsigned short rx_len, unsi
 		*tracked_tx = 1;
 		*tx_len = sizeof(struct pHeader) + 1;
 		break;
+	case CMD_RESET:
+		// FIXME: DOESN'T WORK.  Can't find a good way to reset.
+		mcf5xxx_reset();
 	default:
 		PARSE_ERROR:
 		// Something bad happened.  Send empty response with normal header.

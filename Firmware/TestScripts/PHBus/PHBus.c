@@ -11,12 +11,12 @@
  
 #define DEFAULT_IF "lo"
 
-#define MY_DEST_MAC0 0
-#define MY_DEST_MAC1 0
-#define MY_DEST_MAC2 0
-#define MY_DEST_MAC3 0
-#define MY_DEST_MAC4 0
-#define MY_DEST_MAC5 0
+#define MY_DEST_MAC0 0x00
+#define MY_DEST_MAC1 0xCF
+#define MY_DEST_MAC2 0x52
+#define MY_DEST_MAC3 0x35
+#define MY_DEST_MAC4 0x00
+#define MY_DEST_MAC5 0x07
 
 #define ETHER_TYPE 0x0800
 #define BUF_SIZ 1500
@@ -60,6 +60,8 @@ int main(int argc, char *argv[])
 
     int rc, i;
 
+    printf("started shit\n");
+
     /* Get interface name */
     if (argc > 1)
         strcpy(ifName, argv[1]);
@@ -67,7 +69,7 @@ int main(int argc, char *argv[])
         strcpy(ifName, DEFAULT_IF);
      
     /* Open RAW socket to send on */
-    if ((sockfd = socket(PF_PACKET, SOCK_RAW, htons(ETHER_TYPE))) == -1) {
+    if ((sockfd = socket(AF_PACKET, SOCK_RAW, htons(ETHER_TYPE))) == -1) {
         perror("socket");
     }
     /* Set interface to promiscuous mode - do we need to do this every time? */
@@ -138,6 +140,7 @@ int main(int argc, char *argv[])
     
     while( 1 )
     {
+        printf("Loop start\n");
         // Construct the file descriptor set we will check in the main loop
         FD_ZERO(&read_set);
         FD_SET( sockfd, &read_set );
@@ -166,6 +169,7 @@ int main(int argc, char *argv[])
         {
             // Get the packet
             numbytes = recvfrom(sockfd, buf, BUF_SIZ, 0, NULL, NULL);
+            printf("Socket received %d bytes\n", numbytes);
             struct PHEtherHeader* tmp = (struct PHEtherHeader*)buf;
             // Validate that it's the type we care about
             if(tmp->magic_word == 0x69 )
@@ -189,8 +193,10 @@ int main(int argc, char *argv[])
             // we got a whole packet
             struct PHStreamHeader* tmp = (struct PHStreamHeader*)buf;
             unsigned char* pack_start = buf + sizeof(struct PHStreamHeader);
+            printf("har ha\n");
             if(numbytes >= sizeof(struct PHStreamHeader) + tmp->len)
             {
+                printf("ha ha\n");
                 // Copy the target MAC
                 // TODO: Why do we need to do this?  It's already in the packet
                 memcpy( socket_address.sll_addr, pack_start, 6);
