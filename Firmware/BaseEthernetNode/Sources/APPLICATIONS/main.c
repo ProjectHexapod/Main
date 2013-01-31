@@ -50,6 +50,14 @@ unsigned char *interface_buff_g 			 = (unsigned char*)&_interface_g;
 
 #define INTERFACE_L sizeof(interface_struct)
 
+// number of ticks we've gone without receiving a command packet.
+// If this exceeds some threshold, put the outputs in a 'safe' position
+static unsigned char nticks_since_recv = 0;
+
+// One tick is 1ms
+// If we go 20ms without receiving a command packet, something's gone wrong with the host.
+#define TICKS_TO_SAFE_MODE 20
+
 /*********************************Functions***********************************/
 
 void loadInterfaceFromFlash(void)
@@ -99,6 +107,9 @@ void interpretCommandBuffer( unsigned char* payload, unsigned short rx_len, unsi
 	tracked  += sizeof(struct pHeader);
 	//Check the magic word
 	PACKET_ASSERT(rx_header->magic_word == 0x69);
+	
+	// We've received a valid packet.  Reset the ticks counter
+	nticks_since_recv = 0;
 	
 	//Point TX header appropriately
 	tracked_tx  = tx_payload;
@@ -180,7 +191,6 @@ void interrupt VectorNumber_Vrtc TickISR( void )
 {
 	//unsigned portLONG ulSavedInterruptMask;
 	unsigned char i;
-	static unsigned char nticks_report = 0;
 	/*SPI array space*/
 	/* 3 bytes is all that is required for mag enc */
 	static uint8  spi_receive_array[3];
@@ -203,9 +213,17 @@ void interrupt VectorNumber_Vrtc TickISR( void )
 	// Deassert CS
 	PTCD_PTCD4 = 1;
 	
-	
 	//Protect from interruption
 	Cpu_DisableInt();
+	
+	// Have we timed out?  If we haven't received a command packet in too long, shut the valve
+	if(nticks_since_recv > TICKS_TO_SAFE_MODE)
+	{
+		interface_struct_g->valve_power = 0;
+	} else {
+		nticks_since_recv++;
+	}
+	
 	// SERVICE THE VALVE DRIVER
 	setDriveDir (interface_struct_g->valve_dir);
 	setDutyCycle(interface_struct_g->valve_power);
