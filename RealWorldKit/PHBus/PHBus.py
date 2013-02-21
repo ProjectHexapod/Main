@@ -7,6 +7,8 @@ import signal
 from socket import *
 from struct import *
 
+from math import *
+
 DEBUG = False
 
 def getmac(iface):
@@ -160,7 +162,7 @@ class PHBusInterface(object):
         #self.cap.loop( -1, self._recv_packet )
         while 1:
             self.cap.dispatch( 1, self._recv_packet )
-            time.sleep(1e-5)
+            time.sleep(1e-4)
         print 'Listener thread exiting'
     def send(self, data):
         self.sock.send(data)
@@ -177,10 +179,12 @@ class NodeManager(object):
     def __init__(self, interface, dest_addr):
         """
         """
-        self.lock = threading.Lock()
-        self.lock.acquire()
         self.interface = interface
         self.addr      = dest_addr
+        ##### THE STRUCTURES BELOW MUST BE THREADSAFE
+        ##### self.lock PROTECTS THEM
+        self.lock = threading.Lock()
+        self.lock.acquire()
         # Packet ID is an incrementing counter
         self.packet_id = 0
         # Keep a copy of the packets we haven't gotten responses to yet
@@ -190,6 +194,14 @@ class NodeManager(object):
         self.synced = threading.Event()
         self.synced.set()
         self.lock.release()
+
+        # TODO: represent this more elegantly.
+        # mag_encoder_count is an integer in [0,4096)
+        self.mag_encoder_count = 0
+        # mag_encoder_good is based on the INC and DEC flags from the encoder
+        # and whether the parity check is correct
+        self.mag_encoder_good = 0
+
     def forceSync( self ):
         """
         Clears the internal outstanding packet buffers and resets the sync lock
@@ -294,12 +306,12 @@ class NodeManager(object):
             n += val&1
             val = val >> 1
         return not n%2
-    def _printMagData( self, payload, timestamp ):
+    def _printMagData( self, senf_data, recv_data, timestamp ):
         """
         Helper function to read magnetic encoder data from a packet
         """
-        #reduced = (ord(payload[16])<<16) + (ord(payload[17])<<8) + (ord(payload[18]))
-        reduced = unpack('!L', payload[15:19])[0]
+        #reduced = (ord(recv_data[16])<<16) + (ord(recv_data[17])<<8) + (ord(recv_data[18]))
+        reduced = unpack('!L', recv_data[15:19])[0]
         reduced = reduced & 0x00ffffff
         reduced = reduced >> 5
 
@@ -334,6 +346,56 @@ class NodeManager(object):
         print 'offset\t', ocf
         print 'angle\t', angle
         print ''
+    def getMagEncoderAngle( self ):
+        """
+        Return the angle in radians, as well as the good flag.
+        returns: (float angle in radians, bool good)
+        """
+        angle_radians = 2*pi*(self.mag_encoder_count/4096.)
+        return angle_radians, self.mag_encoder_good
+    def _processMagData( self, senf_data, recv_data, timestamp ):
+        """
+        Helper function to read magnetic encoder data from a packet
+        Populates self.mag_encoder_count and self.mag_encoder_good
+        """
+        reduced = unpack('!L', recv_data[15:19])[0]
+        reduced = reduced & 0x00ffffe0
+        reduced = reduced >> 5
+
+        parity = reduced & 1
+        reduced = reduced >> 1
+        parity_correct = parity == self._evenParity(reduced)
+
+        
+        magdec = reduced & 1
+        reduced = reduced >>1
+
+        maginc = reduced & 1
+        reduced = reduced >>1
+
+        linearity = reduced & 1
+        reduced = reduced >>1
+
+        cof = reduced & 1
+        reduced = reduced >>1
+
+        ocf = reduced & 1
+        reduced = reduced >>1
+
+        angle = reduced & 0xfff
+
+        self.mag_encoder_count = angle
+        self.mag_encoder_good = (parity_correct*4) + (magdec*2) + (maginc*1)
+
+        if 0:
+            print 'parity\t', parity
+            print 'magdec\t', magdec
+            print 'maginc\t', maginc
+            print 'linear\t', linearity
+            print 'cordic\t', cof
+            print 'offset\t', ocf
+            print 'angle\t', angle
+            print ''
     def exchangeMagValveData( self, valve_command ):
         """
         Send a valve command and requests magnetic encoder data back.
@@ -351,7 +413,8 @@ class NodeManager(object):
             valve_dir = int(valve_command/abs(valve_command))
         payload += pack('!Bb', valve_power, valve_dir)
         # addr 12 len 3 is the offset for reading back mag enc data
-        self.sendGenericReadWrite( 12, 3, 15, 2, payload, self._printMagData )
+        #self.sendGenericReadWrite( 12, 3, 15, 2, payload, self._printMagData )
+        self.sendGenericReadWrite( 12, 3, 15, 2, payload, self._processMagData )
     def receive_callback( self, recv_data, timestamp ):
         """
         This function is meant to be called only by the PHBusInterface's
@@ -374,35 +437,113 @@ class NodeManager(object):
                     print 'Not synced, %d outstanding remain'%len(self.outstanding_packets)
             # If a callback was set, call it
             if callback:
-                callback( send_data, recv_data )
+                callback( send_data, recv_data, timestamp )
         except KeyError:
             print "WARNING: Received a packet without a sent packet matching up"
             print "         Node:      %s"%mac_to_str(self.addr)
             print "         Packet ID: %d"%packet_id
         self.lock.release()
 
+class BusManager(object):
+    """
+    The BusManager is a container for NodeManagers constituting a bus
+    and the PHBusInterface they exist on.  It provides high level
+    access to the bus.
+    """
+    def __init__( self, iface_name='eth0', node_addrs=[] ):
+        """
+        iface_name is a string containing the network interface the bus is connected to.
+        node_addrs is a list of MAC addresses, already in binary (strings of length 6)
+        """
+        self.iface = PHBusInterface(iface_name)
+        # self.nodes is a dictionary { mac_address : NodeManager instance, ... }
+        self.nodes = [ NodeManager(self.iface,addr) for addr in node_addrs ]
+    def discover( self ):
+        """
+        Broadcasts packets out to the bus and looks for responses.  Could be helpful
+        in the future.
+        TODO: Implement.  Am not sure if the firmware presently accepts broadcast packets.
+        """
+        raise NotImplemented
+    def waitForSync( self, timeout=1e3 ):
+        """
+        Waits for sync with all nodes on the bus.
+        """
+        t_start = time.time()
+        for node in self.nodes:
+            t_remaining = timeout - (time.time()-t_start)
+            if t_remaining <= 0.0:
+                break
+            node.waitForSync(t_remaining)
+        return (t_remaining > 0.0)
+    def callForEachNode( self, callback, args_list=None ):
+        """
+        Code shorter than comments would be.  Read code.
+        """
+        if(args_list == None):
+            pass
+        retval = []
+        for node, args in zip(self.nodes, args_list ):
+            retval.append(callback( node, *args ))
+        return retval
+    def getMagEncoderAngle( self ):
+        values = self.callForEachNode( NodeManager.getMagEncoderAngle, [[] for node in self.nodes] )
+        angles, flags = zip(*values)
+        return angles, flags
+    def pingNodes( self ):
+        """
+        Pings the nodes with an empty command one by one.
+        returns
+        """
+    def exchangeMagValveData( self, valve_commands ):
+        self.callForEachNode( NodeManager.exchangeMagValveData, [[cmd] for cmd in valve_commands] )
+    def softStop( self ):
+        """
+        Tell all nodes to close valves.
+        TODO: should this be here or is this too low level?
+        """
+        raise NotImplemented
 
 if __name__=="__main__":
     print 'Starting demo...'
-    iface = PHBusInterface('eth0')
-    node_manager = NodeManager( iface,  "\x00\xCF\x52\x35\x00\x08" )
     def gracefulShutdown( signum, stack ):
         print "Watchdog fired!"
         print "Got signal %d"%signum
         print "Goodbye!"
         exit(0)
     watchdog = WatchDog( 0.1, gracefulShutdown )
-    watchdog.start()
-    t_start = time.time()
-    n_iterations = 100
-    for i in range(n_iterations):
-        node_manager.sendGenericReadWrite()
-        node_manager.exchangeMagValveData(.5)
-        watchdog.feed()
-    node_manager.waitForSync()
+    n_iterations = int(1e6)
+    if 0:
+        iface = PHBusInterface('eth0')
+        node_manager = NodeManager( iface,  "\x00\xCF\x52\x35\x00\x07" )
+        watchdog.start()
+        t_start = time.time()
+        for i in range(n_iterations):
+            #node_manager.sendGenericReadWrite()
+            node_manager.exchangeMagValveData(.5)
+            watchdog.feed()
+        node_manager.waitForSync()
+    if 1:
+        mac_list = []
+        mac_list.append( "\x00\xCF\x52\x35\x00\x07" );
+        mac_list.append( "\x00\xCF\x52\x35\x00\x08" );
+        mac_list.append( "\x00\xCF\x52\x35\x00\x09" );
+        valve_commands = [0.0 for entry in mac_list]
+        bus_manager = BusManager( 'eth0', mac_list )
+        watchdog.start()
+        t_start = time.time()
+        for i in range(n_iterations):
+            #bus_manager.sendGenericReadWrite()
+            bus_manager.exchangeMagValveData(valve_commands)
+            ang, flag = bus_manager.getMagEncoderAngle()
+            print ang
+            print flag
+            watchdog.feed()
+            time.sleep(1e-3)
+        bus_manager.waitForSync()
+    if 0:
+        print "Changing MAC"
+        new_mac = "\x00\xCF\x52\x35\x00\x08"
+        node_manager.changeMACAddr( new_mac )
     print "Elapsed: %0.03fs"%(time.time()-t_start)
     print "Avg: %0.03fms"%(1000*(time.time()-t_start)/n_iterations)
-    print "Changing MAC"
-    new_mac = "\x00\xCF\x52\x35\x00\x08"
-    node_manager.changeMACAddr( new_mac )
-    print 'Finished demo.  Exiting.'
