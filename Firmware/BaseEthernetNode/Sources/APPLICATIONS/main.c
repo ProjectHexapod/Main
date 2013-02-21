@@ -286,7 +286,7 @@ main(void)
 	spi_init( 	SPI1_PORT, 
 				BAUD_1000, 
 				serIDLEshigh, 
-				serMiddleSample, 
+				serStartSample, 
 				serMaster
 			  );
 	spi_disable_tx_interrupt (SPI1_PORT);
