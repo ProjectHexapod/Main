@@ -4,8 +4,18 @@ import threading
 import StringIO
 import time
 
-class Publisher:
+class Publisher(object):
+    _instance = None
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super(Publisher, cls).__new__(
+                                cls, *args, **kwargs)
+        return cls._instance
     def __init__( self, port ):
+        if hasattr(self, 'initialized'):
+            print 'Publisher has already initialized, but new one requested.  Returning old instance'
+            return
+        print 'Initializing new publisher'
         # Start the publishing server on specified TCP port
         self.port         = port
         self.sock         = None
@@ -20,6 +30,8 @@ class Publisher:
         self.subscriptions = []
         # These are publishers that the remote side asked us to intantiate
         self.sub_publishers = []
+        # Flag to let the world know we're initialized
+        self.initialized = 1
 
     def addToCatalog( self, name, callback ):
         self.catalog[name] = callback
@@ -51,7 +63,7 @@ class Publisher:
             publisher.publish()
 
     def run_server( self ):
-        print 'Hello from the server thread'
+        print 'Hello from the publisher server thread on port %d'%self.port
         self.sock = socket( AF_INET, SOCK_STREAM )
         addr = ('localhost', self.port)
         # This is a hack to allow fast restarts
@@ -181,17 +193,20 @@ def dummy_callback( frame ):
         print k,v
 
 if __name__=='__main__':
-    p = Publisher(5056)
+    p = Publisher(5055)
+    q = Publisher(5057)
+    if id(p) != id(q):
+        print "Only one publisher should ever be instantiated!"
     import random
-    p.addToCatalog('mydick', lambda: random.uniform(0,1))
-    p.addToCatalog('ass', lambda: random.uniform(0,1))
+    p.addToCatalog('foo', lambda: random.uniform(0,1))
+    p.addToCatalog('bar', lambda: random.uniform(0,1))
     p.start()
     time.sleep(0.1)
-    s = Subscriber( 'localhost', 5056 )
+    s = Subscriber( 'localhost', 5055 )
     s.setCallback( dummy_callback )
-    s.subscribeTo(['mydick'])
+    s.subscribeTo(['foo'])
     s.start()
-    for x in range(100):
+    for x in range(20):
         p.publish()
         time.sleep(0.01)
     p.close()
