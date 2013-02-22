@@ -4,7 +4,7 @@ import ode
 import pygame
 from OpenGLLibrary import *
 
-from pubsub import *
+from Utilities.pubsub import *
 from helpers import *
 from UI.send_one_command import sendCommandFromEventKey
 

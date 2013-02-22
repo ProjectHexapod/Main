@@ -1,6 +1,6 @@
 from SimulationKit.MultiBody import MultiBody
 from SimulationKit.helpers import *
-from SimulationKit.pubsub import *
+from Utilities.pubsub import *
 import ode
 
 deg2rad = pi/180

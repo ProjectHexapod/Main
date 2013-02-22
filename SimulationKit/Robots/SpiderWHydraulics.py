@@ -1,6 +1,6 @@
 from SimulationKit.MultiBody import MultiBody
 from SimulationKit.helpers import *
-from SimulationKit.pubsub import *
+from Utilities.pubsub import *
 from SimulationKit.OpenGLLibrary import *
 from math import *
 import ode
@@ -602,16 +602,16 @@ class SpiderWHydraulics(MultiBody):
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
     def constantSpeedWalkSmart( self, x_scale=1.0, y_scale=0.0, z_scale=0.5, rot_scale=0.0 ):
-        step_t          = 2.6
-        swing_f         = 0.60
-        down_f          = 0.20
-        up_f            = 0.20
-        stride_length   = 1.70    # length of a stride, m
+        step_t          = 1.4
+        swing_f         = 0.80
+        down_f          = 0.10
+        up_f            = 0.10
+        stride_length   = 1.90    # length of a stride, m
         neutral_r_outer = inch2meter*65
         neutral_r_inner = inch2meter*70
         body_h          = inch2meter*70
         max_rot         = pi/3
-        foot_lift_h     = 0.85    # how high to lift feet in m
+        foot_lift_h     = 0.55    # how high to lift feet in m
 
         foot_positions = []
 

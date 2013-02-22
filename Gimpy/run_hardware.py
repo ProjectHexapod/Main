@@ -7,7 +7,7 @@ from RealWorldKit import *
 #from ControlsKit import logger
 from ControlsKit.import_planner import importPlanner
 from ControlsKit.filters import LowPassFilter
-from SimulationKit.pubsub import *
+from Utilities.pubsub import *
 import time
 import threading
 
@@ -20,7 +20,7 @@ else:
     update = retval
     controller = None
 
-leg1 = ControlBus(device='/dev/ttyUSB0')
+leg1 = ControlBus(device='/dev/ttyUSB1')
 yaw_valve = ValveNode(leg1       , node_id=1 , name="yaw_valve"     , bore=0.0254 , rod=0.0189        , lpm=22.712 , e_deadband=89 , r_deadband=75)
 pitch_valve = ValveNode(leg1     , node_id=2 , name="pitch_valve"   , bore=0.0381 , rod=0.0254        , lpm=22.712 , e_deadband=77 , r_deadband=70)
 knee_valve = ValveNode(leg1      , node_id=3 , name="knee_valve"    , bore=0.0254 , rod=0.0159        , lpm=22.712 , e_deadband=87 , r_deadband=69)
