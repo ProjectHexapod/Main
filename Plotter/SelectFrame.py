@@ -20,7 +20,7 @@ except:
             raise ImportError, "Numeric,numarray or NumPy not found. \n" + msg
 
 sys.path.append('..')
-from SimulationKit.pubsub import *
+from Utilities.pubsub import *
 from PlotFrame import *
 import time
 import threading

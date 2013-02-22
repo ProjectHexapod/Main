@@ -2,7 +2,7 @@ import sys
 import time
 import wx
 sys.path.append('..')
-from SimulationKit.pubsub import *
+from Utilities.pubsub import *
 from PlotFrameSettings import *
 from wx.lib.plot import *
 # Needs Numeric or numarray or NumPy
