@@ -3,7 +3,7 @@ sys.path.append('..')
 
 import logging
 import logging.handlers
-from SimulationKit.pubsub import Publisher
+from Utilities.pubsub import Publisher
 from collections import defaultdict
 
 
