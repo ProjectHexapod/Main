@@ -17,7 +17,7 @@ def getSocket():
         sock.send(response)
         return sock
     except Exception, ex:
-        logger.error("Could not connect to InputServer.", error=ex)
+        #logger.error("Could not connect to InputServer.", error=ex)
         return None
 
 def sendCommand(command):
@@ -26,7 +26,8 @@ def sendCommand(command):
         sock.send(command.SerializeToString())
         sock.close()
     except Exception, ex:
-        logger.error("Could not send command to InputServer.", error=ex)
+        #logger.error("Could not send command to InputServer.", error=ex)
+        return None
 
 def sendCommandFromEventKey(event_key):
     command = Command()
