@@ -175,8 +175,10 @@ class LegOnColumn(MultiBody):
             a1x    = yaw_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = yaw_act_dim.PIVOT2[0],\
             a2y    = yaw_act_dim.PIVOT2[1])
-        hip_yaw.setParam(ode.ParamLoStop, 0.0)
-        hip_yaw.setParam(ode.ParamHiStop, yaw_act_dim.getRangeOfMotion())
+        #hip_yaw.setParam(ode.ParamLoStop, 0.0)
+        hip_yaw.setParam(ode.ParamLoStop, -yaw_act_dim.getRangeOfMotion())
+        hip_yaw.setParam(ode.ParamHiStop, 0.0)
+        #hip_yaw.setParam(ode.ParamHiStop, yaw_act_dim.getRangeOfMotion())
         hip_yaw.setExtendForceLimit(yaw_act_dim.getMaxExtensionForceNewtons())
         hip_yaw.setRetractForceLimit(yaw_act_dim.getMaxRetractionForceNewtons())
         hip_yaw.setExtendCrossSection(yaw_act_dim.getExtensionCrossSectionM2())
