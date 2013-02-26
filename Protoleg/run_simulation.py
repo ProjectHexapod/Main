@@ -5,8 +5,14 @@ from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnColumn
 from SimulationKit.helpers import *
 from ControlsKit.import_planner import importPlanner
-from UI import InputServer
 
+def keyboardInterruptHandler( sig, frame ):
+    print 'Caught keyboard interrupt!'
+    print "Goodbye!"
+    exit(0)
+
+import signal
+signal.signal(signal.SIGINT, keyboardInterruptHandler)
 
 # Check command-line arguments to find the planner module
 retval = importPlanner()
