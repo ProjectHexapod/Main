@@ -1,4 +1,4 @@
-from UI import logger
+#from UI import logger
 import math
 from math_utils import saturate
 import time_sources
@@ -62,41 +62,41 @@ class PIDController:
                         " desired point has increased for %d seconds,"+
                         " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
-                logger.warning(warningstring,
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        error=error, 
-                        bad_value=error)
+                #logger.warning(warningstring,
+                #        desired_pos=desired_pos,
+                #        measured_pos=measured_pos,
+                #        error=error, 
+                #        bad_value=error)
             elif self.peak_detector.isLimitCycle():
                 warningstring=("LimbController: Maximum error for the"+
                         " desired point has increased once or more for %d seconds,"+
                         " but is within converged range.  Might be unstable." %
                         self.peak_detector.getResolveTime() )
-                logger.warning(warningstring,
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        error=error,
-                        bad_value=error)
+                #logger.warning(warningstring,
+                #        desired_pos=desired_pos,
+                #        measured_pos=measured_pos,
+                #        error=error,
+                #        bad_value=error)
         else:
             if self.peak_detector.isUnstable():
                 errorstring=("LimbController: Maximum error for the desired point"+ 
                         "has increased for %d seconds.  System potentially unstable." %
                         self.peak_detector.getResolveTime() )
-                logger.error(errorstring,
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        error=error,
-                        bad_value=error)
+                #logger.error(errorstring,
+                #        desired_pos=desired_pos,
+                #        measured_pos=measured_pos,
+                #        error=error,
+                #        bad_value=error)
                 raise ValueError(errorstring)
             elif self.peak_detector.isLimitCycle():
                 errorstring=("LimbController: Controller has not converged"+ 
                 "over %d seconds.  System potentially in a limit cycle." %
                 self.peak_detector.getResolveTime() )
-                logger.error(errorstring,
-                        desired_pos=desired_pos,
-                        measured_pos=measured_pos,
-                        error=error,
-                        bad_value=error)
+                #logger.error(errorstring,
+                #        desired_pos=desired_pos,
+                #        measured_pos=measured_pos,
+                #        error=error,
+                #        bad_value=error)
                 raise ValueError(errorstring)
         
         self.integral_error_accumulator += self.ki * error * delta_time
@@ -125,30 +125,30 @@ class PIDController:
         
         #is error within available soft range?
         if error>(measured_pos-error_min) or error>(error_max-measured_pos):
-            logger.error("LimbController.isErrorInBounds: error out of soft bounds.",
-                        error=error,
-                        measured_pos=measured_pos)
+            #logger.error("LimbController.isErrorInBounds: error out of soft bounds.",
+            #            error=error,
+            #            measured_pos=measured_pos)
             raise ValueError("Error signal points to a position out of soft bounds.")
         return error
     
     def boundDesiredPosition(self,desired_pos):
         #caps desired position to soft movement range
         if math.isnan(desired_pos):
-            logger.error("LimbController.boundDesiredPosition: NaN where aN expected!",
-                        desired_pos=desired_pos,
-                        bad_value="desired_pos")
+            #logger.error("LimbController.boundDesiredPosition: NaN where aN expected!",
+            #            desired_pos=desired_pos,
+            #            bad_value="desired_pos")
             raise ValueError("LimbController: desired_pos cannot be NaN.")
         
         command_min=-20
         command_max=20
         
         if desired_pos<command_min or desired_pos>command_max:
-            logger.error("LimbController.boundDesiredPosition:"+
-                        " desired position out of bounds!",
-                        desired_pos=desired_pos,
-                        command_min=command_min,
-                        command_max=command_max,
-                        bad_value="desired_pos")
+            #logger.error("LimbController.boundDesiredPosition:"+
+            #            " desired position out of bounds!",
+            #            desired_pos=desired_pos,
+            #            command_min=command_min,
+            #            command_max=command_max,
+            #            bad_value="desired_pos")
             raise ValueError("LimbController.boundDesiredPosition:"+
                     " desired position out of soft bounds")
         
