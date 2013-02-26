@@ -6,7 +6,6 @@ from OpenGLLibrary import *
 
 from Utilities.pubsub import *
 from helpers import *
-from UI.send_one_command import sendCommandFromEventKey
 
 #FIXME:  This belongs somewhere common...
 import os.path as path
@@ -250,8 +249,6 @@ class Simulator(object):
                     self.dt *= 1.2
                 elif event.key == K_MINUS:
                     self.dt /= 1.2
-                else:
-                    sendCommandFromEventKey(event.key)
             if event.type == MOUSEBUTTONDOWN:
                 click_pos = glLibUnProject( event.pos )
                 if event.button == 1:
