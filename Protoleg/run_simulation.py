@@ -23,7 +23,7 @@ else:
     update = retval
     controller = None
 
-d = {'offset':(0,0,1.67)}
+d = {'offset':(0,0,2.00)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnColumn,robot_kwargs=d, start_paused = True, render_objs=1, draw_contacts=1)
 
 yaw_joint   = s.robot.joints['hip_yaw']
