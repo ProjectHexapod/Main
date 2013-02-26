@@ -341,7 +341,6 @@ class Simulator(object):
         self.createCapsuleGraphic( p1, p2 )
     def draw_body(self, body):
         """Draw an ODE body."""
-
         if hasattr( body, 'glObjPath' ) and self.render_objs:
             p = body.getPosition()
             r = body.getRotation()
@@ -450,7 +449,6 @@ class Simulator(object):
         body.geom = geom
 
         body.color = (128,0,0,255)
-        body.glObjPath = graphics_dir+"/2003eclipse.obj"
         # This is the constant offset for aligning with the physics element
         # This is a 4x4 opengl style matrix, expressing an offset and a rotation
         offset = (0,0,0)
