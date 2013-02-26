@@ -8,6 +8,7 @@ class Publisher(object):
     _instance = None
     def __new__(cls, *args, **kwargs):
         if not cls._instance:
+            print 'Creating new Publisher'
             cls._instance = super(Publisher, cls).__new__(
                                 cls, *args, **kwargs)
         return cls._instance
@@ -15,7 +16,6 @@ class Publisher(object):
         if hasattr(self, 'initialized'):
             print 'Publisher has already initialized, but new one requested.  Returning old instance'
             return
-        print 'Initializing new publisher'
         # Start the publishing server on specified TCP port
         self.port         = port
         self.sock         = None
@@ -90,28 +90,28 @@ class Publisher(object):
                     print mesg
                     self.restartflag = 1
                 if s:
-                    try:
-                        data = pickle.loads(s)
-                        if type(data) == type(0):
-                            # Request to open another publisher on a different
-                            # port.
-                            port = data
-                            print "Received request for new publisher on port"\
-                                " %d"%port
-                            new_pub = Publisher(port)
-                            # FIXME: This feels hacky... new publisher refers to
-                            # the old publisher's catalog
-                            new_pub.catalog = self.catalog
-                            new_pub.start()
-                            self.sub_publishers.append(new_pub)
-                        elif type(data) == type([]):
-                            # Subscription request
-                            keys = data
-                        self.subscriptions = keys
-                        self.ready_to_publish = True
-                    except:
-                        print 'Pickle fail'
-                        self.restartflag = 1
+                    #try:
+                    data = pickle.loads(s)
+                    if type(data) == type(0):
+                        # Request to open another publisher on a different
+                        # port.
+                        port = data
+                        print "Received request for new publisher on port"\
+                            " %d"%port
+                        new_pub = subPublisher(port)
+                        # FIXME: This feels hacky... new publisher refers to
+                        # the old publisher's catalog
+                        new_pub.catalog = self.catalog
+                        new_pub.start()
+                        self.sub_publishers.append(new_pub)
+                    elif type(data) == type([]):
+                        # Subscription request
+                        keys = data
+                    self.subscriptions = keys
+                    self.ready_to_publish = True
+                    #except e, msg:
+                    #    print 'Pickle fail'
+                    #    self.restartflag = 1
                 else:
                     print "Timed out without receiving"
                     self.restartflag = 1
@@ -125,6 +125,17 @@ class Publisher(object):
         self.sock.close()
         for publisher in self.sub_publishers:
             publisher.close()
+
+class subPublisher(Publisher):
+    """
+    subPublisher is used to stream data to the receivers.
+    It is exactly the same as publisher, except that more than
+    one instance can exist.
+    """
+    def __new__(cls, *args, **kwargs):
+        print 'Creating Subpublisher'
+        return super(Publisher, cls).__new__(cls, *args, **kwargs)
+        
 
 class Subscriber:
     def __init__(self, host, port):
@@ -149,8 +160,6 @@ class Subscriber:
             except error, desc:
                 print desc
                 time.sleep(1.0)
-            #except:
-            #    print 'Pickle fail'
         self.catalog.sort()
     def start( self ):
         self.stop_flag = 0
