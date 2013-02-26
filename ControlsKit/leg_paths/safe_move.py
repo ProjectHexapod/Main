@@ -1,4 +1,4 @@
-from ControlsKit import time_sources, leg_logger
+from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 from ControlsKit.leg_paths import TrapezoidalFootMove, TrapezoidalJointMove
 

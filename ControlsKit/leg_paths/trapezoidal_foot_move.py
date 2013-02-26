@@ -1,14 +1,14 @@
 from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
-from UI import logger
+#from UI import logger
 
 class TrapezoidalFootMove:
     """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time. 
     """
     def __init__(self, leg_model, limb_controller, final_foot_pos, max_velocity, acceleration):
-        logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
-                    final_foot_pos=final_foot_pos, max_velocity=max_velocity,
-                    acceleration=acceleration)
+        #logger.info("New trajectory.", traj_name="TrapezoidalFootMove",
+        #            final_foot_pos=final_foot_pos, max_velocity=max_velocity,
+        #            acceleration=acceleration)
         
         self.model = leg_model
         self.controller = limb_controller
@@ -45,7 +45,8 @@ class TrapezoidalFootMove:
         return normalize(self.final_foot_pos - self.target_foot_pos)
 
     def update(self):
-        if not self.isDone() and (self.start_on_ground or not self.model.isFootOnGround()):
+        #if not self.isDone() and (self.start_on_ground or not self.model.isFootOnGround()):
+        if not self.isDone():
             delta = time_sources.global_time.getDelta()
             # if the remaining distance <= the time it would take to slow
             # down times the average speed during such a deceleration (ie
