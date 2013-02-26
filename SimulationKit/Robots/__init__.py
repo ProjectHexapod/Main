@@ -1,4 +1,5 @@
 from LegOnStand import LegOnStand
+from LegOnColumn import LegOnColumn
 from SpiderWHydraulics import SpiderWHydraulics
 #from Hexy import Hexy
 
