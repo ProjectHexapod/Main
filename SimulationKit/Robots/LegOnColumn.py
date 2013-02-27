@@ -1,4 +1,4 @@
-from SimulationKit.MultiBody import MultiBody
+from SimulationKit.MultiBody import MultiBody, LinearVelocityActuatedHingeJoint
 from SimulationKit.helpers import *
 from Utilities.pubsub import *
 from SimulationKit.OpenGLLibrary import *
@@ -11,7 +11,7 @@ deg2rad    = pi/180
 psi2pascal = 6894.76
 inch2meter = 2.54e-2
 pound2kilo = 0.455
-gallon2cmps = 1/15850.4
+gpm2cmps = 1/15850.4
 
 class StompyLegPhysicalCharacteristics(object):
     """
@@ -38,7 +38,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.YAW_ACT.PIVOT1_DIST_FROM_JOINT   = inch2meter*16.18
         self.YAW_ACT.PIVOT2                   = (inch2meter*2.32,inch2meter*3.3)
         self.YAW_ACT.ANG_OFFSET               = deg2rad*-30.0
-        self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2000
+        self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2500
         self.YAW_ACT.AXIS                     = (0,0,-1)
 
         self.PITCH_ACT                        = ActuatorCharacteristics()
@@ -49,7 +49,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.PITCH_ACT.PIVOT1_DIST_FROM_JOINT = inch2meter*8.96
         self.PITCH_ACT.PIVOT2                 = (inch2meter*27.55, inch2meter*8.03)
         self.PITCH_ACT.ANG_OFFSET             = deg2rad*-84.0
-        self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2000
+        self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2500
         self.PITCH_ACT.AXIS                   = (0,-1,0)
 
         self.KNEE_ACT                         = ActuatorCharacteristics()
@@ -60,7 +60,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.KNEE_ACT.PIVOT1_DIST_FROM_JOINT  = inch2meter*28
         self.KNEE_ACT.PIVOT2                  = (inch2meter*4.3,inch2meter*6.17)
         self.KNEE_ACT.ANG_OFFSET              = deg2rad*61.84
-        self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2000
+        self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2500
         self.KNEE_ACT.AXIS                    = (0,-1,0)
 
         # Compliance of foot
@@ -78,6 +78,86 @@ class StompyLegPhysicalCharacteristics(object):
         """
         rot_matrix = calcRotMatrix( axis, angle )
         self.ROTATION_FROM_ROBOT_ORIGIN = rot_matrix
+
+class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
+    """
+    This class simulates an actuator attached to a hinge joint controlled by a spool valve.
+    The valve being modeled is a Hydraforce SP10-47C
+    """
+
+    def SP10_47CFlow( self, inlet_to_work_port_pressure, valve_command ):
+        """
+        Returns the flow to the work port in an SP10-47C spool valve
+        given the inlet to work port pressure and the valve command.
+        Pressure in pascal
+        Valve command is float from 0 to 1, 0 being close, 1 being full open
+        Returns flow in cubic meter/sec
+
+        This is rough piecewise linear interpretation of the charts at:
+        http://www.hydraforce.com/proport/Prop_html/2-112-1_SP10-47C/2-112-1_SP10-47C.htm
+        """
+        if inlet_to_work_port_pressure < psi2pascal*300:
+            normalized_flow = (gpm2cmps*5.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
+        else:
+            normalized_flow = (gpm2cmps*5.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
+        normalized_command = (valve_command - .4)/0.6
+        return normalized_command * normalized_flow
+        
+
+    def __init__(self, world, actuator_characteristics=None):
+        super(ValveActuatedHingeJoint, self).__init__(world)
+        self.valve_command = 0.0
+        self.actuator = actuator_characteristics
+
+    def getAngRate( self ):
+        # Calculate the pressure on the work side of the actuator
+        torque = self.getTorque()
+        force = torque / self.getLeverArm()
+        if self.valve_command > 0.0:
+            cross_section = self.actuator.getExtensionCrossSectionM2()
+        else:
+            cross_section = self.actuator.getRetractionCrossSectionM2()
+        if sign(self.valve_command) != sign(torque):
+            # We are pulling against the work side
+            work_pressure = 0.0
+        else:
+            work_pressure = force / cross_section
+        inlet_to_work_pressure = self.actuator.SYSTEM_PRESSURE - work_pressure
+        flow = self.SP10_47CFlow( inlet_to_work_pressure, abs(self.valve_command) )
+        lenrate = (flow / cross_section)
+        if self.valve_command<0:
+            lenrate *= -1
+        ang_vel = lenrate / self.getLeverArm()
+        if self.getBody(0) == ode.environment:
+            ang_vel = -1*ang_vel
+        return ang_vel
+
+    def getTorqueLimit( self ):
+        """The torque limit is directional depending on what side of the piston
+        is being driven.  This is dependent on which way we are pressurizing the
+        piston, not which way it's presently moving"""
+        if self.lenrate > 0:
+            return abs(self.getLeverArm()*self.extend_force_limit)
+        else:
+            return abs(self.getLeverArm()*self.retract_force_limit)
+ 
+    def setLengthRate(self, vel_mps):
+        raise NotImplemented, "Cannot set Length Rate directly on a ValveActuatedHingeJoint"
+    
+    def setValveCommand( self, command ):
+        """
+        command is float between 1 and -1.  1 is full extend, -1 full retract.
+        """
+        if command > 1:
+            command = 1
+        elif command < -1:
+            command = -1
+        self.valve_command = command
+        
+
+    def update(self):
+        self.setParam(ode.ParamFMax, self.getTorqueLimit())
+        self.setParam(ode.ParamVel, self.getAngRate() )
 
 import os.path as path
 graphics_dir = path.dirname(path.realpath(__file__))+'/graphics'
@@ -174,7 +254,9 @@ class LegOnColumn(MultiBody):
             axis   = act_axis,\
             a1x    = yaw_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = yaw_act_dim.PIVOT2[0],\
-            a2y    = yaw_act_dim.PIVOT2[1])
+            a2y    = yaw_act_dim.PIVOT2[1],\
+            subclass = ValveActuatedHingeJoint)
+        hip_yaw.actuator = yaw_act_dim
         #hip_yaw.setParam(ode.ParamLoStop, 0.0)
         hip_yaw.setParam(ode.ParamLoStop, -yaw_act_dim.getRangeOfMotion())
         hip_yaw.setParam(ode.ParamHiStop, 0.0)
@@ -183,7 +265,7 @@ class LegOnColumn(MultiBody):
         hip_yaw.setRetractForceLimit(yaw_act_dim.getMaxRetractionForceNewtons())
         hip_yaw.setExtendCrossSection(yaw_act_dim.getExtensionCrossSectionM2())
         hip_yaw.setRetractCrossSection(yaw_act_dim.getRetractionCrossSectionM2())
-        hip_yaw.setMaxHydraulicFlow(gallon2cmps*5)
+        hip_yaw.setMaxHydraulicFlow(gpm2cmps*5)
         hip_yaw.setAngleOffset(yaw_act_dim.ANG_OFFSET )
 
         # Add thigh and hip pitch
@@ -216,14 +298,16 @@ class LegOnColumn(MultiBody):
             axis   = act_axis, \
             a1x    = pitch_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = pitch_act_dim.PIVOT2[0],\
-            a2y    = pitch_act_dim.PIVOT2[1])
+            a2y    = pitch_act_dim.PIVOT2[1],\
+            subclass = ValveActuatedHingeJoint)
+        hip_pitch.actuator = pitch_act_dim
         hip_pitch.setParam(ode.ParamLoStop, 0.0)
         hip_pitch.setParam(ode.ParamHiStop, pitch_act_dim.getRangeOfMotion())
         hip_pitch.setExtendForceLimit(pitch_act_dim.getMaxExtensionForceNewtons())
         hip_pitch.setRetractForceLimit(pitch_act_dim.getMaxRetractionForceNewtons())
         hip_pitch.setExtendCrossSection(pitch_act_dim.getExtensionCrossSectionM2())
         hip_pitch.setRetractCrossSection(pitch_act_dim.getRetractionCrossSectionM2())
-        hip_pitch.setMaxHydraulicFlow(gallon2cmps*5)
+        hip_pitch.setMaxHydraulicFlow(gpm2cmps*5)
         hip_pitch.setAngleOffset(pitch_act_dim.ANG_OFFSET )
 
         # Add calf and knee bend
@@ -253,14 +337,16 @@ class LegOnColumn(MultiBody):
             axis   = act_axis, \
             a1x    = knee_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = knee_act_dim.PIVOT2[0],\
-            a2y    = knee_act_dim.PIVOT2[1])
+            a2y    = knee_act_dim.PIVOT2[1],\
+            subclass = ValveActuatedHingeJoint)
+        knee_pitch.actuator = knee_act_dim
         knee_pitch.setParam(ode.ParamLoStop, 0.0)
         knee_pitch.setParam(ode.ParamHiStop, knee_act_dim.getRangeOfMotion())
         knee_pitch.setExtendForceLimit(knee_act_dim.getMaxExtensionForceNewtons())
         knee_pitch.setRetractForceLimit(knee_act_dim.getMaxRetractionForceNewtons())
         knee_pitch.setExtendCrossSection(knee_act_dim.getExtensionCrossSectionM2())
         knee_pitch.setRetractCrossSection(knee_act_dim.getRetractionCrossSectionM2())
-        knee_pitch.setMaxHydraulicFlow(gallon2cmps*5)
+        knee_pitch.setMaxHydraulicFlow(gpm2cmps*5)
         knee_pitch.setAngleOffset(knee_act_dim.ANG_OFFSET )
 
         # Create the foot
