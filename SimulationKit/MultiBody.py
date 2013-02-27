@@ -557,11 +557,17 @@ class MultiBody(object):
 
         return joint
     def addLinearVelocityActuatedHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0):
-
+        hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0, subclass=None):
+        """
+        TODO: better documentation of arguments
+        subclass is a subclass of LinearVelocityActuatedHingeJoint
+        """
         anchor = add3(anchor, self.offset)
 
-        joint = LinearVelocityActuatedHingeJoint( world = self.sim.world )
+        if( subclass ):
+            joint = subclass( self.sim.world )
+        else:
+            joint = LinearVelocityActuatedHingeJoint( world = self.sim.world )
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )
