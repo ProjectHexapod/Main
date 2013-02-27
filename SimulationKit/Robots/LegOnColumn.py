@@ -132,15 +132,6 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             ang_vel = -1*ang_vel
         return ang_vel
 
-    def getTorqueLimit( self ):
-        """The torque limit is directional depending on what side of the piston
-        is being driven.  This is dependent on which way we are pressurizing the
-        piston, not which way it's presently moving"""
-        if self.lenrate > 0:
-            return abs(self.getLeverArm()*self.extend_force_limit)
-        else:
-            return abs(self.getLeverArm()*self.retract_force_limit)
- 
     def setLengthRate(self, vel_mps):
         raise NotImplemented, "Cannot set Length Rate directly on a ValveActuatedHingeJoint"
     
@@ -153,11 +144,6 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
         elif command < -1:
             command = -1
         self.valve_command = command
-        
-
-    def update(self):
-        self.setParam(ode.ParamFMax, self.getTorqueLimit())
-        self.setParam(ode.ParamVel, self.getAngRate() )
 
 import os.path as path
 graphics_dir = path.dirname(path.realpath(__file__))+'/graphics'
