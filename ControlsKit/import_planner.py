@@ -18,6 +18,9 @@ def importPlanner(module_or_file_name = None):
     
     module = __import__(filename)
     try:
-        return module.update
+        if hasattr(module, 'controller':
+            return module.update, module.controller
+        else:
+            return module.update
     except AttributeError:
         raise AttributeError("The planner module must have an update() function.")
