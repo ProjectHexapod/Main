@@ -1,0 +1,6 @@
+hip_pitch_e: 0.253708
+hip_pitch_r: 0.247987
+knee_pitch_e: 0.225631
+knee_pitch_r: 0.201783
+hip_yaw_e: 0.254815
+hip_yaw_r: 0.283002
