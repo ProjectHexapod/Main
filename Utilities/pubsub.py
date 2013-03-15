@@ -16,6 +16,8 @@ class Publisher(object):
         if hasattr(self, 'initialized'):
             print 'Publisher has already initialized, but new one requested.  Returning old instance'
             return
+        else:
+            print "Creating new Publisher on port %d"%port
         # Start the publishing server on specified TCP port
         self.port         = port
         self.sock         = None
@@ -107,8 +109,11 @@ class Publisher(object):
                     elif type(data) == type([]):
                         # Subscription request
                         keys = data
-                    self.subscriptions = keys
-                    self.ready_to_publish = True
+                        self.subscriptions = keys
+                        self.ready_to_publish = True
+                    else:
+                        print "Received unhandled request!"
+                        print data
                     #except e, msg:
                     #    print 'Pickle fail'
                     #    self.restartflag = 1
@@ -170,6 +175,7 @@ class Subscriber:
     def subscribeTo( self, name_list ):
         self.sock.send( pickle.dumps(name_list) )
     def requestAnotherPublisher( self, port ):
+        print "Requesting another publisher on %d"%port
         self.sock.send( pickle.dumps(port) )
     def run_client( self ):
         # The client waits to receive frames and then calls the callback
