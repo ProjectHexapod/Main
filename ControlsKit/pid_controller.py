@@ -108,7 +108,7 @@ class PIDController:
         self.prev_desired_pos = desired_pos
         
         actuator_command = self.kp * error + self.integral_error_accumulator + self.kd * derivative_error + self.kff*desired_vel + self.kfa*velocity_error
-        actuator_command = self.boundActuatorCommand(actuator_command, measured_pos)
+        #actuator_command = self.boundActuatorCommand(actuator_command, measured_pos)
         
         return actuator_command
 
