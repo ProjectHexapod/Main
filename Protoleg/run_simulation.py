@@ -5,6 +5,7 @@ from SimulationKit import Simulator
 from SimulationKit.Robots import LegOnColumn
 from SimulationKit.helpers import *
 from ControlsKit.import_planner import importPlanner
+from Utilities.pubsub import Publisher
 
 def keyboardInterruptHandler( sig, frame ):
     print 'Caught keyboard interrupt!'
@@ -22,6 +23,11 @@ if type(retval) == tuple:
 else:
     update = retval
     controller = None
+
+publisher = Publisher(5055)
+publisher.addToCatalog( 'yaw_ang_target',   controller.getDesiredYawDeg )
+publisher.addToCatalog( 'pitch_ang_target',   controller.getDesiredPitchDeg )
+publisher.addToCatalog( 'knee_ang_target',   controller.getDesiredKneeDeg )
 
 d = {'offset':(0,0,2.00)}
 s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnColumn,robot_kwargs=d, start_paused = False, render_objs=1, draw_contacts=1)
