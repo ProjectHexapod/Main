@@ -100,7 +100,10 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             normalized_flow = (gpm2cmps*5.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
         else:
             normalized_flow = (gpm2cmps*5.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
-        normalized_command = (valve_command - .4)/0.6
+        if valve_command > 0.3:
+            normalized_command = (valve_command - .3)/0.7
+        else:
+            normalized_command = 0.0
         return normalized_command * normalized_flow
         
 
@@ -379,6 +382,9 @@ class LegOnColumn(MultiBody):
             self.publisher.addToCatalog(\
                 "%s.ang"%(dof_name),\
                 joint.getAngle)
+            self.publisher.addToCatalog(\
+                "%s.ang_deg"%(dof_name),\
+                lambda: joint.getAngle()/deg2rad)
             self.publisher.addToCatalog(\
                 "%s.len"%(dof_name),\
                 joint.getLength)
