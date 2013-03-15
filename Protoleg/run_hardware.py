@@ -45,7 +45,7 @@ def calibrateAngles( uncalibrated_angles ):
     angles[1] -= (117.0*pi/180)
     # Knee offset INVERT
     angles[2] *= -1
-    angles[2] += (288.5*pi/180)
+    angles[2] += (018.5*pi/180)
 
     # Constrain
     for i in range(len(angles)):
@@ -67,8 +67,11 @@ bus = BusManager( 'eth0', mac_list )
 # Check command-line arguments to find the planner module
 retval = importPlanner()
 # FIXME: This is to allow backwards compatibility to older versions of importPlanner
-update = retval
-controller = None
+if type(retval) == tuple:
+    update, controller = retval
+else:
+    update = retval
+    controller = None
 
 angles = [0,0,0]
 valve_commands = [0,0,0]
@@ -80,12 +83,16 @@ if 1:
     publisher.addToCatalog( 'yaw_rad',      lambda: angles[0] )
     publisher.addToCatalog( 'pitch_rad',    lambda: angles[1] )
     publisher.addToCatalog( 'knee_rad',     lambda: angles[2] )
-    publisher.addToCatalog( 'yaw_deg',      lambda:180*bus.nodes[0].getMagEncoderAngle()[0]/pi )
-    publisher.addToCatalog( 'pitch_deg',    lambda:180*bus.nodes[1].getMagEncoderAngle()[0]/pi )
-    publisher.addToCatalog( 'knee_deg',     lambda:180*bus.nodes[2].getMagEncoderAngle()[0]/pi )
+    publisher.addToCatalog( 'yaw_deg',      lambda:180*angles[0]/pi )
+    publisher.addToCatalog( 'pitch_deg',    lambda:180*angles[1]/pi )
+    publisher.addToCatalog( 'knee_deg',     lambda:180*angles[2]/pi )
     publisher.addToCatalog( 'yaw_cmd',      lambda: valve_commands[0] ) 
     publisher.addToCatalog( 'pitch_cmd',    lambda: valve_commands[1] ) 
     publisher.addToCatalog( 'knee_cmd',     lambda: valve_commands[2] ) 
+    if controller != None:
+        publisher.addToCatalog( 'yaw_ang_target',   controller.getDesiredYawDeg )
+        publisher.addToCatalog( 'pitch_ang_target',   controller.getDesiredPitchDeg )
+        publisher.addToCatalog( 'knee_ang_target',   controller.getDesiredKneeDeg )
     publisher.start()
 
     class rateEstimator(object):
@@ -193,6 +200,14 @@ while run_flag:
             error_rates[i] += 0.01
         error_rates[i] *= 0.99
     valve_commands = update( time_0, angles[0], angles[1], angles[2], 0.0 )
+#    capped_commands = []
+#    for c in valve_commands:
+#        if c > 0.5:
+#            c = 0.5
+#        elif c < -0.5:
+#            c = -0.5
+#        capped_commands.append(c)
+#    valve_commands = capped_commands
     bus.exchangeMagValveData( valve_commands )
     bus.waitForSync()
     watchdog.feed()
