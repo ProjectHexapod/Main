@@ -411,6 +411,9 @@ class NodeManager(object):
             valve_dir = 0
         else:
             valve_dir = int(valve_command/abs(valve_command))
+        if valve_power > 255:
+            valve_power = 255
+            print "WARNING:  Capping valve_command at 255"
         payload += pack('!Bb', valve_power, valve_dir)
         # addr 12 len 3 is the offset for reading back mag enc data
         #self.sendGenericReadWrite( 12, 3, 15, 2, payload, self._printMagData )
