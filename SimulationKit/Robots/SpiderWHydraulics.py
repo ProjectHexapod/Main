@@ -31,23 +31,23 @@ class StompyLegPhysicalCharacteristics(object):
 
         # Describe the actuator placements at each joint
         self.YAW_ACT                          = ActuatorCharacteristics()
-        self.YAW_ACT.BORE_DIAMETER            = inch2meter*2.5
-        self.YAW_ACT.ROD_DIAMETER             = inch2meter*1.125
-        self.YAW_ACT.ACT_RETRACTED_LEN        = inch2meter*14.25
-        self.YAW_ACT.ACT_EXTENDED_LEN         = inch2meter*18.25
-        self.YAW_ACT.PIVOT1_DIST_FROM_JOINT   = inch2meter*16.18
-        self.YAW_ACT.PIVOT2                   = (inch2meter*2.32,inch2meter*3.3)
-        self.YAW_ACT.ANG_OFFSET               = deg2rad*-30.0
+        self.YAW_ACT.BORE_DIAMETER            = inch2meter*2.0
+        self.YAW_ACT.ROD_DIAMETER             = inch2meter*1.25
+        self.YAW_ACT.ACT_RETRACTED_LEN        = inch2meter*16.00
+        self.YAW_ACT.ACT_EXTENDED_LEN         = inch2meter*24.00
+        self.YAW_ACT.PIVOT1_DIST_FROM_JOINT   = inch2meter*19.215
+        self.YAW_ACT.PIVOT2                   = (inch2meter*4.163,inch2meter*5.426)
+        self.YAW_ACT.ANG_OFFSET               = deg2rad*-37.5
         self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2000
         self.YAW_ACT.AXIS                     = (0,0,-1)
 
         self.PITCH_ACT                        = ActuatorCharacteristics()
-        self.PITCH_ACT.BORE_DIAMETER          = inch2meter*3.0
-        self.PITCH_ACT.ROD_DIAMETER           = inch2meter*1.5
-        self.PITCH_ACT.ACT_RETRACTED_LEN      = inch2meter*20.250
-        self.PITCH_ACT.ACT_EXTENDED_LEN       = inch2meter*30.250
-        self.PITCH_ACT.PIVOT1_DIST_FROM_JOINT = inch2meter*8.96
-        self.PITCH_ACT.PIVOT2                 = (inch2meter*27.55, inch2meter*8.03)
+        self.PITCH_ACT.BORE_DIAMETER          = inch2meter*3.5
+        self.PITCH_ACT.ROD_DIAMETER           = inch2meter*1.75
+        self.PITCH_ACT.ACT_RETRACTED_LEN      = inch2meter*22.000
+        self.PITCH_ACT.ACT_EXTENDED_LEN       = inch2meter*34.000
+        self.PITCH_ACT.PIVOT1_DIST_FROM_JOINT = inch2meter*31.209
+        self.PITCH_ACT.PIVOT2                 = (inch2meter*9.26, inch2meter*1.506)
         self.PITCH_ACT.ANG_OFFSET             = deg2rad*-84.0
         self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2000
         self.PITCH_ACT.AXIS                   = (0,-1,0)
@@ -97,7 +97,7 @@ class StompyPhysicalCharacteristics(object):
         for i in range(6):
             leg = StompyLegPhysicalCharacteristics()
             self.LEGS.append(leg)
-        tmp_offset_degs = 45
+        tmp_offset_degs = 30
         self.LEGS[0].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
             (0,0,1),deg2rad*(90-tmp_offset_degs) ) 
         self.LEGS[1].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
@@ -110,12 +110,12 @@ class StompyPhysicalCharacteristics(object):
             (0,0,1),deg2rad*270 ) 
         self.LEGS[5].ROTATION_FROM_ROBOT_ORIGIN = calcRotMatrix(\
             (0,0,1),deg2rad*(270+tmp_offset_degs) ) 
-        self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 66, 20,-12),inch2meter)
-        self.LEGS[1].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0, 30,-12),inch2meter)
-        self.LEGS[2].OFFSET_FROM_ROBOT_ORIGIN = mul3((-66, 20,-12),inch2meter)
-        self.LEGS[3].OFFSET_FROM_ROBOT_ORIGIN = mul3((-66,-20,-12),inch2meter)
-        self.LEGS[4].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0,-30,-12),inch2meter)
-        self.LEGS[5].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 66,-20,-12),inch2meter)
+        self.LEGS[0].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 81, 23,-12),inch2meter)
+        self.LEGS[1].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0, 27,-12),inch2meter)
+        self.LEGS[2].OFFSET_FROM_ROBOT_ORIGIN = mul3((-81, 23,-12),inch2meter)
+        self.LEGS[3].OFFSET_FROM_ROBOT_ORIGIN = mul3((-81,-23,-12),inch2meter)
+        self.LEGS[4].OFFSET_FROM_ROBOT_ORIGIN = mul3((  0,-27,-12),inch2meter)
+        self.LEGS[5].OFFSET_FROM_ROBOT_ORIGIN = mul3(( 81,-23,-12),inch2meter)
 
 class DDLimitController(object):
     def __init__(self, init_val, init_dval=0.0, max_dval=0.0, max_ddval=0.0,\
@@ -602,16 +602,16 @@ class SpiderWHydraulics(MultiBody):
         self.setDesiredFootPositions( foot_positions )
         return foot_positions
     def constantSpeedWalkSmart( self, x_scale=1.0, y_scale=0.0, z_scale=0.5, rot_scale=0.0 ):
-        step_t          = 1.4
-        swing_f         = 0.80
-        down_f          = 0.10
-        up_f            = 0.10
-        stride_length   = 1.90    # length of a stride, m
+        step_t          = 1.5
+        swing_f         = 0.90
+        down_f          = 0.05
+        up_f            = 0.05
+        stride_length   = 2.00    # length of a stride, m
         neutral_r_outer = inch2meter*65
-        neutral_r_inner = inch2meter*70
+        neutral_r_inner = inch2meter*65
         body_h          = inch2meter*70
         max_rot         = pi/3
-        foot_lift_h     = 0.55    # how high to lift feet in m
+        foot_lift_h     = 0.25    # how high to lift feet in m
 
         foot_positions = []
 
