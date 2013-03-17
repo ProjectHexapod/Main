@@ -18,7 +18,7 @@ def importPlanner(module_or_file_name = None):
     
     module = __import__(filename)
     try:
-        if hasattr(module, 'controller':
+        if hasattr(module, 'controller'):
             return module.update, module.controller
         else:
             return module.update
