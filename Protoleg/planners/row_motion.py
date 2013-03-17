@@ -11,10 +11,10 @@ controller = LimbController()
 path = None
 
 points = []
-points.append( (1.6,  0.95, -1.15) )
-points.append( (1.6, -0.95, -1.15) )
-points.append( (1.6, -0.95, -1.58) )
-points.append( (1.6,  0.95, -1.58) )
+points.append( (1.8,  1.45, -1.05) )
+points.append( (1.8, -1.45, -1.05) )
+points.append( (1.8, -1.45, -1.78) )
+points.append( (1.8,  1.45, -1.78) )
 #points.append( (1.6,  0.00, -1.7) )
 index = 0
 
