@@ -48,56 +48,57 @@ class PIDController:
         delta_time = time_sources.global_time.getDelta()
         
         # bound the desired position
-        desired_pos = self.boundDesiredPosition(desired_pos)
+        #desired_pos = self.boundDesiredPosition(desired_pos)
 
         desired_vel = (desired_pos - self.prev_desired_pos)/delta_time
 
         error = desired_pos - measured_pos
 
         self.peak_detector.update(error)
-        
-        if self.peak_detector.hasConverged():
-            if self.peak_detector.isUnstable():
-                warningstring=("LimbController: Maximum error for the"+
-                        " desired point has increased for %d seconds,"+
-                        " but is within converged range.  Might be unstable." %
-                        self.peak_detector.getResolveTime() )
-                #logger.warning(warningstring,
-                #        desired_pos=desired_pos,
-                #        measured_pos=measured_pos,
-                #        error=error, 
-                #        bad_value=error)
-            elif self.peak_detector.isLimitCycle():
-                warningstring=("LimbController: Maximum error for the"+
-                        " desired point has increased once or more for %d seconds,"+
-                        " but is within converged range.  Might be unstable." %
-                        self.peak_detector.getResolveTime() )
-                #logger.warning(warningstring,
-                #        desired_pos=desired_pos,
-                #        measured_pos=measured_pos,
-                #        error=error,
-                #        bad_value=error)
-        else:
-            if self.peak_detector.isUnstable():
-                errorstring=("LimbController: Maximum error for the desired point"+ 
-                        "has increased for %d seconds.  System potentially unstable." %
-                        self.peak_detector.getResolveTime() )
-                #logger.error(errorstring,
-                #        desired_pos=desired_pos,
-                #        measured_pos=measured_pos,
-                #        error=error,
-                #        bad_value=error)
-                raise ValueError(errorstring)
-            elif self.peak_detector.isLimitCycle():
-                errorstring=("LimbController: Controller has not converged"+ 
-                "over %d seconds.  System potentially in a limit cycle." %
-                self.peak_detector.getResolveTime() )
-                #logger.error(errorstring,
-                #        desired_pos=desired_pos,
-                #        measured_pos=measured_pos,
-                #        error=error,
-                #        bad_value=error)
-                raise ValueError(errorstring)
+       
+        if 0:
+            if self.peak_detector.hasConverged():
+                if self.peak_detector.isUnstable():
+                    warningstring=("LimbController: Maximum error for the"+
+                            " desired point has increased for %d seconds,"+
+                            " but is within converged range.  Might be unstable." %
+                            self.peak_detector.getResolveTime() )
+                    #logger.warning(warningstring,
+                    #        desired_pos=desired_pos,
+                    #        measured_pos=measured_pos,
+                    #        error=error, 
+                    #        bad_value=error)
+                elif self.peak_detector.isLimitCycle():
+                    warningstring=("LimbController: Maximum error for the"+
+                            " desired point has increased once or more for %d seconds,"+
+                            " but is within converged range.  Might be unstable." %
+                            self.peak_detector.getResolveTime() )
+                    #logger.warning(warningstring,
+                    #        desired_pos=desired_pos,
+                    #        measured_pos=measured_pos,
+                    #        error=error,
+                    #        bad_value=error)
+            else:
+                if self.peak_detector.isUnstable():
+                    errorstring=("LimbController: Maximum error for the desired point"+ 
+                            "has increased for %d seconds.  System potentially unstable." %
+                            self.peak_detector.getResolveTime() )
+                    #logger.error(errorstring,
+                    #        desired_pos=desired_pos,
+                    #        measured_pos=measured_pos,
+                    #        error=error,
+                    #        bad_value=error)
+                    raise ValueError(errorstring)
+                elif self.peak_detector.isLimitCycle():
+                    errorstring=("LimbController: Controller has not converged"+ 
+                    "over %d seconds.  System potentially in a limit cycle." %
+                    self.peak_detector.getResolveTime() )
+                    #logger.error(errorstring,
+                    #        desired_pos=desired_pos,
+                    #        measured_pos=measured_pos,
+                    #        error=error,
+                    #        bad_value=error)
+                    raise ValueError(errorstring)
         
         self.integral_error_accumulator += self.ki * error * delta_time
         derivative_error = self.d_lowpass.update((error - self.prev_error) / delta_time)
