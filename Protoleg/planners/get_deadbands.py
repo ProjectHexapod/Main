@@ -39,15 +39,7 @@ class Gait:
         if self.initial_path.isDone():
             self.callback = self.pause
         lr = self.controller.getLengthRateCommands()
-        lr_adjusted = []
-        for k in lr:
-            if k > 0:
-                lr_adjusted.append( k + .4 )
-            elif k < 0:
-                lr_adjusted.append( k - .4 )
-            else:
-                lr_adjusted.append( 0.0 )
-        return lr_adjusted
+        return lr
     def pause( self, time, yaw, hip_pitch, knee_pitch, shock_depth, command=None ):
         if not hasattr( self, 'start_pause_time' ):
             print "Waiting..."
