@@ -50,6 +50,10 @@ class LimbController:
                 [readFloatWithDefault(c, section,'yaw_dr'),
                  readFloatWithDefault(c, section,'hp_dr'),
                  readFloatWithDefault(c, section,'kp_dr')])
+        self.proparray = array(
+                [readFloatWithDefault(c, section,'yaw_prop'),
+                 readFloatWithDefault(c, section,'hp_prop'),
+                 readFloatWithDefault(c, section,'kp_prop')])
         
         self.length_rate_commands=[]
         
@@ -94,10 +98,13 @@ class LimbController:
         for i in range(len(self.pid_controllers)):
             actuator_command=self.pid_controllers[i].update(
                 self.desired_pos_array[i], measured_pos_array[i])
+
+            # JWHONG COMPENSATION FOR EXTEND VS RETRACT SURFACE AREA HACK
             # JWHONG DEADBAND HACK
             if actuator_command > 0:
                 actuator_command += self.dearray[i]
             elif actuator_command < 0:
+                actuator_command *= self.proparray[i]
                 actuator_command -= self.drarray[i]
             actuator_commands.append(actuator_command)
         self.length_rate_commands=actuator_commands
