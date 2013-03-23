@@ -2,16 +2,34 @@ import ode
 from math import *
 from helpers import *
 
-class ControlledHingeJoint(ode.HingeJoint):
-    """ControlledHingeJoint lets you set target positions and gives you
-    torque feedback"""
-    def __init__(self, world=None):
+class BacklashHingeJoint(ode.HingeJoint):
+    """BacklashHingeJoint lets you simulate backlash and gives you
+    torque feedback."""
+    def __init__(self, world = None):
+        """
+        FIXME: Subclassing ode.HingeJoint produces a very weird behavior...
+        python yells when I change the arguments accepted by the constructor.
+        I do not understand why.
+        """
         ode.HingeJoint.__init__(self, world)
+        self.world = world
         self.setFeedback(True)
-        self.setAngleTarget(0.0)
         self.setTorqueLimit(0.0)
-        self.setGain(1.0)
         self.setAngleOffset( 0.0 )
+        self.setBacklashMax( 0.0 )
+    def setBacklashMax( self, backlash_radians ):
+        """
+        Set the backlash gap in radians.
+        The backlash gap extends in both directions from the starting angle, so the
+        total swept angle in backlash is 2*backlash_radians
+        """
+        self.backlash_max = backlash_radians
+        # backlash_pos is the position the joint would have if there were no backlash
+        self.backlash_pos = 0.0
+    def getBacklashMax( self ):
+        return self.backlash_max
+    def getBacklashPos( self ):
+        return self.backlash_pos
     def setAngleOffset( self, offset ):
         self.angle_offset = offset
     def getAngleOffset( self ):
@@ -43,24 +61,60 @@ class ControlledHingeJoint(ode.HingeJoint):
         t_joint = sub3(torque, t_force)
         # Figure out the projection of the torque on the axis
         return dot3( t_joint, norm3(axis) )
+    def setTorqueLimit( self, limit ):
+        self.setParam(ode.ParamFMax,    limit)
+    def getTorqueLimit( self ):
+        return self.getParam(ode.ParamFMax)
+    def update( self ):
+        """Handle backlash simulation"""
+        present_angle  = self.getAngle()
+        present_torque = self.getTorque()
+        in_backlash = 1
+        FUDGE_FACTOR = 0.1*pi/180.
+        # Figure out if we are in the middle of our backlash or at an edge
+        if self.backlash_pos + self.backlash_max <= present_angle:
+            # We are at an edge of the backlash zone.  Is the torque in the correct direction?
+            if present_torque < 0.0:
+                self.backlash_pos = present_angle - self.backlash_max - FUDGE_FACTOR
+                in_backlash = 0
+        if self.backlash_pos - self.backlash_max >= present_angle:
+            # We are at an edge of the backlash zone.  Is the torque in the correct direction?
+            if present_torque > 0.0:
+                self.backlash_pos = present_angle + self.backlash_max + FUDGE_FACTOR
+                in_backlash = 0
+        if in_backlash:
+            # We are squarely in the backlash regime
+            # FIXME: if a velocity has been commanded, move the backlash
+            # position at that velocity.  This is really horrible, but
+            # the alternative is hacking a motor with backlash in to ODE
+            # itself.
+            self.backlash_pos += self.getParam( ode.ParamVel )*self.sim.dt
+            self.setParam(ode.ParamFMax, 10.0)
+
+class ControlledHingeJoint(BacklashHingeJoint):
+    """ControlledHingeJoint lets you set target positions and gives you
+    torque feedback."""
+    def __init__(self, world):
+        print 'In controlled init'
+        super(ControlledHingeJoint, self).__init__(world)
+        self.setAngleTarget(0.0)
+        self.setGain(0.0)
     def setAngleTarget( self, target ):
         self.angle_target = target
     def getAngleTarget( self ):
         return self.angle_target
     def getAngleError( self ):
         return calcAngularError( self.angle_target, self.getAngle() )
-    def setTorqueLimit( self, limit ):
-        self.setParam(ode.ParamFMax,    limit)
-    def getTorqueLimit( self ):
-        return self.getParam(ode.ParamFMax)
     def setGain( self, gain ):
         self.gain = gain
     def getGain( self ):
         return self.gain
     def update( self ):
-        """Do control"""
-        error = self.getAngleError()
-        self.setParam( ode.ParamVel, error*self.gain )
+        """Do control, handle backlash simulation"""
+        if self.gain != 0.0:
+            error = self.getAngleError()
+            self.setParam( ode.ParamVel, error*self.gain )
+        super(ControlledHingeJoint, self).update()
 
 class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     """This simulates a hinge joint driven by a linear actuator.
@@ -75,10 +129,7 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         (y axis placement assumed to be 0)
         a2_x and a2_y are the placement of anchor 2
         """
-        ode.HingeJoint.__init__(self, world)
-        self.setFeedback(True)
-        self.setAngleTarget(0.0)
-        self.setGain(1.0)
+        super(LinearActuatorControlledHingeJoint, self).__init__(world)
     def setActuatorAnchors( self, a1_x, a2_x, a2_y ):
         self.a1_x = a1_x
         self.a2_x = a2_x
@@ -163,19 +214,22 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     def update( self ):
         limit = self.getTorqueLimit()
         self.setParam(ode.ParamFMax,    limit)
-        ControlledHingeJoint.update(self)
+        super(LinearActuatorControlledHingeJoint, self).update()
 
 class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     """This simulates a hinge joint driven by a linear actuator that accepts a
     velocity command."""
 
     def __init__(self, world):
+        print 'In LinearVelocity Init'
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         self.lenrate = 0
         self.max_retract_rate = -1e9
         self.max_extend_rate  =  1e9
 
     def getAngRate( self ):
+        """
+        """
         # FIXME: the hip yaw joints move in the opposite direction you command them to.
         # I do not understand... the geometry works out and they behave perfectly,
         # except they move in the exact opposite direction from what you command them.
@@ -201,8 +255,9 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         self.lenrate = min(self.lenrate, self.max_extend_rate)
         
     def update(self):
-        self.setParam(ode.ParamFMax, self.getTorqueLimit())
+        #self.setParam(ode.ParamFMax, self.getTorqueLimit())
         self.setParam(ode.ParamVel, self.getAngRate() )
+        super(LinearVelocityActuatedHingeJoint, self).update()
 
 class PrismaticSpringJoint(ode.SliderJoint):
     def __init__(self, world):
@@ -370,7 +425,7 @@ class MultiBody(object):
         return self.totalMass
     def buildBody(self):
         """This is for the subclasses to define."""
-        return
+        raise NotImplemented
     def addBody(self, p1, p2, radius, mass=None, upVec=(0,0,1)):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
@@ -537,14 +592,20 @@ class MultiBody(object):
 
         return joint
     def addLinearControlledHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0):
+        hiStop = ode.Infinity, force_limit = 0.0, gain = 0.0, backlash = 0.0):
 
         anchor = add3(anchor, self.offset)
 
-        joint = LinearActuatorControlledHingeJoint( world = self.sim.world )
+        joint = LinearActuatorControlledHingeJoint( self.sim )
+        # FIXME:  All of this horrible setting of variables after instantiation is a result
+        # of the weird behavior documented in the constructor of BacklashHingeJoint
+        # Basically you can't subclass ode.HingeJoint and change the constructor arguments
+        # for some unknown reason.
+        joint.sim = self.sim
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )
+        joint.setBacklashMax( backlash )
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -557,7 +618,7 @@ class MultiBody(object):
 
         return joint
     def addLinearVelocityActuatedHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, force_limit = 0.0, gain = 1.0, subclass=None):
+        hiStop = ode.Infinity, force_limit = 0.0, gain = 0.0, backlash=0.0, subclass=None):
         """
         TODO: better documentation of arguments
         subclass is a subclass of LinearVelocityActuatedHingeJoint
@@ -567,10 +628,16 @@ class MultiBody(object):
         if( subclass ):
             joint = subclass( self.sim.world )
         else:
-            joint = LinearVelocityActuatedHingeJoint( world = self.sim.world )
+            joint = LinearVelocityActuatedHingeJoint( self.sim.world )
+        # FIXME:  All of this horrible setting of variables after instantiation is a result
+        # of the weird behavior documented in the constructor of BacklashHingeJoint
+        # Basically you can't subclass ode.HingeJoint and change the constructor arguments
+        # for some unknown reason.
+        joint.sim = self.sim
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )
+        joint.setBacklashMax( backlash )
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -583,13 +650,19 @@ class MultiBody(object):
 
         return joint
     def addControlledHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, torque_limit = 0.0, gain = 1.0):
+        hiStop = ode.Infinity, torque_limit = 0.0, gain = 0.0, backlash = 0.0):
 
         anchor = add3(anchor, self.offset)
 
-        joint = ControlledHingeJoint( world = self.sim.world )
+        joint = ControlledHingeJoint( self.sim )
+        # FIXME:  All of this horrible setting of variables after instantiation is a result
+        # of the weird behavior documented in the constructor of BacklashHingeJoint
+        # Basically you can't subclass ode.HingeJoint and change the constructor arguments
+        # for some unknown reason.
+        joint.sim = self.sim
         joint.setTorqueLimit( torque_limit )
         joint.setGain( gain )
+        joint.setBacklashMax( backlash )
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
