@@ -2,9 +2,13 @@ import ode
 from math import *
 from helpers import *
 
-class BacklashHingeJoint(ode.HingeJoint):
-    """BacklashHingeJoint lets you simulate backlash and gives you
-    torque feedback."""
+class MyHingeJoint(ode.HingeJoint):
+    """
+    MyHingeJoint calculates torque feedback.
+    FIXME: And for some weird reason ode.HingeJoint
+    doesn't work in the simulator... I HAVE to subclass
+    it to get functional joints.  I don't know why.
+    """
     def __init__(self, world = None):
         """
         FIXME: Subclassing ode.HingeJoint produces a very weird behavior...
@@ -16,20 +20,6 @@ class BacklashHingeJoint(ode.HingeJoint):
         self.setFeedback(True)
         self.setTorqueLimit(0.0)
         self.setAngleOffset( 0.0 )
-        self.setBacklashMax( 0.0 )
-    def setBacklashMax( self, backlash_radians ):
-        """
-        Set the backlash gap in radians.
-        The backlash gap extends in both directions from the starting angle, so the
-        total swept angle in backlash is 2*backlash_radians
-        """
-        self.backlash_max = backlash_radians
-        # backlash_pos is the position the joint would have if there were no backlash
-        self.backlash_pos = 0.0
-    def getBacklashMax( self ):
-        return self.backlash_max
-    def getBacklashPos( self ):
-        return self.backlash_pos
     def setAngleOffset( self, offset ):
         self.angle_offset = offset
     def getAngleOffset( self ):
@@ -66,36 +56,29 @@ class BacklashHingeJoint(ode.HingeJoint):
     def getTorqueLimit( self ):
         return self.getParam(ode.ParamFMax)
     def update( self ):
-        """Handle backlash simulation"""
-        present_angle  = self.getAngle()
-        present_torque = self.getTorque()
-        in_backlash = 1
-        FUDGE_FACTOR = 0.1*pi/180.
-        # Figure out if we are in the middle of our backlash or at an edge
-        if self.backlash_pos + self.backlash_max <= present_angle:
-            # We are at an edge of the backlash zone.  Is the torque in the correct direction?
-            if present_torque < 0.0:
-                self.backlash_pos = present_angle - self.backlash_max - FUDGE_FACTOR
-                in_backlash = 0
-        if self.backlash_pos - self.backlash_max >= present_angle:
-            # We are at an edge of the backlash zone.  Is the torque in the correct direction?
-            if present_torque > 0.0:
-                self.backlash_pos = present_angle + self.backlash_max + FUDGE_FACTOR
-                in_backlash = 0
-        if in_backlash:
-            # We are squarely in the backlash regime
-            # FIXME: if a velocity has been commanded, move the backlash
-            # position at that velocity.  This is really horrible, but
-            # the alternative is hacking a motor with backlash in to ODE
-            # itself.
-            self.backlash_pos += self.getParam( ode.ParamVel )*self.sim.dt
-            self.setParam(ode.ParamFMax, 10.0)
+        pass
 
-class ControlledHingeJoint(BacklashHingeJoint):
+class SpringyHingeJoint(MyHingeJoint):
+    def __init__(self, world):
+        super(SpringyHingeJoint, self).__init__(world)
+        self.setDamping(0.0)
+        self.setSpringConstant(0.0)
+    def setDamping(self, val):
+        self.damping = val
+    def setSpringConstant(self, val):
+        self.spring_const = val
+    def getDamping(self):
+        return self.damping
+    def getSpringConstant(self):
+        return self.spring_const
+    def update(self):
+        super(SpringyHingeJoint, self).update()
+        self.addTorque( self.getAngleRate()*self.getDamping() + (self.getAngle() * self.getSpringConstant() ) )
+
+class ControlledHingeJoint(MyHingeJoint):
     """ControlledHingeJoint lets you set target positions and gives you
     torque feedback."""
     def __init__(self, world):
-        print 'In controlled init'
         super(ControlledHingeJoint, self).__init__(world)
         self.setAngleTarget(0.0)
         self.setGain(0.0)
@@ -221,7 +204,6 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     velocity command."""
 
     def __init__(self, world):
-        print 'In LinearVelocity Init'
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         self.lenrate = 0
         self.max_retract_rate = -1e9
@@ -426,7 +408,21 @@ class MultiBody(object):
     def buildBody(self):
         """This is for the subclasses to define."""
         raise NotImplemented
-    def addBody(self, p1, p2, radius, mass=None, upVec=(0,0,1)):
+    def addTransferBody( self, p ):
+        """
+        A TransferBody is a body with no mass whos sole purpose is to transmit forces.
+        This allows multiple joints to be stacked.
+        eg. body --- motor hinge ---- transfer body --- backlash hinge --- body
+        """
+        print 'Making transfer body'
+        body = ode.Body(self.sim.world)
+        # FIXME: A body doesn't interact with the sim unless it has mass.  Fudge it.
+        #m = ode.Mass()
+        #m.setSphereTotal( 1.0, 0.1 )
+        #body.setMass(m)
+        body.setPosition(p)
+        return body
+    def addBody(self, p1, p2, radius, mass=None, upVec=(0,0,1), collide=True):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
         radius to the ragdoll.
@@ -443,7 +439,6 @@ class MultiBody(object):
         cyllen = dist3(p1, p2) - radius
 
         body = ode.Body(self.sim.world)
-        # This is our own stupid shit
         body.color = (128,128,40,255)
         m = ode.Mass()
         if mass == None:
@@ -458,8 +453,10 @@ class MultiBody(object):
         body.radius = radius
 
         # create a capsule geom for collision detection
-        geom = ode.GeomCCylinder(self.sim.space, radius, cyllen)
-        geom.setBody(body)
+        if collide:
+            geom = ode.GeomCCylinder(self.sim.space, radius, cyllen)
+            geom.setBody(body)
+            self.geoms.append(geom)
 
         # define body rotation automatically from body axis
         za = norm3(sub3(p2, p1))
@@ -475,7 +472,6 @@ class MultiBody(object):
         body.setRotation(rot)
 
         self.bodies.append(body)
-        self.geoms.append(geom)
         
         self.totalMass += body.getMass().mass
 
@@ -598,14 +594,13 @@ class MultiBody(object):
 
         joint = LinearActuatorControlledHingeJoint( self.sim )
         # FIXME:  All of this horrible setting of variables after instantiation is a result
-        # of the weird behavior documented in the constructor of BacklashHingeJoint
+        # of the weird behavior documented in the constructor of MyHingeJoint
         # Basically you can't subclass ode.HingeJoint and change the constructor arguments
         # for some unknown reason.
         joint.sim = self.sim
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )
-        joint.setBacklashMax( backlash )
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -630,14 +625,13 @@ class MultiBody(object):
         else:
             joint = LinearVelocityActuatedHingeJoint( self.sim.world )
         # FIXME:  All of this horrible setting of variables after instantiation is a result
-        # of the weird behavior documented in the constructor of BacklashHingeJoint
+        # of the weird behavior documented in the constructor of MyHingeJoint
         # Basically you can't subclass ode.HingeJoint and change the constructor arguments
         # for some unknown reason.
         joint.sim = self.sim
         joint.setActuatorAnchors( a1x, a2x, a2y )
         joint.setForceLimit( force_limit )
         joint.setGain( gain )
-        joint.setBacklashMax( backlash )
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -650,19 +644,18 @@ class MultiBody(object):
 
         return joint
     def addControlledHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, torque_limit = 0.0, gain = 0.0, backlash = 0.0):
+        hiStop = ode.Infinity, torque_limit = 0.0, gain = 0.0 ):
 
         anchor = add3(anchor, self.offset)
 
-        joint = ControlledHingeJoint( self.sim )
+        joint = ControlledHingeJoint( self.sim.world )
         # FIXME:  All of this horrible setting of variables after instantiation is a result
-        # of the weird behavior documented in the constructor of BacklashHingeJoint
+        # of the weird behavior documented in the constructor of MyHingeJoint
         # Basically you can't subclass ode.HingeJoint and change the constructor arguments
         # for some unknown reason.
         joint.sim = self.sim
         joint.setTorqueLimit( torque_limit )
         joint.setGain( gain )
-        joint.setBacklashMax( backlash )
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -675,19 +668,43 @@ class MultiBody(object):
 
         return joint
     def addHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
-        hiStop = ode.Infinity):
+        hiStop = ode.Infinity, bounce=0.0):
 
         anchor = add3(anchor, self.offset)
 
-        joint = ode.HingeJoint(self.sim.world)
+        # FIXME: I have to use MyHingeJoint, a subclass of ode.HingeJoint,
+        # because ode.HingeJoint just doesn't attach for some unknown reason.
+        joint = MyHingeJoint(self.sim.world)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
         joint.setParam(ode.ParamLoStop, loStop)
         joint.setParam(ode.ParamHiStop, hiStop)
+        joint.setParam(ode.ParamBounce, bounce)
 
         joint.style = "hinge"
         self.joints.append(joint)
+        self.update_objects.append(joint)
+
+        return joint
+    def addSpringyHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
+        hiStop = ode.Infinity, bounce=0.0, spring_const=0.0, damping=0.0):
+
+        anchor = add3(anchor, self.offset)
+
+        joint = SpringyHingeJoint(self.sim.world)
+        joint.attach(body1, body2)
+        joint.setAnchor(anchor)
+        joint.setAxis(axis)
+        joint.setParam(ode.ParamLoStop, loStop)
+        joint.setParam(ode.ParamHiStop, hiStop)
+        joint.setParam(ode.ParamBounce, bounce)
+        joint.setSpringConstant(spring_const)
+        joint.setDamping(damping)
+
+        joint.style = "hinge"
+        self.joints.append(joint)
+        self.update_objects.append(joint)
 
         return joint
     def addUniversalJoint(self, body1, body2, anchor, axis1, axis2,
