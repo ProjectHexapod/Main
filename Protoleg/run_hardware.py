@@ -93,6 +93,9 @@ if 1:
         publisher.addToCatalog( 'yaw_ang_target',   controller.getDesiredYawDeg )
         publisher.addToCatalog( 'pitch_ang_target',   controller.getDesiredPitchDeg )
         publisher.addToCatalog( 'knee_ang_target',   controller.getDesiredKneeDeg )
+        publisher.addToCatalog( 'yaw_error',   lambda: (180*angles[0]/pi)-controller.getDesiredYawDeg() )
+        publisher.addToCatalog( 'pitch_error',   lambda: (180*angles[1]/pi)-controller.getDesiredPitchDeg() )
+        publisher.addToCatalog( 'knee_error',   lambda: (180*angles[2]/pi)-controller.getDesiredKneeDeg() )
     publisher.start()
 
     class rateEstimator(object):
@@ -200,14 +203,6 @@ while run_flag:
             error_rates[i] += 0.01
         error_rates[i] *= 0.99
     valve_commands = update( time_0, angles[0], angles[1], angles[2], 0.0 )
-#    capped_commands = []
-#    for c in valve_commands:
-#        if c > 0.5:
-#            c = 0.5
-#        elif c < -0.5:
-#            c = -0.5
-#        capped_commands.append(c)
-#    valve_commands = capped_commands
     bus.exchangeMagValveData( valve_commands )
     bus.waitForSync()
     watchdog.feed()
