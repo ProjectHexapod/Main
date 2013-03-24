@@ -51,9 +51,9 @@ class LimbController:
                  readFloatWithDefault(c, section,'hp_dr'),
                  readFloatWithDefault(c, section,'kp_dr')])
         self.proparray = array(
-                [readFloatWithDefault(c, section,'yaw_prop'),
-                 readFloatWithDefault(c, section,'hp_prop'),
-                 readFloatWithDefault(c, section,'kp_prop')])
+                [readFloatWithDefault(c, section,'yaw_prop', 1.0),
+                 readFloatWithDefault(c, section,'hp_prop',  1.0),
+                 readFloatWithDefault(c, section,'kp_prop',  1.0)])
         
         self.length_rate_commands=[]
         
