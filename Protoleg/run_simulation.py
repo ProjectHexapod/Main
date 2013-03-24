@@ -24,24 +24,43 @@ else:
     update = retval
     controller = None
 
+commands = [0,0,0]
+
 publisher = Publisher(5055)
-publisher.addToCatalog( 'yaw_ang_target',   controller.getDesiredYawDeg )
-publisher.addToCatalog( 'pitch_ang_target',   controller.getDesiredPitchDeg )
-publisher.addToCatalog( 'knee_ang_target',   controller.getDesiredKneeDeg )
+publisher.addToCatalog( 'yaw_ang_target'   , controller.getDesiredYawDeg )
+publisher.addToCatalog( 'pitch_ang_target' , controller.getDesiredPitchDeg )
+publisher.addToCatalog( 'knee_ang_target'  , controller.getDesiredKneeDeg )
+publisher.addToCatalog( 'yaw_cmd'          , lambda: commands[0] )
+publisher.addToCatalog( 'pitch_cmd'        , lambda: commands[1] )
+publisher.addToCatalog( 'knee_cmd'         , lambda: commands[2] )
 
 d = {'offset':(0,0,2.00)}
-s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnColumn,robot_kwargs=d, start_paused = False, render_objs=1, draw_contacts=1)
+s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnColumn,robot_kwargs=d, start_paused = 1, render_objs=1, draw_contacts=1)
 
-yaw_joint   = s.robot.joints['hip_yaw']
-pitch_joint = s.robot.joints['hip_pitch']
-knee_joint  = s.robot.joints['knee_pitch']
-shock_joint = s.robot.joints['foot_shock']
+yaw_joint      = s.robot.joints['hip_yaw']
+pitch_joint    = s.robot.joints['hip_pitch']
+knee_joint     = s.robot.joints['knee_pitch']
+yaw_joint_bl   = s.robot.joints['hip_yaw_bl']
+pitch_joint_bl = s.robot.joints['hip_pitch_bl']
+knee_joint_bl  = s.robot.joints['knee_pitch_bl']
+shock_joint    = s.robot.joints['foot_shock']
+
+control_period = 5e-3
+last_time = 0.0
 
 while True:
     s.step()
-    if not s.getPaused():
-        time = s.getSimTime()
-        lr = update(time, yaw_joint.getAngle(), pitch_joint.getAngle(), knee_joint.getAngle(), shock_joint.getPosition())
+    time = s.getSimTime()
+    if not s.getPaused() and time - last_time > control_period:
+        lr = update(time,\
+                yaw_joint.getAngle()+yaw_joint_bl.getAngle(),\
+                pitch_joint.getAngle()+pitch_joint_bl.getAngle(),\
+                knee_joint.getAngle()+knee_joint_bl.getAngle(),\
+                shock_joint.getPosition())
+        last_time = time
+        commands[0] = lr[0]
+        commands[1] = lr[1]
+        commands[2] = lr[2]
         #yaw_joint.setLengthRate(lr[0])
         yaw_joint.setValveCommand(lr[0])
         #pitch_joint.setLengthRate(lr[1])
