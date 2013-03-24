@@ -4,7 +4,7 @@ from ConfigParser import ConfigParser
 from math_utils import *
 from filters import HighPassFilter
 import math
-from UI import logger
+#from UI import logger
 from os import path
 from SimulationKit.helpers import *
 
@@ -49,27 +49,27 @@ class LegModel:
         #throw errors if measured joint angles are NaN, out of bounds, etc
         for angle, soft_min, soft_max in zip(self.joint_angles, self.SOFT_MINS, self.SOFT_MAXES):
             if math.isnan(angle):
-                logger.error("LegModel.setSensorReadings: NaN where aN expected!",
-                            angle=angle,
-                            angle_index=self.joint_angles.searchsorted(angle),
-                            yaw=yaw,
-                            hip_pitch=hip_pitch,
-                            knee_pitch=knee_pitch,
-                            shock_depth=shock_depth,
-                            bad_value="angle")
+                #logger.error("LegModel.setSensorReadings: NaN where aN expected!",
+                #            angle=angle,
+                #            angle_index=self.joint_angles.searchsorted(angle),
+                #            yaw=yaw,
+                #            hip_pitch=hip_pitch,
+                #            knee_pitch=knee_pitch,
+                #            shock_depth=shock_depth,
+                #            bad_value="angle")
                 raise ValueError("LegModel: Measured angle cannot be NaN.")
                 
             if (soft_min > angle) or (angle > soft_max):
-                logger.error("LegModel: Measured position outside of soft range!",
-                        angle=angle,
-                        angle_index=self.joint_angles.searchsorted(angle),
-                        yaw=yaw,
-                        hip_pitch=hip_pitch,
-                        knee_pitch=knee_pitch,
-                        shock_depth=shock_depth,
-                        soft_min=soft_min,
-                        soft_max=soft_max,
-                        bad_value="angle")
+                #logger.error("LegModel: Measured position outside of soft range!",
+                #        angle=angle,
+                #        angle_index=self.joint_angles.searchsorted(angle),
+                #        yaw=yaw,
+                #        hip_pitch=hip_pitch,
+                #        knee_pitch=knee_pitch,
+                #        shock_depth=shock_depth,
+                #        soft_min=soft_min,
+                #        soft_max=soft_max,
+                #        bad_value="angle")
                 print soft_min
                 print soft_max
                 print angle
