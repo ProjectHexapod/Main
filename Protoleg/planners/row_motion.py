@@ -12,11 +12,11 @@ class Gait(object):
         self.path = None
         self.index = 0
         self.points = []
-        self.points.append( (0.4,  0, -0.45, 0.2) )
-        #self.points.append( (1.7,  1.25, -1.05, 0.2) )
-        #self.points.append( (1.7, -1.25, -1.05, 0.5) )
-        #self.points.append( (1.7, -1.25, -1.68, 0.2) )
-        #self.points.append( (1.7,  1.25, -1.68, 0.5) )
+        #self.points.append( (0.4,  0, -0.45, 0.2) )
+        self.points.append( (1.7,  1.15, -1.05, 0.2) )
+        self.points.append( (1.7, -1.15, -1.05, 0.2) )
+        self.points.append( (1.7, -1.15, -1.68, 0.2) )
+        self.points.append( (1.7,  1.15, -1.68, 0.2) )
         #points.append( (1.6,  0.00, -1.7) )
         #self.points.append( (1.7, 0.0, -0.65) )
         #self.points.append( (1.7, 0.0, -1.58) )
