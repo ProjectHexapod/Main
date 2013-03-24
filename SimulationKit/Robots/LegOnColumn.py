@@ -38,7 +38,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.YAW_ACT.PIVOT1_DIST_FROM_JOINT   = inch2meter*16.18
         self.YAW_ACT.PIVOT2                   = (inch2meter*2.32,inch2meter*3.3)
         self.YAW_ACT.ANG_OFFSET               = deg2rad*-30.0
-        self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2500
+        self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2300
         self.YAW_ACT.AXIS                     = (0,0,-1)
 
         self.PITCH_ACT                        = ActuatorCharacteristics()
@@ -49,7 +49,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.PITCH_ACT.PIVOT1_DIST_FROM_JOINT = inch2meter*8.96
         self.PITCH_ACT.PIVOT2                 = (inch2meter*27.55, inch2meter*8.03)
         self.PITCH_ACT.ANG_OFFSET             = deg2rad*-84.0
-        self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2500
+        self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2300
         self.PITCH_ACT.AXIS                   = (0,-1,0)
 
         self.KNEE_ACT                         = ActuatorCharacteristics()
@@ -60,7 +60,7 @@ class StompyLegPhysicalCharacteristics(object):
         self.KNEE_ACT.PIVOT1_DIST_FROM_JOINT  = inch2meter*28
         self.KNEE_ACT.PIVOT2                  = (inch2meter*4.3,inch2meter*6.17)
         self.KNEE_ACT.ANG_OFFSET              = deg2rad*61.84
-        self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2500
+        self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2300
         self.KNEE_ACT.AXIS                    = (0,-1,0)
 
         # Compliance of foot
@@ -84,6 +84,11 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
     This class simulates an actuator attached to a hinge joint controlled by a spool valve.
     The valve being modeled is a Hydraforce SP10-47C
     """
+    def __init__(self, sim, actuator_characteristics=None):
+        #super(ValveActuatedHingeJoint, self).__init__(sim)
+        LinearVelocityActuatedHingeJoint.__init__( self, sim )
+        self.valve_command = 0.0
+        self.actuator = actuator_characteristics
 
     def SP10_47CFlow( self, inlet_to_work_port_pressure, valve_command ):
         """
@@ -96,21 +101,17 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
         This is rough piecewise linear interpretation of the charts at:
         http://www.hydraforce.com/proport/Prop_html/2-112-1_SP10-47C/2-112-1_SP10-47C.htm
         """
+        if valve_command > 1.0:
+            valve_command = 1.0
         if inlet_to_work_port_pressure < psi2pascal*300:
-            normalized_flow = (gpm2cmps*5.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
+            normalized_flow = (gpm2cmps*6.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
         else:
-            normalized_flow = (gpm2cmps*5.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
+            normalized_flow = (gpm2cmps*6.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
         if valve_command > 0.3:
-            normalized_command = (valve_command - .3)/0.7
+            normalized_command = (valve_command - .25)/0.75
         else:
             normalized_command = 0.0
         return normalized_command * normalized_flow
-        
-
-    def __init__(self, world, actuator_characteristics=None):
-        super(ValveActuatedHingeJoint, self).__init__(world)
-        self.valve_command = 0.0
-        self.actuator = actuator_characteristics
 
     def getAngRate( self ):
         # Calculate the pressure on the work side of the actuator
@@ -226,7 +227,8 @@ class LegOnColumn(MultiBody):
             p1     = yaw_p, \
             p2     = hip_p, \
             radius = self.dimensions.YAW_W, \
-            mass   = self.dimensions.YAW_M )
+            mass   = self.dimensions.YAW_M,\
+            collide= False)
         # glObjPath will be used by the simulator to populate the body
         yaw_link.glObjPath   = graphics_dir+'/Yaw.obj'
         # This is the constant offset for aligning with the physics element
@@ -236,15 +238,26 @@ class LegOnColumn(MultiBody):
         scale = (39,39,39)
         yaw_link.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
         yaw_link.shape = 'capsule'
+        yaw_transfer = self.addTransferBody(yaw_p)
         hip_yaw = self.addLinearVelocityActuatedHingeJoint( \
             body1  = ode.environment,\
-            body2  = yaw_link,\
+            body2  = yaw_transfer,\
             anchor = yaw_p,\
             axis   = act_axis,\
             a1x    = yaw_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = yaw_act_dim.PIVOT2[0],\
             a2y    = yaw_act_dim.PIVOT2[1],\
             subclass = ValveActuatedHingeJoint)
+        hip_yaw_backlash = self.addSpringyHingeJoint(\
+            body1  = yaw_transfer,\
+            body2  = yaw_link,\
+            anchor = yaw_p,\
+            axis   = act_axis,\
+            bounce = 1.0,\
+            loStop = -2.5*deg2rad,\
+            hiStop =  2.5*deg2rad,\
+            spring_const = 0.0,
+            damping      = 0.0)
         hip_yaw.actuator = yaw_act_dim
         #hip_yaw.setParam(ode.ParamLoStop, 0.0)
         hip_yaw.setParam(ode.ParamLoStop, -yaw_act_dim.getRangeOfMotion())
@@ -266,7 +279,8 @@ class LegOnColumn(MultiBody):
             p1     = hip_p, \
             p2     = knee_p, \
             radius = self.dimensions.THIGH_W, \
-            mass   = self.dimensions.THIGH_M )
+            mass   = self.dimensions.THIGH_M,\
+            collide= False)
         # glObjPath will be used by the simulator to populate the body
         thigh.glObjPath   = graphics_dir+'/Thigh.obj'
         # This is the constant offset for aligning with the physics element
@@ -280,15 +294,25 @@ class LegOnColumn(MultiBody):
         scale  = (39,39,39)
         thigh.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
         thigh.shape = 'capsule'
+        thigh_transfer = self.addTransferBody( hip_p )
         hip_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1  = yaw_link, \
-            body2  = thigh, \
+            body2  = thigh_transfer, \
             anchor = hip_p, \
             axis   = act_axis, \
             a1x    = pitch_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = pitch_act_dim.PIVOT2[0],\
             a2y    = pitch_act_dim.PIVOT2[1],\
             subclass = ValveActuatedHingeJoint)
+        hip_pitch_backlash = self.addSpringyHingeJoint(\
+            body1  = thigh_transfer,\
+            body2  = thigh,\
+            anchor = yaw_p,\
+            axis   = act_axis,\
+            loStop = -1.0*deg2rad,\
+            hiStop =  1.0*deg2rad,\
+            spring_const = 0.0,
+            damping      = 0.0)
         hip_pitch.actuator = pitch_act_dim
         hip_pitch.setParam(ode.ParamLoStop, 0.0)
         hip_pitch.setParam(ode.ParamHiStop, pitch_act_dim.getRangeOfMotion())
@@ -319,15 +343,25 @@ class LegOnColumn(MultiBody):
         scale  = (39,39,39)
         calf.glObjOffset = makeOpenGLMatrix( rot, offset, scale )
         calf.shape = 'capsule'
+        calf_transfer = self.addTransferBody( knee_p )
         knee_pitch = self.addLinearVelocityActuatedHingeJoint( \
             body1  = thigh, \
-            body2  = calf, \
+            body2  = calf_transfer, \
             anchor = knee_p, \
             axis   = act_axis, \
             a1x    = knee_act_dim.PIVOT1_DIST_FROM_JOINT,\
             a2x    = knee_act_dim.PIVOT2[0],\
             a2y    = knee_act_dim.PIVOT2[1],\
             subclass = ValveActuatedHingeJoint)
+        knee_pitch_backlash = self.addSpringyHingeJoint(\
+            body1  = calf_transfer,\
+            body2  = calf,\
+            anchor = yaw_p,\
+            axis   = act_axis,\
+            loStop = -1.0*deg2rad,\
+            hiStop =  1.0*deg2rad,\
+            spring_const = 0.0,
+            damping      = 0.0)
         knee_pitch.actuator = knee_act_dim
         knee_pitch.setParam(ode.ParamLoStop, 0.0)
         knee_pitch.setParam(ode.ParamHiStop, knee_act_dim.getRangeOfMotion())
@@ -372,7 +406,7 @@ class LegOnColumn(MultiBody):
             lo_stop      = 0.0,\
             neutral_position = 0.0,\
             damping          = -6e3)
-        def populatePublisher( dof_name, joint ):
+        def populatePublisher( dof_name, joint, backlash ):
             self.publisher.addToCatalog(\
                 "%s.torque"%(dof_name),\
                 joint.getTorque)
@@ -381,10 +415,13 @@ class LegOnColumn(MultiBody):
                 joint.getTorqueLimit)
             self.publisher.addToCatalog(\
                 "%s.ang"%(dof_name),\
-                joint.getAngle)
+                lambda: joint.getAngle()+backlash.getAngle())
             self.publisher.addToCatalog(\
                 "%s.ang_deg"%(dof_name),\
-                lambda: joint.getAngle()/deg2rad)
+                lambda: (joint.getAngle()+backlash.getAngle())/deg2rad)
+            self.publisher.addToCatalog(\
+                "%s.bl_pos_deg"%(dof_name),\
+                lambda: backlash.getAngle()/deg2rad)
             self.publisher.addToCatalog(\
                 "%s.len"%(dof_name),\
                 joint.getLength)
@@ -407,9 +444,9 @@ class LegOnColumn(MultiBody):
                 "%s.ang_target"%(dof_name),\
                 joint.getAngleTarget)
 
-        populatePublisher('hy', hip_yaw)
-        populatePublisher('hp', hip_pitch)
-        populatePublisher('kp', knee_pitch)
+        populatePublisher('hy' , hip_yaw    , hip_yaw_backlash)
+        populatePublisher('hp' , hip_pitch  , hip_pitch_backlash)
+        populatePublisher('kp' , knee_pitch , knee_pitch_backlash)
         self.publisher.addToCatalog(\
             "fs.shock_deflection",\
             foot_shock.getPosition)
@@ -419,6 +456,9 @@ class LegOnColumn(MultiBody):
         d['hip_pitch']    = hip_pitch
         d['knee_pitch']   = knee_pitch
         d['foot_shock']   = foot_shock
+        d['hip_yaw_bl']   = hip_yaw_backlash
+        d['hip_pitch_bl'] = hip_pitch_backlash
+        d['knee_pitch_bl']= knee_pitch_backlash
         d['hip_yaw_link'] = yaw_link
         d['thigh']        = thigh
         d['calf']         = calf
@@ -517,201 +557,6 @@ class LegOnColumn(MultiBody):
         return self.core.getAngularVel()
     def getVelocity( self ):
         return self.core.getLinearVel()
-    def constantSpeedWalk( self ):
-        gait_cycle      = 4.0     # time in seconds
-        step_cycle      = gait_cycle/2.0
-        swing_overshoot = 1.05
-        stride_length   = 1.55    # length of a stride, m
-        neutral_r_outer = inch2meter*60
-        neutral_r_inner = inch2meter*70
-        body_h          = inch2meter*60
-        foot_lift_h     = 0.25    # how high to lift feet in m
-
-        foot_positions = []
-        x_off_swing  =  swing_overshoot*(stride_length/2.0)*cos(2*pi*(self.sim.sim_t%step_cycle)/gait_cycle)
-        x_off_stance =  stride_length*(((self.sim.sim_t%step_cycle)/step_cycle)-0.5)
-        z_off        =  foot_lift_h*sin(2*pi*self.sim.sim_t/gait_cycle)
-        if z_off<0:
-            z_off *= -1
-        for i in range(6):
-            # Neutral position in the leg coordinate frame
-            if i in (1,4):
-                neutral_pos = (neutral_r_inner, 0, -body_h)
-            else:
-                neutral_pos = (neutral_r_outer, 0, -body_h)
-            tmp = rotate3( self.dimensions.ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
-            x, y, z = add3( tmp, self.dimensions.OFFSET_FROM_ROBOT_ORIGIN )
-            if (i%2) ^ (self.sim.sim_t%gait_cycle<(step_cycle)):
-                x += x_off_swing
-                z += z_off
-            else:
-                x += x_off_stance
-            if i%2:
-                y += 0.0
-            else:
-                y -= 0.0
-            p = ( x, y, z )
-            foot_positions.append(p)
-        self.setDesiredFootPositions( foot_positions )
-        return foot_positions
-    def bodyWiggle( self ):
-        gait_cycle      = 10.0     # time in seconds
-        step_cycle      = gait_cycle/2.0
-        ang_mag         = pi/20
-        neutral_r_outer = inch2meter*70
-        neutral_r_inner = inch2meter*75
-        body_h          = inch2meter*60
-        foot_lift_h     = 0.25    # how high to lift feet in m
-
-        foot_positions = []
-        ang_off      =  ang_mag*sin(2*pi*(self.sim.sim_t%gait_cycle)/gait_cycle)
-        z_off        =  abs(foot_lift_h*cos(2*pi*self.sim.sim_t/gait_cycle))
-        if z_off<0:
-            z_off *= -1
-        for i in range(6):
-            # Neutral position in the leg coordinate frame
-            if i in (1,4):
-                neutral_pos = (neutral_r_inner, 0, -body_h)
-            else:
-                neutral_pos = (neutral_r_outer, 0, -body_h)
-            tmp = rotate3( self.dimensions.ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
-            x, y, z = add3( tmp, self.dimensions.OFFSET_FROM_ROBOT_ORIGIN )
-            x,y = rot2( (x,y), ang_off )
-            #if (i%2):
-            #    x,y = rot2( (x,y), ang_off )
-            #    z += z_off
-            #else:
-            #    x,y = rot2( (x,y), -ang_off )
-            #^ (self.sim.sim_t%gait_cycle<(step_cycle)):
-            p = ( x, y, z )
-            foot_positions.append(p)
-        self.setDesiredFootPositions( foot_positions )
-        return foot_positions
-    def constantSpeedWalkSmart( self, x_scale=1.0, y_scale=0.0, z_scale=0.5, rot_scale=0.0 ):
-        step_t          = 2.6
-        swing_f         = 0.60
-        down_f          = 0.20
-        up_f            = 0.20
-        stride_length   = 1.70    # length of a stride, m
-        neutral_r_outer = inch2meter*65
-        neutral_r_inner = inch2meter*70
-        body_h          = inch2meter*70
-        max_rot         = pi/3
-        foot_lift_h     = 0.85    # how high to lift feet in m
-
-        foot_positions = []
-
-        def linearInterp(lo_val, hi_val, n, lo_n=0.0, hi_n=1.0 ):
-            dval = hi_val - lo_val
-            dn = hi_n - lo_n
-            n -= lo_n
-            return lo_val + dval*(n/dn)
-        def sineInterp(lo_val, hi_val, n, lo_n=0.0, hi_n=1.0 ):
-            dval = hi_val - lo_val
-            dn = hi_n - lo_n
-            n -= lo_n
-            return lo_val + dval*(-.5*cos(pi*n/dn)+0.5)
-
-        # gait_t is the place we are in within the gait cycle (complete 2-phase
-        # motion)
-        gait_phase = (self.sim.getSimTime()/(2*step_t))%1
-        # step_t is the time within the step
-        step_phase = 2*(gait_phase%0.5)
-
-        x_off_stance = y_off_stance = linearInterp(\
-            (-0.5+down_f+up_f)*stride_length,\
-            (+0.5)*stride_length,\
-            step_phase,\
-            0.0,\
-            1.0)
-        rot_stance = linearInterp(\
-            (-0.5+down_f+up_f)*max_rot,\
-            (+0.5)*max_rot,\
-            step_phase,\
-            0.0,\
-            1.0)
-        z_off_stance = 0.0
-
-        if step_phase < swing_f:
-            # Not transition
-            x_off_swing  = y_off_swing = linearInterp(\
-                (+0.5)*stride_length,\
-                (-0.5)*stride_length,\
-                step_phase,\
-                0.0,\
-                swing_f)
-            rot_swing = linearInterp(\
-                (+0.5)*max_rot,\
-                (-0.5)*max_rot,\
-                step_phase,\
-                0.0,\
-                swing_f)
-            z_off_swing = foot_lift_h
-        elif step_phase < swing_f + down_f:
-            x_off_swing  = y_off_swing = linearInterp(\
-                (-0.5)*stride_length,\
-                (-0.5+down_f)*stride_length,\
-                step_phase,\
-                swing_f,\
-                swing_f+down_f)
-            rot_swing = linearInterp(\
-                (-0.5)*max_rot,\
-                (-0.5+down_f)*max_rot,\
-                step_phase,\
-                swing_f,\
-                swing_f+down_f)
-            # foot down
-            z_off_swing  = sineInterp(\
-                foot_lift_h,\
-                0,\
-                step_phase,\
-                swing_f,\
-                swing_f+down_f)
-        else:
-            # foot up
-            x_off_swing  = y_off_swing = linearInterp(\
-                (-0.5+down_f)*stride_length,\
-                (-0.5+down_f+up_f)*stride_length,\
-                step_phase,\
-                swing_f+down_f,\
-                1)
-            rot_swing = linearInterp(\
-                (-0.5+down_f)*max_rot,\
-                (-0.5+down_f+up_f)*max_rot,\
-                step_phase,\
-                swing_f+down_f,\
-                1)
-            z_off_swing  = 0.0
-            z_off_stance  = sineInterp(\
-                0,\
-                foot_lift_h,\
-                step_phase,\
-                swing_f+down_f,\
-                1)
-        for i in range(6):
-            # Neutral position in the leg coordinate frame
-            if i in (1,4):
-                neutral_pos = (neutral_r_inner, 0, -body_h)
-            else:
-                neutral_pos = (neutral_r_outer, 0, -body_h)
-            tmp = rotate3( self.dimensions.ROTATION_FROM_ROBOT_ORIGIN, neutral_pos )
-            x, y, z = add3( tmp, self.dimensions.OFFSET_FROM_ROBOT_ORIGIN )
-            if (i%2)^(gait_phase > step_phase):
-                x -= x_off_swing*x_scale
-                y -= y_off_swing*y_scale
-                z += z_off_swing*z_scale
-                # apply rotation offsets
-                x,y = rot2( (x,y), rot_scale*rot_swing )
-            else:
-                x -= x_off_stance*x_scale
-                y -= y_off_stance*y_scale
-                z += z_off_stance*z_scale
-                # apply rotation offsets
-                x,y = rot2( (x,y), rot_scale*rot_stance )
-            p = ( x, y, z )
-            foot_positions.append(p)
-        self.setDesiredFootPositions( foot_positions )
-        return foot_positions
     def colorShockByDeflection( self, joint ):
             b = joint.getBody(1)
             r = abs(joint.getPosition()/joint.getHiStop())
