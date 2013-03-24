@@ -244,7 +244,10 @@ class Simulator(object):
                     sys.exit()
                 elif event.key == K_p:
                     self.paused = not self.paused
-                    print 'Pause toggled'
+                    if self.paused:
+                        print 'PAUSED'
+                    else:
+                        print 'UNPAUSED'
                 elif event.key == K_EQUALS:
                     self.dt *= 1.2
                 elif event.key == K_MINUS:
