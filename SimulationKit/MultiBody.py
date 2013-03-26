@@ -190,6 +190,8 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         """The torque limit is directional depending on what side of the piston
         is being driven.  This is dependent on which way we are pressurizing the
         piston, not which way it's presently moving"""
+        #FIXME: THIS ASSUMES WE ARE USING THE JOINT'S ANG_TARGET PARAMETER,
+        # WHICH WE OFTEN ARE NOT
         if self.getAngleError()>0:
             return abs(self.getLeverArm()*self.extend_force_limit)
         else:
@@ -414,7 +416,6 @@ class MultiBody(object):
         This allows multiple joints to be stacked.
         eg. body --- motor hinge ---- transfer body --- backlash hinge --- body
         """
-        print 'Making transfer body'
         body = ode.Body(self.sim.world)
         # FIXME: A body doesn't interact with the sim unless it has mass.  Fudge it.
         #m = ode.Mass()
