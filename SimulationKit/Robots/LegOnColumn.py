@@ -4,7 +4,7 @@ from Utilities.pubsub import *
 from SimulationKit.OpenGLLibrary import *
 from math import *
 import ode
-from ActuatorCharacteristics import *
+from Utilities.ActuatorCharacteristics import *
 
 # Convenience multipliers...
 deg2rad    = pi/180
@@ -30,38 +30,47 @@ class StompyLegPhysicalCharacteristics(object):
         self.CALF_M  = pound2kilo*150  # Calf link mass
 
         # Describe the actuator placements at each joint
-        self.YAW_ACT                          = ActuatorCharacteristics()
-        self.YAW_ACT.BORE_DIAMETER            = inch2meter*2.5
-        self.YAW_ACT.ROD_DIAMETER             = inch2meter*1.125
-        self.YAW_ACT.ACT_RETRACTED_LEN        = inch2meter*14.25
-        self.YAW_ACT.ACT_EXTENDED_LEN         = inch2meter*18.25
-        self.YAW_ACT.PIVOT1_DIST_FROM_JOINT   = inch2meter*16.18
-        self.YAW_ACT.PIVOT2                   = (inch2meter*2.32,inch2meter*3.3)
-        self.YAW_ACT.ANG_OFFSET               = deg2rad*-30.0
-        self.YAW_ACT.SYSTEM_PRESSURE          = psi2pascal*2300
-        self.YAW_ACT.AXIS                     = (0,0,-1)
+        self.YAW_ACT    = ActuatorCharacteristics(
+                bore_diameter          = inch2meter*2.5,
+                rod_diameter           = inch2meter*1.125,
+                act_retracted_len      = inch2meter*14.25,
+                act_extended_len       = inch2meter*18.25,
+                pivot1_dist_from_joint = inch2meter*16.18,
+                pivot2                 = (inch2meter*2.32,inch2meter*3.3),
+                ang_offset             = deg2rad*-30.0,
+                system_pressure        = psi2pascal*2300,
+                axis                   = ( 0, 0, -1 ) )
 
-        self.PITCH_ACT                        = ActuatorCharacteristics()
-        self.PITCH_ACT.BORE_DIAMETER          = inch2meter*3.0
-        self.PITCH_ACT.ROD_DIAMETER           = inch2meter*1.5
-        self.PITCH_ACT.ACT_RETRACTED_LEN      = inch2meter*20.250
-        self.PITCH_ACT.ACT_EXTENDED_LEN       = inch2meter*30.250
-        self.PITCH_ACT.PIVOT1_DIST_FROM_JOINT = inch2meter*8.96
-        self.PITCH_ACT.PIVOT2                 = (inch2meter*27.55, inch2meter*8.03)
-        self.PITCH_ACT.ANG_OFFSET             = deg2rad*-84.0
-        self.PITCH_ACT.SYSTEM_PRESSURE        = psi2pascal*2300
-        self.PITCH_ACT.AXIS                   = (0,-1,0)
+        self.PITCH_ACT  = ActuatorCharacteristics(
+                bore_diameter          = inch2meter*3.0,
+                rod_diameter           = inch2meter*1.5,
+                act_retracted_len      = inch2meter*20.25,
+                act_extended_len       = inch2meter*30.25,
+                pivot1_dist_from_joint = inch2meter*8.96,
+                pivot2                 = (inch2meter*27.55,inch2meter*8.03),
+                ang_offset             = deg2rad*-84.0,
+                system_pressure        = psi2pascal*2300,
+                axis                   = ( 0, -1, 0 ) )
 
-        self.KNEE_ACT                         = ActuatorCharacteristics()
-        self.KNEE_ACT.BORE_DIAMETER           = inch2meter*2.5
-        self.KNEE_ACT.ROD_DIAMETER            = inch2meter*1.25
-        self.KNEE_ACT.ACT_RETRACTED_LEN       = inch2meter*22.250
-        self.KNEE_ACT.ACT_EXTENDED_LEN        = inch2meter*34.250
-        self.KNEE_ACT.PIVOT1_DIST_FROM_JOINT  = inch2meter*28
-        self.KNEE_ACT.PIVOT2                  = (inch2meter*4.3,inch2meter*6.17)
-        self.KNEE_ACT.ANG_OFFSET              = deg2rad*61.84
-        self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2300
-        self.KNEE_ACT.AXIS                    = (0,-1,0)
+        self.KNEE_ACT   = ActuatorCharacteristics(
+                bore_diameter          = inch2meter*2.5,
+                rod_diameter           = inch2meter*1.25,
+                act_retracted_len      = inch2meter*22.25,
+                act_extended_len       = inch2meter*34.25,
+                pivot1_dist_from_joint = inch2meter*28.0,
+                pivot2                 = (inch2meter*4.3,inch2meter*6.17),
+                ang_offset             = deg2rad*61.84,
+                system_pressure        = psi2pascal*2300,
+                axis                   = ( 0, -1, 0 ) )
+        #self.KNEE_ACT.BORE_DIAMETER           = inch2meter*2.5
+        #self.KNEE_ACT.ROD_DIAMETER            = inch2meter*1.25
+        #self.KNEE_ACT.ACT_RETRACTED_LEN       = inch2meter*22.250
+        #self.KNEE_ACT.ACT_EXTENDED_LEN        = inch2meter*34.250
+        #self.KNEE_ACT.PIVOT1_DIST_FROM_JOINT  = inch2meter*28
+        #self.KNEE_ACT.PIVOT2                  = (inch2meter*4.3,inch2meter*6.17)
+        #self.KNEE_ACT.ANG_OFFSET              = deg2rad*61.84
+        #self.KNEE_ACT.SYSTEM_PRESSURE         = psi2pascal*2300
+        #self.KNEE_ACT.AXIS                    = (0,-1,0)
 
         # Compliance of foot
         self.COMPLIANCE_K   = 87560  # newtons/meter deflection of foot = 1000 pounds/2 inches
@@ -106,8 +115,12 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
         if inlet_to_work_port_pressure < psi2pascal*300:
             normalized_flow = (gpm2cmps*6.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
         else:
-            normalized_flow = (gpm2cmps*6.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
-        if valve_command > 0.3:
+            normalized_flow = (gpm2cmps*6.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*2.5)/(psi2pascal*1700)))
+
+        if normalized_flow < 0:
+            normalized_flow = 0
+
+        if valve_command > 0.25:
             normalized_command = (valve_command - .25)/0.75
         else:
             normalized_command = 0.0
@@ -126,7 +139,7 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             work_pressure = 0.0
         else:
             work_pressure = force / cross_section
-        inlet_to_work_pressure = self.actuator.SYSTEM_PRESSURE - work_pressure
+        inlet_to_work_pressure = self.actuator.SYSTEM_PRESSURE - abs(work_pressure)
         flow = self.SP10_47CFlow( inlet_to_work_pressure, abs(self.valve_command) )
         lenrate = (flow / cross_section)
         if self.valve_command<0:
@@ -253,11 +266,11 @@ class LegOnColumn(MultiBody):
             body2  = yaw_link,\
             anchor = yaw_p,\
             axis   = act_axis,\
-            bounce = 1.0,\
-            loStop = -2.5*deg2rad,\
-            hiStop =  2.5*deg2rad,\
-            spring_const = 0.0,
-            damping      = 0.0)
+            bounce = 0.8,\
+            loStop = -1.25*deg2rad,\
+            hiStop =  1.25*deg2rad,\
+            spring_const = -2e1,
+            damping      = -2e2)
         hip_yaw.actuator = yaw_act_dim
         #hip_yaw.setParam(ode.ParamLoStop, 0.0)
         hip_yaw.setParam(ode.ParamLoStop, -yaw_act_dim.getRangeOfMotion())
@@ -309,6 +322,7 @@ class LegOnColumn(MultiBody):
             body2  = thigh,\
             anchor = yaw_p,\
             axis   = act_axis,\
+            bounce = 0.5,\
             loStop = -1.0*deg2rad,\
             hiStop =  1.0*deg2rad,\
             spring_const = 0.0,
@@ -358,6 +372,7 @@ class LegOnColumn(MultiBody):
             body2  = calf,\
             anchor = yaw_p,\
             axis   = act_axis,\
+            bounce = 0.5,\
             loStop = -1.0*deg2rad,\
             hiStop =  1.0*deg2rad,\
             spring_const = 0.0,
