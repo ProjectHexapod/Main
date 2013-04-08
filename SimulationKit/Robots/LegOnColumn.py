@@ -115,7 +115,7 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
         if inlet_to_work_port_pressure < psi2pascal*300:
             normalized_flow = (gpm2cmps*6.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
         else:
-            normalized_flow = (gpm2cmps*6.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*2.5)/(psi2pascal*1700)))
+            normalized_flow = (gpm2cmps*6.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
 
         if normalized_flow < 0:
             normalized_flow = 0
@@ -124,7 +124,8 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             normalized_command = (valve_command - .25)/0.75
         else:
             normalized_command = 0.0
-        return normalized_command * normalized_flow
+        retval = normalized_command * normalized_flow
+        return retval
 
     def getAngRate( self ):
         # Calculate the pressure on the work side of the actuator
