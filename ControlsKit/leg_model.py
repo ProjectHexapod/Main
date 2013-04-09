@@ -20,6 +20,15 @@ class LegModel:
         self.YAW_LEN = c.getfloat(section, "yaw_len")
         self.THIGH_LEN = c.getfloat(section, "thigh_len")
         self.CALF_LEN = c.getfloat(section, "calf_len")
+        
+        self.YAW_COM_COORD = [c.getfloat(section, "yaw_com_x"), c.getfloat(section, "yaw_com_y"), c.getfloat(section, "yaw_com_z")]
+        self.THIGH_COM_COORD = [c.getfloat(section, "thigh_com_x"), c.getfloat(section, "thigh_com_y"), c.getfloat(section, "thigh_com_z")]
+        self.CALF_COM_COORD = [c.getfloat(section, "calf_com_x"), c.getfloat(section, "calf_com_y"), c.getfloat(section, "calf_com_z")]
+        
+        self.YAW_MASS = c.getfloat(section, "yaw_mass")
+        self.THIGH_MASS = c.getfloat(section, "thigh_mass")
+        self.CALF_MASS = c.getfloat(section, "calf_mass")
+        self.LEG_MASS = self.YAW_MASS+self.THIGH_MASS+self.CALF_MASS
 
         # Actuator soft bounds
         soft_stops_section = 'SoftStops'
@@ -135,3 +144,23 @@ class LegModel:
     
     def isMoving(self, tolerance=0.001):
         return (abs(self.joint_velocities) >= tolerance).any()
+    
+    def getCOM(self):
+        """ This function returns the COM of the leg given its current joint positions.
+        """
+        joint_angles = self.getJointAngles()
+        # Calculate Yaw position
+        yaw_pos = rotateZ(self.YAW_COM_COORD, joint_angles[YAW])
+        # Calculate Thigh position
+        thigh_pos = rotateY(self.THIGH_COM_COORD, joint_angles[HP])
+        thigh_pos[X] += self.YAW_LEN
+        thigh_pos = rotateZ(thigh_pos, joint_angles[YAW])
+        # Calculate Calf position
+        calf_pos = rotateY(self.CALF_COM_COORD, joint_angles[KP])
+        calf_pos[X] += self.THIGH_LEN
+        calf_pos = rotateY(calf_pos, joint_angles[HP])
+        calf_pos[X] += self.YAW_LEN
+        calf_pos = rotateZ(calf_pos, joint_angles[YAW])
+        
+        COM_pos = (yaw_pos*self.YAW_MASS+thigh_pos*self.THIGH_MASS+calf_pos*self.CALF_MASS)/(self.LEG_MASS)
+        return COM_pos

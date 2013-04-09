@@ -16,7 +16,6 @@ class BodyPause:
         self.duration = duration
         self.feet_path = []
         
-        current_positions = self.body.getFootPositions()
         for i in range (NUM_LEGS):
             self.feet_path = append(self.feet_path, Pause(self.body.getLegs()[i],
                                     self.body_controller.getLimbControllers()[i], self.duration))

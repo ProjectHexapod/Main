@@ -10,7 +10,7 @@ class SafeMove:
         It should be found via side-angle-side of the knee and calf links and the angle they make most folded up.
         We use only vertical motions below the Z-plane, as there is a high likelihood of hitting the ground.
     """
-    def __init__(self, leg_model, limb_controller, final_foot_pos, max_velocity, acceleration, z_plane=-0.67865):
+    def __init__(self, leg_model, limb_controller, final_foot_pos, max_velocity, acceleration, z_plane=None):
         leg_logger.logger.info("New path.", path_name="TrapezoidalFootMove",
                     final_foot_pos=final_foot_pos, max_velocity=max_velocity,
                     acceleration=acceleration)
@@ -22,11 +22,13 @@ class SafeMove:
         self.max_vel = max_velocity
         self.vel = 0.0
         self.acc = acceleration
-        self.z_plane = z_plane
         self.initial_foot_pos = self.model.footPosFromLegState([self.controller.getDesiredPosAngle(), 0])
         self.initial_joint_angles = self.controller.getDesiredPosAngle()
         self.target_angles = self.initial_joint_angles
-        
+        if z_plane == None:
+            z_plane = -0.67865 # Replace this with the bodymodel.getGroundEstimate() plus some max expected curb height.
+        self.z_plane = z_plane
+
         self.projected_initial = [self.initial_foot_pos[0], self.initial_foot_pos[1], z_plane]
         self.projected_final = [self.final_foot_pos[0], self.final_foot_pos[1], max(self.final_foot_pos[2],z_plane)]
         

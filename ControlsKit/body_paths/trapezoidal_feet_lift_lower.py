@@ -27,7 +27,7 @@ class TrapezoidalFeetLiftLower:
             delta_heights = [delta_heights]*6
         
         for i in self.leg_indices:
-            current_leg_pos = self.model.getLegs()[i].footPosFromLegState([self.controller.getTargetJointAngleMatrix()[i],0])#self.model.getFootPositions()[i]
+            current_leg_pos = self.model.getLegs()[i].footPosFromLegState([self.controller.getTargetJointAngleMatrix()[i],0])
             desired_leg_pos = current_leg_pos + [0,0,delta_heights[i]]
 
             self.foot_paths[i]=TrapezoidalFootMove(

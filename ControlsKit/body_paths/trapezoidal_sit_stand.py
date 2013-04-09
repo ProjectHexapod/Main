@@ -17,10 +17,10 @@ class TrapezoidalSitStand:
         
         self.model = body_model
         self.controller = body_controller
-        self.final_foot_positions = self.model.getFootPositions()
         self.feet_path = []
         
         for i in range (NUM_LEGS):
+            self.final_foot_positions[i] = self.model.getLegs()[i].footPosFromLegState([self.controller.getTargetJointAngleMatrix()[i],0])
             self.final_foot_positions[i][2] = final_height
         for i in range (NUM_LEGS):
             self.feet_path = append(self.feet_path, TrapezoidalFootMove(

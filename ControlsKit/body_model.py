@@ -1,7 +1,7 @@
 from ConfigParser import ConfigParser
 from leg_model import LegModel
 from UI import logger
-from math_utils import NUM_LEGS, rotateZ, formPermutations, inTriangle
+from math_utils import NUM_LEGS, rotateZ, formPermutations, inTriangle, planeFromPoints
 from scipy import array, pi, nonzero
 import os.path as path
 
@@ -21,6 +21,10 @@ class BodyModel:
         self.LEG1_OFFSET_X = c.getfloat(section, "leg1_offset_x")
         self.LEG1_OFFSET_Y = c.getfloat(section, "leg1_offset_y")
         self.CHASSIS_BOTTOM_Z = c.getfloat(section, "chassis_bottom_z")
+        
+        # COM parameters
+        self.CHASSIS_MASS = c.getfloat(section, "chassis_mass")
+        self.CHASSIS_COM_COORD = [c.getfloat(section, "chassis_com_x"), c.getfloat(section, "chassis_com_y"), c.getfloat(section, "chassis_com_z")]
 
     def setSensorReadings(self, leg_sensor_matrix, imu_orientation, imu_angular_rates):
         self.leg_sensor_matrix = leg_sensor_matrix
@@ -36,7 +40,7 @@ class BodyModel:
     def getJointAngleMatrix(self):
         return [self.legs[i].getJointAngles() for i in range(NUM_LEGS)]
     
-    def getFootPositions(self):
+    def getFootPositionsInLegFrames(self):
         return [self.legs[i].getFootPos() for i in range(NUM_LEGS)]
     
     def getFootPositionsInBodyFrame(self):
@@ -103,8 +107,9 @@ class BodyModel:
         """ Takes in a set of leg indices, and reports if all of them can be lifted simultaneously
         """
         foot_pos = self.getFootPositionsInBodyFrame()
-        COM = [0,0,0] # Calculate this for real in another section of the body model?
-        g = [0,0,-1]#self.imu_orientation # DELETE THIS COMMENT once someone confirms this is in the form of a vector pointing parallel to gravity
+        COM = self.getCOM()
+        g = self.imu_orientation[0:7:3] # This should be changed to align with
+            # the acceleration vector of the imu, not the auto-corrected downward vector.
         on_ground = [self.getLegs()[i].isFootOnGround() for i in range(NUM_LEGS)]
         for i in leg_index:
             on_ground[i] = False
@@ -117,7 +122,29 @@ class BodyModel:
                 break
         return can_lift
     
+    def getCOM(self):
+        Legs = self.getLegs()
+        legs_pos = sum(array(self.transformLeg2Body(i,Legs[i].getCOM()))
+            for i in range(NUM_LEGS))
+        COM_pos = (self.CHASSIS_MASS*array(self.CHASSIS_COM_COORD)+
+            legs_pos*6*Legs[0].LEG_MASS)/(self.CHASSIS_MASS+6*Legs[0].LEG_MASS)
+        return COM_pos
+
+    def getGroundPlane(self):
+        Legs = self.getLegs()
+        on_ground = [self.getLegs()[i].isFootOnGround() for i in range(NUM_LEGS)]
+        on_ground_indices = nonzero(on_ground)[0]
+        points = array([self.transformLeg2Body(i,Legs[i].getFootPos()) for i in on_ground_indices])
+        try:
+            abc = planeFromPoints(points)
+        except:
+            abc = None
+        return abc
     
-    
-    
-    
+    def getGroundEstimate(self, xy = [0,0]):
+        abc = self.getGroundPlane()
+        try:
+            z = xy[0]*abc[0]+xy[1]*abc[1]+abc[2]
+        except:
+            z = None
+        return z

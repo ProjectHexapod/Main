@@ -1,7 +1,7 @@
 import unittest
 from math import acos, asin, atan, atan2
-from scipy import array, arange, linspace, pi, cos, sin, dot
-from scipy.linalg import norm
+from scipy import array, arange, linspace, pi, cos, sin, dot, column_stack, ones_like
+from scipy.linalg import norm, lstsq
 
 
 pi_2 = pi / 2.0
@@ -76,9 +76,11 @@ def solveTriangle(a, b, c):
     C = acos((a**2+b**2-c**2)/(2*a*b))
     return A, B, C
 
-# Determine if a gravity vector projects a point into a triangle
-# Follows logic from http://www.blackpawn.com/texts/pointinpoly/default.html
+
 def inTriangle(P, A, B, C, g = [0,0,-1]):
+    """ Determine if a gravity vector projects a point into a triangle
+        Follows logic from http://www.blackpawn.com/texts/pointinpoly/default.html
+    """
     # Recast 3-space in new basis vectors
     r = array(P)-array(A)
     x1 = array(B)-array(A)
@@ -106,6 +108,8 @@ def inTriangle(P, A, B, C, g = [0,0,-1]):
     return (u-w*d13>0 and v-w*d23>0 and u+v-w*(d13+d23)<1)
     
 def choose_iter(elements, length):
+    """ Follows logic from http://stackoverflow.com/questions/127704/algorithm-to-return-all-combinations-of-k-elements-from-n
+    """
     for i in xrange(len(elements)):
         if length == 1:
             yield (elements[i],)
@@ -115,5 +119,12 @@ def choose_iter(elements, length):
 def formPermutations(l, k):
     return list(choose_iter(l, k))
 
-
-
+def planeFromPoints(points):
+    """ Produces a plane from N points using least squares, and returns of the form:
+        Z = aX + bY + c
+        Follows logic from http://www.velocityreviews.com/forums/t368189-re-linear-regression-in-3-dimensions.html
+    """
+    x, y, z = zip(*points)
+    A = column_stack([x, y, ones_like(x)])
+    abc, residuals, rank, s = lstsq(A,z)
+    return abc
