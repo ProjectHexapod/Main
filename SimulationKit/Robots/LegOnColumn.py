@@ -163,6 +163,15 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             command = -1
         self.valve_command = command
 
+    def getTorqueLimit( self ):
+        """The torque limit is directional depending on what side of the piston
+        is being driven.  This is dependent on which way we are pressurizing the
+        piston, not which way it's presently moving"""
+        if self.valve_command > 0:
+            return abs(self.getLeverArm()*self.extend_force_limit)
+        else:
+            return abs(self.getLeverArm()*self.retract_force_limit)
+
 import os.path as path
 graphics_dir = path.dirname(path.realpath(__file__))+'/graphics'
 
