@@ -4,7 +4,7 @@ from Utilities.pubsub import *
 from SimulationKit.OpenGLLibrary import *
 from math import *
 import ode
-from ActuatorCharacteristics import *
+from Utilities.ActuatorCharacteristics import *
 
 # Convenience multipliers...
 deg2rad    = pi/180
