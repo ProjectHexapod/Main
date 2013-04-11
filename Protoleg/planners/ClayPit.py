@@ -2,7 +2,7 @@ import sys
 sys.path.append('..')
 
 class OneDClayPit(object):
-    def __init__(self, min_x, max_x, n_points, name=None, init_func=None, k=0.0e-3, max_slope=None, force_monotonic=True):
+    def __init__(self, min_x, max_x, n_points, init_func=None, name=None, k=0.0e-3, max_slope=None, force_monotonic=True):
         """
         min_x and max_x determine the length of the x axis.
         The x axis is then subdivided in to n_points points
@@ -40,6 +40,8 @@ class OneDClayPit(object):
         elif index > len(self.mem)-2:
             index = len(self.mem)-2
         return index, remainder
+    def index(self,x):
+        return self.__index(x)
     def __interp(self, x):
         index, remainder = self.__index(x)
         retval = (1.0-remainder)*self.mem[index] + (remainder)*self.mem[index+1]
@@ -77,15 +79,16 @@ class OneDClayPit(object):
         
         if k == None:
             k = self.k
-        
+       
+        if remainder >= 0.5:
+            index += 1
+
         dy = y-self.mem[index]
-        self.mem[index] += k * (1.0-remainder) * dy
-        dy = y-self.mem[index+1]
-        self.mem[index+1] += k * (remainder) * dy
+        self.mem[index] += k * dy
 
         # Smooth out the pit in both directions
         self.__smoothneg( index )
-        self.__smoothpos( index+1 )
+        self.__smoothpos( index )
     def printpit(self):
         s=''
         for f in self.mem:
@@ -99,6 +102,10 @@ class OneDClayPit(object):
         f.close()
     def loadState( self ):
         import pickle
+        if self.name == None:
+            raise IOError, 'No filename provided to ClayPit loadState'
+            return
+        print self.name
         f = open(self.name, 'rb')
         self.mem = pickle.load(f)
         f.close()
@@ -116,7 +123,7 @@ class OneDClayPit(object):
         f.close()
 
 if __name__=='__main__':
-    pit = OneDClayPit( -1.0, 1.0, 100, lambda(x):x, k=1e-3, max_slope=1.0, discontinuities_x=[0.0] )
+    pit = OneDClayPit( -1.0, 1.0, 10, lambda(x):x, k=1e-2, max_slope=1.0 )
     def printpit(pit):
         s=''
         for f in pit.mem:
@@ -124,15 +131,17 @@ if __name__=='__main__':
         print s
         print '\n\n'
     printpit(pit)
-    for i in range(1000):
-        pit.lookup(0.1, 1.0)
+    for i in range(1):
+        pit.lookup(-0.01, -2.0)
+    print pit.index(0.0)
     printpit(pit)
-    for i in range(1000):
-        pit.lookup(0.1, 0.0)
+    exit(0)
+    for i in range(1):
+        pit.lookup(0.0, 0.0)
     printpit(pit)
-    for i in range(1000):
-        pit.lookup(-0.1, 1.0)
+    for i in range(1):
+        pit.lookup(-0.0, 1.0)
     printpit(pit)
-    for i in range(1000):
-        pit.lookup(-0.1, -1.0)
+    for i in range(1):
+        pit.lookup(-0.0, -1.0)
     printpit(pit)
