@@ -126,8 +126,15 @@ class Gait(object):
         target_lin_rates = [c.getDesiredLengthRate() for c in self.joint_controllers]
         measured_lin_rates = [c.getLengthRate() for c in self.joint_controllers]
 
+        s = ''
+        m = self.pist_helpers[0].clay_pit_pos.mem
+        for i in range(len(m)):
+            if not i%8:
+                s += '%2.2f '%(m[i])
+        print s
+
         commands  = [self.pist_helpers[i].update(control_lin_rates[i], measured_lin_rates[i]) for i in range(3)]
-        #commands  = [0,self.pist_helpers[1].update(control_lin_rates[1], measured_lin_rates[1]),0]
+        #commands  = [self.pist_helpers[0].update(control_lin_rates[0], measured_lin_rates[0]),0,0]
 
         if 0:
             target_ang_rates = [c.desired_vel for c in self.joint_controllers]

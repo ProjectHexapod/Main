@@ -73,12 +73,17 @@ class LearningPistonController(PistonController):
     def update(self, target_rate, measured_rate=None):
         target_flow = self.flowFromLinearRate(target_rate)
         # Calc valve command
-        if target_flow > (0.025*gpm2cmps):
+        # MIN FLOW RATE
+        min_flow = 0.025*gpm2cmps
+        if target_flow > min_flow:
             self.valve_cmd = self.clay_pit_pos.lookup(target_flow)
-        elif target_flow < (-0.025*gpm2cmps):
+        elif target_flow < -min_flow:
             self.valve_cmd = self.clay_pit_neg.lookup(target_flow)
         else:
-            self.valve_cmd = 0.0
+            #Interpolate through the deadband.  Better than just setting 0.
+            rem = (target_flow+min_flow)/(2*min_flow)
+            self.valve_cmd = (1-rem)*self.clay_pit_pos.lookup( min_flow)\
+                             + (rem)*self.clay_pit_neg.lookup(-min_flow)
         # "Learn"
         if measured_rate != None:
             measured_flow = self.flowFromLinearRate(measured_rate)
@@ -91,14 +96,15 @@ class LearningPistonController(PistonController):
             def sat(x,lim):
                 return max(min(x,lim),-lim)
             if sign(measured_flow) == sign(self.valve_cmd)\
-                    and abs(target_flow) > 0.025*gpm2cmps:
+                    and abs(target_flow) > min_flow:
                 flow_error = target_flow-measured_flow
-                error_mult=2e-0
-                err = (target_flow-measured_flow)*error_mult
-                err = sat(err, 1e-2)
-                if   target_flow >  0.025*gpm2cmps:
+                #flow_error = measured_flow-target_flow
+                error_mult=50
+                err = flow_error*error_mult
+                #err = sat(err, 1e-5)
+                if   target_flow > 0:
                     self.clay_pit_pos.lookup( target_flow, self.valve_cmd+err )
-                elif target_flow < -0.025*gpm2cmps:
+                elif target_flow < 0:
                     self.clay_pit_neg.lookup( target_flow, self.valve_cmd+err )
         return self.valve_cmd
 

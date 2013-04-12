@@ -85,6 +85,12 @@ class OneDClayPit(object):
 
         dy = y-self.mem[index]
         self.mem[index] += k * dy
+        # HACK: LIMIT TO +-1
+        # TODO: PARAMETERIZE
+        if self.mem[index] > 1:
+            self.mem[index] = 1.0
+        elif self.mem[index] < -1:
+            self.mem[index] = -1.0
 
         # Smooth out the pit in both directions
         self.__smoothneg( index )
