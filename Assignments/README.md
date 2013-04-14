@@ -1,0 +1,1 @@
+Assignments from class.  Retired.
