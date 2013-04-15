@@ -5,11 +5,14 @@ from math_utils import NUM_LEGS, rotateZ, formPermutations, inTriangle
 from scipy import array, pi, nonzero
 import os.path as path
 
+
 class BodyModel:
+
+
     def __init__(self, config_file="body_model.conf", section="BodyModel"):
         c = ConfigParser()
         if not path.exists(config_file):
-            print 'Config file %s not found!'%config_file
+            print 'Config file %s not found!' % config_file
             raise IOError 
         c.read(config_file)
         self.legs = [LegModel() for i in range(NUM_LEGS)]
@@ -40,7 +43,7 @@ class BodyModel:
         return [self.legs[i].getFootPos() for i in range(NUM_LEGS)]
     
     def getFootPositionsInBodyFrame(self):
-        return [self.transformLeg2Body(i,self.legs[i].getFootPos()) for i in range(NUM_LEGS)]
+        return [self.transformLeg2Body(i, self.legs[i].getFootPos()) for i in range(NUM_LEGS)]
 
     def legsAreColliding(self):
         """ Get bounding boxes for the lower section of each of the six legs, and check them for
@@ -59,7 +62,7 @@ class BodyModel:
         """
         hip_offset = self.getHipOffset(leg_index)
         rotated = rotateZ(leg_coord, hip_offset[2])
-        body_coord = rotated+array([hip_offset[0], hip_offset[1], 0])
+        body_coord = rotated + array([hip_offset[0], hip_offset[1], 0])
         return body_coord
         
     def rotateBody2Leg(self, leg_index, body_coord):
@@ -76,48 +79,43 @@ class BodyModel:
             array of xyz in that leg's coordinate frame
         """
         hip_offset = self.getHipOffset(leg_index)
-        translated = array(body_coord)-array([hip_offset[0], hip_offset[1], 0])
+        translated = array(body_coord) - array([hip_offset[0], hip_offset[1], 0])
         leg_coord = self.rotateBody2Leg(leg_index, translated)
         return leg_coord
     
-    def getHipOffset(self,leg_index):
+    def getHipOffset(self, leg_index):
         """ Takes an index, returns a three-vector of X,Y and Theta offsets
         """
         if leg_index == 0:
             hip_offset = array([self.LEG0_OFFSET_X, self.LEG0_OFFSET_Y, self.LEG0_THETA])
         elif leg_index == 1:
-            hip_offset = array([self.LEG1_OFFSET_X, self.LEG1_OFFSET_Y, pi/2])
+            hip_offset = array([self.LEG1_OFFSET_X, self.LEG1_OFFSET_Y, pi / 2])
         elif leg_index == 2:
-            hip_offset = array([-self.LEG0_OFFSET_X, self.LEG0_OFFSET_Y, pi-self.LEG0_THETA])
+            hip_offset = array([-self.LEG0_OFFSET_X, self.LEG0_OFFSET_Y, pi - self.LEG0_THETA])
         elif leg_index == 3:
-            hip_offset = array([-self.LEG0_OFFSET_X, -self.LEG0_OFFSET_Y, -pi+self.LEG0_THETA])
+            hip_offset = array([-self.LEG0_OFFSET_X, -self.LEG0_OFFSET_Y, -pi + self.LEG0_THETA])
         elif leg_index == 4:
-            hip_offset = array([-self.LEG1_OFFSET_X, -self.LEG1_OFFSET_Y, -pi/2])
+            hip_offset = array([-self.LEG1_OFFSET_X, -self.LEG1_OFFSET_Y, -pi / 2])
         elif leg_index == 5:
             hip_offset = array([self.LEG0_OFFSET_X, -self.LEG0_OFFSET_Y, -self.LEG0_THETA])
         else:
-            raise ValueError ("BodyModel.getHipOffset: Leg index out of bounds.")
+            raise ValueError("BodyModel.getHipOffset: Leg index out of bounds.")
         return hip_offset
     
     def canLift(self, leg_index):
         """ Takes in a set of leg indices, and reports if all of them can be lifted simultaneously
         """
         foot_pos = self.getFootPositionsInBodyFrame()
-        COM = [0,0,0] # Calculate this for real in another section of the body model?
-        g = [0,0,-1]#self.imu_orientation # DELETE THIS COMMENT once someone confirms this is in the form of a vector pointing parallel to gravity
+        COM = [0, 0, 0]   # Calculate this for real in another section of the body model?
+        g   = [0, 0, -1]  # self.imu_orientation # DELETE THIS COMMENT once someone confirms this is in the form of a vector pointing parallel to gravity
         on_ground = [self.getLegs()[i].isFootOnGround() for i in range(NUM_LEGS)]
         for i in leg_index:
             on_ground[i] = False
         on_ground_indices = nonzero(on_ground)[0]
-        possible_triangles = formPermutations(on_ground_indices,3)
+        possible_triangles = formPermutations(on_ground_indices, 3)
         can_lift = False
         for tri in possible_triangles:
-            if inTriangle(COM,foot_pos[tri[0]],foot_pos[tri[1]],foot_pos[tri[2]],g):
+            if inTriangle(COM, foot_pos[tri[0]], foot_pos[tri[1]], foot_pos[tri[2]], g):
                 can_lift = True
                 break
         return can_lift
-    
-    
-    
-    
-    

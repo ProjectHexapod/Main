@@ -10,6 +10,7 @@ class LegModelTestCase(unittest.TestCase):
         
         self.leg = LegModel()
         self.leg_state = [array([0.0, 0.0, 0.0]), 0.0]
+        
     def tearDown(self):
         pass
 
@@ -41,55 +42,51 @@ class LegModelTestCase(unittest.TestCase):
     
     def testFootPosFromLegStateZeroAnglesIsSumOfLengthsInX(self):
         l = self.leg
-        self.assertEqual(
-                array([l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN, 0.0, 0.0]),
-                l.footPosFromLegState(self.leg_state))
+        self.assertEqual(array([l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN, 0.0, 0.0]),
+                         l.footPosFromLegState(self.leg_state))
+
     def testFootPosFromLegStatePosRightAngles(self):
         l = self.leg
         
         self.leg_state[0][YAW] = pi_2
-        self.assertEqual(
-                array([0.0, (l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN), 0.0]),
-                l.footPosFromLegState(self.leg_state))
+        self.assertEqual(array([0.0, (l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN), 0.0]),
+                         l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][HP] = pi_2
-        self.assertEqual(
-                array([0.0, l.YAW_LEN, -(l.THIGH_LEN + l.CALF_LEN)]),
-                l.footPosFromLegState(self.leg_state))
+        self.assertEqual(array([0.0, l.YAW_LEN, -(l.THIGH_LEN + l.CALF_LEN)]),
+                         l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][KP] = pi_2
-        self.assertEqual(
-                array([0.0, l.YAW_LEN - l.CALF_LEN, -l.THIGH_LEN]),
-                l.footPosFromLegState(self.leg_state))
+        self.assertEqual(array([0.0, l.YAW_LEN - l.CALF_LEN, -l.THIGH_LEN]),
+                         l.footPosFromLegState(self.leg_state))
+        
     def testFootPosFromLegStateShockDepthModifiesCalfLen(self):
         l = self.leg
         self.leg_state[0][KP] = pi_2
         self.leg_state[1] = 0.1234
-        self.assertEqual(
-                array([l.YAW_LEN + l.THIGH_LEN, 0.0, -(l.CALF_LEN - 0.1234)]),
-                l.footPosFromLegState(self.leg_state))
+        self.assertEqual(array([l.YAW_LEN + l.THIGH_LEN, 0.0, -(l.CALF_LEN - 0.1234)]),
+                         l.footPosFromLegState(self.leg_state))
+        
     def testFootPosFromLegStateComplex(self):
         l = self.leg
         
         self.leg_state[0][YAW] = -pi_4
-        self.assertEqual(
-                array([(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN) / 2**0.5,
-                       -(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN) / 2**0.5,
-                       0.0]),
+        self.assertEqual(array([(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN) / 2 ** 0.5,
+                                -(l.YAW_LEN + l.THIGH_LEN + l.CALF_LEN) / 2 ** 0.5,
+                                0.0]),
                 l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][HP] = -pi / 6.0
         self.assertEqual(
-            array([(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
-                   -(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0**0.5/2.0) / 2**0.5,
+            array([(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0 ** 0.5 / 2.0) / 2 ** 0.5,
+                   -(l.YAW_LEN + (l.THIGH_LEN + l.CALF_LEN) * 3.0 ** 0.5 / 2.0) / 2 ** 0.5,
                    (l.THIGH_LEN + l.CALF_LEN) / 2.0]),
             l.footPosFromLegState(self.leg_state))
         
         self.leg_state[0][KP] = pi / 6.0
-        self.assertEqual(
-            array([(l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
-                   -(l.YAW_LEN + l.THIGH_LEN * 3.0**0.5/2.0 + l.CALF_LEN) / 2**0.5,
-                   l.THIGH_LEN / 2.0]),
+        self.assertEqual(array([(l.YAW_LEN + l.THIGH_LEN * 3.0 ** 0.5 / 2.0 + l.CALF_LEN) / 2 ** 0.5,
+                                -(l.YAW_LEN + l.THIGH_LEN * 3.0 ** 0.5 / 2.0 + l.CALF_LEN) / 2 ** 0.5,
+                                l.THIGH_LEN / 2.0]),
             l.footPosFromLegState(self.leg_state))
 
     def testJointAnglesFromFootPosInvertsFootPosFromLegState(self):
@@ -120,27 +117,31 @@ class LegModelTestCase(unittest.TestCase):
         self.assertGreater(l.SHOCK_DEPTH_THRESHOLD_HIGH, 0.0)
         self.assertGreater(l.SHOCK_DEPTH_THRESHOLD_LOW, 0.0)
         self.assertGreater(l.SHOCK_DEPTH_THRESHOLD_HIGH, l.SHOCK_DEPTH_THRESHOLD_LOW)
+        
     def testFootOnGroundDefaultsToFalse(self):
         self.assertFalse(self.leg.isFootOnGround())
+        
     def testFootOnGroundTurnsOn(self):
         l = self.leg
         for sd in arange(0.0, 0.1, 0.001):
             l.setSensorReadings(0.0, 0.0, 0.0, sd)
             l.updateFootOnGround()
             self.assertEqual(sd > l.SHOCK_DEPTH_THRESHOLD_HIGH, l.isFootOnGround())
+            
     def testFootOnGroundTurnsOff(self):
         l = self.leg
         for sd in arange(0.1, 0.0, -0.001):
             l.setSensorReadings(0.0, 0.0, 0.0, sd)
             l.updateFootOnGround()
             self.assertEqual(sd > l.SHOCK_DEPTH_THRESHOLD_LOW, l.isFootOnGround())
+            
     def testFootOnGroundNoiseImmunity(self):
         l = self.leg
         
         time = arange(0.0, 1.0, 0.001)
         amp = (l.SHOCK_DEPTH_THRESHOLD_HIGH - l.SHOCK_DEPTH_THRESHOLD_LOW - 0.001) / 2.0
         offset = (l.SHOCK_DEPTH_THRESHOLD_HIGH + l.SHOCK_DEPTH_THRESHOLD_LOW) / 2.0
-        shock_depth = amp * sin(2*pi*time * 10.0) + offset
+        shock_depth = amp * sin(2 * pi * time * 10.0) + offset
 
         l.setSensorReadings(0.0, 0.0, 0.0, 0.0)
         l.updateFootOnGround()
