@@ -1,26 +1,32 @@
 from SimulationKit import helpers
 
+
 def isRotationMatrix(rot):
     return len(rot) == 9
 
+    
 def isHomogeneousMatrix(trans):
     return len(trans) == 16 and trans[15] == 1.0
 
+    
 def isVector3(vec):
     return len(vec) == 3
 
+    
 def getMatrixColumn(trans, i):
-   assert isHomogeneousMatrix(trans)
-   assert i < 4
+    assert isHomogeneousMatrix(trans)
+    assert i < 4
 
-   return trans[i::4]
+    return trans[i::4]
 
+    
 def getMatrixRow(trans, i):
     assert isHomogeneousMatrix(trans)
     assert i < 4
 
-    return trans[4 * i:4 * i+4]
+    return trans[4 * i:4 * i + 4]
 
+    
 def dot(a, b):
     assert len(a) == len(b)
 
@@ -30,6 +36,7 @@ def dot(a, b):
 
     return result
 
+    
 def rotationMatrixToHomogeneous(rot):
     assert isRotationMatrix(rot)
 
@@ -38,6 +45,7 @@ def rotationMatrixToHomogeneous(rot):
             rot[6], rot[7], rot[8], 0.0,
             0.0, 0.0, 0.0, 1.0)
 
+    
 def multiplyMatrices(*transforms):
     assert len(transforms) > 1
     assert all(map(isHomogeneousMatrix, transforms))
@@ -45,7 +53,7 @@ def multiplyMatrices(*transforms):
     result = transforms[0]
 
     for i in range(1, len(transforms)):
-        new = [0]*16
+        new = [0] * 16
         for row in range(4):
             for column in range(4):
                 new[row * 4 + column] = dot(getMatrixRow(result, row), getMatrixColumn(transforms[i], column))
@@ -54,6 +62,7 @@ def multiplyMatrices(*transforms):
 
     return result
 
+    
 def multiplyMatrixVector(trans, vector):
     assert isHomogeneousMatrix(trans)
     assert isVector3(vector)
@@ -66,11 +75,13 @@ def multiplyMatrixVector(trans, vector):
 
     return result[0:3]
 
+    
 def createRotation(axis, angle):
     assert isVector3(axis)
 
     return rotationMatrixToHomogeneous(helpers.calcRotMatrix(axis, angle))
 
+    
 def createTranslation(vector):
     assert isVector3(vector)
 
@@ -81,6 +92,7 @@ def createTranslation(vector):
 
     return result
 
+    
 def inverse(trans):
     assert isHomogeneousMatrix(trans)
 
@@ -105,6 +117,7 @@ def inverse(trans):
 
     return result
 
+    
 def identity():
     result = [0.0] * 16
 

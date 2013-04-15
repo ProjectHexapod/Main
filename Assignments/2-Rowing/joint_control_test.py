@@ -6,7 +6,10 @@ import mox
 import unittest
 from comparators import Gt, Lt
 
+
 class TestJointController(unittest.TestCase):
+
+
     def setUp(self):
         self.mockJoint = mox.MockAnything()
         self.control = joint_control.JointController(self.mockJoint)
@@ -30,7 +33,10 @@ class TestJointController(unittest.TestCase):
         self.mockJoint.getAngle().AndReturn(0)
         self.mockJoint.setLengthRate(Lt(0))
         mox.Replay(self.mockJoint)
-        self.assertTrue(abs(-.1 - self.control.updateJoint(-.1, .1)) < .005) #this kludge is to get around issues with expressing -.1 in floating point
+        
+        #this kludge is to get around issues with expressing -.1 in floating point
+        self.assertTrue(abs(-.1 - self.control.updateJoint(-.1, .1)) < .005)
+
         mox.Verify(self.mockJoint)
 
     def test_update_joint_p_term(self):
@@ -73,7 +79,7 @@ class TestJointController(unittest.TestCase):
 
     def test_high_target_value(self):
         def run():
-            self.control.updateJoint(10,.1)
+            self.control.updateJoint(10, .1)
         self.assertRaises(ValueError, run)
 
 if __name__ == "__main__":
