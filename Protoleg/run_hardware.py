@@ -68,7 +68,10 @@ bus = BusManager( 'eth0', mac_list )
 retval = importPlanner()
 # FIXME: This is to allow backwards compatibility to older versions of importPlanner
 if type(retval) == tuple:
-    update, controller = retval
+    if len(retval) == 2:
+        update, controller = retval
+    if len(retval) == 3:
+        update, controller, controller_graceful_exit = retval
 else:
     update = retval
     controller = None
@@ -206,12 +209,13 @@ while run_flag:
     bus.exchangeMagValveData( valve_commands )
     bus.waitForSync()
     watchdog.feed()
-    if not run_count%1:
+    if not run_count%10:
         publisher.publish()
     for k,v in publisher.catalog.items():
         f_out.write('%f, '%(v()))
     f_out.write('\n')
 
+controller_graceful_exit()
 print 'Sending valve command 0.0 to valves'
 valve_commands = [0.0,0.0,0.0]
 bus.exchangeMagValveData( valve_commands )
