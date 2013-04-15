@@ -22,15 +22,15 @@ class Gait(object):
         self.points = []
         #self.points.append( (0.4,  0, -0.45, 0.2) )
 
-        #self.points.append( (1.8, -1.00, -0.75, 0.40) )
-        #self.points.append( (1.8, -1.00, -1.68, 0.20) )
-        #self.points.append( (1.8,  1.00, -1.68, 0.40) )
-        #self.points.append( (1.8,  1.00, -0.75, 0.20) )
+        self.points.append( (1.8, -1.00, -0.75, 0.40) )
+        self.points.append( (1.8, -1.00, -1.68, 0.20) )
+        self.points.append( (1.8,  1.00, -1.68, 0.40) )
+        self.points.append( (1.8,  1.00, -0.75, 0.20) )
 
         #self.points.append( (1.8, -1.00, -1.45, 0.40) )
-        self.points.append( (1.8, -1.00, -1.68, 0.70) )
-        self.points.append( (1.8,  1.00, -1.68, 0.70) )
-        self.points.append( (1.8,  0.00, -1.35, 0.70) )
+        #self.points.append( (1.8, -1.00, -1.68, 0.70) )
+        #self.points.append( (1.8,  1.00, -1.68, 0.70) )
+        #self.points.append( (1.8,  0.00, -1.35, 0.70) )
 
         # Describe the actuator placements at each joint
         YAW_ACT    = ActuatorMathHelper(
@@ -68,7 +68,7 @@ class Gait(object):
         self.act_helpers = [YAW_ACT, PITCH_ACT, KNEE_ACT]
        
         yaw_joint  = JointController(YAW_ACT,
-                kp=1.5,
+                kp=1.0,
                 ki=0.0,
                 kd=0.0,
                 kff=1.0,
@@ -76,7 +76,7 @@ class Gait(object):
                 derivative_corner=10,
                 backlash=deg2rad*1.5)
         pitch_joint  = JointController(PITCH_ACT,
-                kp=2.0,
+                kp=1.0,
                 ki=0.0,
                 kd=0.0,
                 kff=1.0,
@@ -84,13 +84,13 @@ class Gait(object):
                 derivative_corner=10,
                 backlash=deg2rad*0.5)
         knee_joint  = JointController(KNEE_ACT,
-                kp=2.0,
+                kp=1.0,
                 ki=0.0,
                 kd=0.0,
                 kff=1.0,
                 kfa=0.0,
                 derivative_corner=10,
-                backlash=deg2rad*0.5)
+                backlash=deg2rad*0.75)
 
         self.joint_controllers = [yaw_joint, pitch_joint, knee_joint]
 
@@ -126,12 +126,13 @@ class Gait(object):
         target_lin_rates = [c.getDesiredLengthRate() for c in self.joint_controllers]
         measured_lin_rates = [c.getLengthRate() for c in self.joint_controllers]
 
-        s = ''
-        m = self.pist_helpers[0].clay_pit_pos.mem
-        for i in range(len(m)):
-            if not i%8:
-                s += '%2.2f '%(m[i])
-        print s
+        if 0:
+            s = ''
+            m = self.pist_helpers[0].clay_pit_pos.mem
+            for i in range(len(m)):
+                if not i%8:
+                    s += '%2.2f '%(m[i])
+            print s
 
         commands  = [self.pist_helpers[i].update(control_lin_rates[i], measured_lin_rates[i]) for i in range(3)]
         #commands  = [self.pist_helpers[0].update(control_lin_rates[0], measured_lin_rates[0]),0,0]
