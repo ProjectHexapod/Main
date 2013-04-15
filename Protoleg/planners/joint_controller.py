@@ -99,7 +99,7 @@ class LearningPistonController(PistonController):
                     and abs(target_flow) > min_flow:
                 flow_error = target_flow-measured_flow
                 #flow_error = measured_flow-target_flow
-                error_mult=50
+                error_mult=10
                 err = flow_error*error_mult
                 #err = sat(err, 1e-5)
                 if   target_flow > 0:
