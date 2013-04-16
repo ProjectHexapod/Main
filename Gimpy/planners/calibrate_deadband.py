@@ -26,10 +26,10 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
 
     # Evaluate path and joint control
     JA = model.getJointAngles()
-    controller.update(JA, array([0.0,0.0,0.0]))
+    controller.update(JA, array([0.0, 0.0, 0.0]))
 
 
-    flie.write("%f,%f,%f,%f,%f,%f\n" % (lr[0],lr[1],lr[2],JA[0],JA[1],JA[2]))
+    flie.write("%f,%f,%f,%f,%f,%f\n" % (lr[0], lr[1], lr[2], JA[0], JA[1], JA[2]))
     
     lr[j_idx] += delta
     return lr

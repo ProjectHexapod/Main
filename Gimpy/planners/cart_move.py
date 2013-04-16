@@ -33,11 +33,11 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     # Monitor leg_paths
     if path.isDone():
         if state == S_INIT:
-            print "Move"*1000
+            print "Move" * 1000
             path = TrapezoidalFootMove(model, controller, array([1.5, 0.0, -0.4]), 0.5, 0.5)
             state = S_MOVE_JOINT
         elif state == S_MOVE_JOINT:
-            print "Done"*1000
+            print "Done" * 1000
             state = S_DONE
             pass
         logger.info("State changed.", state=state)

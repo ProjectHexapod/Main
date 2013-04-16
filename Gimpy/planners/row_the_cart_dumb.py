@@ -10,13 +10,15 @@ controller = LimbController()
 path = None
 
 points = []
-points.append( (1.5,  0.75, -0.55) )
-points.append( (1.5, -0.75, -0.55) )
-points.append( (1.5, -0.75, -0.78) )
-points.append( (1.5,  0.75, -0.78) )
+points.append((1.5,  0.75, -0.55))
+points.append((1.5, -0.75, -0.55))
+points.append((1.5, -0.75, -0.78))
+points.append((1.5,  0.75, -0.78))
 index = 0
 
 # Body of control loop
+
+
 def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     global points, path, index
     
@@ -32,9 +34,9 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     
     if path.isDone():
         path = TrapezoidalFootMove(model, controller,
-                                       array(points[index]),
-                                       0.5, 0.4)
-        index = (index+1)%len(points)
+                                   array(points[index]),
+                                   0.5, 0.4)
+        index = (index + 1) % len(points)
 
     # Evaluate path and joint control
     controller.update(model.getJointAngles(), path.update())

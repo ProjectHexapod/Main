@@ -42,4 +42,3 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     lr[YAW] = 0.0
     lr[HP] = 0.0
     return lr
-
