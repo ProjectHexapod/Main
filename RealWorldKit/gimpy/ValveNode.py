@@ -6,23 +6,26 @@ from math import *
 SATURATION_LIMIT = 100.0
 RATE_EQUALS_ZERO_TOLERANCE = 0.0001
 
+
 class ValveNode(BusNode):
     def __init__(self, bus, node_id, name, bore, rod, lpm, e_deadband=0, r_deadband=0):
         BusNode.__init__(self, bus=bus, node_id=node_id, name=name)
-        bore_section = pi*((bore/2)**2)
-        rod_section = pi*((rod/2)**2)
-        self.max_extend_rate = (lpm/1000.0/60.0) / bore_section
-        self.max_retract_rate = (lpm/1000.0/60.0) / (bore_section - rod_section)
+        bore_section = pi * ((bore / 2) ** 2)
+        rod_section = pi * ((rod / 2) ** 2)
+        self.max_extend_rate = (lpm / 1000.0 / 60.0) / bore_section
+        self.max_retract_rate = (lpm / 1000.0 / 60.0) / (bore_section - rod_section)
         self.e_deadband = e_deadband
         self.r_deadband = r_deadband
         self.pwm0 = 0
         self.pwm1 = 0
+
     def getPWM0(self):
         return self.pwm0
+
     def getPWM1(self):
         return self.pwm1
 
-    def setPWM( self, pwm ):
+    def setPWM(self, pwm):
         """
         Bypass length rate calculations, set pwms directly
         """
@@ -51,12 +54,12 @@ class ValveNode(BusNode):
                 pwm1 = SATURATION_LIMIT
         self.pwm0 = pwm0
         self.pwm1 = pwm1
-        #print self.name, "pwm0", pwm0, "pwm1", pwm1, "rate", rate
+        # print self.name, "pwm0", pwm0, "pwm1", pwm1, "rate", rate
         data = chr(int(pwm0)) + chr(int(pwm1))
         self.startTransaction(memory_offset=0, data=data)
 
     def stop(self):
-        data = chr(0)*2
+        data = chr(0) * 2
         self.startTransaction(memory_offset=0, data=data)
 
     def callback(self, memory_offset, data):
