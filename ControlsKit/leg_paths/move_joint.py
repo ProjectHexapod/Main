@@ -1,6 +1,8 @@
 from ControlsKit import time_sources
 
+
 class MoveJoint:
+
     def __init__(self, leg_model, limb_controller, joint_idx, duration, direction, velocity=0.1, accel_duration=0.1):
         assert abs(direction) == 1
         

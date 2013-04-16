@@ -1,6 +1,8 @@
 #from UI import logger
 
+
 class TimeSource:
+
     def __init__(self, initial_time=0.0, initial_delta=0.0):
         self.initial_time = initial_time
         self.initial_delta = initial_delta
@@ -15,9 +17,11 @@ class TimeSource:
                          initial_delta=self.initial_delta,
                          current_time=self.time,
                          bad_value=time)
-            raise ValueError("TimeSource.updateTime(): time must be increasing.\nLast time: %f\nNew time:  %d"%(self.time,time))
+            raise ValueError("TimeSource.updateTime(): time must be increasing.\nLast time: %f\nNew time:  %d" %
+                             (self.time, time))
         self.delta = time - self.time
         self.time = time
+
     def updateDelta(self, delta):
         if delta <= 0.0 and self.time != 0.0:
             logger.error("TimeSource.updateDelta: Reversed time error!",
@@ -31,11 +35,14 @@ class TimeSource:
     
     def getTime(self):
         return self.time
+        
     def getDelta(self):
         # FIXME: Hacked explosion prevention
-        return min( max(1e-3,self.delta), 0.1 )
+        return min(max(1e-3, self.delta), 0.1)
 
+        
 global_time = TimeSource()
+
 
 class StopWatch:
     '''
@@ -60,22 +67,27 @@ class StopWatch:
     
     def isActive(self):
         return self.slope != 0.0 or self.curvature != 0.0
+        
     def start(self):
         self.curvature = 0.0
         self.slope = 1.0
         self.sync_with_parent = True
+        
     def stop(self):
         self.curvature = 0.0
         self.slope = 0.0
+        
     def smoothStart(self, transition_duration):
         self.sync_with_parent = True
         self.curvature = 1.0 / transition_duration
+        
     def smoothStop(self, transition_duration):
         self.curvature = -1.0 / transition_duration
     
     def getTime(self):
         self.update()
         return self.time
+        
     def getDelta(self):
         self.update()
         return self.delta

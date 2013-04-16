@@ -1,6 +1,8 @@
 from ControlsKit import time_sources
 
+
 class FindJointStop:
+
     def __init__(self, leg_model, limb_controller, joint_idx, direction, velocity=0.05, accel_duration=0.1):
         self.model = leg_model
         self.controller = limb_controller

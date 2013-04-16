@@ -2,13 +2,16 @@ from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 from ControlsKit.leg_paths import TrapezoidalFootMove, TrapezoidalJointMove
 
+
 class SafeMove:
-    """This is foot movement that combines up to two trapezoidal foot moves and up to one trapezoidal joint move to move the foot
-        safely without fear of dragging on the ground.
-        NOTE: The Z-plane is the highest horizontal plane that ensures a convex volume below it. 
-        This is the boundary of where TrapFootMove is guaranteed to work, so we switch to TrapJointMove above it.
-        It should be found via side-angle-side of the knee and calf links and the angle they make most folded up.
-        We use only vertical motions below the Z-plane, as there is a high likelihood of hitting the ground.
+    """
+    This is foot movement that combines up to two trapezoidal foot moves and up to one trapezoidal joint
+    move to move the foot safely without fear of dragging on the ground.
+    
+    NOTE: The Z-plane is the highest horizontal plane that ensures a convex volume below it. 
+    This is the boundary of where TrapFootMove is guaranteed to work, so we switch to TrapJointMove above it.
+    It should be found via side-angle-side of the knee and calf links and the angle they make most folded up.
+    We use only vertical motions below the Z-plane, as there is a high likelihood of hitting the ground.
     """
     def __init__(self, leg_model, limb_controller, final_foot_pos, max_velocity, acceleration, z_plane=-0.67865):
         leg_logger.logger.info("New path.", path_name="TrapezoidalFootMove",
@@ -28,7 +31,7 @@ class SafeMove:
         self.target_angles = self.initial_joint_angles
         
         self.projected_initial = [self.initial_foot_pos[0], self.initial_foot_pos[1], z_plane]
-        self.projected_final = [self.final_foot_pos[0], self.final_foot_pos[1], max(self.final_foot_pos[2],z_plane)]
+        self.projected_final = [self.final_foot_pos[0], self.final_foot_pos[1], max(self.final_foot_pos[2], z_plane)]
         
         self.done = False
         
