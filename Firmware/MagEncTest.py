@@ -22,22 +22,23 @@ cos_val = 0
 #for i in f:
 i = 0
 while 1:
-#	cmd[2] = i
-	cmd_string = cmd.tostring()
-	s.write(cmd_string)
-#	i = (i + 1)%64
-	retval = s.read(len(cmd_string))
+    #cmd[2] = i
+    cmd_string = cmd.tostring()
+    s.write(cmd_string)
+    #i = (i + 1)%64
+    retval = s.read(len(cmd_string))
 
-        if len(retval)<5:
-            continue
-        sin_val = ord(retval[1])*256 + ord(retval[2]) - 1207
-        cos_val = ord(retval[3])*256 + ord(retval[4]) - 1207
-	
-	#for c in retval:
-	for j in range(len(retval)):
-		print '%.2x'%ord(retval[j])
+    if len(retval) < 5:
+        continue
+            
+    sin_val = ord(retval[1]) * 256 + ord(retval[2]) - 1207
+    cos_val = ord(retval[3]) * 256 + ord(retval[4]) - 1207
+                
+    #for c in retval:
+    for j in range(len(retval)):
+        print '%.2x' % ord(retval[j])
         print sin_val, cos_val, atan2(sin_val, cos_val)
-	print ''
-	
-	time.sleep(0.05)
-s.close()
+        print ''
+                
+    time.sleep(0.05)
+    s.close()
