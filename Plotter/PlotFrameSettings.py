@@ -1,14 +1,18 @@
 import pickle
 
-def loadPlotFrameSettingsFromFile( filename ):
+
+def loadPlotFrameSettingsFromFile(filename):
     f = open(filename, 'r')
     retval = pickle.load(f)
     f.close()
     return retval
-def savePlotFrameSettingsToFile( settings, filename ):
+
+
+def savePlotFrameSettingsToFile(settings, filename):
     f = open(filename, 'wb+')
     pickle.dump(settings, f)
     f.close()
+
 
 class PlotFrameSettings(object):
     """
@@ -16,7 +20,7 @@ class PlotFrameSettings(object):
     specific host and port and what values to subscribe to.
     """
     def __init__(self, host="localhost", port=5055, subscriptions=[],
-        subplots={}, n_points = 2500):
+                 subplots={}, n_points=2500):
         """
         host is the Publisher of data
         port is the TCP port on which to communicate

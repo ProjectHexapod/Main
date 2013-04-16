@@ -10,18 +10,18 @@ try:
     import numpy.oldnumeric as _Numeric
 except:
     try:
-        import numarray as _Numeric  #if numarray is used it is renamed Numeric
+        import numarray as _Numeric  # if numarray is used it is renamed Numeric
     except:
         try:
             import Numeric as _Numeric
         except:
-            msg= """
+            msg = """
             This module requires the Numeric/numarray or NumPy module,
             which could not be imported.  It probably is not installed
             (it's not part of the standard Python distribution). See the
             Numeric Python site (http://numpy.scipy.org) for information on
             downloading source or binaries."""
-            raise ImportError, "Numeric,numarray or NumPy not found. \n" + msg
+            raise ImportError("Numeric,numarray or NumPy not found. \n" + msg)
 
 
 class PlotFrame(wx.Frame):
@@ -52,47 +52,47 @@ class PlotFrame(wx.Frame):
 
         menu = wx.Menu()
         menu.Append(211, '&Redraw', 'Redraw plots')
-        self.Bind(wx.EVT_MENU,self.OnPlotRedraw, id=211)
+        self.Bind(wx.EVT_MENU, self.OnPlotRedraw, id=211)
         menu.Append(212, '&Clear', 'Clear canvas')
-        self.Bind(wx.EVT_MENU,self.OnPlotClear, id=212)
+        self.Bind(wx.EVT_MENU, self.OnPlotClear, id=212)
         menu.Append(213, '&Scale', 'Scale canvas')
-        self.Bind(wx.EVT_MENU,self.OnPlotScale, id=213) 
+        self.Bind(wx.EVT_MENU, self.OnPlotScale, id=213) 
         menu.Append(214, 'Enable &Zoom', 'Enable Mouse Zoom', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableZoom, id=214) 
+        self.Bind(wx.EVT_MENU, self.OnEnableZoom, id=214) 
         menu.Append(215, 'Enable &Grid', 'Turn on Grid', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableGrid, id=215)
+        self.Bind(wx.EVT_MENU, self.OnEnableGrid, id=215)
         menu.Append(217, 'Enable &Drag', 'Activates dragging mode', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableDrag, id=217)
+        self.Bind(wx.EVT_MENU, self.OnEnableDrag, id=217)
         menu.Append(220, 'Enable &Legend', 'Turn on Legend', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableLegend, id=220)
+        self.Bind(wx.EVT_MENU, self.OnEnableLegend, id=220)
         menu.Append(222, 'Enable &Point Label', 'Show Closest Point', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnablePointLabel, id=222)
+        self.Bind(wx.EVT_MENU, self.OnEnablePointLabel, id=222)
         
         menu.Append(223, 'Enable &Anti-Aliasing', 'Smooth output', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableAntiAliasing, id=223)
+        self.Bind(wx.EVT_MENU, self.OnEnableAntiAliasing, id=223)
         menu.Append(224, 'Enable &High-Resolution AA', 'Draw in higher resolution', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableHiRes, id=224)
+        self.Bind(wx.EVT_MENU, self.OnEnableHiRes, id=224)
         
         menu.Append(226, 'Enable Center Lines', 'Draw center lines', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableCenterLines, id=226)
+        self.Bind(wx.EVT_MENU, self.OnEnableCenterLines, id=226)
         menu.Append(227, 'Enable Diagonal Lines', 'Draw diagonal lines', kind=wx.ITEM_CHECK)
-        self.Bind(wx.EVT_MENU,self.OnEnableDiagonals, id=227)
+        self.Bind(wx.EVT_MENU, self.OnEnableDiagonals, id=227)
         
         menu.Append(231, 'Set Gray Background', 'Change background colour to gray')
-        self.Bind(wx.EVT_MENU,self.OnBackgroundGray, id=231)
+        self.Bind(wx.EVT_MENU, self.OnBackgroundGray, id=231)
         menu.Append(232, 'Set &White Background', 'Change background colour to white')
-        self.Bind(wx.EVT_MENU,self.OnBackgroundWhite, id=232)
+        self.Bind(wx.EVT_MENU, self.OnBackgroundWhite, id=232)
         menu.Append(233, 'Set Red Label Text', 'Change label text colour to red')
-        self.Bind(wx.EVT_MENU,self.OnForegroundRed, id=233)
+        self.Bind(wx.EVT_MENU, self.OnForegroundRed, id=233)
         menu.Append(234, 'Set &Black Label Text', 'Change label text colour to black')
-        self.Bind(wx.EVT_MENU,self.OnForegroundBlack, id=234)
+        self.Bind(wx.EVT_MENU, self.OnForegroundBlack, id=234)
        
         menu.Append(225, 'Scroll Up 1', 'Move View Up 1 Unit')
-        self.Bind(wx.EVT_MENU,self.OnScrUp, id=225) 
+        self.Bind(wx.EVT_MENU, self.OnScrUp, id=225) 
         menu.Append(230, 'Scroll Rt 2', 'Move View Right 2 Units')
-        self.Bind(wx.EVT_MENU,self.OnScrRt, id=230)
+        self.Bind(wx.EVT_MENU, self.OnScrRt, id=230)
         menu.Append(235, '&Plot Reset', 'Reset to original plot')
-        self.Bind(wx.EVT_MENU,self.OnReset, id=235)
+        self.Bind(wx.EVT_MENU, self.OnReset, id=235)
 
         self.mainmenu.Append(menu, '&Plot')
 
@@ -107,7 +107,7 @@ class PlotFrame(wx.Frame):
         self.CreateStatusBar(1)
         
         self.client = PlotCanvas(self)
-        #define the function for drawing pointLabels
+        # define the function for drawing pointLabels
         self.client.SetPointLabelFunc(self.DrawPointLabel)
         # Create mouse event for showing cursor coords in status bar
         self.client.canvas.Bind(wx.EVT_LEFT_DOWN, self.OnMouseLeftDown)
@@ -117,22 +117,24 @@ class PlotFrame(wx.Frame):
         # This timer schedules redraws of data
         self.animation_timer = wx.Timer(self)
         self.Bind(wx.EVT_TIMER, self.drawData, self.animation_timer)
-        self.animation_timer.Start(100,0)
+        self.animation_timer.Start(100, 0)
 
-        self.data = { k:[0 for x in range(config.n_points)] \
-            for k in config.subscriptions }
+        self.data = {k: [0 for x in range(config.n_points)]
+                     for k in config.subscriptions}
 
-        self.subscriber = Subscriber( config.host, config.port )
-        self.subscriber.subscribeTo( config.subscriptions )
-        self.subscriber.setCallback( self.OnDataFrameReceived )
+        self.subscriber = Subscriber(config.host, config.port)
+        self.subscriber.subscribeTo(config.subscriptions)
+        self.subscriber.setCallback(self.OnDataFrameReceived)
         self.subscriber.remoteDisconnectCallback = exit
         self.subscriber.start()
 
         self.Show(True)
-    def OnDataFrameReceived( self, frame ):
-        for k,v in frame.items():
+
+    def OnDataFrameReceived(self, frame):
+        for k, v in frame.items():
             self.data[k].pop(0)
             self.data[k].append(v)
+
     def DrawPointLabel(self, dc, mDataDict):
         """This is the fuction that defines how the pointLabels are plotted
             dc - DC that will be passed
@@ -144,38 +146,38 @@ class PlotFrame(wx.Frame):
         """
         # ----------
         dc.SetPen(wx.Pen(wx.BLACK))
-        dc.SetBrush(wx.Brush( wx.BLACK, wx.SOLID ) )
+        dc.SetBrush(wx.Brush(wx.BLACK, wx.SOLID))
         
-        sx, sy = mDataDict["scaledXY"] #scaled x,y of closest point
-        dc.DrawRectangle( sx-5,sy-5, 10, 10)  #10by10 square centered on point
-        px,py = mDataDict["pointXY"]
+        sx, sy = mDataDict["scaledXY"]  # scaled x,y of closest point
+        dc.DrawRectangle(sx - 5, sy - 5, 10, 10)  # 10by10 square centered on point
+        px, py = mDataDict["pointXY"]
         cNum = mDataDict["curveNum"]
         pntIn = mDataDict["pIndex"]
         legend = mDataDict["legend"]
-        #make a string to display
-        s = "Crv# %i, '%s', Pt. (%.2f,%.2f), PtInd %i" %(cNum, legend, px, py, pntIn)
-        dc.DrawText(s, sx , sy+1)
+        # make a string to display
+        s = "Crv# %i, '%s', Pt. (%.2f,%.2f), PtInd %i" % (cNum, legend, px, py, pntIn)
+        dc.DrawText(s, sx , sy + 1)
         # -----------
 
-    def OnMouseLeftDown(self,event):
-        s= "Left Mouse Down at Point: (%.4f, %.4f)" % self.client._getXY(event)
+    def OnMouseLeftDown(self, event):
+        s = "Left Mouse Down at Point: (%.4f, %.4f)" % self.client._getXY(event)
         self.SetStatusText(s)
-        event.Skip()            #allows plotCanvas OnMouseLeftDown to be called
+        event.Skip()  # allows plotCanvas OnMouseLeftDown to be called
 
     def OnMotion(self, event):
-        #show closest point (when enbled)
-        if self.client.GetEnablePointLabel() == True:
-            #make up dict with info for the pointLabel
-            #I've decided to mark the closest point on the closest curve
-            dlst= self.client.GetClosestPoint( self.client._getXY(event), pointScaled= True)
-            if dlst != []:    #returns [] if none
+        # show closest point (when enbled)
+        if self.client.GetEnablePointLabel():
+            # make up dict with info for the pointLabel
+            # I've decided to mark the closest point on the closest curve
+            dlst = self.client.GetClosestPoint(self.client._getXY(event), pointScaled=True)
+            if dlst != []:  # returns [] if none
                 curveNum, legend, pIndex, pointXY, scaledXY, distance = dlst
-                #make up dictionary to pass to my user function (see DrawPointLabel) 
-                mDataDict= {"curveNum":curveNum, "legend":legend, "pIndex":pIndex,\
-                            "pointXY":pointXY, "scaledXY":scaledXY}
-                #pass dict to update the pointLabel
+                # make up dictionary to pass to my user function (see DrawPointLabel) 
+                mDataDict = {"curveNum": curveNum, "legend": legend, "pIndex": pIndex,
+                             "pointXY": pointXY, "scaledXY": scaledXY}
+                # pass dict to update the pointLabel
                 self.client.UpdatePointLabel(mDataDict)
-        event.Skip()           #go to next handler
+        event.Skip()  # go to next handler
 
     def OnFilePageSetup(self, event):
         self.client.PageSetup()
@@ -194,7 +196,7 @@ class PlotFrame(wx.Frame):
         self.client.SaveFile()
 
     def OnFileExit(self, event):
-        self.GetParent().TogglePlay( close_window = True )
+        self.GetParent().TogglePlay(close_window=True)
 
     def drawData(self, event):
         colors = ['red', 'green', 'blue', 'black']
@@ -207,29 +209,29 @@ class PlotFrame(wx.Frame):
             if z_i == len(self.data['time']):
                 return
         y_axis_title = ''
-        for k,v in self.data.items():
+        for k, v in self.data.items():
             if k == 'time':
                 continue
-            markers.append( PolyMarker(zip(self.data['time'][z_i:], self.data[k][z_i:]), legend=k, colour=colors[i], marker='dot',size=3) )
-            y_axis_title += k+', '
-            i+=1
+            markers.append(PolyMarker(zip(self.data['time'][z_i:], self.data[k][z_i:]), legend=k, colour=colors[i], marker='dot', size=3))
+            y_axis_title += k + ', '
+            i += 1
         y_axis_title = y_axis_title[:-2]
-        graphics = PlotGraphics(markers,"", "Time", y_axis_title)
+        graphics = PlotGraphics(markers, "", "Time", y_axis_title)
         self.resetDefaults()
         self.client.SetXSpec('min')
         self.client.SetYSpec('min')
         self.client.Draw(graphics)
 
-    def OnPlotRedraw(self,event):
+    def OnPlotRedraw(self, event):
         self.client.Redraw()
 
-    def OnPlotClear(self,event):
+    def OnPlotClear(self, event):
         self.client.Clear()
         
     def OnPlotScale(self, event):
-        if self.client.last_draw != None:
-            graphics, xAxis, yAxis= self.client.last_draw
-            self.client.Draw(graphics,(1,3.05),(0,1))
+        if self.client.last_draw is not None:
+            graphics, xAxis, yAxis = self.client.last_draw
+            self.client.Draw(graphics, (1, 3.05), (0, 1))
 
     def OnEnableZoom(self, event):
         self.client.SetEnableZoom(event.IsChecked())
@@ -279,10 +281,10 @@ class PlotFrame(wx.Frame):
     def OnScrUp(self, event):
         self.client.ScrollUp(1)
         
-    def OnScrRt(self,event):
+    def OnScrRt(self, event):
         self.client.ScrollRight(2)
 
-    def OnReset(self,event):
+    def OnReset(self, event):
         self.client.Reset()
 
     def OnHelpAbout(self, event):
@@ -292,10 +294,10 @@ class PlotFrame(wx.Frame):
 
     def resetDefaults(self):
         """Just to reset the fonts back to the PlotCanvas defaults"""
-        self.client.SetFont(wx.Font(10,wx.SWISS,wx.NORMAL,wx.NORMAL))
+        self.client.SetFont(wx.Font(10, wx.SWISS, wx.NORMAL, wx.NORMAL))
         self.client.SetFontSizeAxis(10)
         self.client.SetFontSizeLegend(10)
-        self.client.setLogScale((False,False))
+        self.client.setLogScale((False, False))
         self.client.SetXSpec('auto')
         self.client.SetYSpec('auto')
 
@@ -313,7 +315,7 @@ if __name__ == '__main__':
     class MyApp(wx.App):
         def OnInit(self):
             filename = sys.argv[1]
-            config = loadPlotFrameSettingsFromFile( filename )
+            config = loadPlotFrameSettingsFromFile(filename)
             frame = PlotFrame(None, -1, "Plotter", config)
             self.SetTopWindow(frame)
             return True
