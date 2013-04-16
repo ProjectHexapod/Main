@@ -98,35 +98,29 @@ def setUpCreator(data):
 # Continuity limit is a constant used in the test_continuity function, it is
 # the maximum allowed distance between two consecutive points that are
 # 0.01 seconds apart
-data = [
-    {
-        'start_position'    : [0., 0., 0.],
-        'end_position'      : [100., 0., 0.],
-        'start_time'        : 0.,
-        'end_time'          : 100.,
-        'continuity_limit'  : 5.
-    }, {
-        'start_position'    : [-743., 83., 200.],
-        'end_position'      : [20., 8000.41, 200.],
-        'start_time'        : 139.,
-        'end_time'          : 153.2,
-        'continuity_limit'  : 20.
-    }, {
-        'start_position'    : [300., 600., 400.],
-        'end_position'      : [32., 9000., 5342.],
-        'start_time'        : 30.,
-        'end_time'          : 126.,
-        'continuity_limit'  : 5.
-    }, {
-        'start_position'    : [30., 0., -2509.],
-        'end_position'      : [0., 0., 0.],
-        'start_time'        : 300.,
-        'end_time'          : 5000.,
-        'continuity_limit'  : 5.
-#    }, {
-# Uncomment and add more test cases if desired
-
-}]
+data = [{'start_position'    : [0., 0., 0.],
+         'end_position'      : [100., 0., 0.],
+         'start_time'        : 0.,
+         'end_time'          : 100.,
+         'continuity_limit'  : 5.},
+        
+        {'start_position'    : [-743., 83., 200.],
+         'end_position'      : [20., 8000.41, 200.],
+         'start_time'        : 139.,
+         'end_time'          : 153.2,
+         'continuity_limit'  : 20.},
+        
+        {'start_position'    : [300., 600., 400.],
+         'end_position'      : [32., 9000., 5342.],
+         'start_time'        : 30.,
+         'end_time'          : 126.,
+         'continuity_limit'  : 5.},
+        
+        {'start_position'    : [30., 0., -2509.],
+         'end_position'      : [0., 0., 0.],
+         'start_time'        : 300.,
+         'end_time'          : 5000.,
+         'continuity_limit'  : 5.}]
 
 
 def build_tests():
@@ -140,7 +134,7 @@ def build_tests():
         test_name = "TestTrajectory" + str(i)
         if not hasattr(current_module, test_name):
             test_class_instance = type(test_name, (setUpCreator(data[i]),
-                                            MetaTestTrajectory, unittest.TestCase), {})
+                                                   MetaTestTrajectory, unittest.TestCase), {})
             setattr(current_module, test_name, test_class_instance)
 
 build_tests()
