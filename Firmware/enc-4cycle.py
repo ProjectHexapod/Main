@@ -7,7 +7,7 @@ s = serial.Serial(port="/dev/ttyUSB0", baudrate=500000, timeout=2e-1)
 
 cmd = array('B')
 cmd.append(0x00)
-clrstr = cmd.tostring()*16
+clrstr = cmd.tostring() * 16
 s.write(clrstr)
 retval = s.read(len(clrstr))
 for c in retval:
