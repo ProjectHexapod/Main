@@ -9,7 +9,7 @@ from glLibObjects import glLibObjMap, glLibObjUser, glLibObjText, glLibObjFromFi
 from glLibLighting import *
 from glLibTexturing import *
 
-import inspect, os
+import inspect
+import os
 # This is the directory where the texture images can be found
 TEXTURE_DIR = os.path.dirname(inspect.getfile(inspect.currentframe())) + '/Textures/'
-

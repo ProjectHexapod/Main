@@ -1,5 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import gluLookAt
+
+
 def glLibInitialize():
     glEnable(GL_BLEND)
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
@@ -11,4 +13,4 @@ def glLibInitialize():
     glEnable(GL_ALPHA_TEST)
     glDepthFunc(GL_LEQUAL)
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST)
-    glAlphaFunc(GL_NOTEQUAL,0.0)
+    glAlphaFunc(GL_NOTEQUAL, 0.0)

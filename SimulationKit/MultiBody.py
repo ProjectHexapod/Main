@@ -2,6 +2,7 @@ import ode
 from math import *
 from helpers import *
 
+
 class MyHingeJoint(ode.HingeJoint):
     """
     MyHingeJoint calculates torque feedback.
@@ -9,7 +10,7 @@ class MyHingeJoint(ode.HingeJoint):
     doesn't work in the simulator... I HAVE to subclass
     it to get functional joints.  I don't know why.
     """
-    def __init__(self, world = None):
+    def __init__(self, world=None):
         """
         FIXME: Subclassing ode.HingeJoint produces a very weird behavior...
         python yells when I change the arguments accepted by the constructor.
@@ -19,16 +20,20 @@ class MyHingeJoint(ode.HingeJoint):
         self.world = world
         self.setFeedback(True)
         self.setTorqueLimit(0.0)
-        self.setAngleOffset( 0.0 )
-    def setAngleOffset( self, offset ):
+        self.setAngleOffset(0.0)
+
+    def setAngleOffset(self, offset):
         self.angle_offset = offset
-    def getAngleOffset( self ):
+
+    def getAngleOffset(self):
         return self.angle_offset
-    def getAngle( self ):
+
+    def getAngle(self):
         """Override the default getAngle to apply a custom offset,
         depending on user preference"""
-        return ode.HingeJoint.getAngle( self ) + self.getAngleOffset()
-    def getTorque( self ):
+        return ode.HingeJoint.getAngle(self) + self.getAngleOffset()
+
+    def getTorque(self):
         """Return the torque being exerted by the motor
         Funny enough, this is not easy to obtain."""
         # feedback is 
@@ -38,42 +43,52 @@ class MyHingeJoint(ode.HingeJoint):
         torque = feedback[1]
         axis   = self.getAxis()
         if self.getBody(0) == ode.environment:
-            body_COM = (0,0,0)
+            body_COM = (0, 0, 0)
         else:
             body_COM = self.getBody(0).getPosition()
-        anchor = sub3( body_COM, self.getAnchor() )
+        anchor = sub3(body_COM, self.getAnchor())
         # Figure out the torque due to the 
         # force contribution of the joint
-        t_force = cross( forces, anchor )
+        t_force = cross(forces, anchor)
         # Subtract the torque due to force contribution 
         # of joint from torque @ COM
         # to get joint torque
         t_joint = sub3(torque, t_force)
         # Figure out the projection of the torque on the axis
-        return dot3( t_joint, norm3(axis) )
-    def setTorqueLimit( self, limit ):
+        return dot3(t_joint, norm3(axis))
+
+    def setTorqueLimit(self, limit):
         self.setParam(ode.ParamFMax,    limit)
-    def getTorqueLimit( self ):
+
+    def getTorqueLimit(self):
         return self.getParam(ode.ParamFMax)
-    def update( self ):
+
+    def update(self):
         pass
+
 
 class SpringyHingeJoint(MyHingeJoint):
     def __init__(self, world):
         super(SpringyHingeJoint, self).__init__(world)
         self.setDamping(0.0)
         self.setSpringConstant(0.0)
+
     def setDamping(self, val):
         self.damping = val
+
     def setSpringConstant(self, val):
         self.spring_const = val
+
     def getDamping(self):
         return self.damping
+
     def getSpringConstant(self):
         return self.spring_const
+
     def update(self):
         super(SpringyHingeJoint, self).update()
-        self.addTorque( self.getAngleRate()*self.getDamping() + (self.getAngle() * self.getSpringConstant() ) )
+        self.addTorque(self.getAngleRate() * self.getDamping() + (self.getAngle() * self.getSpringConstant()))
+
 
 class ControlledHingeJoint(MyHingeJoint):
     """ControlledHingeJoint lets you set target positions and gives you
@@ -82,28 +97,35 @@ class ControlledHingeJoint(MyHingeJoint):
         super(ControlledHingeJoint, self).__init__(world)
         self.setAngleTarget(0.0)
         self.setGain(0.0)
-    def setAngleTarget( self, target ):
+
+    def setAngleTarget(self, target):
         self.angle_target = target
-    def getAngleTarget( self ):
+
+    def getAngleTarget(self):
         return self.angle_target
-    def getAngleError( self ):
-        return calcAngularError( self.angle_target, self.getAngle() )
-    def setGain( self, gain ):
+
+    def getAngleError(self):
+        return calcAngularError(self.angle_target, self.getAngle())
+
+    def setGain(self, gain):
         self.gain = gain
-    def getGain( self ):
+
+    def getGain(self):
         return self.gain
-    def update( self ):
+
+    def update(self):
         """Do control, handle backlash simulation"""
         if self.gain != 0.0:
             error = self.getAngleError()
-            self.setParam( ode.ParamVel, error*self.gain )
+            self.setParam(ode.ParamVel, error * self.gain)
         super(ControlledHingeJoint, self).update()
+
 
 class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
     """This simulates a hinge joint driven by a linear actuator.
     It is computationally much more efficient than using a hinge, slider
     and 2 sphere joints."""
-    def __init__( self, world ):
+    def __init__(self, world):
         """
         The origin in the anchor specification coordinate system is the hinge anchor
         The anchor specification coordinate system is 2D and in the plane normal
@@ -113,40 +135,50 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         a2_x and a2_y are the placement of anchor 2
         """
         super(LinearActuatorControlledHingeJoint, self).__init__(world)
-    def setActuatorAnchors( self, a1_x, a2_x, a2_y ):
+
+    def setActuatorAnchors(self, a1_x, a2_x, a2_y):
         self.a1_x = a1_x
         self.a2_x = a2_x
         self.a2_y = a2_y
         self.neutral_angle = atan2(a2_y, a2_x)
-    def getLength( self ):
+
+    def getLength(self):
         a = self.getActPath()
         return len2(a)
-    def getLengthRate( self ):
+
+    def getLengthRate(self):
         arate = self.getAngleRate()
         act = self.getActPath()
-        act_ang = pi-atan2(act[1],act[0])
-        return arate*self.a1_x*sin( act_ang )
-    def setCrossSection( self, area ):
+        act_ang = pi - atan2(act[1], act[0])
+        return arate * self.a1_x * sin(act_ang)
+
+    def setCrossSection(self, area):
         self.setExtendCrossSection(area)
         self.setRetractCrossSection(area)
-    def setMaxHydraulicFlow( self, new_max ):
-        self.max_extend_rate  = new_max/self.extend_cross_section
-        self.max_retract_rate = -new_max/self.retract_cross_section
-    def setExtendCrossSection( self, area ):
+
+    def setMaxHydraulicFlow(self, new_max):
+        self.max_extend_rate  = new_max / self.extend_cross_section
+        self.max_retract_rate = -new_max / self.retract_cross_section
+
+    def setExtendCrossSection(self, area):
         self.extend_cross_section = area
-    def setRetractCrossSection( self, area ):
+
+    def setRetractCrossSection(self, area):
         self.retract_cross_section = area
-    def getHydraulicFlow( self ):
+
+    def getHydraulicFlow(self):
         """Returns the hydraulic flow on the supply line.  Note that the flow on
         the supply and return lines can be different."""
         lrate = self.getLengthRate()
         if lrate > 0:
-            return lrate*self.extend_cross_section
+            return lrate * self.extend_cross_section
         else:
-            return lrate*self.retract_cross_section
-    def getHydraulicFlowGPM( self ):
-        return self.getHydraulicFlow()*15850.3
-    def getActPath( self ):
+            return lrate * self.retract_cross_section
+
+    def getHydraulicFlowGPM(self):
+        return self.getHydraulicFlow() * 15850.3
+
+    def getActPath(self):
         """
         Return the path of the actuator in the hinge plane
         """
@@ -156,50 +188,62 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         # we explicitly subtract it back out JHW
         ang = self.getAngle() - self.getAngleOffset()
         # Get the angle of the actuator with the horizontal
-        act = rot2( (self.a2_x, self.a2_y), ang )
+        act = rot2((self.a2_x, self.a2_y), ang)
         act = (act[0] - self.a1_x, act[1])
         return act
-    def getLeverArm( self ):
+
+    def getLeverArm(self):
         act = self.getActPath()
-        h_ang = pi-atan2(act[1], act[0])
+        h_ang = pi - atan2(act[1], act[0])
         # Get the lever arm
-        l_arm = sin(h_ang)*self.a1_x
+        l_arm = sin(h_ang) * self.a1_x
         return l_arm
-    def __force_to_torque( self, force ):
+
+    def __force_to_torque(self, force):
         """
         Give the max applicable torque at the present orientation
         given an actuator force
         """
-        return self.getLeverArm()*force
-    def __torque_to_force( self, torque ):
-        return torque/self.getLeverArm()
-    def setForceLimit( self, f ):
-        self.setExtendForceLimit( f )
-        self.setRetractForceLimit( f )
-    def setExtendForceLimit( self, f ):
+        return self.getLeverArm() * force
+
+    def __torque_to_force(self, torque):
+        return torque / self.getLeverArm()
+
+    def setForceLimit(self, f):
+        self.setExtendForceLimit(f)
+        self.setRetractForceLimit(f)
+
+    def setExtendForceLimit(self, f):
         self.extend_force_limit = f
-    def getExtendForceLimit( self ):
+
+    def getExtendForceLimit(self):
         return self.extend_force_limit
-    def getRetractForceLimit( self ):
+
+    def getRetractForceLimit(self):
         return self.retract_force_limit
-    def setRetractForceLimit( self, f ):
+
+    def setRetractForceLimit(self, f):
         self.retract_force_limit = f
-    def setTorqueLimit( self, l ):
+
+    def setTorqueLimit(self, l):
         print 'Cannot set torque limit on linear actuator controlled hinge'
-    def getTorqueLimit( self ):
+
+    def getTorqueLimit(self):
         """The torque limit is directional depending on what side of the piston
         is being driven.  This is dependent on which way we are pressurizing the
         piston, not which way it's presently moving"""
-        #FIXME: THIS ASSUMES WE ARE USING THE JOINT'S ANG_TARGET PARAMETER,
+        # FIXME: THIS ASSUMES WE ARE USING THE JOINT'S ANG_TARGET PARAMETER,
         # WHICH WE OFTEN ARE NOT
-        if self.getAngleError()>0:
-            return abs(self.getLeverArm()*self.extend_force_limit)
+        if self.getAngleError() > 0:
+            return abs(self.getLeverArm() * self.extend_force_limit)
         else:
-            return abs(self.getLeverArm()*self.retract_force_limit)
-    def update( self ):
+            return abs(self.getLeverArm() * self.retract_force_limit)
+
+    def update(self):
         limit = self.getTorqueLimit()
         self.setParam(ode.ParamFMax,    limit)
         super(LinearActuatorControlledHingeJoint, self).update()
+
 
 class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
     """This simulates a hinge joint driven by a linear actuator that accepts a
@@ -209,9 +253,9 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         super(LinearVelocityActuatedHingeJoint, self).__init__(world)
         self.lenrate = 0
         self.max_retract_rate = -1e9
-        self.max_extend_rate  =  1e9
+        self.max_extend_rate  = 1e9
 
-    def getAngRate( self ):
+    def getAngRate(self):
         """
         """
         # FIXME: the hip yaw joints move in the opposite direction you command them to.
@@ -221,17 +265,17 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         # environment, but I never quite figured it out.  Hack for now. JHW
         ang_vel = self.lenrate / self.getLeverArm()
         if self.getBody(0) == ode.environment:
-            ang_vel = -1*ang_vel
+            ang_vel = -1 * ang_vel
         return ang_vel
 
-    def getTorqueLimit( self ):
+    def getTorqueLimit(self):
         """The torque limit is directional depending on what side of the piston
         is being driven.  This is dependent on which way we are pressurizing the
         piston, not which way it's presently moving"""
         if self.lenrate > 0:
-            return abs(self.getLeverArm()*self.extend_force_limit)
+            return abs(self.getLeverArm() * self.extend_force_limit)
         else:
-            return abs(self.getLeverArm()*self.retract_force_limit)
+            return abs(self.getLeverArm() * self.retract_force_limit)
  
     def setLengthRate(self, vel_mps):
         self.lenrate = vel_mps
@@ -239,51 +283,64 @@ class LinearVelocityActuatedHingeJoint(LinearActuatorControlledHingeJoint):
         self.lenrate = min(self.lenrate, self.max_extend_rate)
         
     def update(self):
-        #self.setParam(ode.ParamFMax, self.getTorqueLimit())
-        self.setParam(ode.ParamVel, self.getAngRate() )
+        # self.setParam(ode.ParamFMax, self.getTorqueLimit())
+        self.setParam(ode.ParamVel, self.getAngRate())
         super(LinearVelocityActuatedHingeJoint, self).update()
+
 
 class PrismaticSpringJoint(ode.SliderJoint):
     def __init__(self, world):
         # The all-important slider joint
-        ode.SliderJoint.__init__( self, world )
+        ode.SliderJoint.__init__(self, world)
         self.setFeedback(True)
-        self.setSpringConstant( 0.0 )
-        self.setDamping( 0.0 )
-        self.setLoStop( 0.0 )
-        self.setHiStop( 0.0 )
-        self.setNeutralPosition( 0.0 )
-    def setNeutralPosition( self, neutral_pos ):
+        self.setSpringConstant(0.0)
+        self.setDamping(0.0)
+        self.setLoStop(0.0)
+        self.setHiStop(0.0)
+        self.setNeutralPosition(0.0)
+
+    def setNeutralPosition(self, neutral_pos):
         self.neutral_pos = neutral_pos
-    def getNeutralPosition( self ):
+
+    def getNeutralPosition(self):
         return self.neutral_pos
+
     def setSpringConstant(self, spring_constant):
         self.spring_constant = spring_constant
+
     def getSpringConstant(self):
         return self.spring_constant
+
     def setHiStop(self, hi_stop):
-        self.setParam( ode.ParamHiStop, hi_stop )
+        self.setParam(ode.ParamHiStop, hi_stop)
+
     def setLoStop(self, lo_stop):
-        self.setParam( ode.ParamLoStop, lo_stop )
+        self.setParam(ode.ParamLoStop, lo_stop)
+
     def getHiStop(self):
-        return self.getParam( ode.ParamHiStop )
+        return self.getParam(ode.ParamHiStop)
+
     def getLoStop(self):
-        return self.getParam( ode.ParamLoStop )
-    def setDamping( self, damping ):
+        return self.getParam(ode.ParamLoStop)
+
+    def setDamping(self, damping):
         self.damp_const = damping
-    def getDamping( self ):
+
+    def getDamping(self):
         return self.damp_const
-    def update( self ):
+
+    def update(self):
         """Apply corrective force based on deflection"""
-        self.addForce( self.getPositionRate()*self.getDamping() + (self.getPosition()-self.neutral_pos) * self.getSpringConstant() )
+        self.addForce(self.getPositionRate() * self.getDamping() + (self.getPosition() - self.neutral_pos) * self.getSpringConstant())
+
 
 class LinearActuator:
     """Give LinearActuator two anchor points and a radius and it will create a body
     with controllable slider joint.  This requires a universal joint on each end."""
     def __init__(self, world, body1, body2, p1, p2, hinge=None):
         # Cap on one side
-        cap1 = ode.Body( world )
-        cap1.color = (0,128,0,255)
+        cap1 = ode.Body(world)
+        cap1.color = (0, 128, 0, 255)
         m = ode.Mass()
         m.setCappedCylinderTotal(1.0, 3, 0.01, 0.01)
         cap1.setMass(m)
@@ -300,8 +357,8 @@ class LinearActuator:
         u1.style = "ball"
 
         # Cap on other side
-        cap2 = ode.Body( world )
-        cap2.color = (0,128,0,255)
+        cap2 = ode.Body(world)
+        cap2.color = (0, 128, 0, 255)
         m = ode.Mass()
         m.setCappedCylinderTotal(1.0, 3, 0.01, 0.01)
         cap2.setMass(m)
@@ -318,9 +375,9 @@ class LinearActuator:
         u2.style = "ball"
        
         # The all-important slider joint
-        s = ode.SliderJoint( world )
-        s.attach( cap1, cap2 )
-        s.setAxis( sub3(p1, p2) )
+        s = ode.SliderJoint(world)
+        s.attach(cap1, cap2)
+        s.setAxis(sub3(p1, p2))
         s.setFeedback(True)
 
         self.body1 = body1
@@ -331,60 +388,75 @@ class LinearActuator:
         self.u2 = u2
         self.slider = s
         self.gain = 1.0
-        self.neutral_length = dist3(p1,p2)
-        self.length_target  = dist3(p1,p2)
-        if hinge != None:
+        self.neutral_length = dist3(p1, p2)
+        self.length_target  = dist3(p1, p2)
+        if hinge is not None:
             # Hinge is the joint this linear actuator controls
             # This allows angular control
-            self.hinge=hinge
+            self.hinge = hinge
             # Store these for later to save on math.
             # TODO:  I am being lazy and assuming u1->u2
             # is orthogonal to the hinge axis
-            self.h_to_u1 = dist3( self.hinge.getAnchor(), self.u1.getAnchor() )
-            self.h_to_u2 = dist3( self.hinge.getAnchor(), self.u2.getAnchor() )
-            self.neutral_angle = thetaFromABC(self.h_to_u1, self.h_to_u2, self.neutral_length )
+            self.h_to_u1 = dist3(self.hinge.getAnchor(), self.u1.getAnchor())
+            self.h_to_u2 = dist3(self.hinge.getAnchor(), self.u2.getAnchor())
+            self.neutral_angle = thetaFromABC(self.h_to_u1, self.h_to_u2, self.neutral_length)
 
-    def getAngle( self ):
+    def getAngle(self):
         return self.hinge.getAngle()
-    def setAngleTarget( self, t ):
+
+    def setAngleTarget(self, t):
         """Figure out the length of actuator that corresponds to
         the angle."""
         self.angle_target = t
-        #self.length_target = cFromThetaAB( self.neutral_angle+t, self.h_to_u1, self.h_to_u2 )
-        self.length_target = cFromThetaAB( t - self.neutral_angle, self.h_to_u1, self.h_to_u2 )
-    def getAngleTarget( self ):
+        # self.length_target = cFromThetaAB( self.neutral_angle+t, self.h_to_u1, self.h_to_u2 )
+        self.length_target = cFromThetaAB(t - self.neutral_angle, self.h_to_u1, self.h_to_u2)
+
+    def getAngleTarget(self):
         return self.angle_target
-    def getVel( self ):
+
+    def getVel(self):
         return self.slider.getPositionRate()
-    def getForce( self ):
+
+    def getForce(self):
         f1, t1, f2, t2 = self.slider.getFeedback()
         return len3(f1)
-    def setForceLimit( self, f ):
+
+    def setForceLimit(self, f):
         self.slider.setParam(ode.ParamFMax,    f)
-    def getForceLimit( self ):
+
+    def getForceLimit(self):
         return self.slider.getParam(ode.ParamFMax)
-    def setLengthTarget( self, t ):
+
+    def setLengthTarget(self, t):
         self.length_target = t
-    def getLengthTarget( self ):
+
+    def getLengthTarget(self):
         return self.length_target
-    def getLength( self ):
+
+    def getLength(self):
         return self.neutral_length + self.slider.getPosition()
-    def setGain( self, gain ):
+
+    def setGain(self, gain):
         self.gain = gain
-    def getGain( self ):
+
+    def getGain(self):
         return self.gain
-    def update( self ):
+
+    def update(self):
         """Do control"""
-        #f = self.getForce()
+        # f = self.getForce()
         error = self.length_target - self.getLength()
-        self.slider.setParam( ode.ParamVel, error*self.gain )
-    def setMaxLength( self, l ):
+        self.slider.setParam(ode.ParamVel, error * self.gain)
+
+    def setMaxLength(self, l):
         self.slider.setParam(ode.ParamLoStop, self.neutral_length - l)
-    def setMinLength( self, l ):
+
+    def setMinLength(self, l):
         self.slider.setParam(ode.ParamHiStop, self.neutral_length - l)
 
+
 class MultiBody(object):
-    def __init__(self, sim, density=500, offset = (0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
+    def __init__(self, sim, density=500, offset=(0.0, 0.0, 0.0), publisher=None, pub_prefix=""):
         """Creates a ragdoll of standard size at the given offset."""
 
         self.sim              = sim
@@ -405,12 +477,15 @@ class MultiBody(object):
 
 
         self.buildBody()
+
     def getMass(self):
         return self.totalMass
+
     def buildBody(self):
         """This is for the subclasses to define."""
         raise NotImplemented
-    def addTransferBody( self, p ):
+
+    def addTransferBody(self, p):
         """
         A TransferBody is a body with no mass whos sole purpose is to transmit forces.
         This allows multiple joints to be stacked.
@@ -418,12 +493,13 @@ class MultiBody(object):
         """
         body = ode.Body(self.sim.world)
         # FIXME: A body doesn't interact with the sim unless it has mass.  Fudge it.
-        #m = ode.Mass()
-        #m.setSphereTotal( 1.0, 0.1 )
-        #body.setMass(m)
+        # m = ode.Mass()
+        # m.setSphereTotal( 1.0, 0.1 )
+        # body.setMass(m)
         body.setPosition(p)
         return body
-    def addBody(self, p1, p2, radius, mass=None, upVec=(0,0,1), collide=True):
+
+    def addBody(self, p1, p2, radius, mass=None, upVec=(0, 0, 1), collide=True):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
         radius to the ragdoll.
@@ -440,9 +516,9 @@ class MultiBody(object):
         cyllen = dist3(p1, p2) - radius
 
         body = ode.Body(self.sim.world)
-        body.color = (128,128,40,255)
+        body.color = (128, 128, 40, 255)
         m = ode.Mass()
-        if mass == None:
+        if mass is None:
             m.setCappedCylinder(self.density, 3, radius, cyllen)
         else:
             m.setCappedCylinderTotal(mass, 3, radius, cyllen)
@@ -461,8 +537,8 @@ class MultiBody(object):
 
         # define body rotation automatically from body axis
         za = norm3(sub3(p2, p1))
-        #if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
-        #else: xa = (0.0, 1.0, 0.0)
+        # if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
+        # else: xa = (0.0, 1.0, 0.0)
         xa = upVec
         ya = cross(za, xa)
         xa = norm3(cross(ya, za))
@@ -477,6 +553,7 @@ class MultiBody(object):
         self.totalMass += body.getMass().mass
 
         return body
+
     def addBox(self, lx, ly, lz, offset, mass=None):
         """
         Add a box (cuboid) with x, y and z lengths given by lx, ly and lz.
@@ -484,9 +561,9 @@ class MultiBody(object):
 
         body = ode.Body(self.sim.world)
         # This is our own stupid shit
-        body.color = (128,128,40,255)
+        body.color = (128, 128, 40, 255)
         m = ode.Mass()
-        if mass == None:
+        if mass is None:
             m.setBox(self.density, lx, ly, lz)
         else:
             m.setBoxTotal(mass, lx, ly, lz)
@@ -499,12 +576,12 @@ class MultiBody(object):
         body.lz = lz
 
         # create a capsule geom for collision detection
-        geom = ode.GeomBox(self.sim.space, (lx,ly,lz))
+        geom = ode.GeomBox(self.sim.space, (lx, ly, lz))
         geom.setBody(body)
 
         # TODO: allow feeding in a starting rotation
         # For now all we need is position
-        body.setPosition(add3(offset,self.offset))
+        body.setPosition(add3(offset, self.offset))
 
         self.bodies.append(body)
         self.geoms.append(geom)
@@ -512,6 +589,7 @@ class MultiBody(object):
         self.totalMass += body.getMass().mass
 
         return body
+
     def addSpringyCappedCylinder(self, p1, p2, radius, n_members=2, k_bend=1e5, k_torsion=1e5):
         """
         Adds a capsule body between joint positions p1 and p2 and with given
@@ -523,7 +601,7 @@ class MultiBody(object):
 
         p_start = p1 = add3(p1, self.offset)
         p_end = add3(p2, self.offset)
-        iteration_jump = div3( sub3( p_end, p_start ), n_members )
+        iteration_jump = div3(sub3(p_end, p_start), n_members)
         p2 = add3(p1, iteration_jump)
 
         for i in range(n_members):
@@ -547,8 +625,10 @@ class MultiBody(object):
 
             # define body rotation automatically from body axis
             za = norm3(sub3(p2, p1))
-            if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7): xa = (1.0, 0.0, 0.0)
-            else: xa = (0.0, 1.0, 0.0)
+            if (abs(dot3(za, (1.0, 0.0, 0.0))) < 0.7):
+                xa = (1.0, 0.0, 0.0)
+            else:
+                xa = (0.0, 1.0, 0.0)
             ya = cross(za, xa)
             xa = norm3(cross(ya, za))
             ya = cross(za, xa)
@@ -568,6 +648,7 @@ class MultiBody(object):
 
 
         return body
+
     def addFixedJoint(self, body1, body2):
         joint = ode.FixedJoint(self.sim.world)
         joint.attach(body1, body2)
@@ -577,31 +658,33 @@ class MultiBody(object):
         self.joints.append(joint)
 
         return joint
+
     def addLinearActuator(self, body1, body2, p1, p2, hinge=None):
         p1 = add3(p1, self.offset)
         p2 = add3(p2, self.offset)
         # TODO: This breaks some class assumptions... think of a nicer way to do this
-        joint = LinearActuator( self.sim.world, body1, body2, p1, p2, hinge )
+        joint = LinearActuator(self.sim.world, body1, body2, p1, p2, hinge)
         self.joints.append(joint)
         self.bodies.append(joint.cap1)
         self.bodies.append(joint.cap2)
-        self.update_objects.append( joint )
+        self.update_objects.append(joint)
 
         return joint
-    def addLinearControlledHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, force_limit = 0.0, gain = 0.0, backlash = 0.0):
+
+    def addLinearControlledHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop=-ode.Infinity,
+                                      hiStop=ode.Infinity, force_limit=0.0, gain=0.0, backlash=0.0):
 
         anchor = add3(anchor, self.offset)
 
-        joint = LinearActuatorControlledHingeJoint( self.sim )
+        joint = LinearActuatorControlledHingeJoint(self.sim)
         # FIXME:  All of this horrible setting of variables after instantiation is a result
         # of the weird behavior documented in the constructor of MyHingeJoint
         # Basically you can't subclass ode.HingeJoint and change the constructor arguments
         # for some unknown reason.
         joint.sim = self.sim
-        joint.setActuatorAnchors( a1x, a2x, a2y )
-        joint.setForceLimit( force_limit )
-        joint.setGain( gain )
+        joint.setActuatorAnchors(a1x, a2x, a2y)
+        joint.setForceLimit(force_limit)
+        joint.setGain(gain)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -613,26 +696,27 @@ class MultiBody(object):
         self.update_objects.append(joint)
 
         return joint
-    def addLinearVelocityActuatedHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, force_limit = 0.0, gain = 0.0, backlash=0.0, subclass=None):
+
+    def addLinearVelocityActuatedHingeJoint(self, body1, body2, anchor, axis, a1x, a2x, a2y, loStop=-ode.Infinity,
+                                            hiStop=ode.Infinity, force_limit=0.0, gain=0.0, backlash=0.0, subclass=None):
         """
         TODO: better documentation of arguments
         subclass is a subclass of LinearVelocityActuatedHingeJoint
         """
         anchor = add3(anchor, self.offset)
 
-        if( subclass ):
-            joint = subclass( self.sim.world )
+        if(subclass):
+            joint = subclass(self.sim.world)
         else:
-            joint = LinearVelocityActuatedHingeJoint( self.sim.world )
+            joint = LinearVelocityActuatedHingeJoint(self.sim.world)
         # FIXME:  All of this horrible setting of variables after instantiation is a result
         # of the weird behavior documented in the constructor of MyHingeJoint
         # Basically you can't subclass ode.HingeJoint and change the constructor arguments
         # for some unknown reason.
         joint.sim = self.sim
-        joint.setActuatorAnchors( a1x, a2x, a2y )
-        joint.setForceLimit( force_limit )
-        joint.setGain( gain )
+        joint.setActuatorAnchors(a1x, a2x, a2y)
+        joint.setForceLimit(force_limit)
+        joint.setGain(gain)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -644,19 +728,20 @@ class MultiBody(object):
         self.update_objects.append(joint)
 
         return joint
-    def addControlledHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, torque_limit = 0.0, gain = 0.0 ):
+
+    def addControlledHingeJoint(self, body1, body2, anchor, axis, loStop=-ode.Infinity,
+                                hiStop=ode.Infinity, torque_limit=0.0, gain=0.0):
 
         anchor = add3(anchor, self.offset)
 
-        joint = ControlledHingeJoint( self.sim.world )
+        joint = ControlledHingeJoint(self.sim.world)
         # FIXME:  All of this horrible setting of variables after instantiation is a result
         # of the weird behavior documented in the constructor of MyHingeJoint
         # Basically you can't subclass ode.HingeJoint and change the constructor arguments
         # for some unknown reason.
         joint.sim = self.sim
-        joint.setTorqueLimit( torque_limit )
-        joint.setGain( gain )
+        joint.setTorqueLimit(torque_limit)
+        joint.setGain(gain)
         joint.attach(body1, body2)
         joint.setAnchor(anchor)
         joint.setAxis(axis)
@@ -668,8 +753,9 @@ class MultiBody(object):
         self.update_objects.append(joint)
 
         return joint
-    def addHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, bounce=0.0):
+
+    def addHingeJoint(self, body1, body2, anchor, axis, loStop=-ode.Infinity,
+                      hiStop=ode.Infinity, bounce=0.0):
 
         anchor = add3(anchor, self.offset)
 
@@ -688,8 +774,9 @@ class MultiBody(object):
         self.update_objects.append(joint)
 
         return joint
-    def addSpringyHingeJoint(self, body1, body2, anchor, axis, loStop = -ode.Infinity,
-        hiStop = ode.Infinity, bounce=0.0, spring_const=0.0, damping=0.0):
+
+    def addSpringyHingeJoint(self, body1, body2, anchor, axis, loStop=-ode.Infinity,
+                             hiStop=ode.Infinity, bounce=0.0, spring_const=0.0, damping=0.0):
 
         anchor = add3(anchor, self.offset)
 
@@ -708,9 +795,10 @@ class MultiBody(object):
         self.update_objects.append(joint)
 
         return joint
+
     def addUniversalJoint(self, body1, body2, anchor, axis1, axis2,
-        loStop1 = -ode.Infinity, hiStop1 = ode.Infinity,
-        loStop2 = -ode.Infinity, hiStop2 = ode.Infinity):
+                          loStop1=-ode.Infinity, hiStop1=ode.Infinity,
+                          loStop2=-ode.Infinity, hiStop2=ode.Infinity):
 
         anchor = add3(anchor, self.offset)
 
@@ -728,19 +816,21 @@ class MultiBody(object):
         self.joints.append(joint)
 
         return joint
-    def addPrismaticSpringJoint( self, body1, body2, axis, spring_const=0.0, lo_stop=0.0, hi_stop=0.0, neutral_position = 0.0, damping = -1e2 ):
-        joint = PrismaticSpringJoint( self.sim.world )
-        joint.attach( body1, body2 )
-        joint.setAxis( axis )
-        joint.setSpringConstant( spring_const )
-        joint.setLoStop( lo_stop )
-        joint.setHiStop( hi_stop )
-        joint.setNeutralPosition( neutral_position )
-        joint.setDamping( damping )
+
+    def addPrismaticSpringJoint(self, body1, body2, axis, spring_const=0.0, lo_stop=0.0, hi_stop=0.0, neutral_position=0.0, damping=-1e2):
+        joint = PrismaticSpringJoint(self.sim.world)
+        joint.attach(body1, body2)
+        joint.setAxis(axis)
+        joint.setSpringConstant(spring_const)
+        joint.setLoStop(lo_stop)
+        joint.setHiStop(hi_stop)
+        joint.setNeutralPosition(neutral_position)
+        joint.setDamping(damping)
         self.joints.append(joint)
         self.update_objects.append(joint)
         return joint
-    def addBallJoint(self, body1, body2, anchor ):
+
+    def addBallJoint(self, body1, body2, anchor):
         anchor = add3(anchor, self.offset)
 
         # create the joint
@@ -752,16 +842,17 @@ class MultiBody(object):
         self.joints.append(joint)
 
         return joint
-    def getCOM( self ):
+
+    def getCOM(self):
         """
         Expensive function!  Calculate the center of mass.
         Iterates over all bodies.
         """
-        center_of_mass   = (0,0,0)
+        center_of_mass   = (0, 0, 0)
         accumulated_mass = 0.0
         for body in self.bodies:
-            center_of_mass = add3( center_of_mass,\
-                mul3(body.getPosition(), body.getMass().mass) )
+            center_of_mass = add3(center_of_mass,
+                                  mul3(body.getPosition(), body.getMass().mass))
             accumulated_mass += body.getMass().mass
         center_of_mass = div3(center_of_mass, accumulated_mass)
         return center_of_mass

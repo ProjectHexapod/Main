@@ -1,21 +1,25 @@
-import pygame, os
+import pygame
+import os
 from OpenGL.GL import *
+
 
 def MTL(filename):
     contents = {}
     mtl = None
     for line in open(filename, "r"):
-        if line.startswith('#'): continue
+        if line.startswith('#'):
+            continue
         values = line.split()
-        if not values: continue
+        if not values:
+            continue
         if values[0] == 'newmtl':
             mtl = contents[values[1]] = {}
         elif mtl is None:
-            raise ValueError, "mtl file doesn't start with newmtl stmt"
+            raise ValueError("mtl file doesn't start with newmtl stmt")
         elif values[0] == 'map_Kd':
             # load the texture referred to by this declaration
             mtl[values[0]] = values[1]
-            dirname = filename.rsplit('/',1)[0]
+            dirname = filename.rsplit('/', 1)[0]
             map_Kd_full = dirname + '/' + mtl['map_Kd']
             surf = pygame.image.load(map_Kd_full)
             image = pygame.image.tostring(surf, 'RGBA', 1)
@@ -23,15 +27,16 @@ def MTL(filename):
             texid = mtl['texture_Kd'] = glGenTextures(1)
             glBindTexture(GL_TEXTURE_2D, texid)
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-                GL_LINEAR)
+                            GL_LINEAR)
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-                GL_LINEAR)
+                            GL_LINEAR)
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, ix, iy, 0, GL_RGBA,
-                GL_UNSIGNED_BYTE, image)
+                         GL_UNSIGNED_BYTE, image)
         else:
             mtl[values[0]] = map(float, values[1:])
     return contents
  
+
 class OBJ:
     def __init__(self, filename, swapyz=False):
         """Loads a Wavefront OBJ file. """
@@ -40,14 +45,16 @@ class OBJ:
         self.texcoords = []
         self.faces = []
 
-        mtl_filename = filename[:-4]+".mtl"
+        mtl_filename = filename[:-4] + ".mtl"
         self.mtl = MTL(mtl_filename)
  
         material = None
         for line in open(filename, "r"):
-            if line.startswith('#'): continue
+            if line.startswith('#'):
+                continue
             values = line.split()
-            if not values: continue
+            if not values:
+                continue
             if values[0] == 'v':
                 v = map(float, values[1:4])
                 if swapyz:
@@ -101,5 +108,5 @@ class OBJ:
                     glTexCoord2fv(self.texcoords[texture_coords[i] - 1])
                 glVertex3fv(self.vertices[vertices[i] - 1])
             glEnd()
-        glColor3f(1,1,1)
+        glColor3f(1, 1, 1)
         glEndList()
