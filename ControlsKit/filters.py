@@ -37,8 +37,8 @@ class Filter(object):
         time_delta = global_time.getDelta()
 
         # First order filter implementation
-        out = (self.last_response + \
-               (a + b * time_delta) * signal - \
+        out = (self.last_response + 
+               (a + b * time_delta) * signal - 
                a * self.last_signal) / (1.0 + c * time_delta)
 
         # Update history

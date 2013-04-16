@@ -14,9 +14,11 @@ class SafeMove:
     We use only vertical motions below the Z-plane, as there is a high likelihood of hitting the ground.
     """
     def __init__(self, leg_model, limb_controller, final_foot_pos, max_velocity, acceleration, z_plane=-0.67865):
-        leg_logger.logger.info("New path.", path_name="TrapezoidalFootMove",
-                    final_foot_pos=final_foot_pos, max_velocity=max_velocity,
-                    acceleration=acceleration)
+        leg_logger.logger.info("New path.",
+                               path_name="TrapezoidalFootMove",
+                               final_foot_pos=final_foot_pos,
+                               max_velocity=max_velocity,
+                               acceleration=acceleration)
         
         self.model = leg_model
         self.controller = limb_controller

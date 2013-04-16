@@ -119,7 +119,7 @@ def inTriangle(P, A, B, C, g=None):
     v = (dr2 - dr3 * d23 / d33 - u * (d12 - d13 * d23 / d33)) / (d22 - d23 * d23 / d33)
     w = (dr3 - u * d13 - v * d23) / d33
     
-    return (u - w * d13 > 0  and v - w * d23 > 0 and u + v - w * (d13 + d23) < 1)
+    return (u - w * d13 > 0 and v - w * d23 > 0 and u + v - w * (d13 + d23) < 1)
 
     
 def choose_iter(elements, length):

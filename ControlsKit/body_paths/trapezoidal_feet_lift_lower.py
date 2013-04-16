@@ -27,7 +27,7 @@ class TrapezoidalFeetLiftLower:
         
         self.foot_paths = [None for i in range(NUM_LEGS)]
         
-        if type(delta_heights) == type(1.0):
+        if isinstance(delta_heights, (int, long, float, complex)):
             delta_heights = [delta_heights] * 6
         
         for i in self.leg_indices:

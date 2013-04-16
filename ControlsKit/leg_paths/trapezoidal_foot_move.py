@@ -20,9 +20,9 @@ class TrapezoidalFootMove:
         # point.
         last_target_ang_array = self.controller.getDesiredPosAngle()
         # If positions have been commanded to the controller
-        if last_target_ang_array != None:
+        if last_target_ang_array is not None:
             # Base the starting position off that command
-            self.target_foot_pos = self.model.footPosFromLegState(\
+            self.target_foot_pos = self.model.footPosFromLegState(
                 (last_target_ang_array, 0.0))
         else:
             # Base the starting position on the position of the model

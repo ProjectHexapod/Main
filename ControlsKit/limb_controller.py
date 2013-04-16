@@ -26,37 +26,37 @@ class LimbController:
                 
         # Default PID values
         self.kparray = array(
-                [readFloatWithDefault(c, section, 'yaw_p'),
-                 readFloatWithDefault(c, section, 'hp_p'),
-                 readFloatWithDefault(c, section, 'kp_p')])
+            [readFloatWithDefault(c, section, 'yaw_p'),
+             readFloatWithDefault(c, section, 'hp_p'),
+             readFloatWithDefault(c, section, 'kp_p')])
         self.kiarray = array(
-                [readFloatWithDefault(c, section, 'yaw_i'),
-                 readFloatWithDefault(c, section, 'hp_i'),
-                 readFloatWithDefault(c, section, 'kp_i')])
+            [readFloatWithDefault(c, section, 'yaw_i'),
+             readFloatWithDefault(c, section, 'hp_i'),
+             readFloatWithDefault(c, section, 'kp_i')])
         self.kdarray = array(
-                [readFloatWithDefault(c, section, 'yaw_d'),
-                 readFloatWithDefault(c, section, 'hp_d'),
-                 readFloatWithDefault(c, section, 'kp_d')])
+            [readFloatWithDefault(c, section, 'yaw_d'),
+             readFloatWithDefault(c, section, 'hp_d'),
+             readFloatWithDefault(c, section, 'kp_d')])
         self.kffarray = array(
-                [readFloatWithDefault(c, section, 'yaw_ff'),
-                 readFloatWithDefault(c, section, 'hp_ff'),
-                 readFloatWithDefault(c, section, 'kp_ff')])
+            [readFloatWithDefault(c, section, 'yaw_ff'),
+             readFloatWithDefault(c, section, 'hp_ff'),
+             readFloatWithDefault(c, section, 'kp_ff')])
         self.kfaarray = array(
-                [readFloatWithDefault(c, section, 'yaw_fa'),
-                 readFloatWithDefault(c, section, 'hp_fa'),
-                 readFloatWithDefault(c, section, 'kp_fa')])
+            [readFloatWithDefault(c, section, 'yaw_fa'),
+             readFloatWithDefault(c, section, 'hp_fa'),
+             readFloatWithDefault(c, section, 'kp_fa')])
         self.dearray = array(
-                [readFloatWithDefault(c, section, 'yaw_de'),
-                 readFloatWithDefault(c, section, 'hp_de'),
-                 readFloatWithDefault(c, section, 'kp_de')])
+            [readFloatWithDefault(c, section, 'yaw_de'),
+             readFloatWithDefault(c, section, 'hp_de'),
+             readFloatWithDefault(c, section, 'kp_de')])
         self.drarray = array(
-                [readFloatWithDefault(c, section, 'yaw_dr'),
-                 readFloatWithDefault(c, section, 'hp_dr'),
-                 readFloatWithDefault(c, section, 'kp_dr')])
+            [readFloatWithDefault(c, section, 'yaw_dr'),
+             readFloatWithDefault(c, section, 'hp_dr'),
+             readFloatWithDefault(c, section, 'kp_dr')])
         self.proparray = array(
-                [readFloatWithDefault(c, section, 'yaw_prop', 1.0),
-                 readFloatWithDefault(c, section, 'hp_prop', 1.0),
-                 readFloatWithDefault(c, section, 'kp_prop', 1.0)])
+            [readFloatWithDefault(c, section, 'yaw_prop', 1.0),
+             readFloatWithDefault(c, section, 'hp_prop', 1.0),
+             readFloatWithDefault(c, section, 'kp_prop', 1.0)])
         
         self.length_rate_commands = []
         
@@ -91,8 +91,7 @@ class LimbController:
             self.desired_vel_array = array([0, 0, 0])
         self.desired_pos_array = desired_pos_array
         actuator_commands = []
-        if (len(self.desired_pos_array) != self.amount_of_joints or
-            len(measured_pos_array) != self.amount_of_joints):
+        if not (len(self.desired_pos_array) == self.amount_of_joints == len(measured_pos_array)):
             logger.error("LimbController.update: position array sizes mismatched!",
                          measured_pos_array=measured_pos_array,
                          desired_pos_array=self.desired_pos_array)

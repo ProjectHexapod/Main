@@ -24,14 +24,12 @@ class LegModel:
 
         # Actuator soft bounds
         soft_stops_section = 'SoftStops'
-        self.SOFT_MINS = array(
-                [c.getfloat(soft_stops_section, 'yaw_stop_low'),
-                 c.getfloat(soft_stops_section, 'pitch_stop_low'),
-                 c.getfloat(soft_stops_section, 'knee_stop_low')])
-        self.SOFT_MAXES = array(
-                [c.getfloat(soft_stops_section, 'yaw_stop_high'),
-                 c.getfloat(soft_stops_section, 'pitch_stop_high'),
-                 c.getfloat(soft_stops_section, 'knee_stop_high')])
+        self.SOFT_MINS = array([c.getfloat(soft_stops_section, 'yaw_stop_low'),
+                                c.getfloat(soft_stops_section, 'pitch_stop_low'),
+                                c.getfloat(soft_stops_section, 'knee_stop_low')])
+        self.SOFT_MAXES = array([c.getfloat(soft_stops_section, 'yaw_stop_high'),
+                                 c.getfloat(soft_stops_section, 'pitch_stop_high'),
+                                 c.getfloat(soft_stops_section, 'knee_stop_high')])
 
         # State
         vel_corner = 100.0  # rad/s

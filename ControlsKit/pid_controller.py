@@ -35,11 +35,11 @@ class PIDController:
         self.kp = kp
         self.ki = ki
         self.kd = kd
-        if kff != None:
+        if kff is not None:
             self.kff = kff
         else:
             self.kff = 0.0
-        if kfa != None:
+        if kfa is not None:
             self.kfa = kfa
         else:
             self.kfa = 0.0
@@ -93,6 +93,7 @@ class PIDController:
                     errorstring = ("LimbController: Controller has not converged" + 
                                    "over %d seconds.  System potentially in a limit cycle." %
                                    self.peak_detector.getResolveTime())
+
                     #logger.error(errorstring,
                     #        desired_pos=desired_pos,
                     #        measured_pos=measured_pos,
@@ -108,11 +109,11 @@ class PIDController:
         self.prev_error = error
         self.prev_desired_pos = desired_pos
         
-        actuator_command = self.kp * error + \
-                           self.integral_error_accumulator + \
-                           self.kd * derivative_error + \
-                           self.kff * desired_vel + \
-                           self.kfa * velocity_error
+        actuator_command = (self.kp * error + 
+                            self.integral_error_accumulator + 
+                            self.kd * derivative_error + 
+                            self.kff * desired_vel + 
+                            self.kfa * velocity_error)
         #actuator_command = self.boundActuatorCommand(actuator_command, measured_pos)
         
         return actuator_command
@@ -155,7 +156,7 @@ class PIDController:
             #            command_max=command_max,
             #            bad_value="desired_pos")
             raise ValueError("LimbController.boundDesiredPosition:" +
-                    " desired position out of soft bounds")
+                             " desired position out of soft bounds")
         
         bounded_pos = saturate(desired_pos, command_min, command_max)
         return bounded_pos
@@ -164,5 +165,5 @@ class PIDController:
         #prevent the controller from commanding an unsafely fast actuator move
         if (abs(actuator_command - measured_pos) / time_sources.global_time.getDelta() > self.max_movement_rate):
             raise ValueError("LimbController: Actuator command would cause" +
-            "joint to move at an unsafe rate.")
+                             "joint to move at an unsafe rate.")
         return actuator_command

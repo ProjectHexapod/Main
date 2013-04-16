@@ -59,7 +59,7 @@ class GoToStandardHexagon:
         active_paths = []
         active_index = []
         for i in range(NUM_LEGS):
-            if self.foot_paths[i] != None:
+            if self.foot_paths[i] is not None:
                 active_index.append(i)
                 active_paths.append(self.foot_paths[i])
 

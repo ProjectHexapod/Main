@@ -10,7 +10,7 @@ class MathUtilsTestCase(unittest.TestCase):
 
     def tearDown(self):
         pass
-    
+        
     def testSymmetricSaturatePassesThrough(self):
         limit = 10.0
         for x in [-9.9, -5.0, 0.0, 2.0, 9.999]:
@@ -43,7 +43,7 @@ class MathUtilsTestCase(unittest.TestCase):
         u_limit = 7.0
         for x in [7.1, 12.3, 5.3e6]:
             self.assertEqual(u_limit, saturate(x, l_limit, u_limit))
-    
+            
     def testArraysAreEqual(self):
         self.assertTrue(arraysAreEqual(array([.2, .5, -1e4]),
                                        array([.2, .5, -1e4])))
@@ -60,7 +60,7 @@ class MathUtilsTestCase(unittest.TestCase):
                                         array([0.0, 0.0, 0.0])))
         self.assertFalse(arraysAreEqual(array([0.0, 0.0, 1e-8]),
                                         array([0.0, 0.0, 0.0])))
-    
+        
     def testRotateXDoesntChangeX(self):
         self.assertEqual(array([1.0, 0.0, 0.0]),
                          rotateX(array([1.0, 0.0, 0.0]), pi_2))
@@ -75,9 +75,9 @@ class MathUtilsTestCase(unittest.TestCase):
         
     def testRotateXOffAxis(self):
         self.assertEqual(
-                   array([2.0, (-3.0 + 1.0) / 2.0 ** 0.5, (3.0 + 1.0) / 2.0 ** 0.5]),
-                   rotateX(array([2.0, -3.0, 1.0]), -pi_4))
-    
+            array([2.0, (-3.0 + 1.0) / 2.0 ** 0.5, (3.0 + 1.0) / 2.0 ** 0.5]),
+            rotateX(array([2.0, -3.0, 1.0]), -pi_4))
+        
     def testRotateYChangesXToNegZ(self):
         self.assertEqual(array([0.0, 0.0, -1.0]),
                          rotateY(array([1.0, 0.0, 0.0]), pi_2))
@@ -92,8 +92,8 @@ class MathUtilsTestCase(unittest.TestCase):
         
     def testRotateYOffAxis(self):
         self.assertEqual(
-                   array([(2.0 - 1.0) / 2.0 ** 0.5, -3.0, (2.0 + 1.0) / 2.0 ** 0.5]),
-                   rotateY(array([2.0, -3.0, 1.0]), -pi_4))
+            array([(2.0 - 1.0) / 2.0 ** 0.5, -3.0, (2.0 + 1.0) / 2.0 ** 0.5]),
+            rotateY(array([2.0, -3.0, 1.0]), -pi_4))
 
     def testRotateZChangesXToY(self):
         self.assertEqual(array([0.0, 1.0, 0.0]),
@@ -109,8 +109,8 @@ class MathUtilsTestCase(unittest.TestCase):
         
     def testRotateZOffAxis(self):
         self.assertEqual(
-                   array([(2.0 - 3.0) / 2.0 ** 0.5, (-2.0 - 3.0) / 2.0 ** 0.5, 1.0]),
-                   rotateZ(array([2.0, -3.0, 1.0]), -pi_4))
+            array([(2.0 - 3.0) / 2.0 ** 0.5, (-2.0 - 3.0) / 2.0 ** 0.5, 1.0]),
+            rotateZ(array([2.0, -3.0, 1.0]), -pi_4))
 
 
 if __name__ == '__main__':
