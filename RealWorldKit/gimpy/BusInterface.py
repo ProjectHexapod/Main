@@ -18,7 +18,7 @@ class BusNode:
         node_id is the position of this node in the bus
         """
         assert node_id >= 0 and node_id <= 15
-        assert isInstance(node_id, (int))
+        assert isinstance(node_id, (int))
         self.bus = bus
         self.node_id = node_id
         self.name = name
