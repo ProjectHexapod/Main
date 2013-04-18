@@ -33,12 +33,12 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     # Monitor leg_paths
     if path.isDone():
         if state == S_INIT:
-            print "Move"*1000
+            print "Move" * 1000
             path = TrapezoidalJointMove(model, controller, final_angles=[0, -0.59483773, 1.81300376],
-                                        max_velocity=1, acceleration=.1) # Simulation starts at angles=[-0.7504911, -0.99483773, 1.21300376]
+                                        max_velocity=1, acceleration=.1)  # Simulation starts at angles=[-0.7504911, -0.99483773, 1.21300376]
             state = S_MOVE_JOINT
         elif state == S_MOVE_JOINT:
-            print "Done"*1000
+            print "Done" * 1000
             state = S_DONE
             pass
         logger.info("State changed.", state=state)
@@ -48,4 +48,3 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
 
     # Send commands
     return controller.getLengthRateCommands()
-

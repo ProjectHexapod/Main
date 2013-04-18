@@ -17,7 +17,7 @@ class MetaTestTrajectory(object):
         third of the trajectory interval.
         """
         third_time = self.third_time
-        times = np.arange(self.start_time + third_time*0.05, self.end_time - third_time * 2.05, 0.01 )
+        times = np.arange(self.start_time + third_time * 0.05, self.end_time - third_time * 2.05, 0.01)
 
         def compute_acceleration(times):
             position_arrays = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
@@ -39,7 +39,7 @@ class MetaTestTrajectory(object):
         trajectory interval.
         """
         third_time = self.third_time
-        times = np.arange(self.start_time + third_time * 1.05, self.end_time - third_time*1.05, 0.01)
+        times = np.arange(self.start_time + third_time * 1.05, self.end_time - third_time * 1.05, 0.01)
 
         position_arrays = np.array(zip(*[self.tr.getTargetJointAngles(t) for t in times]))
         velocity_arrays = [position_array[1:] - position_array[0:-1] for position_array in position_arrays]
@@ -68,14 +68,15 @@ class MetaTestTrajectory(object):
 
         print "END TIME: ", self.end_time
         times = [self.start_time, self.end_time]
-        reals = reduce(lambda x,y: x+y, [self.tr.getTargetJointAngles(t) for t in times])
+        reals = reduce(lambda x, y: x + y, [self.tr.getTargetJointAngles(t) for t in times])
         ideals = self.start_position + self.end_position
-        differences = [real-ideal for real,ideal in zip(reals,ideals)]
+        differences = [real - ideal for real, ideal in zip(reals, ideals)]
 
         for difference in differences:
             print "diff: ", abs(difference)
             self.assertLess(abs(difference), 1e-8)
 
+            
 def setUpCreator(data):
     class setUpHolder(object):
         def setUp(self):
@@ -87,7 +88,7 @@ def setUpCreator(data):
             self.end_time = data['end_time']
             self.continuity_limit = data['continuity_limit']
             robot = "Dummy data"
-            self.third_time = (self.end_time - self.start_time)/3.
+            self.third_time = (self.end_time - self.start_time) / 3.
             self.tr = Trajectory(start_position, end_position, robot, self.start_time, self.end_time)
     return setUpHolder
 
@@ -97,37 +98,30 @@ def setUpCreator(data):
 # Continuity limit is a constant used in the test_continuity function, it is
 # the maximum allowed distance between two consecutive points that are
 # 0.01 seconds apart
-data = [
-    {
-        'start_position'    : [0.,0.,0.],
-        'end_position'      : [100., 0., 0.],
-        'start_time'        : 0.,
-        'end_time'          : 100.,
-        'continuity_limit'  : 5.
-    }, {
-        'start_position'    : [-743., 83., 200.],
-        'end_position'      : [20., 8000.41, 200.],
-        'start_time'        : 139.,
-        'end_time'          : 153.2,
-        'continuity_limit'  : 20.
-    }, {
-        'start_position'    : [300., 600., 400.],
-        'end_position'      : [32., 9000., 5342.],
-        'start_time'        : 30.,
-        'end_time'          : 126.,
-        'continuity_limit'  : 5.
-    }, {
-        'start_position'    : [30., 0., -2509.],
-        'end_position'      : [0., 0., 0.,],
-        'start_time'        : 300.,
-        'end_time'          : 5000.,
-        'continuity_limit'  : 5.
-#    }, {
-# Uncomment and add more test cases if desired
+data = [{'start_position'    : [0., 0., 0.],
+         'end_position'      : [100., 0., 0.],
+         'start_time'        : 0.,
+         'end_time'          : 100.,
+         'continuity_limit'  : 5.},
+        
+        {'start_position'    : [-743., 83., 200.],
+         'end_position'      : [20., 8000.41, 200.],
+         'start_time'        : 139.,
+         'end_time'          : 153.2,
+         'continuity_limit'  : 20.},
+        
+        {'start_position'    : [300., 600., 400.],
+         'end_position'      : [32., 9000., 5342.],
+         'start_time'        : 30.,
+         'end_time'          : 126.,
+         'continuity_limit'  : 5.},
+        
+        {'start_position'    : [30., 0., -2509.],
+         'end_position'      : [0., 0., 0.],
+         'start_time'        : 300.,
+         'end_time'          : 5000.,
+         'continuity_limit'  : 5.}]
 
-
-
-}]
 
 def build_tests():
     """
@@ -140,7 +134,7 @@ def build_tests():
         test_name = "TestTrajectory" + str(i)
         if not hasattr(current_module, test_name):
             test_class_instance = type(test_name, (setUpCreator(data[i]),
-                                            MetaTestTrajectory, unittest.TestCase), {})
+                                                   MetaTestTrajectory, unittest.TestCase), {})
             setattr(current_module, test_name, test_class_instance)
 
 build_tests()

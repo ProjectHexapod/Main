@@ -1,4 +1,7 @@
-import sys, random, threading, serial
+import sys
+import random
+import threading
+import serial
 from array import array
 from math import *
 
@@ -15,7 +18,7 @@ class BusNode:
         node_id is the position of this node in the bus
         """
         assert node_id >= 0 and node_id <= 15
-        assert type(node_id) == type(0)
+        assert isinstance(node_id, (int))
         self.bus = bus
         self.node_id = node_id
         self.name = name
@@ -46,7 +49,7 @@ class ControlBus:
         Device is a path the the device, eg. /dev/ttyS0
         """
         self.port = serial.Serial(port=device, baudrate=500000, timeout=1e-2)
-        self.nodes = [None]*16
+        self.nodes = [None] * 16
         self.old_packet = ""
 
         # This read will time out, returning any junk that was in the buffer.
@@ -54,10 +57,10 @@ class ControlBus:
 
         # Ring out the number of nodes.
         packet = chr(0x00)
-        self.port.write(packet*20)
+        self.port.write(packet * 20)
         resp = self.port.read(16384)
         # Light validation of response.
-        assert len(resp) >= 4 and len(resp) <= 20, "Received len %d response"%len(resp)
+        assert len(resp) >= 4 and len(resp) <= 20, "Received len %d response" % len(resp)
         assert resp[-1] == resp[-2] and resp[-2] == resp[-3] and resp[-3] == resp[-4]
         self.num_nodes = 16 - ord(resp[-1]) / 16
         # XXX Can't distinguish 0 and 16; which should we allow?
@@ -66,7 +69,7 @@ class ControlBus:
 
         # Now switch to non-blocking mode.
         self.port.nonblocking()
-        self.port.timeout=0
+        self.port.timeout = 0
 
     def getNodeCount(self):
         """
@@ -98,10 +101,10 @@ class ControlBus:
             node_id = (ord(packet[0]) / 16) + self.num_nodes - 16
             if data_len > 0:
                 memory_offset = ord(packet[1])
-                data = packet[2:2+data_len-1]
+                data = packet[2:2 + data_len - 1]
             else:
                 memory_offset = 0
                 data = ""
-            packet = packet[2+data_len-1:]
+            packet = packet[2 + data_len - 1:]
             self.nodes[node_id].callback(memory_offset, data)
         self.old_packet = packet

@@ -1,14 +1,19 @@
 from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 
+
 class TrapezoidalJointMove:
-    """This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
-        This class expects max velocity for angular velocity.
     """
+    This is a trapezoidal speed ramp, where speed is derivative foot position WRT time.
+    This class expects max velocity for angular velocity.
+    """
+    
     def __init__(self, leg_model, limb_controller, final_angles, max_velocity, acceleration):
-        leg_logger.logger.info("New path.", path_name="TrapezoidalJointMove",
-                    final_angles=final_angles, max_velocity=max_velocity,
-                    acceleration=acceleration)
+        leg_logger.logger.info("New path.",
+                               path_name="TrapezoidalJointMove",
+                               final_angles=final_angles,
+                               max_velocity=max_velocity,
+                               acceleration=acceleration)
         
         self.model = leg_model
         self.controller = limb_controller
@@ -26,7 +31,8 @@ class TrapezoidalJointMove:
         return self.done
 
     def getNormalizedRemaining(self):
-        """Returns a normalized vector that points toward the current goal point.
+        """
+        Returns a normalized vector that points toward the current goal point.
         """
         return normalize(self.final_angles - self.target_angles)
 
@@ -40,7 +46,7 @@ class TrapezoidalJointMove:
             # rearranged multiplies to avoid confusing order of operations
             # readability issues
             remaining_vector = self.final_angles - self.target_angles
-            if norm(remaining_vector) <= .5 * self.vel**2 / self.acc:
+            if norm(remaining_vector) <= .5 * self.vel ** 2 / self.acc:
                 self.vel -= self.acc * delta
             else:
                 self.vel += self.acc * delta

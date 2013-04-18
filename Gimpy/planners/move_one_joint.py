@@ -36,15 +36,15 @@ def update(time, yaw, hip_pitch, knee_pitch, shock_depth, command=None):
     # Monitor model_path
     if path.isDone():
         if state == S_INIT:
-            print "Move"*1000
+            print "Move" * 1000
             path = MoveJoint(model, controller, joint_idx=KP, duration=3.0, direction=1, velocity=0.2)
             state = S_MOVE1
         elif state == S_MOVE1:
-            print "Move"*1000
+            print "Move" * 1000
             path = MoveJoint(model, controller, joint_idx=KP, duration=3.0, direction=-1, velocity=0.2)
             state = S_MOVE2
         elif state == S_MOVE2:
-            print "Done"*1000
+            print "Done" * 1000
             state = S_INIT
             pass
         logger.info("State changed.", state=state)

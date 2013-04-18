@@ -2,6 +2,7 @@
 
 from time_sources import global_time
 
+
 class Filter(object):
     """
     Abstract base class for first order signal filters. Do not call directly.
@@ -14,11 +15,13 @@ class Filter(object):
         """
         global_time.updateDelta(0.01)
         return self.update(signal)
+        
     def getVal(self):
         if hasattr(self, 'last_response'):
             return self.last_response
         else:
             return 0
+
     def update(self, signal):
         """
         Calculate and return response.
@@ -30,12 +33,12 @@ class Filter(object):
             self.last_response = signal
             return signal
 
-        a, b, c = self.a, self.b, self.c # Filter constants
+        a, b, c = self.a, self.b, self.c  # Filter constants
         time_delta = global_time.getDelta()
 
         # First order filter implementation
-        out = (self.last_response + \
-               (a + b * time_delta) * signal - \
+        out = (self.last_response + 
+               (a + b * time_delta) * signal - 
                a * self.last_signal) / (1.0 + c * time_delta)
 
         # Update history
@@ -43,6 +46,7 @@ class Filter(object):
         self.last_signal = signal
         return out
 
+        
 class LowPassFilter(Filter):
     def __init__(self, gain, corner_frequency):
         """
@@ -53,6 +57,7 @@ class LowPassFilter(Filter):
         self.b = gain * corner_frequency
         self.c = corner_frequency
 
+        
 class HighPassFilter(Filter):
     def __init__(self, gain, corner_frequency):
         """
@@ -63,6 +68,7 @@ class HighPassFilter(Filter):
         self.b = 0.
         self.c = corner_frequency
 
+        
 class ZPKFilter(Filter):
     def __init__(self, gain, pole_frequency, zero_frequency):
         """
@@ -73,6 +79,7 @@ class ZPKFilter(Filter):
         self.b = gain * pole_frequency
         self.c = pole_frequency
 
+        
 class IntegratorFilter(Filter):
     def __init__(self, gain):
         """
@@ -82,6 +89,3 @@ class IntegratorFilter(Filter):
         self.a = 0.
         self.b = gain
         self.c = 0.
-
-
-

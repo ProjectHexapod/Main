@@ -2,6 +2,7 @@ from ControlsKit import time_sources
 from ControlsKit.math_utils import normalize, norm, arraysAreEqual
 from UI import logger
 
+
 class DumbFootMove:
     """
     This move just tries to move directly to the end position.  You must ensure
@@ -14,7 +15,7 @@ class DumbFootMove:
         self.controller = limb_controller
         self.target_foot_pos = target_pos
 
-    def setTarget( self, new_target ):
+    def setTarget(self, new_target):
         self.target_foot_pos = new_target
 
     def isDone(self):

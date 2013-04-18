@@ -26,12 +26,12 @@ class FilterTestBase(object):
 
         NUM_STEPS = 500
 
-        end_time = 1./frequency
+        end_time = 1. / frequency
 
         input_series = np.linspace(0., 2. * pi, NUM_STEPS)
         sin_series = np.sin(input_series)
 
-        time_delta = end_time/NUM_STEPS
+        time_delta = end_time / NUM_STEPS
 
         base_sum = np.sum(np.abs(sin_series))
         filtered_sum = np.sum(np.abs([self._step(time_delta, value) for value in sin_series]))
@@ -67,6 +67,7 @@ class HighPassFilterTestCase(unittest.TestCase, FilterTestBase):
     def test_passes_high_frequencies(self):
         self.assertAlmostEqual(10., self._step(1.e-15, 10.))
 
+        
 class ZPKFilterTestCase(unittest.TestCase, FilterTestBase):
     def setUp(self):
         resetTimeSourceForTestingPurposes(global_time)
@@ -75,4 +76,3 @@ class ZPKFilterTestCase(unittest.TestCase, FilterTestBase):
 
 if __name__ == '__main__':
     unittest.main()
-

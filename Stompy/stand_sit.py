@@ -13,6 +13,7 @@ ORIENT = 1
 STAND = 2
 SIT = 3
 
+
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
     global path, state
     
@@ -21,7 +22,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     
     target_angle_matrix = zeros((NUM_LEGS, LEG_DOF))
     
-    #THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
+    # THIS IS WHERE WE CALL ON THE PATH TO DO MATH AND PRODUCE joint_angle_matrix (6x3 matrix)
     if path is None:
         path = BodyPause(model, controller, 1)
         state = ORIENT
@@ -29,7 +30,7 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     if path.isDone():
         if state == ORIENT:
             path = GoToStandardHexagon(model, controller)
-            state =STAND
+            state = STAND
         elif state == STAND:
             path = TrapezoidalSitStand(model, controller, -1.6764, 1, .1)
             state = SIT

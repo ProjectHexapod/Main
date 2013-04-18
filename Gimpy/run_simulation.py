@@ -17,8 +17,8 @@ else:
     update = retval
     controller = None
 
-d = {'offset':(0,0,0.67)}
-s = Simulator(dt=1e-3,plane=1,pave=0,graphical=1,robot=LegOnStand,robot_kwargs=d, start_paused = False)
+d = {'offset': (0, 0, 0.67)}
+s = Simulator(dt=1e-3, plane=1, pave=0, graphical=1, robot=LegOnStand, robot_kwargs=d, start_paused=False)
 input_server = InputServer()  # TODO: pass along at least a password argument here
 input_server.startListening()
 

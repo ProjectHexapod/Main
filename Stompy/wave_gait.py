@@ -10,6 +10,7 @@ state = 0
 leg_pair = 0
 stride = 1  # in meters
 
+
 def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angular_rates, command=None):
     global traj, legs
 
@@ -23,9 +24,11 @@ def update(time, leg_sensor_matrix, imu_orientation, imu_accelerations, imu_angu
     # TODO: move each pair of legs forward by stride
     # TODO: with the feet on the ground move all of the feet backwards by stride
 
+
 def getLeftAndRightLegsInPair(legs, pair):
     pair %= NUM_LEGS
     return legs[pair], legs[NUM_LEGS - pair - 1]
+
 
 def enterState(state, legs, pair):
     left, right = getLeftAndRightLegsInPair(legs, pair)
@@ -39,9 +42,3 @@ def enterState(state, legs, pair):
         pass
     elif state == 4:
         pass
-
-
-
-
-
-

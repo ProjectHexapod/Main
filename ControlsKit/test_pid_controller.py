@@ -6,9 +6,11 @@ from pid_controller import PIDController
 
 
 class PIDControllerTestCase(unittest.TestCase):
+    
     def setUp(self):
         resetTimeSourceForTestingPurposes(global_time)
         self.pid = PIDController(0.2, 0.02, 0.1)
+        
     def tearDown(self):
         pass
 
@@ -106,13 +108,13 @@ class PIDControllerTestCase(unittest.TestCase):
             global_time.updateTime(t)
             
             desired = t
-            measured = -2.0*t
+            measured = -2.0 * t
             p_command = p.update(desired, measured)
             i_command = i.update(desired, measured)
             d_command = d.update(desired, measured)
             pid_command = self.pid.update(desired, measured)
             
-            self.assertAlmostEqual(p_command, kp * 3.0*t)
+            self.assertAlmostEqual(p_command, kp * 3.0 * t)
             
             # Testing the integral here is hard because of the discrete-time
             # approximation.
@@ -133,6 +135,7 @@ class PIDControllerTestCase(unittest.TestCase):
             
             self.assertAlmostEqual(d_command, kd * 3.0)
             self.assertAlmostEqual(pid_command, p_command + i_command + d_command)
+            
     def testTimeSeriesConstantInput(self):
         kp = 0.2
         ki = 0.02
@@ -168,4 +171,3 @@ class PIDControllerTestCase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

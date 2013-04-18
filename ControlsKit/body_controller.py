@@ -1,6 +1,8 @@
 from limb_controller import LimbController
 
+
 class BodyController:
+
     def __init__(self, leg_count=6):
         self.legs = [LimbController() for i in range(leg_count)]
 
