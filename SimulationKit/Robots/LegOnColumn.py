@@ -110,12 +110,18 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
         This is rough piecewise linear interpretation of the charts at:
         http://www.hydraforce.com/proport/Prop_html/2-112-1_SP10-47C/2-112-1_SP10-47C.htm
         """
+        #return valve_command * gpm2cmps*5.0
+        #FIXME: Basing rate off of pressure results an a feedback loop that destabilizes the simulation somehow...
+        # For now let's just turn off pressure compensation
+        inlet_to_work_port_pressure = 2500*psi2pascal
+
         if valve_command > 1.0:
             valve_command = 1.0
+        max_flow = gpm2cmps*6.0
         if inlet_to_work_port_pressure < psi2pascal*300:
-            normalized_flow = (gpm2cmps*6.0)*(inlet_to_work_port_pressure/(psi2pascal*300.0))
+            normalized_flow = (inlet_to_work_port_pressure/(psi2pascal*300.0))
         else:
-            normalized_flow = (gpm2cmps*6.0) - ((inlet_to_work_port_pressure-(psi2pascal*300.0))*((gpm2cmps*1.5)/(psi2pascal*1700)))
+            normalized_flow = 1.0 - 0.25*((inlet_to_work_port_pressure-(psi2pascal*300.0))/(psi2pascal*1700))
 
         if normalized_flow < 0:
             normalized_flow = 0
@@ -124,7 +130,9 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             normalized_command = (valve_command - .25)/0.75
         else:
             normalized_command = 0.0
-        retval = normalized_command * normalized_flow
+        #print normalized_command
+        #print 'flow', normalized_flow
+        retval = normalized_command * normalized_flow * max_flow
         return retval
 
     def getAngRate( self ):
@@ -135,12 +143,15 @@ class ValveActuatedHingeJoint(LinearVelocityActuatedHingeJoint):
             cross_section = self.actuator.getExtensionCrossSectionM2()
         else:
             cross_section = self.actuator.getRetractionCrossSectionM2()
+        """
         if sign(self.valve_command) != sign(torque):
             # We are pulling against the work side
             work_pressure = 0.0
         else:
             work_pressure = force / cross_section
-        inlet_to_work_pressure = self.actuator.SYSTEM_PRESSURE - abs(work_pressure)
+        """
+        work_pressure = sign(self.valve_command)*force/cross_section
+        inlet_to_work_pressure = self.actuator.SYSTEM_PRESSURE - work_pressure
         flow = self.SP10_47CFlow( inlet_to_work_pressure, abs(self.valve_command) )
         lenrate = (flow / cross_section)
         if self.valve_command<0:
