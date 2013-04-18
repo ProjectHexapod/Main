@@ -19,6 +19,8 @@ def importPlanner(module_or_file_name = None):
     module = __import__(filename)
     try:
         if hasattr(module, 'controller'):
+            if hasattr(module, 'graceful_exit'):
+                return module.update, module.controller, module.graceful_exit
             return module.update, module.controller
         else:
             return module.update
