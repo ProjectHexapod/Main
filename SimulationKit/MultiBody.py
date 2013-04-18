@@ -192,7 +192,8 @@ class LinearActuatorControlledHingeJoint(ControlledHingeJoint):
         piston, not which way it's presently moving"""
         #FIXME: THIS ASSUMES WE ARE USING THE JOINT'S ANG_TARGET PARAMETER,
         # WHICH WE OFTEN ARE NOT
-        if self.getAngleError()>0:
+        #if self.getAngleError()>0:
+        if self.getAngleRate()>0:
             return abs(self.getLeverArm()*self.extend_force_limit)
         else:
             return abs(self.getLeverArm()*self.retract_force_limit)
