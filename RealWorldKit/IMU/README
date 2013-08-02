@@ -1,0 +1,26 @@
+code based off of: https://github.com/ethz-asl/ethzasl_xsens_driver
+
+mtlib contains code for interfacing with MT IMUs. 
+
+mtop.py has a function get_imu_reader(port) which will set up a connection
+with the MTx and return a MTDevice controller. Port should be like '/dev/ttyUSB0'.
+
+MTDevice.read_measurement() will return data like below:
+
+{'Calib': {'accX': -0.8945242166519165,
+'accY': 0.11567667871713638,
+'accZ': 9.74065113067627,
+'gyrX': -0.007766387891024351,
+'gyrY': 0.007915923371911049,
+'gyrZ': -0.0019122036173939705,
+'magX': -0.3401359021663666,
+'magY': -0.27704817056655884,
+'magZ': -0.9439917802810669},
+'Orient': {'matrix': ((-0.8530724048614502,
+         0.5135083794593811,
+         -0.09260982275009155),
+        (-0.516683042049408, -0.856084942817688, 0.012539487332105637),
+       (-0.07284273952245712, 0.058547016233205795, 0.9956235289573669))},
+'Temp': 32.125}
+
+Report problems to @bhitov
