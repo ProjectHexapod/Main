@@ -1,0 +1,354 @@
+name: "CHIP_B"
+  units: NM
+  sel_rect: -977000 -1742000 3377000 1742000
+  ref_text: 1270000 600000 0 0 127000
+  outline_polyline: 177800 -1180200 -1945200
+    next_corner: 3580200 -1945200 0
+    next_corner: 3580200 1945200 0
+    next_corner: -1180200 1945200 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3230000 850000 850000
+    pin: 2 0 2400000 0 180
+      top_pad: 3 3230000 850000 850000
+
+name: "CHIP_D"
+  units: NM
+  sel_rect: -1237000 -1842000 6937000 1842000
+  ref_text: 1270000 1425000 0 0 127000
+  outline_polyline: 177800 -1440200 -2045200
+    next_corner: 7140200 -2045200 0
+    next_corner: 7140200 2045200 0
+    next_corner: -1440200 2045200 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3430000 1110000 1110000
+    pin: 2 0 5700000 0 180
+      top_pad: 3 3430000 1110000 1110000
+
+name: "TAJ-A"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -53 -48 171 48
+  ref_text: 50 59 80 0 7
+  outline_polyline: 7 -45 40
+    next_corner: 163 40 0
+    next_corner: 163 -40 0
+    next_corner: -45 -40 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 71 27 27
+    pin: 2 0 118 0 0
+      top_pad: 3 71 27 27
+
+name: "TAJ-B"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -63 -67 220 67
+  ref_text: 50 79 99 0 7
+  outline_polyline: 7 -45 59
+    next_corner: 202 59 0
+    next_corner: 202 -59 0
+    next_corner: -45 -59 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 110 27 27
+    pin: 2 0 157 0 0
+      top_pad: 3 110 27 27
+
+name: "TAJ-M"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -53 -52 226 52
+  ref_text: 50 87 84 0 7
+  outline_polyline: 7 -45 44
+    next_corner: 218 44 0
+    next_corner: 218 -44 0
+    next_corner: -45 -44 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 79 27 27
+    pin: 2 0 173 0 0
+      top_pad: 3 79 27 27
+
+name: "TAJ-C"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -65 -67 273 67
+  ref_text: 50 104 99 0 7
+  outline_polyline: 7 -57 59
+    next_corner: 265 59 0
+    next_corner: 265 -59 0
+    next_corner: -57 -59 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 110 39 39
+    pin: 2 0 208 0 0
+      top_pad: 3 110 39 39
+
+name: "TAJ-N"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -67 -72 284 72
+  ref_text: 50 109 104 0 7
+  outline_polyline: 7 -57 64
+    next_corner: 274 64 0
+    next_corner: 274 -64 0
+    next_corner: -57 -64 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 119 39 39
+    pin: 2 0 217 0 0
+      top_pad: 3 119 39 39
+
+name: "TAJ-D"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -67 -72 343 72
+  ref_text: 50 138 104 0 7
+  outline_polyline: 7 -57 64
+    next_corner: 333 64 0
+    next_corner: 333 -64 0
+    next_corner: -57 -64 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 119 39 39
+    pin: 2 0 276 0 0
+      top_pad: 3 119 39 39
+
+name: "TAJ-E"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -67 -72 343 72
+  ref_text: 50 138 104 0 7
+  outline_polyline: 7 -57 64
+    next_corner: 333 64 0
+    next_corner: 333 -64 0
+    next_corner: -57 -64 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 119 39 39
+    pin: 2 0 276 0 0
+      top_pad: 3 119 39 39
+
+name: "TAJ-R"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -45 -42 146 42
+  ref_text: 50 50 74 0 7
+  outline_polyline: 7 -37 34
+    next_corner: 138 34 0
+    next_corner: 138 -34 0
+    next_corner: -37 -34 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 60 20 20
+    pin: 2 0 100 0 0
+      top_pad: 3 60 20 20
+
+name: "TAJ-S"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -50 -47 161 47
+  ref_text: 50 55 79 0 7
+  outline_polyline: 7 -42 39
+    next_corner: 153 39 0
+    next_corner: 153 -39 0
+    next_corner: -42 -39 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 70 25 25
+    pin: 2 0 110 0 0
+      top_pad: 3 70 25 25
+
+name: "TAJ-T"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -63 -67 213 67
+  ref_text: 50 75 99 0 7
+  outline_polyline: 7 -42 59
+    next_corner: 193 59 0
+    next_corner: 193 -59 0
+    next_corner: -42 -59 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 110 25 25
+    pin: 2 0 150 0 0
+      top_pad: 3 110 25 25
+
+name: "TAZ-R"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -40 -42 146 42
+  ref_text: 50 50 74 0 7
+  outline_polyline: 7 -32 34
+    next_corner: 138 34 0
+    next_corner: 138 -34 0
+    next_corner: -32 -34 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 60 20 20
+    pin: 2 0 100 0 0
+      top_pad: 3 60 20 20
+
+name: "TAZ-A"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -57 -61 175 61
+  ref_text: 50 59 93 0 7
+  outline_polyline: 7 -44 53
+    next_corner: 163 53 0
+    next_corner: 163 -53 0
+    next_corner: -44 -53 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 98 27 27
+    pin: 2 0 118 0 0
+      top_pad: 3 98 27 27
+
+name: "TAZ-B"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -57 -61 225 61
+  ref_text: 50 84 93 0 7
+  outline_polyline: 7 -44 53
+    next_corner: 213 53 0
+    next_corner: 213 -53 0
+    next_corner: -44 -53 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 98 27 27
+    pin: 2 0 168 0 0
+      top_pad: 3 98 27 27
+
+name: "TAZ-C"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -57 -61 275 61
+  ref_text: 50 109 93 0 7
+  outline_polyline: 7 -44 53
+    next_corner: 263 53 0
+    next_corner: 263 -53 0
+    next_corner: -44 -53 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 98 27 27
+    pin: 2 0 218 0 0
+      top_pad: 3 98 27 27
+
+name: "TAZ-D"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -79 -84 292 84
+  ref_text: 50 107 116 0 7
+  outline_polyline: 7 -44 76
+    next_corner: 258 76 0
+    next_corner: 258 -76 0
+    next_corner: -44 -76 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 143 27 27
+    pin: 2 0 213 0 0
+      top_pad: 3 143 27 27
+
+name: "TAZ-E"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -79 -84 342 84
+  ref_text: 50 132 116 0 7
+  outline_polyline: 7 -44 76
+    next_corner: 308 76 0
+    next_corner: 308 -76 0
+    next_corner: -44 -76 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 143 27 27
+    pin: 2 0 263 0 0
+      top_pad: 3 143 27 27
+
+name: "TAZ-F"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -97 -101 415 101
+  ref_text: 50 159 133 0 7
+  outline_polyline: 7 -44 93
+    next_corner: 363 93 0
+    next_corner: 363 -93 0
+    next_corner: -44 -93 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 178 27 27
+    pin: 2 0 318 0 0
+      top_pad: 3 178 27 27
+
+name: "TAZ-G"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -86 -91 388 91
+  ref_text: 50 151 123 0 7
+  outline_polyline: 7 -54 83
+    next_corner: 357 83 0
+    next_corner: 357 -83 0
+    next_corner: -54 -83 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 157 37 37
+    pin: 2 0 302 0 0
+      top_pad: 3 157 37 37
+
+name: "TAZ-H"
+author: "Ivex"
+source: "AVX CORPORATION, SURFACE MOUNT TANTALUM CAPACITORS CATALOG, PG 36"
+  units: MIL
+  sel_rect: -106 -111 468 111
+  ref_text: 50 181 143 0 7
+  outline_polyline: 7 -54 103
+    next_corner: 417 103 0
+    next_corner: 417 -103 0
+    next_corner: -54 -103 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 197 37 37
+    pin: 2 0 362 0 0
+      top_pad: 3 197 37 37
+
+

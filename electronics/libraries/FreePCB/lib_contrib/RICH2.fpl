@@ -1,0 +1,536 @@
+name: "OSCILLATOR"
+author: "Ivex"
+  units: MIL
+  sel_rect: -83 -83 83 283
+  ref_text: 50 407 225 0 7
+  outline_polyline: 7 -75 275
+    next_corner: 75 275 0
+  outline_polyline: 7 75 275
+    next_corner: 75 -75 0
+  outline_polyline: 7 75 -75
+    next_corner: -75 -75 0
+  outline_polyline: 7 -75 -75
+    next_corner: -75 275 0
+  n_pins: 2
+    pin: "1" 45 0 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "2" 45 0 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+
+name: "TACTBUTT"
+author: "Ivex"
+  units: MIL
+  sel_rect: -83 -383 283 83
+  ref_text: 50 232 -425 0 7
+  outline_polyline: 7 -50 75
+    next_corner: 275 75 0
+  outline_polyline: 7 275 75
+    next_corner: 275 -375 0
+  outline_polyline: 7 275 -375
+    next_corner: -75 -375 0
+  outline_polyline: 7 -75 -375
+    next_corner: -75 75 0
+  outline_polyline: 7 -75 75
+    next_corner: -50 75 0
+  outline_polyline: 7 -75 -225
+    next_corner: 75 -225 0
+  outline_polyline: 7 75 -225
+    next_corner: 75 -375 0
+  n_pins: 4
+    pin: "1" 45 0 -300 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "4" 45 200 -300 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "3" 45 200 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "2" 45 0 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+
+name: "PROTOFIELD"
+author: "Ivex"
+  units: MIL
+  sel_rect: -55 -55 955 555
+  ref_text: 50 282 600 0 7
+  n_pins: 60
+    pin: "1" 45 0 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "2" 45 100 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "3" 45 200 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "4" 45 300 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "5" 45 400 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "6" 45 500 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "7" 45 600 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "8" 45 700 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "9" 45 800 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "10" 45 900 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "21" 45 0 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "22" 45 100 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "23" 45 200 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "24" 45 300 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "25" 45 400 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "26" 45 500 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "27" 45 600 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "28" 45 700 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "29" 45 800 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "30" 45 900 200 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "41" 45 0 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "42" 45 100 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "43" 45 200 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "44" 45 300 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "45" 45 400 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "46" 45 500 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "47" 45 600 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "48" 45 700 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "49" 45 800 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "50" 45 900 400 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "51" 45 900 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "52" 45 800 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "53" 45 700 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "54" 45 600 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "55" 45 500 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "56" 45 400 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "57" 45 300 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "58" 45 200 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "59" 45 100 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "60" 45 0 500 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "31" 45 900 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "32" 45 800 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "33" 45 700 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "34" 45 600 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "35" 45 500 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "36" 45 400 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "37" 45 300 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "38" 45 200 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "39" 45 100 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "40" 45 0 300 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "11" 45 900 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "12" 45 800 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "13" 45 700 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "14" 45 600 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "15" 45 500 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "16" 45 400 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "17" 45 300 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "18" 45 200 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "19" 45 100 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "20" 45 0 100 180
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+
+name: "DUALBUTTON"
+author: "Ivex"
+  units: MIL
+  sel_rect: -908 -408 108 108
+  ref_text: 50 -592 -475 0 7
+  outline_polyline: 7 -900 100
+    next_corner: 100 100 0
+  outline_polyline: 7 100 100
+    next_corner: 100 -400 0
+  outline_polyline: 7 100 -400
+    next_corner: -900 -400 0
+  outline_polyline: 7 -900 -400
+    next_corner: -900 100 0
+  outline_polyline: 7 -400 100
+    next_corner: -400 -400 0
+  outline_polyline: 7 -800 0
+    next_corner: -500 0 0
+  outline_polyline: 7 -500 0
+    next_corner: -500 -300 0
+  outline_polyline: 7 -500 -300
+    next_corner: -800 -300 0
+  outline_polyline: 7 -800 0
+    next_corner: -800 -300 0
+  outline_polyline: 7 -300 0
+    next_corner: -300 -300 0
+  outline_polyline: 7 -300 -300
+    next_corner: 0 -300 0
+  outline_polyline: 7 0 -300
+    next_corner: 0 0 0
+  outline_polyline: 7 0 0
+    next_corner: -300 0 0
+  n_pins: 3
+    pin: "3" 45 -800 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "2" 45 -300 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+    pin: "1" 45 0 0 0
+      top_pad: 1 95 47 47
+      bottom_pad: 1 95 47 47
+      inner_pad: 1 95 47 47
+
+name: "20UCONN"
+author: "Ivex"
+  units: MIL
+  sel_rect: -53 -53 953 153
+  ref_text: 50 227 -90 0 7
+  n_pins: 20
+    pin: "1" 40 0 0 0
+      top_pad: 3 90 37 37
+      bottom_pad: 3 90 37 37
+      inner_pad: 1 90 37 37
+    pin: "2" 28 100 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "3" 28 200 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "4" 28 300 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "5" 28 400 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "6" 28 500 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "7" 28 600 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "8" 28 700 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "9" 28 800 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "10" 28 900 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "11" 28 900 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "12" 28 800 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "13" 28 700 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "14" 28 600 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "15" 28 500 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "16" 28 400 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "17" 28 300 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "18" 28 200 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "19" 28 100 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "20" 28 0 100 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+
+name: "SCPARFMODUL"
+author: "Ivex"
+  units: MIL
+  sel_rect: -108 -108 1008 1408
+  ref_text: 50 232 -200 0 7
+  outline_polyline: 7 -100 1400
+    next_corner: 1000 1400 0
+  outline_polyline: 7 1000 1400
+    next_corner: 1000 -100 0
+  outline_polyline: 7 1000 -100
+    next_corner: 0 -100 0
+  outline_polyline: 7 0 -100
+    next_corner: -100 0 0
+  outline_polyline: 7 -100 0
+    next_corner: -100 1400 0
+  n_pins: 20
+    pin: "1" 28 0 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "2" 28 100 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "3" 28 200 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "4" 28 300 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "5" 28 400 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "6" 28 500 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "7" 28 600 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "8" 28 700 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "9" 28 800 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "10" 28 900 0 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "11" 28 900 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "12" 28 800 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "13" 28 700 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "14" 28 600 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "15" 28 500 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "16" 28 400 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "17" 28 300 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "18" 28 200 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "19" 28 100 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+    pin: "20" 28 0 1300 0
+      top_pad: 1 90 35 35
+      bottom_pad: 1 90 35 35
+      inner_pad: 1 90 35 35
+

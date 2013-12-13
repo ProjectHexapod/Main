@@ -1,0 +1,435 @@
+name: "PAD1"
+author: "Ivex"
+  units: MIL
+  sel_rect: -55 -55 55 55
+  ref_text: 50 107 -120 0 7
+  n_pins: 1
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "24MMLITHIUM"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -151 -555 958 555
+  ref_text: 50 403 -600 0 7
+  outline_polyline: 7 700 200
+    next_corner: 900 200 0
+  outline_polyline: 7 800 300
+    next_corner: 800 100 0
+  outline_polyline: 7 950 0
+    next_corner: 403 547 2
+    next_corner: -143 0 2
+    next_corner: 403 -547 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 45 807 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "BUZZER1"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -116 -244 372 244
+  ref_text: 50 127 -300 0 7
+  outline_polyline: 7 364 0
+    next_corner: 127 236 2
+    next_corner: -108 0 2
+    next_corner: 127 -236 2
+    close_polyline: 2
+  outline_polyline: 7 0 150
+    next_corner: 0 50 0
+  outline_polyline: 7 -50 100
+    next_corner: 50 100 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 35 255 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "2-5000-P10"
+author: "Ivex"
+source: "E-T-A THERMAL OVERCURRENT CIRCUIT BREAKER"
+  units: MIL
+  sel_rect: -228 -293 1008 293
+  ref_text: 50 389 -350 0 7
+  outline_polyline: 7 -220 285
+    next_corner: 1000 285 0
+    next_corner: 1000 -285 0
+    next_corner: -220 -285 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 275 0 0 0
+      top_pad: 1 400 200 200
+      bottom_pad: 1 400 200 200
+      inner_pad: 1 400 200 200
+    pin: 2 275 779 0 0
+      top_pad: 1 400 200 200
+      bottom_pad: 1 400 200 200
+      inner_pad: 1 400 200 200
+
+name: "FUSE_HOLDER"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -101 -93 352 93
+  ref_text: 50 125 -150 0 7
+  outline_polyline: 7 -93 85
+    next_corner: 344 85 0
+    next_corner: 344 -85 0
+    next_corner: -93 -85 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 150 83 83
+    pin: 2 0 251 0 0
+      top_pad: 3 150 83 83
+
+name: "JUMP4"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27 (4SIP100)"
+  units: MIL
+  sel_rect: -58 -58 358 58
+  ref_text: 50 150 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 350 50 0
+    next_corner: 350 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "JUMP3"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27 (4SIP100)"
+  units: MIL
+  sel_rect: -58 -58 258 58
+  ref_text: 50 100 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 250 50 0
+    next_corner: 250 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "JUMP2"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27 (4SIP100)"
+  units: MIL
+  sel_rect: -58 -58 158 58
+  ref_text: 50 50 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 150 50 0
+    next_corner: 150 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "JUMP1"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27 (4SIP100)"
+  units: MIL
+  sel_rect: -58 -58 58 58
+  ref_text: 50 0 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 50 50 0
+    next_corner: 50 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 1
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "LAMP_HOLDER"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -93 -280 467 280
+  ref_text: 50 187 320 0 7
+  outline_polyline: 7 459 0
+    next_corner: 187 272 2
+    next_corner: -85 0 2
+    next_corner: 187 -272 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 79 0 0 0
+      top_pad: 1 150 75 75
+      bottom_pad: 1 150 75 75
+      inner_pad: 1 150 75 75
+    pin: 2 79 374 0 0
+      top_pad: 1 150 75 75
+      bottom_pad: 1 150 75 75
+      inner_pad: 1 150 75 75
+
+name: "COND_MIC"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -63 -110 157 110
+  ref_text: 50 47 150 0 7
+  outline_polyline: 7 149 0
+    next_corner: 47 102 2
+    next_corner: -55 0 2
+    next_corner: 47 -102 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 94 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "2WIREAWG18"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -75 -220 345 85
+  ref_text: 50 135 125 0 7
+  outline_polyline: 7 0 77
+    next_corner: 270 77 0
+  outline_polyline: 7 0 -212
+    next_corner: 270 -212 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+    pin: 2 45 270 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+
+name: "6WIREAWG18"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -75 -220 1425 85
+  ref_text: 50 675 125 0 7
+  outline_polyline: 7 0 77
+    next_corner: 1350 77 0
+  outline_polyline: 7 0 -212
+    next_corner: 1350 -212 0
+  n_pins: 6
+    pin: 1 45 0 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+    pin: 2 45 270 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+    pin: 3 45 540 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+    pin: 4 45 810 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+    pin: 5 45 1080 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+    pin: 6 45 1350 0 0
+      top_pad: 1 135 67 67
+      bottom_pad: 1 135 67 67
+      inner_pad: 1 135 67 67
+
+name: "TO99-8"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -158 -158 158 163
+  ref_text: 50 47 -235 0 7
+  outline_polyline: 7 150 0
+    next_corner: 0 150 2
+    next_corner: -150 0 2
+    next_corner: 0 -150 2
+    close_polyline: 2
+  outline_polyline: 7 90 120
+    next_corner: 125 155 0
+  outline_polyline: 7 125 155
+    next_corner: 150 130 0
+  outline_polyline: 7 150 130
+    next_corner: 115 95 0
+  n_pins: 8
+    pin: 1 28 0 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 -70 70 -45
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 -100 0 -90
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 -70 -70 -135
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 0 -100 180
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 70 -70 135
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 100 0 90
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 70 70 45
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "UMAX8"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -38 -38 114 216
+  ref_text: 50 38 -80 0 7
+  outline_polyline: 7 -21 45
+    next_corner: 98 45 0
+    next_corner: 98 133 0
+    next_corner: -21 133 0
+    close_polyline: 0
+  outline_polyline: 7 -21 79
+    next_corner: 0 79 0
+    next_corner: 0 99 0
+    next_corner: -21 99 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 0 0 0 0
+      top_pad: 3 60 8 8
+    pin: 2 0 25 0 0
+      top_pad: 3 60 8 8
+    pin: 3 0 51 0 0
+      top_pad: 3 60 8 8
+    pin: 4 0 76 0 0
+      top_pad: 3 60 8 8
+    pin: 5 0 76 178 0
+      top_pad: 3 60 8 8
+    pin: 6 0 51 178 0
+      top_pad: 3 60 8 8
+    pin: 7 0 25 178 0
+      top_pad: 3 60 8 8
+    pin: 8 0 0 178 0
+      top_pad: 3 60 8 8
+
+name: "SOT23/5L"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -30 -27 105 129
+  ref_text: 50 37 -70 0 7
+  outline_polyline: 7 -22 30
+    next_corner: 97 30 0
+    next_corner: 97 72 0
+    next_corner: -22 72 0
+    close_polyline: 0
+  outline_polyline: 7 -22 41
+    next_corner: 0 41 0
+    next_corner: 0 61 0
+    next_corner: -22 61 0
+    close_polyline: 0
+  n_pins: 5
+    pin: 1 0 0 0 0
+      top_pad: 3 39 13 13
+    pin: 2 0 37 0 0
+      top_pad: 3 39 13 13
+    pin: 3 0 75 0 0
+      top_pad: 3 39 13 13
+    pin: 4 0 75 102 0
+      top_pad: 3 39 13 13
+    pin: 5 0 0 102 0
+      top_pad: 3 39 13 13
+
+name: "TO220/5L"
+author: "Ivex"
+source: "- BASED ON THE BURR-BROWN 323 TO220 5-LEAD ZIP"
+  units: MIL
+  sel_rect: -74 -45 342 284
+  ref_text: 50 134 325 0 7
+  outline_polyline: 7 -66 100
+    next_corner: 334 100 0
+    next_corner: 334 276 0
+    next_corner: -66 276 0
+    close_polyline: 0
+  n_pins: 5
+    pin: 1 45 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 45 67 155 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 3 45 134 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 4 45 201 155 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 5 45 268 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+

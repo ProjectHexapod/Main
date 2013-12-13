@@ -1,0 +1,327 @@
+name: "C0402"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -953200 -903200 2253199 903200
+ref_text: 1270000 650000 1700000 0 177800
+outline_polyline: 177800 -750000 700000
+next_corner: 2049999 700000 0
+next_corner: 2049999 -700000 0
+next_corner: -750000 -700000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 800000 450000 450000
+pin: 2 0 1300000 0 0
+top_pad: 3 800000 450000 450000
+
+name: "C0504"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -903200 -1103200 2403200 1103200
+ref_text: 1270000 700000 1900000 0 177800
+outline_polyline: 177800 -700000 900000
+next_corner: 2200000 900000 0
+next_corner: 2200000 -900000 0
+next_corner: -700000 -900000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 1200000 500000 500000
+pin: 2 0 1400000 0 0
+top_pad: 3 1200000 500000 500000
+
+name: "C0603"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -1053200 -1103200 2753200 1103200
+ref_text: 1270000 850000 1900000 0 177800
+outline_polyline: 177800 -850000 900000
+next_corner: 2550000 900000 0
+next_corner: 2550000 -900000 0
+next_corner: -850000 -900000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 1200000 550000 550000
+pin: 2 0 1700000 0 0
+top_pad: 3 1200000 550000 550000
+
+name: "C0805"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -1153200 -1303200 3053200 1303200
+ref_text: 1270000 950000 2100000 0 177800
+outline_polyline: 177800 -950000 1100000
+next_corner: 2850000 1100000 0
+next_corner: 2850000 -1100000 0
+next_corner: -950000 -1100000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 1600000 650000 650000
+pin: 2 0 1900000 0 0
+top_pad: 3 1600000 650000 650000
+
+name: "C1206"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -1303200 -1503200 4103200 1503200
+ref_text: 1270000 1400000 2300000 0 177800
+outline_polyline: 177800 -1100000 1300000
+next_corner: 3900000 1300000 0
+next_corner: 3900000 -1300000 0
+next_corner: -1100000 -1300000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 2000000 800000 800000
+pin: 2 0 2800000 0 0
+top_pad: 3 2000000 800000 800000
+
+name: "C1210"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -1303200 -1303200 4103200 1303200
+ref_text: 1270000 1400000 2100000 0 177800
+outline_polyline: 177800 -1100000 1100000
+next_corner: 3900000 1100000 0
+next_corner: 3900000 -1100000 0
+next_corner: -1100000 -1100000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 2 1600000 800000 800000
+pin: 2 0 2800000 0 0
+top_pad: 2 1600000 800000 800000
+
+name: "C1812"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -1453200 -1403200 5353200 1403200
+ref_text: 1270000 1950000 2200000 0 177800
+outline_polyline: 177800 -1250000 1200000
+next_corner: 5150000 1200000 0
+next_corner: 5150000 -1200000 0
+next_corner: -1250000 -1200000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 1800000 950000 950000
+pin: 2 0 3900000 0 0
+top_pad: 3 1800000 950000 950000
+
+name: "C1825"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.2 (PAGE 3 OF 4)"
+units: NM
+sel_rect: -2403200 -2703200 6303200 2703200
+ref_text: 1270000 1950000 3500000 0 177800
+outline_polyline: 177800 -1250000 2500000
+next_corner: 5150000 2500000 0
+next_corner: 5150000 -2500000 0
+next_corner: -1250000 -2500000 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 4400000 950000 950000
+pin: 2 0 3900000 0 0
+top_pad: 3 4400000 950000 950000
+
+name: "CHIP_A"
+author: "Ivex, Allan Wright"
+description: "Capacitor, Case size A, EIA code 3216-18"
+units: MIL
+sel_rect: -53 -48 171 48
+ref_text: 50 59 80 0 7
+outline_polyline: 7 -45 40
+next_corner: 163 40 0
+next_corner: 163 -40 0
+next_corner: -45 -40 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 71 27 27
+pin: 2 0 118 0 0
+top_pad: 3 71 27 27
+
+name: "CHIP_B"
+author: "Ivex, Allan Wright"
+description: "Capacitor, Case size B, EIA code 3528-21"
+units: MIL
+sel_rect: -63 -67 220 67
+ref_text: 50 79 99 0 7
+outline_polyline: 7 -45 59
+next_corner: 202 59 0
+next_corner: 202 -59 0
+next_corner: -45 -59 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 110 27 27
+pin: 2 0 157 0 0
+top_pad: 3 110 27 27
+
+name: "CHIP_C"
+author: "Ivex, Allan Wright"
+description: "Capacitor, Case size C, EIA code 6032-28"
+units: MIL
+sel_rect: -65 -67 273 67
+ref_text: 50 104 99 0 7
+outline_polyline: 7 -57 59
+next_corner: 265 59 0
+next_corner: 265 -59 0
+next_corner: -57 -59 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 110 39 39
+pin: 2 0 208 0 0
+top_pad: 3 110 39 39
+
+name: "CHIP_D"
+author: "Ivex, Allan Wright"
+description: "Capacitor, Case size D, EIA code 7343-31"
+units: MIL
+sel_rect: -67 -72 343 72
+ref_text: 50 138 104 0 7
+outline_polyline: 7 -57 64
+next_corner: 333 64 0
+next_corner: 333 -64 0
+next_corner: -57 -64 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 119 39 39
+pin: 2 0 276 0 0
+top_pad: 3 119 39 39
+
+name: "CHIP_E"
+author: "Ivex, Allan Wright"
+description: "Capacitor, Case size E, EIA code 7343-43"
+units: MIL
+sel_rect: -67 -72 343 72
+ref_text: 50 138 104 0 7
+outline_polyline: 7 -57 64
+next_corner: 333 64 0
+next_corner: 333 -64 0
+next_corner: -57 -64 0
+close_polyline: 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 119 39 39
+pin: 2 0 276 0 0
+top_pad: 3 119 39 39
+
+name: "TANT_A"
+author: "Ivex, Allan Wright"
+description: "Tantalum capacitor, Case size A, EIA code 3216-18"
+units: MIL
+sel_rect: -115 -53 176 55
+ref_text: 50 59 80 0 7
+outline_polyline: 7 -45 40
+next_corner: 163 40 0
+next_corner: 163 -40 0
+next_corner: -45 -40 0
+close_polyline: 0
+outline_polyline: 10 -100 20
+next_corner: -60 20 0
+outline_polyline: 10 -80 40
+next_corner: -80 0 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 71 27 27
+pin: 2 0 118 0 0
+top_pad: 3 71 27 27
+
+name: "TANT_B"
+author: "Ivex, Allan Wright"
+description: "Tantalum capacitor, Case size B, EIA code 3528-21"
+units: MIL
+sel_rect: -135 -72 215 75
+ref_text: 50 79 99 0 7
+outline_polyline: 7 -45 59
+next_corner: 202 59 0
+next_corner: 202 -59 0
+next_corner: -45 -59 0
+close_polyline: 0
+outline_polyline: 10 -90 60
+next_corner: -90 0 0
+outline_polyline: 10 -120 30
+next_corner: -60 30 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 110 27 27
+pin: 2 0 157 0 0
+top_pad: 3 110 27 27
+
+name: "TANT_C"
+author: "Ivex, Allan Wright"
+description: "Tantalum capacitor, Case size C, EIA code 6032-28"
+units: MIL
+sel_rect: -145 -72 278 75
+ref_text: 50 104 99 0 7
+outline_polyline: 7 -57 59
+next_corner: 265 59 0
+next_corner: 265 -59 0
+next_corner: -57 -59 0
+close_polyline: 0
+outline_polyline: 10 -100 60
+next_corner: -100 0 0
+outline_polyline: 10 -130 30
+next_corner: -70 30 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 110 39 39
+pin: 2 0 208 0 0
+top_pad: 3 110 39 39
+
+name: "TANT_D"
+author: "Ivex, Allan Wright"
+description: "Tantalum capacitor, Case size D, EIA code 7343-31"
+units: MIL
+sel_rect: -145 -77 346 77
+ref_text: 50 138 104 0 7
+outline_polyline: 7 -57 64
+next_corner: 333 64 0
+next_corner: 333 -64 0
+next_corner: -57 -64 0
+close_polyline: 0
+outline_polyline: 10 -100 60
+next_corner: -100 0 0
+outline_polyline: 10 -130 30
+next_corner: -70 30 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 119 39 39
+pin: 2 0 276 0 0
+top_pad: 3 119 39 39
+
+name: "TANT_E"
+author: "Ivex, Allan Wright"
+description: "Tantalum capacitor, Case size E, EIA code 7343-43"
+units: MIL
+sel_rect: -145 -77 346 77
+ref_text: 50 138 104 0 7
+outline_polyline: 7 -57 64
+next_corner: 333 64 0
+next_corner: 333 -64 0
+next_corner: -57 -64 0
+close_polyline: 0
+outline_polyline: 10 -100 60
+next_corner: -100 0 0
+outline_polyline: 10 -130 30
+next_corner: -70 30 0
+n_pins: 2
+pin: 1 0 0 0 0
+top_pad: 3 119 39 39
+pin: 2 0 276 0 0
+top_pad: 3 119 39 39
+
+

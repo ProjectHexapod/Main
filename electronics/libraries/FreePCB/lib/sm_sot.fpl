@@ -1,0 +1,246 @@
+name: "SOT23"
+author: "Ivex"
+  units: MIL
+  sel_rect: -78 -142 78 42
+  ref_text: 50 0 74 0 7
+  outline_polyline: 7 -70 34
+    next_corner: 70 34 0
+    next_corner: 70 -134 0
+    next_corner: -70 -134 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 48 20 20
+    pin: 2 0 -40 -90 0
+      top_pad: 3 48 20 20
+    pin: 3 0 40 -90 0
+      top_pad: 3 48 20 20
+
+name: "RSOT-23"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -803200 -653200 2803200 2653200
+  ref_text: 1270000 1000000 4500000 0 177800
+  outline_polyline: 177800 -600000 350000
+    next_corner: -600000 1650000 0
+  outline_polyline: 177800 -600000 1650000
+    next_corner: 400000 1650000 0
+  outline_polyline: 177800 1600000 1650000
+    next_corner: 2600000 1650000 0
+  outline_polyline: 177800 2600000 1650000
+    next_corner: 2600000 350000 0
+  outline_polyline: 177800 1400000 350000
+    next_corner: 600000 350000 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 900000 400000 400000
+    pin: 2 0 2000000 0 0
+      top_pad: 3 900000 400000 400000
+    pin: 3 0 1000000 2000000 0
+      top_pad: 3 900000 400000 400000
+
+name: "WSOT-23"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -953200 -953200 3053200 3453200
+  ref_text: 1270000 1050000 4500000 0 177800
+  outline_polyline: 177800 -600000 950000
+    next_corner: -600000 1900000 0
+  outline_polyline: 177800 -600000 1900000
+    next_corner: 50000 1900000 0
+  outline_polyline: 177800 2050000 1900000
+    next_corner: 2600000 1900000 0
+  outline_polyline: 177800 2600000 1900000
+    next_corner: 2600000 950000 0
+  outline_polyline: 177800 1250000 600000
+    next_corner: 850000 600000 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1500000 650000 650000
+    pin: 2 0 2100000 0 0
+      top_pad: 3 1500000 650000 650000
+    pin: 3 0 1050000 2500000 0
+      top_pad: 3 1500000 800000 800000
+
+name: "RSOT-89"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -953200 -1403200 3953200 3153200
+  ref_text: 1270000 1500000 5500000 0 177800
+  outline_polyline: 177800 -500000 450000
+    next_corner: -750000 450000 0
+  outline_polyline: 177800 -750000 450000
+    next_corner: -750000 2950000 0
+  outline_polyline: 177800 -750000 2950000
+    next_corner: 400000 2950000 0
+  outline_polyline: 177800 2600000 2950000
+    next_corner: 3750000 2950000 0
+  outline_polyline: 177800 3750000 2950000
+    next_corner: 3750000 450000 0
+  outline_polyline: 177800 3750000 450000
+    next_corner: 3500000 450000 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1200000 400000 400000
+    pin: 2 0 1500000 0 0
+      top_pad: 3 2400000 400000 400000
+    pin: 3 0 3000000 0 0
+      top_pad: 3 1200000 400000 400000
+
+name: "WSOT-89"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -953200 -1403200 3953200 3153200
+  ref_text: 1270000 1500000 6500000 0 177800
+  outline_polyline: 177800 -500000 450000
+    next_corner: -750000 450000 0
+  outline_polyline: 177800 -750000 450000
+    next_corner: -750000 2950000 0
+  outline_polyline: 177800 -750000 2950000
+    next_corner: 200000 2950000 0
+  outline_polyline: 177800 2800000 2950000
+    next_corner: 3750000 2950000 0
+  outline_polyline: 177800 3750000 2950000
+    next_corner: 3750000 450000 0
+  outline_polyline: 177800 3750000 450000
+    next_corner: 3500000 450000 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1500000 400000 400000
+    pin: 2 0 1500000 0 0
+      top_pad: 3 2400000 400000 400000
+    pin: 3 0 3000000 0 0
+      top_pad: 3 1500000 400000 400000
+
+name: "RSOT-143"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -903200 -653200 2503200 2653200
+  ref_text: 1270000 800000 4000000 0 177800
+  outline_polyline: 177800 -700000 350000
+    next_corner: -700000 1650000 0
+  outline_polyline: 177800 300000 1650000
+    next_corner: 1300000 1650000 0
+  outline_polyline: 177800 2300000 1650000
+    next_corner: 2300000 350000 0
+  outline_polyline: 177800 1300000 350000
+    next_corner: 700000 350000 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 900000 600000 600000
+    pin: 2 0 1800000 0 0
+      top_pad: 3 900000 400000 400000
+    pin: 3 0 1800000 2000000 0
+      top_pad: 3 900000 400000 400000
+    pin: 4 0 -200000 2000000 0
+      top_pad: 3 900000 400000 400000
+
+name: "WSOT-143"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -1053200 -953200 2953200 3453200
+  ref_text: 1270000 800000 5000000 0 177800
+  outline_polyline: 177800 -500000 850000
+    next_corner: -500000 1650000 0
+  outline_polyline: 177800 650000 1900000
+    next_corner: 1250000 1900000 0
+  outline_polyline: 177800 2400000 1650000
+    next_corner: 2400000 850000 0
+  outline_polyline: 177800 1250000 600000
+    next_corner: 850000 600000 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 2 1500000 750000 750000
+    pin: 2 0 2000000 0 0
+      top_pad: 3 1500000 650000 650000
+    pin: 3 0 2000000 2500000 0
+      top_pad: 3 1500000 650000 650000
+    pin: 4 0 -100000 2500000 0
+      top_pad: 3 1500000 650000 650000
+
+name: "RSOT-223"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -1153200 -903200 5753200 7103200
+  ref_text: 1270000 2300000 8200000 0 177800
+  outline_polyline: 177800 -950000 1250000
+    next_corner: 5550000 1250000 0
+    next_corner: 5550000 4750000 0
+    next_corner: -950000 4750000 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 1400000 600000 600000
+    pin: 2 0 2300000 0 0
+      top_pad: 3 1400000 600000 600000
+    pin: 3 0 4600000 0 0
+      top_pad: 3 1400000 600000 600000
+    pin: 4 0 2300000 6200000 0
+      top_pad: 3 1400000 1750000 1750000
+
+name: "WSOT-223"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -1153200 -1053200 5753200 7553200
+  ref_text: 1270000 2300000 9000000 0 177800
+  outline_polyline: 177800 -950000 1550000
+    next_corner: 5550000 1550000 0
+    next_corner: 5550000 5050000 0
+    next_corner: -950000 5050000 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 1700000 700000 700000
+    pin: 2 0 2300000 0 0
+      top_pad: 3 1700000 700000 700000
+    pin: 3 0 4600000 0 0
+      top_pad: 3 1700000 700000 700000
+    pin: 4 0 2300000 6500000 0
+      top_pad: 3 1700000 2000000 2000000
+
+name: "RSOT-323"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -603200 -603200 1903200 2703200
+  ref_text: 1270000 650000 3900000 0 177800
+  outline_polyline: 177800 -350000 550000
+    next_corner: 1650000 550000 0
+    next_corner: 1650000 1550000 0
+    next_corner: -350000 1550000 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 800000 300000 300000
+    pin: 2 0 1300000 0 0
+      top_pad: 3 800000 300000 300000
+    pin: 3 0 650000 2100000 0
+      top_pad: 3 800000 300000 300000
+
+name: "WSOT-323"
+author: "Ivex"
+source: "SIEMENS PACKAGE INFORMATION DATA BOOK 1.93"
+  units: NM
+  sel_rect: -803200 -803200 2203200 3303200
+  ref_text: 1270000 650000 4300000 0 177800
+  outline_polyline: 177800 -300000 700000
+    next_corner: 1700000 700000 0
+    next_corner: 1700000 1800000 0
+    next_corner: -300000 1800000 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1200000 400000 400000
+    pin: 2 0 1400000 0 0
+      top_pad: 3 1200000 400000 400000
+    pin: 3 0 700000 2500000 0
+      top_pad: 3 1200000 400000 400000
+

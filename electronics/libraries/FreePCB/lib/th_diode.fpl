@@ -1,0 +1,257 @@
+name: "DO-7"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 46"
+  units: MIL
+  sel_rect: -45 -62 445 62
+  ref_text: 50 200 109 0 7
+  outline_polyline: 7 50 54
+    next_corner: 350 54 0
+    next_corner: 350 -54 0
+    next_corner: 50 -54 0
+    close_polyline: 0
+  outline_polyline: 7 325 54
+    next_corner: 325 -54 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "DO-14"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 50"
+  units: MIL
+  sel_rect: -45 -78 445 78
+  ref_text: 50 200 125 0 7
+  outline_polyline: 7 50 70
+    next_corner: 350 70 0
+    next_corner: 350 -70 0
+    next_corner: 50 -70 0
+    close_polyline: 0
+  outline_polyline: 7 325 70
+    next_corner: 325 -70 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "DO-15"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 51"
+  units: MIL
+  sel_rect: -50 -78 450 78
+  ref_text: 50 200 125 0 7
+  outline_polyline: 7 50 70
+    next_corner: 350 70 0
+    next_corner: 350 -70 0
+    next_corner: 50 -70 0
+    close_polyline: 0
+  outline_polyline: 7 325 70
+    next_corner: 325 -70 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+    pin: 2 35 400 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+
+name: "DO-16"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 52"
+  units: MIL
+  sel_rect: -35 -35 235 35
+  ref_text: 50 100 70 0 7
+  outline_polyline: 7 50 25
+    next_corner: 150 25 0
+    next_corner: 150 -25 0
+    next_corner: 50 -25 0
+    close_polyline: 0
+  outline_polyline: 7 125 25
+    next_corner: 125 -25 0
+  n_pins: 2
+    pin: 1 20 0 0 0
+      top_pad: 1 55 27 27
+      bottom_pad: 1 55 27 27
+      inner_pad: 1 55 27 27
+    pin: 2 20 200 0 0
+      top_pad: 1 55 27 27
+      bottom_pad: 1 55 27 27
+      inner_pad: 1 55 27 27
+
+name: "DO-26"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 53"
+  units: MIL
+  sel_rect: -50 -138 620 138
+  ref_text: 50 285 185 0 7
+  outline_polyline: 7 80 130
+    next_corner: 490 130 0
+    next_corner: 490 -130 0
+    next_corner: 80 -130 0
+    close_polyline: 0
+  outline_polyline: 7 465 130
+    next_corner: 465 -130 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+    pin: 2 45 570 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+
+name: "DO-27"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 54"
+  units: MIL
+  sel_rect: -50 -113 549 113
+  ref_text: 50 250 160 0 7
+  outline_polyline: 7 62 105
+    next_corner: 437 105 0
+    next_corner: 437 -105 0
+    next_corner: 62 -105 0
+    close_polyline: 0
+  outline_polyline: 7 412 105
+    next_corner: 412 -105 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+    pin: 2 35 499 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+
+name: "DO-29"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 55"
+  units: MIL
+  sel_rect: -50 -83 510 83
+  ref_text: 50 230 130 0 7
+  outline_polyline: 7 50 75
+    next_corner: 410 75 0
+    next_corner: 410 -75 0
+    next_corner: 50 -75 0
+    close_polyline: 0
+  outline_polyline: 7 385 75
+    next_corner: 385 -75 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+    pin: 2 35 460 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+
+name: "DO-34"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 56"
+  units: MIL
+  sel_rect: -45 -46 265 46
+  ref_text: 50 110 83 0 7
+  outline_polyline: 7 50 38
+    next_corner: 170 38 0
+    next_corner: 170 -38 0
+    next_corner: 50 -38 0
+    close_polyline: 0
+  outline_polyline: 7 145 38
+    next_corner: 145 -38 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 220 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "DO-35"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 57"
+  units: MIL
+  sel_rect: -45 -53 345 53
+  ref_text: 50 150 90 0 7
+  outline_polyline: 7 50 45
+    next_corner: 250 45 0
+    next_corner: 250 -45 0
+    next_corner: 50 -45 0
+    close_polyline: 0
+  outline_polyline: 7 225 45
+    next_corner: 225 -45 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 300 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "DO-41"
+author: "Ivex"
+source: "JEDEC PUBLICATION NO.95 BOOK ONE PAGE 58"
+  units: MIL
+  sel_rect: -50 -62 355 62
+  ref_text: 50 152 109 0 7
+  outline_polyline: 7 50 54
+    next_corner: 255 54 0
+    next_corner: 255 -54 0
+    next_corner: 50 -54 0
+    close_polyline: 0
+  outline_polyline: 7 230 54
+    next_corner: 230 -54 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+    pin: 2 35 305 0 0
+      top_pad: 1 85 42 42
+      bottom_pad: 1 85 42 42
+      inner_pad: 1 85 42 42
+
+name: "PHOTO_D"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION, PAGE 845"
+  units: MIL
+  sel_rect: -103 -98 148 98
+  ref_text: 50 50 140 0 7
+  outline_polyline: 7 140 0
+    next_corner: 50 90 2
+    next_corner: -40 0 2
+    next_corner: 50 -90 2
+    close_polyline: 2
+  outline_polyline: 7 -75 40
+    next_corner: -95 -40 0
+  outline_polyline: 7 -75 40
+    next_corner: -55 -40 0
+  outline_polyline: 7 -90 -25
+    next_corner: -60 -25 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 100 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+

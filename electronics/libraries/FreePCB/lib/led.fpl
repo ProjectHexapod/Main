@@ -1,0 +1,146 @@
+name: "LED-3PIN"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 120"
+  units: MIL
+  sel_rect: -198 -198 198 198
+  ref_text: 50 0 240 0 7
+  outline_polyline: 7 190 0
+    next_corner: 0 190 2
+  outline_polyline: 7 0 -190
+    next_corner: 190 0 2
+  outline_polyline: 7 0 190
+    next_corner: -190 0 2
+  outline_polyline: 7 -190 0
+    next_corner: 0 -190 0
+  n_pins: 3
+    pin: 1 26 71 71 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+    pin: 2 26 0 0 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+    pin: 3 26 -71 -71 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+
+name: "LED-T1"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 120"
+  units: MIL
+  sel_rect: -67 -139 119 47
+  ref_text: 50 35 105 0 7
+  outline_polyline: 7 111 -46
+    next_corner: 26 39 2
+  outline_polyline: 7 26 -131
+    next_corner: 111 -46 2
+  outline_polyline: 7 26 39
+    next_corner: -59 -46 2
+  outline_polyline: 7 -59 -46
+    next_corner: 26 -131 0
+  n_pins: 2
+    pin: 1 26 71 0 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+    pin: 2 26 0 -71 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+
+name: "LED-T1.75"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 120"
+  units: MIL
+  sel_rect: -92 -92 164 164
+  ref_text: 50 35 185 0 7
+  outline_polyline: 7 156 36
+    next_corner: 36 156 2
+  outline_polyline: 7 36 -84
+    next_corner: 156 36 2
+  outline_polyline: 7 36 156
+    next_corner: -84 36 2
+  outline_polyline: 7 -84 36
+    next_corner: 36 -84 0
+  n_pins: 2
+    pin: 1 26 71 71 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+    pin: 2 26 0 0 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+
+name: "P500"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 121"
+  units: MIL
+  sel_rect: -48 -117 48 38
+  ref_text: 50 80 -41 90 7
+  outline_polyline: 7 -30 30
+    next_corner: 40 30 0
+  outline_polyline: 7 40 30
+    next_corner: 40 -109 0
+  outline_polyline: 7 40 -109
+    next_corner: -40 -109 0
+  outline_polyline: 7 -40 -109
+    next_corner: -40 -5 0
+  outline_polyline: 7 -40 -5
+    next_corner: -30 30 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 35 25 25
+    pin: 2 0 0 -83 0
+      top_pad: 3 35 35 35
+
+name: "P503"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 121"
+  units: MIL
+  sel_rect: -52 -174 52 23
+  ref_text: 50 84 -75 90 7
+  outline_polyline: 7 -34 -22
+    next_corner: 44 -22 0
+  outline_polyline: 7 44 -22
+    next_corner: 44 -118 0
+  outline_polyline: 7 44 -118
+    next_corner: -44 -118 0
+  outline_polyline: 7 -44 -118
+    next_corner: -44 -32 0
+  outline_polyline: 7 -44 -32
+    next_corner: -34 -22 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 30 20 20
+    pin: 2 0 0 -151 0
+      top_pad: 3 30 20 20
+
+name: "P507"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 121"
+  units: MIL
+  sel_rect: -38 -162 102 23
+  ref_text: 50 134 -70 90 7
+  outline_polyline: 7 -20 -24
+    next_corner: 94 -24 0
+  outline_polyline: 7 94 -24
+    next_corner: 94 -107 0
+  outline_polyline: 7 94 -107
+    next_corner: -30 -107 0
+  outline_polyline: 7 -30 -107
+    next_corner: -30 -32 0
+  outline_polyline: 7 -30 -32
+    next_corner: -20 -24 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 30 20 20
+    pin: 2 0 0 -139 0
+      top_pad: 3 30 20 20
+    pin: 3 0 70 0 0
+      top_pad: 3 30 20 20
+    pin: 4 0 70 -139 0
+      top_pad: 3 30 20 20
+
