@@ -161,7 +161,7 @@ cam_space_x: 0
 cam_space_y: 0
 
 report_options: 0
-drc_check_unrouted: 0
+drc_check_unrouted: 1
 drc_trace_width: 254000
 drc_pad_pad: 254000
 drc_pad_trace: 254000
