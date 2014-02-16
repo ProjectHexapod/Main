@@ -1,0 +1,630 @@
+name: "4SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 358 58
+  ref_text: 50 150 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 350 50 0
+    next_corner: 350 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "5SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 458 58
+  ref_text: 50 200 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 450 50 0
+    next_corner: 450 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 5
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "6SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 558 58
+  ref_text: 50 250 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 550 50 0
+    next_corner: 550 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 6
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "7SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 658 58
+  ref_text: 50 300 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 650 50 0
+    next_corner: 650 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 7
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "8SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 758 58
+  ref_text: 50 350 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 750 50 0
+    next_corner: 750 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "9SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 858 58
+  ref_text: 50 400 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 850 50 0
+    next_corner: 850 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 9
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 28 800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "10SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 958 58
+  ref_text: 50 450 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 950 50 0
+    next_corner: 950 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 10
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 28 800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 28 900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "22SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 2158 58
+  ref_text: 50 1050 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 2150 50 0
+    next_corner: 2150 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 22
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 28 800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 28 900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 28 1000 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 28 1100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 28 1200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 28 1300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 28 1400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 28 1500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 28 1600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 28 1700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 28 1800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 28 1900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 28 2000 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 28 2100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "24SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 2358 58
+  ref_text: 50 1150 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 2350 50 0
+    next_corner: 2350 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 24
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 28 800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 28 900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 28 1000 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 28 1100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 28 1200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 28 1300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 28 1400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 28 1500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 28 1600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 28 1700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 28 1800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 28 1900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 28 2000 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 28 2100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 28 2200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 28 2300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "30SIP100"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO. 941, PAGE 27"
+  units: MIL
+  sel_rect: -58 -58 2958 58
+  ref_text: 50 1450 100 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 2950 50 0
+    next_corner: 2950 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 30
+    pin: 1 28 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 28 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 28 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 28 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 28 400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 28 500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 28 600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 28 700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 28 800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 28 900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 28 1000 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 28 1100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 28 1200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 28 1300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 28 1400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 28 1500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 28 1600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 28 1700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 28 1800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 28 1900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 28 2000 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 28 2100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 28 2200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 28 2300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 28 2400 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 28 2500 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 28 2600 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 28 2700 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 28 2800 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 28 2900 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+

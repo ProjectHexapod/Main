@@ -1,0 +1,168 @@
+name: "HM33"
+author: "Ivex"
+source: "SURFACE MOUNT COMPONENTS, BECKMAN INDUSTRIAL, PAGE 36"
+  units: MIL
+  sel_rect: -100 -43 246 349
+  ref_text: 50 73 385 0 7
+  outline_polyline: 7 30 0
+    next_corner: 0 30 2
+    next_corner: -30 0 2
+    next_corner: 0 -30 2
+    close_polyline: 2
+  outline_polyline: 7 -77 341
+    next_corner: 223 341 0
+    next_corner: 223 -35 0
+    next_corner: -77 -35 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 0 0 0 0
+      top_pad: 3 30 17 17
+    pin: 2 0 73 0 0
+      top_pad: 3 30 17 17
+    pin: 3 0 146 0 0
+      top_pad: 3 30 17 17
+    pin: 4 0 146 306 0
+      top_pad: 3 30 17 17
+    pin: 5 0 73 306 0
+      top_pad: 3 30 17 17
+    pin: 6 0 0 306 0
+      top_pad: 3 30 17 17
+    pin: 7 0 -42 153 0
+      top_pad: 3 100 25 25
+    pin: 8 0 188 153 0
+      top_pad: 3 100 25 25
+
+name: "C&D-766"
+author: "Ivex"
+source: "C&D TECHNOLOGIES 766 (PULSE TRANSFORMERS) DATA SHEET"
+  units: MIL
+  sel_rect: -58 -283 458 83
+  ref_text: 50 200 125 0 7
+  outline_polyline: 7 0 75
+    next_corner: 450 75 0
+  outline_polyline: 7 450 75
+    next_corner: 450 -225 0
+  outline_polyline: 7 400 -275
+    next_corner: 0 -275 0
+  outline_polyline: 7 -50 -225
+    next_corner: -50 25 0
+  outline_polyline: 7 450 -225
+    next_corner: 400 -275 0
+  outline_polyline: 7 0 -275
+    next_corner: -50 -225 0
+  outline_polyline: 7 -50 25
+    next_corner: 0 75 0
+  n_pins: 6
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 3 28 0 -100 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 4 28 400 -100 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 5 28 0 -200 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 6 28 400 -200 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "C&D-7625X"
+author: "Ivex"
+source: "C&D TECHNOLOGIES 76250EN, 76253/XXEN"
+  units: MIL
+  sel_rect: -103 -403 503 203
+  ref_text: 50 200 245 0 7
+  outline_polyline: 7 495 195
+    next_corner: 495 -300 0
+  outline_polyline: 7 495 -300
+    next_corner: 400 -395 0
+  outline_polyline: 7 400 -395
+    next_corner: 0 -395 0
+  outline_polyline: 7 0 -395
+    next_corner: -95 -300 0
+  outline_polyline: 7 -95 -300
+    next_corner: -95 100 0
+  outline_polyline: 7 -95 100
+    next_corner: 0 195 0
+  outline_polyline: 7 0 195
+    next_corner: 495 195 0
+  n_pins: 6
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 3 28 0 -100 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 4 28 400 -100 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 5 28 0 -200 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 6 28 400 -200 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "C&D-1000"
+author: "Ivex"
+source: "C&D TECHNOLOGIES 1000 SERIES (PULSE TRANSFORMERS) DATA SHEET"
+  units: MIL
+  sel_rect: -108 -508 508 108
+  ref_text: 50 200 150 0 7
+  outline_polyline: 7 -100 100
+    next_corner: 500 100 0
+    next_corner: 500 -500 0
+    next_corner: -100 -500 0
+    close_polyline: 0
+  outline_polyline: 7 325 75
+    next_corner: 475 75 0
+    next_corner: 475 -75 0
+    next_corner: 325 -75 0
+    close_polyline: 0
+  n_pins: 6
+    pin: 1 35 400 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 2 35 0 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 3 35 400 -200 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 4 35 0 -200 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 5 35 400 -400 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 6 35 0 -400 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+

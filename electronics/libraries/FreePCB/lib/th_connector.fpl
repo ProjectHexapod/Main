@@ -1,0 +1,2716 @@
+name: "DB9F"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7024-7025"
+  units: MIL
+  sel_rect: -138 -220 574 108
+  ref_text: 50 218 250 0 7
+  outline_polyline: 7 -130 100
+    next_corner: 566 100 0
+    next_corner: 566 -212 0
+    next_corner: -130 -212 0
+    close_polyline: 0
+  n_pins: 9
+    pin: 1 43 436 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB9M"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7024-7025"
+  units: MIL
+  sel_rect: -138 -220 574 108
+  ref_text: 50 218 250 0 7
+  outline_polyline: 7 -130 100
+    next_corner: 566 100 0
+    next_corner: 566 -212 0
+    next_corner: -130 -212 0
+    close_polyline: 0
+  n_pins: 9
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB9F-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7024-7025"
+  units: MIL
+  sel_rect: -357 -665 793 139
+  ref_text: 50 218 250 0 7
+  outline_polyline: 7 -130 100
+    next_corner: 566 100 0
+    next_corner: 566 -657 0
+    next_corner: -130 -657 0
+    close_polyline: 0
+  n_pins: 11
+    pin: 1 43 436 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 125 -274 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 11 125 710 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB9M-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7024-7025"
+  units: MIL
+  sel_rect: -357 -665 793 139
+  ref_text: 50 218 250 0 7
+  outline_polyline: 7 -130 100
+    next_corner: 566 100 0
+    next_corner: 566 -657 0
+    next_corner: -130 -657 0
+    close_polyline: 0
+  n_pins: 11
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 125 -274 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 11 125 710 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB15F"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7026-7027"
+  units: MIL
+  sel_rect: -136 -220 905 108
+  ref_text: 50 384 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 897 100 0
+    next_corner: 897 -212 0
+    next_corner: -128 -212 0
+    close_polyline: 0
+  n_pins: 15
+    pin: 1 43 763 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB15M"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7026-7027"
+  units: MIL
+  sel_rect: -136 -220 905 108
+  ref_text: 50 384 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 897 100 0
+    next_corner: 897 -212 0
+    next_corner: -128 -212 0
+    close_polyline: 0
+  n_pins: 15
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB15F-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7026-7027"
+  units: MIL
+  sel_rect: -358 -665 1120 139
+  ref_text: 50 384 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 897 100 0
+    next_corner: 897 -657 0
+    next_corner: -128 -657 0
+    close_polyline: 0
+  n_pins: 17
+    pin: 1 43 763 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 125 -275 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 17 125 1037 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB15M-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7026-7027"
+  units: MIL
+  sel_rect: -358 -665 1120 139
+  ref_text: 50 384 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 897 100 0
+    next_corner: 897 -657 0
+    next_corner: -128 -657 0
+    close_polyline: 0
+  n_pins: 17
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 125 -275 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 17 125 1037 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB25F"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7028-7029"
+  units: MIL
+  sel_rect: -136 -220 1444 108
+  ref_text: 50 654 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 1436 100 0
+    next_corner: 1436 -212 0
+    next_corner: -128 -212 0
+    close_polyline: 0
+  n_pins: 25
+    pin: 1 43 1308 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB25M"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7028-7029"
+  units: MIL
+  sel_rect: -136 -220 1444 108
+  ref_text: 50 654 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 1436 100 0
+    next_corner: 1436 -212 0
+    next_corner: -128 -212 0
+    close_polyline: 0
+  n_pins: 25
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB25F-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7028-7029"
+  units: MIL
+  sel_rect: -355 -665 1663 139
+  ref_text: 50 654 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 1436 100 0
+    next_corner: 1436 -657 0
+    next_corner: -128 -657 0
+    close_polyline: 0
+  n_pins: 27
+    pin: 1 43 1308 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 125 -272 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 27 125 1580 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB25M-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7028-7029"
+  units: MIL
+  sel_rect: -355 -665 1663 139
+  ref_text: 50 654 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 1436 100 0
+    next_corner: 1436 -657 0
+    next_corner: -128 -657 0
+    close_polyline: 0
+  n_pins: 27
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 125 -272 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 27 125 1580 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB37F"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7030-7031"
+  units: MIL
+  sel_rect: -136 -220 2098 108
+  ref_text: 50 981 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 2090 100 0
+    next_corner: 2090 -212 0
+    next_corner: -128 -212 0
+    close_polyline: 0
+  n_pins: 37
+    pin: 1 43 1962 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 1853 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 1744 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 1907 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 1798 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB37M"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7030-7031"
+  units: MIL
+  sel_rect: -136 -220 2098 108
+  ref_text: 50 981 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 2090 100 0
+    next_corner: 2090 -212 0
+    next_corner: -128 -212 0
+    close_polyline: 0
+  n_pins: 37
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 1744 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 1853 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 1962 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 1798 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 1907 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB37F-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7030-7031"
+  units: MIL
+  sel_rect: -352 -665 2314 139
+  ref_text: 50 981 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 2090 100 0
+    next_corner: 2090 -657 0
+    next_corner: -128 -657 0
+    close_polyline: 0
+  n_pins: 39
+    pin: 1 43 1962 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 1853 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 1744 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 1907 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 1798 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 38 125 -269 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 39 125 2231 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB37M-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7030-7031"
+  units: MIL
+  sel_rect: -352 -665 2314 139
+  ref_text: 50 981 250 0 7
+  outline_polyline: 7 -128 100
+    next_corner: 2090 100 0
+    next_corner: 2090 -657 0
+    next_corner: -128 -657 0
+    close_polyline: 0
+  n_pins: 39
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 1744 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 1853 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 1962 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 1798 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 1907 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 38 125 -269 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 39 125 2231 56 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB50F"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7032-7033"
+  units: MIL
+  sel_rect: -178 -332 1922 108
+  ref_text: 50 872 250 0 7
+  outline_polyline: 7 -170 100
+    next_corner: 1914 100 0
+    next_corner: 1914 -324 0
+    next_corner: -170 -324 0
+    close_polyline: 0
+  n_pins: 50
+    pin: 1 43 1744 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 1744 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 1635 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 1526 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 1417 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 38 43 1308 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 39 43 1199 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 40 43 1090 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 41 43 981 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 42 43 872 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 43 43 763 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 44 43 654 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 45 43 545 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 46 43 436 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 47 43 327 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 48 43 218 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 49 43 109 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 50 43 0 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB50M"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7032-7033"
+  units: MIL
+  sel_rect: -178 -332 1922 108
+  ref_text: 50 872 250 0 7
+  outline_polyline: 7 -170 100
+    next_corner: 1914 100 0
+    next_corner: 1914 -324 0
+    next_corner: -170 -324 0
+    close_polyline: 0
+  n_pins: 50
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 1744 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 0 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 109 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 218 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 327 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 38 43 436 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 39 43 545 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 40 43 654 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 41 43 763 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 42 43 872 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 43 43 981 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 44 43 1090 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 45 43 1199 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 46 43 1308 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 47 43 1417 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 48 43 1526 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 49 43 1635 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 50 43 1744 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+
+name: "DB50F-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7032-7033"
+  units: MIL
+  sel_rect: -414 -777 2158 195
+  ref_text: 50 872 250 0 7
+  outline_polyline: 7 -170 100
+    next_corner: 1914 100 0
+    next_corner: 1914 -769 0
+    next_corner: -170 -769 0
+    close_polyline: 0
+  n_pins: 52
+    pin: 1 43 1744 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 1744 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 1635 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 1526 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 1417 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 38 43 1308 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 39 43 1199 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 40 43 1090 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 41 43 981 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 42 43 872 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 43 43 763 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 44 43 654 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 45 43 545 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 46 43 436 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 47 43 327 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 48 43 218 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 49 43 109 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 50 43 0 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 51 125 -331 112 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 52 125 2075 112 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "DB50M-90"
+author: "Ivex"
+source: "AMP PRODUCT GUIDE CATALOG #82750, PAGE 7032-7033"
+  units: MIL
+  sel_rect: -414 -777 2158 195
+  ref_text: 50 872 250 0 7
+  outline_polyline: 7 -170 100
+    next_corner: 1914 100 0
+    next_corner: 1914 -769 0
+    next_corner: -170 -769 0
+    close_polyline: 0
+  n_pins: 52
+    pin: 1 43 0 0 0
+      top_pad: 2 60 30 30
+      bottom_pad: 2 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 43 109 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 43 218 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 43 327 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 43 436 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 43 545 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 43 654 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 43 763 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 43 872 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 10 43 981 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 11 43 1090 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 12 43 1199 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 13 43 1308 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 14 43 1417 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 15 43 1526 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 16 43 1635 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 17 43 1744 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 18 43 54 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 19 43 163 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 20 43 272 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 21 43 381 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 22 43 490 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 23 43 599 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 24 43 708 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 25 43 817 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 26 43 926 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 27 43 1035 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 28 43 1144 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 29 43 1253 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 30 43 1362 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 31 43 1471 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 32 43 1580 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 33 43 1689 -112 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 34 43 0 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 35 43 109 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 36 43 218 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 37 43 327 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 38 43 436 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 39 43 545 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 40 43 654 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 41 43 763 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 42 43 872 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 43 43 981 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 44 43 1090 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 45 43 1199 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 46 43 1308 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 47 43 1417 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 48 43 1526 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 49 43 1635 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 50 43 1744 -224 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 51 125 -331 112 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+    pin: 52 125 2075 112 0
+      top_pad: 1 150 0 0
+      bottom_pad: 1 150 0 0
+      inner_pad: 1 145 0 0
+
+name: "RJ11A"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -208 -420 358 458
+  ref_text: 50 75 500 0 7
+  outline_polyline: 7 -200 -50
+    next_corner: 350 -50 0
+    next_corner: 350 450 0
+    next_corner: -200 450 0
+    close_polyline: 0
+  n_pins: 6
+    pin: 1 35 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 35 50 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 35 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 35 150 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 125 -125 -350 0
+      top_pad: 0 125 0 0
+      bottom_pad: 0 125 0 0
+      inner_pad: 0 0 0 0
+    pin: 6 125 275 -350 0
+      top_pad: 0 125 0 0
+      bottom_pad: 0 125 0 0
+      inner_pad: 0 0 0 0
+
+name: "RJ12A"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -208 -420 358 458
+  ref_text: 50 75 500 0 7
+  outline_polyline: 7 -200 -50
+    next_corner: 350 -50 0
+    next_corner: 350 450 0
+    next_corner: -200 450 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 35 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 35 -50 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 35 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 35 50 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 35 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 35 150 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 125 -125 -350 0
+      top_pad: 0 125 0 0
+      bottom_pad: 0 125 0 0
+      inner_pad: 0 0 0 0
+    pin: 8 125 275 -350 0
+      top_pad: 0 125 0 0
+      bottom_pad: 0 125 0 0
+      inner_pad: 0 0 0 0
+
+name: "RJ45A"
+author: "Ivex"
+source: "ELFA 48 CATALOG, INTERNATIONAL EDITION"
+  units: MIL
+  sel_rect: -133 -420 483 458
+  ref_text: 50 150 500 0 7
+  outline_polyline: 7 -125 -50
+    next_corner: 475 -50 0
+    next_corner: 475 450 0
+    next_corner: -125 450 0
+    close_polyline: 0
+  n_pins: 10
+    pin: 1 35 0 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 2 35 50 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 3 35 100 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 4 35 150 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 5 35 200 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 6 35 250 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 7 35 300 0 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 8 35 350 100 0
+      top_pad: 1 60 30 30
+      bottom_pad: 1 60 30 30
+      inner_pad: 1 60 30 30
+    pin: 9 125 -50 -350 0
+      top_pad: 0 125 0 0
+      bottom_pad: 0 125 0 0
+      inner_pad: 0 0 0 0
+    pin: 10 125 400 -350 0
+      top_pad: 0 125 0 0
+      bottom_pad: 0 125 0 0
+      inner_pad: 0 0 0 0
+
+name: "CTP1-101"
+author: "Ivex"
+source: "CONNECT-TECH-PRODUCTS SPEC. SHEET"
+  units: MIL
+  sel_rect: -205 -108 205 408
+  ref_text: 50 0 450 0 7
+  outline_polyline: 7 -197 -100
+    next_corner: 197 -100 0
+    next_corner: 197 400 0
+    next_corner: -197 400 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 125 0 0 0
+      top_pad: 1 200 100 100
+      bottom_pad: 1 200 100 100
+      inner_pad: 1 200 100 100
+    pin: 2 79 0 323 0
+      top_pad: 1 150 75 75
+      bottom_pad: 1 150 75 75
+      inner_pad: 1 150 75 75
+
+name: "CTP-BR-L51"
+author: "Ivex"
+source: "CONNECT-TECH-PRODUCTS"
+  units: MIL
+  sel_rect: -278 -278 278 278
+  ref_text: 50 0 -320 0 7
+  outline_polyline: 7 270 0
+    next_corner: 0 270 2
+    next_corner: -270 0 2
+    next_corner: 0 -270 2
+    close_polyline: 2
+  outline_polyline: 7 222 135
+    next_corner: 222 -135 0
+  n_pins: 2
+    pin: 1 52 0 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 2 90 129 -129 0
+      top_pad: 1 150 75 75
+      bottom_pad: 1 150 75 75
+      inner_pad: 1 150 75 75
+
+name: "CTP-BV-031"
+author: "Ivex"
+source: "CONNECT-TECH-PRODUCTS"
+  units: MIL
+  sel_rect: -258 -258 258 258
+  ref_text: 50 0 -300 0 7
+  outline_polyline: 7 250 0
+    next_corner: 0 250 2
+    next_corner: -250 0 2
+    next_corner: 0 -250 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 2 79 0 170 0
+      top_pad: 1 150 75 75
+      bottom_pad: 1 150 75 75
+      inner_pad: 1 150 75 75
+

@@ -1,0 +1,1120 @@
+name: "CK05"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -46 -58 246 58
+  ref_text: 50 100 80 0 7
+  outline_polyline: 7 -38 50
+    next_corner: 238 50 0
+    next_corner: 238 -50 0
+    next_corner: -38 -50 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 45 200 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK06"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -58 -58 258 58
+  ref_text: 50 100 80 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 250 50 0
+    next_corner: 250 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 45 200 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK12-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -55 -58 455 58
+  ref_text: 50 200 108 0 7
+  outline_polyline: 7 90 50
+    next_corner: 310 50 0
+    next_corner: 310 -50 0
+    next_corner: 90 -50 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 400 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CK13-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -55 -68 755 68
+  ref_text: 50 350 118 0 7
+  outline_polyline: 7 100 60
+    next_corner: 600 60 0
+    next_corner: 600 -60 0
+    next_corner: 100 -60 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 700 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CK14-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -55 -98 855 98
+  ref_text: 50 400 148 0 7
+  outline_polyline: 7 150 90
+    next_corner: 650 90 0
+    next_corner: 650 -90 0
+    next_corner: 150 -90 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 800 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CK15-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -55 -108 855 108
+  ref_text: 50 400 158 0 7
+  outline_polyline: 7 150 100
+    next_corner: 650 100 0
+    next_corner: 650 -100 0
+    next_corner: 150 -100 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 800 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CK16-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -55 -128 955 128
+  ref_text: 50 450 178 0 7
+  outline_polyline: 7 125 120
+    next_corner: 775 120 0
+    next_corner: 775 -120 0
+    next_corner: 125 -120 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 900 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CK17-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -55 -163 1055 163
+  ref_text: 50 500 213 0 7
+  outline_polyline: 7 125 155
+    next_corner: 875 155 0
+    next_corner: 875 -155 0
+    next_corner: 125 -155 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 1000 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CK12-S"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -45 -58 445 58
+  ref_text: 50 200 108 0 7
+  outline_polyline: 7 90 50
+    next_corner: 310 50 0
+    next_corner: 310 -50 0
+    next_corner: 90 -50 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK13-S"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -45 -68 745 68
+  ref_text: 50 350 118 0 7
+  outline_polyline: 7 100 60
+    next_corner: 600 60 0
+    next_corner: 600 -60 0
+    next_corner: 100 -60 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 700 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK14-S"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -45 -98 845 98
+  ref_text: 50 400 148 0 7
+  outline_polyline: 7 150 90
+    next_corner: 650 90 0
+    next_corner: 650 -90 0
+    next_corner: 150 -90 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 800 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK15-S"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -45 -108 845 108
+  ref_text: 50 400 158 0 7
+  outline_polyline: 7 150 100
+    next_corner: 650 100 0
+    next_corner: 650 -100 0
+    next_corner: 150 -100 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 800 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK16-S"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -45 -128 945 128
+  ref_text: 50 450 178 0 7
+  outline_polyline: 7 125 120
+    next_corner: 775 120 0
+    next_corner: 775 -120 0
+    next_corner: 125 -120 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 900 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK17-S"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -45 -163 1045 163
+  ref_text: 50 500 213 0 7
+  outline_polyline: 7 125 155
+    next_corner: 875 155 0
+    next_corner: 875 -155 0
+    next_corner: 125 -155 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 1000 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK60"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -46 -88 296 88
+  ref_text: 50 125 138 0 7
+  outline_polyline: 7 -38 80
+    next_corner: 288 80 0
+    next_corner: 288 -80 0
+    next_corner: -38 -80 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 45 250 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CK62"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -103 -88 503 88
+  ref_text: 50 200 138 0 7
+  outline_polyline: 7 -95 80
+    next_corner: 495 80 0
+    next_corner: 495 -80 0
+    next_corner: -95 -80 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 45 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CL23-D1"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -125 1655 125
+  ref_text: 50 800 175 0 7
+  outline_polyline: 7 378 117
+    next_corner: 1222 117 0
+    next_corner: 1222 -117 0
+    next_corner: 378 -117 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 1600 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL23-D2"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -172 1955 172
+  ref_text: 50 950 222 0 7
+  outline_polyline: 7 388 164
+    next_corner: 1513 164 0
+    next_corner: 1513 -164 0
+    next_corner: 388 -164 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 1900 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL23-D3"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -219 2455 219
+  ref_text: 50 1200 270 0 7
+  outline_polyline: 7 372 211
+    next_corner: 2028 211 0
+    next_corner: 2028 -211 0
+    next_corner: 372 -211 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 2400 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL23-D4"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -219 3155 219
+  ref_text: 50 1550 270 0 7
+  outline_polyline: 7 378 211
+    next_corner: 2722 211 0
+    next_corner: 2722 -211 0
+    next_corner: 378 -211 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 3100 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL23-D5"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -219 3755 219
+  ref_text: 50 1850 270 0 7
+  outline_polyline: 7 366 211
+    next_corner: 3335 211 0
+    next_corner: 3335 -211 0
+    next_corner: 366 -211 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 3700 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL25-C1"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -118 1655 118
+  ref_text: 50 800 168 0 7
+  outline_polyline: 7 363 110
+    next_corner: 1238 110 0
+    next_corner: 1238 -110 0
+    next_corner: 363 -110 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 1600 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL25-C2"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -165 1855 165
+  ref_text: 50 900 215 0 7
+  outline_polyline: 7 369 157
+    next_corner: 1432 157 0
+    next_corner: 1432 -157 0
+    next_corner: 369 -157 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 1800 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL25-C3"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -211 2455 211
+  ref_text: 50 1200 261 0 7
+  outline_polyline: 7 388 203
+    next_corner: 2013 203 0
+    next_corner: 2013 -203 0
+    next_corner: 388 -203 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 2400 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL25-C4"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -211 3155 211
+  ref_text: 50 1550 261 0 7
+  outline_polyline: 7 394 203
+    next_corner: 2707 203 0
+    next_corner: 2707 -203 0
+    next_corner: 394 -203 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 3100 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL25-C5"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -55 -211 3755 211
+  ref_text: 50 1850 261 0 7
+  outline_polyline: 7 384 203
+    next_corner: 3317 203 0
+    next_corner: 3317 -203 0
+    next_corner: 384 -203 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 3700 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CL65-T1"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -118 1245 118
+  ref_text: 50 600 168 0 7
+  outline_polyline: 7 266 110
+    next_corner: 934 110 0
+    next_corner: 934 -110 0
+    next_corner: 266 -110 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 1200 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CL65-T2"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -165 1445 165
+  ref_text: 50 700 215 0 7
+  outline_polyline: 7 272 157
+    next_corner: 1128 157 0
+    next_corner: 1128 -157 0
+    next_corner: 272 -157 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 1400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CL65-T3"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -211 1545 211
+  ref_text: 50 750 261 0 7
+  outline_polyline: 7 260 203
+    next_corner: 1241 203 0
+    next_corner: 1241 -203 0
+    next_corner: 260 -203 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 1500 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CM5-390"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -136 -126 360 56
+  ref_text: 50 112 106 0 7
+  outline_polyline: 7 -128 48
+    next_corner: 352 48 0
+    next_corner: 352 -118 0
+    next_corner: -128 -118 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 77 38 38
+      bottom_pad: 1 77 38 38
+      inner_pad: 1 77 38 38
+    pin: 2 45 225 0 0
+      top_pad: 1 77 38 38
+      bottom_pad: 1 77 38 38
+      inner_pad: 1 77 38 38
+
+name: "CM430-3300"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -193 -221 543 56
+  ref_text: 50 175 106 0 7
+  outline_polyline: 7 -185 48
+    next_corner: 535 48 0
+    next_corner: 535 -213 0
+    next_corner: -185 -213 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 52 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 52 350 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
+name: "CM3600-4700"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -198 -301 548 56
+  ref_text: 50 175 106 0 7
+  outline_polyline: 7 -190 48
+    next_corner: 540 48 0
+    next_corner: 540 -293 0
+    next_corner: -190 -293 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 52 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 52 350 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
+name: "CM5100-13K"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -211 -321 635 56
+  ref_text: 50 212 106 0 7
+  outline_polyline: 7 -203 48
+    next_corner: 627 48 0
+    next_corner: 627 -313 0
+    next_corner: -203 -313 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 64 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 64 425 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CM15K-20K"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -211 -411 635 63
+  ref_text: 50 212 106 0 7
+  outline_polyline: 7 -203 55
+    next_corner: 627 55 0
+    next_corner: 627 -403 0
+    next_corner: -203 -403 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 64 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 64 425 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CM22K-30K"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -196 -303 1246 63
+  ref_text: 50 525 106 0 7
+  outline_polyline: 7 -188 55
+    next_corner: 1238 55 0
+    next_corner: 1238 -295 0
+    next_corner: -188 -295 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 64 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 64 1050 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CM33K-39K"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -205 -354 1255 63
+  ref_text: 50 525 106 0 7
+  outline_polyline: 7 -197 55
+    next_corner: 1247 55 0
+    next_corner: 1247 -346 0
+    next_corner: -197 -346 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 64 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 64 1050 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CM43K-47K"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -215 -404 1264 63
+  ref_text: 50 525 106 0 7
+  outline_polyline: 7 -207 55
+    next_corner: 1256 55 0
+    next_corner: 1256 -396 0
+    next_corner: -207 -396 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 64 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 64 1050 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CM51K-62K"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -183 -404 1233 63
+  ref_text: 50 525 106 0 7
+  outline_polyline: 7 -175 55
+    next_corner: 1225 55 0
+    next_corner: 1225 -396 0
+    next_corner: -175 -396 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 64 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 64 1050 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "CS13-A"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -84 745 84
+  ref_text: 50 350 134 0 7
+  outline_polyline: 7 139 76
+    next_corner: 561 76 0
+    next_corner: 561 -76 0
+    next_corner: 139 -76 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 700 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CS13-B"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -109 945 109
+  ref_text: 50 450 159 0 7
+  outline_polyline: 7 145 101
+    next_corner: 755 101 0
+    next_corner: 755 -101 0
+    next_corner: 145 -101 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 900 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CS13-C"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -161 1145 161
+  ref_text: 50 550 211 0 7
+  outline_polyline: 7 139 153
+    next_corner: 961 153 0
+    next_corner: 961 -153 0
+    next_corner: 139 -153 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 1100 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CS13-D"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 410"
+  units: MIL
+  sel_rect: -45 -192 1245 192
+  ref_text: 50 600 242 0 7
+  outline_polyline: 7 139 184
+    next_corner: 1061 184 0
+    next_corner: 1061 -184 0
+    next_corner: 139 -184 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 1200 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "CY10"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -46 -110 646 110
+  ref_text: 50 300 160 0 7
+  outline_polyline: 7 105 102
+    next_corner: 495 102 0
+    next_corner: 495 -102 0
+    next_corner: 105 -102 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 77 38 38
+      bottom_pad: 1 77 38 38
+      inner_pad: 1 77 38 38
+    pin: 2 45 600 0 0
+      top_pad: 1 77 38 38
+      bottom_pad: 1 77 38 38
+      inner_pad: 1 77 38 38
+
+name: "CY15"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -46 -86 746 86
+  ref_text: 50 350 136 0 7
+  outline_polyline: 7 92 78
+    next_corner: 608 78 0
+    next_corner: 608 -78 0
+    next_corner: 92 -78 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 77 38 38
+      bottom_pad: 1 77 38 38
+      inner_pad: 1 77 38 38
+    pin: 2 45 700 0 0
+      top_pad: 1 77 38 38
+      bottom_pad: 1 77 38 38
+      inner_pad: 1 77 38 38
+
+name: "CY20"
+author: "Ivex"
+source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
+  units: MIL
+  sel_rect: -48 -102 1048 102
+  ref_text: 50 500 152 0 7
+  outline_polyline: 7 102 94
+    next_corner: 898 94 0
+    next_corner: 898 -94 0
+    next_corner: 102 -94 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 52 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 52 1000 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
+name: "RAD-197"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -67 -106 146 106
+  ref_text: 50 39 133 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 138 0
+    next_corner: 39 98 2
+    next_corner: -59 0 2
+    next_corner: 39 -98 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 79 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+
+name: "RAD-248"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -83 -132 181 132
+  ref_text: 50 49 159 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 173 0
+    next_corner: 49 124 2
+    next_corner: -75 0 2
+    next_corner: 49 -124 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 98 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+
+name: "RAD-315"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -96 -165 234 165
+  ref_text: 50 69 192 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 226 0
+    next_corner: 69 157 2
+    next_corner: -88 0 2
+    next_corner: 69 -157 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 138 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+
+name: "RAD-394"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -106 -205 303 205
+  ref_text: 50 98 232 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 295 0
+    next_corner: 98 197 2
+    next_corner: -98 0 2
+    next_corner: 98 -197 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 197 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+
+name: "RAD-492"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -155 -254 352 254
+  ref_text: 50 98 281 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 344 0
+    next_corner: 98 246 2
+    next_corner: -147 0 2
+    next_corner: 98 -246 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 197 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+
+name: "RAD-630"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -175 -323 471 323
+  ref_text: 50 148 350 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 463 0
+    next_corner: 148 315 2
+    next_corner: -167 0 2
+    next_corner: 148 -315 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 295 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+
+name: "RAD-709"
+author: "Ivex"
+source: "DIGI-KEY CATALOG NO. 941 PAGE 161"
+  units: MIL
+  sel_rect: -214 -362 510 362
+  ref_text: 50 148 389 0 7
+  outline_polyline: 7 -15 -50
+    next_corner: 15 -50 0
+  outline_polyline: 7 0 -35
+    next_corner: 0 -65 0
+  outline_polyline: 7 502 0
+    next_corner: 148 354 2
+    next_corner: -206 0 2
+    next_corner: 148 -354 2
+    close_polyline: 2
+  n_pins: 2
+    pin: 1 28 295 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+    pin: 2 28 0 0 0
+      top_pad: 1 65 32 32
+      bottom_pad: 1 65 32 32
+      inner_pad: 1 65 32 32
+

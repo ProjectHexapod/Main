@@ -1,0 +1,1264 @@
+name: "0.8_10.0_6.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -3203200 17953200 3203200
+  ref_text: 1270000 8000000 -4200000 0 177800
+  outline_polyline: 177800 2000000 -3000000
+    next_corner: 14000000 -3000000 0
+    next_corner: 14000000 3000000 0
+    next_corner: 2000000 3000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 16000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "0.8_10.0_7.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -3703200 17953200 3703200
+  ref_text: 1270000 8000000 -4700000 0 177800
+  outline_polyline: 177800 2000000 -3500000
+    next_corner: 14000000 -3500000 0
+    next_corner: 14000000 3500000 0
+    next_corner: 2000000 3500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 16000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "0.8_10.0_8.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -4203200 17953200 4203200
+  ref_text: 1270000 8000000 -5200000 0 177800
+  outline_polyline: 177800 2000000 -4000000
+    next_corner: 14000000 -4000000 0
+    next_corner: 14000000 4000000 0
+    next_corner: 2000000 4000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 16000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "0.8_17.0_9.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -4703200 24953200 4703200
+  ref_text: 1270000 11500000 -5700000 0 177800
+  outline_polyline: 177800 2000000 -4500000
+    next_corner: 21000000 -4500000 0
+    next_corner: 21000000 4500000 0
+    next_corner: 2000000 4500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 23000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "0.8_17.0_10.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -5203200 24953200 5203200
+  ref_text: 1270000 11500000 -6200000 0 177800
+  outline_polyline: 177800 2000000 -5000000
+    next_corner: 21000000 -5000000 0
+    next_corner: 21000000 5000000 0
+    next_corner: 2000000 5000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 23000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "0.8_17.0_12.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -6203200 24953200 6203200
+  ref_text: 1270000 11500000 -7200000 0 177800
+  outline_polyline: 177800 2000000 -6000000
+    next_corner: 21000000 -6000000 0
+    next_corner: 21000000 6000000 0
+    next_corner: 2000000 6000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 23000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "SD_75"
+author: "Ivex"
+  units: NM
+  sel_rect: -2953200 -2503200 7953200 2503200
+  ref_text: 1270000 2500000 -3500000 0 177800
+  outline_polyline: 177800 -2750000 -2300000
+    next_corner: 7750000 -2300000 0
+    next_corner: 7750000 2300000 0
+    next_corner: -2750000 2300000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 5000000 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "P646/TC"
+author: "Ivex"
+  units: NM
+  sel_rect: -2203200 -2203200 12203200 12203200
+  ref_text: 1270000 5000000 12950000 0 177800
+  outline_polyline: 177800 12000000 5000000
+    next_corner: 5000000 12000000 2
+    next_corner: -2000000 5000000 2
+    next_corner: 5000000 -2000000 2
+    close_polyline: 2
+  n_pins: 6
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 5000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 3 1320800 10000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 4 1320800 0 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 5 1320800 5000000 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 6 1320800 10000000 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "BS_75"
+author: "Ivex"
+  units: NM
+  sel_rect: -3453200 -3203200 8453200 3203200
+  ref_text: 1270000 2500000 -4200000 0 177800
+  outline_polyline: 177800 -3250000 -3000000
+    next_corner: 8250000 -3000000 0
+    next_corner: 8250000 3000000 0
+    next_corner: -3250000 3000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 5000000 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "1025"
+author: "Ivex"
+  units: NM
+  sel_rect: -1703200 -1703200 14053200 1703200
+  ref_text: 1270000 6175000 -2410000 0 177800
+  outline_polyline: 177800 2000000 -1210000
+    next_corner: 10350000 -1210000 0
+    next_corner: 10350000 1210000 0
+    next_corner: 2000000 1210000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 12350000 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "0.5_7.0_3.0"
+author: "Ivex"
+  units: NM
+  sel_rect: -1703200 -1703200 14703200 1703200
+  ref_text: 1270000 6500000 -3200000 0 177800
+  outline_polyline: 177800 2000000 -1500000
+    next_corner: 11000000 -1500000 0
+    next_corner: 11000000 1500000 0
+    next_corner: 2000000 1500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 13000000 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "HM50"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -3503200 23953200 3503200
+  ref_text: 1270000 11000000 -4500000 0 177800
+  outline_polyline: 177800 2000000 -3300000
+    next_corner: 20000000 -3300000 0
+    next_corner: 20000000 3300000 0
+    next_corner: 2000000 3300000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 22000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "LQH4N"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -2253199 4953200 2253199
+  ref_text: 1270000 1500000 -3250000 0 177800
+  outline_polyline: 177800 -1300000 -2049999
+    next_corner: 4300000 -2049999 0
+    next_corner: 4300000 2049999 0
+    next_corner: -1300000 2049999 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3500000 1000000 1000000
+    pin: 2 0 3000000 0 0
+      top_pad: 3 3500000 1000000 1000000
+
+name: "LPC4045"
+author: "Ivex"
+  units: NM
+  sel_rect: -1953200 -2253199 5453200 2253199
+  ref_text: 1270000 1750000 -3250000 0 177800
+  outline_polyline: 177800 -1300000 -2049999
+    next_corner: 4800000 -2049999 0
+    next_corner: 4800000 2049999 0
+    next_corner: -1300000 2049999 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3500000 1000000 1000000
+    pin: 2 0 3500000 0 0
+      top_pad: 3 3500000 1000000 1000000
+
+name: "SDR0906"
+author: "Ivex"
+  units: NM
+  sel_rect: -1803200 -1503200 9003200 13503200
+  ref_text: 1270000 3750000 -2500000 0 177800
+  outline_polyline: 177800 -1300000 -1300000
+    next_corner: 8800000 -1300000 0
+    next_corner: 8800000 13300000 0
+    next_corner: -1300000 13300000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1300000 -1300000
+    next_corner: -1600000 -1300000 0
+    next_corner: -1600000 13300000 0
+    next_corner: -1300000 13300000 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 0 0 0 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 2 0 2500000 0 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 3 0 5000000 0 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 4 0 7500000 0 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 5 0 7500000 12000000 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 6 0 5000000 12000000 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 7 0 2500000 12000000 0
+      top_pad: 2 2000000 1000000 1000000
+    pin: 8 0 0 12000000 0
+      top_pad: 2 2000000 1000000 1000000
+
+name: "BCL_322522"
+author: "Ivex"
+  units: NM
+  sel_rect: -1703200 -2003200 4303200 2003200
+  ref_text: 1270000 1300000 -3000000 0 177800
+  outline_polyline: 177800 -800000 -1800000
+    next_corner: 3400000 -1800000 0
+    next_corner: 3400000 1800000 0
+    next_corner: -800000 1800000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3000000 500000 500000
+    pin: 2 0 2600000 0 0
+      top_pad: 3 3000000 500000 500000
+
+name: "BCL_453232"
+author: "Ivex"
+  units: NM
+  sel_rect: -2203200 -2503200 5703200 2503200
+  ref_text: 1270000 1750000 -3500000 0 177800
+  outline_polyline: 177800 -1300000 -2300000
+    next_corner: 4800000 -2300000 0
+    next_corner: 4800000 2300000 0
+    next_corner: -1300000 2300000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 4000000 1000000 1000000
+    pin: 2 0 3500000 0 0
+      top_pad: 3 4000000 1000000 1000000
+
+name: "HM77SM1"
+author: "Ivex"
+  units: NM
+  sel_rect: -4393200 -4693200 11253200 4693200
+  ref_text: 1270000 3430000 -5690000 0 177800
+  outline_polyline: 177800 -1060000 -4490000
+    next_corner: 7920000 -4490000 0
+    next_corner: 7920000 4490000 0
+    next_corner: -1060000 4490000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 8380000 760000 760000
+    pin: 2 0 6860000 0 0
+      top_pad: 3 8380000 760000 760000
+
+name: "HM77SM2"
+author: "Ivex"
+  units: NM
+  sel_rect: -5603200 -5903200 14743200 5903200
+  ref_text: 1270000 4570000 -6900000 0 177800
+  outline_polyline: 177800 -1060000 -5700000
+    next_corner: 10200000 -5700000 0
+    next_corner: 10200000 5700000 0
+    next_corner: -1060000 5700000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 10800000 760000 760000
+    pin: 2 0 9140000 0 0
+      top_pad: 3 10800000 760000 760000
+
+name: "HM77SM3"
+author: "Ivex"
+  units: NM
+  sel_rect: -7188200 -7488200 18868200 7488200
+  ref_text: 1270000 5840000 -8485000 0 177800
+  outline_polyline: 177800 -1570000 -7285000
+    next_corner: 13250000 -7285000 0
+    next_corner: 13250000 7285000 0
+    next_corner: -1570000 7285000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 13970000 1270000 1270000
+    pin: 2 0 11680000 0 0
+      top_pad: 3 13970000 1270000 1270000
+
+name: "HM77SM4"
+author: "Ivex"
+  units: NM
+  sel_rect: -7568200 -7868200 20518200 7868200
+  ref_text: 1270000 6475000 -8865000 0 177800
+  outline_polyline: 177800 -1570000 -7665000
+    next_corner: 14520000 -7665000 0
+    next_corner: 14520000 7665000 0
+    next_corner: -1570000 7665000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 14730000 1270000 1270000
+    pin: 2 0 12950000 0 0
+      top_pad: 3 14730000 1270000 1270000
+
+name: "HM77SM5"
+author: "Ivex"
+  units: NM
+  sel_rect: -7568200 -7868200 23068200 7868200
+  ref_text: 1270000 7750000 -8865000 0 177800
+  outline_polyline: 177800 -1570000 -7665000
+    next_corner: 17070000 -7665000 0
+    next_corner: 17070000 7665000 0
+    next_corner: -1570000 7665000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 14730000 1270000 1270000
+    pin: 2 0 15500000 0 0
+      top_pad: 3 14730000 1270000 1270000
+
+name: "HM77SM6"
+author: "Ivex"
+  units: NM
+  sel_rect: -8968200 -9268200 26498200 9268200
+  ref_text: 1270000 8765000 -10265000 0 177800
+  outline_polyline: 177800 -1570000 -9065000
+    next_corner: 19100000 -9065000 0
+    next_corner: 19100000 9065000 0
+    next_corner: -1570000 9065000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 17530000 1270000 1270000
+    pin: 2 0 17530000 0 0
+      top_pad: 3 17530000 1270000 1270000
+
+name: "LCI-20"
+author: "Ivex"
+  units: NM
+  sel_rect: -4013200 -4313200 10873200 4313200
+  ref_text: 1270000 3430000 -5310000 0 177800
+  outline_polyline: 177800 -1060000 -4110000
+    next_corner: 7920000 -4110000 0
+    next_corner: 7920000 4110000 0
+    next_corner: -1060000 4110000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 7620000 760000 760000
+    pin: 2 0 6860000 0 0
+      top_pad: 3 7620000 760000 760000
+
+name: "LCI-30"
+author: "Ivex"
+  units: NM
+  sel_rect: -5283200 -5583200 14423200 5583200
+  ref_text: 1270000 4570000 -6580000 0 177800
+  outline_polyline: 177800 -1060000 -5380000
+    next_corner: 10200000 -5380000 0
+    next_corner: 10200000 5380000 0
+    next_corner: -1060000 5380000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 10160000 760000 760000
+    pin: 2 0 9140000 0 0
+      top_pad: 3 10160000 760000 760000
+
+name: "LCI-37"
+author: "Ivex"
+  units: NM
+  sel_rect: -6808200 -7108200 18488200 7108200
+  ref_text: 1270000 5840000 -8105000 0 177800
+  outline_polyline: 177800 -1060000 -6905000
+    next_corner: 12740000 -6905000 0
+    next_corner: 12740000 6905000 0
+    next_corner: -1060000 6905000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 13210000 760000 760000
+    pin: 2 0 11680000 0 0
+      top_pad: 3 13210000 760000 760000
+
+name: "LCI-44"
+author: "Ivex"
+  units: NM
+  sel_rect: -7188200 -7488200 20138200 7488200
+  ref_text: 1270000 6475000 -8485000 0 177800
+  outline_polyline: 177800 -1060000 -7285000
+    next_corner: 14010000 -7285000 0
+    next_corner: 14010000 7285000 0
+    next_corner: -1060000 7285000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 13970000 760000 760000
+    pin: 2 0 12950000 0 0
+      top_pad: 3 13970000 760000 760000
+
+name: "LCI-50"
+author: "Ivex"
+  units: NM
+  sel_rect: -8078200 -8378200 23068200 8378200
+  ref_text: 1270000 7495000 -9375000 0 177800
+  outline_polyline: 177800 -1060000 -8175000
+    next_corner: 16050000 -8175000 0
+    next_corner: 16050000 8175000 0
+    next_corner: -1060000 8175000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 15750000 760000 760000
+    pin: 2 0 14990000 0 0
+      top_pad: 3 15750000 760000 760000
+
+name: "LCI-68"
+author: "Ivex"
+  units: NM
+  sel_rect: -9093200 -9393200 30173200 9393200
+  ref_text: 1270000 10540000 -10390000 0 177800
+  outline_polyline: 177800 -1315000 -9190000
+    next_corner: 22395000 -9190000 0
+    next_corner: 22395000 9190000 0
+    next_corner: -1315000 9190000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 17780000 1014999 1014999
+    pin: 2 0 21080000 0 0
+      top_pad: 3 17780000 1014999 1014999
+
+name: "LOOP1"
+author: "Ivex"
+  units: NM
+  sel_rect: -12703200 -10203200 12703200 12703200
+  ref_text: 1270000 0 -11200000 0 177800
+  outline_polyline: 177800 10000000 0
+    next_corner: 0 10000000 2
+    next_corner: -10000000 0 2
+    next_corner: 0 -10000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 1143000 -10000000 10000000 0
+      top_pad: 1 5000000 2500000 2500000
+      bottom_pad: 1 5000000 2500000 2500000
+      inner_pad: 1 5000000 2500000 2500000
+    pin: 2 1143000 10000000 10000000 0
+      top_pad: 1 5000000 2500000 2500000
+      bottom_pad: 1 5000000 2500000 2500000
+      inner_pad: 1 5000000 2500000 2500000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP2"
+author: "Ivex"
+  units: NM
+  sel_rect: -16203200 -13703200 16203200 16203200
+  ref_text: 1270000 0 -14700000 0 177800
+  outline_polyline: 177800 13500000 0
+    next_corner: 0 13500000 2
+    next_corner: -13500000 0 2
+    next_corner: 0 -13500000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 1143000 -13500000 13500000 0
+      top_pad: 1 5000000 2500000 2500000
+      bottom_pad: 1 5000000 2500000 2500000
+      inner_pad: 1 5000000 2500000 2500000
+    pin: 2 1143000 13500000 13500000 0
+      top_pad: 1 5000000 2500000 2500000
+      bottom_pad: 1 5000000 2500000 2500000
+      inner_pad: 1 5000000 2500000 2500000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP3"
+author: "Ivex"
+  units: NM
+  sel_rect: -16453200 -13703200 16453200 16453200
+  ref_text: 1270000 0 -14700000 0 177800
+  outline_polyline: 177800 13500000 0
+    next_corner: 0 13500000 2
+    next_corner: -13500000 0 2
+    next_corner: 0 -13500000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 2006600 -13500000 13500000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 2 2006600 13500000 13500000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP4"
+author: "Ivex"
+  units: NM
+  sel_rect: -18703200 -16203200 18703200 18703200
+  ref_text: 1270000 0 -17200000 0 177800
+  outline_polyline: 177800 16000000 0
+    next_corner: 0 16000000 2
+    next_corner: -16000000 0 2
+    next_corner: 0 -16000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 1143000 -16000000 16000000 0
+      top_pad: 1 5000000 2500000 2500000
+      bottom_pad: 1 5000000 2500000 2500000
+      inner_pad: 1 5000000 2500000 2500000
+    pin: 2 1143000 16000000 16000000 0
+      top_pad: 1 5000000 2500000 2500000
+      bottom_pad: 1 5000000 2500000 2500000
+      inner_pad: 1 5000000 2500000 2500000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP5"
+author: "Ivex"
+  units: NM
+  sel_rect: -18953200 -16203200 18953200 18953200
+  ref_text: 1270000 0 -17200000 0 177800
+  outline_polyline: 177800 16000000 0
+    next_corner: 0 16000000 2
+    next_corner: -16000000 0 2
+    next_corner: 0 -16000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 2006600 -16000000 16000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 2 2006600 16000000 16000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP6"
+author: "Ivex"
+  units: NM
+  sel_rect: -25953200 -23203200 25953200 25953200
+  ref_text: 1270000 0 -25200000 0 177800
+  outline_polyline: 177800 23000000 0
+    next_corner: 0 23000000 2
+    next_corner: -23000000 0 2
+    next_corner: 0 -23000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 2006600 -23000000 23000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 2 2006600 23000000 23000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP7"
+author: "Ivex"
+  units: NM
+  sel_rect: -26203200 -23203200 26203200 26203200
+  ref_text: 1270000 0 -24200000 0 177800
+  outline_polyline: 177800 23000000 0
+    next_corner: 0 23000000 2
+    next_corner: -23000000 0 2
+    next_corner: 0 -23000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 3175000 -23000000 23000000 0
+      top_pad: 1 6000000 3000000 3000000
+      bottom_pad: 1 6000000 3000000 3000000
+      inner_pad: 1 6000000 3000000 3000000
+    pin: 2 3175000 23000000 23000000 0
+      top_pad: 1 6000000 3000000 3000000
+      bottom_pad: 1 6000000 3000000 3000000
+      inner_pad: 1 6000000 3000000 3000000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP8"
+author: "Ivex"
+  units: NM
+  sel_rect: -21953200 -19203200 21953200 21953200
+  ref_text: 1270000 0 -20200000 0 177800
+  outline_polyline: 177800 19000000 0
+    next_corner: 0 19000000 2
+    next_corner: -19000000 0 2
+    next_corner: 0 -19000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 2006600 -19000000 19000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 2 2006600 19000000 19000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP9"
+author: "Ivex"
+  units: NM
+  sel_rect: -28953200 -26203200 28953200 28953200
+  ref_text: 1270000 0 -27200000 0 177800
+  outline_polyline: 177800 26000000 0
+    next_corner: 0 26000000 2
+    next_corner: -26000000 0 2
+    next_corner: 0 -26000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 2006600 -26000000 26000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 2 2006600 26000000 26000000 0
+      top_pad: 1 5500000 2750000 2750000
+      bottom_pad: 1 5500000 2750000 2750000
+      inner_pad: 1 5500000 2750000 2750000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP10"
+author: "Ivex"
+  units: NM
+  sel_rect: -29203200 -26203200 29203200 29203200
+  ref_text: 1270000 0 -27200000 0 177800
+  outline_polyline: 177800 26000000 0
+    next_corner: 0 26000000 2
+    next_corner: -26000000 0 2
+    next_corner: 0 -26000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 3175000 -26000000 26000000 0
+      top_pad: 1 6000000 3000000 3000000
+      bottom_pad: 1 6000000 3000000 3000000
+      inner_pad: 1 6000000 3000000 3000000
+    pin: 2 3175000 26000000 26000000 0
+      top_pad: 1 6000000 3000000 3000000
+      bottom_pad: 1 6000000 3000000 3000000
+      inner_pad: 1 6000000 3000000 3000000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP11"
+author: "Ivex"
+  units: NM
+  sel_rect: -29953200 -26203200 29953200 29953200
+  ref_text: 1270000 0 -27200000 0 177800
+  outline_polyline: 177800 26000000 0
+    next_corner: 0 26000000 2
+    next_corner: -26000000 0 2
+    next_corner: 0 -26000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 3810000 -26000000 26000000 0
+      top_pad: 1 7500000 3750000 3750000
+      bottom_pad: 1 7500000 3750000 3750000
+      inner_pad: 1 7500000 3750000 3750000
+    pin: 2 3810000 26000000 26000000 0
+      top_pad: 1 7500000 3750000 3750000
+      bottom_pad: 1 7500000 3750000 3750000
+      inner_pad: 1 7500000 3750000 3750000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP12"
+author: "Ivex"
+  units: NM
+  sel_rect: -30703200 -26203200 30703200 30703200
+  ref_text: 1270000 0 -27200000 0 177800
+  outline_polyline: 177800 26000000 0
+    next_corner: 0 26000000 2
+    next_corner: -26000000 0 2
+    next_corner: 0 -26000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 5000000 -26000000 26000000 0
+      top_pad: 1 9000000 4500000 4500000
+      bottom_pad: 1 9000000 4500000 4500000
+      inner_pad: 1 9000000 4500000 4500000
+    pin: 2 5000000 26000000 26000000 0
+      top_pad: 1 9000000 4500000 4500000
+      bottom_pad: 1 9000000 4500000 4500000
+      inner_pad: 1 9000000 4500000 4500000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "LOOP13"
+author: "Ivex"
+  units: NM
+  sel_rect: -22203200 -19203200 22203200 22203200
+  ref_text: 1270000 0 -20200000 0 177800
+  outline_polyline: 177800 19000000 0
+    next_corner: 0 19000000 2
+    next_corner: -19000000 0 2
+    next_corner: 0 -19000000 2
+    close_polyline: 2
+  n_pins: 3
+    pin: 1 3175000 -19000000 19000000 0
+      top_pad: 1 6000000 3000000 3000000
+      bottom_pad: 1 6000000 3000000 3000000
+      inner_pad: 1 6000000 3000000 3000000
+    pin: 2 3175000 19000000 19000000 0
+      top_pad: 1 6000000 3000000 3000000
+      bottom_pad: 1 6000000 3000000 3000000
+      inner_pad: 1 6000000 3000000 3000000
+    pin: 3 10000000 0 0 0
+      top_pad: 0 10000000 0 0
+      bottom_pad: 0 10000000 0 0
+      inner_pad: 0 0 0 0
+
+name: "NE545SN"
+author: "Ivex"
+  units: NM
+  sel_rect: -4203200 -4092200 4203200 4092200
+  ref_text: 1270000 0 -5100000 0 177800
+  outline_polyline: 177800 -3889000 0
+    next_corner: 0 -3889000 0
+  outline_polyline: 177800 0 -3889000
+    next_corner: 3889000 0 0
+  outline_polyline: 177800 3889000 0
+    next_corner: 0 3889000 0
+  outline_polyline: 177800 0 3889000
+    next_corner: -3889000 0 0
+  outline_polyline: 177800 -3889000 0
+    next_corner: -3889000 1000000 0
+  outline_polyline: 177800 0 3889000
+    next_corner: -1000000 3889000 0
+  outline_polyline: 177800 -3889000 1000000
+    next_corner: -1000000 3889000 0
+  n_pins: 2
+    pin: 1 889000 -2500000 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 2500000 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "FSTS3"
+author: "Ivex"
+  units: NM
+  sel_rect: -2203200 -2203200 17203200 12203200
+  ref_text: 1270000 7500000 -3200000 0 177800
+  outline_polyline: 177800 -2000000 -2000000
+    next_corner: 17000000 -2000000 0
+    next_corner: 17000000 12000000 0
+    next_corner: -2000000 12000000 0
+    close_polyline: 0
+  outline_polyline: 177800 -2000000 -2000000
+    next_corner: 2000000 -2000000 0
+    next_corner: 2000000 2000000 0
+    next_corner: -2000000 2000000 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 0 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 3 1320800 5000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 4 1320800 5000000 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 5 1320800 10000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 6 1320800 10000000 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 7 1320800 15000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 8 1320800 15000000 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "FSTS4"
+author: "Ivex"
+  units: NM
+  sel_rect: -2203200 -2203200 22203200 14703200
+  ref_text: 1270000 10000000 -3200000 0 177800
+  outline_polyline: 177800 -2000000 -2000000
+    next_corner: 22000000 -2000000 0
+    next_corner: 22000000 14500000 0
+    next_corner: -2000000 14500000 0
+    close_polyline: 0
+  outline_polyline: 177800 -2000000 -2000000
+    next_corner: 2000000 -2000000 0
+    next_corner: 2000000 2000000 0
+    next_corner: -2000000 2000000 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 0 12500000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 3 1320800 5000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 4 1320800 5000000 12500000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 5 1320800 15000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 6 1320800 15000000 12500000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 7 1320800 20000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 8 1320800 20000000 12500000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "KM-2"
+author: "Ivex"
+  units: NM
+  sel_rect: -8503200 -2203200 8503200 9803200
+  ref_text: 1270000 0 -3200000 0 177800
+  outline_polyline: 177800 -8300000 -2000000
+    next_corner: 8300000 -2000000 0
+    next_corner: 8300000 9600000 0
+    next_corner: -8300000 9600000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 0 7600000 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "KM-3"
+author: "Ivex"
+  units: NM
+  sel_rect: -10703200 -2203200 10703200 9803200
+  ref_text: 1270000 0 -3200000 0 177800
+  outline_polyline: 177800 -10500000 -2000000
+    next_corner: 10500000 -2000000 0
+    next_corner: 10500000 9600000 0
+    next_corner: -10500000 9600000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 0 7600000 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "KM-4"
+author: "Ivex"
+  units: NM
+  sel_rect: -12253200 -2703200 12253200 14103200
+  ref_text: 1270000 0 -3700000 0 177800
+  outline_polyline: 177800 -12050000 -2500000
+    next_corner: 12050000 -2500000 0
+    next_corner: 12050000 13900000 0
+    next_corner: -12050000 13900000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 0 11400000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "KM-5"
+author: "Ivex"
+  units: NM
+  sel_rect: -16103200 -2203200 16103200 15003200
+  ref_text: 1270000 0 -3200000 0 177800
+  outline_polyline: 177800 -15900000 -2000000
+    next_corner: 15900000 -2000000 0
+    next_corner: 15900000 14800000 0
+    next_corner: -15900000 14800000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 889000 0 0 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+    pin: 2 889000 0 12800000 0
+      top_pad: 1 3000000 1500000 1500000
+      bottom_pad: 1 3000000 1500000 1500000
+      inner_pad: 1 3000000 1500000 1500000
+
+name: "HM15-1"
+author: "Ivex"
+  units: NM
+  sel_rect: -2203200 -12363200 17443200 2203200
+  ref_text: 1270000 7620000 -13360000 0 177800
+  outline_polyline: 177800 -2000000 2000000
+    next_corner: 17240000 2000000 0
+    next_corner: 17240000 -12160000 0
+    next_corner: -2000000 -12160000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 15240000 -10160000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "HM15-2"
+author: "Ivex"
+  units: NM
+  sel_rect: -2203200 -4013200 17443200 14173200
+  ref_text: 1270000 7620000 -5000000 0 177800
+  outline_polyline: 177800 -2000000 -3810000
+    next_corner: 17240000 -3810000 0
+    next_corner: 17240000 13970000 0
+    next_corner: -2000000 13970000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 15240000 10160000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "RN112"
+author: "Ivex"
+  units: NM
+  sel_rect: -2703200 -3203200 17703200 13203200
+  ref_text: 1270000 7620000 -5000000 0 177800
+  outline_polyline: 177800 15000000 5000000
+    next_corner: 7500000 12500000 2
+    next_corner: 0 5000000 2
+    next_corner: 7500000 -2500000 2
+    close_polyline: 2
+  outline_polyline: 177800 -2500000 0
+    next_corner: -2500000 10000000 0
+  outline_polyline: 177800 17500000 0
+    next_corner: 17500000 10000000 0
+  outline_polyline: 177800 2000000 13000000
+    next_corner: 13000000 13000000 0
+  outline_polyline: 177800 -2500000 10000000
+    next_corner: 2000000 13000000 0
+  outline_polyline: 177800 13000000 13000000
+    next_corner: 17500000 10000000 0
+  outline_polyline: 177800 -2500000 0
+    next_corner: 2000000 -3000000 0
+  outline_polyline: 177800 2000000 -3000000
+    next_corner: 13000000 -3000000 0
+  outline_polyline: 177800 13000000 -3000000
+    next_corner: 17500000 0 0
+  outline_polyline: 177800 -2500000 0
+    next_corner: -2500000 -3000000 0
+  outline_polyline: 177800 -2500000 -3000000
+    next_corner: 2000000 -3000000 0
+  n_pins: 4
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 15000000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 3 1320800 0 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 4 1320800 15000000 10000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "RN222"
+author: "Ivex"
+  units: NM
+  sel_rect: -9453200 -2703200 21953200 17703200
+  ref_text: 1270000 6250000 -3700000 0 177800
+  outline_polyline: 177800 -9250000 -2500000
+    next_corner: 21750000 -2500000 0
+    next_corner: 21750000 17500000 0
+    next_corner: -9250000 17500000 0
+    close_polyline: 0
+  outline_polyline: 177800 -8250000 -2500000
+    next_corner: -8250000 17500000 0
+  n_pins: 4
+    pin: 1 1320800 0 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 2 1320800 0 15000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 3 1320800 12500000 0 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+    pin: 4 1320800 12500000 15000000 0
+      top_pad: 1 3500000 1750000 1750000
+      bottom_pad: 1 3500000 1750000 1750000
+      inner_pad: 1 3500000 1750000 1750000
+
+name: "PLM3216"
+author: "Ivex"
+  units: NM
+  sel_rect: -1053200 -503200 2853200 1803200
+  ref_text: 1270000 1050000 -1500000 0 177800
+  outline_polyline: 177800 -550000 -300000
+    next_corner: 2650000 -300000 0
+    next_corner: 2650000 1600000 0
+    next_corner: -550000 1600000 0
+    close_polyline: 0
+  outline_polyline: 177800 -550000 -300000
+    next_corner: -850000 -300000 0
+    next_corner: -850000 1600000 0
+    next_corner: -550000 1600000 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 500000 500000 500000
+    pin: 2 0 0 1300000 0
+      top_pad: 3 500000 500000 500000
+    pin: 3 0 2100000 1300000 0
+      top_pad: 3 500000 500000 500000
+    pin: 4 0 2100000 0 0
+      top_pad: 3 500000 500000 500000
+
+name: "PLM250H"
+author: "Ivex"
+  units: NM
+  sel_rect: -1753200 -1203200 4453200 3403200
+  ref_text: 1270000 1500000 -2200000 0 177800
+  outline_polyline: 177800 -1250000 -1000000
+    next_corner: 4250000 -1000000 0
+    next_corner: 4250000 3200000 0
+    next_corner: -1250000 3200000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1250000 -1000000
+    next_corner: -1550000 -1000000 0
+    next_corner: -1550000 3200000 0
+    next_corner: -1250000 3200000 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 1800000 1100000 1100000
+    pin: 2 0 0 2200000 0
+      top_pad: 3 1800000 1100000 1100000
+    pin: 3 0 3000000 2200000 0
+      top_pad: 3 1800000 1100000 1100000
+    pin: 4 0 3000000 0 0
+      top_pad: 3 1800000 1100000 1100000
+
+name: "0603"
+author: "Ivex"
+  units: NM
+  sel_rect: -1053200 -1103200 2753200 1103200
+  ref_text: 1270000 850000 -2100000 0 177800
+  outline_polyline: 177800 -850000 -900000
+    next_corner: 2550000 -900000 0
+    next_corner: 2550000 900000 0
+    next_corner: -850000 900000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1200000 550000 550000
+    pin: 2 0 1700000 0 0
+      top_pad: 3 1200000 550000 550000
+
+name: "0805"
+author: "Ivex"
+  units: NM
+  sel_rect: -1153200 -1203200 3053200 1203200
+  ref_text: 1270000 950000 -2200000 0 177800
+  outline_polyline: 177800 -950000 -1000000
+    next_corner: 2850000 -1000000 0
+    next_corner: 2850000 1000000 0
+    next_corner: -950000 1000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1400000 650000 650000
+    pin: 2 0 1900000 0 0
+      top_pad: 3 1400000 650000 650000
+

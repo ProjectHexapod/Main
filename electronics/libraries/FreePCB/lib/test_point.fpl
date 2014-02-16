@@ -1,0 +1,102 @@
+name: "TP-2S-S"
+author: "Ivex"
+source: "INVENTED"
+  units: MIL
+  sel_rect: -108 -108 108 68
+  ref_text: 50 0 90 0 7
+  outline_polyline: 7 -100 60
+    next_corner: 100 60 0
+  outline_polyline: 7 -100 60
+    next_corner: 0 -100 0
+  outline_polyline: 7 100 60
+    next_corner: 0 -100 0
+  n_pins: 1
+    pin: 1 10 0 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+
+name: "TP-2S-M"
+author: "Ivex"
+source: "INVENTED"
+  units: MIL
+  sel_rect: -158 -158 158 98
+  ref_text: 50 0 135 0 7
+  outline_polyline: 7 -150 90
+    next_corner: 150 90 0
+  outline_polyline: 7 -150 90
+    next_corner: 0 -150 0
+  outline_polyline: 7 150 90
+    next_corner: 0 -150 0
+  n_pins: 1
+    pin: 1 20 0 0 0
+      top_pad: 1 50 25 25
+      bottom_pad: 1 50 25 25
+      inner_pad: 1 50 25 25
+
+name: "TP-2S-L"
+author: "Ivex"
+source: "INVENTED"
+  units: MIL
+  sel_rect: -233 -233 233 143
+  ref_text: 50 0 202 0 7
+  outline_polyline: 7 -225 135
+    next_corner: 225 135 0
+  outline_polyline: 7 -225 135
+    next_corner: 0 -225 0
+  outline_polyline: 7 225 135
+    next_corner: 0 -225 0
+  n_pins: 1
+    pin: 1 45 0 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+
+name: "TP-1S-S"
+author: "Ivex"
+source: "INVENTED"
+  units: MIL
+  sel_rect: -108 -108 108 68
+  ref_text: 50 0 90 0 7
+  outline_polyline: 7 -100 60
+    next_corner: 100 60 0
+  outline_polyline: 7 -100 60
+    next_corner: 0 -100 0
+  outline_polyline: 7 100 60
+    next_corner: 0 -100 0
+  n_pins: 1
+    pin: 1 0 0 0 0
+      top_pad: 1 35 17 17
+
+name: "TP-1S-M"
+author: "Ivex"
+source: "INVENTED"
+  units: MIL
+  sel_rect: -158 -158 158 98
+  ref_text: 50 0 135 0 7
+  outline_polyline: 7 -150 90
+    next_corner: 150 90 0
+  outline_polyline: 7 -150 90
+    next_corner: 0 -150 0
+  outline_polyline: 7 150 90
+    next_corner: 0 -150 0
+  n_pins: 1
+    pin: 1 0 0 0 0
+      top_pad: 1 50 25 25
+
+name: "TP-1S-L"
+author: "Ivex"
+source: "INVENTED"
+  units: MIL
+  sel_rect: -233 -233 233 143
+  ref_text: 50 0 202 0 7
+  outline_polyline: 7 -225 135
+    next_corner: 225 135 0
+  outline_polyline: 7 -225 135
+    next_corner: 0 -225 0
+  outline_polyline: 7 225 135
+    next_corner: 0 -225 0
+  n_pins: 1
+    pin: 1 0 0 0 0
+      top_pad: 1 100 50 50
+

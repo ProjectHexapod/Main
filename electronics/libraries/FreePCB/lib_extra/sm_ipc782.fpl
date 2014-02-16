@@ -1,0 +1,1686 @@
+name: "I2012CHIP"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1003200 -1003200 3003200 1003200
+  ref_text: 1270000 1000000 1800000 0 177800
+  outline_polyline: 177800 -800000 800000
+    next_corner: 2800000 800000 0
+    next_corner: 2800000 -800000 0
+    next_corner: -800000 -800000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 2 1000000 500000 500000
+    pin: 2 0 2000000 0 0
+      top_pad: 2 1000000 500000 500000
+
+name: "I3216CHIP"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1153200 -1303200 4153200 1303200
+  ref_text: 1270000 1500000 2100000 0 177800
+  outline_polyline: 177800 -950000 1100000
+    next_corner: 3950000 1100000 0
+    next_corner: 3950000 -1100000 0
+    next_corner: -950000 -1100000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1600000 650000 650000
+    pin: 2 0 3000000 0 0
+      top_pad: 3 1600000 650000 650000
+
+name: "I4516CHIP"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1303200 -1003200 5503200 1003200
+  ref_text: 1270000 2100000 1800000 0 177800
+  outline_polyline: 177800 -1100000 800000
+    next_corner: 5300000 800000 0
+    next_corner: 5300000 -800000 0
+    next_corner: -1100000 -800000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1000000 800000 800000
+    pin: 2 0 4200000 0 0
+      top_pad: 3 1000000 800000 800000
+
+name: "I2825PREC"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1403200 -1703200 3803200 1703200
+  ref_text: 1270000 1200000 2500000 0 177800
+  outline_polyline: 177800 -1000000 1500000
+    next_corner: 3400000 1500000 0
+    next_corner: 3400000 -1500000 0
+    next_corner: -1000000 -1500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2400000 700000 700000
+    pin: 2 0 2400000 0 0
+      top_pad: 3 2400000 700000 700000
+
+name: "I3225PREC"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1403200 -1503200 4203200 1503200
+  ref_text: 1270000 1400000 2300000 0 177800
+  outline_polyline: 177800 -1200000 1300000
+    next_corner: 4000000 1300000 0
+    next_corner: 4000000 -1300000 0
+    next_corner: -1200000 -1300000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2000000 900000 900000
+    pin: 2 0 2800000 0 0
+      top_pad: 3 2000000 900000 900000
+
+name: "I4532PREC"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -2003200 -2303200 6003200 2303200
+  ref_text: 1270000 2000000 3100000 0 177800
+  outline_polyline: 177800 -1200000 2100000
+    next_corner: 5200000 2100000 0
+    next_corner: 5200000 -2100000 0
+    next_corner: -1200000 -2100000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3600000 900000 900000
+    pin: 2 0 4000000 0 0
+      top_pad: 3 3600000 900000 900000
+
+name: "I5038PREC"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1603200 -1903200 6003200 1903200
+  ref_text: 1270000 2200000 2800000 0 177800
+  outline_polyline: 177800 -1000000 1700000
+    next_corner: 5400000 1700000 0
+    next_corner: 5400000 -1700000 0
+    next_corner: -1000000 -1700000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2800000 700000 700000
+    pin: 2 0 4400000 0 0
+      top_pad: 3 2800000 700000 700000
+
+name: "I3225/3230MOLD"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1303200 -1603200 4103200 1603200
+  ref_text: 1270000 1400000 2400000 0 177800
+  outline_polyline: 177800 -1100000 1400000
+    next_corner: 3900000 1400000 0
+    next_corner: 3900000 -1400000 0
+    next_corner: -1100000 -1400000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 800000 800000
+    pin: 2 0 2800000 0 0
+      top_pad: 3 2200000 800000 800000
+
+name: "I4025MOLD"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1603200 -1203200 4803200 1203200
+  ref_text: 1270000 1600000 2000000 0 177800
+  outline_polyline: 177800 -1400000 1000000
+    next_corner: 4600000 1000000 0
+    next_corner: 4600000 -1000000 0
+    next_corner: -1400000 -1000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1400000 1100000 1100000
+    pin: 2 0 3200000 0 0
+      top_pad: 3 1400000 1100000 1100000
+
+name: "I4532MOLD"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1503200 -1703200 5303200 1703200
+  ref_text: 1270000 1900000 2500000 0 177800
+  outline_polyline: 177800 -1300000 1500000
+    next_corner: 5100000 1500000 0
+    next_corner: 5100000 -1500000 0
+    next_corner: -1300000 -1500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2400000 1000000 1000000
+    pin: 2 0 3800000 0 0
+      top_pad: 3 2400000 1000000 1000000
+
+name: "I5650MOLD"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -2203200 -2503200 7203200 2503200
+  ref_text: 1270000 2500000 3300000 0 177800
+  outline_polyline: 177800 -1200000 2300000
+    next_corner: 6200000 2300000 0
+    next_corner: 6200000 -2300000 0
+    next_corner: -1200000 -2300000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 4000000 900000 900000
+    pin: 2 0 5000000 0 0
+      top_pad: 3 4000000 900000 900000
+
+name: "I8530MOLD"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.3 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1703200 -1203200 9103200 1203200
+  ref_text: 1270000 3700000 2000000 0 177800
+  outline_polyline: 177800 -1500000 1000000
+    next_corner: 8900000 1000000 0
+    next_corner: 8900000 -1000000 0
+    next_corner: -1500000 -1000000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1400000 1200000 1200000
+    pin: 2 0 7400000 0 0
+      top_pad: 3 1400000 1200000 1200000
+
+name: "TC3216"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.4 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1453200 -1103200 4253200 1103200
+  ref_text: 1270000 1400000 1900000 0 177800
+  outline_polyline: 177800 -1250000 900000
+    next_corner: 4050000 900000 0
+    next_corner: 4050000 -900000 0
+    next_corner: -1250000 -900000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 1200000 950000 950000
+    pin: 2 0 2800000 0 0
+      top_pad: 3 1200000 950000 950000
+
+name: "TC53284.6"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.4 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1453200 -1603200 4453200 1603200
+  ref_text: 1270000 1500000 2400000 0 177800
+  outline_polyline: 177800 -1250000 1400000
+    next_corner: 4250000 1400000 0
+    next_corner: 4250000 -1400000 0
+    next_corner: -1250000 -1400000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 950000 950000
+    pin: 2 0 3000000 0 0
+      top_pad: 3 2200000 950000 950000
+
+name: "TC6032"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.4 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1753200 -1603200 6753200 1603200
+  ref_text: 1270000 2500000 2400000 0 177800
+  outline_polyline: 177800 -1550000 1400000
+    next_corner: 6550000 1400000 0
+    next_corner: 6550000 -1400000 0
+    next_corner: -1550000 -1400000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 1250000 1250000
+    pin: 2 0 5000000 0 0
+      top_pad: 3 2200000 1250000 1250000
+
+name: "TC7343"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.4 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1753200 -1703200 8153200 1703200
+  ref_text: 1270000 3200000 2500000 0 177800
+  outline_polyline: 177800 -1550000 1500000
+    next_corner: 7950000 1500000 0
+    next_corner: 7950000 -1500000 0
+    next_corner: -1550000 -1500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2400000 1250000 1250000
+    pin: 2 0 6400000 0 0
+      top_pad: 3 2400000 1250000 1250000
+
+name: "MELF-SOD-80"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.5 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -2603200 -2903200 6003200 2903200
+  ref_text: 1270000 1700000 3700000 0 177800
+  outline_polyline: 177800 -1000000 2700000
+    next_corner: 4400000 2700000 0
+    next_corner: 4400000 -2700000 0
+    next_corner: -1000000 -2700000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 4800000 700000 700000
+    pin: 2 0 3400000 0 0
+      top_pad: 3 4800000 700000 700000
+
+name: "MELF-SOD-87"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.5 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -3303200 -3603200 8103200 3603200
+  ref_text: 1270000 2400000 4400000 0 177800
+  outline_polyline: 177800 -1000000 3400000
+    next_corner: 5800000 3400000 0
+    next_corner: 5800000 -3400000 0
+    next_corner: -1000000 -3400000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 6200000 700000 700000
+    pin: 2 0 4800000 0 0
+      top_pad: 3 6200000 700000 700000
+
+name: "MELF0805"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.5 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1803200 -2103200 3803200 2103200
+  ref_text: 1270000 1000000 2900000 0 177800
+  outline_polyline: 177800 -900000 1900000
+    next_corner: 2900000 1900000 0
+    next_corner: 2900000 -1900000 0
+    next_corner: -900000 -1900000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 3200000 600000 600000
+    pin: 2 0 2000000 0 0
+      top_pad: 3 3200000 600000 600000
+
+name: "MELF1206"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.5 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -2403200 -2703200 5403200 2703200
+  ref_text: 1270000 1500000 3500000 0 177800
+  outline_polyline: 177800 -1000000 2500000
+    next_corner: 4000000 2500000 0
+    next_corner: 4000000 -2500000 0
+    next_corner: -1000000 -2500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 4400000 700000 700000
+    pin: 2 0 3000000 0 0
+      top_pad: 3 4400000 700000 700000
+
+name: "MELF1406"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.5 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -2603200 -2903200 6003200 2903200
+  ref_text: 1270000 1700000 3700000 0 177800
+  outline_polyline: 177800 -1000000 2700000
+    next_corner: 4400000 2700000 0
+    next_corner: 4400000 -2700000 0
+    next_corner: -1000000 -2700000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 4800000 700000 700000
+    pin: 2 0 3400000 0 0
+      top_pad: 3 4800000 700000 700000
+
+name: "MELF2309"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.5 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -3703200 -4003200 9303200 4003200
+  ref_text: 1270000 2800000 4800000 0 177800
+  outline_polyline: 177800 -1000000 3800000
+    next_corner: 6600000 3800000 0
+    next_corner: 6600000 -3800000 0
+    next_corner: -1000000 -3800000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 7000000 700000 700000
+    pin: 2 0 5600000 0 0
+      top_pad: 3 7000000 700000 700000
+
+name: "SOT-23REFLOW"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.6 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1003200 -1203200 2903200 3403200
+  ref_text: 1270000 950000 5500000 0 177800
+  outline_polyline: 177800 -800000 3200000
+    next_corner: 2700000 3200000 0
+    next_corner: 2700000 -1000000 0
+    next_corner: -800000 -1000000 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1400000 500000 500000
+    pin: 2 0 1900000 0 0
+      top_pad: 3 1400000 500000 500000
+    pin: 3 0 950000 2200000 0
+      top_pad: 3 1400000 500000 500000
+
+name: "SOT-89"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.7 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1403200 -1203200 4403200 5203200
+  ref_text: 1270000 1500000 6500000 0 177800
+  outline_polyline: 177800 -700000 -1000000
+    next_corner: 3700000 -1000000 0
+    next_corner: 3700000 5000000 0
+    next_corner: -700000 5000000 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1400000 400000 400000
+    pin: 2 0 3000000 0 0
+      top_pad: 3 1400000 400000 400000
+    pin: 3 0 1500000 2000000 0
+      top_pad: 3 5400000 500000 500000
+
+name: "SOD-123"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.8 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1253200 -903200 4653200 903200
+  ref_text: 1270000 1700000 2300000 0 177800
+  outline_polyline: 177800 -1050000 700000
+    next_corner: 4450000 700000 0
+    next_corner: 4450000 -700000 0
+    next_corner: -1050000 -700000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 800000 750000 750000
+    pin: 2 0 3400000 0 0
+      top_pad: 3 800000 750000 750000
+
+name: "SMB"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.8 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1653200 -1703200 6053200 1703200
+  ref_text: 1270000 2200000 3000000 0 177800
+  outline_polyline: 177800 -1450000 1500000
+    next_corner: 5850000 1500000 0
+    next_corner: 5850000 -1500000 0
+    next_corner: -1450000 -1500000 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 0 0 0 0
+      top_pad: 3 2400000 1150000 1150000
+    pin: 2 0 4400000 0 0
+      top_pad: 3 2400000 1150000 1150000
+
+name: "SOT-143"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.9 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1203200 -1223200 2703200 3423200
+  ref_text: 1270000 750000 4720000 0 177800
+  outline_polyline: 177800 -1000000 3220000
+    next_corner: 2500000 3220000 0
+    next_corner: 2500000 -1020000 0
+    next_corner: -1000000 -1020000 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 1440000 600000 600000
+    pin: 2 0 1700000 0 0
+      top_pad: 3 1440000 500000 500000
+    pin: 3 0 1700000 2200000 0
+      top_pad: 3 1440000 500000 500000
+    pin: 4 0 -200000 2200000 0
+      top_pad: 3 1440000 500000 500000
+
+name: "SOT-223"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.10 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1303200 -1603200 5903200 7803200
+  ref_text: 1270000 2300000 9600000 0 177800
+  outline_polyline: 177800 -900000 7600000
+    next_corner: 5500000 7600000 0
+    next_corner: 5500000 -1400000 0
+    next_corner: -900000 -1400000 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 600000 600000
+    pin: 2 0 2300000 0 0
+      top_pad: 3 2200000 600000 600000
+    pin: 3 0 4600000 0 0
+      top_pad: 3 2200000 600000 600000
+    pin: 4 0 2300000 6200000 0
+      top_pad: 3 2200000 1800000 1800000
+
+name: "TO-252"
+author: "Ivex"
+source: "SURFACE MOUNT DESIGN AND LAND PATTERN STANDARD SUBSECTION 8.11 (PAGE 3 OF 4)"
+  units: NM
+  sel_rect: -1203200 -1303200 5503200 10803200
+  ref_text: 1270000 2200000 12300000 0 177800
+  outline_polyline: 177800 -1000000 10600000
+    next_corner: 5300000 10600000 0
+    next_corner: 5300000 -1100000 0
+    next_corner: -1000000 -1100000 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 0 0 0 0
+      top_pad: 3 1600000 600000 600000
+    pin: 2 0 4400000 0 0
+      top_pad: 3 1600000 600000 600000
+    pin: 3 0 2200000 7400000 0
+      top_pad: 3 5800000 2800000 2800000
+
+name: "CFP-MO-003/10"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 6423200 9303200
+  ref_text: 1270000 2540000 11000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 6220000 1300000 0
+    next_corner: 6220000 6700000 0
+    next_corner: -1140000 6700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 3000000
+    next_corner: 0 3000000 0
+    next_corner: 0 5000000 0
+    next_corner: -1140000 5000000 0
+    close_polyline: 0
+  n_pins: 10
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 5080000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 3810000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 2540000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 1270000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 0 8000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-003/14"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 8963200 9303200
+  ref_text: 1270000 3810000 11000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 8760000 1300000 0
+    next_corner: 8760000 6700000 0
+    next_corner: -1140000 6700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 3000000
+    next_corner: 0 3000000 0
+    next_corner: 0 5000000 0
+    next_corner: -1140000 5000000 0
+    close_polyline: 0
+  n_pins: 14
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 7620000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 6350000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 5080000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 3810000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 2540000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 1270000 8000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 0 8000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-004/10"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 6423200 11303200
+  ref_text: 1270000 2540000 13000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 6220000 1300000 0
+    next_corner: 6220000 8700000 0
+    next_corner: -1140000 8700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 3000000
+    next_corner: 0 3000000 0
+    next_corner: 0 7000000 0
+    next_corner: -1140000 7000000 0
+    close_polyline: 0
+  n_pins: 10
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 5080000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 3810000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 2540000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 1270000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 0 10000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-004/14"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 8963200 11303200
+  ref_text: 1270000 3810000 13000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 8760000 1300000 0
+    next_corner: 8760000 8700000 0
+    next_corner: -1140000 8700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 3000000
+    next_corner: 0 3000000 0
+    next_corner: 0 7000000 0
+    next_corner: -1140000 7000000 0
+    close_polyline: 0
+  n_pins: 14
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 7620000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 6350000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 5080000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 3810000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 2540000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 1270000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 0 10000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-004/16"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 10233200 11303200
+  ref_text: 1270000 5015000 13000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 10030000 1300000 0
+    next_corner: 10030000 8700000 0
+    next_corner: -1140000 8700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 3000000
+    next_corner: 0 3000000 0
+    next_corner: 0 7000000 0
+    next_corner: -1140000 7000000 0
+    close_polyline: 0
+  n_pins: 16
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 8890000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 7620000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 6350000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 5080000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 3810000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 2540000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 1270000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 0 10000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-018/20"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 12773200 11303200
+  ref_text: 1270000 5715000 13000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 12570000 1300000 0
+    next_corner: 12570000 8700000 0
+    next_corner: -1140000 8700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 3000000
+    next_corner: 0 3000000 0
+    next_corner: 0 7000000 0
+    next_corner: -1140000 7000000 0
+    close_polyline: 0
+  n_pins: 20
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 11430000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 10160000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 8890000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 7620000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 6350000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 5080000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 3810000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 2540000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 1270000 10000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 0 10000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-019/24"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 15313200 15303200
+  ref_text: 1270000 6985000 17000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 15110000 1300000 0
+    next_corner: 15110000 12700000 0
+    next_corner: -1140000 12700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 5000000
+    next_corner: 0 5000000 0
+    next_corner: 0 9000000 0
+    next_corner: -1140000 9000000 0
+    close_polyline: 0
+  n_pins: 24
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 13970000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 12700000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 11430000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 10160000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 8890000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 7620000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 6350000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 5080000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 3810000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 2540000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 1270000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 0 14000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-019/28"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 17853200 15303200
+  ref_text: 1270000 8255000 17000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 17650000 1300000 0
+    next_corner: 17650000 12700000 0
+    next_corner: -1140000 12700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 5000000
+    next_corner: 0 5000000 0
+    next_corner: 0 9000000 0
+    next_corner: -1140000 9000000 0
+    close_polyline: 0
+  n_pins: 28
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 16510000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 15240000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 13970000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 12700000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 11430000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 10160000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 8890000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 7620000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 6350000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 5080000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 3810000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 2540000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 1270000 14000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 0 14000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-020/36"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 22933200 17303200
+  ref_text: 1270000 10795000 19000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 22730000 1300000 0
+    next_corner: 22730000 14700000 0
+    next_corner: -1140000 14700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 6000000
+    next_corner: 0 6000000 0
+    next_corner: 0 10000000 0
+    next_corner: -1140000 10000000 0
+    close_polyline: 0
+  n_pins: 36
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 17780000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 19050000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 20320000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 21590000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 21590000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 20320000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 19050000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 17780000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 16510000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 15240000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 13970000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 12700000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 11430000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 10160000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 29 0 8890000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 30 0 7620000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 31 0 6350000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 32 0 5080000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 33 0 3810000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 34 0 2540000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 35 0 1270000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 36 0 0 16000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-020/40"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 25473200 17303200
+  ref_text: 1270000 12065000 19000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 25270000 1300000 0
+    next_corner: 25270000 14700000 0
+    next_corner: -1140000 14700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 6000000
+    next_corner: 0 6000000 0
+    next_corner: 0 10000000 0
+    next_corner: -1140000 10000000 0
+    close_polyline: 0
+  n_pins: 40
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 17780000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 19050000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 20320000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 21590000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 22860000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 24130000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 24130000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 22860000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 21590000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 20320000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 19050000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 17780000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 16510000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 15240000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 29 0 13970000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 30 0 12700000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 31 0 11430000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 32 0 10160000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 33 0 8890000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 34 0 7620000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 35 0 6350000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 36 0 5080000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 37 0 3810000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 38 0 2540000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 39 0 1270000 16000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 40 0 0 16000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-021/16"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 10233200 20303200
+  ref_text: 1270000 4450000 22000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 10030000 1300000 0
+    next_corner: 10030000 17700000 0
+    next_corner: -1140000 17700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 7500000
+    next_corner: 0 7500000 0
+    next_corner: 0 11500000 0
+    next_corner: -1140000 11500000 0
+    close_polyline: 0
+  n_pins: 16
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 8890000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 7620000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 6350000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 5080000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 3810000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 2540000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 1270000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 0 19000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-021/24"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 15313200 20303200
+  ref_text: 1270000 6985000 22000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 15110000 1300000 0
+    next_corner: 15110000 17700000 0
+    next_corner: -1140000 17700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 7500000
+    next_corner: 0 7500000 0
+    next_corner: 0 11500000 0
+    next_corner: -1140000 11500000 0
+    close_polyline: 0
+  n_pins: 24
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 13970000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 12700000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 11430000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 10160000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 8890000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 7620000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 6350000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 5080000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 3810000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 2540000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 1270000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 0 19000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-021/36"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 22933200 20303200
+  ref_text: 1270000 10795000 22000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 22730000 1300000 0
+    next_corner: 22730000 17700000 0
+    next_corner: -1140000 17700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 7500000
+    next_corner: 0 7500000 0
+    next_corner: 0 11500000 0
+    next_corner: -1140000 11500000 0
+    close_polyline: 0
+  n_pins: 36
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 17780000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 19050000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 20320000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 21590000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 21590000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 20320000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 19050000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 17780000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 16510000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 15240000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 13970000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 12700000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 11430000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 10160000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 29 0 8890000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 30 0 7620000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 31 0 6350000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 32 0 5080000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 33 0 3810000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 34 0 2540000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 35 0 1270000 19000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 36 0 0 19000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-022/20"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 12773200 22303200
+  ref_text: 1270000 5715000 24000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 12570000 1300000 0
+    next_corner: 12570000 19700000 0
+    next_corner: -1140000 19700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 8500000
+    next_corner: 0 8500000 0
+    next_corner: 0 12500000 0
+    next_corner: -1140000 12500000 0
+    close_polyline: 0
+  n_pins: 20
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 11430000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 10160000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 8890000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 7620000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 6350000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 5080000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 3810000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 2540000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 1270000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 0 21000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-022/42"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 26743200 22303200
+  ref_text: 1270000 12700000 24000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 26540000 1300000 0
+    next_corner: 26540000 19700000 0
+    next_corner: -1140000 19700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 8500000
+    next_corner: 0 8500000 0
+    next_corner: 0 12500000 0
+    next_corner: -1140000 12500000 0
+    close_polyline: 0
+  n_pins: 42
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 17780000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 19050000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 20320000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 21590000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 22860000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 24130000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 25400000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 25400000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 24130000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 22860000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 21590000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 20320000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 19050000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 17780000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 29 0 16510000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 30 0 15240000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 31 0 13970000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 32 0 12700000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 33 0 11430000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 34 0 10160000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 35 0 8890000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 36 0 7620000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 37 0 6350000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 38 0 5080000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 39 0 3810000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 40 0 2540000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 41 0 1270000 21000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 42 0 0 21000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-023/36"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 22933200 27303200
+  ref_text: 1270000 10795000 29000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 22730000 1300000 0
+    next_corner: 22730000 24700000 0
+    next_corner: -1140000 24700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 11000000
+    next_corner: 0 11000000 0
+    next_corner: 0 15000000 0
+    next_corner: -1140000 15000000 0
+    close_polyline: 0
+  n_pins: 36
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 17780000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 19050000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 20320000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 21590000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 21590000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 20320000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 19050000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 17780000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 16510000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 15240000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 13970000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 12700000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 11430000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 10160000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 29 0 8890000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 30 0 7620000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 31 0 6350000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 32 0 5080000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 33 0 3810000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 34 0 2540000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 35 0 1270000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 36 0 0 26000000 0
+      top_pad: 3 2200000 325000 325000
+
+name: "CFP-MO-023/50"
+author: "Ivex"
+source: "- IPC-SM-782, REVISION A - AUGUST 1993"
+  units: NM
+  sel_rect: -1343200 -1303200 31823200 27303200
+  ref_text: 1270000 15240000 29000000 0 177800
+  outline_polyline: 177800 -1140000 1300000
+    next_corner: 31620000 1300000 0
+    next_corner: 31620000 24700000 0
+    next_corner: -1140000 24700000 0
+    close_polyline: 0
+  outline_polyline: 177800 -1140000 11000000
+    next_corner: 0 11000000 0
+    next_corner: 0 15000000 0
+    next_corner: -1140000 15000000 0
+    close_polyline: 0
+  n_pins: 50
+    pin: 1 0 0 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 2 0 1270000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 3 0 2540000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 4 0 3810000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 5 0 5080000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 6 0 6350000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 7 0 7620000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 8 0 8890000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 9 0 10160000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 10 0 11430000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 11 0 12700000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 12 0 13970000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 13 0 15240000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 14 0 16510000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 15 0 17780000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 16 0 19050000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 17 0 20320000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 18 0 21590000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 19 0 22860000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 20 0 24130000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 21 0 25400000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 22 0 26670000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 23 0 27940000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 24 0 29210000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 25 0 30480000 0 0
+      top_pad: 3 2200000 325000 325000
+    pin: 26 0 30480000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 27 0 29210000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 28 0 27940000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 29 0 26670000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 30 0 25400000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 31 0 24130000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 32 0 22860000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 33 0 21590000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 34 0 20320000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 35 0 19050000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 36 0 17780000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 37 0 16510000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 38 0 15240000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 39 0 13970000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 40 0 12700000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 41 0 11430000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 42 0 10160000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 43 0 8890000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 44 0 7620000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 45 0 6350000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 46 0 5080000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 47 0 3810000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 48 0 2540000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 49 0 1270000 26000000 0
+      top_pad: 3 2200000 325000 325000
+    pin: 50 0 0 26000000 0
+      top_pad: 3 2200000 325000 325000
+
+

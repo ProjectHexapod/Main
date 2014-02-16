@@ -1,0 +1,513 @@
+name: "3059Y"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 214"
+  units: MIL
+  sel_rect: -268 -158 1018 58
+  ref_text: 50 363 -200 0 7
+  outline_polyline: 7 -260 -150
+    next_corner: 960 -150 0
+  outline_polyline: 7 960 -150
+    next_corner: 960 50 0
+  outline_polyline: 7 960 50
+    next_corner: -260 50 0
+  outline_polyline: 7 -260 50
+    next_corner: -260 -150 0
+  outline_polyline: 7 960 -100
+    next_corner: 1010 -100 0
+  outline_polyline: 7 1010 -100
+    next_corner: 1010 0 0
+  outline_polyline: 7 1010 0
+    next_corner: 960 0 0
+  outline_polyline: 7 960 0
+    next_corner: 960 -100 0
+  n_pins: 3
+    pin: 1 28 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 28 400 -100 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 3 28 700 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
+
+name: "RC05"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -45 445 45
+  ref_text: 50 200 73 0 7
+  outline_polyline: 7 120 33
+    next_corner: 280 33 0
+    next_corner: 280 -33 0
+    next_corner: 120 -33 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "RC06"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -46 445 46
+  ref_text: 50 200 88 0 7
+  outline_polyline: 7 120 38
+    next_corner: 280 38 0
+    next_corner: 280 -38 0
+    next_corner: 120 -38 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "RC07"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -57 545 57
+  ref_text: 50 250 99 0 7
+  outline_polyline: 7 109 49
+    next_corner: 391 49 0
+    next_corner: 391 -49 0
+    next_corner: 109 -49 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 500 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "RC08"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -66 445 66
+  ref_text: 50 200 98 0 7
+  outline_polyline: 7 87 58
+    next_corner: 313 58 0
+    next_corner: 313 -58 0
+    next_corner: 87 -58 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "RC12"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -82 645 82
+  ref_text: 50 300 104 0 7
+  outline_polyline: 7 105 74
+    next_corner: 495 74 0
+    next_corner: 495 -74 0
+    next_corner: 105 -74 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 600 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "RC20"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -55 -89 655 89
+  ref_text: 50 300 111 0 7
+  outline_polyline: 7 92 81
+    next_corner: 508 81 0
+    next_corner: 508 -81 0
+    next_corner: 92 -81 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 600 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "RC22"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -55 -125 855 125
+  ref_text: 50 400 157 0 7
+  outline_polyline: 7 112 117
+    next_corner: 688 117 0
+    next_corner: 688 -117 0
+    next_corner: 112 -117 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 45 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 45 800 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "RC32"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -55 -128 855 128
+  ref_text: 50 400 160 0 7
+  outline_polyline: 7 103 120
+    next_corner: 697 120 0
+    next_corner: 697 -120 0
+    next_corner: 103 -120 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 52 0 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+    pin: 2 52 800 0 0
+      top_pad: 1 94 47 47
+      bottom_pad: 1 94 47 47
+      inner_pad: 1 94 47 47
+
+name: "RC42"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -58 -176 1058 176
+  ref_text: 50 500 208 0 7
+  outline_polyline: 7 136 168
+    next_corner: 864 168 0
+    next_corner: 864 -168 0
+    next_corner: 136 -168 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 52 0 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+    pin: 2 52 1000 0 0
+      top_pad: 1 100 50 50
+      bottom_pad: 1 100 50 50
+      inner_pad: 1 100 50 50
+
+name: "RESSIP-6"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 207"
+  units: MIL
+  sel_rect: -58 -58 558 58
+  ref_text: 50 250 90 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 550 50 0
+    next_corner: 550 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 6
+    pin: 1 22 0 0 0
+      top_pad: 2 35 17 17
+      bottom_pad: 2 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 2 22 100 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 3 22 200 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 4 22 300 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 5 22 400 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 6 22 500 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+
+name: "RESSIP-8"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 207"
+  units: MIL
+  sel_rect: -58 -58 758 58
+  ref_text: 50 350 90 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 750 50 0
+    next_corner: 750 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 8
+    pin: 1 22 0 0 0
+      top_pad: 2 35 17 17
+      bottom_pad: 2 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 2 22 100 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 3 22 200 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 4 22 300 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 5 22 400 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 6 22 500 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 7 22 600 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 8 22 700 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+
+name: "RESSIP-10"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 207"
+  units: MIL
+  sel_rect: -58 -58 958 58
+  ref_text: 50 450 90 0 7
+  outline_polyline: 7 -50 50
+    next_corner: 950 50 0
+    next_corner: 950 -50 0
+    next_corner: -50 -50 0
+    close_polyline: 0
+  n_pins: 10
+    pin: 1 22 0 0 0
+      top_pad: 2 35 17 17
+      bottom_pad: 2 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 2 22 100 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 3 22 200 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 4 22 300 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 5 22 400 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 6 22 500 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 7 22 600 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 8 22 700 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 9 22 800 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+    pin: 10 22 900 0 0
+      top_pad: 1 35 17 17
+      bottom_pad: 1 35 17 17
+      inner_pad: 1 35 17 17
+
+
+name: "RL05"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -45 445 45
+  ref_text: 50 200 85 0 7
+  outline_polyline: 7 115 35
+    next_corner: 285 35 0
+    next_corner: 285 -35 0
+    next_corner: 115 -35 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 28 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 28 400 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "RL07"
+author: "Ivex"
+source: "DIGITAL PRINTED CIRCUIT DESIGN & DRAFTING, PAGE 408"
+  units: MIL
+  sel_rect: -45 -57 545 57
+  ref_text: 50 250 89 0 7
+  outline_polyline: 7 109 49
+    next_corner: 390 49 0
+    next_corner: 390 -49 0
+    next_corner: 109 -49 0
+    close_polyline: 0
+  n_pins: 2
+    pin: 1 35 0 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+    pin: 2 35 500 0 0
+      top_pad: 1 75 37 37
+      bottom_pad: 1 75 37 37
+      inner_pad: 1 75 37 37
+
+name: "U201"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 213"
+  units: MIL
+  sel_rect: -226 -545 570 835
+  ref_text: 50 172 857 0 7
+  outline_polyline: 7 562 437
+    next_corner: 172 827 2
+    next_corner: -218 437 2
+    next_corner: 172 47 2
+    close_polyline: 2
+  outline_polyline: 7 -125 54
+    next_corner: 469 54 0
+    next_corner: 469 -65 0
+    next_corner: -125 -65 0
+    close_polyline: 0
+  n_pins: 4
+    pin: 1 28 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 28 344 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 3 125 438 437 90
+      top_pad: 1 175 87 87
+      bottom_pad: 1 175 87 87
+      inner_pad: 1 175 87 87
+    pin: 4 190 172 -437 0
+      top_pad: 1 200 0 0
+      bottom_pad: 1 200 0 0
+      inner_pad: 1 200 0 0
+
+name: "U262"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 213"
+  units: MIL
+  sel_rect: -94 -63 291 492
+  ref_text: 50 99 524 0 7
+  outline_polyline: 7 -86 484
+    next_corner: 283 484 0
+    next_corner: 283 -55 0
+    next_corner: -86 -55 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 28 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 28 197 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 3 28 99 394 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
+name: "X201"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 213"
+  units: MIL
+  sel_rect: -133 -229 477 73
+  ref_text: 50 172 105 0 7
+  outline_polyline: 7 -125 65
+    next_corner: 469 65 0
+    next_corner: 469 -221 0
+    next_corner: -125 -221 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 28 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 28 344 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 3 28 172 -156 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
+name: "X262"
+author: "Ivex"
+source: "DIGIKEY CATALOG NO.941, PG. 213"
+  units: MIL
+  sel_rect: -53 -58 248 168
+  ref_text: 50 98 200 0 7
+  outline_polyline: 7 -45 160
+    next_corner: 240 160 0
+    next_corner: 240 -50 0
+    next_corner: -45 -50 0
+    close_polyline: 0
+  n_pins: 3
+    pin: 1 28 0 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 2 28 197 0 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+    pin: 3 28 99 99 0
+      top_pad: 1 80 40 40
+      bottom_pad: 1 80 40 40
+      inner_pad: 1 80 40 40
+
