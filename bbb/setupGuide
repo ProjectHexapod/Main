@@ -1,3 +1,0 @@
-To set up a fresh BBB:
-  * follow the directions at http://archlinuxarm.org/platforms/armv7/ti/beaglebone-black to install Arch to the eMMC
-  * pacman -S python2
