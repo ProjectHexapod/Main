@@ -24,3 +24,15 @@ https://groups.google.com/forum/#!topic/beagleboard/C2tzvRYk1Wg
 http://elinux.org/ECE497_BeagleBone_PRU
 http://www.circuidipity.com/bbb-led.html
 http://www.kinecthesia.com/2012/02/lights-camera-xtion-getting-asus-xtion.html
+http://forum.beaglefu.com/topic/59-quick-beaglebone-black-pwm-commands/
+http://beagleboard-gsoc13.blogspot.com/2013/07/sampling-analogue-signals-using-adc-on.html
+http://processors.wiki.ti.com/index.php/AM335x_ADC_Driver's_Guide
+
+http://stackoverflow.com/questions/13124271/driving-beaglebone-gpio-through-dev-mem
+
+http://learn.adafruit.com/introduction-to-the-beaglebone-black-device-tree/device-tree-overlays
+http://devicetree.org/Device_Tree_Usage
+https://www.kernel.org/doc/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+
+opkg install eglibc-staticdev eglibc-utils
+
