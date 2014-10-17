@@ -800,7 +800,7 @@ download the executable.-->
 		<JUNCTION pos='234.00000,106.00000'/>
 		<JUNCTION pos='234.00000,122.00000'/>
 		<SYMBOL id='4' pos='36.00000,104.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='J?' show='1' pos='-13.00000,-9.60000'/>
+			<FIELD type='0' description='Ref' value='J11' show='1' pos='-13.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='CONN_3P_M_100mil' show='1' pos='-19.00000,-12.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -848,7 +848,7 @@ download the executable.-->
 		<JUNCTION pos='44.00000,138.00000'/>
 		<WIRE a='44.00000,138.00000' b='32.00000,138.00000'/>
 		<SYMBOL id='4' pos='122.00000,106.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='J?' show='1' pos='-13.00000,-9.60000'/>
+			<FIELD type='0' description='Ref' value='J12' show='1' pos='-13.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='CONN_3P_M_100mil' show='1' pos='-19.00000,-12.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -896,7 +896,7 @@ download the executable.-->
 		<JUNCTION pos='130.00000,142.00000'/>
 		<WIRE a='130.00000,142.00000' b='118.00000,142.00000'/>
 		<SYMBOL id='4' pos='204.00000,104.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='J?' show='1' pos='-13.00000,-9.60000'/>
+			<FIELD type='0' description='Ref' value='J13' show='1' pos='-13.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='CONN_3P_M_100mil' show='1' pos='-19.00000,-12.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
