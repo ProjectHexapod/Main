@@ -999,6 +999,11 @@ download the executable.-->
 			<CHARSET>0</CHARSET>
 			<FACENAME>Arial</FACENAME>
 		</FONT>
+		<STYLE id='2'>
+			<STYLE>0</STYLE>
+			<COLOR>000000</COLOR>
+			<THICKNESS>1</THICKNESS>
+		</STYLE>
 		<STYLE id='4'>
 			<STYLE>0</STYLE>
 			<COLOR>000000</COLOR>
@@ -1566,6 +1571,144 @@ download the executable.-->
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
+		<SYMBOLDEF id='10'>
+			<NAME type='0'>ACS712</NAME>
+			<REF type='0'>U?</REF>
+			<DESCRIPTION>ACS712 Current Sensor</DESCRIPTION>
+			<PPP>1</PPP>
+			<FIELD>
+				<NAME>$$SPICE_PROLOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>$$SPICE_EPILOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Package</NAME>
+				<DEFAULT>8_SOIC</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Frequency</NAME>
+				<DEFAULT>80kHz</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Voltage - Supply</NAME>
+				<DEFAULT>4.5 V ~ 5.5 V</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Operating Temperature</NAME>
+				<DEFAULT>-40 ~ 85 C</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Type</NAME>
+				<DEFAULT>Hall effect linear current sensor</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Manufacturer</NAME>
+				<DEFAULT>Allegro</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Manufacturer Part Number</NAME>
+				<DEFAULT>ACS712</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Digi-Key Part Number</NAME>
+				<DEFAULT>620-1189-1-ND</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Min Quantity</NAME>
+				<DEFAULT>1</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Price per min</NAME>
+				<DEFAULT>$4.82</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<REF_POINT power='0' part='0' pos='84.00000,48.00000'/>
+			<TinyCAD>
+				<RECTANGLE a='52.00000,26.00000' b='78.00000,48.00000' style='2' fill='0'/>
+				<PIN pos='46.00000,32.00000' which='0' elec='0' direction='3' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>IP+</PIN>
+				<PIN pos='46.00000,36.00000' which='0' elec='0' direction='3' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>IP+</PIN>
+				<PIN pos='46.00000,40.00000' which='0' elec='0' direction='3' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>IP-</PIN>
+				<PIN pos='46.00000,44.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>IP-</PIN>
+				<PIN pos='84.00000,32.00000' which='0' elec='0' direction='2' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>Vcc</PIN>
+				<PIN pos='84.00000,36.00000' which='0' elec='0' direction='2' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>VIOUT</PIN>
+				<PIN pos='84.00000,40.00000' which='0' elec='0' direction='2' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>FILTER</PIN>
+				<PIN pos='84.00000,44.00000' which='0' elec='0' direction='2' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>GND</PIN>
+				<TEXT pos='60.00000,32.00000' direction='3' font='3' color='000000'>ACS712</TEXT>
+			</TinyCAD>
+		</SYMBOLDEF>
+		<SYMBOLDEF id='11'>
+			<NAME type='0'>CONN_2P_M_100mil</NAME>
+			<REF type='0'>J?</REF>
+			<DESCRIPTION>Connector, M, 0.1&quot; Header, 2 pin</DESCRIPTION>
+			<PPP>1</PPP>
+			<FIELD>
+				<NAME>$$SPICE_PROLOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>$$SPICE_EPILOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Package</NAME>
+				<DEFAULT>2SIP100</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<REF_POINT power='0' part='0' pos='110.00000,62.00000'/>
+			<TinyCAD>
+				<PIN pos='98.00000,60.00000' which='0' elec='0' direction='3' part='0' number='1' show='3' length='10' number_pos='0' centre_name='0'></PIN>
+				<PIN pos='109.00000,60.00000' which='0' elec='0' direction='2' part='0' number='2' show='3' length='10' number_pos='0' centre_name='0'></PIN>
+				<RECTANGLE a='100.00000,58.00000' b='107.00000,62.00000' style='2' fill='0'/>
+				<ELLIPSE a='104.00000,59.00000' b='106.00000,61.00000' style='2' fill='0'/>
+				<ELLIPSE a='101.00000,59.00000' b='103.00000,61.00000' style='2' fill='0'/>
+			</TinyCAD>
+		</SYMBOLDEF>
 		<OPTIONS>
 			<GRID>0</GRID>
 			<UNITS>0</UNITS>
@@ -1583,7 +1726,7 @@ download the executable.-->
 			<COLOR_NOTETEXT_TEXT>FF0000</COLOR_NOTETEXT_TEXT>
 		</OPTIONS>
 		<SYMBOL id='2' pos='174.00000,58.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='U2' show='1' pos='1.00000,-11.60000'/>
+			<FIELD type='0' description='Ref' value='U1' show='1' pos='1.00000,-11.60000'/>
 			<FIELD type='0' description='Name' value='VREG' show='1' pos='1.00000,-14.00000'/>
 			<FIELD type='3' description='Package' value='TO-220' show='0' pos='1.00000,-9.20000'/>
 		</SYMBOL>
@@ -1671,6 +1814,67 @@ download the executable.-->
 		<WIRE a='188.00000,58.00000' b='188.00000,56.00000'/>
 		<JUNCTION pos='176.00000,58.00000'/>
 		<WIRE a='176.00000,58.00000' b='176.00000,56.00000'/>
+		<LABEL pos='88.00000,72.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='108.00000,44.00000' direction='3' font='4' color='208000' style='0'>5V_reg</LABEL>
+		<SYMBOL id='10' pos='88.00000,76.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='U2' show='1' pos='-21.00000,-23.60000'/>
+			<FIELD type='0' description='Name' value='ACS712' show='1' pos='-23.00000,-26.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='8_SOIC' show='0' pos='1.00000,-15.20000'/>
+			<FIELD type='1' description='Frequency' value='80kHz' show='0' pos='1.00000,-12.80000'/>
+			<FIELD type='1' description='Voltage - Supply' value='4.5 V ~ 5.5 V' show='0' pos='1.00000,-10.40000'/>
+			<FIELD type='1' description='Operating Temperature' value='-40 ~ 85 C' show='0' pos='1.00000,-8.00000'/>
+			<FIELD type='1' description='Type' value='Hall effect linear current sensor' show='0' pos='1.00000,-5.60000'/>
+			<FIELD type='1' description='Manufacturer' value='Allegro' show='0' pos='1.00000,-3.20000'/>
+			<FIELD type='1' description='Manufacturer Part Number' value='ACS712' show='0' pos='1.00000,-0.80000'/>
+			<FIELD type='1' description='Digi-Key Part Number' value='620-1189-1-ND' show='0' pos='1.00000,1.60000'/>
+			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,4.00000'/>
+			<FIELD type='1' description='Price per min' value='$4.82' show='0' pos='1.00000,6.40000'/>
+		</SYMBOL>
+		<SYMBOL id='11' pos='42.00000,68.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='J?' show='1' pos='-9.00000,-5.60000'/>
+			<FIELD type='0' description='Name' value='CONN_2P_M_100mil' show='1' pos='-17.00000,4.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='2SIP100' show='0' pos='1.00000,2.80000'/>
+		</SYMBOL>
+		<WIRE a='50.00000,62.00000' b='50.00000,64.00000'/>
+		<WIRE a='50.00000,70.00000' b='50.00000,72.00000'/>
+		<JUNCTION pos='50.00000,70.00000'/>
+		<WIRE a='50.00000,70.00000' b='46.00000,70.00000'/>
+		<WIRE a='50.00000,68.00000' b='50.00000,70.00000'/>
+		<WIRE a='46.00000,70.00000' b='46.00000,66.00000'/>
+		<WIRE a='46.00000,66.00000' b='41.00000,66.00000'/>
+		<WIRE a='28.00000,58.00000' b='46.00000,58.00000'/>
+		<WIRE a='46.00000,58.00000' b='46.00000,62.00000'/>
+		<WIRE a='46.00000,62.00000' b='50.00000,62.00000'/>
+		<JUNCTION pos='50.00000,62.00000'/>
+		<WIRE a='50.00000,60.00000' b='50.00000,62.00000'/>
+		<WIRE a='30.00000,66.00000' b='28.00000,66.00000'/>
+		<WIRE a='28.00000,66.00000' b='28.00000,58.00000'/>
+		<SYMBOL id='7' pos='100.00000,52.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='1' description='Ref' value='C1' show='1' pos='1.00000,-5.60000'/>
+			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='0' pos='1.00000,-8.00000'/>
+			<FIELD type='1' description='Package' value='CAP-22UF' show='0' pos='1.00000,-3.20000'/>
+			<FIELD type='1' description='Value' value='22uF' show='1' pos='1.00000,-0.80000'/>
+			<FIELD type='1' description='Tol.' value='..' show='0' pos='1.00000,1.60000'/>
+			<FIELD type='1' description='V_Max' value='..' show='0' pos='1.00000,4.00000'/>
+			<FIELD type='1' description='ESR' value='..' show='0' pos='1.00000,6.40000'/>
+			<FIELD type='1' description='Material' value='..' show='0' pos='1.00000,8.80000'/>
+			<FIELD type='1' description='Manufacturer' value='..' show='0' pos='1.00000,11.20000'/>
+			<FIELD type='1' description='Manufacturer Part' value='..' show='0' pos='1.00000,13.60000'/>
+			<FIELD type='1' description='Digi-Key Part' value='..' show='0' pos='1.00000,16.00000'/>
+			<FIELD type='1' description='Newark Part' value='..' show='0' pos='1.00000,18.40000'/>
+			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,20.80000'/>
+			<FIELD type='1' description='Cost' value='..' show='0' pos='1.00000,23.20000'/>
+		</SYMBOL>
+		<LABEL pos='98.00000,56.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
+		<WIRE a='98.00000,56.00000' b='98.00000,52.00000'/>
+		<WIRE a='108.00000,44.00000' b='98.00000,44.00000'/>
+		<WIRE a='98.00000,44.00000' b='88.00000,44.00000'/>
+		<WIRE a='88.00000,44.00000' b='88.00000,60.00000'/>
+		<JUNCTION pos='98.00000,44.00000'/>
 	</TinyCAD>
 	<TinyCAD>
 		<NAME>Headers</NAME>
