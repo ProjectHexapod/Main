@@ -1,0 +1,79 @@
+name: "2X4HDR-100mil_24AWG"
+author: "Spark"
+  units: MIL
+  sel_rect: -137.5 -37.5 37.5 337.5
+  ref_text: 50 60 70 0 7
+  value_text: 50 60 0 0 7
+  centroid: 0 0 50 0
+  n_pins: 8
+    pin: "1" 39 0 0 0
+      top_pad: 2 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 2 55 25 25 0
+    pin: "3" 39 0 100 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+    pin: "5" 39 0 200 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+    pin: "7" 39 0 300 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+    pin: "2" 39 -100 0 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+    pin: "4" 39 -100 100 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+    pin: "6" 39 -100 200 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+    pin: "8" 39 -100 300 0
+      top_pad: 1 55 25 25 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 25 25 0
+
+name: "1X3HDR-100mil_24AWG"
+author: "Spark"
+units: MIL
+sel_rect: -37.5 -37.5 37.5 237.5
+ref_text: 50 60 70 0 7
+value_text: 50 60 0 0 7
+centroid: 0 0 50 0
+n_pins: 3
+pin: "1" 39 0 0 0
+top_pad: 2 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 55 25 25 0
+pin: "2" 39 0 100 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "3" 39 0 200 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+
+name: "1X2HDR-100mil_24AWG"
+author: "Spark"
+units: MIL
+sel_rect: -37.5 -37.5 37.5 137.5
+ref_text: 50 60 70 0 7
+value_text: 50 60 0 0 7
+centroid: 0 0 50 0
+n_pins: 2
+pin: "1" 39 0 0 0
+top_pad: 2 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 55 25 25 0
+pin: "2" 39 0 100 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+
