@@ -4,7 +4,7 @@ version: 1.359
 file_version: 1.344
 project_name: "Cape_of_Stomping"
 full_library_folder: "c:\program files (x86)\freepcb\lib"
-CAM_folder: ""
+CAM_folder: "C:\Users\Steve\Documents\GitHub\Main\electronics\Cape_of_Stomping\CAM"
 ses_file_path: ""
 netlist_file_path: "C:\Users\Steve\Documents\TinyCAD_schematics\cape_of_stomping.net"
 SMT_connect_copper: "1"
@@ -152,7 +152,7 @@ annular_ring_for_pins: 177800
 annular_ring_for_vias: 127000
 shrink_paste_mask: 0
 cam_flags: 4097
-cam_layers: 15732735
+cam_layers: 7340095
 cam_drill_file: 1
 cam_units: 2
 cam_n_x: 1
