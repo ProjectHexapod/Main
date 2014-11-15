@@ -1,43 +1,103 @@
+name: "ETH_NO_LED"
+author: "Spark"
+description: "Amphenol RJHSE-5080"
+  units: MIL
+  sel_rect: -5 295 675 915
+  ref_text: 100 180 140 0 10
+  value_text: 100 100 0 0 10
+  centroid: 0 0 0 0
+  outline_polyline: 10 10 900
+    next_corner: 660 900 0
+    next_corner: 660 310 0
+    next_corner: 10 310 0
+    close_polyline: 0
+  outline_polyline: 10 90 900
+    next_corner: 90 800 0
+    next_corner: 580 800 0
+    next_corner: 580 900 0
+    close_polyline: 0
+  n_pins: 10
+    pin: "1" 35 200 600 0
+      top_pad: 2 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 2 55 0 0 0
+    pin: "3" 35 280 600 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "5" 35 360 600 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "7" 35 440 600 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "2" 35 240 530 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "4" 35 320 530 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "6" 35 400 530 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "8" 35 480 530 0
+      top_pad: 1 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 55 0 0 0
+    pin: "9" 128 90 700 0
+      top_pad: 0 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 0 55 0 0 0
+    pin: "10" 128 580 700 0
+      top_pad: 0 55 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 0 55 0 0 0
+
 name: "2X4HDR-100mil_24AWG"
 author: "Spark"
-  units: MIL
-  sel_rect: -137.5 -37.5 37.5 337.5
-  ref_text: 50 60 70 0 7
-  value_text: 50 60 0 0 7
-  centroid: 0 0 50 0
-  n_pins: 8
-    pin: "1" 39 0 0 0
-      top_pad: 2 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 55 25 25 0
-    pin: "3" 39 0 100 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
-    pin: "5" 39 0 200 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
-    pin: "7" 39 0 300 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
-    pin: "2" 39 -100 0 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
-    pin: "4" 39 -100 100 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
-    pin: "6" 39 -100 200 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
-    pin: "8" 39 -100 300 0
-      top_pad: 1 55 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 55 25 25 0
+units: MIL
+sel_rect: -137.5 -37.5 37.5 337.5
+ref_text: 50 60 70 0 7
+value_text: 50 60 0 0 7
+centroid: 0 0 50 0
+n_pins: 8
+pin: "1" 39 0 0 0
+top_pad: 2 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 55 25 25 0
+pin: "3" 39 0 100 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "5" 39 0 200 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "7" 39 0 300 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "2" 39 -100 0 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "4" 39 -100 100 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "6" 39 -100 200 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
+pin: "8" 39 -100 300 0
+top_pad: 1 55 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 55 25 25 0
 
 name: "1X3HDR-100mil_24AWG"
 author: "Spark"
