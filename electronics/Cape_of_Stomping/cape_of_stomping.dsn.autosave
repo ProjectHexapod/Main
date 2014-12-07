@@ -3282,6 +3282,16 @@ download the executable.-->
 			<DATE></DATE>
 			<GRID spacing='100.00000' snap='1'/>
 		</DETAILS>
+		<FONT id='0'>
+			<HEIGHT>-13</HEIGHT>
+			<WIDTH>6</WIDTH>
+			<WEIGHT>400</WEIGHT>
+			<ITALIC>0</ITALIC>
+			<UNDERLINE>0</UNDERLINE>
+			<STRIKEOUT>0</STRIKEOUT>
+			<CHARSET>0</CHARSET>
+			<FACENAME>Arial</FACENAME>
+		</FONT>
 		<FONT id='1'>
 			<HEIGHT>-10</HEIGHT>
 			<WIDTH>0</WIDTH>
@@ -3504,13 +3514,13 @@ download the executable.-->
 		<LABEL pos='210.00000,38.00000' direction='3' font='3' color='208000' style='0'>Analog2</LABEL>
 		<LABEL pos='210.00000,54.00000' direction='3' font='3' color='208000' style='0'>1.8V_Power</LABEL>
 		<LABEL pos='210.00000,34.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='210.00000,84.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
-		<LABEL pos='210.00000,72.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
-		<LABEL pos='210.00000,80.00000' direction='3' font='3' color='208000' style='0'>5V_Power</LABEL>
-		<LABEL pos='210.00000,88.00000' direction='3' font='3' color='208000' style='0'>SPI_SCLK</LABEL>
-		<LABEL pos='210.00000,96.00000' direction='3' font='3' color='208000' style='0'>SPI_D1</LABEL>
-		<LABEL pos='210.00000,100.00000' direction='3' font='3' color='208000' style='0'>SPI_D0</LABEL>
-		<LABEL pos='210.00000,92.00000' direction='3' font='3' color='208000' style='0'>SPI_CSO</LABEL>
+		<LABEL pos='210.00000,90.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='210.00000,78.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
+		<LABEL pos='210.00000,86.00000' direction='3' font='3' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='210.00000,94.00000' direction='3' font='3' color='208000' style='0'>SPI_SCLK</LABEL>
+		<LABEL pos='210.00000,102.00000' direction='3' font='3' color='208000' style='0'>SPI_D1</LABEL>
+		<LABEL pos='210.00000,106.00000' direction='3' font='3' color='208000' style='0'>SPI_D0</LABEL>
+		<LABEL pos='210.00000,98.00000' direction='3' font='3' color='208000' style='0'>SPI_CSO</LABEL>
 		<LABEL pos='134.00000,52.00000' direction='3' font='3' color='208000' style='0'>Red_LED</LABEL>
 		<LABEL pos='64.00000,24.00000' direction='2' font='3' color='208000' style='0'>3.3V_Power</LABEL>
 		<LABEL pos='82.00000,24.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
@@ -3528,10 +3538,10 @@ download the executable.-->
 		<LABEL pos='82.00000,92.00000' direction='3' font='3' color='208000' style='0'>Analog5</LABEL>
 		<LABEL pos='64.00000,96.00000' direction='2' font='3' color='208000' style='0'>Analog6</LABEL>
 		<LABEL pos='82.00000,96.00000' direction='3' font='3' color='208000' style='0'>Analog7</LABEL>
-		<LABEL pos='210.00000,76.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='210.00000,82.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='134.00000,48.00000' direction='3' font='3' color='208000' style='0'>Blue_LED</LABEL>
 		<LABEL pos='116.00000,52.00000' direction='2' font='3' color='208000' style='0'>Green_LED</LABEL>
-		<SYMBOL id='2' pos='204.00000,98.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='2' pos='204.00000,104.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J9' show='1' pos='-13.00000,-25.60000'/>
 			<FIELD type='0' description='Name' value='Ethernet' show='1' pos='-15.00000,-28.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -3541,26 +3551,26 @@ download the executable.-->
 			<FIELD type='1' description='Mfg PN' value='RJHSE-5080' show='0' pos='1.00000,-12.40000'/>
 			<FIELD type='1' description='Digikey PN' value='RJHSE-5080-ND' show='0' pos='1.00000,-10.00000'/>
 		</SYMBOL>
-		<WIRE a='210.00000,84.00000' b='204.00000,84.00000'/>
-		<WIRE a='204.00000,82.00000' b='208.00000,82.00000'/>
-		<WIRE a='208.00000,82.00000' b='208.00000,80.00000'/>
-		<WIRE a='208.00000,80.00000' b='210.00000,80.00000'/>
-		<WIRE a='204.00000,78.00000' b='208.00000,78.00000'/>
-		<WIRE a='208.00000,78.00000' b='208.00000,76.00000'/>
-		<WIRE a='208.00000,76.00000' b='210.00000,76.00000'/>
-		<WIRE a='204.00000,76.00000' b='206.00000,76.00000'/>
-		<WIRE a='206.00000,76.00000' b='206.00000,72.00000'/>
-		<WIRE a='206.00000,72.00000' b='210.00000,72.00000'/>
-		<WIRE a='204.00000,88.00000' b='210.00000,88.00000'/>
-		<WIRE a='204.00000,90.00000' b='208.00000,90.00000'/>
-		<WIRE a='208.00000,90.00000' b='208.00000,92.00000'/>
-		<WIRE a='208.00000,92.00000' b='210.00000,92.00000'/>
-		<WIRE a='204.00000,94.00000' b='208.00000,94.00000'/>
-		<WIRE a='208.00000,94.00000' b='208.00000,96.00000'/>
-		<WIRE a='208.00000,96.00000' b='210.00000,96.00000'/>
-		<WIRE a='204.00000,96.00000' b='206.00000,96.00000'/>
-		<WIRE a='206.00000,96.00000' b='206.00000,100.00000'/>
-		<WIRE a='206.00000,100.00000' b='210.00000,100.00000'/>
+		<WIRE a='210.00000,90.00000' b='204.00000,90.00000'/>
+		<WIRE a='204.00000,88.00000' b='208.00000,88.00000'/>
+		<WIRE a='208.00000,88.00000' b='208.00000,86.00000'/>
+		<WIRE a='208.00000,86.00000' b='210.00000,86.00000'/>
+		<WIRE a='204.00000,84.00000' b='208.00000,84.00000'/>
+		<WIRE a='208.00000,84.00000' b='208.00000,82.00000'/>
+		<WIRE a='208.00000,82.00000' b='210.00000,82.00000'/>
+		<WIRE a='204.00000,82.00000' b='206.00000,82.00000'/>
+		<WIRE a='206.00000,82.00000' b='206.00000,78.00000'/>
+		<WIRE a='206.00000,78.00000' b='210.00000,78.00000'/>
+		<WIRE a='204.00000,94.00000' b='210.00000,94.00000'/>
+		<WIRE a='204.00000,96.00000' b='208.00000,96.00000'/>
+		<WIRE a='208.00000,96.00000' b='208.00000,98.00000'/>
+		<WIRE a='208.00000,98.00000' b='210.00000,98.00000'/>
+		<WIRE a='204.00000,100.00000' b='208.00000,100.00000'/>
+		<WIRE a='208.00000,100.00000' b='208.00000,102.00000'/>
+		<WIRE a='208.00000,102.00000' b='210.00000,102.00000'/>
+		<WIRE a='204.00000,102.00000' b='206.00000,102.00000'/>
+		<WIRE a='206.00000,102.00000' b='206.00000,106.00000'/>
+		<WIRE a='206.00000,106.00000' b='210.00000,106.00000'/>
 		<SYMBOL id='2' pos='204.00000,56.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J8' show='1' pos='-13.00000,-25.60000'/>
 			<FIELD type='0' description='Name' value='Ethernet' show='1' pos='-15.00000,-28.00000'/>
@@ -3594,5 +3604,7 @@ download the executable.-->
 		<LABEL pos='210.00000,58.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
 		<LABEL pos='210.00000,50.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
 		<LABEL pos='210.00000,42.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
+		<TEXT pos='188.00000,22.00000' direction='3' font='0' color='000000'>String Pots</TEXT>
+		<TEXT pos='190.00000,72.00000' direction='3' font='0' color='000000'>SPI Bus</TEXT>
 	</TinyCAD>
 </TinyCADSheets>
