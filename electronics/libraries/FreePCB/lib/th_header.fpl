@@ -19,19 +19,19 @@ name: "1X2HDR-100"
 author: "Ivex"
 source: "PRINTED CIRCUIT DESIGN METHODS PAGE 411"
   units: MIL
-  sel_rect: -35 -35 35 135
+  sel_rect: -45 -45 45 145
   ref_text: 50 0 160 0 7
   value_text: 50 0 60 0 7
   centroid: 0 0 50 0
   n_pins: 2
-    pin: "1" 28 0 0 0
-      top_pad: 2 50 25 25 0
+    pin: "1" 40 0 0 0
+      top_pad: 2 70 25 25 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 50 25 25 0
-    pin: "2" 28 0 100 0
-      top_pad: 1 50 25 25 0
+      bottom_pad: 2 70 25 25 0
+    pin: "2" 40 0 100 0
+      top_pad: 1 70 25 25 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 50 25 25 0
+      bottom_pad: 1 70 25 25 0
 
 name: "2X2HDR-100"
 author: "Ivex"

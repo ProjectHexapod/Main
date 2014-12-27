@@ -388,52 +388,6 @@ download the executable.-->
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='6'>
-			<NAME type='0'>AS5048A Magnetic Rotary Encoder</NAME>
-			<REF type='0'>U?</REF>
-			<DESCRIPTION>AS5048A Magnetic Encoder</DESCRIPTION>
-			<PPP>1</PPP>
-			<FIELD>
-				<NAME>$$SPICE_PROLOG_PRIORITY</NAME>
-				<DEFAULT>5</DEFAULT>
-				<FT>000002</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>$$SPICE_EPILOG_PRIORITY</NAME>
-				<DEFAULT>5</DEFAULT>
-				<FT>000002</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Package</NAME>
-				<DEFAULT>TSSOP14</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<REF_POINT power='0' part='0' pos='68.00000,64.00000'/>
-			<TinyCAD>
-				<RECTANGLE a='44.00000,32.00000' b='60.00000,64.00000' style='2' fill='0'/>
-				<PIN pos='44.00000,36.00000' which='0' elec='0' direction='2' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>CSn</PIN>
-				<PIN pos='44.00000,40.00000' which='0' elec='0' direction='2' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>CLK</PIN>
-				<PIN pos='44.00000,44.00000' which='0' elec='0' direction='2' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>MISO</PIN>
-				<PIN pos='44.00000,48.00000' which='0' elec='0' direction='2' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>MOSI</PIN>
-				<PIN pos='44.00000,52.00000' which='0' elec='0' direction='2' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
-				<PIN pos='44.00000,56.00000' which='0' elec='0' direction='2' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
-				<PIN pos='44.00000,60.00000' which='0' elec='0' direction='2' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
-				<PIN pos='60.00000,60.00000' which='0' elec='0' direction='3' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
-				<PIN pos='60.00000,56.00000' which='0' elec='0' direction='3' part='0' number='9' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
-				<PIN pos='60.00000,52.00000' which='0' elec='0' direction='3' part='0' number='10' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
-				<PIN pos='60.00000,48.00000' which='0' elec='0' direction='3' part='0' number='11' show='3' length='30' number_pos='0' centre_name='0'>VDD5V</PIN>
-				<PIN pos='60.00000,44.00000' which='0' elec='0' direction='3' part='0' number='12' show='3' length='30' number_pos='0' centre_name='0'>VDD3V</PIN>
-				<PIN pos='60.00000,40.00000' which='0' elec='0' direction='3' part='0' number='13' show='3' length='30' number_pos='0' centre_name='0'>GND</PIN>
-				<PIN pos='60.00000,36.00000' which='0' elec='0' direction='3' part='0' number='14' show='3' length='30' number_pos='0' centre_name='0'>PWM</PIN>
-				<ELLIPSE a='48.00000,44.00000' b='56.00000,52.00000' style='2' fill='0'/>
-			</TinyCAD>
-		</SYMBOLDEF>
 		<SYMBOLDEF id='7'>
 			<NAME type='0'>CAP_0603_10uF</NAME>
 			<REF type='0'>C?</REF>
@@ -619,6 +573,52 @@ download the executable.-->
 				<PIN pos='78.00000,28.00000' which='0' elec='0' direction='2' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>1IN+</PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
+		<SYMBOLDEF id='10'>
+			<NAME type='0'>AS5048A Magnetic Rotary Encoder</NAME>
+			<REF type='0'>U?</REF>
+			<DESCRIPTION>AS5048A Magnetic Encoder</DESCRIPTION>
+			<PPP>1</PPP>
+			<FIELD>
+				<NAME>$$SPICE_PROLOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>$$SPICE_EPILOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Package</NAME>
+				<DEFAULT>TSSOP14</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<REF_POINT power='0' part='0' pos='66.00000,64.00000'/>
+			<TinyCAD>
+				<RECTANGLE a='44.00000,32.00000' b='60.00000,64.00000' style='2' fill='0'/>
+				<PIN pos='38.00000,36.00000' which='0' elec='0' direction='3' part='0' number='1' show='3' length='30' number_pos='0' centre_name='0'>CSn</PIN>
+				<PIN pos='38.00000,40.00000' which='0' elec='0' direction='3' part='0' number='2' show='3' length='30' number_pos='0' centre_name='0'>CLK</PIN>
+				<PIN pos='38.00000,44.00000' which='0' elec='0' direction='3' part='0' number='3' show='3' length='30' number_pos='0' centre_name='0'>MISO</PIN>
+				<PIN pos='38.00000,48.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='30' number_pos='0' centre_name='0'>MOSI</PIN>
+				<PIN pos='38.00000,52.00000' which='0' elec='0' direction='3' part='0' number='5' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
+				<PIN pos='38.00000,56.00000' which='0' elec='0' direction='3' part='0' number='6' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
+				<PIN pos='38.00000,60.00000' which='0' elec='0' direction='3' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
+				<PIN pos='66.00000,60.00000' which='0' elec='0' direction='2' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
+				<PIN pos='66.00000,56.00000' which='0' elec='0' direction='2' part='0' number='9' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
+				<PIN pos='66.00000,52.00000' which='0' elec='0' direction='2' part='0' number='10' show='3' length='30' number_pos='0' centre_name='0'>TEST</PIN>
+				<PIN pos='66.00000,48.00000' which='0' elec='0' direction='2' part='0' number='11' show='3' length='30' number_pos='0' centre_name='0'>VDD5V</PIN>
+				<PIN pos='66.00000,44.00000' which='0' elec='0' direction='2' part='0' number='12' show='3' length='30' number_pos='0' centre_name='0'>VDD3V</PIN>
+				<PIN pos='66.00000,40.00000' which='0' elec='0' direction='2' part='0' number='13' show='3' length='30' number_pos='0' centre_name='0'>GND</PIN>
+				<PIN pos='66.00000,36.00000' which='0' elec='0' direction='2' part='0' number='14' show='3' length='30' number_pos='0' centre_name='0'>PWM</PIN>
+				<ELLIPSE a='48.00000,44.00000' b='56.00000,52.00000' style='2' fill='0'/>
+			</TinyCAD>
+		</SYMBOLDEF>
 		<OPTIONS>
 			<GRID>0</GRID>
 			<UNITS>0</UNITS>
@@ -665,7 +665,7 @@ download the executable.-->
 			<FIELD type='0' description='Name' value='DS8922A Dual Differential Transceiver' show='1' pos='-31.00000,-40.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
-			<FIELD type='1' description='Package' value='SO16' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='S016' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
 		<LABEL pos='154.00000,116.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
 		<LABEL pos='154.00000,128.00000' direction='2' font='5' color='208000' style='0'>Ground</LABEL>
@@ -707,7 +707,6 @@ download the executable.-->
 		<WIRE a='204.00000,54.00000' b='188.00000,54.00000'/>
 		<WIRE a='208.00000,98.00000' b='208.00000,50.00000'/>
 		<WIRE a='208.00000,50.00000' b='188.00000,50.00000'/>
-		<WIRE a='188.00000,58.00000' b='222.00000,58.00000'/>
 		<WIRE a='226.00000,62.00000' b='230.00000,62.00000'/>
 		<WIRE a='230.00000,62.00000' b='230.00000,52.00000'/>
 		<SYMBOL id='9' pos='186.00000,132.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
@@ -715,7 +714,7 @@ download the executable.-->
 			<FIELD type='0' description='Name' value='Dual Differential Receiver' show='1' pos='-25.00000,-24.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
-			<FIELD type='1' description='Package' value='SO8' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='S08' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
 		<WIRE a='114.00000,62.00000' b='160.00000,62.00000'/>
 		<LABEL pos='152.00000,42.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
@@ -740,7 +739,6 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<WIRE a='188.00000,62.00000' b='226.00000,62.00000'/>
 		<WIRE a='222.00000,58.00000' b='222.00000,48.00000'/>
 		<WIRE a='222.00000,48.00000' b='226.00000,48.00000'/>
 		<WIRE a='226.00000,48.00000' b='234.00000,48.00000'/>
@@ -788,12 +786,12 @@ download the executable.-->
 		<WIRE a='216.00000,128.00000' b='220.00000,128.00000'/>
 		<WIRE a='220.00000,128.00000' b='220.00000,116.00000'/>
 		<WIRE a='220.00000,116.00000' b='228.00000,116.00000'/>
-		<SYMBOL id='6' pos='152.00000,106.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='10' pos='150.00000,106.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U1' show='1' pos='-17.00000,-33.60000'/>
 			<FIELD type='0' description='Name' value='AS5048A Magnetic Rotary Encoder' show='1' pos='-31.00000,-36.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
-			<FIELD type='1' description='Package' value='TSSOP14' show='0' pos='1.00000,-25.20000'/>
+			<FIELD type='1' description='Package' value='TSSOP14' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
 		<LABEL pos='114.00000,94.00000' direction='2' font='5' color='208000' style='0'>Ground</LABEL>
 		<WIRE a='114.00000,94.00000' b='122.00000,94.00000'/>
@@ -818,15 +816,12 @@ download the executable.-->
 		</SYMBOL>
 		<WIRE a='150.00000,86.00000' b='160.00000,86.00000'/>
 		<WIRE a='160.00000,86.00000' b='160.00000,85.00000'/>
-		<WIRE a='150.00000,82.00000' b='156.00000,82.00000'/>
-		<WIRE a='156.00000,82.00000' b='156.00000,80.00000'/>
 		<WIRE a='156.00000,80.00000' b='160.00000,80.00000'/>
 		<WIRE a='160.00000,78.00000' b='160.00000,80.00000'/>
 		<WIRE a='122.00000,82.00000' b='102.00000,82.00000'/>
 		<WIRE a='102.00000,82.00000' b='102.00000,120.00000'/>
 		<WIRE a='186.00000,120.00000' b='204.00000,120.00000'/>
 		<WIRE a='122.00000,78.00000' b='98.00000,78.00000'/>
-		<JUNCTION pos='226.00000,62.00000'/>
 		<JUNCTION pos='226.00000,48.00000'/>
 		<JUNCTION pos='160.00000,80.00000'/>
 		<WIRE a='102.00000,120.00000' b='160.00000,120.00000'/>
@@ -852,5 +847,10 @@ download the executable.-->
 		<JUNCTION pos='160.00000,34.00000'/>
 		<WIRE a='98.00000,124.00000' b='160.00000,124.00000'/>
 		<WIRE a='154.00000,128.00000' b='160.00000,128.00000'/>
+		<WIRE a='150.00000,82.00000' b='156.00000,82.00000'/>
+		<WIRE a='156.00000,82.00000' b='156.00000,80.00000'/>
+		<WIRE a='188.00000,58.00000' b='222.00000,58.00000'/>
+		<JUNCTION pos='226.00000,62.00000'/>
+		<WIRE a='226.00000,62.00000' b='188.00000,62.00000'/>
 	</TinyCAD>
 </TinyCADSheets>
