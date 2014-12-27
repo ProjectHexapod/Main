@@ -11,7 +11,7 @@ download the executable.-->
 			<GUIDES horiz='7' vert='5'/>
 			<TITLE>Cape of Stomping</TITLE>
 			<AUTHOR>Spark and M@</AUTHOR>
-			<REVISION>1.0</REVISION>
+			<REVISION>1.1</REVISION>
 			<DOCNUMBER></DOCNUMBER>
 			<ORGANISATION>Project Hexapod</ORGANISATION>
 			<SHEETS>1 of 3</SHEETS>
@@ -4036,15 +4036,15 @@ download the executable.-->
 		<TEXT pos='188.00000,22.00000' direction='3' font='3' color='000000'>String Pots</TEXT>
 		<TEXT pos='246.20000,126.00000' direction='3' font='3' color='000000'>SPI Bus</TEXT>
 		<SYMBOL id='3' pos='200.00000,146.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='U?' show='1' pos='1.00000,-31.60000'/>
-			<FIELD type='0' description='Name' value='DS8922A Dual Differential Transceiver' show='1' pos='1.00000,-34.00000'/>
+			<FIELD type='0' description='Ref' value='U6' show='1' pos='-17.00000,-37.60000'/>
+			<FIELD type='0' description='Name' value='DS8922A Dual Differential Transceiver' show='1' pos='-33.00000,-40.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='SO16' show='0' pos='1.00000,-29.20000'/>
 		</SYMBOL>
 		<SYMBOL id='4' pos='198.00000,172.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='U?' show='1' pos='1.00000,-15.60000'/>
-			<FIELD type='0' description='Name' value='Dual Differential Driver' show='1' pos='1.00000,-18.00000'/>
+			<FIELD type='0' description='Ref' value='U7' show='1' pos='-15.00000,6.40000'/>
+			<FIELD type='0' description='Name' value='Dual Differential Driver' show='1' pos='-23.00000,4.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='SO8' show='0' pos='1.00000,-13.20000'/>
@@ -4082,7 +4082,7 @@ download the executable.-->
 		<TEXT pos='248.00000,146.00000' direction='3' font='0' color='000000'>SCLK</TEXT>
 		<TEXT pos='248.00000,152.00000' direction='3' font='0' color='000000'>CS</TEXT>
 		<SYMBOL id='5' pos='250.00000,118.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='1' description='Ref' value='J?' show='1' pos='-6.00000,2.00000'/>
+			<FIELD type='1' description='Ref' value='J15' show='1' pos='-6.00000,2.00000'/>
 			<FIELD type='0' description='Name' value='2x1_HDR' show='1' pos='-6.00000,-6.00000'/>
 			<FIELD type='1' description='Package' value='1X2HDR-100' show='0' pos='-6.00000,4.40000'/>
 			<FIELD type='1' description='Usage' value='..' show='0' pos='-6.00000,6.80000'/>
