@@ -67,79 +67,6 @@ download the executable.-->
 			<INDEX>0</INDEX>
 			<COLOR>000000</COLOR>
 		</FILL>
-		<SYMBOLDEF id='1'>
-			<NAME type='0'>NMOS</NAME>
-			<REF type='0'>Q?</REF>
-			<DESCRIPTION>N-Channel Insulated Gate FET</DESCRIPTION>
-			<PPP>1</PPP>
-			<REF_POINT power='0' part='0' pos='62.00000,41.00000'/>
-			<TinyCAD>
-				<JUNCTION pos='58.00000,31.00000'/>
-				<PIN pos='62.00000,31.00000' which='0' elec='4' direction='2' part='0' number='2' show='0' length='30' number_pos='0' centre_name='0'>SOURCE</PIN>
-				<PIN pos='42.00000,31.00000' which='0' elec='4' direction='3' part='0' number='3' show='0' length='30' number_pos='0' centre_name='0'>DRAIN</PIN>
-				<PIN pos='56.00000,41.00000' which='0' elec='4' direction='0' part='0' number='1' show='0' length='30' number_pos='0' centre_name='0'>GATE</PIN>
-				<POLYGON pos='58.00000,29.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='0.00000,2.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='51.00000,33.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='1.00000,1.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='52.00000,33.00000' style='3' fill='0'>
-					<POINT pos='0.00000,1.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='52.00000,31.00000' style='3' fill='0'>
-					<POINT pos='0.00000,3.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='56.00000,34.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='48.00000,35.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='8.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='48.00000,34.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='8.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='47.00000,34.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='56.00000,34.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='48.00000,31.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='0.00000,3.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='56.00000,31.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='0.00000,3.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='52.00000,29.00000' style='3' fill='0'>
-					<POINT pos='0.00000,2.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='52.00000,29.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='6.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='57.00000,34.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='46.00000,34.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-			</TinyCAD>
-		</SYMBOLDEF>
 		<SYMBOLDEF id='2'>
 			<NAME type='0'>1N4148_SMT</NAME>
 			<REF type='1'>D?</REF>
@@ -336,7 +263,7 @@ download the executable.-->
 				<PIN pos='28.00000,29.00000' which='0' elec='4' direction='3' part='0' number='1' show='2' length='15' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='5'>
+		<SYMBOLDEF id='4'>
 			<NAME type='0'>R_10K_1206</NAME>
 			<REF type='0'>R?</REF>
 			<DESCRIPTION>RES 10K OHM 1/4W 5% 1206 SMD</DESCRIPTION>
@@ -446,7 +373,7 @@ download the executable.-->
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='6'>
+		<SYMBOLDEF id='5'>
 			<NAME type='0'>Ethernet</NAME>
 			<REF type='0'>J?</REF>
 			<DESCRIPTION>Ethernet</DESCRIPTION>
@@ -506,6 +433,100 @@ download the executable.-->
 				<PIN pos='70.00000,60.00000' which='0' elec='0' direction='2' part='0' number='8' show='2' length='30' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
+		<SYMBOLDEF id='6'>
+			<NAME type='0'>NMOS</NAME>
+			<REF type='0'>Q?</REF>
+			<DESCRIPTION>N-Channel Insulated Gate FET</DESCRIPTION>
+			<PPP>1</PPP>
+			<FIELD>
+				<NAME>$$SPICE_PROLOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>$$SPICE_EPILOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Package</NAME>
+				<DEFAULT>package name for PCB layout</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<REF_POINT power='0' part='0' pos='62.00000,41.00000'/>
+			<TinyCAD>
+				<JUNCTION pos='58.00000,31.00000'/>
+				<PIN pos='62.00000,31.00000' which='0' elec='4' direction='2' part='0' number='3' show='0' length='30' number_pos='0' centre_name='0'>SOURCE</PIN>
+				<PIN pos='42.00000,31.00000' which='0' elec='4' direction='3' part='0' number='2' show='0' length='30' number_pos='0' centre_name='0'>DRAIN</PIN>
+				<PIN pos='56.00000,41.00000' which='0' elec='4' direction='0' part='0' number='1' show='0' length='30' number_pos='0' centre_name='0'>GATE</PIN>
+				<POLYGON pos='58.00000,29.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='0.00000,2.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='51.00000,33.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='1.00000,1.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='52.00000,33.00000' style='3' fill='0'>
+					<POINT pos='0.00000,1.00000' arc='0'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='52.00000,31.00000' style='3' fill='0'>
+					<POINT pos='0.00000,3.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='56.00000,34.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='48.00000,35.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='8.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='48.00000,34.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='8.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='47.00000,34.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='56.00000,34.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='48.00000,31.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='0.00000,3.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='56.00000,31.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='0.00000,3.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='52.00000,29.00000' style='3' fill='0'>
+					<POINT pos='0.00000,2.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='52.00000,29.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='6.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='57.00000,34.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='46.00000,34.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+			</TinyCAD>
+		</SYMBOLDEF>
 		<OPTIONS>
 			<GRID>0</GRID>
 			<UNITS>0</UNITS>
@@ -522,11 +543,6 @@ download the executable.-->
 			<COLOR_NOTETEXT_LINE>FF0000</COLOR_NOTETEXT_LINE>
 			<COLOR_NOTETEXT_TEXT>FF0000</COLOR_NOTETEXT_TEXT>
 		</OPTIONS>
-		<SYMBOL id='1' pos='72.00000,80.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='Q1' show='1' pos='2.00000,0.00000'/>
-			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
-			<FIELD type='3' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
-		</SYMBOL>
 		<SYMBOL id='2' pos='72.00000,54.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='D1' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='1N4148_SMT' show='1' pos='1.00000,-8.00000'/>
@@ -568,11 +584,6 @@ download the executable.-->
 		<WIRE a='88.00000,56.00000' b='70.00000,56.00000'/>
 		<WIRE a='70.00000,60.00000' b='70.00000,56.00000'/>
 		<LABEL pos='70.00000,84.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
-		<SYMBOL id='1' pos='156.00000,82.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='Q3' show='1' pos='4.00000,-8.00000'/>
-			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
-			<FIELD type='3' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
-		</SYMBOL>
 		<SYMBOL id='2' pos='156.00000,56.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='D3' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='1N4148_SMT' show='1' pos='1.00000,-8.00000'/>
@@ -617,11 +628,6 @@ download the executable.-->
 		<LABEL pos='154.00000,90.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<JUNCTION pos='70.00000,40.00000'/>
 		<JUNCTION pos='70.00000,56.00000'/>
-		<SYMBOL id='1' pos='74.00000,154.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='Q2' show='1' pos='-12.00000,2.00000'/>
-			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
-			<FIELD type='3' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
-		</SYMBOL>
 		<SYMBOL id='2' pos='74.00000,128.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='D2' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='1N4148_SMT' show='1' pos='1.00000,-8.00000'/>
@@ -662,11 +668,6 @@ download the executable.-->
 		<WIRE a='72.00000,134.00000' b='72.00000,130.00000'/>
 		<WIRE a='72.00000,154.00000' b='72.00000,162.00000'/>
 		<LABEL pos='72.00000,162.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
-		<SYMBOL id='1' pos='156.00000,156.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='Q4' show='1' pos='-12.00000,2.00000'/>
-			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
-			<FIELD type='3' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
-		</SYMBOL>
 		<SYMBOL id='2' pos='156.00000,130.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='D4' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='1N4148_SMT' show='1' pos='1.00000,-8.00000'/>
@@ -713,11 +714,6 @@ download the executable.-->
 		<LABEL pos='32.00000,148.00000' direction='2' font='3' color='208000' style='0'>Solenoid2</LABEL>
 		<LABEL pos='118.00000,76.00000' direction='2' font='3' color='208000' style='0'>Solenoid3</LABEL>
 		<LABEL pos='118.00000,150.00000' direction='2' font='3' color='208000' style='0'>Solenoid4</LABEL>
-		<SYMBOL id='1' pos='236.00000,146.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='Q6' show='1' pos='-12.00000,2.00000'/>
-			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
-			<FIELD type='3' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
-		</SYMBOL>
 		<SYMBOL id='2' pos='236.00000,120.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='D6' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='1N4148_SMT' show='1' pos='1.00000,-8.00000'/>
@@ -760,11 +756,6 @@ download the executable.-->
 		<WIRE a='234.00000,126.00000' b='234.00000,122.00000'/>
 		<WIRE a='234.00000,146.00000' b='234.00000,154.00000'/>
 		<LABEL pos='234.00000,154.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
-		<SYMBOL id='1' pos='236.00000,80.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='Q5' show='1' pos='2.00000,0.00000'/>
-			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
-			<FIELD type='3' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
-		</SYMBOL>
 		<SYMBOL id='2' pos='236.00000,54.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='D5' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='1N4148_SMT' show='1' pos='1.00000,-8.00000'/>
@@ -815,7 +806,7 @@ download the executable.-->
 		<JUNCTION pos='234.00000,56.00000'/>
 		<JUNCTION pos='234.00000,106.00000'/>
 		<JUNCTION pos='234.00000,122.00000'/>
-		<SYMBOL id='5' pos='46.00000,92.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='46.00000,92.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R1' show='1' pos='-11.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-17.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -833,7 +824,7 @@ download the executable.-->
 		<WIRE a='32.00000,74.00000' b='44.00000,74.00000'/>
 		<LABEL pos='28.00000,106.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
 		<JUNCTION pos='44.00000,74.00000'/>
-		<SYMBOL id='5' pos='46.00000,124.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='46.00000,124.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R2' show='1' pos='-11.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-11.00000,-4.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -848,7 +839,7 @@ download the executable.-->
 		</SYMBOL>
 		<WIRE a='44.00000,124.00000' b='44.00000,148.00000'/>
 		<WIRE a='44.00000,148.00000' b='32.00000,148.00000'/>
-		<SYMBOL id='5' pos='132.00000,94.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='132.00000,94.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R3' show='1' pos='-11.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-17.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -863,7 +854,7 @@ download the executable.-->
 		</SYMBOL>
 		<WIRE a='130.00000,80.00000' b='130.00000,76.00000'/>
 		<WIRE a='118.00000,76.00000' b='130.00000,76.00000'/>
-		<SYMBOL id='5' pos='132.00000,134.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='132.00000,134.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R4' show='1' pos='-11.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-17.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -881,7 +872,7 @@ download the executable.-->
 		<WIRE a='130.00000,134.00000' b='130.00000,150.00000'/>
 		<WIRE a='130.00000,150.00000' b='144.00000,150.00000'/>
 		<WIRE a='130.00000,150.00000' b='118.00000,150.00000'/>
-		<SYMBOL id='5' pos='214.00000,92.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='214.00000,92.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R5' show='1' pos='-11.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-17.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -896,7 +887,7 @@ download the executable.-->
 		</SYMBOL>
 		<WIRE a='212.00000,78.00000' b='212.00000,74.00000'/>
 		<WIRE a='200.00000,74.00000' b='212.00000,74.00000'/>
-		<SYMBOL id='5' pos='214.00000,124.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='214.00000,124.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R6' show='1' pos='-11.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-17.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -915,7 +906,7 @@ download the executable.-->
 		<WIRE a='212.00000,140.00000' b='212.00000,124.00000'/>
 		<JUNCTION pos='212.00000,140.00000'/>
 		<WIRE a='212.00000,140.00000' b='224.00000,140.00000'/>
-		<SYMBOL id='6' pos='22.00000,108.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='5' pos='22.00000,108.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J7' show='1' pos='1.00000,-19.60000'/>
 			<FIELD type='0' description='Name' value='Ethernet' show='1' pos='1.00000,-22.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -965,6 +956,48 @@ download the executable.-->
 		<WIRE a='28.00000,110.00000' b='24.00000,110.00000'/>
 		<WIRE a='24.00000,110.00000' b='24.00000,106.00000'/>
 		<WIRE a='24.00000,106.00000' b='22.00000,106.00000'/>
+		<SYMBOL id='6' pos='72.00000,80.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='Q1' show='1' pos='-12.00000,2.00000'/>
+			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
+		</SYMBOL>
+		<SYMBOL id='6' pos='74.00000,154.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='Q2' show='1' pos='-12.00000,2.00000'/>
+			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
+		</SYMBOL>
+		<SYMBOL id='6' pos='156.00000,82.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='Q3' show='1' pos='-12.00000,2.00000'/>
+			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
+		</SYMBOL>
+		<SYMBOL id='6' pos='156.00000,156.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='Q4' show='1' pos='-12.00000,2.00000'/>
+			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
+		</SYMBOL>
+		<SYMBOL id='6' pos='236.00000,80.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='Q5' show='1' pos='-12.00000,2.00000'/>
+			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
+		</SYMBOL>
+		<SYMBOL id='6' pos='236.00000,146.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='Q6' show='1' pos='-12.00000,2.00000'/>
+			<FIELD type='0' description='Name' value='NMOS' show='1' pos='-12.00000,-20.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='TO-220' show='0' pos='-12.00000,4.40000'/>
+		</SYMBOL>
 	</TinyCAD>
 	<TinyCAD>
 		<NAME>Power</NAME>
@@ -1592,7 +1625,7 @@ download the executable.-->
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='7'>
+		<SYMBOLDEF id='6'>
 			<NAME type='0'>CONN_2P_M_100mil</NAME>
 			<REF type='0'>J?</REF>
 			<DESCRIPTION>Connector, M, 0.1&quot; Header, 2 pin</DESCRIPTION>
@@ -1625,6 +1658,121 @@ download the executable.-->
 				<RECTANGLE a='100.00000,58.00000' b='107.00000,62.00000' style='3' fill='0'/>
 				<ELLIPSE a='104.00000,59.00000' b='106.00000,61.00000' style='3' fill='0'/>
 				<ELLIPSE a='101.00000,59.00000' b='103.00000,61.00000' style='3' fill='0'/>
+			</TinyCAD>
+		</SYMBOLDEF>
+		<SYMBOLDEF id='7'>
+			<NAME type='0'>C_ELECTROLYTIC</NAME>
+			<REF type='0'>C?</REF>
+			<DESCRIPTION>Electrolytic Capacitor</DESCRIPTION>
+			<PPP>1</PPP>
+			<FIELD>
+				<NAME>Package</NAME>
+				<DEFAULT></DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Value</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Tol.</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>V_Max</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>ESR</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Material</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Manufacturer</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Manufacturer Part</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Digi-Key Part</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Newark Part</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Mouser Part</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Cost</NAME>
+				<DEFAULT>..</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<REF_POINT power='0' part='0' pos='42.00000,47.00000'/>
+			<TinyCAD>
+				<PIN pos='40.00000,47.00000' which='0' elec='4' direction='0' part='0' number='2' show='0' length='15' number_pos='0' centre_name='0'></PIN>
+				<PIN pos='40.00000,39.00000' which='0' elec='4' direction='1' part='0' number='1' show='0' length='15' number_pos='0' centre_name='0'></PIN>
+				<POLYGON pos='38.00000,42.00000' style='4' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='4.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='38.00000,38.00000' style='3' fill='0'>
+					<POINT pos='0.00000,2.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='37.00000,39.00000' style='3' fill='0'>
+					<POINT pos='2.00000,0.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='40.00000,44.00000' style='4' fill='0'>
+					<POINT pos='2.00000,1.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='2'/>
+				</POLYGON>
+				<POLYGON pos='38.00000,44.00000' style='4' fill='0'>
+					<POINT pos='0.00000,1.00000' arc='0'/>
+					<POINT pos='2.00000,0.00000' arc='2'/>
+				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
 		<SYMBOLDEF id='8'>
@@ -1858,117 +2006,112 @@ download the executable.-->
 			</TinyCAD>
 		</SYMBOLDEF>
 		<SYMBOLDEF id='10'>
-			<NAME type='0'>C_ELECTROLYTIC</NAME>
-			<REF type='0'>C?</REF>
-			<DESCRIPTION>Electrolytic Capacitor</DESCRIPTION>
+			<NAME type='0'>R_10K_1206</NAME>
+			<REF type='0'>R?</REF>
+			<DESCRIPTION>RES 10K OHM 1/4W 5% 1206 SMD</DESCRIPTION>
 			<PPP>1</PPP>
 			<FIELD>
 				<NAME>Package</NAME>
-				<DEFAULT></DEFAULT>
+				<DEFAULT>R_1206</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>Value</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Resistance In Ohms</NAME>
+				<DEFAULT>10.0K</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>Tol.</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Tolerance</NAME>
+				<DEFAULT>5%</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>V_Max</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>ESR</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Material</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Size / Dimension</NAME>
+				<DEFAULT>0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
 				<NAME>Manufacturer</NAME>
-				<DEFAULT>..</DEFAULT>
+				<DEFAULT>Panasonic - ECG</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>Manufacturer Part</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Manufacturer Part Number</NAME>
+				<DEFAULT>ERJ-8GEYJ103V</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>Digi-Key Part</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Digi-Key Part Number</NAME>
+				<DEFAULT>P10KECT-ND</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>Newark Part</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Min Quantity</NAME>
+				<DEFAULT>1</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
 			<FIELD>
-				<NAME>Mouser Part</NAME>
-				<DEFAULT>..</DEFAULT>
+				<NAME>Price per min</NAME>
+				<DEFAULT>0.06</DEFAULT>
 				<FT>000001</FT>
 				<VALUE></VALUE>
 				<POS>0.00000,0.00000</POS>
 			</FIELD>
-			<FIELD>
-				<NAME>Cost</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<REF_POINT power='0' part='0' pos='42.00000,47.00000'/>
+			<REF_POINT power='0' part='0' pos='72.00000,51.00000'/>
 			<TinyCAD>
-				<PIN pos='40.00000,47.00000' which='0' elec='4' direction='0' part='0' number='2' show='0' length='15' number_pos='0' centre_name='0'></PIN>
-				<PIN pos='40.00000,39.00000' which='0' elec='4' direction='1' part='0' number='1' show='0' length='15' number_pos='0' centre_name='0'></PIN>
-				<POLYGON pos='38.00000,42.00000' style='4' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='4.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='38.00000,38.00000' style='3' fill='0'>
-					<POINT pos='0.00000,2.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='37.00000,39.00000' style='3' fill='0'>
-					<POINT pos='2.00000,0.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='40.00000,44.00000' style='4' fill='0'>
-					<POINT pos='2.00000,1.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='2'/>
-				</POLYGON>
-				<POLYGON pos='38.00000,44.00000' style='4' fill='0'>
+				<PIN pos='70.00000,37.00000' which='0' elec='4' direction='1' part='0' number='2' show='0' length='15' number_pos='0' centre_name='0'></PIN>
+				<PIN pos='70.00000,51.00000' which='0' elec='4' direction='0' part='0' number='1' show='0' length='15' number_pos='0' centre_name='0'></PIN>
+				<POLYGON pos='69.00000,40.60000' style='3' fill='0'>
 					<POINT pos='0.00000,1.00000' arc='0'/>
-					<POINT pos='2.00000,0.00000' arc='2'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='69.00000,41.60000' style='3' fill='0'>
+					<POINT pos='2.00000,1.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='69.00000,42.60000' style='3' fill='0'>
+					<POINT pos='0.00000,1.00000' arc='0'/>
+					<POINT pos='2.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='69.00000,43.60000' style='3' fill='0'>
+					<POINT pos='2.00000,1.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='69.00000,44.60000' style='3' fill='0'>
+					<POINT pos='0.00000,1.00000' arc='0'/>
+					<POINT pos='2.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='69.00000,45.60000' style='3' fill='0'>
+					<POINT pos='2.00000,1.00000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='70.00000,46.60000' style='3' fill='0'>
+					<POINT pos='0.00000,1.00000' arc='0'/>
+					<POINT pos='1.00000,0.00000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='70.00000,47.60000' style='3' fill='0'>
+					<POINT pos='0.00000,0.00000' arc='0'/>
+					<POINT pos='0.00000,0.40000' arc='0'/>
+				</POLYGON>
+				<POLYGON pos='70.00000,40.00000' style='3' fill='0'>
+					<POINT pos='0.00000,0.60000' arc='0'/>
+					<POINT pos='0.00000,0.00000' arc='0'/>
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
@@ -2303,116 +2446,6 @@ download the executable.-->
 			</TinyCAD>
 		</SYMBOLDEF>
 		<SYMBOLDEF id='14'>
-			<NAME type='0'>R_10K_1206</NAME>
-			<REF type='0'>R?</REF>
-			<DESCRIPTION>RES 10K OHM 1/4W 5% 1206 SMD</DESCRIPTION>
-			<PPP>1</PPP>
-			<FIELD>
-				<NAME>Package</NAME>
-				<DEFAULT>R_1206</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Resistance In Ohms</NAME>
-				<DEFAULT>10.0K</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Tolerance</NAME>
-				<DEFAULT>5%</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Size / Dimension</NAME>
-				<DEFAULT>0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Manufacturer</NAME>
-				<DEFAULT>Panasonic - ECG</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Manufacturer Part Number</NAME>
-				<DEFAULT>ERJ-8GEYJ103V</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Digi-Key Part Number</NAME>
-				<DEFAULT>P10KECT-ND</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Min Quantity</NAME>
-				<DEFAULT>1</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Price per min</NAME>
-				<DEFAULT>0.06</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<REF_POINT power='0' part='0' pos='72.00000,51.00000'/>
-			<TinyCAD>
-				<PIN pos='70.00000,37.00000' which='0' elec='4' direction='1' part='0' number='2' show='0' length='15' number_pos='0' centre_name='0'></PIN>
-				<PIN pos='70.00000,51.00000' which='0' elec='4' direction='0' part='0' number='1' show='0' length='15' number_pos='0' centre_name='0'></PIN>
-				<POLYGON pos='69.00000,40.60000' style='3' fill='0'>
-					<POINT pos='0.00000,1.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='69.00000,41.60000' style='3' fill='0'>
-					<POINT pos='2.00000,1.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='69.00000,42.60000' style='3' fill='0'>
-					<POINT pos='0.00000,1.00000' arc='0'/>
-					<POINT pos='2.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='69.00000,43.60000' style='3' fill='0'>
-					<POINT pos='2.00000,1.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='69.00000,44.60000' style='3' fill='0'>
-					<POINT pos='0.00000,1.00000' arc='0'/>
-					<POINT pos='2.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='69.00000,45.60000' style='3' fill='0'>
-					<POINT pos='2.00000,1.00000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='70.00000,46.60000' style='3' fill='0'>
-					<POINT pos='0.00000,1.00000' arc='0'/>
-					<POINT pos='1.00000,0.00000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='70.00000,47.60000' style='3' fill='0'>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-					<POINT pos='0.00000,0.40000' arc='0'/>
-				</POLYGON>
-				<POLYGON pos='70.00000,40.00000' style='3' fill='0'>
-					<POINT pos='0.00000,0.60000' arc='0'/>
-					<POINT pos='0.00000,0.00000' arc='0'/>
-				</POLYGON>
-			</TinyCAD>
-		</SYMBOLDEF>
-		<SYMBOLDEF id='15'>
 			<NAME type='0'>STB_2_L</NAME>
 			<REF type='1'>K?</REF>
 			<DESCRIPTION>.2 pitch 2 position screw-terminal block</DESCRIPTION>
@@ -2489,7 +2522,7 @@ download the executable.-->
 				<PIN pos='28.00000,29.00000' which='0' elec='4' direction='3' part='0' number='1' show='2' length='15' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='17'>
+		<SYMBOLDEF id='15'>
 			<NAME type='0'>ACS712</NAME>
 			<REF type='0'>U?</REF>
 			<DESCRIPTION>ACS712 Current Sensor</DESCRIPTION>
@@ -2691,7 +2724,7 @@ download the executable.-->
 		<WIRE a='84.00000,178.00000' b='84.00000,176.00000'/>
 		<LABEL pos='96.00000,80.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='108.00000,44.00000' direction='3' font='4' color='208000' style='0'>5V_reg</LABEL>
-		<SYMBOL id='17' pos='88.00000,76.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='15' pos='88.00000,76.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U2' show='1' pos='-21.00000,-23.60000'/>
 			<FIELD type='0' description='Name' value='ACS712' show='1' pos='-23.00000,-26.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2707,7 +2740,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Price per min' value='$4.82' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<SYMBOL id='7' pos='42.00000,68.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='6' pos='42.00000,68.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J11' show='1' pos='-9.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='CONN_2P_M_100mil' show='1' pos='-17.00000,4.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2732,7 +2765,7 @@ download the executable.-->
 		<WIRE a='98.00000,56.00000' b='98.00000,52.00000'/>
 		<WIRE a='98.00000,44.00000' b='88.00000,44.00000'/>
 		<WIRE a='88.00000,44.00000' b='88.00000,60.00000'/>
-		<SYMBOL id='8' pos='100.00000,52.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='7' pos='100.00000,52.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C4' show='1' pos='3.00000,-1.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-4.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2748,7 +2781,7 @@ download the executable.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,20.80000'/>
 			<FIELD type='1' description='Cost' value='..' show='0' pos='1.00000,23.20000'/>
 		</SYMBOL>
-		<SYMBOL id='8' pos='98.00000,76.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='7' pos='98.00000,76.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C5' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2774,7 +2807,7 @@ download the executable.-->
 		<LABEL pos='130.00000,52.00000' direction='3' font='3' color='208000' style='0'>Analog4</LABEL>
 		<LABEL pos='96.00000,126.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='108.00000,90.00000' direction='3' font='4' color='208000' style='0'>5V_reg</LABEL>
-		<SYMBOL id='17' pos='88.00000,122.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='15' pos='88.00000,122.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U3' show='1' pos='-21.00000,-23.60000'/>
 			<FIELD type='0' description='Name' value='ACS712' show='1' pos='-23.00000,-26.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2790,7 +2823,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Price per min' value='$4.82' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<SYMBOL id='7' pos='42.00000,114.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='6' pos='42.00000,114.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J12' show='1' pos='-9.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='CONN_2P_M_100mil' show='1' pos='-17.00000,4.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2813,7 +2846,7 @@ download the executable.-->
 		<WIRE a='98.00000,102.00000' b='98.00000,98.00000'/>
 		<WIRE a='98.00000,90.00000' b='88.00000,90.00000'/>
 		<WIRE a='88.00000,90.00000' b='88.00000,106.00000'/>
-		<SYMBOL id='9' pos='100.00000,98.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='8' pos='100.00000,98.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C6' show='1' pos='3.00000,-1.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-4.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2829,7 +2862,7 @@ download the executable.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,20.80000'/>
 			<FIELD type='1' description='Cost' value='..' show='0' pos='1.00000,23.20000'/>
 		</SYMBOL>
-		<SYMBOL id='9' pos='98.00000,122.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='8' pos='98.00000,122.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C7' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2853,7 +2886,7 @@ download the executable.-->
 		<LABEL pos='130.00000,98.00000' direction='3' font='3' color='208000' style='0'>Analog5</LABEL>
 		<LABEL pos='222.00000,78.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='234.00000,42.00000' direction='3' font='4' color='208000' style='0'>5V_reg</LABEL>
-		<SYMBOL id='17' pos='214.00000,74.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='15' pos='214.00000,74.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U4' show='1' pos='-21.00000,-23.60000'/>
 			<FIELD type='0' description='Name' value='ACS712' show='1' pos='-23.00000,-26.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2869,7 +2902,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Price per min' value='$4.82' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<SYMBOL id='7' pos='168.00000,66.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='6' pos='168.00000,66.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J13' show='1' pos='-9.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='CONN_2P_M_100mil' show='1' pos='-17.00000,4.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2891,7 +2924,7 @@ download the executable.-->
 		<WIRE a='224.00000,54.00000' b='224.00000,50.00000'/>
 		<WIRE a='224.00000,42.00000' b='214.00000,42.00000'/>
 		<WIRE a='214.00000,42.00000' b='214.00000,58.00000'/>
-		<SYMBOL id='9' pos='226.00000,50.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='8' pos='226.00000,50.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C8' show='1' pos='3.00000,-1.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-4.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2907,7 +2940,7 @@ download the executable.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,20.80000'/>
 			<FIELD type='1' description='Cost' value='..' show='0' pos='1.00000,23.20000'/>
 		</SYMBOL>
-		<SYMBOL id='9' pos='224.00000,74.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='8' pos='224.00000,74.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C9' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2931,7 +2964,7 @@ download the executable.-->
 		<LABEL pos='256.00000,50.00000' direction='3' font='3' color='208000' style='0'>Analog6</LABEL>
 		<LABEL pos='222.00000,124.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='234.00000,88.00000' direction='3' font='4' color='208000' style='0'>5V_reg</LABEL>
-		<SYMBOL id='17' pos='214.00000,120.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='15' pos='214.00000,120.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U5' show='1' pos='-21.00000,-23.60000'/>
 			<FIELD type='0' description='Name' value='ACS712' show='1' pos='-23.00000,-26.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2947,7 +2980,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Price per min' value='$4.82' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<SYMBOL id='7' pos='168.00000,112.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='6' pos='168.00000,112.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J14' show='1' pos='-9.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='CONN_2P_M_100mil' show='1' pos='-17.00000,4.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -2970,7 +3003,7 @@ download the executable.-->
 		<WIRE a='224.00000,100.00000' b='224.00000,96.00000'/>
 		<WIRE a='224.00000,88.00000' b='214.00000,88.00000'/>
 		<WIRE a='214.00000,88.00000' b='214.00000,104.00000'/>
-		<SYMBOL id='10' pos='226.00000,96.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='9' pos='226.00000,96.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C10' show='1' pos='3.00000,-1.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-4.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -2986,7 +3019,7 @@ download the executable.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,20.80000'/>
 			<FIELD type='1' description='Cost' value='..' show='0' pos='1.00000,23.20000'/>
 		</SYMBOL>
-		<SYMBOL id='10' pos='224.00000,120.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='9' pos='224.00000,120.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C11' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='C_ELECTROLYTIC' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='C0603' show='0' pos='1.00000,-3.20000'/>
@@ -3008,7 +3041,7 @@ download the executable.-->
 		<WIRE a='214.00000,120.00000' b='222.00000,120.00000'/>
 		<WIRE a='222.00000,120.00000' b='222.00000,124.00000'/>
 		<LABEL pos='256.00000,96.00000' direction='3' font='3' color='208000' style='0'>Analog7</LABEL>
-		<SYMBOL id='11' pos='52.00000,194.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='10' pos='52.00000,194.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R20' show='1' pos='3.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3021,7 +3054,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='11' pos='52.00000,180.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='10' pos='52.00000,180.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R19' show='1' pos='-9.00000,-7.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-11.00000,-10.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3042,7 +3075,7 @@ download the executable.-->
 		<JUNCTION pos='176.00000,68.00000'/>
 		<JUNCTION pos='222.00000,74.00000'/>
 		<JUNCTION pos='224.00000,42.00000'/>
-		<SYMBOL id='12' pos='128.00000,52.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='11' pos='128.00000,52.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R7' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3055,7 +3088,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='12' pos='128.00000,66.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='11' pos='128.00000,66.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R8' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3077,7 +3110,7 @@ download the executable.-->
 		<WIRE a='96.00000,76.00000' b='120.00000,76.00000'/>
 		<WIRE a='120.00000,76.00000' b='120.00000,80.00000'/>
 		<WIRE a='120.00000,80.00000' b='126.00000,80.00000'/>
-		<SYMBOL id='13' pos='128.00000,80.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='128.00000,80.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R9' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3090,7 +3123,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='13' pos='128.00000,98.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='128.00000,98.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R10' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3103,7 +3136,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='13' pos='128.00000,112.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='128.00000,112.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R11' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3122,7 +3155,7 @@ download the executable.-->
 		<WIRE a='96.00000,122.00000' b='120.00000,122.00000'/>
 		<WIRE a='120.00000,122.00000' b='120.00000,126.00000'/>
 		<WIRE a='120.00000,126.00000' b='126.00000,126.00000'/>
-		<SYMBOL id='14' pos='128.00000,126.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='13' pos='128.00000,126.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R12' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3135,7 +3168,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='13' pos='254.00000,96.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='254.00000,96.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R16' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3148,7 +3181,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='13' pos='254.00000,110.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='254.00000,110.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R17' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3167,7 +3200,7 @@ download the executable.-->
 		<WIRE a='222.00000,120.00000' b='246.00000,120.00000'/>
 		<WIRE a='246.00000,120.00000' b='246.00000,124.00000'/>
 		<WIRE a='246.00000,124.00000' b='252.00000,124.00000'/>
-		<SYMBOL id='14' pos='254.00000,124.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='13' pos='254.00000,124.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R18' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3180,7 +3213,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='13' pos='254.00000,50.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='254.00000,50.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R13' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3193,7 +3226,7 @@ download the executable.-->
 			<FIELD type='1' description='Min Quantity' value='1' show='0' pos='1.00000,9.60000'/>
 			<FIELD type='1' description='Price per min' value='0.06' show='0' pos='1.00000,12.00000'/>
 		</SYMBOL>
-		<SYMBOL id='13' pos='254.00000,64.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='12' pos='254.00000,64.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R14' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3212,7 +3245,7 @@ download the executable.-->
 		<WIRE a='222.00000,74.00000' b='246.00000,74.00000'/>
 		<WIRE a='246.00000,74.00000' b='246.00000,78.00000'/>
 		<WIRE a='246.00000,78.00000' b='252.00000,78.00000'/>
-		<SYMBOL id='14' pos='254.00000,78.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='13' pos='254.00000,78.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R15' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
@@ -3237,7 +3270,7 @@ download the executable.-->
 		<JUNCTION pos='50.00000,108.00000'/>
 		<JUNCTION pos='50.00000,116.00000'/>
 		<JUNCTION pos='98.00000,90.00000'/>
-		<SYMBOL id='15' pos='30.00000,182.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='14' pos='30.00000,182.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='J10' show='1' pos='-11.00000,-1.60000'/>
 			<FIELD type='0' description='Name' value='STB_2_L' show='1' pos='-17.00000,-4.00000'/>
 			<FIELD type='1' description='Package' value='1X2HDR-100mil_18AWG' show='0' pos='1.00000,0.80000'/>
@@ -3282,6 +3315,16 @@ download the executable.-->
 			<DATE></DATE>
 			<GRID spacing='100.00000' snap='1'/>
 		</DETAILS>
+		<FONT id='0'>
+			<HEIGHT>-13</HEIGHT>
+			<WIDTH>6</WIDTH>
+			<WEIGHT>400</WEIGHT>
+			<ITALIC>0</ITALIC>
+			<UNDERLINE>0</UNDERLINE>
+			<STRIKEOUT>0</STRIKEOUT>
+			<CHARSET>0</CHARSET>
+			<FACENAME>Arial</FACENAME>
+		</FONT>
 		<FONT id='1'>
 			<HEIGHT>-10</HEIGHT>
 			<WIDTH>0</WIDTH>
@@ -3398,7 +3441,7 @@ download the executable.-->
 				<PIN pos='110.00000,108.00000' which='0' elec='0' direction='2' part='0' number='46' show='3' length='30' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='4'>
+		<SYMBOLDEF id='2'>
 			<NAME type='0'>Ethernet</NAME>
 			<REF type='0'>J?</REF>
 			<DESCRIPTION>Ethernet</DESCRIPTION>
@@ -3504,13 +3547,13 @@ download the executable.-->
 		<LABEL pos='210.00000,38.00000' direction='3' font='3' color='208000' style='0'>Analog2</LABEL>
 		<LABEL pos='210.00000,54.00000' direction='3' font='3' color='208000' style='0'>1.8V_Power</LABEL>
 		<LABEL pos='210.00000,34.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='210.00000,84.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
-		<LABEL pos='210.00000,72.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
-		<LABEL pos='210.00000,80.00000' direction='3' font='3' color='208000' style='0'>5V_Power</LABEL>
-		<LABEL pos='210.00000,88.00000' direction='3' font='3' color='208000' style='0'>SPI_SCLK</LABEL>
-		<LABEL pos='210.00000,96.00000' direction='3' font='3' color='208000' style='0'>SPI_D1</LABEL>
-		<LABEL pos='210.00000,100.00000' direction='3' font='3' color='208000' style='0'>SPI_D0</LABEL>
-		<LABEL pos='210.00000,92.00000' direction='3' font='3' color='208000' style='0'>SPI_CSO</LABEL>
+		<LABEL pos='210.00000,90.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='210.00000,78.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
+		<LABEL pos='210.00000,86.00000' direction='3' font='3' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='210.00000,94.00000' direction='3' font='3' color='208000' style='0'>SPI_SCLK</LABEL>
+		<LABEL pos='210.00000,102.00000' direction='3' font='3' color='208000' style='0'>SPI_D1</LABEL>
+		<LABEL pos='210.00000,106.00000' direction='3' font='3' color='208000' style='0'>SPI_D0</LABEL>
+		<LABEL pos='210.00000,98.00000' direction='3' font='3' color='208000' style='0'>SPI_CSO</LABEL>
 		<LABEL pos='134.00000,52.00000' direction='3' font='3' color='208000' style='0'>Red_LED</LABEL>
 		<LABEL pos='64.00000,24.00000' direction='2' font='3' color='208000' style='0'>3.3V_Power</LABEL>
 		<LABEL pos='82.00000,24.00000' direction='3' font='3' color='208000' style='0'>3.3V_Power</LABEL>
@@ -3528,10 +3571,10 @@ download the executable.-->
 		<LABEL pos='82.00000,92.00000' direction='3' font='3' color='208000' style='0'>Analog5</LABEL>
 		<LABEL pos='64.00000,96.00000' direction='2' font='3' color='208000' style='0'>Analog6</LABEL>
 		<LABEL pos='82.00000,96.00000' direction='3' font='3' color='208000' style='0'>Analog7</LABEL>
-		<LABEL pos='210.00000,76.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='210.00000,82.00000' direction='3' font='3' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='134.00000,48.00000' direction='3' font='3' color='208000' style='0'>Blue_LED</LABEL>
 		<LABEL pos='116.00000,52.00000' direction='2' font='3' color='208000' style='0'>Green_LED</LABEL>
-		<SYMBOL id='4' pos='204.00000,98.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='2' pos='204.00000,104.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J9' show='1' pos='-13.00000,-25.60000'/>
 			<FIELD type='0' description='Name' value='Ethernet' show='1' pos='-15.00000,-28.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -3541,27 +3584,27 @@ download the executable.-->
 			<FIELD type='1' description='Mfg PN' value='RJHSE-5080' show='0' pos='1.00000,-12.40000'/>
 			<FIELD type='1' description='Digikey PN' value='RJHSE-5080-ND' show='0' pos='1.00000,-10.00000'/>
 		</SYMBOL>
-		<WIRE a='210.00000,84.00000' b='204.00000,84.00000'/>
-		<WIRE a='204.00000,82.00000' b='208.00000,82.00000'/>
-		<WIRE a='208.00000,82.00000' b='208.00000,80.00000'/>
-		<WIRE a='208.00000,80.00000' b='210.00000,80.00000'/>
-		<WIRE a='204.00000,78.00000' b='208.00000,78.00000'/>
-		<WIRE a='208.00000,78.00000' b='208.00000,76.00000'/>
-		<WIRE a='208.00000,76.00000' b='210.00000,76.00000'/>
-		<WIRE a='204.00000,76.00000' b='206.00000,76.00000'/>
-		<WIRE a='206.00000,76.00000' b='206.00000,72.00000'/>
-		<WIRE a='206.00000,72.00000' b='210.00000,72.00000'/>
-		<WIRE a='204.00000,88.00000' b='210.00000,88.00000'/>
-		<WIRE a='204.00000,90.00000' b='208.00000,90.00000'/>
-		<WIRE a='208.00000,90.00000' b='208.00000,92.00000'/>
-		<WIRE a='208.00000,92.00000' b='210.00000,92.00000'/>
-		<WIRE a='204.00000,94.00000' b='208.00000,94.00000'/>
-		<WIRE a='208.00000,94.00000' b='208.00000,96.00000'/>
-		<WIRE a='208.00000,96.00000' b='210.00000,96.00000'/>
-		<WIRE a='204.00000,96.00000' b='206.00000,96.00000'/>
-		<WIRE a='206.00000,96.00000' b='206.00000,100.00000'/>
-		<WIRE a='206.00000,100.00000' b='210.00000,100.00000'/>
-		<SYMBOL id='4' pos='204.00000,56.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<WIRE a='210.00000,90.00000' b='204.00000,90.00000'/>
+		<WIRE a='204.00000,88.00000' b='208.00000,88.00000'/>
+		<WIRE a='208.00000,88.00000' b='208.00000,86.00000'/>
+		<WIRE a='208.00000,86.00000' b='210.00000,86.00000'/>
+		<WIRE a='204.00000,84.00000' b='208.00000,84.00000'/>
+		<WIRE a='208.00000,84.00000' b='208.00000,82.00000'/>
+		<WIRE a='208.00000,82.00000' b='210.00000,82.00000'/>
+		<WIRE a='204.00000,82.00000' b='206.00000,82.00000'/>
+		<WIRE a='206.00000,82.00000' b='206.00000,78.00000'/>
+		<WIRE a='206.00000,78.00000' b='210.00000,78.00000'/>
+		<WIRE a='204.00000,94.00000' b='210.00000,94.00000'/>
+		<WIRE a='204.00000,96.00000' b='208.00000,96.00000'/>
+		<WIRE a='208.00000,96.00000' b='208.00000,98.00000'/>
+		<WIRE a='208.00000,98.00000' b='210.00000,98.00000'/>
+		<WIRE a='204.00000,100.00000' b='208.00000,100.00000'/>
+		<WIRE a='208.00000,100.00000' b='208.00000,102.00000'/>
+		<WIRE a='208.00000,102.00000' b='210.00000,102.00000'/>
+		<WIRE a='204.00000,102.00000' b='206.00000,102.00000'/>
+		<WIRE a='206.00000,102.00000' b='206.00000,106.00000'/>
+		<WIRE a='206.00000,106.00000' b='210.00000,106.00000'/>
+		<SYMBOL id='2' pos='204.00000,56.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J8' show='1' pos='-13.00000,-25.60000'/>
 			<FIELD type='0' description='Name' value='Ethernet' show='1' pos='-15.00000,-28.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -3594,5 +3637,7 @@ download the executable.-->
 		<LABEL pos='210.00000,58.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
 		<LABEL pos='210.00000,50.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
 		<LABEL pos='210.00000,42.00000' direction='3' font='3' color='208000' style='0'>AGND</LABEL>
+		<TEXT pos='188.00000,22.00000' direction='3' font='0' color='000000'>String Pots</TEXT>
+		<TEXT pos='190.00000,72.00000' direction='3' font='0' color='000000'>SPI Bus</TEXT>
 	</TinyCAD>
 </TinyCADSheets>
