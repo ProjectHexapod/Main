@@ -3955,7 +3955,7 @@ download the executable.-->
 		<LABEL pos='210.00000,38.00000' direction='3' font='5' color='208000' style='0'>Analog2</LABEL>
 		<LABEL pos='210.00000,54.00000' direction='3' font='5' color='208000' style='0'>1.8V_Power</LABEL>
 		<LABEL pos='210.00000,34.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='234.00000,130.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='234.00000,130.00000' direction='2' font='5' color='208000' style='0'>5V_reg</LABEL>
 		<LABEL pos='162.00000,160.00000' direction='2' font='5' color='208000' style='0'>SPI_SCLK</LABEL>
 		<LABEL pos='162.00000,114.00000' direction='2' font='5' color='208000' style='0'>SPI_D1</LABEL>
 		<LABEL pos='162.00000,118.00000' direction='2' font='5' color='208000' style='0'>SPI_D0</LABEL>
@@ -4050,15 +4050,15 @@ download the executable.-->
 			<FIELD type='1' description='Package' value='S08' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
 		<WIRE a='162.00000,118.00000' b='170.00000,118.00000'/>
-		<LABEL pos='162.00000,122.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
-		<LABEL pos='162.00000,156.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='162.00000,122.00000' direction='2' font='5' color='208000' style='0'>5V_reg</LABEL>
+		<LABEL pos='162.00000,156.00000' direction='2' font='5' color='208000' style='0'>5V_reg</LABEL>
 		<LABEL pos='162.00000,134.00000' direction='2' font='5' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='162.00000,168.00000' direction='2' font='5' color='208000' style='0'>Ground</LABEL>
 		<WIRE a='170.00000,156.00000' b='162.00000,156.00000'/>
 		<WIRE a='162.00000,134.00000' b='170.00000,134.00000'/>
 		<WIRE a='162.00000,122.00000' b='170.00000,122.00000'/>
 		<LABEL pos='162.00000,126.00000' direction='2' font='5' color='208000' style='0'>Ground</LABEL>
-		<LABEL pos='162.00000,130.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='162.00000,130.00000' direction='2' font='5' color='208000' style='0'>5V_reg</LABEL>
 		<WIRE a='162.00000,126.00000' b='170.00000,126.00000'/>
 		<WIRE a='162.00000,130.00000' b='170.00000,130.00000'/>
 		<WIRE a='196.00000,156.00000' b='214.00000,156.00000'/>
