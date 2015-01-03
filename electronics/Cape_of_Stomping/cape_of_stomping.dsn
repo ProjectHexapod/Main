@@ -3515,7 +3515,7 @@ download the executable.-->
 				<PIN pos='70.00000,60.00000' which='0' elec='0' direction='2' part='0' number='8' show='2' length='30' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='5'>
+		<SYMBOLDEF id='3'>
 			<NAME type='0'>2x1_HDR</NAME>
 			<REF type='1'>H?</REF>
 			<DESCRIPTION>2x1 .1 in pitch through-hole header (male or female)</DESCRIPTION>
@@ -3647,7 +3647,7 @@ download the executable.-->
 				<RECTANGLE a='46.00000,29.00000' b='50.00000,31.00000' style='2' fill='0'/>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='6'>
+		<SYMBOLDEF id='4'>
 			<NAME type='0'>R_0_1206</NAME>
 			<REF type='0'>R?</REF>
 			<DESCRIPTION>RES 0 OHM 1/4W 1206 SMD</DESCRIPTION>
@@ -3771,7 +3771,7 @@ download the executable.-->
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='7'>
+		<SYMBOLDEF id='5'>
 			<NAME type='0'>DS8922A Dual Differential Transceiver</NAME>
 			<REF type='0'>U?</REF>
 			<DESCRIPTION>DS8922A Dual Differential Transceiver</DESCRIPTION>
@@ -3870,7 +3870,7 @@ download the executable.-->
 				<WIRE a='93.66750,50.01941' b='101.89043,50.01941'/>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='8'>
+		<SYMBOLDEF id='6'>
 			<NAME type='0'>Dual Differential Driver</NAME>
 			<REF type='0'>U?</REF>
 			<DESCRIPTION>uA9638C</DESCRIPTION>
@@ -4035,14 +4035,14 @@ download the executable.-->
 		<LABEL pos='210.00000,42.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
 		<TEXT pos='188.00000,22.00000' direction='3' font='4' color='000000'>String Pots</TEXT>
 		<TEXT pos='246.20000,126.00000' direction='3' font='4' color='000000'>SPI Bus</TEXT>
-		<SYMBOL id='7' pos='198.00000,146.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='5' pos='198.00000,146.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U6' show='1' pos='-17.00000,-37.60000'/>
 			<FIELD type='0' description='Name' value='DS8922A Dual Differential Transceiver' show='1' pos='-33.00000,-40.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='S016' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<SYMBOL id='8' pos='196.00000,172.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='6' pos='196.00000,172.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='U7' show='1' pos='-15.00000,6.40000'/>
 			<FIELD type='0' description='Name' value='Dual Differential Driver' show='1' pos='-23.00000,4.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
@@ -4077,7 +4077,7 @@ download the executable.-->
 		<TEXT pos='248.00000,140.00000' direction='3' font='3' color='000000'>MISO</TEXT>
 		<TEXT pos='248.00000,146.00000' direction='3' font='3' color='000000'>SCLK</TEXT>
 		<TEXT pos='248.00000,152.00000' direction='3' font='3' color='000000'>CS</TEXT>
-		<SYMBOL id='5' pos='250.00000,118.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='3' pos='250.00000,118.00000' part='0' rotate='3' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='1' description='Ref' value='J15' show='1' pos='-6.00000,2.00000'/>
 			<FIELD type='0' description='Name' value='2x1_HDR' show='1' pos='-6.00000,-6.00000'/>
 			<FIELD type='1' description='Package' value='1X2HDR-100' show='0' pos='-6.00000,4.40000'/>
@@ -4100,7 +4100,7 @@ download the executable.-->
 		<WIRE a='232.00000,114.00000' b='244.00000,114.00000'/>
 		<WIRE a='198.00000,126.00000' b='240.00000,126.00000'/>
 		<WIRE a='240.00000,126.00000' b='240.00000,116.00000'/>
-		<SYMBOL id='6' pos='220.00000,138.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='4' pos='220.00000,138.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='R21' show='1' pos='-11.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-13.00000,-8.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
