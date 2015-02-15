@@ -3198,9 +3198,9 @@ download the executable.-->
 		<JUNCTION pos='50.00000,116.00000'/>
 		<JUNCTION pos='98.00000,90.00000'/>
 		<SYMBOL id='14' pos='30.00000,182.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='1' description='Ref' value='J10' show='1' pos='-11.00000,-1.60000'/>
+			<FIELD type='1' description='Ref' value='J7' show='1' pos='-11.00000,-1.60000'/>
 			<FIELD type='0' description='Name' value='STB_2_L' show='1' pos='-17.00000,-4.00000'/>
-			<FIELD type='1' description='Package' value='1X2HDR-100mil_18AWG' show='0' pos='1.00000,0.80000'/>
+			<FIELD type='1' description='Package' value='2pin_Molex_MLX' show='0' pos='1.00000,0.80000'/>
 			<FIELD type='1' description='Usage' value='..' show='0' pos='1.00000,3.20000'/>
 			<FIELD type='1' description='Datasheet' value='..' show='0' pos='1.00000,5.60000'/>
 			<FIELD type='1' description='Manufacturer' value='Molex' show='0' pos='1.00000,8.00000'/>
