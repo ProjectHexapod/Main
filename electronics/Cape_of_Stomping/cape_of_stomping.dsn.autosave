@@ -186,83 +186,6 @@ download the executable.-->
 				</POLYGON>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='2'>
-			<NAME type='0'>STB_2_L</NAME>
-			<REF type='1'>K?</REF>
-			<DESCRIPTION>.2 pitch 2 position screw-terminal block</DESCRIPTION>
-			<PPP>1</PPP>
-			<FIELD>
-				<NAME>Package</NAME>
-				<DEFAULT>STB_2_L</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Usage</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Datasheet</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Manufacturer</NAME>
-				<DEFAULT>Molex</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Manufacturer Part</NAME>
-				<DEFAULT>395443002</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Digi-Key Part</NAME>
-				<DEFAULT>WM7853-ND </DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Newark Part</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Mouser Part</NAME>
-				<DEFAULT>..</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<FIELD>
-				<NAME>Cost</NAME>
-				<DEFAULT>1.32</DEFAULT>
-				<FT>000001</FT>
-				<VALUE></VALUE>
-				<POS>0.00000,0.00000</POS>
-			</FIELD>
-			<REF_POINT power='0' part='0' pos='36.00000,33.00000'/>
-			<TinyCAD>
-				<PIN pos='28.00000,31.00000' which='0' elec='0' direction='3' part='0' number='2' show='0' length='15' number_pos='0' centre_name='0'></PIN>
-				<RECTANGLE a='35.00000,27.00000' b='31.00000,33.00000' style='4' fill='0'/>
-				<ELLIPSE a='34.00000,30.00000' b='32.00000,32.00000' style='4' fill='0'/>
-				<ELLIPSE a='34.00000,28.00000' b='32.00000,30.00000' style='4' fill='1'/>
-				<PIN pos='28.00000,29.00000' which='0' elec='4' direction='3' part='0' number='1' show='2' length='15' number_pos='0' centre_name='0'></PIN>
-			</TinyCAD>
-		</SYMBOLDEF>
 		<SYMBOLDEF id='3'>
 			<NAME type='0'>R_10K_1206</NAME>
 			<REF type='0'>R?</REF>
@@ -628,7 +551,6 @@ download the executable.-->
 		<WIRE a='70.00000,56.00000' b='70.00000,54.00000'/>
 		<WIRE a='70.00000,45.00000' b='70.00000,36.00000'/>
 		<LABEL pos='70.00000,36.00000' direction='3' font='4' color='208000' style='0'>12V_power</LABEL>
-		<WIRE a='84.00000,56.00000' b='70.00000,56.00000'/>
 		<WIRE a='70.00000,60.00000' b='70.00000,56.00000'/>
 		<LABEL pos='70.00000,84.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<SYMBOL id='1' pos='156.00000,56.00000' part='0' rotate='5' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
@@ -652,7 +574,6 @@ download the executable.-->
 		<WIRE a='154.00000,58.00000' b='154.00000,56.00000'/>
 		<WIRE a='154.00000,47.00000' b='154.00000,38.00000'/>
 		<LABEL pos='154.00000,38.00000' direction='3' font='4' color='208000' style='0'>12V_power</LABEL>
-		<WIRE a='172.00000,58.00000' b='154.00000,58.00000'/>
 		<WIRE a='154.00000,62.00000' b='154.00000,58.00000'/>
 		<WIRE a='154.00000,82.00000' b='154.00000,90.00000'/>
 		<LABEL pos='154.00000,90.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
@@ -677,7 +598,6 @@ download the executable.-->
 		</SYMBOL>
 		<WIRE a='72.00000,164.00000' b='72.00000,162.00000'/>
 		<LABEL pos='72.00000,144.00000' direction='3' font='4' color='208000' style='0'>12V_power</LABEL>
-		<WIRE a='90.00000,164.00000' b='72.00000,164.00000'/>
 		<WIRE a='72.00000,168.00000' b='72.00000,164.00000'/>
 		<WIRE a='72.00000,188.00000' b='72.00000,196.00000'/>
 		<LABEL pos='72.00000,196.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
@@ -702,7 +622,6 @@ download the executable.-->
 		<WIRE a='154.00000,170.00000' b='154.00000,168.00000'/>
 		<WIRE a='154.00000,159.00000' b='154.00000,150.00000'/>
 		<LABEL pos='154.00000,150.00000' direction='3' font='4' color='208000' style='0'>12V_power</LABEL>
-		<WIRE a='172.00000,170.00000' b='154.00000,170.00000'/>
 		<WIRE a='154.00000,174.00000' b='154.00000,170.00000'/>
 		<WIRE a='154.00000,194.00000' b='154.00000,202.00000'/>
 		<LABEL pos='154.00000,202.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
@@ -728,27 +647,9 @@ download the executable.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,20.80000'/>
 			<FIELD type='1' description='Cost' value='..' show='0' pos='1.00000,23.20000'/>
 		</SYMBOL>
-		<SYMBOL id='2' pos='260.00000,138.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='1' description='Ref' value='J6' show='1' pos='1.00000,-1.60000'/>
-			<FIELD type='0' description='Name' value='STB_2_L' show='1' pos='1.00000,-4.00000'/>
-			<FIELD type='1' description='Package' value='1X2HDR-100mil_18AWG' show='0' pos='1.00000,0.80000'/>
-			<FIELD type='1' description='Usage' value='..' show='0' pos='1.00000,3.20000'/>
-			<FIELD type='1' description='Datasheet' value='..' show='0' pos='1.00000,5.60000'/>
-			<FIELD type='1' description='Manufacturer' value='Molex' show='0' pos='1.00000,8.00000'/>
-			<FIELD type='1' description='Manufacturer Part' value='395443002' show='0' pos='1.00000,10.40000'/>
-			<FIELD type='1' description='Digi-Key Part' value='WM7853-ND ' show='0' pos='1.00000,12.80000'/>
-			<FIELD type='1' description='Newark Part' value='..' show='0' pos='1.00000,15.20000'/>
-			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,17.60000'/>
-			<FIELD type='1' description='Cost' value='1.32' show='0' pos='1.00000,20.00000'/>
-		</SYMBOL>
 		<WIRE a='234.00000,140.00000' b='234.00000,138.00000'/>
-		<WIRE a='234.00000,124.00000' b='234.00000,120.00000'/>
+		<WIRE a='234.00000,129.00000' b='234.00000,120.00000'/>
 		<LABEL pos='234.00000,120.00000' direction='3' font='4' color='208000' style='0'>12V_power</LABEL>
-		<WIRE a='234.00000,124.00000' b='252.00000,124.00000'/>
-		<WIRE a='234.00000,129.00000' b='234.00000,124.00000'/>
-		<WIRE a='252.00000,124.00000' b='252.00000,134.00000'/>
-		<WIRE a='252.00000,136.00000' b='252.00000,140.00000'/>
-		<WIRE a='252.00000,140.00000' b='234.00000,140.00000'/>
 		<WIRE a='234.00000,144.00000' b='234.00000,140.00000'/>
 		<WIRE a='234.00000,164.00000' b='234.00000,172.00000'/>
 		<LABEL pos='234.00000,172.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
@@ -782,8 +683,8 @@ download the executable.-->
 		<JUNCTION pos='154.00000,58.00000'/>
 		<JUNCTION pos='234.00000,56.00000'/>
 		<SYMBOL id='3' pos='46.00000,92.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='R1' show='1' pos='-11.00000,-7.60000'/>
-			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-17.00000,-12.00000'/>
+			<FIELD type='0' description='Ref' value='R1' show='1' pos='-7.00000,-7.60000'/>
+			<FIELD type='0' description='Name' value='R_0603' show='1' pos='-11.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
 			<FIELD type='1' description='Resistance In Ohms' value='10.0K' show='1' pos='1.00000,-4.80000'/>
 			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
@@ -881,8 +782,8 @@ download the executable.-->
 		<WIRE a='212.00000,158.00000' b='212.00000,142.00000'/>
 		<WIRE a='212.00000,158.00000' b='224.00000,158.00000'/>
 		<SYMBOL id='4' pos='22.00000,108.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='J7' show='1' pos='1.00000,-19.60000'/>
-			<FIELD type='0' description='Name' value='Ethernet' show='1' pos='1.00000,-22.00000'/>
+			<FIELD type='0' description='Ref' value='J2' show='1' pos='-11.00000,-25.60000'/>
+			<FIELD type='0' description='Name' value='Solenoid Override (Ethernet)' show='1' pos='-21.00000,-28.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='ETH_NO_LED' show='0' pos='1.00000,-17.20000'/>
@@ -970,7 +871,6 @@ download the executable.-->
 		<JUNCTION pos='130.00000,188.00000'/>
 		<JUNCTION pos='154.00000,170.00000'/>
 		<JUNCTION pos='212.00000,158.00000'/>
-		<JUNCTION pos='234.00000,124.00000'/>
 		<JUNCTION pos='234.00000,140.00000'/>
 		<SYMBOL id='6' pos='290.00000,130.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J1' show='1' pos='-5.00000,-37.60000'/>
@@ -982,6 +882,49 @@ download the executable.-->
 			<FIELD type='1' description='Mfg PN' value='5024940470' show='0' pos='1.00000,-24.40000'/>
 			<FIELD type='1' description='Digikey PN' value='WM2282CT-ND' show='0' pos='1.00000,-22.00000'/>
 		</SYMBOL>
+		<LABEL pos='272.00000,84.00000' direction='3' font='4' color='208000' style='0'>12V_power</LABEL>
+		<WIRE a='70.00000,56.00000' b='88.00000,56.00000'/>
+		<WIRE a='88.00000,56.00000' b='88.00000,108.00000'/>
+		<WIRE a='72.00000,164.00000' b='96.00000,164.00000'/>
+		<WIRE a='96.00000,164.00000' b='96.00000,110.00000'/>
+		<WIRE a='154.00000,58.00000' b='174.00000,58.00000'/>
+		<WIRE a='174.00000,58.00000' b='174.00000,112.00000'/>
+		<WIRE a='154.00000,170.00000' b='176.00000,170.00000'/>
+		<WIRE a='176.00000,170.00000' b='176.00000,114.00000'/>
+		<WIRE a='176.00000,114.00000' b='274.00000,114.00000'/>
+		<WIRE a='174.00000,112.00000' b='270.00000,112.00000'/>
+		<WIRE a='270.00000,112.00000' b='270.00000,108.00000'/>
+		<WIRE a='270.00000,108.00000' b='274.00000,108.00000'/>
+		<WIRE a='274.00000,128.00000' b='272.00000,128.00000'/>
+		<WIRE a='272.00000,98.00000' b='272.00000,84.00000'/>
+		<WIRE a='274.00000,122.00000' b='272.00000,122.00000'/>
+		<JUNCTION pos='272.00000,122.00000'/>
+		<WIRE a='272.00000,128.00000' b='272.00000,122.00000'/>
+		<WIRE a='274.00000,116.00000' b='272.00000,116.00000'/>
+		<JUNCTION pos='272.00000,116.00000'/>
+		<WIRE a='272.00000,122.00000' b='272.00000,116.00000'/>
+		<WIRE a='274.00000,110.00000' b='272.00000,110.00000'/>
+		<JUNCTION pos='272.00000,110.00000'/>
+		<WIRE a='272.00000,116.00000' b='272.00000,110.00000'/>
+		<WIRE a='274.00000,104.00000' b='272.00000,104.00000'/>
+		<JUNCTION pos='272.00000,104.00000'/>
+		<WIRE a='272.00000,110.00000' b='272.00000,104.00000'/>
+		<WIRE a='274.00000,98.00000' b='272.00000,98.00000'/>
+		<JUNCTION pos='272.00000,98.00000'/>
+		<WIRE a='272.00000,104.00000' b='272.00000,98.00000'/>
+		<WIRE a='96.00000,110.00000' b='268.00000,110.00000'/>
+		<WIRE a='268.00000,110.00000' b='268.00000,102.00000'/>
+		<WIRE a='268.00000,102.00000' b='274.00000,102.00000'/>
+		<WIRE a='88.00000,108.00000' b='266.00000,108.00000'/>
+		<WIRE a='266.00000,108.00000' b='266.00000,96.00000'/>
+		<WIRE a='266.00000,96.00000' b='274.00000,96.00000'/>
+		<WIRE a='252.00000,56.00000' b='252.00000,116.00000'/>
+		<WIRE a='252.00000,116.00000' b='270.00000,116.00000'/>
+		<WIRE a='270.00000,116.00000' b='270.00000,120.00000'/>
+		<WIRE a='270.00000,120.00000' b='274.00000,120.00000'/>
+		<WIRE a='234.00000,140.00000' b='254.00000,140.00000'/>
+		<WIRE a='254.00000,140.00000' b='254.00000,126.00000'/>
+		<WIRE a='254.00000,126.00000' b='274.00000,126.00000'/>
 	</TinyCAD>
 	<TinyCAD>
 		<NAME>Power</NAME>
@@ -3893,6 +3836,41 @@ download the executable.-->
 				<PIN pos='70.00000,32.00000' which='0' elec='0' direction='2' part='0' number='8' show='3' length='30' number_pos='0' centre_name='0'>1OUT+</PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
+		<SYMBOLDEF id='7'>
+			<NAME type='0'>4x1_HDR</NAME>
+			<REF type='0'>J?</REF>
+			<DESCRIPTION>4x1_HDR - 4x1 Header</DESCRIPTION>
+			<PPP>1</PPP>
+			<FIELD>
+				<NAME>$$SPICE_PROLOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>$$SPICE_EPILOG_PRIORITY</NAME>
+				<DEFAULT>5</DEFAULT>
+				<FT>000002</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<FIELD>
+				<NAME>Package</NAME>
+				<DEFAULT>4X1HDR-100</DEFAULT>
+				<FT>000001</FT>
+				<VALUE></VALUE>
+				<POS>0.00000,0.00000</POS>
+			</FIELD>
+			<REF_POINT power='0' part='0' pos='126.00000,138.00000'/>
+			<TinyCAD>
+				<PIN pos='120.00000,124.00000' which='0' elec='0' direction='3' part='0' number='1' show='3' length='10' number_pos='0' centre_name='0'></PIN>
+				<RECTANGLE a='122.00000,122.00000' b='126.00000,137.08967' style='2' fill='0'/>
+				<PIN pos='120.00000,128.00000' which='0' elec='0' direction='3' part='0' number='2' show='3' length='10' number_pos='0' centre_name='0'></PIN>
+				<PIN pos='120.00000,132.00000' which='0' elec='0' direction='3' part='0' number='3' show='3' length='10' number_pos='0' centre_name='0'></PIN>
+				<PIN pos='120.00000,136.00000' which='0' elec='0' direction='3' part='0' number='4' show='3' length='10' number_pos='0' centre_name='0'></PIN>
+			</TinyCAD>
+		</SYMBOLDEF>
 		<OPTIONS>
 			<GRID>0</GRID>
 			<UNITS>0</UNITS>
@@ -4116,5 +4094,12 @@ download the executable.-->
 		<WIRE a='162.00000,160.00000' b='170.00000,160.00000'/>
 		<WIRE a='162.00000,164.00000' b='170.00000,164.00000'/>
 		<WIRE a='162.00000,168.00000' b='170.00000,168.00000'/>
+		<SYMBOL id='7' pos='190.00000,78.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='J3' show='1' pos='1.00000,-11.60000'/>
+			<FIELD type='0' description='Name' value='String Pot 1' show='1' pos='1.00000,-14.00000'/>
+			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
+			<FIELD type='1' description='Package' value='4pin_Molex_CLIKmate' show='0' pos='1.00000,-9.20000'/>
+		</SYMBOL>
 	</TinyCAD>
 </TinyCADSheets>
