@@ -1,0 +1,85 @@
+Firmware:
+  rename all the device overlays
+
+Hardware:
+  Ignition switch
+  Design engine control board
+    - pump bypass valves
+      - two PWM's 
+    - hydraulic temperature sensor
+    - engine temperature sensor
+    - tachometer
+    - alternator control???
+    - Throttle servo
+    - ignition
+  Port documentation to wiki
+  Determine whether to use central 12V reg or chip on CoS
+  3D print magnetic encoder enclosures
+  Build manual override controller
+  Put together main computer
+  Get a networking switch
+  Get a fuse box
+  Get a hard E-stop switch
+  Plan out soft E-stop switch
+    - Remote buttons - garage door openers?
+    - Big Red Button for console
+    - USB keyboard input to main computer?
+
+  Cape of Stomping Redesign
+    - Done!
+
+  Cape of Stomping Schematic updates
+    - Add 12V switching regulator
+
+  Cape of Stomping PCB updates
+    - Create footprint for power connector
+    - Create footprint for SPI connector
+    - Create footprint for string pot connector
+    - Create footprint for solenoid valves connector
+    - Add 12V regulator
+       - Refer to www.ti.com/lit/ds/symlink/lm2679.pdf for design considerations
+    - Redo layout
+    - Resize board if necessary. Check enclosure size
+    - Redo routing
+    - Make sure ports are labeled
+
+  Magnetic Encoder board PCB updates
+    - Make board 1.5" x 1.5"
+    - Move sensor to dead center
+    - Add mounting holes
+    - Change to 5 pair connector
+    - Update routing
+    - Submit PCB order
+    - Submit parts order 
+
+Software:
+  pull out the deadband parameters from closed loop test
+  centralize all the parameters, a model file probably
+  determine how to do calibration and document it
+  write calibration scripts
+  make realtime graphing (over the network)  (maybe graphite?)
+  start thinking about interfacing with the existing code
+  start thinking about a UI  (LOW)
+  document a comm protocol
+  hook up all the networking code
+  do the physics
+  add force inputs to BBB code
+  import the gate code and the IK
+  import the joystick code
+  enforce speed ramps at all times
+  port SoftStopAwareSpeedManager to python, integrate
+  make E stop
+  write server code
+<<<<<<< HEAD
+  Make sure dithering is implemented
+
+=======
+  get SPI working and reading magnetic encoders
+  translate joystick input into gait commands (existing code?)
+  throttle control 
+  pump control
+  fan control
+  Calibration for magnetic encoders
+  Talk to IMU (existing code?)
+  Calibrate IMU 
+>>>>>>> 7a744523e637afb8db4651b3d3b2f071acbb8049
