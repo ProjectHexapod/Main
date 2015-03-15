@@ -3126,12 +3126,12 @@ download the executable.-->
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<LABEL pos='82.00000,44.00000' direction='3' font='5' color='208000' style='0'>Solenoid5</LABEL>
-		<LABEL pos='82.00000,48.00000' direction='3' font='5' color='208000' style='0'>Solenoid6</LABEL>
-		<LABEL pos='64.00000,60.00000' direction='2' font='5' color='208000' style='0'>Solenoid1</LABEL>
-		<LABEL pos='82.00000,60.00000' direction='3' font='5' color='208000' style='0'>Solenoid2</LABEL>
-		<LABEL pos='116.00000,44.00000' direction='2' font='5' color='208000' style='0'>Solenoid3</LABEL>
-		<LABEL pos='116.00000,56.00000' direction='2' font='5' color='208000' style='0'>Solenoid4</LABEL>
+		<LABEL pos='64.00000,80.00000' direction='2' font='5' color='208000' style='0'>Solenoid5</LABEL>
+		<LABEL pos='116.00000,40.00000' direction='2' font='5' color='208000' style='0'>Solenoid6</LABEL>
+		<LABEL pos='64.00000,72.00000' direction='2' font='5' color='208000' style='0'>Solenoid1</LABEL>
+		<LABEL pos='82.00000,72.00000' direction='3' font='5' color='208000' style='0'>Solenoid2</LABEL>
+		<LABEL pos='64.00000,76.00000' direction='2' font='5' color='208000' style='0'>Solenoid3</LABEL>
+		<LABEL pos='82.00000,76.00000' direction='3' font='5' color='208000' style='0'>Solenoid4</LABEL>
 		<LABEL pos='82.00000,80.00000' direction='3' font='5' color='208000' style='0'>1.8V_Power</LABEL>
 		<LABEL pos='82.00000,84.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
 		<LABEL pos='134.00000,52.00000' direction='3' font='5' color='208000' style='0'>Red_LED</LABEL>

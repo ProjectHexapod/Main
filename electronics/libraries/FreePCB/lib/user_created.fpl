@@ -1,196 +1,223 @@
+name: "2pin_Molex_MLX"
+author: "Spark"
+source: "www.molex.com/pdm_docs/sd/010844020_sd.pdf"
+  units: MIL
+  sel_rect: -235 -175 485 185
+  ref_text: 100 0 240 0 10
+  value_text: 100 -110 360 0 10
+  centroid: 0 0 0 0
+  outline_polyline: 10 -220 0
+    next_corner: -220 170 0
+    next_corner: 470 170 0
+    next_corner: 470 -160 0
+    next_corner: -220 -160 0
+    next_corner: -220 10 0
+    next_corner: -220 20 0
+    next_corner: -220 50 0
+    close_polyline: 0
+  n_pins: 2
+    pin: "1" 70 0 0 0
+      top_pad: 2 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 2 120 0 0 0
+    pin: "2" 70 250 0 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+
 name: "23X2HDR-100"
 author: "Ivex"
 source: "INVENTED"
-  units: MIL
-  sel_rect: -45 -45 2245 145
-  ref_text: 50 2260 40 0 7
-  value_text: 50 1100 60 0 7
-  centroid: 0 1100 50 0
-  n_pins: 46
-    pin: "1" 40 0 0 0
-      top_pad: 2 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 70 25 25 0
-    pin: "2" 40 0 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "3" 40 100 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "4" 40 100 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "5" 40 200 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "6" 40 200 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "7" 40 300 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "8" 40 300 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "9" 40 400 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "10" 40 400 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "11" 40 500 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "12" 40 500 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "13" 40 600 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "14" 40 600 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "15" 40 700 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "16" 40 700 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "17" 40 800 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "18" 40 800 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "19" 40 900 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "20" 40 900 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "21" 40 1000 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "22" 40 1000 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "23" 40 1100 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "24" 40 1100 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "25" 40 1200 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "26" 40 1200 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "27" 40 1300 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "28" 40 1300 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "29" 40 1400 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "30" 40 1400 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "31" 40 1500 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "32" 40 1500 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "33" 40 1600 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "34" 40 1600 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "35" 40 1700 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "36" 40 1700 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "37" 40 1800 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "38" 40 1800 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "39" 40 1900 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "40" 40 1900 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "41" 40 2000 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "42" 40 2000 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "43" 40 2100 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "44" 40 2100 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "45" 40 2200 0 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
-    pin: "46" 40 2200 100 0
-      top_pad: 1 70 25 25 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 70 25 25 0
+units: MIL
+sel_rect: -45 -45 2245 145
+ref_text: 50 2260 40 0 7
+value_text: 50 1100 60 0 7
+centroid: 0 1100 50 0
+n_pins: 46
+pin: "1" 40 0 0 0
+top_pad: 2 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 70 25 25 0
+pin: "2" 40 0 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "3" 40 100 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "4" 40 100 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "5" 40 200 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "6" 40 200 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "7" 40 300 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "8" 40 300 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "9" 40 400 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "10" 40 400 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "11" 40 500 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "12" 40 500 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "13" 40 600 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "14" 40 600 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "15" 40 700 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "16" 40 700 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "17" 40 800 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "18" 40 800 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "19" 40 900 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "20" 40 900 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "21" 40 1000 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "22" 40 1000 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "23" 40 1100 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "24" 40 1100 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "25" 40 1200 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "26" 40 1200 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "27" 40 1300 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "28" 40 1300 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "29" 40 1400 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "30" 40 1400 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "31" 40 1500 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "32" 40 1500 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "33" 40 1600 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "34" 40 1600 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "35" 40 1700 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "36" 40 1700 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "37" 40 1800 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "38" 40 1800 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "39" 40 1900 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "40" 40 1900 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "41" 40 2000 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "42" 40 2000 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "43" 40 2100 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "44" 40 2100 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "45" 40 2200 0 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
+pin: "46" 40 2200 100 0
+top_pad: 1 70 25 25 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 70 25 25 0
 
 name: "1X2HDR-100"
 author: "Ivex"

@@ -32,10 +32,9 @@ Hardware:
     - Add 12V switching regulator
 
   Cape of Stomping PCB updates
-    - Create footprint for power connector
-    - Create footprint for SPI connector
-    - Create footprint for string pot connector
-    - Create footprint for solenoid valves connector
+    - Fix footprint for power connector
+    - Fix footprint for string pot connector
+    - Fix footprint for solenoid valves connector
     - Add 12V regulator
        - Refer to www.ti.com/lit/ds/symlink/lm2679.pdf for design considerations
     - Redo layout

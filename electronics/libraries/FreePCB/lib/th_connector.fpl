@@ -1,110 +1,133 @@
 name: "2pin_Molex_MLX"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/010844020_sd.pdf"
-  units: MIL
-  sel_rect: -70 -70 320 70
-  ref_text: 100 0 240 0 10
-  value_text: 100 -100 100 0 10
-  centroid: 0 0 0 0
-  n_pins: 2
-    pin: "1" 70 0 0 0
-      top_pad: 2 120 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 120 0 0 0
-    pin: "2" 70 250 0 0
-      top_pad: 1 120 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+units: MIL
+sel_rect: -235 -175 485 185
+ref_text: 100 0 240 0 10
+value_text: 100 -110 360 0 10
+centroid: 0 0 0 0
+outline_polyline: 10 -220 0
+next_corner: -220 170 0
+next_corner: 470 170 0
+next_corner: 470 -160 0
+next_corner: -220 -160 0
+next_corner: -220 10 0
+next_corner: -220 20 0
+next_corner: -220 50 0
+close_polyline: 0
+n_pins: 2
+pin: "1" 70 0 0 0
+top_pad: 2 120 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 120 0 0 0
+pin: "2" 70 250 0 0
+top_pad: 1 120 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 120 0 0 0
 
 name: "4pin_Molex_CLIKmate"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/5024940470_sd.pdf"
-units: MIL
-sel_rect: -137.952756 -220 374.173228 206.850394
-ref_text: 100 -60 380 0 10
-value_text: 100 -150 250 0 10
+units: NM
+sel_rect: -3504000 -5588000 9504000 6881000
+ref_text: 2540000 -1524000 9652000 0 254000
+value_text: 2540000 -3810000 6350000 0 254000
 centroid: 0 0 0 0
-text: "1" 100 -100 -200 0 10 0 4
+text: "1" 2540000 -2540000 -5080000 0 254000 0 4
+outline_polyline: 254000 -3000000 -500000
+next_corner: -3000000 6500000 0
+next_corner: 9000000 6500000 0
+next_corner: 9000000 -1000000 0
+next_corner: -3000000 -1000000 0
+close_polyline: 0
 n_pins: 6
-pin: "1" 0 0 -53.149606 0
-top_pad: 3 106.299213 19.685039 19.685039 0
-pin: "2" 0 78.740157 -53.149606 0
-top_pad: 3 106.299213 19.685039 19.685039 0
-pin: "3" 0 157.480315 -53.149606 0
-top_pad: 3 106.299213 19.685039 19.685039 0
-pin: "4" 0 236.220472 -53.149606 0
-top_pad: 3 106.299213 19.685039 19.685039 0
-pin: "5" 0 -92.519685 122.047244 0
-top_pad: 3 149.606299 35.433071 35.433071 0
-pin: "6" 0 328.740157 122.047244 0
-top_pad: 3 149.606299 35.433071 35.433071 0
+pin: "1" 0 0 -1350000 0
+top_pad: 3 2700000 500000 500000 0
+pin: "2" 0 2000000 -1350000 0
+top_pad: 3 2700000 500000 500000 0
+pin: "3" 0 4000000 -1350000 0
+top_pad: 3 2700000 500000 500000 0
+pin: "4" 0 6000000 -1350000 0
+top_pad: 3 2700000 500000 500000 0
+pin: "5" 0 -2350000 3100000 0
+top_pad: 3 3800000 900000 900000 0
+pin: "6" 0 8350000 3100000 0
+top_pad: 3 3800000 900000 900000 0
 
 name: "12pin_Molex_CLIKmate"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/039301120_sd.pdf"
 description: "12 pin Molex CLIKmate connector, through hole"
-units: MIL
-sel_rect: -69 -185 894 356
-ref_text: 100 300 300 0 10
-value_text: 100 200 100 0 10
-centroid: 0 0 0 0
-n_pins: 14
-pin: "1" 7 0 0 0
-top_pad: 2 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 2 20 0 0 0
-pin: "2" 7 165 0 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "3" 7 330 0 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "4" 7 495 0 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "5" 7 660 0 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "6" 7 825 0 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "7" 7 0 -165 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "8" 7 165 -165 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "9" 7 330 -165 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "10" 7 495 -165 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "11" 7 660 -165 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "12" 7 825 -165 0
-top_pad: 1 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 1 20 0 0 0
-pin: "13" 118 0 287 0
-top_pad: 0 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 0 20 0 0 0
-pin: "14" 118 825 287 0
-top_pad: 0 20 0 0 0
-inner_pad: 0 0 0 0 0 0
-bottom_pad: 0 20 0 0 0
+  units: MIL
+  sel_rect: -125 -235 945 565
+  ref_text: 100 280 610 0 10
+  value_text: 100 180 400 0 10
+  centroid: 0 0 0 0
+  outline_polyline: 10 25 550
+    next_corner: -110 550 0
+    next_corner: -110 0 0
+    next_corner: 930 0 0
+    next_corner: 930 550 0
+    next_corner: 20 550 0
+    next_corner: -50 550 0
+    close_polyline: 0
+  n_pins: 14
+    pin: "1" 70 0 0 0
+      top_pad: 2 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 2 120 0 0 0
+    pin: "2" 70 165 0 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "3" 70 330 0 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "4" 70 495 0 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "5" 70 660 0 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "6" 70 825 0 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "7" 70 0 -165 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "8" 70 165 -165 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "9" 70 330 -165 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "10" 70 495 -165 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "11" 70 660 -165 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "12" 70 825 -165 0
+      top_pad: 1 120 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 120 0 0 0
+    pin: "13" 118 0 287 0
+      top_pad: 0 20 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 0 20 0 0 0
+    pin: "14" 118 825 287 0
+      top_pad: 0 20 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 0 20 0 0 0
 
 name: "1X2HDR-100mil_18AWG"
 author: "Spark"
