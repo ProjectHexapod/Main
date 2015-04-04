@@ -2945,6 +2945,16 @@ download the executable.-->
 			<CHARSET>0</CHARSET>
 			<FACENAME>Arial</FACENAME>
 		</FONT>
+		<FONT id='3'>
+			<HEIGHT>-13</HEIGHT>
+			<WIDTH>6</WIDTH>
+			<WEIGHT>400</WEIGHT>
+			<ITALIC>0</ITALIC>
+			<UNDERLINE>0</UNDERLINE>
+			<STRIKEOUT>0</STRIKEOUT>
+			<CHARSET>0</CHARSET>
+			<FACENAME>Arial</FACENAME>
+		</FONT>
 		<FONT id='4'>
 			<HEIGHT>-13</HEIGHT>
 			<WIDTH>6</WIDTH>
@@ -2956,16 +2966,6 @@ download the executable.-->
 			<FACENAME>Arial</FACENAME>
 		</FONT>
 		<FONT id='5'>
-			<HEIGHT>-13</HEIGHT>
-			<WIDTH>6</WIDTH>
-			<WEIGHT>400</WEIGHT>
-			<ITALIC>0</ITALIC>
-			<UNDERLINE>0</UNDERLINE>
-			<STRIKEOUT>0</STRIKEOUT>
-			<CHARSET>0</CHARSET>
-			<FACENAME>Arial</FACENAME>
-		</FONT>
-		<FONT id='6'>
 			<HEIGHT>-13</HEIGHT>
 			<WIDTH>6</WIDTH>
 			<WEIGHT>400</WEIGHT>
@@ -3061,7 +3061,7 @@ download the executable.-->
 				<PIN pos='110.00000,108.00000' which='0' elec='0' direction='2' part='0' number='46' show='3' length='30' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='5'>
+		<SYMBOLDEF id='2'>
 			<NAME type='0'>4x1_HDR</NAME>
 			<REF type='0'>J?</REF>
 			<DESCRIPTION>4x1_HDR - 4x1 Header</DESCRIPTION>
@@ -3126,74 +3126,74 @@ download the executable.-->
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 		</SYMBOL>
-		<LABEL pos='64.00000,80.00000' direction='2' font='5' color='208000' style='0'>Solenoid5</LABEL>
-		<LABEL pos='116.00000,40.00000' direction='2' font='5' color='208000' style='0'>Solenoid6</LABEL>
-		<LABEL pos='64.00000,72.00000' direction='2' font='5' color='208000' style='0'>Solenoid1</LABEL>
-		<LABEL pos='82.00000,72.00000' direction='3' font='5' color='208000' style='0'>Solenoid2</LABEL>
-		<LABEL pos='64.00000,76.00000' direction='2' font='5' color='208000' style='0'>Solenoid3</LABEL>
-		<LABEL pos='82.00000,76.00000' direction='3' font='5' color='208000' style='0'>Solenoid4</LABEL>
-		<LABEL pos='82.00000,80.00000' direction='3' font='5' color='208000' style='0'>1.8V_Power</LABEL>
-		<LABEL pos='82.00000,84.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='134.00000,52.00000' direction='3' font='5' color='208000' style='0'>Red_LED</LABEL>
-		<LABEL pos='64.00000,24.00000' direction='2' font='5' color='208000' style='0'>3.3V_Power</LABEL>
-		<LABEL pos='82.00000,24.00000' direction='3' font='5' color='208000' style='0'>3.3V_Power</LABEL>
-		<LABEL pos='82.00000,28.00000' direction='3' font='6' color='208000' style='0'>5V_reg</LABEL>
-		<LABEL pos='64.00000,28.00000' direction='2' font='6' color='208000' style='0'>5V_reg</LABEL>
-		<LABEL pos='64.00000,32.00000' direction='2' font='5' color='208000' style='0'>5V_Power</LABEL>
-		<LABEL pos='82.00000,32.00000' direction='3' font='5' color='208000' style='0'>5V_Power</LABEL>
-		<LABEL pos='64.00000,20.00000' direction='2' font='5' color='208000' style='0'>Ground</LABEL>
-		<LABEL pos='82.00000,20.00000' direction='3' font='5' color='208000' style='0'>Ground</LABEL>
-		<LABEL pos='64.00000,84.00000' direction='2' font='5' color='208000' style='0'>Analog1</LABEL>
-		<LABEL pos='64.00000,88.00000' direction='2' font='5' color='208000' style='0'>Analog2</LABEL>
-		<LABEL pos='82.00000,88.00000' direction='3' font='5' color='208000' style='0'>Analog3</LABEL>
-		<LABEL pos='64.00000,92.00000' direction='2' font='5' color='208000' style='0'>Analog4</LABEL>
-		<LABEL pos='82.00000,92.00000' direction='3' font='5' color='208000' style='0'>Analog5</LABEL>
-		<LABEL pos='64.00000,96.00000' direction='2' font='5' color='208000' style='0'>Analog6</LABEL>
-		<LABEL pos='82.00000,96.00000' direction='3' font='5' color='208000' style='0'>Analog7</LABEL>
-		<LABEL pos='134.00000,48.00000' direction='3' font='5' color='208000' style='0'>Blue_LED</LABEL>
-		<LABEL pos='116.00000,52.00000' direction='2' font='5' color='208000' style='0'>Green_LED</LABEL>
-		<TEXT pos='188.00000,22.00000' direction='3' font='4' color='000000'>String Pots</TEXT>
-		<SYMBOL id='5' pos='188.00000,48.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<LABEL pos='64.00000,80.00000' direction='2' font='4' color='208000' style='0'>Solenoid5</LABEL>
+		<LABEL pos='116.00000,40.00000' direction='2' font='4' color='208000' style='0'>Solenoid6</LABEL>
+		<LABEL pos='64.00000,72.00000' direction='2' font='4' color='208000' style='0'>Solenoid1</LABEL>
+		<LABEL pos='82.00000,72.00000' direction='3' font='4' color='208000' style='0'>Solenoid2</LABEL>
+		<LABEL pos='64.00000,76.00000' direction='2' font='4' color='208000' style='0'>Solenoid3</LABEL>
+		<LABEL pos='82.00000,76.00000' direction='3' font='4' color='208000' style='0'>Solenoid4</LABEL>
+		<LABEL pos='82.00000,80.00000' direction='3' font='4' color='208000' style='0'>1.8V_Power</LABEL>
+		<LABEL pos='82.00000,84.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='134.00000,52.00000' direction='3' font='4' color='208000' style='0'>Red_LED</LABEL>
+		<LABEL pos='64.00000,24.00000' direction='2' font='4' color='208000' style='0'>3.3V_Power</LABEL>
+		<LABEL pos='82.00000,24.00000' direction='3' font='4' color='208000' style='0'>3.3V_Power</LABEL>
+		<LABEL pos='82.00000,28.00000' direction='3' font='5' color='208000' style='0'>5V_reg</LABEL>
+		<LABEL pos='64.00000,28.00000' direction='2' font='5' color='208000' style='0'>5V_reg</LABEL>
+		<LABEL pos='64.00000,32.00000' direction='2' font='4' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='82.00000,32.00000' direction='3' font='4' color='208000' style='0'>5V_Power</LABEL>
+		<LABEL pos='64.00000,20.00000' direction='2' font='4' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='82.00000,20.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
+		<LABEL pos='64.00000,84.00000' direction='2' font='4' color='208000' style='0'>Analog1</LABEL>
+		<LABEL pos='64.00000,88.00000' direction='2' font='4' color='208000' style='0'>Analog2</LABEL>
+		<LABEL pos='82.00000,88.00000' direction='3' font='4' color='208000' style='0'>Analog3</LABEL>
+		<LABEL pos='64.00000,92.00000' direction='2' font='4' color='208000' style='0'>Analog4</LABEL>
+		<LABEL pos='82.00000,92.00000' direction='3' font='4' color='208000' style='0'>Analog5</LABEL>
+		<LABEL pos='64.00000,96.00000' direction='2' font='4' color='208000' style='0'>Analog6</LABEL>
+		<LABEL pos='82.00000,96.00000' direction='3' font='4' color='208000' style='0'>Analog7</LABEL>
+		<LABEL pos='134.00000,48.00000' direction='3' font='4' color='208000' style='0'>Blue_LED</LABEL>
+		<LABEL pos='116.00000,52.00000' direction='2' font='4' color='208000' style='0'>Green_LED</LABEL>
+		<TEXT pos='188.00000,22.00000' direction='3' font='3' color='000000'>String Pots</TEXT>
+		<SYMBOL id='2' pos='188.00000,48.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J3' show='1' pos='-5.00000,-17.60000'/>
 			<FIELD type='0' description='Name' value='String Pot 1' show='1' pos='-7.00000,-20.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='4pin_Molex_CLIKmate' show='0' pos='1.00000,-9.20000'/>
 		</SYMBOL>
-		<LABEL pos='192.00000,34.00000' direction='3' font='5' color='208000' style='0'>Analog1</LABEL>
-		<LABEL pos='192.00000,38.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='192.00000,42.00000' direction='3' font='5' color='208000' style='0'>1.8V_Power</LABEL>
-		<LABEL pos='192.00000,46.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='192.00000,34.00000' direction='3' font='4' color='208000' style='0'>Analog1</LABEL>
+		<LABEL pos='192.00000,38.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='192.00000,42.00000' direction='3' font='4' color='208000' style='0'>1.8V_Power</LABEL>
+		<LABEL pos='192.00000,46.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
 		<WIRE a='188.00000,34.00000' b='192.00000,34.00000'/>
 		<WIRE a='188.00000,38.00000' b='192.00000,38.00000'/>
 		<WIRE a='188.00000,42.00000' b='192.00000,42.00000'/>
 		<WIRE a='188.00000,46.00000' b='192.00000,46.00000'/>
-		<SYMBOL id='5' pos='188.00000,76.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='2' pos='188.00000,76.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J4' show='1' pos='-5.00000,-17.60000'/>
 			<FIELD type='0' description='Name' value='String Pot 2' show='1' pos='-7.00000,-20.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='4pin_Molex_CLIKmate' show='0' pos='1.00000,-9.20000'/>
 		</SYMBOL>
-		<LABEL pos='192.00000,62.00000' direction='3' font='5' color='208000' style='0'>Analog2</LABEL>
-		<LABEL pos='192.00000,66.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='192.00000,70.00000' direction='3' font='5' color='208000' style='0'>1.8V_Power</LABEL>
-		<LABEL pos='192.00000,74.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='192.00000,62.00000' direction='3' font='4' color='208000' style='0'>Analog2</LABEL>
+		<LABEL pos='192.00000,66.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='192.00000,70.00000' direction='3' font='4' color='208000' style='0'>1.8V_Power</LABEL>
+		<LABEL pos='192.00000,74.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
 		<WIRE a='188.00000,62.00000' b='192.00000,62.00000'/>
 		<WIRE a='188.00000,66.00000' b='192.00000,66.00000'/>
 		<WIRE a='188.00000,70.00000' b='192.00000,70.00000'/>
 		<WIRE a='188.00000,74.00000' b='192.00000,74.00000'/>
-		<SYMBOL id='5' pos='220.00000,48.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='2' pos='220.00000,48.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='J5' show='1' pos='-5.00000,-17.60000'/>
 			<FIELD type='0' description='Name' value='String Pot 3' show='1' pos='-7.00000,-20.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='4pin_Molex_CLIKmate' show='0' pos='1.00000,-9.20000'/>
 		</SYMBOL>
-		<LABEL pos='224.00000,34.00000' direction='3' font='5' color='208000' style='0'>Analog3</LABEL>
-		<LABEL pos='224.00000,38.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
-		<LABEL pos='224.00000,42.00000' direction='3' font='5' color='208000' style='0'>1.8V_Power</LABEL>
-		<LABEL pos='224.00000,46.00000' direction='3' font='5' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='224.00000,34.00000' direction='3' font='4' color='208000' style='0'>Analog3</LABEL>
+		<LABEL pos='224.00000,38.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
+		<LABEL pos='224.00000,42.00000' direction='3' font='4' color='208000' style='0'>1.8V_Power</LABEL>
+		<LABEL pos='224.00000,46.00000' direction='3' font='4' color='208000' style='0'>AGND</LABEL>
 		<WIRE a='220.00000,34.00000' b='224.00000,34.00000'/>
 		<WIRE a='220.00000,38.00000' b='224.00000,38.00000'/>
 		<WIRE a='220.00000,42.00000' b='224.00000,42.00000'/>

@@ -2,18 +2,15 @@ name: "2pin_Molex_MLX"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/010844020_sd.pdf"
 units: MIL
-sel_rect: -235 -175 485 185
+sel_rect: -145 -165 435 165
 ref_text: 100 0 240 0 10
-value_text: 100 -110 360 0 10
+value_text: 100 -100 100 0 10
 centroid: 0 0 0 0
-outline_polyline: 10 -220 0
-next_corner: -220 170 0
-next_corner: 470 170 0
-next_corner: 470 -160 0
-next_corner: -220 -160 0
-next_corner: -220 10 0
-next_corner: -220 20 0
-next_corner: -220 50 0
+outline_polyline: 10 0 -150
+next_corner: 420 -150 0
+next_corner: 420 150 0
+next_corner: -130 150 0
+next_corner: -130 -150 0
 close_polyline: 0
 n_pins: 2
 pin: "1" 70 0 0 0
@@ -59,10 +56,16 @@ author: "Spark"
 source: "www.molex.com/pdm_docs/sd/039301120_sd.pdf"
 description: "12 pin Molex CLIKmate connector, through hole"
   units: MIL
-  sel_rect: -75 -240 900 356
+  sel_rect: -135 -240 975 565
   ref_text: 100 300 300 0 10
   value_text: 100 200 100 0 10
   centroid: 0 0 0 0
+  outline_polyline: 10 20 40
+    next_corner: 960 40 0
+    next_corner: 960 550 0
+    next_corner: -120 550 0
+    next_corner: -120 40 0
+    close_polyline: 0
   n_pins: 14
     pin: "1" 70 0 0 0
       top_pad: 2 130 0 0 0
