@@ -25,104 +25,108 @@ bottom_pad: 1 120 0 0 0
 name: "4pin_Molex_CLIKmate"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/5024940470_sd.pdf"
-units: NM
-sel_rect: -3504000 -5588000 9504000 6881000
-ref_text: 2540000 -1524000 9652000 0 254000
-value_text: 2540000 -3810000 6350000 0 254000
-centroid: 0 0 0 0
-text: "1" 2540000 -2540000 -5080000 0 254000 0 4
-outline_polyline: 254000 -3000000 -500000
-next_corner: -3000000 6500000 0
-next_corner: 9000000 6500000 0
-next_corner: 9000000 -1000000 0
-next_corner: -3000000 -1000000 0
-close_polyline: 0
-n_pins: 6
-pin: "1" 0 0 -1350000 0
-top_pad: 3 2700000 500000 500000 0
-pin: "2" 0 2000000 -1350000 0
-top_pad: 3 2700000 500000 500000 0
-pin: "3" 0 4000000 -1350000 0
-top_pad: 3 2700000 500000 500000 0
-pin: "4" 0 6000000 -1350000 0
-top_pad: 3 2700000 500000 500000 0
-pin: "5" 0 -2350000 3100000 0
-top_pad: 3 3800000 900000 900000 0
-pin: "6" 0 8350000 3100000 0
-top_pad: 3 3800000 900000 900000 0
+  units: NM
+  sel_rect: -3504000 -5588000 9504000 6681000
+  ref_text: 2540000 -1524000 9652000 0 254000
+  value_text: 2540000 -3810000 6350000 0 254000
+  centroid: 0 0 0 0
+  text: "1" 2540000 -2540000 -5080000 0 254000 0 4
+  outline_polyline: 254000 6800000 6300000
+    next_corner: 9100000 6300000 0
+    next_corner: 9100000 -1200000 0
+    next_corner: 6800000 -1200000 0
+    next_corner: -800000 -1200000 0
+    next_corner: -3000000 -1200000 0
+    next_corner: -3000000 6300000 0
+    next_corner: -800000 6300000 0
+    next_corner: 6900000 6300000 0
+    close_polyline: 0
+  n_pins: 6
+    pin: "1" 0 0 -1350000 0
+      top_pad: 3 2700000 500000 500000 0
+    pin: "2" 0 2000000 -1350000 0
+      top_pad: 3 2700000 500000 500000 0
+    pin: "3" 0 4000000 -1350000 0
+      top_pad: 3 2700000 500000 500000 0
+    pin: "4" 0 6000000 -1350000 0
+      top_pad: 3 2700000 500000 500000 0
+    pin: "5" 0 -2350000 3100000 0
+      top_pad: 3 3800000 900000 900000 0
+    pin: "6" 0 8350000 3100000 0
+      top_pad: 3 3800000 900000 900000 0
 
 name: "12pin_Molex_CLIKmate"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/039301120_sd.pdf"
 description: "12 pin Molex CLIKmate connector, through hole"
-  units: MIL
-  sel_rect: -135 -240 975 565
-  ref_text: 100 300 300 0 10
-  value_text: 100 200 100 0 10
-  centroid: 0 0 0 0
-  outline_polyline: 10 20 40
-    next_corner: 960 40 0
-    next_corner: 960 550 0
-    next_corner: -120 550 0
-    next_corner: -120 40 0
-    close_polyline: 0
-  n_pins: 14
-    pin: "1" 70 0 0 0
-      top_pad: 2 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 130 0 0 0
-    pin: "2" 70 165 0 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "3" 70 330 0 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "4" 70 495 0 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "5" 70 660 0 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "6" 70 825 0 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "7" 70 0 -165 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "8" 70 165 -165 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "9" 70 330 -165 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "10" 70 495 -165 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "11" 70 660 -165 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "12" 70 825 -165 0
-      top_pad: 1 130 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 130 0 0 0
-    pin: "13" 118 0 287 0
-      top_pad: 0 20 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 0 20 0 0 0
-    pin: "14" 118 825 287 0
-      top_pad: 0 20 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 0 20 0 0 0
+units: MIL
+sel_rect: -135 -240 975 565
+ref_text: 100 300 300 0 10
+value_text: 100 200 100 0 10
+centroid: 0 0 0 0
+outline_polyline: 10 20 40
+next_corner: 960 40 0
+next_corner: 960 550 0
+next_corner: -120 550 0
+next_corner: -120 40 0
+close_polyline: 0
+n_pins: 14
+pin: "1" 70 0 0 0
+top_pad: 2 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 130 0 0 0
+pin: "2" 70 165 0 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "3" 70 330 0 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "4" 70 495 0 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "5" 70 660 0 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "6" 70 825 0 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "7" 70 0 -165 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "8" 70 165 -165 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "9" 70 330 -165 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "10" 70 495 -165 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "11" 70 660 -165 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "12" 70 825 -165 0
+top_pad: 1 130 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 130 0 0 0
+pin: "13" 118 0 287 0
+top_pad: 0 20 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 0 20 0 0 0
+pin: "14" 118 825 287 0
+top_pad: 0 20 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 0 20 0 0 0
 
 name: "1X2HDR-100mil_18AWG"
 author: "Spark"
