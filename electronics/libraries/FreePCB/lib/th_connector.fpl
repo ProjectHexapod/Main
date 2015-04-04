@@ -59,67 +59,59 @@ author: "Spark"
 source: "www.molex.com/pdm_docs/sd/039301120_sd.pdf"
 description: "12 pin Molex CLIKmate connector, through hole"
   units: MIL
-  sel_rect: -125 -235 945 565
-  ref_text: 100 280 610 0 10
-  value_text: 100 180 400 0 10
+  sel_rect: -75 -240 900 356
+  ref_text: 100 300 300 0 10
+  value_text: 100 200 100 0 10
   centroid: 0 0 0 0
-  outline_polyline: 10 25 550
-    next_corner: -110 550 0
-    next_corner: -110 0 0
-    next_corner: 930 0 0
-    next_corner: 930 550 0
-    next_corner: 20 550 0
-    next_corner: -50 550 0
-    close_polyline: 0
   n_pins: 14
     pin: "1" 70 0 0 0
-      top_pad: 2 120 0 0 0
+      top_pad: 2 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 120 0 0 0
+      bottom_pad: 2 130 0 0 0
     pin: "2" 70 165 0 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "3" 70 330 0 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "4" 70 495 0 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "5" 70 660 0 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "6" 70 825 0 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "7" 70 0 -165 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "8" 70 165 -165 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "9" 70 330 -165 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "10" 70 495 -165 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "11" 70 660 -165 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "12" 70 825 -165 0
-      top_pad: 1 120 0 0 0
+      top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "13" 118 0 287 0
       top_pad: 0 20 0 0 0
       inner_pad: 0 0 0 0 0 0
