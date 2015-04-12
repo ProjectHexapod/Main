@@ -1,29 +1,73 @@
+name: "TO-220-7"
+author: "Spark"
+  units: MIL
+  sel_rect: -115 -245 315 125
+  ref_text: 100 -30 290 0 10
+  value_text: 100 -140 140 0 10
+  centroid: 0 0 0 0
+  outline_polyline: 10 -100 -70
+    next_corner: 300 -70 0
+    next_corner: 300 70 0
+    next_corner: 300 110 0
+    next_corner: -100 110 0
+    next_corner: -100 70 0
+    close_polyline: 0
+  n_pins: 7
+    pin: "2" 40 0 0 0
+      top_pad: 1 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 70 0 0 0
+    pin: "4" 40 100 0 0
+      top_pad: 1 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 70 0 0 0
+    pin: "6" 40 200 0 0
+      top_pad: 1 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 70 0 0 0
+    pin: "1" 40 -50 -200 0
+      top_pad: 2 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 2 70 0 0 0
+    pin: "3" 40 50 -200 0
+      top_pad: 1 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 70 0 0 0
+    pin: "5" 40 150 -200 0
+      top_pad: 1 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 70 0 0 0
+    pin: "7" 40 250 -200 0
+      top_pad: 1 70 0 0 0
+      inner_pad: 0 0 0 0 0 0
+      bottom_pad: 1 70 0 0 0
+
 name: "2pin_Molex_MLX"
 author: "Spark"
 source: "www.molex.com/pdm_docs/sd/010844020_sd.pdf"
-  units: MIL
-  sel_rect: -235 -175 485 185
-  ref_text: 100 0 240 0 10
-  value_text: 100 -110 360 0 10
-  centroid: 0 0 0 0
-  outline_polyline: 10 -220 0
-    next_corner: -220 170 0
-    next_corner: 470 170 0
-    next_corner: 470 -160 0
-    next_corner: -220 -160 0
-    next_corner: -220 10 0
-    next_corner: -220 20 0
-    next_corner: -220 50 0
-    close_polyline: 0
-  n_pins: 2
-    pin: "1" 70 0 0 0
-      top_pad: 2 120 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 2 120 0 0 0
-    pin: "2" 70 250 0 0
-      top_pad: 1 120 0 0 0
-      inner_pad: 0 0 0 0 0 0
-      bottom_pad: 1 120 0 0 0
+units: MIL
+sel_rect: -235 -175 485 185
+ref_text: 100 0 240 0 10
+value_text: 100 -110 360 0 10
+centroid: 0 0 0 0
+outline_polyline: 10 -220 0
+next_corner: -220 170 0
+next_corner: 470 170 0
+next_corner: 470 -160 0
+next_corner: -220 -160 0
+next_corner: -220 10 0
+next_corner: -220 20 0
+next_corner: -220 50 0
+close_polyline: 0
+n_pins: 2
+pin: "1" 70 0 0 0
+top_pad: 2 120 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 2 120 0 0 0
+pin: "2" 70 250 0 0
+top_pad: 1 120 0 0 0
+inner_pad: 0 0 0 0 0 0
+bottom_pad: 1 120 0 0 0
 
 name: "23X2HDR-100"
 author: "Ivex"

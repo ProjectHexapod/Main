@@ -3052,8 +3052,9 @@ download the executable.-->
 			<FIELD type='1' description='Package' value='TO-220-7' show='0' pos='1.00000,-25.20000'/>
 		</SYMBOL>
 		<SYMBOL id='17' pos='64.00000,160.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='D7' show='1' pos='-11.00000,-5.60000'/>
+			<FIELD type='0' description='Ref' value='D8' show='1' pos='-11.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='SCHOTTKY' show='1' pos='-15.00000,-2.00000'/>
+			<FIELD type='3' description='Package' value='TO-220-2' show='0' pos='-15.00000,0.40000'/>
 		</SYMBOL>
 		<JUNCTION pos='52.00000,172.00000'/>
 		<JUNCTION pos='52.00000,186.00000'/>
@@ -3102,7 +3103,7 @@ download the executable.-->
 		<SYMBOL id='18' pos='56.00000,138.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='C13' show='1' pos='1.00000,-3.60000'/>
 			<FIELD type='0' description='Name' value='C' show='1' pos='1.00000,-6.00000'/>
-			<FIELD type='3' description='Package' value='0603' show='0' pos='1.00000,-1.20000'/>
+			<FIELD type='3' description='Package' value='R0603' show='0' pos='1.00000,-1.20000'/>
 			<FIELD type='3' description='Value' value='0.01uF' show='1' pos='1.00000,1.20000'/>
 		</SYMBOL>
 		<WIRE a='48.00000,128.00000' b='98.00000,128.00000'/>

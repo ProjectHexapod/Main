@@ -50,10 +50,10 @@ R14     R0603
 R15     R0603
 J7      2pin_Molex_MLX
 U8      TO-220-7
-D8      This part has no 'Package' attribute
+D8      TO-220-2
 C12     EIA2312
 R22     R0603
-C13     0603
+C13     R0603
 L1      KM-1.1
 C14     EIA2312
 P9      23X2HDR-100
