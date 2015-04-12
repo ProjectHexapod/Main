@@ -3021,9 +3021,8 @@ download the executable.-->
 			<FIELD type='1' description='Mouser Part' value='..' show='0' pos='1.00000,17.60000'/>
 			<FIELD type='1' description='Cost' value='1.32' show='0' pos='1.00000,20.00000'/>
 		</SYMBOL>
-		<WIRE a='24.00000,172.00000' b='52.00000,172.00000'/>
+		<WIRE a='42.00000,172.00000' b='52.00000,172.00000'/>
 		<WIRE a='52.00000,200.00000' b='74.00000,200.00000'/>
-		<WIRE a='24.00000,200.00000' b='52.00000,200.00000'/>
 		<WIRE a='174.00000,48.00000' b='169.00000,48.00000'/>
 		<JUNCTION pos='52.00000,46.00000'/>
 		<JUNCTION pos='52.00000,92.00000'/>
@@ -3057,7 +3056,6 @@ download the executable.-->
 			<FIELD type='0' description='Name' value='SCHOTTKY' show='1' pos='-15.00000,-2.00000'/>
 		</SYMBOL>
 		<JUNCTION pos='52.00000,172.00000'/>
-		<JUNCTION pos='52.00000,200.00000'/>
 		<JUNCTION pos='52.00000,186.00000'/>
 		<JUNCTION pos='62.00000,172.00000'/>
 		<JUNCTION pos='74.00000,184.00000'/>
@@ -3155,10 +3153,12 @@ download the executable.-->
 		<WIRE a='16.00000,114.00000' b='50.00000,114.00000'/>
 		<WIRE a='50.00000,114.00000' b='50.00000,124.00000'/>
 		<WIRE a='50.00000,124.00000' b='48.00000,124.00000'/>
-		<LABEL pos='138.00000,140.00000' direction='2' font='4' color='208000' style='0'>12V_raw</LABEL>
+		<LABEL pos='140.00000,138.00000' direction='2' font='4' color='208000' style='0'>12V_raw</LABEL>
 		<LABEL pos='140.00000,134.00000' direction='2' font='4' color='208000' style='0'>Ground</LABEL>
 		<WIRE a='144.00000,134.00000' b='140.00000,134.00000'/>
-		<WIRE a='144.00000,136.00000' b='138.00000,136.00000'/>
+		<WIRE a='144.00000,136.00000' b='140.00000,136.00000'/>
+		<WIRE a='140.00000,136.00000' b='140.00000,138.00000'/>
+		<LABEL pos='42.00000,172.00000' direction='2' font='4' color='208000' style='0'>12V_power</LABEL>
 	</TinyCAD>
 	<TinyCAD>
 		<NAME>Headers</NAME>
