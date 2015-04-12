@@ -2876,9 +2876,9 @@ download the executable.-->
 		<JUNCTION pos='50.00000,108.00000'/>
 		<JUNCTION pos='50.00000,116.00000'/>
 		<JUNCTION pos='98.00000,90.00000'/>
-		<SYMBOL id='14' pos='30.00000,182.00000' part='0' rotate='4' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='1' description='Ref' value='J7' show='1' pos='-11.00000,-1.60000'/>
-			<FIELD type='0' description='Name' value='STB_2_L' show='1' pos='-17.00000,-4.00000'/>
+		<SYMBOL id='14' pos='30.00000,182.00000' part='0' rotate='1' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='1' description='Ref' value='J7' show='1' pos='-5.00000,2.40000'/>
+			<FIELD type='0' description='Name' value='STB_2_L' show='1' pos='-7.00000,-6.00000'/>
 			<FIELD type='1' description='Package' value='2pin_Molex_MLX' show='0' pos='1.00000,0.80000'/>
 			<FIELD type='1' description='Usage' value='..' show='0' pos='1.00000,3.20000'/>
 			<FIELD type='1' description='Datasheet' value='..' show='0' pos='1.00000,5.60000'/>
@@ -2896,12 +2896,12 @@ download the executable.-->
 		<JUNCTION pos='84.00000,178.00000'/>
 		<JUNCTION pos='84.00000,166.00000'/>
 		<JUNCTION pos='96.00000,166.00000'/>
-		<WIRE a='30.00000,178.00000' b='30.00000,166.00000'/>
-		<WIRE a='30.00000,166.00000' b='50.00000,166.00000'/>
-		<WIRE a='30.00000,180.00000' b='30.00000,194.00000'/>
+		<WIRE a='22.00000,178.00000' b='22.00000,166.00000'/>
+		<WIRE a='22.00000,166.00000' b='50.00000,166.00000'/>
+		<WIRE a='22.00000,180.00000' b='22.00000,194.00000'/>
 		<WIRE a='50.00000,194.00000' b='72.00000,194.00000'/>
 		<JUNCTION pos='50.00000,194.00000'/>
-		<WIRE a='30.00000,194.00000' b='50.00000,194.00000'/>
+		<WIRE a='22.00000,194.00000' b='50.00000,194.00000'/>
 		<WIRE a='172.00000,64.00000' b='167.00000,64.00000'/>
 		<JUNCTION pos='96.00000,122.00000'/>
 		<JUNCTION pos='126.00000,98.00000'/>
