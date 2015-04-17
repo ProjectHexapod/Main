@@ -29,14 +29,10 @@ Hardware:
     - Done!
 
   Cape of Stomping Schematic updates
-    - Add 12V switching regulator
+    - Done!
 
   Cape of Stomping PCB updates
-    - Fix footprint for power connector
-    - Fix footprint for string pot connector
-    - Fix footprint for solenoid valves connector
-    - Add 12V regulator
-       - Refer to www.ti.com/lit/ds/symlink/lm2679.pdf for design considerations
+    - Figure out why D8 only shows one connection
     - Redo layout
     - Resize board if necessary. Check enclosure size
     - Redo routing
