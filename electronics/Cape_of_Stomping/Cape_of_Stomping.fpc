@@ -152,7 +152,7 @@ annular_ring_for_pins: 177800
 annular_ring_for_vias: 177800
 shrink_paste_mask: 0
 cam_flags: 4097
-cam_layers: 1048637
+cam_layers: 1048639
 cam_drill_file: 1
 cam_units: 2
 cam_n_x: 1
