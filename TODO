@@ -26,17 +26,23 @@ Hardware:
     - USB keyboard input to main computer?
 
   Cape of Stomping Redesign
-    - Done!
+    - Pick new resitor values for ADC dividers 
+      - See Brett's email
+    - Check 12V divider too
+    - 
 
   Cape of Stomping Schematic updates
     - Done!
 
   Cape of Stomping PCB updates
-    - Figure out why D8 only shows one connection
-    - Redo layout
-    - Resize board if necessary. Check enclosure size
-    - Redo routing
-    - Make sure ports are labeled
+    - Fix inductor footprint - missing bottom pads
+    - Space diodes out more
+    - Space FET's out more
+    - C12 pads should extend farther from the part
+    - Add polarity markers to giant surface mount cap footprints (C12, C13)
+    - Power connector footprint needs shape polarity mark
+    - Power connector needs room on sides for mating connector tabs
+    - J1 Solenoid connector footprint is wrong - far row of holes too close
 
   Magnetic Encoder board PCB updates
     - Make board 1.5" x 1.5"
