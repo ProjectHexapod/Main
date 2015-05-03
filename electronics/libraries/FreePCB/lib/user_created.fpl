@@ -15,11 +15,11 @@ author: "Spark"
     pin: "1" 70 0 0 0
       top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 0 0 0 0 0
+      bottom_pad: 1 130 0 0 0
     pin: "2" 70 220 0 0
       top_pad: 1 130 0 0 0
       inner_pad: 0 0 0 0 0 0
-      bottom_pad: 0 0 0 0 0
+      bottom_pad: 1 130 0 0 0
 
 name: "TO-220-7"
 author: "Spark"

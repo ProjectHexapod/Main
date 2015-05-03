@@ -35,7 +35,6 @@ Hardware:
     - Done!
 
   Cape of Stomping PCB updates
-    - Fix inductor footprint - missing bottom pads
     - Space diodes out more
     - Space FET's out more
     - C12 pads should extend farther from the part
