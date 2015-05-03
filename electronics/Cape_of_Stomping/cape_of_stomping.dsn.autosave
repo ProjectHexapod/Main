@@ -2828,8 +2828,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R7' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='10.0K' show='1' pos='1.00000,-6.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='1K' show='1' pos='1.00000,-6.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2841,7 +2841,7 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R8' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-2.80000'/>
 			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
@@ -2861,7 +2861,7 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R9' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-2.80000'/>
 			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
@@ -2874,8 +2874,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R10' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='10.0K' show='1' pos='1.00000,-6.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='1K' show='1' pos='1.00000,-6.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2887,8 +2887,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R11' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-0.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='1' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2906,8 +2906,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R12' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-0.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='1' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2919,7 +2919,7 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R16' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='10.0K' show='1' pos='1.00000,-6.80000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='1K' show='1' pos='1.00000,-6.80000'/>
 			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
@@ -2932,8 +2932,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R17' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-2.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2951,8 +2951,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R18' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-2.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2964,8 +2964,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R13' show='1' pos='1.00000,-9.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-12.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='10.0K' show='1' pos='1.00000,-6.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='1K' show='1' pos='1.00000,-6.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2977,8 +2977,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R14' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-2.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
@@ -2996,8 +2996,8 @@ download the executable.-->
 			<FIELD type='0' description='Ref' value='R15' show='1' pos='1.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='R_0603' show='1' pos='1.00000,-8.00000'/>
 			<FIELD type='1' description='Package' value='R0603' show='0' pos='1.00000,-7.20000'/>
-			<FIELD type='1' description='Resistance In Ohms' value='1.8K' show='1' pos='1.00000,-2.80000'/>
-			<FIELD type='1' description='Tolerance' value='5%' show='0' pos='1.00000,-2.40000'/>
+			<FIELD type='1' description='Resistance In Ohms' value='180' show='1' pos='1.00000,-2.80000'/>
+			<FIELD type='1' description='Tolerance' value='0.1%' show='0' pos='1.00000,-2.40000'/>
 			<FIELD type='1' description='Size / Dimension' value='0.126&quot; L x 0.063&quot; W (3.20mm x 1.60mm)' show='0' pos='1.00000,0.00000'/>
 			<FIELD type='1' description='Manufacturer' value='Panasonic - ECG' show='0' pos='1.00000,2.40000'/>
 			<FIELD type='1' description='Manufacturer Part Number' value='ERJ-8GEYJ103V' show='0' pos='1.00000,4.80000'/>
