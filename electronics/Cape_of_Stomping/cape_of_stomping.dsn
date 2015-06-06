@@ -2269,7 +2269,7 @@ download the executable.-->
 				<PIN pos='76.00000,44.00000' which='0' elec='0' direction='2' part='0' number='7' show='3' length='30' number_pos='0' centre_name='0'>Softstart</PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='18'>
+		<SYMBOLDEF id='17'>
 			<NAME type='0'>C</NAME>
 			<REF type='0'>C?</REF>
 			<DESCRIPTION>Capacitor</DESCRIPTION>
@@ -2296,7 +2296,7 @@ download the executable.-->
 				<PIN pos='94.00000,33.00000' which='5' elec='4' direction='0' part='0' number='2' show='0' length='30' number_pos='0' centre_name='0'></PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='19'>
+		<SYMBOLDEF id='18'>
 			<NAME type='0'>L</NAME>
 			<REF type='0'>L?</REF>
 			<DESCRIPTION>Inductor</DESCRIPTION>
@@ -2339,7 +2339,7 @@ download the executable.-->
 				<PIN pos='50.00000,54.00000' which='0' elec='4' direction='0' part='0' number='1' show='0' length='30' number_pos='0' centre_name='0'>b</PIN>
 			</TinyCAD>
 		</SYMBOLDEF>
-		<SYMBOLDEF id='20'>
+		<SYMBOLDEF id='19'>
 			<NAME type='0'>SCHOTTKY</NAME>
 			<REF type='0'>D?</REF>
 			<DESCRIPTION>Schotty Diode</DESCRIPTION>
@@ -3115,26 +3115,12 @@ download the executable.-->
 		<WIRE a='98.00000,146.00000' b='98.00000,162.00000'/>
 		<WIRE a='60.00000,162.00000' b='16.00000,162.00000'/>
 		<WIRE a='98.00000,162.00000' b='72.00000,162.00000'/>
-		<SYMBOL id='18' pos='56.00000,138.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
-			<FIELD type='0' description='Ref' value='C13' show='1' pos='1.00000,-3.60000'/>
-			<FIELD type='0' description='Name' value='C' show='1' pos='1.00000,-6.00000'/>
-			<FIELD type='3' description='Package' value='R0603' show='0' pos='1.00000,-1.20000'/>
-			<FIELD type='3' description='Value' value='0.01uF' show='1' pos='1.00000,1.20000'/>
-		</SYMBOL>
 		<WIRE a='48.00000,128.00000' b='98.00000,128.00000'/>
 		<WIRE a='98.00000,128.00000' b='98.00000,132.00000'/>
 		<WIRE a='48.00000,132.00000' b='50.00000,132.00000'/>
-		<WIRE a='50.00000,132.00000' b='50.00000,130.00000'/>
-		<WIRE a='50.00000,130.00000' b='54.00000,130.00000'/>
-		<WIRE a='48.00000,136.00000' b='50.00000,136.00000'/>
-		<WIRE a='50.00000,136.00000' b='50.00000,137.00000'/>
-		<WIRE a='50.00000,137.00000' b='54.00000,137.00000'/>
-		<LABEL pos='70.00000,134.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
-		<JUNCTION pos='54.00000,130.00000'/>
-		<WIRE a='54.00000,130.00000' b='70.00000,130.00000'/>
-		<WIRE a='70.00000,130.00000' b='70.00000,134.00000'/>
+		<LABEL pos='50.00000,132.00000' direction='3' font='4' color='208000' style='0'>Ground</LABEL>
 		<LABEL pos='72.00000,140.00000' direction='3' font='4' color='208000' style='0'>12V_raw</LABEL>
-		<SYMBOL id='19' pos='46.00000,154.00000' part='0' rotate='2' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='18' pos='46.00000,154.00000' part='0' rotate='2' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='L1' show='1' pos='-10.00000,2.00000'/>
 			<FIELD type='0' description='Name' value='L' show='0' pos='-14.00000,2.00000'/>
 			<FIELD type='3' description='Package' value='KM-1.1' show='0' pos='-10.00000,4.40000'/>
@@ -3175,14 +3161,26 @@ download the executable.-->
 		<WIRE a='140.00000,136.00000' b='140.00000,138.00000'/>
 		<LABEL pos='42.00000,172.00000' direction='2' font='4' color='208000' style='0'>12V_power</LABEL>
 		<JUNCTION pos='48.00000,144.00000'/>
-		<WIRE a='48.00000,144.00000' b='60.00000,144.00000'/>
-		<SYMBOL id='20' pos='64.00000,160.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+		<SYMBOL id='19' pos='64.00000,160.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
 			<FIELD type='0' description='Ref' value='D8' show='1' pos='-11.00000,-5.60000'/>
 			<FIELD type='0' description='Name' value='SCHOTTKY' show='1' pos='-17.00000,-2.00000'/>
 			<FIELD type='2' description='$$SPICE_PROLOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='2' description='$$SPICE_EPILOG_PRIORITY' value='5' show='0' pos='0.00000,0.00000'/>
 			<FIELD type='1' description='Package' value='TO-220-2' show='0' pos='1.00000,-9.20000'/>
 		</SYMBOL>
+		<SYMBOL id='17' pos='66.00000,138.00000' part='0' rotate='0' can_scale='0' show_power='0' scale_x='1.00000' scale_y='1.00000'>
+			<FIELD type='0' description='Ref' value='C13' show='1' pos='1.00000,-3.60000'/>
+			<FIELD type='0' description='Name' value='C' show='1' pos='1.00000,-6.00000'/>
+			<FIELD type='3' description='Package' value='R0603' show='0' pos='1.00000,-1.20000'/>
+			<FIELD type='3' description='Value' value='0.01uF' show='1' pos='1.00000,-0.80000'/>
+		</SYMBOL>
+		<WIRE a='48.00000,136.00000' b='60.00000,136.00000'/>
+		<WIRE a='60.00000,136.00000' b='60.00000,130.00000'/>
+		<WIRE a='60.00000,130.00000' b='64.00000,130.00000'/>
+		<WIRE a='64.00000,137.00000' b='64.00000,144.00000'/>
+		<WIRE a='60.00000,144.00000' b='48.00000,144.00000'/>
+		<JUNCTION pos='60.00000,144.00000'/>
+		<WIRE a='64.00000,144.00000' b='60.00000,144.00000'/>
 	</TinyCAD>
 	<TinyCAD>
 		<NAME>Headers</NAME>
