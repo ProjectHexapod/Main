@@ -12,7 +12,6 @@ Hardware:
     - alternator control???
     - Throttle servo
     - ignition
-  Port documentation to wiki
   Determine whether to use central 12V reg or chip on CoS
   3D print magnetic encoder enclosures
   Build manual override controller
@@ -25,11 +24,16 @@ Hardware:
     - Big Red Button for console
     - USB keyboard input to main computer?
 
-  Cape of Stomping Redesign
+  Cape of Stomping Rev2
     - Pick new resitor values for ADC dividers 
       - See Brett's email
+      - Done I think?  
     - Check 12V divider too
-    - 
+
+    - Add jumpers for selecting real time processing pins or PWM pins
+    - add holes for power supply standoffs
+    - remove power supply
+    - Remove current sensors
 
   Cape of Stomping Schematic updates
     - Done!
