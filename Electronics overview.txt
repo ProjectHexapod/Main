@@ -1,0 +1,85 @@
+[Electronics overview]
+
+[Console]
+	guages
+	[router]
+		main computer
+		engine control board
+		6x leg controllers
+		2x hip controllers
+		laptop during troubleshooting
+	[main computer]
+	[engine control board]
+	Controls 
+		Joystick
+		E stop button for safe stop
+		TBD: maybe a kill-the-power E stop
+		Laptop / API
+
+[Leg Controllers]
+	Communicate with main computer via Ethernet
+	Pass back sensor data and control solenoids
+	Functions:
+		Drive solenoid PWM
+		Monitor string pots (Thigh and Knee)
+		Monitor compliant link sensor
+		Monitor 12V actual voltage 
+		Send position data to main computer
+		Receive robot position data from main computer
+		Compute control loop and update PWM
+	Enclosure
+		ports
+
+[Hip Controllers]
+
+[String pots]
+	JX-PA-15-N12-14S-132 and JX-PA-10-N12-14S-132
+		http://www.unimeasure.com/obj--pdf/jx-pa.pdf
+		0-1K range
+
+[Compliant Link Sensor]
+	Delphi Ride Height Sensors ER10031
+		http://www.summitracing.com/parts/dfp-er10031?seid=srese1&gclid=CjwKEAjw3_ypBRCwoKqKw5P9wgsSJAAbi2K94xzHsf7dmDgVCodPEyFrd_NVCg_UObi5ZNHQsuZ5GBoCj2fw_wcB 
+
+
+[Power Distribution Box]
+	Breaks battery power out to:
+		6x leg controllers
+		2x hip controllers
+		console
+	
+
+[Cables and connectors]
+	Leg Controllers:
+		Ethernet 
+			stranded cat6 plenum
+		Power
+			Boat cable
+		Solenoid
+			3 wire rubber coated
+			built in diode
+		String pots
+			built in to pots
+			shielded 3 wire, ? AWG
+		Compliant link
+	String pots:
+		Built in cable
+		Vampire connectors
+	Compliant Link Sensor:
+	Power Distribution Box:
+		Cables:
+			Battery:
+				4guage, 3wire, rubber coated 
+			Power breakout:
+				boat cable
+
+[Power Requirements]
+	Solenoids
+	Beaglebones
+	Router
+	Future
+		Sound system
+		Laser
+
+[Beaglebone Black]
+	http://beagleboard.org/BLACK
