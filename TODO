@@ -2,59 +2,33 @@ Firmware:
   rename all the device overlays
 
 Hardware:
-  Ignition switch
-  Design engine control board
-    - pump bypass valves
-      - two PWM's 
-    - hydraulic temperature sensor
-    - engine temperature sensor
-    - tachometer
-    - alternator control???
-    - Throttle servo
-    - ignition
-  Determine whether to use central 12V reg or chip on CoS
-  3D print magnetic encoder enclosures
-  Build manual override controller
-  Put together main computer
-  Get a networking switch
-  Get a fuse box
-  Get a hard E-stop switch
-  Plan out soft E-stop switch
-    - Remote buttons - garage door openers?
-    - Big Red Button for console
-    - USB keyboard input to main computer?
+  Critical:
+    Wire up the rest of the legs  
+      - Connect power and ethernet  
+    Install network switch  
+      - Put in sealed enclosure inside console?  
+    Soft E-stop button for console  
+    Main computer cape  
+      - specify pilot control inputs  
+      - specify dashboard indicator outputs  
+    Manual pump bypass valves (until engine controller board is done)  
 
-  Cape of Stomping Rev2
-    - Pick new resitor values for ADC dividers 
-      - See Brett's email
-      - Done I think?  
-    - Check 12V divider too
+  Non-critical:  
+    Ignition switch  
+    Design engine control board  
+      - pump bypass valves  
+        - one PWM each  
+      - Throttle servo  
+      - hydraulic temperature sensor  
+      - hydraulic pressur sensor  
+      - hydraulic flow sensor?  
+      - engine temperature sensor  
+      - tachometer  
+      - alternator control???  
+    Build manual valve controller pendant   
+      - Connectors for knee, thigh, and hip solenoids  
+      - toggle switches to manually move each joint  
 
-    - Add jumpers for selecting real time processing pins or PWM pins
-    - add holes for power supply standoffs
-    - remove power supply
-    - Remove current sensors
-
-  Cape of Stomping Schematic updates
-    - Done!
-
-  Cape of Stomping PCB updates
-    - Space diodes out more
-    - Space FET's out more
-    - C12 pads should extend farther from the part
-    - Add polarity markers to giant surface mount cap footprints (C12, C13)
-    - Power connector footprint needs shape polarity mark
-    - Power connector needs room on sides for mating connector tabs
-    - J1 Solenoid connector footprint is wrong - far row of holes too close
-
-  Magnetic Encoder board PCB updates
-    - Make board 1.5" x 1.5"
-    - Move sensor to dead center
-    - Add mounting holes
-    - Change to 5 pair connector
-    - Update routing
-    - Submit PCB order
-    - Submit parts order 
 
 Software:
   pull out the deadband parameters from closed loop test
@@ -74,10 +48,7 @@ Software:
   port SoftStopAwareSpeedManager to python, integrate
   make E stop
   write server code
-<<<<<<< HEAD
   Make sure dithering is implemented
-
-=======
   get SPI working and reading magnetic encoders
   translate joystick input into gait commands (existing code?)
   throttle control 
@@ -86,4 +57,31 @@ Software:
   Calibration for magnetic encoders
   Talk to IMU (existing code?)
   Calibrate IMU 
->>>>>>> 7a744523e637afb8db4651b3d3b2f071acbb8049
+
+Documentation:
+  Check leg enclosure port locations
+    Top:
+      Solenoids
+      larger (power/ethernet)
+      
+    Bottom:
+  Design engine control board
+    - pump bypass valves
+      - two PWM's 
+    - hydraulic temperature sensor
+    - engine temperature sensor
+    - tachometer
+    - alternator control???
+    - Throttle servo
+    - ignition
+      String pots
+      smaller (power/ethernet)
+
+  Check cable types 
+  Check compliant link sensor voltage level
+
+  --> Mark up schematic for cape  
+
+
+Hydraulic flow rate sensor?  
+  - Should we have an electronic flow rate sensor as a critical step?  
