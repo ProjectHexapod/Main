@@ -1,0 +1,9 @@
+LAB NOTEBOOK
+
+
+
+
+------------------ 9/11/2015 ------------------
+
+Test:  Check number typed into PWM input in Beaglebone against actual duty cycle output by motor controller measured with scope
+
