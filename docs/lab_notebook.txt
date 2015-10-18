@@ -5,5 +5,92 @@ LAB NOTEBOOK
 
 ------------------ 9/11/2015 ------------------
 
-Test:  Check number typed into PWM input in Beaglebone against actual duty cycle output by motor controller measured with scope
+------------------------
+Test: 
+Check PWM output to solenoid against current feedback using scope
 
+Result: 
+PWM was a clean square wave
+Feedback was a sawtooth wave correlating with the PWM
+
+Takeaway:
+There is no filtering built into the current feedback
+------------------------
+
+------------------------
+Test: 
+Figure out how high of a PWM frequency we need to go to in order to get a clean DCish signal back from current feedback due to filtering from solenoid inductance 
+
+Notes:
+Set PWM to 20kHz, 50% duty cycle 
+Saw no current output
+
+Set PWM to 2kHz, 50% duty cycle 
+Works fine
+Scope on current feedback shows clean triangle wave with roughly 150mV pk-pk, 100mV DC offset
+
+Set PWM to 10kHz, 50% duty cycle 
+No output
+
+Discovered broken alligator clip wire causing flaky connection
+
+Try again to set PWM to 20kHz, 50% duty cycle 
+PWM output is a nice clean square wave
+Current feedback is around 100mV with small ripple, but high voltage short duration spikes on transitions
+Software reads 230mV, jumping around between 211-255mV (525 mV per amp)
+
+At 20kHz 40% duty cycle, we got 500mA measured using handheld DMM scope
+Current feedback was ~50mV - expected ~250mV
+
+At 20kHz, 100% duty cycle
+1.44A coil current measured with DMM
+Expect 756mV (1.44A * 525 mV/A)
+Current feedback was 0.7V.  
+Software reads 1.5V, jumping around between 1474-1511 mV
+
+Check 20kHz, 40% duty cycle again
+Expect 264mV 
+Current feedback is ~50mV according to scope
+Sanity check the oscilliscope with multimeter (DC voltage) - get 60.9mV 
+DMM measures 503mA 
+Software reads 98-133mV 
+
+
+Measure Beaglebone cape analog ground to Stompy system ground (at screw terminal in controller box) - 10mV
+Beaglebone digital ground and analog ground are the same
+
+Discovered that the motor controller has a 338Hz -3dB cutoff frequency (R = 200 Ohm, C = 0.47uF)
+
+Try attaching a 470uF capacitor to current feedback to see if it cleans up signal
+	Power supply started current limiting when we went to hook it up so we killed power
+
+Check 20kHz, 50% duty cycle 
+Find coil impedance @20kHz
+Power supply is at 12V
+DMM measures PWM current at 0.64A
+
+8.5VRMS/0.64A = 13.3 Ohms
+
+Check 20kHz, 25% duty cycle
+DMM measures 0.28A
+Predict 451mA (6 VRMS/13.3 Ohms)
+
+Check 20kHz, 75% duty cycle
+DMM measures 0.86A
+Predict 777mA (10.35 VRMS/13.3 Ohms)
+------------------------
+
+------------------------
+Test:  
+
+Result:
+------------------------
+
+------------------------
+Test:  
+
+Result:
+------------------------
+
+
+------------------ 9/18/2015 ------------------
