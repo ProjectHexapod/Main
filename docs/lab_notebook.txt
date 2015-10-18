@@ -80,17 +80,54 @@ DMM measures 0.86A
 Predict 777mA (10.35 VRMS/13.3 Ohms)
 ------------------------
 
-------------------------
-Test:  
-
-Result:
-------------------------
-
-------------------------
-Test:  
-
-Result:
-------------------------
-
 
 ------------------ 9/18/2015 ------------------
+
+
+------------------------
+Test:  
+Bench setup:
+1 Ohm 3Watt resistor in series with solenoid coil on ground side
+Scope has one channel across resistor to measure current, and one channel on current FB from motor controller
+
+Try 20kHz, 50% duty cycle
+Power supply shows 0.35A currrent draw
+Get very clean square wave across resistor - 1.3A peak
+Current sense shows 0.12V => 0.23A
+Arduino reads 0.25A
+
+Try 20kHz, 25% duty cycle
+Power supply shows 0.10A currrent draw
+Get very clean square wave across resistor - 1.3A peak
+Current sense is in the noise.  Noise is around 0.02V. ~0.01V => 0.02A
+Arduino reads 0.02A
+
+Try 20kHz, 75% duty cycle
+Power supply shows 0.78A currrent draw
+Get very clean square wave across resistor - 1.3A peak
+Current sense shows 0.35V=> 0.67A
+Arduino reads 0.65A
+
+
+Result:
+Graphed results and added polynomial trendline.  Equation came out to Ifb = 1.4*(duty)^2 - 0.15*(duty) - 0.025
+This predicts that Ifb for a 65% duty cycle would be:
+1.4*(0.65)^2 - 0.15*(0.65) - 0.025 = 0.47A
+
+Try 20kHz, 65% duty cycle
+Power supply shows 0.55 currrent draw
+Get very clean square wave across resistor - 1.3A peak
+Current sense shows 0.20V=> 0.38A
+Arduino reads 0.42A
+
+Polynomial approximation failed to accurately model results
+
+------------------------
+
+------------------ 9/27/2015 ------------------
+
+------------------------
+Test:  
+
+Result:
+------------------------
