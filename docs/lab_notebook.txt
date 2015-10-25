@@ -124,10 +124,30 @@ Polynomial approximation failed to accurately model results
 
 ------------------------
 
------------------- 9/27/2015 ------------------
+------------------ 10/25/2015 ------------------
 
 ------------------------
-Test:  
+Goal: 
+Characterize current feedback against actual current
+
+Setup:
+Use resistive load to remove nonlinearities and frequency dependent impedence factors
+
+1.18 Ohm load with a 14V PWM supply
+At 10% duty cycle (max for this test) this produces 1.19A average
+
+Vrms = peak * sqrt(duty cycle) = 14* sqrt(0.10) = 4.427 Vrms
+Prms = Vrms^2 / R = 4.427^2 / 1.18 Ohms = 16.6W
+Prms = (peak * sqrt(duty cycle))^2 / R
+3% duty cycle => 4.98W 
+so it looks like for our 5W 1.18 Ohm resistor the max PWM at 14V is 3% duty cycle
+
+Using average current not RMS current for these calculations because the field strength is proportional to current, not power.  I'm not 100% sure this is the right approach, but it sounds right. 
+
+
+Test script:
+bbbStuff/src/current_feedback_pin.py
 
 Result:
+ 
 ------------------------
